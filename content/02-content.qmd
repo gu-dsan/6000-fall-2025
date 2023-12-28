@@ -1,0 +1,23 @@
+## About today's class
+
+Introduction to cloud services to be used throughout the semester.
+
+
+## Readings
+
+Readings for this lecture (to be completed ***before this class***):  
+- [Laberis - What is Cloud]({{< var reading.lebris >}}){target="_blank"}  
+- [Rittinghouse - The Evolution of Cloud]({{< var reading.rittinghouse >}}){target="_blank"}  
+
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/02-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+Accessing cloud services, starting and connecting to a virtual machine, S3 commands.
+The lab for today's lesson is [available online](/labs/02-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a02 >}})

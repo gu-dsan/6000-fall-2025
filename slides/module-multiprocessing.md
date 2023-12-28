@@ -1,0 +1,58 @@
+
+# The `multiprocessing` module {.section}
+
+## The `multiprocessing` module
+
+- Focused on single-machine multicore parallelism
+- Facilitates:
+  - process- and thread-based parallel processing
+  - sharing work over queues
+  - sharing data among processes
+  
+## Processes and threads
+
+::: {.incremental}
+- A **process** is an executing program, that is self-contained and has dedicated runtime and memory
+- A **thread** is the basic unit to which the operating system allocates processor time. It is an entity *within a process*.  A thread can execute any part of the process code, including parts currently being executed by another thread. 
+- A thread will often be faster to spin up and terminate than a full process
+- Threads can share memory and data with each other
+:::
+
+::: {.fragment}
+::: {.callout-note appearance="simple"}
+Python has the **Global Interpretor Lock (GIL)** which only allows only one thread to interact with Python objects at a time. So the 
+way to parallel process in Python is to do **multi-processor** parallelization, where we run multiple Python interpretors across multiple processes, each with its own private memory space and GIL.
+:::
+:::
+
+## Some concepts in `multiprocessing`^[Gorelick & Ozsvald, 2020. *High Performance Python*, O'Reilly]
+
+### Process
+
+A forked copy of the current process; this creates a new process identifier, and the task runs as an independent child process in the operating system
+
+### Pool
+
+Wraps the `Process` into a convenient pool of workers that share a chunk of work and return an aggregated result
+
+
+# To the Lab! {.section}
+
+## Other methods of parallel processing in Python
+
+- The `joblib` module
+- Most `scikit-learn` functions have implicit parallelization baked in through the `n_jobs` parameter
+
+For example
+
+```python
+from sklearn.ensembles import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators = 100, random_state = 124, n_jobs=-1)
+```
+uses the `joblib` module to use all available processors (`n_jobs=-1`) to do the bootstrapping
+
+::: {.aside}
+:::{.callout-note appearance="minimal"}
+See [here](https://scikit-learn.org/stable/computing/parallelism.html) for a description of parallel processing in the scikit-learn module
+:::
+:::

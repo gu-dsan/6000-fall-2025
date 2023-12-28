@@ -1,0 +1,16 @@
+---
+title: "Lectures and labs"
+---
+
+Each class is divided into `two parts`: a `lecture` followed by a `lab`. Some class optionally have a `reading` component also that needs to be completed ***before class***.
+
+### Lecture
+
+During the lecture, I will be going over the slides for that lecture, this would usually include a quick review of the previous class, feedback on a recently graded assignment and then cover the topic of the day.
+
+The lecture would usually last about 90 minutes, followed by 5 to 10 minutes break.
+
+### Lab
+
+The lab for the class would involve a hands-on coding assignment provided through GitHub Classroom. You will start the lab ***in-class***, myself and the TAs would be helping you with any questions with the lab and then you would need to turn in the lab by checking in your code and results in the GitHub repo (you will have until next class for this, but usually you would be able to do this much sooner).
+

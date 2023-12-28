@@ -1,0 +1,254 @@
+---
+title: "Lab 7 - SparkSQL"
+output: 
+  rmdformats::downcute:
+  code_folding: show
+thumbnails: false
+lightbox: true
+pkgdown:
+  as_is: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+{{< include login-to-saxanet.qmd >}} 
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(reticulate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PySpark Introduction
+
+## The right data tool...
+
+![](img/right_tool.jpg)
+
+Sometimes you only need simple solutions to problems. Perfection is the enemy of the good. We'll walk through a few options when considering a big data job.
+
+Here are a few options when your data is local:
+
+* Using a single process in R/python
+* Writing an R/python function to run in parallel on a single node
+* Using Python cluster tools like Ray or Dask
+* **Using PySpark on a single node to development with multiple workers**
+
+Here are a few options when your data is distributed
+
+* Using Dask on a cluster
+* **Using PySpark on a cluster**
+
+Here are a few options for task-specific needs:
+
+* Harnessing a specialized solution like GPU data science with [RAPIDS](https://rapids.ai/). This software is developed so you can conduct your entire data science pipeline on a GPU.
+* TensorFlow distributed netural network training with Spark!
+* Large language model processing with Spark!
+
+## RDD vs PySparkSQL DataFrame
+
+RDD (resilient distributed dataset) is an immutable collection of records (rows) of data
+
+* great for unstructured data
+* doing low-level transformations
+
+PySpark DataFrame is organized into a table with rows and columns. This is just like the format when working in a relational database like Hive.
+
+* Two dimensional table format, great for "standard" datasets
+* Column format means consistent metadata and data typing
+* Query optimization
+* **Schema is created automatically!**
+
+
+## Common Actions in R, Python Pandas, and PySpark
+
+Anything you can do, I can do in parallel!
+
+[TDS big data options](https://towardsdatascience.com/beyond-pandas-spark-dask-vaex-and-other-big-data-technologies-battling-head-to-head-a453a1f8cc13)
+
+```{r}
+head(starwars)
+```
+
+### Reading in data {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+library(arrow)
+library(dplyr)
+
+starwars <- arrow::read_parquet('starwars.parquet')
+```
+
+#### Pandas
+```{python, eval = FALSE}
+import os
+import pandas as pd
+starwars = pd.read_parquet('starwars.parquet')
+```
+
+#### PySpark
+```{python, eval = FALSE}
+import pyspark
+from pyspark.sql.functions import udf, lit, col
+from pyspark.sql import SparkSession
+
+# configuration for workers
+config = pyspark.SparkConf().setAll([('spark.executor.memory', '10g'),
+                             ('spark.executor.cores', '2'),
+                             ('spark.cores.max', '16'),])
+# launch cluster connection
+sc = pyspark.SparkContext(conf = config)
+
+# set up pyspark session
+spark = pyspark.SparkSession.builder.appName('my-test').getOrCreate()
+
+starwars = spark.read.load('starwars.parquet')
+```
+
+### Selecting data variables {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+starwars_select <- starwars %>% select(name, height, mass)
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars_select = starwars[['name','height','mass']]
+```
+
+#### PySparkSQL
+```{python, eval = FALSE}
+starwars_select = starwars.select(['name','height','mass'])
+```
+
+### Filtering data rows {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+starwars_filter <- starwars %>% filter(height > 110, 
+                                       homeworld == "Tatooine")
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars_filter = starwars[(starwars.height > 110) & 
+                        (starwars.homeworld == "Tatooine")]
+```
+
+#### PySpark
+```{python, eval = FALSE}
+starwars_filter = starwars[(col('height') > 110) &
+                    (col('homeworld') == "Tatooine")]
+```
+
+### Manipulating data {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+starwars <- starwars %>% 
+    mutate(tatooine_dummy = if_else(homeworld == 'Tatooine',
+                                    TRUE,
+                                    FALSE))
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars['tatooine_dummy'] = starwars.apply(
+                                  lambda x: True if x.homeworld == 'Tatooine' 
+                                        else False, 
+                                                axis = 1)
+```
+
+
+#### PySpark
+```{python, eval = FALSE}
+from pyspark.sql.types import BooleanType
+@udf(returnType=BooleanType())
+def dummy_tatooine(x):
+    if x == 'Tatooine':
+        return True
+    else:
+        return False
+
+starwars = starwars.withColumn('tatooine_dummy', 
+                dummy_tatooine(col('homeworld')))
+```
+
+### View the head of the data {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+starwars %>% head(5)
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars.head(5)
+```
+
+#### PySpark
+```{python, eval = FALSE}
+starwars.take(5) # RDD version
+
+starwars.show(5) # SQL version
+```
+
+
+### Group-by mean data {.tabset}  
+
+#### R
+```{r, eval = FALSE}
+starwars %>% group_by(species) %>% summarize(mean_height = mean(height))
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars.groupby('species')['height'].mean()
+```
+
+#### PySpark
+```{python, eval = FALSE}
+starwars.groupBy('species').mean('height').collect()
+```
+
+### Tallest character from each species {.tabset}
+
+#### R
+```{r, eval = FALSE}
+starwars %>% group_by(species) %>% filter(height = max(height))
+```
+
+#### Pandas
+```{python, eval = FALSE}
+starwars.iloc[starwars.groupby('species').height.idxmax().tolist(),:]
+
+starwars.sort_values('height',ascending=False).groupby('species').first()
+```
+
+#### PySpark
+```{python, eval = FALSE}
+temp_df = starwars.groupBy('species').agg(f.max('height').alias('height'))
+starwars.groupBy.join(temp_df,on='height',how='leftsemi').show()
+
+from pyspark.sql import Window
+w = Window.partitionBy('species')
+starwars.withColumn('maxheight', f.max('height').over(w))\
+    .where(f.col('height') == f.col('maxheight'))\
+    .drop('maxheight')\
+    .show()
+```
+
+## Collecting Data
+
+Be extra careful when using the `.collect()` function. If you have massive amounts of data, then your spark driver is going to have trouble.
+
+![](img/spark-dont-collect.jpg)
+
+In general, always run a `.count()` function to check the number of rows before running `.collect()`. Alternatively, you can run the command `.show(5)` or `.take(5)` to only see the first few rows of data. You never want to bring 10s of millions of rows to your local session. Let the big data live in big data land.
+
+## GitHub Classroom
+
+[GitHub Classroom Link]({{< var gh-classroom.lab07 >}})

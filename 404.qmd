@@ -1,0 +1,11 @@
+---
+title: Page Not Found
+sidebar: false
+format: 
+  html:
+    toc: false
+---
+
+The page you were looking for isn't here!
+
+![Page Not Found](files/404.jpg 'https://unsplash.com/photos/sxiSod0tyYQ')

@@ -1,0 +1,19 @@
+## About today's class
+
+Project discussion and open session.
+
+## Readings
+
+No prescribed readings for this lecture, but you should have completed Lab 0 - Background Skills ***before this class***.
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/14-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/14-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+No assignment for this class.

@@ -1,0 +1,19 @@
+## About today's class
+
+Course overview, big data concepts, cloud computing and evolution of cloud technologies. 
+
+## Readings
+
+No prescribed readings for this lecture, but you should have completed [Lab 0 - Background Skills]({{< var course.lab0 >}}) ***before this class***.
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/01-slides.html){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/01-labs.html){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a01 >}})

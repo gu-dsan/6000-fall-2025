@@ -1,0 +1,520 @@
+---
+title: "Lecture 10"
+subtitle: "Project Q&A and Spark Streaming"
+author: "{{< var instructor.name >}}"
+institute:
+- "{{< var university.name >}}"
+- "{{< var course.semester >}}"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: custom.scss
+    transition: fade
+    background-transition: fade
+    highlight-style: ayu-mirage
+    code-copy: true
+---
+
+
+
+```{r packages, echo = FALSE}
+library(magrittr, quietly = T, warn.conflicts = F)
+library(tibble, quietly = T, warn.conflicts = F)
+library(gt, quietly = T, warn.conflicts = F)
+library(dplyr, quietly = T, warn.conflicts = F)
+library(kableExtra, quietly = T, warn.conflicts = F)
+```
+
+
+
+::: {.column width="47%"}
+### Looking Back
+
+* Intro to Hadoop and MapReduce
+* Hadoop Streaming
+* Dask
+* Spark RDDs, DataFrames, SparkSQL, SparkML, SparkNLP
+
+### Future  
+
+
+* Docker containers / Lambda functions
+* Data engineering
+
+:::
+
+::: {.column width="47%"}
+### Today
+
+* Project Discussion
+* Spark Streaming
+
+* Lab: 
+  * Spark Streaming
+
+:::
+
+
+# Essential Hardware/Hadoop Topics {.section}
+
+## AWS Academy
+
+* Credit limit - $100
+* Course numbers:
+
+  * Course #1 - 24178
+  * Course #2 - 27354
+  * Course #3 - 22802
+  * Course #4 - 26418
+  
+STAY WITH COURSE 24178 UNLESS YOU HAVE RUN OUT OF CREDITS OR >$90 USED! 
+
+Note that you will have to repeat several setup steps:
+
+- security group
+- EC2 keypair uploading (the AWS part only)
+- sagemaker setup
+- any S3 uploading or copying as well as bucket creation as necessary
+- EMR configuration
+
+## Connected and extensible
+
+::: {.imgcenter}
+<img src="img/spark-connectors.png" width=600>
+:::
+
+## Caching and Persistence
+
+By default, RDDs are recomputed every time you run an action on them. This can be expensive (in time) if you need to use a dataset more than once.
+
+**Spark allows you to control what is cached in memory.**
+
+To tell spark to cache an object in memory, use `persist()` or `cache()`:
+
+* `cache():` is a shortcut for using default storage level, which is memory only
+* `persist():` can be customized to other ways to persist data (including both memory and/or disk)
+
+```{python, echo = T, eval = F, python.reticulate=F}
+# caches error RDD in memory, but only after an action is run
+errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
+```
+
+## `collect` **CAUTION**
+
+::: {.imgcenter}
+<img src="img/collect-warning.png">
+:::
+
+## Spark UI - Executors
+
+::: {.imgcenter}
+<img src="img/spark-ui-executors.png" width=700>
+:::
+
+## UDF Speed Comparison
+
+::: {.column width="57%"}
+<img src="img/spark-udf-speed.png" width=700>
+:::
+
+::: {.column width="41%"}
+Costs:
+
+* Serialization/deserialization (think pickle files)
+* Data movement between JVM and Python
+* Less Spark optimization possible
+
+Other ways to make your Spark jobs faster [source](https://sparkbyexamples.com/spark/spark-performance-tuning/):
+
+* Cache/persist your data into memory
+* Using Spark DataFrames over Spark RDDs
+* Using Spark SQL functions before jumping into UDFs
+* Save to serialized data formats like Parquet
+:::
+
+## Pipelines
+
+::: {.imgcenter}
+<img src="img/pipeline-oriented.png" width=800>
+:::
+
+
+## Most Popular AI/ML Packages
+
+::: {.imgcenter}
+<img src="img/spark-nlp-popular-packages.png" width=900>
+:::
+
+
+## Spark NLP Terminology
+
+#### Annotators
+* Like the ML tools we used in Spark
+* Always need input and output columns
+* Two flavors:
+  * Approach - like ML estimators that need a `fit()` method to make an Annotator Model or Transformer
+  * Model - like ML transformers and uses `transform()` method only
+  
+#### Annotator Models
+* Pretrained public versions of models available through `.pretained()` method
+
+
+# Project Discussion {.section}
+
+## Reddit Data!
+
+::: {.column width="49%"}
+<img src="img/reddit-paper-fig1.png">
+:::
+
+::: {.column width="49%"}
+<img src="img/reddit-paper-fig4.png">
+:::
+
+## Assignment Details
+
+Reviewing `Project Milestone 1: EDA`
+
+## Open Q&A
+
+Questions about the project requirements?
+
+Questions about using Databricks?
+
+
+# Start your AWS Spark Cluster - 1 Master, 1 or 2 Core {.section}
+
+# Spark Streaming {.section}
+
+## Up to now, we've worked with batch data
+
+Processing large, already collected, _batches_ of data.
+
+::: {.imgcenter}
+<img src="img/s1.jpg" width=800>
+:::
+
+
+## Batch examples
+
+Examples of batch data analysis?
+
+::: {.fragment .fade-up}
+* Analysis of terabytes of logs collected over a long period of time
+
+* Analysis of code bases on GitHub or other large repositories of textual information such as Wikipedia
+
+* Nightly analysis on large data sets collected over a 24 hour period
+:::
+
+## Streaming Examples
+
+Examples of streaming data analysis?
+
+
+::: {.fragment .fade-up}
+* Credit card fraud detection
+
+* Sensor data processing
+
+* Online advertising based on user actions
+
+* Social media notifications
+:::
+
+::: {.fragment .fade-up}
+International Data Coporation (IDC) [forecasts](https://www.businesswire.com/news/home/20190618005012/en/The-Growth-in-Connected-IoT-Devices-is-Expected-to-Generate-79.4ZB-of-Data-in-2025-According-to-a-New-IDC-Forecast) that by 2025 IoT devices will generate 79.4 zettabytes of data.
+:::
+
+## How do we work with streams?
+
+Processing every value coming from a _stream_ of data. That is, data values that are **constantly** arriving
+
+::: {.imgcenter}
+<img src="img/s2.jpg" width=800>
+:::
+
+
+## Spark solved this problem by creating `DStreams` using _microbatching_
+
+`DStreams` are represented as a **sequence** of RDDs.
+
+::: {.imgcenter}
+<img src="img/s4.jpg" width=800>
+:::
+
+A `StreamingContext` object can be created from an existing `SparkContext` object.
+
+```{python, echo = T, eval = F, python.reticulate = F}
+sc = ...
+ssc = StreamingContext(sc, 1)
+```
+
+
+## Important points about `StreamingContext`
+
+1. Once the context has been started, no new streaming computations can be setup or added
+
+1. Once a context has been stopped, it cannot be restarted
+
+1. Only **one** `StreamingContext` can active with a Spark session at the same time
+
+1. `stop()` on the `StreamingContext` also stops the the `SparkContext`
+
+1. Multiple `StreamingContext` can be created as long as the previous one is stopped
+
+## `DStreams` had some issues
+
+* **Lack of a single API for batch and stream processing:** Even though DStreams and RDDs have consistent APIs (i.e., same operations and same semantics), developers still had to _explicitly rewrite their code to use different classes_ when converting their batch jobs to streaming jobs.
+
+* **Lack of separation between logical and physical plans:** 
+Spark Streaming executes the DStream operations in the same sequence in which they were specified by the developer. Since developers effectively specify the exact physical plan, there is no scope for automatic optimizations, and developers have to hand-optimize their code to get the best performance.
+
+* **Lack of native support for event-time windows:** DStreams define window operations based only on the time when each record is received by Spark Streaming (known as processing time). However, many use cases need to calculate windowed aggregates based on the time when the records were generated (known as event time) instead of when they were received or processed. The lack of native support of event-time windows made it hard for developers to build such pipelines with Spark Streaming.
+
+# Structured Streaming (DataFrame) based {.section}
+
+## What is Structured Streaming?
+
+### A single, unified programming model and interface for batch and stream processing
+
+This unified model offers a simple API interface for both batch and streaming workloads. You can use familiar SQL or batch-like DataFrame queries on your stream as you would on a batch, leaving dealing with the underlying complexities of fault tolerance, optimizations, and tardy data to the engine.
+
+### A broader definition of stream processing
+
+Big data processing applications have grown complex enough that the line between real-time processing and batch processing has blurred significantly. The aim with Structured Streaming was to broaden its applicability from traditional stream processing to a larger class of applications; any application that periodically (e.g., every few hours) to continuously (like traditional streaming applications) processes data should be expressible using Structured Streaming.
+
+## The Programming Model of Structured Streaming
+
+::: {.imgcenter}
+<img src="img/lesp_0803.png" width=800>
+:::
+
+## The Programming Model of Structured Streaming
+
+::: {.column width="49%"}
+* Every new record received in the data stream is like a new row being appended to the unbounded input table. 
+* Structured Streaming will automatically convert this batch-like query to a streaming execution plan. This is called incrementalization
+* Structured Streaming figures out what state needs to be maintained to update the result each time a record arrive
+* Finally, developers specify triggering policies to control when to update the results. Each time a trigger fires, Structured Streaming checks for new data (i.e., a new row in the input table) and incrementally updates the result.
+:::
+
+::: {.column width="49%"}
+<img src="img/lesp_0804.png">
+:::
+
+
+## Specifying output mode
+
+### Append mode
+
+Only the new rows appended to the result table since the last trigger will be written to the external storage. This is applicable only in queries where existing rows in the result table cannot change (e.g., a map on an input stream).
+
+### Update mode
+
+Only the rows that were updated in the result table since the last trigger will be changed in the external storage. This mode works for output sinks that can be updated in place, such as a MySQL table.
+
+### Complete mode
+
+The entire updated result table will be written to external storage.
+
+## The 5 Fundamentals steps of a Structured Streaming Query
+
+1. Define input sources
+
+1. Transform data
+
+1. Define output sink and output mode
+
+1. Specify processing details
+
+1. Start the query
+
+## 1. Define input sources
+
+::: {.column width="49%"}
+```{python, echo = T, eval = F, python.reticulate = F}
+ spark = SparkSession...
+    lines = (spark
+      .readStream.format("socket")
+      .option("host", "localhost")
+      .option("port", 9999)
+      .load())
+```
+:::
+
+::: {.column width="49%"}
+* This code generates the lines `DataFrame` as an unbounded table of newline-separated text data read from `localhost:9999`. Note that, similar to batch sources with spark.read, this does not immediately start reading the streaming data; it only sets up the configurations necessary for reading the data once the streaming query is explicitly started.
+* Besides sockets, Apache Spark natively supports reading data streams from Apache Kafka and various file-based formats (Parquet, ORC, JSON, etc.). A streaming query can define multiple input sources, both streaming and batch, which can be combined using DataFrame operations like unions and joins.
+:::
+
+
+## 2. Transform data
+
+
+```{python, echo = T, eval = F, python.reticulate = F}
+from pyspark.sql.functions import *
+words = lines.select(split(col("value"), "\\s").alias("word")) 
+counts = words.groupBy("word").count()
+```
+
+
+* Now we can apply the usual DataFrame operations
+* Note that these operations to transform the lines streaming DataFrame would work in the exact same way if lines were a batch DataFrame.
+
+## 3. Define output sink and output mode
+
+```{python, echo = T, eval = F, python.reticulate = F}
+writer = counts.writeStream.format("console").outputMode("complete")
+```
+
+
+## 4. Specify Processing details
+
+
+::: {.column width="44%"}
+```{python, echo = T, eval = F, python.reticulate = F}
+checkpointDir = "..."
+    writer2 = (writer
+      .trigger(processingTime="1 second")
+      .option("checkpointLocation", checkpointDir))
+```
+:::
+
+::: {.column width="54%"}
+**Triggering details**
+
+* **Default:** When the trigger is not explicitly specified, then by default, the streaming query executes data in micro-batches where the next micro-batch is triggered as soon as the previous micro-batch has completed.
+* **Processing time with trigger interval:** You can explicitly specify the Processing Time trigger with an interval, and the query will trigger micro-batches at that fixed interval.
+* **Once:** In this mode, the streaming query will execute exactly one micro-batch. It processes new data available in a single batch and then stops itself. This is useful when you want to control the triggering and processing from an external scheduler that will start the query on a schedule (e.g., to control cost by only executing a query once per day).
+* **Continuous: ** experimental as of Spark 3.0
+:::
+
+
+## 5. Start the query
+
+```{python, echo = T, eval = F, python.reticulate = F}
+streamingQuery = writer2.start()
+```
+
+
+## Spark Streaming under the hood
+
+::: {.column width="49%"}
+1. Spark SQL analyzes and optimizes this logical plan to ensure that it can be executed incrementally and efficiently on streaming data.
+2. Spark SQL starts a background thread that continuously executes a  loop
+3. This loop continues until the query is terminated
+:::
+
+::: {.column width="49%"}
+<img src="img/lesp_0805.png">
+:::
+
+## Spark Streaming under the hood
+
+::: {.column width="55%"}
+**The loop**
+
+a. Based on the configured trigger interval, the thread checks the streaming sources for the availability of new data.
+
+b. If available, the new data is executed by running a micro-batch. From the optimized logical plan, an optimized Spark execution plan is generated that reads the new data from the source, incrementally computes the updated result, and writes the output to the sink according to the configured output mode.
+
+c. For every micro-batch, the exact range of data processed (e.g., the set of files or the range of Apache Kafka offsets) and any associated state are saved in the configured checkpoint location so that the query can deterministically reproc‐ ess the exact range if needed.
+:::
+
+::: {.column width="43%"}
+<img src="img/lesp_0805.png">
+:::
+
+## Spark Streaming under the hood
+
+::: {.column width="49%"}
+**The loop continues until the query is terminated which can be for one of the following reasons:**
+
+a. A failure has occurred in the query (either a processing error or a failure in the cluster).
+
+b. The query is explicitly stopped using streamingQuery.stop().
+
+c. If the trigger is set to `Once`, then the query will stop on its own after executing a single micro-batch containing all the available data.
+:::
+
+::: {.column width="49%"}
+<img src="img/lesp_0805.png">
+:::
+
+
+## Data Transformations
+
+Each execution is considered as a _micro-batch_. DataFrame operations can be broadly classified into _stateless_ and _stateful_ operations based on whether executing the operation incrementally requires maintaining a state. 
+
+## Stateless Transformations
+
+All projection operations (e.g., `select()`, `explode()`, `map()`, `flatMap()`) and selection operations (e.g., `filter()`, `where()`) process each input record individually without needing any information from previous rows. This lack of dependence on prior input data makes them stateless operations.
+
+A streaming query having only stateless operations supports the append and update output modes, but not complete mode. This makes sense: since any processed output row of such a query cannot be modified by any future data, it can be written out to all streaming sinks in append mode (including append-only ones, like files of any format). On the other hand, such queries naturally do not combine information across input records, and therefore may not reduce the volume of the data in the result. Complete mode is not supported because storing the ever-growing result data is usually costly. This is in sharp contrast with stateful transformations, as we will discuss next.
+
+## Stateful Transformations
+
+The simplest example of a stateful transformation is `DataFrame.groupBy().count()`, which generates a running count of the number of records received since the beginning of the query. In every micro-batch, the incremental plan adds the count of new records to the previous count generated by the previous micro-batch. This partial count communicated between plans is the state. This state is maintained in the memory of the Spark executors and is checkpointed to the configured location in order to tolerate failures. While Spark SQL automatically manages the life cycle of this state to ensure correct results, you typically have to tweak a few knobs to control the resource usage for maintaining state. In this section, we are going to explore how different stateful operators manage their state under the hood.
+
+
+## Stateful Streaming Aggregations
+
+Structured Streaming can incrementally execute most DataFrame aggregation operations. You can aggregate data by keys (e.g., streaming word count) and/or by time (e.g., count records received every hour). 
+
+* Aggregations Not Based on Time
+
+* Aggregations with Event-Time Windows
+
+
+## Mapping of event time to tumbling windows
+
+::: {.imgcenter}
+<img src="img/lesp_0807.png" width=800>
+:::
+
+
+## Mapping of event time to multiple overlapping windows
+
+::: {.imgcenter}
+<img src="img/lesp_0808.png" width=800>
+:::
+
+## Updated counts in the result table after each five-minute trigger
+
+
+::: {.imgcenter}
+<img src="img/lesp_0809.png" width=800>
+:::
+
+
+## Using watermarks
+
+A watermark is defined as a moving threshold in event time that trails behind the maximum event time seen by the query in the processed data. The trailing gap, known as the watermark delay, defines how long the engine will wait for late data to arrive.
+
+::: {.imgcenter}
+<img src="img/lesp_0810.png" width=700>
+:::
+
+
+## AWS Kinesis
+
+::: {.imgcenter}
+<img src="img/kinesis.png" width=400>
+:::
+
+* Similar to Apache Kafka
+* Abstracts away much of the configuration details
+* Costs based on usage
+
+Read more comparisons [here](https://hevodata.com/learn/amazon-kinesis-vs-kafka/).
+
+## Spark SQL Connector for AWS Kinesis
+
+Connector to make Kinesis work with Spark Structured Streaming
+
+https://github.com/qubole/kinesis-sql
+
+# Lab {.section}
+

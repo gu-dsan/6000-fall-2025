@@ -1,0 +1,27 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+__pycache__/
+
+/.quarto/
+/_site/
+/_freeze/
+
+slides/*.pdf
+slides/*.html
+slides/**/*_cache/*
+projects/*.zip
+
+# knitr and caching stuff
+**/*_files/*
+**/*_cache/*
+
+README.html
+
+files/incomplete-reports.zip
+
+/.luarc.json
+.ppol567/
+.DS_Store

@@ -1,0 +1,161 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+  resources:
+    - "files/"
+    - "projects/"
+    - "slides/*.html"
+    - "slides/*.pdf"
+    - "slides/img/"
+    - "slides/libs/"
+    - "slides/css/"
+    - "slides/*_files/"
+    - "labs/img/"
+
+# See https://quarto.org/docs/projects/code-execution.html#freeze
+execute:
+  freeze: auto  # Re-render only when source changes
+
+description-meta: "Analyze Big Data using cloud computing and technologies such as Apache Spark"
+
+website:
+  title: "PPOL 5206"
+  site-url: "https://aa1603.georgetown.edu/ppol5206"
+  google-analytics: G-N2B9K684GE
+
+  favicon: "/files/img/ppol5206-logo.png"
+
+  twitter-card:
+    image: "/files/img/ppol5206-logo.png"
+    card-style: summary_large_image
+    creator: "@aarora79"
+
+  open-graph:
+    image: "/files/img/ppol5206-logo.png"
+    locale: en_US
+
+  navbar:
+    pinned: true
+    background: "#00589b"
+    # background: "#17a2b8"
+    right:
+      - syllabus.qmd
+      - schedule.qmd
+      - text: "Content"
+        file: content/index.qmd
+      - text: "Labs"
+        file: labs/index.qmd
+      - text: "Resources"
+        file: resources/index.qmd
+      - icon: slack
+        href: "https://georgetown-ime2320.slack.com"
+        aria-label: Slack
+
+  sidebar:
+    - title: "Content"
+      style: "docked"
+      search: false
+      background: dark
+      contents:
+        - section: "Overview"
+          contents:
+            - content/index.qmd
+        - section: "Course content"
+          contents:
+            - text: "1: Course overview"
+              file: content/01-content.qmd
+            - text: "2: Cloud services"
+              file: content/02-content.qmd
+            - text: "3: Parallelization"
+              file: content/03-content.qmd
+            - text: "4: MapReduce & Hadoop"
+              file: content/04-content.qmd
+            - text: "5: Parallel computing with Dask"
+              file: content/05-content.qmd
+            - text: "6: Intro to Apache Spark"
+              file: content/06-content.qmd
+            - text: "7: Spark SQL & Dataframes"
+              file: content/07-content.qmd
+            - text: "8: Spark ML"
+              file: content/08-content.qmd
+            - text: "9: Spark NLP"
+              file: content/09-content.qmd
+            - text: "10: Spark Streaming"
+              file: content/10-content.qmd
+            - text: "11: Serverless & DevOps"
+              file: content/11-content.qmd                                        
+            - text: "12: Data engineering"
+              file: content/12-content.qmd
+            - text: "13: Ray, RAPIDS & DuckDB"
+              file: content/13-content.qmd              
+            - text: "14: Feature Store, Vector DB & Misc."
+              file: content/14-content.qmd
+
+    - title: "Labs"
+      style: "docked"
+      search: false
+      background: dark
+      contents:
+        - section: "Overview"
+          contents:
+            - labs/index.qmd
+        - section: "Labs content"
+          contents:
+            - text: "1: Course overview"
+              file: labs/01-labs.qmd
+            - text: "2: Cloud services"
+              file: labs/02-labs.qmd
+            - text: "3: Parallelization"
+              file: labs/03-labs.qmd
+            - text: "4: MapReduce & Hadoop"
+              file: labs/04-labs.qmd
+            - text: "5: Parallel computing with Dask"
+              file: labs/05-labs.qmd
+            - text: "6: Intro to Apache Spark"
+              file: labs/06-labs.qmd
+            - text: "7: Spark SQL & Dataframes"
+              file: labs/07-labs.qmd
+            - text: "8: Spark ML"
+              file: labs/08-labs.qmd
+            - text: "9: Spark NLP"
+              file: labs/09-labs.qmd
+            - text: "10: Spark Streaming"
+              file: labs/10-labs.qmd
+            - text: "11: Serverless & DevOps"
+              file: labs/11-labs.qmd                                        
+            - text: "13: Ray, RAPIDS & DuckDB"
+              file: labs/13-labs.qmd
+
+    - title: "Resources"
+      contents:
+        - section: "Overview"
+          contents:
+            - resources/index.qmd
+
+  page-footer:
+    left: |
+      Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
+      All content licensed under a {{< fa brands creative-commons >}}
+      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
+      [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+    right: |
+      Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)<br>
+      [View the source at {{< fa brands github >}} GitHub]({{< var course.github >}})
+
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: custom.scss
+    transition: fade
+    background-transition: fade
+    highlight-style: ayu-mirage
+    code-copy: true
+  html:
+    theme:
+      - litera
+      - html/custom.scss
+    toc: true
+    highlight-style: monokai

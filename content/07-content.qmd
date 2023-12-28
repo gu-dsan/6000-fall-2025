@@ -1,0 +1,18 @@
+## About today's class
+Spark 2: Spark DataFrames and SparkSQL.
+
+## Readings
+
+No prescribed readings for this lecture.
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/07-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/07-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a06p2 >}})

@@ -1,0 +1,22 @@
+## About today's class
+
+Scaling out: MapReduce, Hadoop, distributed filesystems, Hadoop Streaming.
+
+## Readings
+
+Readings for this lecture (to be completed ***before this class***):  
+- [Wolohan Ch.7]({{< var reading.wolohan >}}){target="_blank"}  
+- [Ghemawat et.al - The Google File System]({{< var reading.ghemawat >}}){target="_blank"}  
+- [Dean, Ghemawat - MapReduce]({{< var reading.dean >}}){target="_blank"}  
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/04-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+Starting a cluster, running a Hadoop job with EMR on AWS.
+The lab for today's lesson is [available online](/labs/04-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a04 >}})

@@ -1,0 +1,74 @@
+author: Amit Arora
+instructor:
+  name: Amit Arora
+  name_no_title: Amit Arora
+  email: aa1603@georgetown.edu
+  url: "https://www.linkedin.com/in/amit-arora-539120a/"
+  twitter: aarora79
+  github: aarora79
+  office: "Online"
+  contact_policy: >-
+    E-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (*really*), but also remember that life can be busy and chaotic for everyone (including me!), so if I don't respond right away, don't worry!
+  appointment_url: https://calendar.app.google/VDNgfyh5vG4pmJi38
+
+ta:
+  name: Dheeraj Oruganty
+  name_no_title: Dheeraj Oruganty
+  email: do343@georgetown.edu
+  
+course:
+  number: "PPOL 5206"
+  semester: "Spring 2024"
+  days: "Thursdays"
+  time: "6:30–9:00 PM"
+  location: "Car Barn 204"
+  dates: "January 11 – May 9, 2024"
+  github: "https://github.com/gu-ppol567/ppol5206s24-class-site.git"
+  url: "https://aa1603.georgetown.edu/ppol5206"
+  copyright_year: "2024"
+  slack: "https://georgetown-ime2320.slack.com"
+  email: ppol5206-spring-2023@georgetown.edu
+  class_start_hhmmss: "183000"
+  class_end_hhmmss: "210000"
+  lab0: https://georgetown.instructure.com/courses/167183/assignments/840211
+
+gh-classroom:
+  lab01: "https://classroom.github.com/a/fK9435lZ"
+  lab02: https://classroom.github.com/a/Ese3QMY2
+  lab03: https://classroom.github.com/a/cPoKidPY
+  lab04: https://classroom.github.com/a/YOdnid2E
+  lab05: https://classroom.github.com/a/F3_mh_ZK
+  lab06: https://classroom.github.com/a/GxnjF_Mf
+  lab07: https://classroom.github.com/a/pIkPrmlv
+  lab08: https://classroom.github.com/a/vVVrvDAq
+  lab09: https://classroom.github.com/a/smt3DdFY
+  lab10: https://classroom.github.com/a/RPHthXPH
+  lab11: https://classroom.github.com/a/yFvXUYP9
+  lab12: null
+  lab13p1: https://classroom.github.com/a/yFvXUYP9
+  lab13p2: https://classroom.github.com/a/dHbVdu4V
+  lab14: null
+  a01: https://classroom.github.com/a/ksHP_NcK
+  a02: https://classroom.github.com/a/PiBawARk
+  a03: https://classroom.github.com/a/T-rSBiQ3
+  a04: https://classroom.github.com/a/lAn30ST-
+  a05: https://classroom.github.com/a/dEk7Zjfh
+  a06p1: https://classroom.github.com/a/Qguf2Bh8
+  a06p2: https://classroom.github.com/a/MEZtY09Y
+
+university:
+  name: Georgetown University
+  url: "https://www.georgetown.edu/"
+
+school:
+  name: McCourt School of Public Policy
+  url: "https://mccourt.georgetown.edu/"
+
+reading :
+  lebris: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092862
+  rittinghouse: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092863
+  wolohan: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092867
+  ghemawat: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092871
+  dean: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092873
+  rocklin: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10101702
+  damji: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10101715

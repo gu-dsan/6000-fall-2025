@@ -1,0 +1,390 @@
+---
+title: Syllabus
+format: 
+  html:
+    toc: false
+---
+
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(tibble)
+library(pander)
+source("R/schedule.R")  
+```
+
+::: {.grid .course-details .course-details-smaller}
+
+::: {.g-col-6}
+### Instructor
+
+- {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
+- {{< fa university >}} &nbsp; {{< var instructor.office >}}
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
+- {{< fa brands twitter >}} &nbsp; [{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< var instructor.appointment_url >}})
+:::
+
+::: {.g-col-6}
+### Course details
+
+- {{< fa calendar >}} &nbsp; {{< var course.days >}}
+- {{< fa calendar-alt >}} &nbsp; {{< var course.dates >}}
+- {{< fa clock >}} &nbsp; {{< var course.time >}}
+- {{< fa location-dot >}} &nbsp; {{< var course.location >}}
+- {{< fa brands slack >}} &nbsp; [Slack]({{< var course.slack >}})
+:::
+
+:::
+
+**This syllabus was last updated on `r strftime(Sys.time(), "%A,  %B %d, %Y at %I:%M %p", tz = "America/New_York")`**
+
+### Instructors
+
+-   [{{< var instructor.name >}}](mailto:{{< var instructor.email >}})
+
+### TAs
+
+-   [{{< var ta.name >}}](mailto:{{< var ta.email >}})
+
+#### Communication
+
+::: callout-important
+The primary mode of communications will be [**Slack**]({{< var course.slack >}})**.**
+
+**Instructional team e-mail:** [{{< var course.email >}}](mailto:{{< var course.email >}})\
+This is the preferred way of contacting the professors privately
+:::
+
+This website will be up-to-date on information about the course
+
+------------------------------------------------------------------------
+
+### Course Description
+
+Data is everywhere!
+Many times, the data is just too big to analyze with traditional programming libraries on your laptop.
+That is where cloud providers and distributed computation save the day.
+This is a hands-on, practical workshop-style course about using cloud computing resources to do analysis and manipulation of big data datasets that are too large to fit on a single machine and/or analyzed with traditional tools.
+The course will focus on techniques (such as Concurrency) and tools (such as Apache Spark) for working with Big Data.
+
+You will understand how to ingest the data, and then massage, clean, transform, analyze, and model it within the context of big data analytics.
+You will be able to think more programmatically and logically about your big data needs, tools, and issues.
+
+### Learning Objectives
+
+-   Setup, operate and manage big data tools and cloud infrastructure, including Spark, MapReduce, Amazon Web Services
+-   Use ancillary tools that support big data processing, including git and the Linux command line
+-   Execute a big data analytics exercise from start to finish: ingest, wrangle, clean, analyze, store, and present
+-   Develop strategies to break down large problems and datasets into manageable pieces
+-   Identify broad spectrum resources and documentation to remain current with big data tools and developments
+-   Communicate and interpret the big data analytics results through written and verbal methods
+
+### Pre-requisites
+
+-   Experience with Python and SQL. **Note:** We will use Python as the primary interface to Apache Spark, through [PySpark](https://spark.apache.org/docs/latest/api/python/index.html)
+-   Experience with git and GitHub
+
+Some tutorials to brush up on these skills:
+
+-   [git - the simple guide](http://rogerdudler.github.io/git-guide/)
+-   [Nico Riedmann's Learn git concepts, not commands](https://dev.to/unseenwizzard/learn-git-concepts-not-commands-4gjc)
+-   [SQLBolt - Learn SQL with simple, interactive exercises](https://sqlbolt.com/)
+
+## Books, Software and Cloud Resources
+
+### Readings (for assigned readings)
+
+There is no required textbook for the course.
+We have selected specific chapters from several sources as well as several seminal papers in the big data space, and these will be provided to you in PDF format.
+We may also provide supplemental materials (articles, links, videos, etc.) to complement the readings.
+**You must read assigned readings prior to the lectures.**
+
+### Cloud Resources
+
+You will use cloud resources on [Amazon Web Services](http://aws.amazon.com).
+We will discuss how to setup your accounts and environments in class and lab within the first couple of weeks.
+You will get credits on both platforms that will be enough to support your coursework throughout the semester.
+
+### Modules
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| echo: false 
+get_schedule_as_table()
+```
+
+::: callout-warning
+**IT IS YOUR RESPONSIBILITY TO MANAGE THE CREDITS AND RESOURCES PROVIDED TO YOU. YOU MUST SHUT DOWN YOUR CLOUD RESOURCES WHEN NOT IN USE.**
+:::
+
+## Learning Activities, Communication and Evaluation
+
+This is a hands-on, practical, workshop style course that provides opportunities to use the tools and techniques discussed in class.
+Although this is not a programming course per se, there is programming involved.
+
+### Lectures and Labs
+
+This course is split into a lecture/lab format, where every class session will have a lecture portion, and most sessions will have an in-class lab portion:
+
+-   During the lecture, we will discuss the concepts and techniques as well as the history and development of these big data tools and cloud platforms.
+-   During the lab sessions, you will be completing exercises and following examples which are designed to show you how to implement the ideas and concepts with various tools. We will start the labs in class but we will not finish. It is your responsibility to complete the labs (**which is part of the grade**) and will enable your learning.
+
+Lectures may not cover all the material and some topics will be introduced in the lab or through readings/assignments.
+
+### Office Hours
+
+Instructors and TAs will hold recurring office hours to answer questions, review material, and support your learning.
+The times, dates, and location of office hours will be announced via Canvas and Slack in advance.
+
+### Readings
+
+On certain weeks, readings will be assigned to prepare you for the lecture material being presented.
+These readings should take an hour or less per week.
+
+### Online Quizzes
+
+Quizzes will be given a few times during the semester during lab or lecture at random intervals and times.
+Quizzes ensure you are keeping up with the material presented in the class.
+Quizzes are meant to be brief and low-stress with a time limit of 5-10 minutes.
+The material will be drawn from lectures, labs, and readings.
+
+### Lab Deliverables
+
+Each lab will have a deliverable.
+It is essential that you learn the skills presented in the labs so that you can effectively complete the assignments and the big data project.
+The lab deliverables can sometimes be completed during lab, however, it is your responsibility to complete the deliverable as part of your work outside of lecture/lab time.
+
+### Homework Assignments
+
+You will be several homework assignments for roughly half of the semester.
+The goal of these problem sets is to hone your big data skills by answering some questions about large datasets.
+The problem sets will build on the labs and will be much more in-depth.
+Deliverables from the assignment will usually include code written for your programs and the output produced.
+
+::: callout-warning
+**Please start assignments as soon as they are posted. These assignments can take several hours to complete depending on your familiarity with the material. You will not complete the assignments on time if you start the day they are due.**
+:::
+
+::: callout-note
+We reuse problem set questions, we expect students not to copy, refer to, or look at the solutions in preparing their answers.
+Since this is a graduate-level class, we expect students to want to learn and not search online for answers.
+See Academic Integrity section.
+:::
+
+### Big Data Analytics Project
+
+Students will assemble into groups of no more than 4 students.
+You will perform and write up an analysis of a *big* dataset using the tools learned in class.
+*Big* is defined as "a dataset that is so large that you cannot work with it on a laptop."
+
+You will each conduct big data project using Reddit textual data.
+This project will encompass all of the skills you will learn throughout the semester including data ingestion, transformation, analysis, natural language processing, and machine learning.
+Similar to previous core courses, the big data project will be a product you can share with the world to demonstrate your data science expertise.
+Intermediate project assignments will help you incrementally build towards your final portfolio.
+There will be assignments on exploratory data analysis, machine learning, and natural language processing.
+Each successive assignment and the final submissions will incorporate feedback from your peers, TAs, and professors.
+The final timelines and deliverables for the project will be announced in class.
+
+## Grading and Evaluation
+
+-   Group project : 30%
+-   Assignments : 45%
+-   Lab completions : 15%
+-   Quizzes : 10%
+
+Total is 100%.
+We have no plans to curve the final grade, and the final letter grade will be:
+
+-   A: \>= 92.5
+-   A-: 89.5 - 92.49
+-   B+: 87.99 - 89.49
+-   B: 81.5 - 87.98
+-   B-: 79.5 - 81.49
+
+### Submission Details
+
+We will be using Github Classroom for all class deliverables.
+All assignments, lab deliverables, project assignments, and the final project will require you to commit and push all your files and results to your GitHub repo assignment in our GitHub classroom.
+
+::: callout-important
+When you are ready for your work to be evaluated, you **MUST** use the commit message "final-submission".
+If you do not use the commit message "final-submission" we will assume that you are still working and that any associated late penalties will apply.
+:::
+
+::: callout-warning
+**NO EDITS TO YOUR GITHUB REPO ARE ALLOWED AFTER MAKING THE FINAL-SUBMISSION COMMIT MESSAGE**
+
+The instructional team will begin grading your materials once you submit your "final-submission" message.
+By submitting that commit message, you are stating that you are finished with the assignment and are ready for feedback.
+
+In case you need to make a correction after your "final-submission" **and** the submission deadline has not yet expired then you can *amend* your previous commit (see: [amending a commit](https://www.atlassian.com/git/tutorials/rewriting-history)).
+Do not change the commit message, it should continue say "final-submission" after the amend.
+
+Do not submit any additional materials or changes after the submission deadline.
+We will know due to the nature of Git and this may result in significant deductions.
+:::
+
+### Late Deliverables
+
+There are no extensions to due dates unless there are extraordinary circumstances, and those will be determined on a case-by-case basis.
+If you miss a deliverable entirely, you will receive a grade of 0 (zero).
+
+::: callout-note
+## Due dates
+
+**All deliverables (assignments, lab completions, and project milestones) are due on Mondays at 11:59pm (EDT/EST)**.
+:::
+
+-   All submissions are made through GitHub Classrooms.
+-   The commit time of the commit marked "final-submission", or the last commit made in the repo, whichever is **later**, is used to assess lateness.
+-   ALWAYS confirm that your code is on GitHub by the deadline.
+-   If your last commit is incomplete, we will grade only what is present.
+
+::: callout-important
+**The late penalty** is -25% per day for up to 2 days.
+No assignments can be later than 2 days.
+For example, if you submit your assignment on Tuesday at 1 pm, your maximum grade would be a 75%.
+If you submit it on Thursday at 1 am, your grade would be 0.
+
+**This does not apply to the final project. The final project submission CANNOT be late for any reason.**
+:::
+
+## Grading Philosophy
+
+Many of the assignments you will work on are open-ended.
+Grading is generally holistic, meaning that there will not always be specific point value for individual elements of a deliverable.
+Each deliverable submission is unique and will be compared to all other submissions.
+
+-   If a deliverable exceeds the requirements and expectations, that is considered A level work.
+-   If a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.
+-   If a deliverable does not meet the requirements, that is considered B or lesser level work.
+
+All deliverables must meet the following general requirements, in addition to the specific requirements of each deliverable:
+
+If your the submission meets or exceeds the requirements, is creative, is well thought-out, has proper presentation and grammar, and is at the graduate student level, then the submission will get full credit.
+Otherwise, partial credit will be given and deductions may be made for any of the following reasons:
+
+Points **will** be deducted for any of the following reasons:
+
+-   Any instruction is not followed
+-   There are missing sections of the deliverable
+-   The overall presentation and/or writing is sloppy
+-   There are no comments in your code
+-   There are files in the repository other than those requested
+-   There are absolute filename links in your code
+-   The repository structure is altered in any way
+-   Files are named incorrectly (wrong extensions, wrong case, etc.)
+
+## Policies
+
+-   **Attendance and punctuality:** Attendance is mandatory. Given the technical nature of this course, and the breadth of topics discussed, you are expected to attend each class, to complete all readings, and to participate actively in lectures, discussions and exercises. We understand there may be times you may need to miss class, please inform us in advance if you are not able to attend class for any reason.
+-   **Communication and Slack Rules:**
+    -   All announcements will be posted on Slack
+    -   Please use Slack for any question you may have about the course, about assignments or any technical issue. This way everyone can learn from each other's questions. We will be monitoring and providing answers on a regular basis. [See the collaboration rules](#rules) to know what is allowed in Slack
+    -   Individual emails containing any course question that is not personal will not be answered
+    -   DMs are to be used sparingly
+    -   Keep an eye on the questions posted in Slack. Use the search function. It's very possible that we have already answered a questions
+    -   You may DM me back only if we DM you first on a given issue
+    -   Lab/assignment/project questions will only be answered up to 6 hours before something is due
+-   **Class materials are for class use only:** Please refrain from making your private GitHub repositories or any other class materials public. A breach of this request is considered an Honor Code Violation.
+-   **Open Door Policy:** Please approach or get in touch with us if something is not working for you regarding the class, methods, etc. Our pledge to you is to provide the best learning experience possible. If you have any issue please do not wait until the last minute to speak with us. You will find that we are fair, reasonable and flexible and we deeply care about your success.
+
+## Academic Integrity
+
+The code of academic integrity applies to all courses at Georgetown University.
+Please become familiar with the code.
+All students are expected to maintain the highest level of academic integrity throughout the course of the semester.
+Please note that acts of academic dishonesty during the course will be prosecuted and harsh penalties may be sought for such acts.
+Students are responsible for knowing what acts constitute academic dishonesty.
+The code may be found at <https://bulletin.georgetown.edu/regulations/honor/>
+
+::: callout-warning
+**We have a ZERO TOLERANCE POLICY and if students are found to be in violation there will be consequences and the students will be penalized and reported.**
+:::
+
+### Rules {#rules}
+
+-   **In-class labs:** you may collaborate with other students during in-class labs to facilitate collective learning.
+-   **Group project:** by nature, it is a group project and collaboration is to be confined within groups. **You may not collaborate across groups.**
+-   **Online quizzes:** these are individual and must be completed individually.
+-   All submitted code must be your own. This will be verified for every deliverable against every submission, and any similarity greater than 60% will be considered to be unauthorized collaboration.
+-   All work must be done on your own cloud resources. This will be verified for every deliverable.
+-   The following collaboration and communication is allowed in Slack
+    -   The discussion of ideas and approaches to problems
+    -   The discussion and resolution of any technical issue
+    -   Sharing code snippets (a few lines) for a very specific things
+
+::: callout-important
+A more general code of conduct for all communications within the class, both in-person and digital,  is available [here](code-of-conduct.html).
+:::
+
+## University Resources and Policies
+
+### Academic Integrity and Courtesy
+
+As a Jesuit, Catholic university, committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character.
+The University spells out the specific minimum standards for academic integrity in its Honor Code, as well as the procedures to be followed if academic dishonesty is suspected.
+Over and above the honor code, in this course we will seek to create an engaged and passionate learning environment, characterized by respect and courtesy in both our discourse and our ways of paying attention to one another.
+
+### Academic Resource Center
+
+[The Academic Resource Center (ARC)](http://academicsupport.georgetown.edu/) is the campus office responsible for reviewing medical documentation and determining reasonable accommodations to students with disabilities.
+
+### Counseling and Psychiatric Services (CAPS)
+
+As Georgetown faculty, you are among the most important individuals in some of the students' lives.
+They may turn to you when they are struggling and in times of need, or you may be one of the first to notice when they are distressed.
+The [CAPS website](http://caps.georgetown.edu/) has tips for faculty on how to deal with struggling or distressed students.
+
+### Emergency Preparedness and HOYAlert
+
+We encourage all faculty to become familiar with Georgetown's [Office of Emergency Management](http://emergencymanagement.georgetown.edu/) and sign up for [HOYAlert](http://emergencymanagement.georgetown.edu/HOYAlert/) in order to receive important safety and University operating status updates.
+Faculty teaching at the Georgetown Downtown campus might also want to sign up for [AlertDC](https://hsema.dc.gov/page/alertdc) to receive safety and traffic updates.
+
+### Office of Institutional Compliance and Ethics
+
+The [Office of Institutional Compliance and Ethics](http://compliance.georgetown.edu/) supports and coordinates many compliance-related activities the University undertakes.
+This Office, with the endorsement and assistance of the University's senior leadership, is responsible for leading the development, implementation and operation of the Georgetown Institutional Compliance and Ethics Program.
+
+### Office of Institutional Diversity, Equity, and Affirmative Action (IDEAA)
+
+The mission of [IDEAA](http://ideaa.georgetown.edu/) is to promote a deep understanding and appreciation among the diverse members of the University community to result in justice and equality in educational, employment and contracting opportunities, as well as to lead efforts to create an inclusive academic and work environment.
+
+### Threat Assessment
+
+Georgetown University established its [Threat Assessment](http://threatassessment.georgetown.edu/what-is-threat-assessment) program as part of an extensive emergency planning initiative.
+The program at Georgetown has been developed and implemented to meet current best practices and in accordance with national standards for hazard planning in institutions of higher education and for workplace violence prevention.
+
+### Title IX/Sexual Misconduct
+
+Georgetown University and its faculty are committed to supporting survivors and those impacted by sexual misconduct, which includes sexual assault, sexual harassment, relationship violence, and stalking.
+Georgetown requires faculty members, unless otherwise designated as confidential, to report all disclosures of sexual misconduct to the University Title IX Coordinator or a Deputy Title IX Coordinator.
+If you disclose an incident of sexual misconduct to a professor in or outside of the classroom (with the exception of disclosures in papers), that faculty member must report the incident to the Title IX Coordinator, or Deputy Title IX Coordinator.
+The coordinator will, in turn, reach out to the student to provide support, resources, and the option to meet.
+(Please note that the student is not required to meet with the Title IX coordinator.) More information about reporting options and resources can be found on the [Sexual Misconduct Website](https://sexualassault.georgetown.edu/resourcecenter)
+
+If you would prefer to speak to someone confidentially, Georgetown has a number of fully confidential professional resources that can provide support and assistance.
+These resources include:
+
+-   Health Education Services for Sexual Assault Response and Prevention: confidential email?[sarp\@georgetown.edu](mailto:sarp@georgetown.edu)\
+-   **Counseling and Psychiatric Services (CAPS): 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician**
+
+Please know that as a faculty member we are committed to supporting survivors of sexual misconduct, including relationship violence and sexual assault.
+However, university policy also requires us to report any disclosures about sexual misconduct to the Title IX Coordinator, whose role is to coordinate the University's response to sexual misconduct.
+
+Georgetown has a number of fully confidential professional resources who can provide support and assistance to survivors of sexual assault and other forms of sexual misconduct.
+These resources include:
+
+**Getting Help: [https://sexualassault.georgetown.edu/get-help/]()**
+
+### Special Accommodations
+
+If you believe that you have a disability that will affect your performance in this class, please contact the [Academic Resource Center](mailto:arc@georgetown.edu) for further information.
+The center is located in the Leavey Center, Suite 335.
+The Academic Resource Center is the campus office responsible for reviewing documentation provided by students with disabilities and for determining reasonable accommodations in accordance with the Americans with Disabilities Act (ADA) and University policies.
+
+### Honor System
+
+All students are expected to maintain the highest standards of academic and personal integrity in pursuit of their education at Georgetown.
+Academic dishonesty, including plagiarism, in any form is a serious offense, and students found in violation are subject to academic penalties that include, but are not limited to, failure of the course, termination from the program, and revocation of degrees already conferred.
+All students are held to the Georgetown University Honor Code.
+For more information about the Honor Code see [http://gervaseprograms.georgetown.edu/honor/]()

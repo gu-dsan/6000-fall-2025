@@ -1,0 +1,20 @@
+## About today's class
+
+Scaling up data analytics with Dask.
+
+## Readings
+
+Readings for this lecture (to be completed ***before this class***):  
+- [Rocklin]({{< var reading.rocklin >}}){target="_blank"}
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/05-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/05-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a05 >}})

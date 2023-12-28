@@ -1,0 +1,21 @@
+## About today's class
+
+Spark 1: Introduction to Spark, Spark RDDs.
+
+## Readings
+
+Readings for this lecture (to be completed ***before this class***):  
+- [Damji et.al Ch.1,2,3]({{< var reading.damji >}}){target="_blank"}  
+
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/06-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/06-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+[GitHub Classroom Link]({{< var gh-classroom.a06p1 >}})

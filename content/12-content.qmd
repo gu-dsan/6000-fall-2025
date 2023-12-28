@@ -1,0 +1,19 @@
+## About today's class
+
+Data Engineering.
+
+## Readings
+
+No prescribed readings for this lecture.
+
+## Slides
+
+The slides for today's lesson are [available online](/slides/12-slides.qmd){target="_blank"} as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+## Lab
+
+The lab for today's lesson is [available online](/labs/12-labs.qmd){target="_blank"} as an HTML file.
+
+## Assignment
+
+No assignment for this class.

@@ -1,0 +1,8 @@
+---
+title: "Labs"
+---
+
+
+### Lab
+
+The lab for the class would involve a hands-on coding assignment provided through GitHub Classroom. You will start the lab ***in-class***, myself and the TAs would be helping you with any questions with the lab and then you would need to turn in the lab by checking in your code and results in the GitHub repo (you will have until next class for this, but usually you would be able to do this much sooner).

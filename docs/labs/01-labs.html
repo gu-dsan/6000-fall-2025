@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Amit Arora">
+<meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
+
+<title>PPOL 5206 - Lab 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//files/img/ppol5206-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
+</script>
+
+
+<meta property="og:title" content="PPOL 5206 - Lab 1">
+<meta property="og:description" content="{{< var course.number >}} {{< var course.semester >}}">
+<meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta property="og:site-name" content="PPOL 5206">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="PPOL 5206 - Lab 1">
+<meta name="twitter:description" content="{{< var course.number >}} {{< var course.semester >}}">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta name="twitter:creator" content="@aarora79">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">PPOL 5206</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.html">
+ <span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../labs/index.html" aria-current="page">
+ <span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources/index.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://georgetown-ime2320.slack.com"><i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Lab 1</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Overview</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/index.html" class="sidebar-item-text sidebar-link">Labs</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Labs content</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/01-labs.html" class="sidebar-item-text sidebar-link active">1: Course overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/02-labs.html" class="sidebar-item-text sidebar-link">2: Cloud services</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/03-labs.html" class="sidebar-item-text sidebar-link">3: Parallelization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/04-labs.html" class="sidebar-item-text sidebar-link">4: MapReduce &amp; Hadoop</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/05-labs.html" class="sidebar-item-text sidebar-link">5: Parallel computing with Dask</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/06-labs.html" class="sidebar-item-text sidebar-link">6: Intro to Apache Spark</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/07-labs.html" class="sidebar-item-text sidebar-link">7: Spark SQL &amp; Dataframes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/08-labs.html" class="sidebar-item-text sidebar-link">8: Spark ML</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/09-labs.html" class="sidebar-item-text sidebar-link">9: Spark NLP</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/10-labs.html" class="sidebar-item-text sidebar-link">10: Spark Streaming</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/11-labs.html" class="sidebar-item-text sidebar-link">11: Serverless &amp; DevOps</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/13-labs.html" class="sidebar-item-text sidebar-link">13: Ray, RAPIDS &amp; DuckDB</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7">Lab 1</h1>
+<p class="subtitle lead">PPOL 5206 Spring 2024</p>
+
+</header>
+
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure that you are connected to the <em>Saxanet</em> WiFi network and <em>not</em> the <em>GuestNet</em> network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. <strong>Use SaxaNet</strong>.</p>
+</div>
+</div>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="goals" class="level2">
+<h2 class="anchored" data-anchor-id="goals">Goals</h2>
+<ul>
+<li>Creating your public/private ssh key pair and knowing where to find the files</li>
+<li>Learning to use GitHub Codespaces IDE</li>
+<li>Learning the Linux Shell</li>
+<li>BASH Exercise</li>
+</ul>
+</section>
+</section>
+<section id="terminal-setup" class="level1">
+<h1>Terminal Setup</h1>
+<p>We will be using the Terminal in many tasks in this course. By “Terminal”, we mean a command-line terminal, where you will use it to type instructions and connect to your remote resources.</p>
+<p>When we say “terminal” in this course, it means that you need to open up the terminal application for your respective operating system. The terminal is a “local” application, meaning it is running on your “local” machine (your laptop.)</p>
+<section id="windows-users" class="level2">
+<h2 class="anchored" data-anchor-id="windows-users">Windows Users</h2>
+<p>Windows users will be using the Windows Powershell: <a href="about:blank">&lt;https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell&gt;</a></p>
+<p>Windows Powershell is most likely installed if you have Windows 10. If you don’t have Powershell, take a look at this article: <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/" class="uri">https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/</a> that explains how to install it.</p>
+<p>You can find Powershell by typing “Powershell” into the search bar:</p>
+<p><img src="img/powershell_searchmenu.png" class="img-fluid"></p>
+<p>Once Powershell is running, this is your terminal:</p>
+<p><img src="img/powershell_window.png" class="img-fluid"></p>
+<section id="additional-powershell-configuration-you-must-do-this" class="level3">
+<h3 class="anchored" data-anchor-id="additional-powershell-configuration-you-must-do-this">Additional Powershell Configuration (you must do this!)</h3>
+<p>You need to perform this step **only once** to be able to use agent forwarding which is explained further in the lab.</p>
+<ul>
+<li><p>Exit Powershell if running</p></li>
+<li><p>Start a new Powershell session using <u><strong>run as Administrator</strong></u></p></li>
+<li><p>Enter the following command (you can cut/paste from here):</p></li>
+</ul>
+<!-- -->
+<pre><code>Get-Service -Name ssh-agent | Set-Service -StartupType Manual</code></pre>
+<ul>
+<li>Exit Powershell. You should not need to run as administrator going forward.</li>
+</ul>
+</section>
+</section>
+<section id="mac-and-linux-users" class="level2">
+<h2 class="anchored" data-anchor-id="mac-and-linux-users">Mac and Linux Users</h2>
+<p>For Mac and Linux users, you will open up the Terminal.</p>
+<ol type="1">
+<li><p>Macs and Linux have a built in Terminal.</p></li>
+<li><p>Or, you can use iTerm app: <a href="about:blank">&lt;https://www.iterm2.com/&gt;</a></p></li>
+</ol>
+<p>If you are on Linux (but not on Mac), you can open the terminal by using Ctrl-Alt-T.</p>
+</section>
+<section id="ssh-keypair-setup" class="level2">
+<h2 class="anchored" data-anchor-id="ssh-keypair-setup">SSH Keypair Setup</h2>
+<p>When you want to connect to a remote machine, the method is called “Secure Shell”. This creates a connection between the local machine (where your terminal window lives) and the “remote” machine (where the commands you will send actually execute). In order for the local and remote machines to authenticate (trust) each other, we have to create a special password-like files called a <em>keypair</em>. It is called a keypair because there is a public version and a private version. Read more about SSH Keys <a href="https://sectigo.com/resource-library/what-is-an-ssh-key">here</a>.</p>
+<p><strong>NOTE: You only need to create your ssh public/private keypair one time only. If you already have a public/private keypair on your laptop let us know.</strong></p>
+<ul>
+<li><p>Open a terminal (on your laptop) if not already open. By default, every time you open a terminal it will open in your home directory.</p></li>
+<li><p>At the command prompt run the following command: <code>ssh-keygen -t rsa -b 2048</code> and <strong>press enter</strong></p></li>
+<li><p>You will see this prompt, <strong>just press enter</strong></p></li>
+</ul>
+<!-- -->
+<pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/home/User/.ssh/id_rsa):</code></pre>
+<ul>
+<li>You will see this prompt, <strong>just press enter</strong></li>
+</ul>
+<!-- -->
+<pre><code>Created directory '/home/User/.ssh'.
+Enter passphrase (empty for no passphrase):</code></pre>
+<ul>
+<li>You will see this prompt, <strong>just press enter</strong></li>
+</ul>
+<!-- -->
+<pre><code>Enter same passphrase again:</code></pre>
+<ul>
+<li>You will see these messages (your randomart will look different) and your keypair has been created.</li>
+</ul>
+<!-- -->
+<pre><code>Your identification has been saved in /home/User_name/.ssh/id_rsa.
+Your public key has been saved in /home/User_name/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:xPJtMLmJSO73x/NQo3qMpqF6r6St4ONmshS8QZqfmHA User_name@WinDev1802Eval
+
+The key's randomart image is:
++---[RSA 2048]----+
+|                 |
+|       . .       |
+| .  . . *        |
+|+. o . = *       |
+|++E o . S o o    |
+|.=+o     . o .   |
+|+oo o o  +o      |
+|+= +.o oo.*.     |
+|*+=++ooooo o.    |
++----[SHA256]-----+</code></pre>
+</section>
+<section id="see-your-key-files" class="level2">
+<h2 class="anchored" data-anchor-id="see-your-key-files">See your key files</h2>
+<ul>
+<li><p>Open a terminal if not already open</p></li>
+<li><p>Change to your .ssh directory</p>
+<ul>
+<li>This is a hidden directory so if you list your files using ls you won’t see it. For seeing all files, use ls -la.</li>
+<li>To change into the .ssh directory type <code>cd .ssh</code></li>
+</ul></li>
+<li><p>Type <code>pwd</code> to print your current working directory.</p>
+<ul>
+<li><strong>Windows users in Powershell will see:</strong></li>
+</ul>
+<!-- -->
+<pre><code>PS C:\\Users\\your_name\.ssh&gt; pwd
+
+Path
+----
+C:\\Users\\your_name\.ssh
+
+
+PS C:\\Users\\your_name\.ssh&gt;</code></pre>
+<ul>
+<li><strong>Mac users will see:</strong></li>
+</ul>
+<!-- -->
+<pre><code>pwd
+/Users/myusername/.ssh</code></pre>
+<ul>
+<li><strong>Linux users will see:</strong></li>
+</ul>
+<!-- -->
+<pre><code>\$ pwd
+
+/home/myusername/.ssh</code></pre></li>
+</ul>
+<p>Next, we need to open the new key file we just made.</p>
+<ul>
+<li><p>Type <code>ls</code> to list the files in the directory.</p>
+<ul>
+<li>What is displayed may look different. You will not have a config file unless you have already created one.</li>
+</ul></li>
+<li><p>Type <code>ls -la</code> to list all the files in the directory, even the hidden ones.</p>
+<ul>
+<li>What is displayed may look different. You will not have a config file unless you have already created one.</li>
+</ul></li>
+</ul>
+</section>
+<section id="get-your-public-key-info" class="level2">
+<h2 class="anchored" data-anchor-id="get-your-public-key-info">Get your public key info</h2>
+<ul>
+<li><p>The file <strong>id_rsa</strong> is your private key and this file will not leave your computer.</p></li>
+<li><p>The file <strong>id_rsa.pub</strong> is the public key, whose contents we will upload to cloud services so you authenticate.</p></li>
+<li><p>The known_hosts is a file that gets generated as you connect to different remote systems.</p>
+<ul>
+<li>This is useful so you know you are connecting to the same server as previous times.</li>
+</ul></li>
+</ul>
+<!-- -->
+<pre><code>\$ ls -la
+
+total 32
+
+drwxr-xr-x  6  your_name staff   192 May 29 20:39 .
+drwxr-xr-x+ 75 your_name staff  2400 May 30 13:35 ..
+-rw-r--r--  1  your_name staff   181 May 29 15:50 config
+-r--------  1  your_name staff  3243 May 29 15:50 id_rsa
+-rw-r--r--  1  your_name staff   742 May 29 15:50 id_rsa.pub
+-rw-r--r--  1  your_name staff   363 May 29 20:42 known_hosts</code></pre>
+<ul>
+<li><p>View the contents of your public_key file by running the command <code>cat id_rsa.pub</code></p>
+<ul>
+<li><strong>What is shown is a sample public key, yours will be different</strong></li>
+</ul></li>
+</ul>
+<!-- -->
+<pre><code>\$ cat id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnKuIRXwZu0JZH0/Q2XNrYYTaJT7bMtXGhGQaSSOZs6MhQ4SkSbHiygO7RauQf741buLnASzY27GKMMMml6InwfxJWrF60KhNK0r869POQkuZa9v9/cmYcEIzmAJe1xRPABEZ2yfbTG9Wq4sg9cU0mwt1Bx7wiN4QNf0Bak62EC8JWTbcKLduuzO1zabIb5xW9gfR9b4K3HwmqRLl18S8bNsfYQZfvtlwd0mCWQUeuEGbDOgqh//nLIj6DeXdyxbD5xrz79iOAuAK2nXAjNCEtKpxNGQr2Py7aWQjlH+U5laDEHVg4hzmBY7yoZ5eC3Ye45yPqpQA1y8JrbXVhPJRP User\@WinDev1802Eval</code></pre>
+</section>
+<section id="pubkey" class="level2">
+<h2 class="anchored" data-anchor-id="pubkey">Extracting your public key</h2>
+<ul>
+<li><p><code>Open a text editor</code> (Notepad on Windows or Textpad on Mac, <strong>NOT MICROSOFT WORD</strong>) and select the output of your terminal with all the text from the ssh-rsa beginning all the way to the end, and paste it in your text editor as-is. We will use this in the next step.</p>
+<ul>
+<li>You can also just copy/paste from your terminal screen.</li>
+<li>On a Mac, you can also copy the contents of the <strong>id_rsa.pub</strong> file using</li>
+</ul></li>
+</ul>
+<!-- -->
+<pre><code>pbcopy &lt; id_rsa.pub</code></pre>
+</section>
+</section>
+<section id="github-setup" class="level1">
+<h1>GitHub Setup</h1>
+<section id="adding-ssh-key-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="adding-ssh-key-to-github">Adding SSH Key to GitHub</h2>
+<section id="a-create-a-github-account-if-you-do-not-already-have-one" class="level3">
+<h3 class="anchored" data-anchor-id="a-create-a-github-account-if-you-do-not-already-have-one">a) Create a GitHub Account if you do not already have one</h3>
+<p>Go to <a href="">www.github.com</a> to create a GitHub account if you do not already have one. Your username has to be globally unique, and the email address you use to register GitHub can be any email address you own.</p>
+</section>
+<section id="b-upload-your-public-key-to-github" class="level3">
+<h3 class="anchored" data-anchor-id="b-upload-your-public-key-to-github">b) Upload your Public key to GitHub</h3>
+<ol type="1">
+<li>Log into to your <a href="http://github.com/">GitHub</a> account if you are not already logged in</li>
+<li>Click on your profile icon on the top-right of the screen and select <strong>Settings</strong> from the dropdown</li>
+<li>Click on <strong>SSH and GPG keys</strong> from the left hand menu</li>
+<li>Click on the <strong>New SSH key</strong> button on the top-right</li>
+<li>Give your key a name. This is just a name and is meaningful to you.</li>
+<li>Paste the contents of the <strong>public key</strong> in the Key box. Leave the “Key Type” dropdown as “Authentication Key”.</li>
+<li>Click the <strong>Add SSH Key</strong> button</li>
+</ol>
+</section>
+<section id="c-test-that-your-ssh-key-works-with-github" class="level3">
+<h3 class="anchored" data-anchor-id="c-test-that-your-ssh-key-works-with-github">c) Test that your ssh key works with GitHub</h3>
+<ol type="1">
+<li>Open a terminal if not already open on your laptop</li>
+<li>At the command prompt, type <code>ssh -T git@github.com</code> and press enter to test. If it works, you will see something like this, with your GitHub username:</li>
+</ol>
+<!-- -->
+<pre><code>The authenticity of host 'github.com (192.30.253.112)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
+Hi wahalulu! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<p><strong>You are now ready to use ssh authentication with GitHub.</strong></p>
+</section>
+</section>
+<section id="create-a-personal-access-token-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-personal-access-token-on-github">Create a Personal Access Token on GitHub</h2>
+<ol type="1">
+<li>Log into to your <a href="http://github.com/">GitHub</a> account if you are not already logged in</li>
+<li>Click on your profile icon on the top-right of the screen and select <strong>Settings</strong> from the dropdown</li>
+<li>Click <strong>Developer settings</strong></li>
+<li>Click the <strong>Personal access tokens</strong> tab</li>
+<li>Click the <strong>Generate new token</strong> button</li>
+<li>Enter a token description (you can call it <code>big-data-class</code>)</li>
+<li>Select the <strong>repo</strong> permission, and then click the <strong>Generate token</strong> button</li>
+</ol>
+<p><img src="img/github-newtoken.png" class="img-fluid" style="width:50.0%"></p>
+<ol type="1">
+<li><strong>Copy the token and save it in a text file. You will need this token later on in the semester and if you lose it you will need to re-generate a token</strong></li>
+</ol>
+</section>
+<section id="github-codespaces-ide" class="level2">
+<h2 class="anchored" data-anchor-id="github-codespaces-ide">GitHub Codespaces IDE</h2>
+<p>Codespaces is an integrated developer environment (IDE), which provides you with a VS Code environment with a cloud computing backend. The repository is automatically loaded into your environment and you do not need any additional authentication steps to push to your repo. Read more <a href="https://github.com/features/Codespaces">here</a> about Codespaces.</p>
+<p>In this lab, we use Codespaces to get you familiar with the Linux terminal.</p>
+<p>You will <strong>not</strong> use Codespaces for most of your work this semester. If you were just exploring code or making minor changes to a project, Codespaces could be a simple solution.</p>
+</section>
+<section id="launching-codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="launching-codespaces">Launching Codespaces</h2>
+<p>Open your Git repo for the lab. Launch Codespaces from your repo by clicking on the <strong>green</strong> code button, then select “codespaces” then click “Create codespace on main”.</p>
+<p><img src="img/codespaces.png" class="img-fluid" style="width:50.0%"></p>
+<p>Wait for the workspace to be created. It will set up the computing instance with a screen like this.</p>
+<p><img src="img/settingup-gh-codespace.PNG" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="linux-terminal-in-codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="linux-terminal-in-codespaces">Linux Terminal in Codespaces</h2>
+<p>You now have full VS Code capabilities. The terminal in Cloud9 is the lower window. You are connected to a cloud computing instance and are able to run BASH commands (along with other programming languages) there.</p>
+<p><img src="img/vscode-interface.PNG" class="img-fluid"></p>
+<p>Check out the cheat sheet on Linux commands <a href="https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf">here</a>.</p>
+</section>
+</section>
+<section id="bash-walkthrough" class="level1">
+<h1>BASH Walkthrough</h1>
+<p>The instructor will walk through slides and code live to demonstrate basic Linux commands.</p>
+</section>
+<section id="bash-exercise" class="level1">
+<h1>BASH Exercise</h1>
+<p><a href="https://classroom.github.com/a/fK9435lZ">GitHub Classroom Link</a></p>
+<p>Go to Codespaces and complete the BASH Exercise that is located in the Readme.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2024 by <a href="https://www.linkedin.com/in/amit-arora-539120a/">Amit Arora</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-ppol567/ppol5206s24-class-site.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

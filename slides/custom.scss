@@ -1,0 +1,78 @@
+/*-- scss:defaults --*/
+
+$main-color: #0777da;
+$secondary-color: #da6a07;
+$white: #ffffff;
+$black: #000000;
+$link-color: $secondary-color;
+$text-bold-color: #d307da;
+
+$body-bg: $white;
+$body-color: $black;
+$presentation-heading-color: $main-color;
+
+$inverse-bg-color: $secondary-color;
+$inverse-header-color: #ffffff;
+$inverse-color: #ffffff;
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono&display=swap);
+
+$presentation-heading-font: "Josefin Sans", sans-serif;
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$font-family-monospace: 'Fira Mono', monospace;
+$presentation-font-size-root: 24px;
+$presentation-h1-font-size: 3.75rem;
+$presentation-h2-font-size: 3rem;
+$presentation-h3-font-size: 2.25rem;
+$code-block-font-size: 0.9rem;
+
+/*-- scss:rules --*/
+
+
+.reveal  .slide.inverse {
+  color: $inverse-header-color;
+  font-size: 6rem;
+  background-color: $inverse-bg-color;
+  slide-background: $inverse-bg-color;
+}
+.reveal .slide.section{
+  background-color: $inverse-bg-color;
+  color: $inverse-header-color;
+  font-size: 6rem;
+  vertical-align: middle;
+}
+
+.reveal .slide-background:first-child{
+  background-color: #044177;
+}
+
+.reveal .title {
+  background-color: #044177;
+  color: #ffffff;
+}
+
+
+.reveal .author{
+  color: #ffffff;
+  font-size: 1.75rem;
+}
+
+.imgcenter{
+  margin: 0 auto;
+}
+.imghalf{
+  width: 50%;
+  height: 50%;
+}
+.img80 {
+  width: 80%;
+  height: 80%;
+}
+
+.textcenter{
+  vertical-align: middle;
+  color: #ffffff;
+}
+

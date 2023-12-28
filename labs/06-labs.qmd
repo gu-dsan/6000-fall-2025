@@ -1,0 +1,13 @@
+---
+title: "Lab 6"
+subtitle: "{{< var course.number >}} {{< var course.semester >}}"
+author: "{{< var instructor.name >}}"
+format: 
+  html:
+    toc: false
+---
+{{< include login-to-saxanet.qmd >}} 
+
+## GitHub Classroom
+
+[GitHub Classroom Link]({{< var gh-classroom.lab06 >}})
