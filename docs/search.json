@@ -508,7 +508,7 @@
     "href": "index.html",
     "title": "PPOL 5206",
     "section": "",
-    "text": "Big Data Analytics & Cloud Computing\n        \n        \n            “Learn how to analyze Big Data using cloud computing and technologies such as Hadoop, Spark and others in this hands-on, practical workshop-style course.”\n        \n        \n            PPOL 5206 • Spring 2024Amit Arora, McCourt School of Public PolicyGeorgetown University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\ngoing to write calendar to files\\schedule.ics\n\n\n\n\n\nInstructor\n\n   Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\nCourse details\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\n\n\n\nContacting me\nE-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (really), but also remember that life can be busy and chaotic for everyone (including me!), so if I don’t respond right away, don’t worry!"
+    "text": "Big Data Analytics & Cloud Computing\n        \n        \n            “Learn how to work with Big Data for Analytics, ML and generative AI using technologies such concurrency, Spark,”Learn how to analyze Big Data using cloud computing and technologies such as Python concurrency, Spark and others in this hands-on, practical workshop-style course.”\n        \n        \n            PPOL 5206 • Spring 2024Amit Arora, McCourt School of Public PolicyGeorgetown University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\ngoing to write calendar to files\\schedule.ics\n\n\n\n\n\nInstructor\n\n   Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\nCourse details\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\n\n\n\nContacting me\nE-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (really), but also remember that life can be busy and chaotic for everyone (including me!), so if I don’t respond right away, don’t worry!"
   },
   {
     "objectID": "labs/01-labs.html",
@@ -931,6 +931,20 @@
     "text": "Here’s your roadmap for the semester!\n\nContent (): This page contains the lecture slides for the week.\nLab (): This page contains lab for the week. This is usually a step-by-step instruction accompanied by a GitHub repo. A GitHub classroom link would be provided, once you accept an assignment (in GitHub classroom parlance everything is an assignment) a new repo would be created for you to work in. You will be starting this activity in class and submitting it before the due-date (Wednesday of next week 11:59PM unless otherwise stated).\nAssignment (): This page contains the instructions for each assignment. Similar to the labs, there would be a GitHub classroom link provided to you for each assignment. Unlike the labs the assignments are more detailed and require significantly more coding effort. Assignments are also due by Wednesday of next week 11:59PM unless otherwise stated.\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n  \n  \n    \n      Schedule for the semester PPOL 5206 Spring 2024\n    \n    \n      This course is divided into 3 phases: Intro to Big Data and the Cloud, Apache Spark Ecosystem, Other Big Data technologies & misc. topics.\n    \n  \n  \n    \n      \n      Date\n      Module\n      Lecture\n      Lab\n      Notes\n    \n  \n  \n    \n      Phase 1\n    \n    Intro to Big Data and the Cloud\n2023-01-11\nCourse overview\n\nLecture 1\n\nLab 1\n\nCourse overview. Introduction to big data concepts. The Cloud.\n\n    Intro to Big Data and the Cloud\n2023-01-18\nCloud services\n\nLecture 2\n\nLab 2\n\nsetting up your AWS account.\n\n    Intro to Big Data and the Cloud\n2023-01-25\nParallelization\n\nLecture 3\n\nLab 3\n\nExplore parallelization with Python multiprocessing. Virtual class, will provide zoom link.\n\n    Intro to Big Data and the Cloud\n2023-02-01\nMapReduce & Hadoop\n\nLecture 4\n\nLab 4\n\nWorking with Big Data with Hadoop.\n\n    Intro to Big Data and the Cloud\n2023-02-08\nParallel computing with Dask\n\nLecture 5\n\nLab 5\n\nUsing Dask to analyze large datasets.\n\n    \n      Phase 2\n    \n    Apache Spark Ecosystem\n2023-02-15\nIntro to Apache Spark - Spark RDD\n\nLecture 6\n\nLab 6\n\nSetting up Apache Spark on Amazon SageMaker & EMR. Analyze datasets using Spark Resilient Distributed Datasets (RDD).\n\n    Apache Spark Ecosystem\n2023-02-22\nSpark SQL & Spark Dataframes\n\nLecture 7\n\nLab 7\n\nStructured data processing with Spark SQL and the Spark DataFrame API.\n\n    \n2023-03-07\nNO CLASS - Spring Break\n\n\n\n\n    Apache Spark Ecosystem\n2023-03-14\nSpark ML\n\nLecture 8\n\nLab 8\n\nScaling machine learning with Spark.\n\n    Apache Spark Ecosystem\n2023-03-21\nSpark NLP\n\nLecture 9\n\nLab 9\n\nNatural Language Propcessing Using Spark.\n\n    Apache Spark Ecosystem\n2023-04-11\nSpark Streaming\n\nLecture 10\n\nLab 10\n\nAnalyzing streaming data with Spark.\n\n    \n      Phase 3\n    \n    \n2023-03-28\nNO CLASS - Easter Break\n\n\n\n\n    Other Big Data technologies & misc. topics\n2023-04-04\nServerless & DevOps\n\nLecture 11\n\nLab 11\n\nLambda, CI/CD and DevOps\n\n    Other Big Data technologies & misc. topics\n2023-04-18\nData Engineering\n\nLecture 12\n\n\nData engineering: data pipelines, data lakes, data ware houses and more.\n\n    Other Big Data technologies & misc. topics\n2023-04-25\nRay, RAPIDS & DuckDB\n\nLecture 13\n\nLab 13\n\nScaling applications and ML libraries with Ray. Using GPUs for data science with RAPIDS and in-memory analytics with DuckDB.\n\n    Other Big Data technologies & misc. topics\n2023-05-02\nProject discussion & Open Session\n\nLecture 14\n\n\nLast class for the semester"
   },
   {
+    "objectID": "slides/01-slides.html#agenda-for-todays-session",
+    "href": "slides/01-slides.html#agenda-for-todays-session",
+    "title": "Lecture 1",
+    "section": "Agenda for today’s session",
+    "text": "Agenda for today’s session\n\nCourse and syllabus overview\nBig Data Concepts\n\nDefinition\nChallenges\nApproaches\n\nData Engineering\nIntroduction to bash\n\nLab: Linux command line"
+  },
+  {
+    "objectID": "slides/01-slides.html#bookmark-these-links",
+    "href": "slides/01-slides.html#bookmark-these-links",
+    "title": "Lecture 1",
+    "section": "Bookmark these links!",
+    "text": "Bookmark these links!\n\nCourse website: https://aa1603.georgetown.edu/ppol5206\nGitHub Organization for your deliverables: https://github.com/gu-ppol/\nSlack Workspace: https://georgetown-ime2320.slack.com\nInstructors email: ppol5206-spring-2023@georgetown.edu\nCanvas: https://georgetown.instructure.com/courses/187746\n\n\n\n\n\n\n\nThese are also pinned on the Slack main channel"
+  },
+  {
     "objectID": "slides/01-slides.html#instructional-team---professor",
     "href": "slides/01-slides.html#instructional-team---professor",
     "title": "Lecture 1",
@@ -942,14 +956,7 @@
     "href": "slides/01-slides.html#instructional-team---ta",
     "title": "Lecture 1",
     "section": "Instructional Team - TA",
-    "text": "Instructional Team - TA\n\n\nMitali Shah\n\nBackground in Industrial Engineering\nData Analyst with Business and Design Optimization Group (BDOG) on campus\nLike trekking and cooking"
-  },
-  {
-    "objectID": "slides/01-slides.html#agenda-and-goals-for-today",
-    "href": "slides/01-slides.html#agenda-and-goals-for-today",
-    "title": "Lecture 1",
-    "section": "Agenda and Goals for Today",
-    "text": "Agenda and Goals for Today\n\nCourse Overview\nBig Data Concepts\n\nDefinition\nChallenges\nApproaches\n\nData Engineering\nLab: Setting Up\n\nGenerate and upload your ssh keys\nSome Linux command line stuff"
+    "text": "Instructional Team - TA\n\n\nDheeraj Oruganty\n\nEducational Background: Achieved a Bachelor’s Degree in Computer Science from Jawaharlal Nehru Institute of Technology in Hyderabad.\nInternship: Served as a Machine Learning Intern at Cluzters.ai, contributing to the development of machine vision models tailored for edge devices.\nPersonal Interests: Finds joy participating in hikes, meeting new people and embarking on road trips.\nInteresting Tidbits: Explored 6 different countries in the past 90 days.\nAdventurous Journey: Undertook a remarkable 15-hour road trip on a motorcycle in India!"
   },
   {
     "objectID": "slides/01-slides.html#course-description",
@@ -970,7 +977,7 @@
     "href": "slides/01-slides.html#evaluation",
     "title": "Lecture 1",
     "section": "Evaluation",
-    "text": "Evaluation\n\nGroup project : 30%\nAssignments : 45%\nLab completions : 15%\nQuizzes : 10%"
+    "text": "Evaluation\n\nGroup project : 40%\nAssignments : 30%\nLab completions : 20%\nQuizzes : 10%"
   },
   {
     "objectID": "slides/01-slides.html#course-materials",
@@ -984,7 +991,7 @@
     "href": "slides/01-slides.html#communication",
     "title": "Lecture 1",
     "section": "Communication",
-    "text": "Communication\n\nSlack is the primary form of communication\nInstructional team email: ppol5206-spring-2023@georgetown.edu ]"
+    "text": "Communication\n\nSlack is the primary form of communication\nInstructional team email: ppol5206-spring-2023@georgetown.edu"
   },
   {
     "objectID": "slides/01-slides.html#slack-rules",
@@ -1110,7 +1117,7 @@
     "href": "slides/01-slides.html#lets-discuss",
     "title": "Lecture 1",
     "section": "Let’s discuss!",
-    "text": "Let’s discuss!"
+    "text": "Let’s discuss!\n\nExponential data growth"
   },
   {
     "objectID": "slides/01-slides.html#big-data-definitions",
@@ -1197,6 +1204,20 @@
     "text": "Traditional data analysis tools like R and Python are single threaded"
   },
   {
+    "objectID": "slides/01-slides.html#tools-at-a-glance",
+    "href": "slides/01-slides.html#tools-at-a-glance",
+    "title": "Lecture 1",
+    "section": "Tools at-a-glance",
+    "text": "Tools at-a-glance\n\n\nLanguages, libraries, and projects\n\nPython\n\npandas\npolars\nPySpark\nduckdb\ndask\nray\n\nApache Arrow\nApache Spark\nSQL\n\nWe’ll talk briefly about Apache Hadoop today but we will not cover it in this course.\n\nCloud Services\n\nAmazon Web Services (AWS)\n\nAWS Sagemaker\nAmazon S3\n\nAzure\n\nAzure Blob\nAzure Machine Learning\n\n\nOther:\n\nAWS Elastic MapReduce (EMR)"
+  },
+  {
+    "objectID": "slides/01-slides.html#additional-links-of-interest",
+    "href": "slides/01-slides.html#additional-links-of-interest",
+    "title": "Lecture 1",
+    "section": "Additional links of interest",
+    "text": "Additional links of interest\n\nMatt Turck’s Machine Learning, Artificial Intelligence & Data Landscape (MAD)\n\nArticle\nInteractive Landscape\n\nIs there life after Hadoop?\n10 Best Big Data Tools for 2023"
+  },
+  {
     "objectID": "slides/01-slides.html#difference-between-data-scientist-and-data-engineer",
     "href": "slides/01-slides.html#difference-between-data-scientist-and-data-engineer",
     "title": "Lecture 1",
@@ -1222,133 +1243,63 @@
     "href": "slides/01-slides.html#as-an-analystdata-scientist-you-really-need-both",
     "title": "Lecture 1",
     "section": "As an analyst/data scientist, you really need both",
-    "text": "As an analyst/data scientist, you really need both\n\n\n\n???\nDepending on where you end up"
+    "text": "As an analyst/data scientist, you really need both"
   },
   {
-    "objectID": "slides/01-slides.html#working-on-a-single-machine",
-    "href": "slides/01-slides.html#working-on-a-single-machine",
+    "objectID": "slides/01-slides.html#architecture",
+    "href": "slides/01-slides.html#architecture",
     "title": "Lecture 1",
-    "section": "Working on a single machine",
-    "text": "Working on a single machine\nYou are most likely using traditional data analysis tools, which are single threaded and run on a single machine."
+    "section": "Architecture",
+    "text": "Architecture"
   },
   {
-    "objectID": "slides/01-slides.html#the-big-data-problem",
-    "href": "slides/01-slides.html#the-big-data-problem",
+    "objectID": "slides/01-slides.html#storage",
+    "href": "slides/01-slides.html#storage",
     "title": "Lecture 1",
-    "section": "The BIG DATA problem",
-    "text": "The BIG DATA problem"
+    "section": "Storage",
+    "text": "Storage"
   },
   {
-    "objectID": "slides/01-slides.html#is-moores-law-dead",
-    "href": "slides/01-slides.html#is-moores-law-dead",
+    "objectID": "slides/01-slides.html#source-control",
+    "href": "slides/01-slides.html#source-control",
     "title": "Lecture 1",
-    "section": "Is Moore’s Law Dead?",
-    "text": "Is Moore’s Law Dead?"
+    "section": "Source control",
+    "text": "Source control"
   },
   {
-    "objectID": "slides/01-slides.html#new-hardware",
-    "href": "slides/01-slides.html#new-hardware",
+    "objectID": "slides/01-slides.html#orchestration",
+    "href": "slides/01-slides.html#orchestration",
     "title": "Lecture 1",
-    "section": "New Hardware",
-    "text": "New Hardware\nNeed\n\nThe demand for data processing will not be met by relying on the same technology.\nThe key to modern data processing is new semiconductors\n\nNot just squeezing more transistors per area\nNeed new compute architectures that are built and optimized for specialized functions\n\nSpecialized edge hardware for Edge Computing\nWhile many declare Moore’s Law to be broken or no longer valid, in reality it’s not the law that is broken but rather a heat problem.\n\nWhat\n\nGraphic Processing Units (GPUs)\nField Programmable Gate Arrays (FPGAs)\nData Processing Units (DPUs)\nPhotonic computing"
+    "section": "Orchestration",
+    "text": "Orchestration"
   },
   {
-    "objectID": "slides/01-slides.html#so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do",
-    "href": "slides/01-slides.html#so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do",
+    "objectID": "slides/01-slides.html#processing",
+    "href": "slides/01-slides.html#processing",
     "title": "Lecture 1",
-    "section": "So, we can’t store or process data on a single machine, what do we do?",
-    "text": "So, we can’t store or process data on a single machine, what do we do?"
+    "section": "Processing",
+    "text": "Processing"
   },
   {
-    "objectID": "slides/01-slides.html#we-distribute",
-    "href": "slides/01-slides.html#we-distribute",
+    "objectID": "slides/01-slides.html#analytics",
+    "href": "slides/01-slides.html#analytics",
     "title": "Lecture 1",
-    "section": "We distribute",
-    "text": "We distribute\nMore CPUs, more memory, more storage!"
+    "section": "Analytics",
+    "text": "Analytics"
   },
   {
-    "objectID": "slides/01-slides.html#simple-we-use-the-cloud",
-    "href": "slides/01-slides.html#simple-we-use-the-cloud",
+    "objectID": "slides/01-slides.html#machine-learning",
+    "href": "slides/01-slides.html#machine-learning",
     "title": "Lecture 1",
-    "section": "Simple, we use the cloud",
-    "text": "Simple, we use the cloud"
+    "section": "Machine Learning",
+    "text": "Machine Learning"
   },
   {
-    "objectID": "slides/01-slides.html#cloud-computing-is-a-big-deal",
-    "href": "slides/01-slides.html#cloud-computing-is-a-big-deal",
+    "objectID": "slides/01-slides.html#governance",
+    "href": "slides/01-slides.html#governance",
     "title": "Lecture 1",
-    "section": "Cloud computing is a big deal!",
-    "text": "Cloud computing is a big deal!\nBenefits\n\nProvides access to low-cost computing\nCosts are decreasing every year\nElastic\nPAAS works!\nMany other benefits…"
-  },
-  {
-    "objectID": "slides/01-slides.html#what-is-the-claaaaaaawd-the-cloud",
-    "href": "slides/01-slides.html#what-is-the-claaaaaaawd-the-cloud",
-    "title": "Lecture 1",
-    "section": "What is the claaaaaaawd (the cloud)",
-    "text": "What is the claaaaaaawd (the cloud)"
-  },
-  {
-    "objectID": "slides/01-slides.html#what-is-the-cloud",
-    "href": "slides/01-slides.html#what-is-the-cloud",
-    "title": "Lecture 1",
-    "section": "What is the cloud?",
-    "text": "What is the cloud?\n\\kloud\\ noun\nthe practice of storing regularly used computer data on multiple servers that can be accessed through the Internet\nUsing someone else’s computer(s)"
-  },
-  {
-    "objectID": "slides/01-slides.html#nist-definition",
-    "href": "slides/01-slides.html#nist-definition",
-    "title": "Lecture 1",
-    "section": "NIST Definition",
-    "text": "NIST Definition"
-  },
-  {
-    "objectID": "slides/01-slides.html#service-models",
-    "href": "slides/01-slides.html#service-models",
-    "title": "Lecture 1",
-    "section": "Service Models",
-    "text": "Service Models"
-  },
-  {
-    "objectID": "slides/01-slides.html#the-evolution-of-the-cloud",
-    "href": "slides/01-slides.html#the-evolution-of-the-cloud",
-    "title": "Lecture 1",
-    "section": "The evolution of the Cloud",
-    "text": "The evolution of the Cloud\n\n\n\n\n \n  \n    Yesterday \n    Today \n    Tomorrow \n  \n \n\n  \n    Limited number of tools and vendors \n    Many tools and vendors to work with \n    Integrated tools and vendors \n  \n  \n    One platform - few devices \n    Multiple platforms - many devices \n    Connected platforms and devices \n  \n  \n    Data is scarce but manageable \n    Overabundance of data \n    Data is used for important business decisions \n  \n  \n    IT has major influence and control \n    IT has limited influence and control \n    IT is strategic to the business \n  \n  \n    People only work when they are at work \n    People work wherever they want \n    People have access to what they need, wherever they are"
-  },
-  {
-    "objectID": "slides/01-slides.html#what-does-the-cloud-look-like",
-    "href": "slides/01-slides.html#what-does-the-cloud-look-like",
-    "title": "Lecture 1",
-    "section": "What does the cloud look like?",
-    "text": "What does the cloud look like?"
-  },
-  {
-    "objectID": "slides/01-slides.html#virtual-visit-to-a-microsoft-azure-data-center",
-    "href": "slides/01-slides.html#virtual-visit-to-a-microsoft-azure-data-center",
-    "title": "Lecture 1",
-    "section": "Virtual Visit to a Microsoft Azure Data Center",
-    "text": "Virtual Visit to a Microsoft Azure Data Center"
-  },
-  {
-    "objectID": "slides/01-slides.html#microsoft-azure-data-center-in-boydton-va",
-    "href": "slides/01-slides.html#microsoft-azure-data-center-in-boydton-va",
-    "title": "Lecture 1",
-    "section": "Microsoft Azure Data Center in Boydton, VA",
-    "text": "Microsoft Azure Data Center in Boydton, VA"
-  },
-  {
-    "objectID": "slides/01-slides.html#loudon-county-va-is-called-cloudon",
-    "href": "slides/01-slides.html#loudon-county-va-is-called-cloudon",
-    "title": "Lecture 1",
-    "section": "Loudon County, VA is called “CLoudon”",
-    "text": "Loudon County, VA is called “CLoudon”\n\nHow data centers power VA’s Loudon County: https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx\nThe heart of “The Cloud” is in Virginia: https://www.cbsnews.com/news/cloud-computing-loudoun-county-virginia/\nCBS Sunday Morning Visits the Home of the Internet in Loudoun County: https://biz.loudoun.gov/2017/10/30/cbs-sunday-morning-visits-loudoun/"
-  },
-  {
-    "objectID": "slides/01-slides.html#of-the-worlds-internet-traffic-passes-through-loudon-county-va",
-    "href": "slides/01-slides.html#of-the-worlds-internet-traffic-passes-through-loudon-county-va",
-    "title": "Lecture 1",
-    "section": "70% of the world’s internet traffic passes through Loudon County, VA",
-    "text": "70% of the world’s internet traffic passes through Loudon County, VA"
+    "section": "Governance",
+    "text": "Governance"
   },
   {
     "objectID": "slides/01-slides.html#linux-command-line-1",
@@ -1447,6 +1398,132 @@
     "title": "Lecture 2",
     "section": "Glossary",
     "text": "Glossary\n\n\n\n\n \n  \n    Term \n    Definition \n  \n \n\n  \n    Local \n    Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application. \n  \n  \n    Remote \n    Any machine you connect to via ssh or other means."
+  },
+  {
+    "objectID": "slides/02-slides.html#working-on-a-single-machine",
+    "href": "slides/02-slides.html#working-on-a-single-machine",
+    "title": "Lecture 2",
+    "section": "Working on a single machine",
+    "text": "Working on a single machine\nYou are most likely using traditional data analysis tools, which are single threaded and run on a single machine."
+  },
+  {
+    "objectID": "slides/02-slides.html#the-big-data-problem",
+    "href": "slides/02-slides.html#the-big-data-problem",
+    "title": "Lecture 2",
+    "section": "The BIG DATA problem",
+    "text": "The BIG DATA problem"
+  },
+  {
+    "objectID": "slides/02-slides.html#is-moores-law-dead",
+    "href": "slides/02-slides.html#is-moores-law-dead",
+    "title": "Lecture 2",
+    "section": "Is Moore’s Law Dead?",
+    "text": "Is Moore’s Law Dead?"
+  },
+  {
+    "objectID": "slides/02-slides.html#new-hardware",
+    "href": "slides/02-slides.html#new-hardware",
+    "title": "Lecture 2",
+    "section": "New Hardware",
+    "text": "New Hardware\nNeed\n\nThe demand for data processing will not be met by relying on the same technology.\nThe key to modern data processing is new semiconductors\n\nNot just squeezing more transistors per area\nNeed new compute architectures that are built and optimized for specialized functions\n\nSpecialized edge hardware for Edge Computing\nWhile many declare Moore’s Law to be broken or no longer valid, in reality it’s not the law that is broken but rather a heat problem.\n\nWhat\n\nGraphic Processing Units (GPUs)\nField Programmable Gate Arrays (FPGAs)\nData Processing Units (DPUs)\nPhotonic computing"
+  },
+  {
+    "objectID": "slides/02-slides.html#so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do",
+    "href": "slides/02-slides.html#so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do",
+    "title": "Lecture 2",
+    "section": "So, we can’t store or process data on a single machine, what do we do?",
+    "text": "So, we can’t store or process data on a single machine, what do we do?"
+  },
+  {
+    "objectID": "slides/02-slides.html#we-distribute",
+    "href": "slides/02-slides.html#we-distribute",
+    "title": "Lecture 2",
+    "section": "We distribute",
+    "text": "We distribute\nMore CPUs, more memory, more storage!"
+  },
+  {
+    "objectID": "slides/02-slides.html#simple-we-use-the-cloud",
+    "href": "slides/02-slides.html#simple-we-use-the-cloud",
+    "title": "Lecture 2",
+    "section": "Simple, we use the cloud",
+    "text": "Simple, we use the cloud"
+  },
+  {
+    "objectID": "slides/02-slides.html#cloud-computing-is-a-big-deal",
+    "href": "slides/02-slides.html#cloud-computing-is-a-big-deal",
+    "title": "Lecture 2",
+    "section": "Cloud computing is a big deal!",
+    "text": "Cloud computing is a big deal!\nBenefits\n\nProvides access to low-cost computing\nCosts are decreasing every year\nElastic\nPAAS works!\nMany other benefits…"
+  },
+  {
+    "objectID": "slides/02-slides.html#what-is-the-claaaaaaawd-the-cloud",
+    "href": "slides/02-slides.html#what-is-the-claaaaaaawd-the-cloud",
+    "title": "Lecture 2",
+    "section": "What is the claaaaaaawd (the cloud)",
+    "text": "What is the claaaaaaawd (the cloud)"
+  },
+  {
+    "objectID": "slides/02-slides.html#what-is-the-cloud",
+    "href": "slides/02-slides.html#what-is-the-cloud",
+    "title": "Lecture 2",
+    "section": "What is the cloud?",
+    "text": "What is the cloud?\n\\kloud\\ noun\nthe practice of storing regularly used computer data on multiple servers that can be accessed through the Internet\nUsing someone else’s computer(s)"
+  },
+  {
+    "objectID": "slides/02-slides.html#nist-definition",
+    "href": "slides/02-slides.html#nist-definition",
+    "title": "Lecture 2",
+    "section": "NIST Definition",
+    "text": "NIST Definition"
+  },
+  {
+    "objectID": "slides/02-slides.html#service-models",
+    "href": "slides/02-slides.html#service-models",
+    "title": "Lecture 2",
+    "section": "Service Models",
+    "text": "Service Models"
+  },
+  {
+    "objectID": "slides/02-slides.html#the-evolution-of-the-cloud",
+    "href": "slides/02-slides.html#the-evolution-of-the-cloud",
+    "title": "Lecture 2",
+    "section": "The evolution of the Cloud",
+    "text": "The evolution of the Cloud\n\n\n\n\n \n  \n    Yesterday \n    Today \n    Tomorrow \n  \n \n\n  \n    Limited number of tools and vendors \n    Many tools and vendors to work with \n    Integrated tools and vendors \n  \n  \n    One platform - few devices \n    Multiple platforms - many devices \n    Connected platforms and devices \n  \n  \n    Data is scarce but manageable \n    Overabundance of data \n    Data is used for important business decisions \n  \n  \n    IT has major influence and control \n    IT has limited influence and control \n    IT is strategic to the business \n  \n  \n    People only work when they are at work \n    People work wherever they want \n    People have access to what they need, wherever they are"
+  },
+  {
+    "objectID": "slides/02-slides.html#what-does-the-cloud-look-like",
+    "href": "slides/02-slides.html#what-does-the-cloud-look-like",
+    "title": "Lecture 2",
+    "section": "What does the cloud look like?",
+    "text": "What does the cloud look like?"
+  },
+  {
+    "objectID": "slides/02-slides.html#virtual-visit-to-a-microsoft-azure-data-center",
+    "href": "slides/02-slides.html#virtual-visit-to-a-microsoft-azure-data-center",
+    "title": "Lecture 2",
+    "section": "Virtual Visit to a Microsoft Azure Data Center",
+    "text": "Virtual Visit to a Microsoft Azure Data Center"
+  },
+  {
+    "objectID": "slides/02-slides.html#microsoft-azure-data-center-in-boydton-va",
+    "href": "slides/02-slides.html#microsoft-azure-data-center-in-boydton-va",
+    "title": "Lecture 2",
+    "section": "Microsoft Azure Data Center in Boydton, VA",
+    "text": "Microsoft Azure Data Center in Boydton, VA"
+  },
+  {
+    "objectID": "slides/02-slides.html#loudon-county-va-is-called-cloudon",
+    "href": "slides/02-slides.html#loudon-county-va-is-called-cloudon",
+    "title": "Lecture 2",
+    "section": "Loudon County, VA is called “CLoudon”",
+    "text": "Loudon County, VA is called “CLoudon”\n\nHow data centers power VA’s Loudon County: https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx\nThe heart of “The Cloud” is in Virginia: https://www.cbsnews.com/news/cloud-computing-loudoun-county-virginia/\nCBS Sunday Morning Visits the Home of the Internet in Loudoun County: https://biz.loudoun.gov/2017/10/30/cbs-sunday-morning-visits-loudoun/"
+  },
+  {
+    "objectID": "slides/02-slides.html#of-the-worlds-internet-traffic-passes-through-loudon-county-va",
+    "href": "slides/02-slides.html#of-the-worlds-internet-traffic-passes-through-loudon-county-va",
+    "title": "Lecture 2",
+    "section": "70% of the world’s internet traffic passes through Loudon County, VA",
+    "text": "70% of the world’s internet traffic passes through Loudon County, VA"
   },
   {
     "objectID": "slides/03-slides.html#agenda-and-goals-for-today",

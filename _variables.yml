@@ -23,7 +23,8 @@ course:
   time: "6:30–9:00 PM"
   location: "Car Barn 204"
   dates: "January 11 – May 9, 2024"
-  github: "https://github.com/gu-ppol567/ppol5206s24-class-site.git"
+  github: "https://github.com/gu-ppol/ppol5206s24-class-site.git"
+  github_org: https://github.com/gu-ppol/
   url: "https://aa1603.georgetown.edu/ppol5206"
   copyright_year: "2024"
   slack: "https://georgetown-ime2320.slack.com"
@@ -31,6 +32,8 @@ course:
   class_start_hhmmss: "183000"
   class_end_hhmmss: "210000"
   lab0: https://georgetown.instructure.com/courses/167183/assignments/840211
+  lms_course_url: https://georgetown.instructure.com/courses/187746
+  lms_course_url_md: "[`{{< var course.lms_course_url >}}`]({{< var course.lms_course_url >}})"
 
 gh-classroom:
   lab01: "https://classroom.github.com/a/fK9435lZ"
@@ -59,6 +62,8 @@ gh-classroom:
 university:
   name: Georgetown University
   url: "https://www.georgetown.edu/"
+  lms: Canvas
+  lms_url: https://canvas.georgetown.edu
 
 school:
   name: McCourt School of Public Policy

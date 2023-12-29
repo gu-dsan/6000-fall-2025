@@ -371,6 +371,43 @@ Amit Arora
 </div>
 
 </section>
+<section id="agenda-for-todays-session" class="slide level2">
+<h2>Agenda for today’s session</h2>
+<ol type="1">
+<li><p>Course and syllabus overview</p></li>
+<li><p>Big Data Concepts</p>
+<ol type="1">
+<li>Definition</li>
+<li>Challenges</li>
+<li>Approaches</li>
+</ol></li>
+<li><p>Data Engineering</p></li>
+<li><p>Introduction to <code>bash</code></p>
+<ol type="1">
+<li>Lab: Linux command line</li>
+</ol></li>
+</ol>
+</section>
+<section id="bookmark-these-links" class="slide level2">
+<h2>Bookmark these links!</h2>
+<ul>
+<li>Course website: <a href="https://aa1603.georgetown.edu/ppol5206">https://aa1603.georgetown.edu/ppol5206</a></li>
+<li>GitHub Organization for your deliverables: <a href="https://github.com/gu-ppol/">https://github.com/gu-ppol/</a></li>
+<li>Slack Workspace: <a href="https://georgetown-ime2320.slack.com">https://georgetown-ime2320.slack.com</a></li>
+<li>Instructors email: <a href="mailto::ppol5206-spring-2023@georgetown.edu">ppol5206-spring-2023@georgetown.edu</a></li>
+<li>Canvas: <a href="https://georgetown.instructure.com/courses/187746">https://georgetown.instructure.com/courses/187746</a></li>
+</ul>
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>These are also pinned on the Slack <code>main</code> channel</p>
+</div>
+</div>
+</div>
+</section>
 <section id="instructional-team---professor" class="slide level2">
 <h2>Instructional Team - Professor</h2>
 <div class="columns">
@@ -396,34 +433,18 @@ Amit Arora
 <h2>Instructional Team - TA</h2>
 <div class="columns">
 <div class="column" style="width:75%;">
-<p>Mitali Shah</p>
+<p>Dheeraj Oruganty</p>
 <ul>
-<li>Background in Industrial Engineering</li>
-<li>Data Analyst with Business and Design Optimization Group (BDOG) on campus</li>
-<li>Like trekking and cooking</li>
+<li>Educational Background: Achieved a Bachelor’s Degree in Computer Science from Jawaharlal Nehru Institute of Technology in Hyderabad.</li>
+<li>Internship: Served as a Machine Learning Intern at Cluzters.ai, contributing to the development of machine vision models tailored for edge devices.</li>
+<li>Personal Interests: Finds joy participating in hikes, meeting new people and embarking on road trips.</li>
+<li>Interesting Tidbits: Explored 6 different countries in the past 90 days.</li>
+<li>Adventurous Journey: Undertook a remarkable 15-hour road trip on a motorcycle in India!</li>
 </ul>
 </div><div class="column" style="width:25%;">
-<p><img data-src="img/mitali.jpg" title="Mitali Shah"></p>
+<p><img data-src="img/dheeraj.jpg" title="Dheeraj Oruganty"></p>
 </div>
 </div>
-</section>
-<section id="agenda-and-goals-for-today" class="slide level2">
-<h2>Agenda and Goals for Today</h2>
-<ol type="1">
-<li><p>Course Overview</p></li>
-<li><p>Big Data Concepts</p>
-<ol type="1">
-<li>Definition</li>
-<li>Challenges</li>
-<li>Approaches</li>
-</ol></li>
-<li><p>Data Engineering</p></li>
-<li><p>Lab: Setting Up</p>
-<ol type="1">
-<li>Generate and upload your ssh keys</li>
-<li>Some Linux command line stuff</li>
-</ol></li>
-</ol>
 </section>
 <section id="course-description" class="slide level2">
 <h2>Course Description</h2>
@@ -446,9 +467,9 @@ Amit Arora
 <section id="evaluation" class="slide level2">
 <h2>Evaluation</h2>
 <ul>
-<li>Group project : 30%</li>
-<li>Assignments : 45%</li>
-<li>Lab completions : 15%</li>
+<li>Group project : 40%</li>
+<li>Assignments : 30%</li>
+<li>Lab completions : 20%</li>
 <li>Quizzes : 10%</li>
 </ul>
 </section>
@@ -463,7 +484,7 @@ Amit Arora
 <h2>Communication</h2>
 <ul>
 <li><strong>Slack is the primary form of communication</strong></li>
-<li><a href="mailto:ppol5206-spring-2023@georgetown.edu">Instructional team email:</a> <code>ppol5206-spring-2023@georgetown.edu</code> ]</li>
+<li><a href="mailto:ppol5206-spring-2023@georgetown.edu">Instructional team email:</a> <code>ppol5206-spring-2023@georgetown.edu</code></li>
 </ul>
 </section>
 <section id="slack-rules" class="slide level2">
@@ -598,7 +619,8 @@ Amit Arora
 </section>
 <section id="lets-discuss" class="slide level2">
 <h2>Let’s discuss!</h2>
-</section>
+
+<img data-src="img/data-exp-growth-statista.png" class="r-stretch quarto-figure-center"><p class="caption">Exponential data growth</p></section>
 <section id="big-data-definitions" class="slide level2">
 <h2>Big Data Definitions</h2>
 <h3 id="wikipedia">Wikipedia</h3>
@@ -814,6 +836,59 @@ Amit Arora
 </section>
 <section id="traditional-data-analysis-tools-like-r-and-python-are-single-threaded" class="slide level2">
 <h2>Traditional data analysis tools like <code>R</code> and <code>Python</code> are single threaded</h2>
+</section>
+<section id="tools-at-a-glance" class="slide level2">
+<h2>Tools at-a-glance</h2>
+<div class="columns">
+<div class="column r-fit-text" style="width:50%;">
+<h3 id="languages-libraries-and-projects">Languages, libraries, and projects</h3>
+<ul>
+<li><a href="https://www.python.org/">Python</a>
+<ul>
+<li><a href="https://pandas.pydata.org/"><code>pandas</code></a></li>
+<li><a href="https://www.pola.rs/"><code>polars</code></a></li>
+<li><a href="https://spark.apache.org/docs/latest/api/python/index.html"><code>PySpark</code></a></li>
+<li><a href="https://duckdb.org/docs/api/python/overview.html"><code>duckdb</code></a></li>
+<li><a href="https://www.dask.org/"><code>dask</code></a></li>
+<li><a href="https://www.ray.io/"><code>ray</code></a></li>
+</ul></li>
+<li><a href="https://arrow.apache.org/">Apache Arrow</a></li>
+<li><a href="https://spark.apache.org/">Apache Spark</a></li>
+<li><a href="https://en.wikipedia.org/wiki/SQL">SQL</a></li>
+</ul>
+<p>We’ll talk briefly about <a href="https://hadoop.apache.org/">Apache Hadoop</a> today but we will not cover it in this course.</p>
+</div><div class="column r-fit-text" style="width:50%;">
+<h3 id="cloud-services">Cloud Services</h3>
+<ul>
+<li>Amazon Web Services (AWS)
+<ul>
+<li><a href="https://aws.amazon.com/pm/sagemaker/">AWS Sagemaker</a></li>
+<li><a href="https://aws.amazon.com/s3/">Amazon S3</a></li>
+</ul></li>
+<li>Azure
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/products/storage/blobs/">Azure Blob</a></li>
+<li><a href="https://azure.microsoft.com/en-us/products/machine-learning/">Azure Machine Learning</a></li>
+</ul></li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><a href="https://aws.amazon.com/emr/">AWS Elastic MapReduce (EMR)</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="additional-links-of-interest" class="slide level2">
+<h2>Additional links of interest</h2>
+<ul>
+<li><p>Matt Turck’s Machine Learning, Artificial Intelligence &amp; Data Landscape (MAD)</p>
+<ul>
+<li><a href="https://mattturck.com/mad2023/">Article</a></li>
+<li><a href="https://mad.firstmarkcap.com/">Interactive Landscape</a></li>
+</ul></li>
+<li><p><a href="https://www.cio.com/article/188940/is-there-life-after-hadoop-the-answer-is-a-resounding-yes.html">Is there life after Hadoop?</a></p></li>
+<li><p><a href="https://jelvix.com/blog/top-5-big-data-frameworks">10 Best Big Data Tools for 2023</a></p></li>
+</ul>
 </section></section>
 <section>
 <section id="data-engineering" class="title-slide slide level1 center">
@@ -844,164 +919,44 @@ Amit Arora
 <div data-align="center">
 <p><img src="img/data-engineering-ability.png" width="600"></p>
 </div>
-<p>???</p>
-<p>Depending on where you end up</p>
-</section>
-<section id="working-on-a-single-machine" class="slide level2">
-<h2>Working on a single machine</h2>
-<p>You are most likely using traditional data analysis tools, which are <strong>single threaded</strong> and run on <strong>a single machine</strong>.</p>
-<p><img src="img/r-logo.png" width="250"></p>
-<p><img src="img/python-logo.png"></p>
-</section>
-<section id="the-big-data-problem" class="slide level2">
-<h2>The <strong>BIG DATA</strong> problem</h2>
-
-<img src="img/moores.png" class="r-stretch"></section>
-<section id="is-moores-law-dead" class="slide level2">
-<h2>Is Moore’s Law Dead?</h2>
-</section>
-<section id="new-hardware" class="slide level2">
-<h2>New Hardware</h2>
-<h3 id="need">Need</h3>
-<ul>
-<li>The demand for data processing will not be met by relying on the same technology.</li>
-<li>The key to modern data processing is <strong>new semiconductors</strong>
-<ul>
-<li>Not just squeezing more transistors per area</li>
-<li>Need new compute architectures that are built and optimized for specialized functions</li>
-</ul></li>
-<li>Specialized edge hardware for Edge Computing</li>
-<li>While many declare Moore’s Law to be broken or no longer valid, in reality it’s not the law that is broken but rather a heat problem.</li>
-</ul>
-<h3 id="what">What</h3>
-<ul>
-<li><p>Graphic Processing Units (GPUs)</p></li>
-<li><p>Field Programmable Gate Arrays (FPGAs)</p></li>
-<li><p>Data Processing Units (DPUs)</p></li>
-<li><p>Photonic computing</p></li>
-</ul>
-</section>
-<section id="so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do" class="slide level2">
-<h2>So, we can’t store or process data on a single machine, what do we do?</h2>
-
-<img src="img/medium-6.png" width="800" class="r-stretch"></section>
-<section id="we-distribute" class="slide level2">
-<h2>We distribute</h2>
-<p>More CPUs, more memory, more storage!</p>
-
-<img src="img/distribute-the-data.png" width="600" class="r-stretch"></section></section>
-<section>
-<section id="how-do-we-do-that" class="title-slide slide level1 center">
-<h1>How do we do that?</h1>
-
-</section>
-<section id="simple-we-use-the-cloud" class="slide level2">
-<h2>Simple, we use the <strong>cloud</strong></h2>
-
-<img src="img/cloud-providers.png" width="800" class="r-stretch"></section>
-<section id="cloud-computing-is-a-big-deal" class="slide level2">
-<h2>Cloud computing is a big deal!</h2>
-<h3 id="benefits">Benefits</h3>
-<ul>
-<li><p>Provides access to low-cost computing</p></li>
-<li><p>Costs are decreasing every year</p></li>
-<li><p>Elastic</p></li>
-<li><p>PAAS works!</p></li>
-<li><p>Many other benefits…</p></li>
-</ul>
-
-<img src="img/scale-up-scale-out.png" class="r-stretch"></section>
-<section id="what-is-the-claaaaaaawd-the-cloud" class="slide level2">
-<h2>What is <strong>the claaaaaaawd</strong> (the cloud)</h2>
-
-<img src="https://media.giphy.com/media/YMXpTBoVQbL9N8MKZa/giphy.gif" class="r-stretch"></section>
-<section id="what-is-the-cloud" class="slide level2">
-<h2>What is the cloud?</h2>
-<h3 id="kloud-noun">\kloud\ noun</h3>
-<p><strong>the practice of storing regularly used computer data on multiple servers that can be accessed through the Internet</strong></p>
-<p><strong>Using someone else’s computer(s)</strong></p>
-</section>
-<section id="nist-definition" class="slide level2">
-<h2>NIST Definition</h2>
-
-<img src="img/cloud-nist.png" class="r-stretch"></section>
-<section id="service-models" class="slide level2">
-<h2>Service Models</h2>
-
-<img src="img/cloud-service-models-traditional.png" class="r-stretch"></section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-
-<img src="img/cloud-service-models-hotel.png" class="r-stretch"></section>
-<section id="the-evolution-of-the-cloud" class="slide level2">
-<h2>The evolution of the Cloud</h2>
-<div class="cell">
-<div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; "><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Yesterday </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Today </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Tomorrow </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;width: 30em; "> Limited number of tools and vendors </td>
-   <td style="text-align:left;width: 30em; "> Many tools and vendors to work with </td>
-   <td style="text-align:left;width: 30em; "> Integrated tools and vendors </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 30em; "> One platform - few devices </td>
-   <td style="text-align:left;width: 30em; "> Multiple platforms - many devices </td>
-   <td style="text-align:left;width: 30em; "> Connected platforms and devices </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 30em; "> Data is scarce but manageable </td>
-   <td style="text-align:left;width: 30em; "> Overabundance of data </td>
-   <td style="text-align:left;width: 30em; "> Data is used for important business decisions </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 30em; "> IT has major influence and control </td>
-   <td style="text-align:left;width: 30em; "> IT has limited influence and control </td>
-   <td style="text-align:left;width: 30em; "> IT is strategic to the business </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 30em; "> People only work when they are at work </td>
-   <td style="text-align:left;width: 30em; "> People work wherever they want </td>
-   <td style="text-align:left;width: 30em; "> People have access to what they need, wherever they are </td>
-  </tr>
-</tbody>
-</table></div>
-
-</div>
-</div>
-</section>
-<section id="what-does-the-cloud-look-like" class="slide level2" data-background-image="http://i2.cdn.turner.com/money/dam/assets/140903164019-cloud-data-center-thumb-1280x720.png">
-<h2>What does the cloud look like?</h2>
-</section>
-<section id="virtual-visit-to-a-microsoft-azure-data-center" class="slide level2">
-<h2>Virtual Visit to a Microsoft Azure Data Center</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/80aK2_iwMOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
-
-<img data-src="img/msft-boydton.png" class="r-stretch"></section>
-<section id="microsoft-azure-data-center-in-boydton-va" class="slide level2">
-<h2>Microsoft Azure Data Center in Boydton, VA</h2>
-</section>
-<section id="loudon-county-va-is-called-cloudon" class="slide level2">
-<h2>Loudon County, VA is called “CLoudon”</h2>
-<ul>
-<li><p>How data centers power VA’s Loudon County: https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx</p></li>
-<li><p>The heart of “The Cloud” is in Virginia: https://www.cbsnews.com/news/cloud-computing-loudoun-county-virginia/</p></li>
-<li><p>CBS Sunday Morning Visits the Home of the Internet in Loudoun County: https://biz.loudoun.gov/2017/10/30/cbs-sunday-morning-visits-loudoun/</p></li>
-</ul>
-
-<img data-src="img/nova-datacenter-locations.png" class="r-stretch"></section>
-<section id="of-the-worlds-internet-traffic-passes-through-loudon-county-va" class="slide level2">
-<h2>70% of the world’s internet traffic passes through Loudon County, VA</h2>
 </section></section>
+<section>
+<section id="the-modern-data-architecture" class="title-slide slide level1 center">
+<h1>The modern data architecture</h1>
+
+</section>
+<section id="architecture" class="slide level2">
+<h2>Architecture</h2>
+
+<img data-src="img/01-data-platform-anatomy.png" class="r-stretch"></section>
+<section id="storage" class="slide level2">
+<h2>Storage</h2>
+
+<img data-src="img/02-data-platform-storage.png" class="r-stretch"></section>
+<section id="source-control" class="slide level2">
+<h2>Source control</h2>
+
+<img data-src="img/03-data-platform-source-control.png" class="r-stretch"></section>
+<section id="orchestration" class="slide level2">
+<h2>Orchestration</h2>
+
+<img data-src="img/04-data-platform-orchestration.png" class="r-stretch"></section>
+<section id="processing" class="slide level2">
+<h2>Processing</h2>
+
+<img data-src="img/05-data-platform-processing.png" class="r-stretch"></section>
+<section id="analytics" class="slide level2">
+<h2>Analytics</h2>
+
+<img data-src="img/06-data-platform-analytics.png" class="r-stretch"></section>
+<section id="machine-learning" class="slide level2">
+<h2>Machine Learning</h2>
+
+<img data-src="img/07-data-platform-ml.png" class="r-stretch"></section>
+<section id="governance" class="slide level2">
+<h2>Governance</h2>
+
+<img data-src="img/08-data-platform-governance.png" class="r-stretch"></section></section>
 <section id="time-for-lab" class="title-slide slide level1 center">
 <h1>Time for Lab!</h1>
 

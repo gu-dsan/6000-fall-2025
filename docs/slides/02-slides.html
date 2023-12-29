@@ -418,6 +418,161 @@ Amit Arora
 </div>
 </div>
 </section>
+<section id="working-on-a-single-machine" class="slide level2">
+<h2>Working on a single machine</h2>
+<p>You are most likely using traditional data analysis tools, which are <strong>single threaded</strong> and run on <strong>a single machine</strong>.</p>
+<p><img src="img/r-logo.png" width="250"></p>
+<p><img src="img/python-logo.png"></p>
+</section>
+<section id="the-big-data-problem" class="slide level2">
+<h2>The <strong>BIG DATA</strong> problem</h2>
+
+<img src="img/moores.png" class="r-stretch"></section>
+<section id="is-moores-law-dead" class="slide level2">
+<h2>Is Moore’s Law Dead?</h2>
+</section>
+<section id="new-hardware" class="slide level2">
+<h2>New Hardware</h2>
+<h3 id="need">Need</h3>
+<ul>
+<li>The demand for data processing will not be met by relying on the same technology.</li>
+<li>The key to modern data processing is <strong>new semiconductors</strong>
+<ul>
+<li>Not just squeezing more transistors per area</li>
+<li>Need new compute architectures that are built and optimized for specialized functions</li>
+</ul></li>
+<li>Specialized edge hardware for Edge Computing</li>
+<li>While many declare Moore’s Law to be broken or no longer valid, in reality it’s not the law that is broken but rather a heat problem.</li>
+</ul>
+<h3 id="what">What</h3>
+<ul>
+<li><p>Graphic Processing Units (GPUs)</p></li>
+<li><p>Field Programmable Gate Arrays (FPGAs)</p></li>
+<li><p>Data Processing Units (DPUs)</p></li>
+<li><p>Photonic computing</p></li>
+</ul>
+</section>
+<section id="so-we-cant-store-or-process-data-on-a-single-machine-what-do-we-do" class="slide level2">
+<h2>So, we can’t store or process data on a single machine, what do we do?</h2>
+
+<img src="img/medium-6.png" width="800" class="r-stretch"></section>
+<section id="we-distribute" class="slide level2">
+<h2>We distribute</h2>
+<p>More CPUs, more memory, more storage!</p>
+
+<img src="img/distribute-the-data.png" width="600" class="r-stretch"></section>
+<section>
+<section id="how-do-we-do-that" class="title-slide slide level1 center">
+<h1>How do we do that?</h1>
+
+</section>
+<section id="simple-we-use-the-cloud" class="slide level2">
+<h2>Simple, we use the <strong>cloud</strong></h2>
+
+<img src="img/cloud-providers.png" width="800" class="r-stretch"></section>
+<section id="cloud-computing-is-a-big-deal" class="slide level2">
+<h2>Cloud computing is a big deal!</h2>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li><p>Provides access to low-cost computing</p></li>
+<li><p>Costs are decreasing every year</p></li>
+<li><p>Elastic</p></li>
+<li><p>PAAS works!</p></li>
+<li><p>Many other benefits…</p></li>
+</ul>
+
+<img src="img/scale-up-scale-out.png" class="r-stretch"></section>
+<section id="what-is-the-claaaaaaawd-the-cloud" class="slide level2">
+<h2>What is <strong>the claaaaaaawd</strong> (the cloud)</h2>
+
+<img src="https://media.giphy.com/media/YMXpTBoVQbL9N8MKZa/giphy.gif" class="r-stretch"></section>
+<section id="what-is-the-cloud" class="slide level2">
+<h2>What is the cloud?</h2>
+<h3 id="kloud-noun">\kloud\ noun</h3>
+<p><strong>the practice of storing regularly used computer data on multiple servers that can be accessed through the Internet</strong></p>
+<p><strong>Using someone else’s computer(s)</strong></p>
+</section>
+<section id="nist-definition" class="slide level2">
+<h2>NIST Definition</h2>
+
+<img src="img/cloud-nist.png" class="r-stretch"></section>
+<section id="service-models" class="slide level2">
+<h2>Service Models</h2>
+
+<img src="img/cloud-service-models-traditional.png" class="r-stretch"></section>
+<section id="section" class="slide level2">
+<h2></h2>
+
+<img src="img/cloud-service-models-hotel.png" class="r-stretch"></section>
+<section id="the-evolution-of-the-cloud" class="slide level2">
+<h2>The evolution of the Cloud</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; "><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Yesterday </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Today </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Tomorrow </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;width: 30em; "> Limited number of tools and vendors </td>
+   <td style="text-align:left;width: 30em; "> Many tools and vendors to work with </td>
+   <td style="text-align:left;width: 30em; "> Integrated tools and vendors </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 30em; "> One platform - few devices </td>
+   <td style="text-align:left;width: 30em; "> Multiple platforms - many devices </td>
+   <td style="text-align:left;width: 30em; "> Connected platforms and devices </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 30em; "> Data is scarce but manageable </td>
+   <td style="text-align:left;width: 30em; "> Overabundance of data </td>
+   <td style="text-align:left;width: 30em; "> Data is used for important business decisions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 30em; "> IT has major influence and control </td>
+   <td style="text-align:left;width: 30em; "> IT has limited influence and control </td>
+   <td style="text-align:left;width: 30em; "> IT is strategic to the business </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 30em; "> People only work when they are at work </td>
+   <td style="text-align:left;width: 30em; "> People work wherever they want </td>
+   <td style="text-align:left;width: 30em; "> People have access to what they need, wherever they are </td>
+  </tr>
+</tbody>
+</table></div>
+
+</div>
+</div>
+</section>
+<section id="what-does-the-cloud-look-like" class="slide level2" data-background-image="http://i2.cdn.turner.com/money/dam/assets/140903164019-cloud-data-center-thumb-1280x720.png">
+<h2>What does the cloud look like?</h2>
+</section>
+<section id="virtual-visit-to-a-microsoft-azure-data-center" class="slide level2">
+<h2>Virtual Visit to a Microsoft Azure Data Center</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/80aK2_iwMOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+
+<img data-src="img/msft-boydton.png" class="r-stretch"></section>
+<section id="microsoft-azure-data-center-in-boydton-va" class="slide level2">
+<h2>Microsoft Azure Data Center in Boydton, VA</h2>
+</section>
+<section id="loudon-county-va-is-called-cloudon" class="slide level2">
+<h2>Loudon County, VA is called “CLoudon”</h2>
+<ul>
+<li><p>How data centers power VA’s Loudon County: https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx</p></li>
+<li><p>The heart of “The Cloud” is in Virginia: https://www.cbsnews.com/news/cloud-computing-loudoun-county-virginia/</p></li>
+<li><p>CBS Sunday Morning Visits the Home of the Internet in Loudoun County: https://biz.loudoun.gov/2017/10/30/cbs-sunday-morning-visits-loudoun/</p></li>
+</ul>
+
+<img data-src="img/nova-datacenter-locations.png" class="r-stretch"></section>
+<section id="of-the-worlds-internet-traffic-passes-through-loudon-county-va" class="slide level2">
+<h2>70% of the world’s internet traffic passes through Loudon County, VA</h2>
+</section></section>
 <section id="time-for-lab" class="title-slide slide level1 center">
 <h1>Time for Lab!</h1>
 
