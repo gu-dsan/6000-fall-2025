@@ -186,9 +186,9 @@ The final timelines and deliverables for the project will be announced in class.
 
 ## Grading and Evaluation
 
--   Group project : 30%
--   Assignments : 45%
--   Lab completions : 15%
+-   Group project : 40%
+-   Assignments : 30%
+-   Lab completions : 20%
 -   Quizzes : 10%
 
 Total is 100%.
@@ -200,191 +200,201 @@ We have no plans to curve the final grade, and the final letter grade will be:
 -   B: 81.5 - 87.98
 -   B-: 79.5 - 81.49
 
-### Submission Details
 
-We will be using Github Classroom for all class deliverables.
-All assignments, lab deliverables, project assignments, and the final project will require you to commit and push all your files and results to your GitHub repo assignment in our GitHub classroom.
+## Submitting your work
+
+### GitHub classroom
+
+We use Github Classroom for all class deliverables: assignments, labs, and the final project. Submitting your work is the process of committing your files and results to your local repository **and** then pushing it to GitHub.
 
 ::: callout-important
-When you are ready for your work to be evaluated, you **MUST** use the commit message "final-submission".
-If you do not use the commit message "final-submission" we will assume that you are still working and that any associated late penalties will apply.
+You must submit everything through GitHub!
 :::
+
+#### Use the `final-submission` commit message
+
+When you are ready for your work to be evaluated, you **MUST** use the commit message `final-submission`. If you do not use the commit message `final-submission` we will assume that you are still working in the repository and we will only grade what is present. By submitting that commit message, you are stating that you are finished with the assignment and are ready for feedback.
+
+::: callout-important
+Make sure you understand the difference between a git `commit` and a `push`, and that you `push` your repository successfully to GitHub.
+:::
+
+In case you need to make a correction after your `final-submission` **and** the submission deadline has not yet passed, then you can *amend* your previous commit.  See [amending a commit](https://www.atlassian.com/git/tutorials/rewriting-history) for instructions. **Do not change the commit message,** it should continue say "final-submission" after the amend.
 
 ::: callout-warning
-**NO EDITS TO YOUR GITHUB REPO ARE ALLOWED AFTER MAKING THE FINAL-SUBMISSION COMMIT MESSAGE**
-
-The instructional team will begin grading your materials once you submit your "final-submission" message.
-By submitting that commit message, you are stating that you are finished with the assignment and are ready for feedback.
-
-In case you need to make a correction after your "final-submission" **and** the submission deadline has not yet expired then you can *amend* your previous commit (see: [amending a commit](https://www.atlassian.com/git/tutorials/rewriting-history)).
-Do not change the commit message, it should continue say "final-submission" after the amend.
-
-Do not submit any additional materials or changes after the submission deadline.
-We will know due to the nature of Git and this may result in significant deductions.
+**No further edits to your GitHub repository are allowed after using the `final-submission` commit message.**
 :::
-
-### Late Deliverables
-
-There are no extensions to due dates unless there are extraordinary circumstances, and those will be determined on a case-by-case basis.
-If you miss a deliverable entirely, you will receive a grade of 0 (zero).
-
-::: callout-note
-## Due dates
-
-**All deliverables (assignments, lab completions, and project milestones) are due on Mondays at 11:59pm (EDT/EST)**.
-:::
-
--   All submissions are made through GitHub Classrooms.
--   The commit time of the commit marked "final-submission", or the last commit made in the repo, whichever is **later**, is used to assess lateness.
--   ALWAYS confirm that your code is on GitHub by the deadline.
--   If your last commit is incomplete, we will grade only what is present.
 
 ::: callout-important
-**The late penalty** is -25% per day for up to 2 days.
-No assignments can be later than 2 days.
-For example, if you submit your assignment on Tuesday at 1 pm, your maximum grade would be a 75%.
-If you submit it on Thursday at 1 am, your grade would be 0.
-
-**This does not apply to the final project. The final project submission CANNOT be late for any reason.**
+We will use **commit datetime** and **commit message** to assess lateness. 
 :::
 
-## Grading Philosophy
+### Late policy
 
-Many of the assignments you will work on are open-ended.
-Grading is generally holistic, meaning that there will not always be specific point value for individual elements of a deliverable.
-Each deliverable submission is unique and will be compared to all other submissions.
+In lieu of extensions, there is a tiered deduction scale if a deliverable is late. Late penalties only apply to labs and assignments. 
 
--   If a deliverable exceeds the requirements and expectations, that is considered A level work.
--   If a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.
--   If a deliverable does not meet the requirements, that is considered B or lesser level work.
+We will assess exceptional circumstances on a case-by-case basis, and only if we are made aware before a deliverable's deadline, not after.
 
-All deliverables must meet the following general requirements, in addition to the specific requirements of each deliverable:
+- A late penalty of 10% per day, up to 4 days, will be assessed for assignments and labs that are submitted with a `final-submission` commit message after the deadline. You may still submit a missed lab or assignment up until the last day of class (May 2) with a maximum possible grade of 60%.
+- Missed in-class quizzes cannot be made up and will receive a grade of zero.
+- Project deadlines are fixed and have no extensions or late penalty. A missed project deliverable will receive a grade of zero.
 
-If your the submission meets or exceeds the requirements, is creative, is well thought-out, has proper presentation and grammar, and is at the graduate student level, then the submission will get full credit.
-Otherwise, partial credit will be given and deductions may be made for any of the following reasons:
 
-Points **will** be deducted for any of the following reasons:
+## Other course policies
 
--   Any instruction is not followed
--   There are missing sections of the deliverable
--   The overall presentation and/or writing is sloppy
--   There are no comments in your code
--   There are files in the repository other than those requested
--   There are absolute filename links in your code
--   The repository structure is altered in any way
--   Files are named incorrectly (wrong extensions, wrong case, etc.)
+### Attendance and punctuality
 
-## Policies
+Attendance is mandatory and will be taken. Given the technical nature of this course, and the breadth of topics discussed, you are expected to attend each class, to complete all readings, and to participate actively in lectures, discussions and exercises. We understand there may be times you may need to miss class, please inform us in advance if you are not able to attend class for any reason. However, it is up to you to keep up.
 
--   **Attendance and punctuality:** Attendance is mandatory. Given the technical nature of this course, and the breadth of topics discussed, you are expected to attend each class, to complete all readings, and to participate actively in lectures, discussions and exercises. We understand there may be times you may need to miss class, please inform us in advance if you are not able to attend class for any reason.
--   **Communication and Slack Rules:**
-    -   All announcements will be posted on Slack
-    -   Please use Slack for any question you may have about the course, about assignments or any technical issue. This way everyone can learn from each other's questions. We will be monitoring and providing answers on a regular basis. [See the collaboration rules](#rules) to know what is allowed in Slack
-    -   Individual emails containing any course question that is not personal will not be answered
-    -   DMs are to be used sparingly
-    -   Keep an eye on the questions posted in Slack. Use the search function. It's very possible that we have already answered a questions
-    -   You may DM me back only if we DM you first on a given issue
-    -   Lab/assignment/project questions will only be answered up to 6 hours before something is due
--   **Class materials are for class use only:** Please refrain from making your private GitHub repositories or any other class materials public. A breach of this request is considered an Honor Code Violation.
--   **Open Door Policy:** Please approach or get in touch with us if something is not working for you regarding the class, methods, etc. Our pledge to you is to provide the best learning experience possible. If you have any issue please do not wait until the last minute to speak with us. You will find that we are fair, reasonable and flexible and we deeply care about your success.
+### Participation
 
+We love participation. Read. Raise your hand. Ask questions. Make comments. Challenge us. Acknowledge us. If we speak for three hours to a silent classroom, it is a lot more boring and tiring for everyone.
+
+### Laptop and phone use
+
+You must bring your laptop to class to work on labs. No phone use is allowed during lecture. You may use your laptop during lecture to take notes, but please refrain from other activities. We reserve the right to ask you to put your phones and laptops away. You may not use your computer or phone while your peers or guest speakers are presenting.
+
+### Communication and Slack Rules
+-   All announcements will be posted on {{< var university.lms >}} and Slack
+-   Use Slack for any question you may have about the course, about assignments or any technical issue. This way everyone can learn from each others questions. We will be monitoring and providing answers on a regular basis. **Make sure you understand [what is allowed in Slack.](#what-is-allowed)**
+-   Individual emails containing any course question that is not personal will not be answered
+-   Slack DMs are not to be used **unless** we DM you first and you can respond to our message. Students may not initiate DMs. 
+-   Keep an eye on the questions posted in Slack. Use the search function. It's very possible that we have already answered a question, and we reserve the right to point you to the syllabus, previous Slack messages, or other document containing the information requested
+-   Assignment, lab and project questions will only be answered on Slack up to 12 hours before something is due
+
+### Open Door Policy
+
+Please approach or get in touch with us if something is not working for you regarding the class, methods, etc. Our pledge to you is to provide the best learning experience possible. If you have any issue please do not wait until the last minute to speak with us. You will find that we are fair, reasonable, and flexible and we care deeply about your learning and success.
+
+ 
 ## Academic Integrity
 
-The code of academic integrity applies to all courses at Georgetown University.
-Please become familiar with the code.
-All students are expected to maintain the highest level of academic integrity throughout the course of the semester.
-Please note that acts of academic dishonesty during the course will be prosecuted and harsh penalties may be sought for such acts.
-Students are responsible for knowing what acts constitute academic dishonesty.
-The code may be found at <https://bulletin.georgetown.edu/regulations/honor/>
+As a Jesuit, Catholic university, committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character.The University spells out the specific minimum standards for academic integrity in its Honor Code, as well as the procedures to be followed if academic dishonesty is suspected.
 
-::: callout-warning
-**We have a ZERO TOLERANCE POLICY and if students are found to be in violation there will be consequences and the students will be penalized and reported.**
-:::
-
-### Rules {#rules}
-
--   **In-class labs:** you may collaborate with other students during in-class labs to facilitate collective learning.
--   **Group project:** by nature, it is a group project and collaboration is to be confined within groups. **You may not collaborate across groups.**
--   **Online quizzes:** these are individual and must be completed individually.
--   All submitted code must be your own. This will be verified for every deliverable against every submission, and any similarity greater than 60% will be considered to be unauthorized collaboration.
--   All work must be done on your own cloud resources. This will be verified for every deliverable.
--   The following collaboration and communication is allowed in Slack
-    -   The discussion of ideas and approaches to problems
-    -   The discussion and resolution of any technical issue
-    -   Sharing code snippets (a few lines) for a very specific things
-
-::: callout-important
-A more general code of conduct for all communications within the class, both in-person and digital,  is available [here](code-of-conduct.html).
-:::
-
-## University Resources and Policies
-
-### Academic Integrity and Courtesy
-
-As a Jesuit, Catholic university, committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character.
-The University spells out the specific minimum standards for academic integrity in its Honor Code, as well as the procedures to be followed if academic dishonesty is suspected.
 Over and above the honor code, in this course we will seek to create an engaged and passionate learning environment, characterized by respect and courtesy in both our discourse and our ways of paying attention to one another.
 
-### Academic Resource Center
+The code of academic integrity applies to all courses at Georgetown University. Please become familiar with the code. All students are expected to maintain the highest level of academic integrity throughout the course of the semester.Please note that acts of academic dishonesty during the course will be prosecuted and harsh penalties may be sought for such acts. Students are responsible for knowing what acts constitute academic dishonesty. The code may be found at [https://bulletin.georgetown.edu/regulations/honor/.](https://bulletin.georgetown.edu/regulations/honor/)
 
-[The Academic Resource Center (ARC)](http://academicsupport.georgetown.edu/) is the campus office responsible for reviewing medical documentation and determining reasonable accommodations to students with disabilities.
+::: callout-caution
+**We have a ZERO TOLERANCE POLICY and students found to be in violation will be reported and penalized. The consequences of any violation may include: additional points penalty, getting a grade of zero, automatically failing the course, and suspension or expulsion from the program.**
+::: 
 
-### Counseling and Psychiatric Services (CAPS)
+### Definition of collaboration
 
-As Georgetown faculty, you are among the most important individuals in some of the students' lives.
-They may turn to you when they are struggling and in times of need, or you may be one of the first to notice when they are distressed.
-The [CAPS website](http://caps.georgetown.edu/) has tips for faculty on how to deal with struggling or distressed students.
+In the spirit of fostering a collective and inclusive learning environment, we acknowledge that you will work and study with your peers. We also acknowledge that you use web resources (code examples specifically), and that in writing a program many of you will most likely use the same libraries, functions and other similar instructions in your scripts. However:
 
-### Emergency Preparedness and HOYAlert
+* **You must write your own code.** This will be verified for every assignment against every submission, and any similarity greater than 60% between students on a given assignment will be considered to be unauthorized collaboration.
+* **You must do your individual work in your own cloud resources.** This will be verified for every assignment. We know the fingerprint of your cloud account and subscriptions and we can tell.
 
-We encourage all faculty to become familiar with Georgetown's [Office of Emergency Management](http://emergencymanagement.georgetown.edu/) and sign up for [HOYAlert](http://emergencymanagement.georgetown.edu/HOYAlert/) in order to receive important safety and University operating status updates.
-Faculty teaching at the Georgetown Downtown campus might also want to sign up for [AlertDC](https://hsema.dc.gov/page/alertdc) to receive safety and traffic updates.
+### What is allowed
 
-### Office of Institutional Compliance and Ethics
+* Collaborating with other students during in-class labs to facilitate collective learning
+* Using Slack for helping one-another as long as:
+    * You do not provide answers directly but only discuss potential approaches
+    * You only share up to a few lines of code for everyone's benefit for the resolution of a specific question or issue 
+* Using anything (code, resources, tips, approaches, etc.) provided by the instructional team
 
-The [Office of Institutional Compliance and Ethics](http://compliance.georgetown.edu/) supports and coordinates many compliance-related activities the University undertakes.
-This Office, with the endorsement and assistance of the University's senior leadership, is responsible for leading the development, implementation and operation of the Georgetown Institutional Compliance and Ethics Program.
+### What is forbidden
 
-### Office of Institutional Diversity, Equity, and Affirmative Action (IDEAA)
+The following actions are **not permitted in any way** and are considered a violation of academic integrity:
 
-The mission of [IDEAA](http://ideaa.georgetown.edu/) is to promote a deep understanding and appreciation among the diverse members of the University community to result in justice and equality in educational, employment and contracting opportunities, as well as to lead efforts to create an inclusive academic and work environment.
+* Copying and sharing code _between students_ in **individual** assignments or _across goups_ in the **group project**
+* Sharing anything on any individual assignment
+* Using code snippets found online (stack overflow, etc.) and not commenting the source
+* Plagiarism of any kind
+* Using any [Generative Artificial Intelligence](#use-of-generative-ai-tools) tool without acknowledging it
+* Using someone else's cloud resources
+* Making your private GitHub repos public
+* Sharing or posting any course materials anywhere
+* Faking or tampering with git commit dates or messages
 
-### Threat Assessment
+## Use of Generative AI tools
 
-Georgetown University established its [Threat Assessment](http://threatassessment.georgetown.edu/what-is-threat-assessment) program as part of an extensive emergency planning initiative.
-The program at Georgetown has been developed and implemented to meet current best practices and in accordance with national standards for hazard planning in institutions of higher education and for workplace violence prevention.
+We recognize the recent availability of very powerful generative AI tools like Chat-GPT, GitHub Copilot, and others. These tools can help us be more effective and we embrace their use.
 
-### Title IX/Sexual Misconduct
+::: callout-important
+You are allowed to use GAI tools in a _non substantial_ way. 
 
-Georgetown University and its faculty are committed to supporting survivors and those impacted by sexual misconduct, which includes sexual assault, sexual harassment, relationship violence, and stalking.
-Georgetown requires faculty members, unless otherwise designated as confidential, to report all disclosures of sexual misconduct to the University Title IX Coordinator or a Deputy Title IX Coordinator.
-If you disclose an incident of sexual misconduct to a professor in or outside of the classroom (with the exception of disclosures in papers), that faculty member must report the incident to the Title IX Coordinator, or Deputy Title IX Coordinator.
-The coordinator will, in turn, reach out to the student to provide support, resources, and the option to meet.
-(Please note that the student is not required to meet with the Title IX coordinator.) More information about reporting options and resources can be found on the [Sexual Misconduct Website](https://sexualassault.georgetown.edu/resourcecenter)
+What does _non substantial_ mean? 
 
-If you would prefer to speak to someone confidentially, Georgetown has a number of fully confidential professional resources that can provide support and assistance.
-These resources include:
+**It means that whatever is generated by GAI must not make up the majority of the work you do.**
 
--   Health Education Services for Sexual Assault Response and Prevention: confidential email?[sarp\@georgetown.edu](mailto:sarp@georgetown.edu)\
--   **Counseling and Psychiatric Services (CAPS): 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician**
+Any use of these tools must abide to the following rules:
 
-Please know that as a faculty member we are committed to supporting survivors of sexual misconduct, including relationship violence and sexual assault.
-However, university policy also requires us to report any disclosures about sexual misconduct to the Title IX Coordinator, whose role is to coordinate the University's response to sexual misconduct.
+- You must comment which code blocks were generated by GAI 
+- You must note which written sections were generated by GAI
+- If you used a prompt to ask the GAI tool to do something, you must include it
+::: 
 
-Georgetown has a number of fully confidential professional resources who can provide support and assistance to survivors of sexual assault and other forms of sexual misconduct.
-These resources include:
+::: callout-warning
+Any deviation from these rules is considered a violation of [academic integrity](#academic-integrity) and will be acted on.
+:::
 
-**Getting Help: [https://sexualassault.georgetown.edu/get-help/]()**
 
-### Special Accommodations
+## {{< var university.name >}} resources and policies
 
-If you believe that you have a disability that will affect your performance in this class, please contact the [Academic Resource Center](mailto:arc@georgetown.edu) for further information.
-The center is located in the Leavey Center, Suite 335.
-The Academic Resource Center is the campus office responsible for reviewing documentation provided by students with disabilities and for determining reasonable accommodations in accordance with the Americans with Disabilities Act (ADA) and University policies.
+### Georgetown University’s Plagiarism Policy 
+
+Plagiarism or academic dishonesty in any form will not be tolerated and may result in a failing grade. All Honor Code violations will be submitted to the Honor Council. 
+
+Academic integrity is central to the learning and teaching process. Students are expected to conduct themselves in a manner that will contribute to the maintenance of academic integrity by making all reasonable efforts to prevent the occurrence of academic dishonesty. Academic dishonesty includes (but is not limited to) obtaining or giving aid on an examination, having unauthorized prior knowledge of an examination, doing work for another student, and plagiarism of all types, including copying code. 
+
+Plagiarism is the intentional or unintentional presentation of another person’s idea or product as one’s own. Plagiarism includes, but is not limited to the following: copying verbatim all or part of another’s written work; using phrases, charts, figures, illustrations, code, or mathematical/scientific solutions without citing the source; paraphrasing ideas, conclusions, or research without citing the source; and using all or part of a literary plot, poem, film, musical score, or other artistic product without attributing the work to its creator. Students can avoid unintentional plagiarism by following carefully accepted scholarly practices. Notes taken for papers and research projects should accurately record sources cited, quoted, paraphrased, or summarized sources and articles should be acknowledged in footnotes. 
 
 ### Honor System
 
-All students are expected to maintain the highest standards of academic and personal integrity in pursuit of their education at Georgetown.
-Academic dishonesty, including plagiarism, in any form is a serious offense, and students found in violation are subject to academic penalties that include, but are not limited to, failure of the course, termination from the program, and revocation of degrees already conferred.
-All students are held to the Georgetown University Honor Code.
-For more information about the Honor Code see [http://gervaseprograms.georgetown.edu/honor/]()
+All students are expected to maintain the highest standards of academic and personal integrity in pursuit of their education at Georgetown. Academic dishonesty, including plagiarism, in any form, is a serious offense, and students found in violation are subject to academic penalties that include, but are not limited to, failure of the course, termination from the program, and revocation of degrees already conferred. All students are held to the Georgetown University Honor Code. For more information about the Honor Code [http://gervaseprograms.georgetown.edu/honor/](http://gervaseprograms.georgetown.edu/honor/) 
+
+### Academic Integrity and Courtesy 
+
+As a Jesuit, Catholic university committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character. The University spells out the specific minimum standards for academic integrity in its Honor Code and the procedures to be followed if academic dishonesty is suspected. Over and above the honor code, in this course, we will seek to create an engaged and passionate learning environment characterized by respect and courtesy in both our discourse and our ways of paying attention to one another. 
+
+### Academic Resource Center
+
+[The Academic Resource Center (ARC)](https://academicsupport.georgetown.edu/) is the campus office responsible for reviewing medical documentation and determining reasonable accommodations for students with disabilities. You can reach the ARC via email at [arc@georgetown.edu.](mailto::arc@georgetown.edu)
+
+### Counseling and Psychiatric Services (CAPS) 
+
+As Georgetown faculty, you are among the most important individuals in some of the students’ lives. They may turn to you when they are struggling and in times of need, or you may be one of the first to notice when they are distressed. 
+
+The CAPS website has tips for faculty on how to deal with struggling or distressed students. 
+202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician. 
+
+### Emergency Preparedness and HOYAlert
+We encourage all faculty to become familiar with Georgetown’s Office of Emergency Management and sign up for HOYAlert to receive important safety and University operating status updates. Faculty teaching at the Georgetown Downtown campus might also want to sign up for AlertDC to obtain safety and traffic updates. 
+
+### Office of Institutional Compliance and Ethics
+
+The Office of Institutional Compliance and Ethics supports and coordinates many compliance-related activities the University undertakes. With the endorsement and assistance of the University’s senior leadership, this Office is responsible for leading the development, implementation, and operation of the Georgetown Institutional Compliance and Ethics Program. 
+
+### Office of Institutional Diversity, Equity and Affirmative Action (IDEAA)
+
+The mission of IDEAA is to promote a deep understanding and appreciation among the diverse members of the University community to result in justice and equality in educational, employment, and contracting opportunities, as well as to lead efforts to create an inclusive academic and work environment. 
+
+### Title IX/Sexual Misconduct 
+
+Georgetown University and its faculty are committed to supporting survivors and those impacted by sexual misconduct, which includes sexual assault, sexual harassment, relationship violence, and stalking. Georgetown requires faculty members unless otherwise designated as confidential, to report all disclosures of sexual misconduct to the University Title IX Coordinator or a Deputy Title IX Coordinator. Suppose you disclose an incident of sexual misconduct to a professor in or outside of the classroom (except disclosures in papers). In that case, that faculty member must report the incident to the Title IX Coordinator or Deputy Title IX Coordinator. The coordinator will, in turn, reach out to the student to provide support, resources, and the option to meet—[Please note that the student is not required to meet with the Title IX coordinator.]. More information about reporting options and resources can be found on the [Sexual Misconduct Website.](https://sexualassault.georgetown.edu/resourcecenter)
+
+If you would prefer to speak to someone confidentially, Georgetown has a number of fully confidential professional resources that can provide support and assistance. These resources include:
+
+* Health Education Services for Sexual Assault Response and Prevention: confidential email sarp@georgetown.edu
+* Counseling and Psychiatric Services (CAPS): 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician 
+
+_Title IX Sexual Misconduct Statement_ Please know that as faculty members, we are committed to supporting survivors of sexual misconduct, including relationship violence and sexual assault. However, university policy also requires us to report any disclosures about sexual misconduct to the Title IX Coordinator, whose role is to coordinate the University’s response to sexual misconduct. 
+
+Georgetown has a number of fully confidential professional resources who can provide support and assistance to survivors of sexual assault and other forms of sexual misconduct. These resources include:
+
+* [Getting Help](https://sexualassault.georgetown.edu/get-help/#)
+* Jen Schweer, MA, LPC<br/>Associate Director of Health Education Services for Sexual Assault Response and Prevention (202) 687-032<br/>[jls242@georgetown.edu](mailto:jls242@georgetown.edu) 
+* Erica Shirley, Trauma Specialist<br/>Counseling and Psychiatric Services (CAPS)<br/>(202) 687-6985<br/>[els54@georgetown.edu](mailto:els54@georgetown.edu) 
+
+### Threat Assessment
+
+Georgetown University established its Threat Assessment program as part of an extensive emergency planning initiative. The program at Georgetown has been developed and implemented to meet current best practices and national standards for hazard planning in higher education institutions and workplace violence prevention. 
+
+### Special Accommodations 
+
+If you believe that you have a disability that will affect your performance in this class, don’t hesitate to get in touch with the [Academic Resource Center](mailto:arc@georgetown.edu) for further information. The center is located in the Leavey Center, Suite 335. The Academic Resource Center is the campus office responsible for reviewing documentation provided by students with disabilities and determining reasonable accommodations according to the Americans with Disabilities Act (ADA) and University policies. 
+
+
+

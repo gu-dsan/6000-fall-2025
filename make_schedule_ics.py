@@ -75,3 +75,4 @@ def make_ics():
         # calendar trailer        
         cal_trailer = "END:VCALENDAR"
         f.write(cal_trailer)
+

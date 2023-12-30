@@ -1,5 +1,5 @@
 
-# The `multiprocessing` module {.section}
+# The Python `multiprocessing` module {.section}
 
 ## The `multiprocessing` module
 
@@ -34,9 +34,6 @@ A forked copy of the current process; this creates a new process identifier, and
 ### Pool
 
 Wraps the `Process` into a convenient pool of workers that share a chunk of work and return an aggregated result
-
-
-# To the Lab! {.section}
 
 ## Other methods of parallel processing in Python
 

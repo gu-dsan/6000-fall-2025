@@ -2,7 +2,7 @@
 # Functional Programming {.section}
 
 ## Map and Reduce
-
+    
 ## {background-image="img/parallel-time.png" background-size="contain"}
 
 

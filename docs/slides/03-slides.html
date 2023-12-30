@@ -459,8 +459,12 @@ Amit Arora
 <ul>
 <li>Nice interactions</li>
 </ul></li>
-<li>Lab 2 and Assignment 2 due on <strong>Thursday, 15 September</strong></li>
-<li>Lab 3 and Assignment 3 released this week, due Monday, 19 September</li>
+<li>Due date reminders:
+<ul>
+<li>Assignment 2: <strong>Wednesday, 31st January</strong></li>
+<li>Lab 3: <strong>Wednesday, 31st January</strong></li>
+<li>Assignment 3: <strong>Wednesday, 7th February</strong></li>
+</ul></li>
 </ul>
 </section>
 <section id="glossary" class="slide level2">
@@ -959,11 +963,11 @@ A starting value from which the accumulator function starts
 </div>
 </section></section>
 <section>
-<section id="the-multiprocessing-module" class="title-slide slide level1 section center">
-<h1>The <code>multiprocessing</code> module</h1>
+<section id="the-python-multiprocessing-module" class="title-slide slide level1 section center">
+<h1>The Python <code>multiprocessing</code> module</h1>
 
 </section>
-<section id="the-multiprocessing-module-1" class="slide level2">
+<section id="the-multiprocessing-module" class="slide level2">
 <h2>The <code>multiprocessing</code> module</h2>
 <ul>
 <li>Focused on single-machine multicore parallelism</li>
@@ -1004,12 +1008,7 @@ A starting value from which the accumulator function starts
 <p>A forked copy of the current process; this creates a new process identifier, and the task runs as an independent child process in the operating system</p>
 <h3 id="pool">Pool</h3>
 <p>Wraps the <code>Process</code> into a convenient pool of workers that share a chunk of work and return an aggregated result</p>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Gorelick &amp; Ozsvald, 2020. <em>High Performance Python</em>, O’Reilly</p></li></ol></aside></section></section>
-<section>
-<section id="to-the-lab" class="title-slide slide level1 section center">
-<h1>To the Lab!</h1>
-
-</section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Gorelick &amp; Ozsvald, 2020. <em>High Performance Python</em>, O’Reilly</p></li></ol></aside></section>
 <section id="other-methods-of-parallel-processing-in-python" class="slide level2">
 <h2>Other methods of parallel processing in Python</h2>
 <ul>
@@ -1021,10 +1020,6 @@ A starting value from which the accumulator function starts
 <span id="cb1-2"><a href="#cb1-2"></a>clf <span class="op">=</span> RandomForestClassifier(n_estimators <span class="op">=</span> <span class="dv">100</span>, random_state <span class="op">=</span> <span class="dv">124</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>uses the <code>joblib</code> module to use all available processors (<code>n_jobs=-1</code>) to do the bootstrapping</p>
 
-
-<div class="footer footer-default">
-
-</div>
 <aside><div>
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
@@ -1034,6 +1029,120 @@ A starting value from which the accumulator function starts
 </div>
 </div>
 </div></aside></section></section>
+<section>
+<section id="async-io-in-python" class="title-slide slide level1 section center">
+<h1>Async I/O in Python</h1>
+
+</section>
+<section id="the-need-for-async-io" class="slide level2">
+<h2>The need for <code>Async I/O</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p>When talking to external systems (databases, APIs) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.</p></li>
+<li class="fragment"><p>The Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.</p></li>
+<li class="fragment"><p>References: <a href="https://docs.python.org/3/library/asyncio.html">asyncio — Asynchronous I/O</a>, <a href="https://realpython.com/async-io-python/">Async IO in Python: A Complete Walkthrough</a></p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/async_io.svg"></p>
+<p></p><figcaption><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/operators/asyncio/"><code>Async I/O</code></a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="concurrency-and-parallelism-in-python3" class="slide level2">
+<h2>Concurrency and parallelism in Python3</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p><strong>Parallelism</strong>: multiple tasks are running in parallel, each on a different processors. This is done through the <code>multiprocessing</code> module.</p></li>
+<li class="fragment"><p><strong>Concurrency</strong>: multiple tasks are taking turns to run on the same processor. Another task can be scheduled while the current one is blocked on I/O.</p></li>
+<li class="fragment"><p><strong>Threading</strong>: multiple threads take turns executing tasks. One process can contain multiple threads. Similar to concurrency but within the context of a single process.</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/concurrency-python.png"></p>
+<p></p><figcaption><a href="https://realpython.com/async-io-python/"><code>Concurrency in Python</code></a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-implement-concurrency-with-asyncio" class="slide level2">
+<h2>How to implement concurrency with <code>asyncio</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p><code>asyncio</code> is a library to write concurrent code using the async/await syntax.</p></li>
+<li class="fragment"><p>Use of <code>async</code> and <code>await</code> keywords. You can call an <code>async</code> function multiple times while you <code>await</code> the result of a previous invocation.</p></li>
+<li class="fragment"><p><code>await</code> the result of multiple <code>async</code> tasks using <code>gather</code>.</p></li>
+<li class="fragment"><p>The <code>main</code> function in this example is called a <code>coroutine</code>. Multiple <code>coroutines</code> can be run <code>concurrnetly</code> as awaitable <code>tasks</code>.</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="bu">print</span>(<span class="st">'Hello ...'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="bu">print</span>(<span class="st">'... World!'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>asyncio.run(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="anatomy-of-an-asyncio-python-program" class="slide level2">
+<h2>Anatomy of an <code>asyncio</code> Python program</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p>Write a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.</p></li>
+<li class="fragment"><p>Create a coroutine i.e.&nbsp;an <code>async</code> wrapper function to the blocking function using <code>async</code> and <code>await</code>, with the call to blocking function made using the <code>asyncio.to_thread</code> function. This enables the coroutine execution in a separate thread.</p></li>
+<li class="fragment"><p>Create another coroutine that makes multiple calls (in a loop, list comprehension) to the <code>async</code> wrapper created in the previous step and awaits completion of all of the invocations using the <code>asyncio.gather</code> function.</p></li>
+<li class="fragment"><p>Call the coroutine created in the previous step from another function using the <code>asyncio.run</code> function.</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> time</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> asyncio</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">def</span> my_blocking_func(i):</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="co"># some blocking code such as an api call</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, entry"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, exiting"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  </span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func(i: <span class="bu">int</span>):</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.to_thread(my_blocking_func, i)</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func_for_multiple(n: <span class="bu">int</span>):</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.gather(<span class="op">*</span>[async_my_blocking_func(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="co"># async version</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>    s <span class="op">=</span> time.perf_counter()</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    n <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>    brewery_counts <span class="op">=</span> asyncio.run(async_my_blocking_func_for_multiple(n))</span>
+<span id="cb3-22"><a href="#cb3-22"></a>    elapsed_async <span class="op">=</span> time.perf_counter() <span class="op">-</span> s</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">__file__</span><span class="sc">}</span><span class="ss">, async_my_blocking_func_for_multiple finished in </span><span class="sc">{</span>elapsed_async<span class="sc">:0.2f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+
+<div class="footer footer-default">
+
+</div>
+</section></section>
 
     </div>
   </div>

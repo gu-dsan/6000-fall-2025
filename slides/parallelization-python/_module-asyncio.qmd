@@ -1,0 +1,126 @@
+# Async I/O in Python {.section}
+
+## The need for `Async I/O`
+
+::: columns
+
+::: {.column width="50%"}
+::: {.incremental}
+
+- When talking to external systems (databases, APIs) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.
+
+- The Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.
+
+- References: [asyncio — Asynchronous I/O](https://docs.python.org/3/library/asyncio.html), [Async IO in Python: A Complete Walkthrough](https://realpython.com/async-io-python/)
+
+::: 
+:::
+
+::: {.column width="50%"}
+![[`Async I/O`](https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/operators/asyncio/)](img/async_io.svg)
+:::
+:::
+
+## Concurrency and parallelism in Python3
+
+::: columns
+
+::: {.column width="50%"}
+::: {.incremental}
+
+- **Parallelism**: multiple tasks are running in parallel, each on a different processors. This is done through the `multiprocessing` module.
+
+- **Concurrency**: multiple tasks are taking turns to run on the same processor. Another task can be scheduled while the current one is blocked on I/O.
+
+- **Threading**: multiple threads take turns executing tasks. One process can contain multiple threads. Similar to concurrency but within the context of a single process.
+
+::: 
+::: 
+
+
+::: {.column width="50%"}
+![[`Concurrency in Python`](https://realpython.com/async-io-python/)](img/concurrency-python.png)
+:::
+
+:::
+
+## How to implement concurrency with `asyncio`
+
+::: columns
+
+::: {.column width="50%"}
+::: {.incremental}
+
+- `asyncio` is a library to write concurrent code using the async/await syntax.
+
+- Use of `async` and `await` keywords. You can call an `async` function multiple times while you `await` the result of a previous invocation.
+
+- `await` the result of multiple `async` tasks using `gather`.
+
+- The `main` function in this example is called a `coroutine`. Multiple `coroutines` can be run `concurrnetly` as awaitable `tasks`.
+
+:::
+:::
+
+
+::: {.column width="50%"}
+```{.python}
+import asyncio
+
+async def main():
+    print('Hello ...')
+    await asyncio.sleep(1)
+    print('... World!')
+
+asyncio.run(main())
+```
+:::
+:::
+
+## Anatomy of an `asyncio` Python program
+
+::: columns
+
+::: {.column width="50%"}
+::: {.incremental}
+
+- Write a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.
+
+- Create a coroutine i.e. an `async` wrapper function to the blocking function using `async` and `await`, with the call to blocking function made using the `asyncio.to_thread` function. This enables the coroutine execution in a separate thread.
+
+- Create another coroutine that makes multiple calls (in a loop, list comprehension) to the `async` wrapper created in the previous step and awaits completion of all of the invocations using the `asyncio.gather` function.
+
+- Call the coroutine created in the previous step from another function using the `asyncio.run` function.
+
+:::
+:::
+
+::: {.column width="50%"}
+
+```{.python}
+import time
+import asyncio
+
+def my_blocking_func(i):
+    # some blocking code such as an api call
+    print(f"{i}, entry")
+    time.sleep(1)
+    print(f"{i}, exiting")
+    return None
+  
+async def async_my_blocking_func(i: int):
+    return await asyncio.to_thread(my_blocking_func, i)
+
+async def async_my_blocking_func_for_multiple(n: int):
+    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])
+
+if __name__ == "__main__":
+    # async version
+    s = time.perf_counter()
+    n = 20
+    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))
+    elapsed_async = time.perf_counter() - s
+    print(f"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds")
+```
+:::
+:::

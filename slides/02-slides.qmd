@@ -20,14 +20,13 @@ format:
 
 * Great use of **Slack**
 * Big data definition
-* Set up `ssh` keypair and GitHub token
 * Used the shell in Linux on a virtual machine through Codespaces
 
 ## Agenda and Goals for Today
 
 * Quick tour of the cloud services that are used in the course
 * Extended Lab: 
-  * Setting up Azure and AWS accounts
+  * Setting up AWS accounts
   * Starting VMs in the cloud and connecting to them
   
 ---
