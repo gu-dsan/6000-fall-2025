@@ -508,7 +508,7 @@
     "href": "index.html",
     "title": "PPOL 5206",
     "section": "",
-    "text": "Big Data Analytics & Cloud Computing\n        \n        \n            “Learn how to work with Big Data for Analytics, ML and generative AI using technologies such concurrency, Spark,”Learn how to analyze Big Data using cloud computing and technologies such as Python concurrency, Spark and others in this hands-on, practical workshop-style course.”\n        \n        \n            PPOL 5206 • Spring 2024Amit Arora, McCourt School of Public PolicyGeorgetown University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\ngoing to write calendar to files\\schedule.ics\n\n\n\n\n\nInstructor\n\n   Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\nCourse details\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\n\n\n\nContacting me\nE-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (really), but also remember that life can be busy and chaotic for everyone (including me!), so if I don’t respond right away, don’t worry!"
+    "text": "Big Data Analytics & Cloud Computing\n        \n        \n            “Learn how to analyze Big Data using cloud computing and technologies such as Concurrency, Spark and others in this hands-on, practical workshop-style course.”\n        \n        \n            PPOL 5206 • Spring 2024Amit Arora, McCourt School of Public PolicyGeorgetown University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\nInstructor\n\n   Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\nCourse details\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\n\n\n\nContacting me\nE-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (really), but also remember that life can be busy and chaotic for everyone (including me!), so if I don’t respond right away, don’t worry!"
   },
   {
     "objectID": "labs/01-labs.html",
@@ -628,41 +628,6 @@
     "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
     "section": "Logging into AWS Academy at a later time",
     "text": "Logging into AWS Academy at a later time\n\nOpen the https://www.awsacademy.com/LMS_Login link in your browser window and click on Student Login.\n\n\n\n\n\n\n\nLogging into the AWS Console at a later time\nTo access the AWS Console in the future, login to https://www.awsacademy.com/LMS_Login, go to Learner Lab -> Modules -> Start Lab.\n\n\n\n\n\n\nNote\n\n\n\nIf you already had an AWS account prior to logging into AWS Academy you would need to login into the AWS Educate AWS account via an Incognito Browser Window."
-  },
-  {
-    "objectID": "labs/02-labs.html#check-the-instance-metadata",
-    "href": "labs/02-labs.html#check-the-instance-metadata",
-    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "Check the instance metadata",
-    "text": "Check the instance metadata\nAn EC2 VM contains a built-in webserver which provides the metadata about the VM. This is useful when you programatically want to know (usually as part of an automation) what is the IP address of the VM, which region is it located in, the security group associated with it etc.\n\nAccess the metadata. See this link for more information.\n\n[ec2-user@ip-172-31-91-76 ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/document/\n{\n  \"accountId\" : \"866320352978\",\n  \"architecture\" : \"x86_64\",\n  \"availabilityZone\" : \"us-east-1a\",\n  \"billingProducts\" : null,\n  \"devpayProductCodes\" : null,\n  \"marketplaceProductCodes\" : null,\n  \"imageId\" : \"ami-05fa00d4c63e32376\",\n  \"instanceId\" : \"i-0a5e2fdedfd036a26\",\n  \"instanceType\" : \"t2.micro\",\n  \"kernelId\" : null,\n  \"pendingTime\" : \"2022-09-06T11:31:21Z\",\n  \"privateIp\" : \"172.31.91.76\",\n  \"ramdiskId\" : null,\n  \"region\" : \"us-east-1\",\n  \"version\" : \"2017-09-30\"\n}[ec2-user@ip-172-31-91-76 ~]$"
-  },
-  {
-    "objectID": "labs/02-labs.html#add-aws-cli-credentials-to-your-vm",
-    "href": "labs/02-labs.html#add-aws-cli-credentials-to-your-vm",
-    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "Add AWS CLI credentials to your VM",
-    "text": "Add AWS CLI credentials to your VM\nIt is now time to save the AWS CLI credentials (from the steps above) locally into your VM so that the VM can talk to other AWS services.\n\nCreate the ~/.aws directory in your VM as using the mkdir ~/.aws command as shown in the screenshot below and then create a file called credentials in the ~/.aws directory. \nCopy paste the AWS CLI credentials saved from the previous steps into the ~/.aws/credentials file and then save and quit using the [Esc Key]:wq command. \nWe will test if these credentials worked correctly when we create an S3 bucket and see if we can list that bucket from this VM in one the subsequent steps in this lab."
-  },
-  {
-    "objectID": "labs/02-labs.html#to-stoppause-a-vm",
-    "href": "labs/02-labs.html#to-stoppause-a-vm",
-    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "To stop/pause a VM",
-    "text": "To stop/pause a VM\nStopping an instance is like shutting down your laptop. The data saved on the local disk on the VM is preserved. When the VM is in the stopped state you do not get billed for the compute (CPU/RAM) but you do get charged for the persistent storage.\n\nGo to the EC2 Dashboard. You can get here by clicking on Services in the top left and choosing EC2 under the Compute heading\nClick on the Instance ID of the running machine\nClick on the Instance State button on the top right\nChoose Stop Instance"
-  },
-  {
-    "objectID": "labs/02-labs.html#to-terminate-a-vm",
-    "href": "labs/02-labs.html#to-terminate-a-vm",
-    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "To terminate a VM",
-    "text": "To terminate a VM\nTerminating a VM is like deleting it i.e. all compute and storage resources associated with the VM are gone and you no longer get billed for it. Use Terminate VM with caution.\n\nGo to the EC2 Dashboard. You can get here by clicking on Services in the top left and choosing EC2 under the Compute heading\nClick on the Instance ID of the running machine\nClick on the Instance State button on the top right\nChoose Terminate Instance"
-  },
-  {
-    "objectID": "labs/02-labs.html#task-5-list-the-s3-bucket-created-from-the-ec2-vm",
-    "href": "labs/02-labs.html#task-5-list-the-s3-bucket-created-from-the-ec2-vm",
-    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "Task 5: List the S3 bucket created from the EC2 VM",
-    "text": "Task 5: List the S3 bucket created from the EC2 VM\n\nPower on the VM created in the steps above (find your way to the EC2 instance from the search bar, once on the Instances page, select your EC2 instance, from the Instance State menu click on Start Instance).\nOnce the VM is powered-on, SSH into the VM as before.\nThe aws s3 ls command and you should be able to see an output similar to the following (the following code snippet shows the bucket name as lab2-aa1603, you would see the name of the bucket that you just created).\n\n[ec2-user@ip-172-31-91-76 ~]$ aws s3 ls\n2022-09-03 21:08:01 lab2-aa1603\n[ec2-user@ip-172-31-91-76 ~]$\n[ec2-user@ip-172-31-91-76 ~]$ aws s3 ls s3://lab2-aa1603/\n2022-09-03 21:14:39  154696208 StateNames.csv\n[ec2-user@ip-172-31-91-76 ~]$\n\nDownload the file from the bucket to the VM using the aws s3 cp command.\n\n[ec2-user@ip-172-31-91-76 ~]$ aws s3 cp s3://lab2-aa1603/StateNames.csv . \ndownload: s3://lab2-aa1603/StateNames.csv to ./StateNames.csv\n[ec2-user@ip-172-31-91-76 ~]$ ls -ltr\ntotal 151072\n-rw-rw-r-- 1 ec2-user ec2-user 154696208 Sep  3 21:14 StateNames.csv\n[ec2-user@ip-172-31-91-76 ~]$\n\nAs a quick exercise try downloading s3://bigdatateaching/statebabynames/StateNames.csv to your VM. Now, upload this file from your VM to the bucket you just created. We will be using this file as part of the assignment."
   },
   {
     "objectID": "labs/02-labs.html#shutting-down-sagemaker-studio",

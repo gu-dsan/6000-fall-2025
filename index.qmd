@@ -1,8 +1,7 @@
 ---
 title: "Big Data Analytics & Cloud Computing"
 subtitle: |
-  "Learn how to work with Big Data for Analytics, ML and generative AI using technologies such concurrency, Spark, 
-  "Learn how to analyze Big Data using cloud computing and technologies such as Python concurrency, Spark and others in this hands-on, practical workshop-style course."
+  "Learn how to analyze Big Data using cloud computing and technologies such as Concurrency, Spark and others in this hands-on, practical workshop-style course."
 details: |
   PPOL 5206 • Spring 2024<br>Amit Arora, McCourt School of Public Policy<br>Georgetown University
 sidebar: false
@@ -14,12 +13,6 @@ format:
       - html/home/title-block.html
 course-logo: /files/img/ppol5206-logo.png
 ---
-
-```{python echo=FALSE}
-#| echo: false
-from make_schedule_ics import make_ics
-make_ics()
-```
 
 ::: {.home}
 
