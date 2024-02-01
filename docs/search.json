@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "labs/02-labs.html",
+    "href": "labs/02-labs.html",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "",
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet.\nFollow these instructions step-by-step to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same."
+  },
+  {
+    "objectID": "labs/02-labs.html#login-into-the-aws-console",
+    "href": "labs/02-labs.html#login-into-the-aws-console",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "Login into the AWS Console",
+    "text": "Login into the AWS Console\nThe AWS Console is your entry point into the AWS cloud.\n\nClick on the AWS link alongside the ⬤. \nA new tab will open in your browser, this is the AWS Console. \nNote the URL in your browser’s address bar, it will start with the name of the AWS region (such as us-east-1) in which your cloud resources are hosted.\nNote the username on the top right hand corner, this is your Federated Identity. Also note that the you did not have to provide any credentials (username/password) to login into the AWS console. How did this happen?"
+  },
+  {
+    "objectID": "labs/02-labs.html#the-sso-link-to-login-into-the-aws-console-optional",
+    "href": "labs/02-labs.html#the-sso-link-to-login-into-the-aws-console-optional",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "The SSO link to login into the AWS Console (Optional)",
+    "text": "The SSO link to login into the AWS Console (Optional)\n\nClick on the AWS Details link on the ribbon, this will refresh the text in the panel below, click on AWS SSO button that is now visible on this panel. SSO stands for Single Sign-On i.e. you do not need to provide your credentials everytime you want to login into this page. Clicking on the AWS SSO will download a file on your laptop, keep this file somewhere handy as you will need it in future. \nCopy the contents of the ssourl.txt file that you just downloaded, open an incognito browser window and paste them into the address bar of this incognito browser window. This will log you in into the AWS Console. You will notice that the URL in the address bar changes to the same URL as you had in the previous step.\n\n\n\n\n\n\n\nNote\n\n\n\nThe credentials in the SSO link are short-lived, meaning that they are only valid for a short duration and therefore you cannot use them for a different session.\n\n\n\nSaving AWS CLI credentials for programmatically talking to other AWS services\n\nClick on the AWS CLI button on the AWS Details. \nClick on the Show button. Copy paste the contents you see in a text editor on your laptop and save the file, we will be using these credentials from your EC2 Instance to connect to other AWS services."
+  },
+  {
+    "objectID": "labs/02-labs.html#logging-into-aws-academy-at-a-later-time",
+    "href": "labs/02-labs.html#logging-into-aws-academy-at-a-later-time",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "Logging into AWS Academy at a later time",
+    "text": "Logging into AWS Academy at a later time\n\nOpen the https://www.awsacademy.com/LMS_Login link in your browser window and click on Student Login.\n\n\n\n\n\n\n\nLogging into the AWS Console at a later time\nTo access the AWS Console in the future, login to https://www.awsacademy.com/LMS_Login, go to Learner Lab -&gt; Modules -&gt; Start Lab.\n\n\n\n\n\n\nNote\n\n\n\nIf you already had an AWS account prior to logging into AWS Academy you would need to login into the AWS Educate AWS account via an Incognito Browser Window."
+  },
+  {
+    "objectID": "labs/02-labs.html#shutting-down-sagemaker-studio",
+    "href": "labs/02-labs.html#shutting-down-sagemaker-studio",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "Shutting down SageMaker Studio",
+    "text": "Shutting down SageMaker Studio\nIt is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.\n\nClick on File -&gt; Shutdown. \nSelect Shutdown All. \n\n\n\n\n\n\n\nImportant\n\n\n\nAt the end of this lab:\n\nMake sure you shutdown SageMaker Studio.\nMake sure you shutdown EC2 VM.\nMake sure you have ended the lab in AWS Educate by pressing the End Lab button."
+  },
+  {
+    "objectID": "labs/02-labs.html#github-classroom",
+    "href": "labs/02-labs.html#github-classroom",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "GitHub Classroom",
+    "text": "GitHub Classroom\nGitHub Classroom Link"
+  }
+]
