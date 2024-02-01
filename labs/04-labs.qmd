@@ -2,88 +2,19 @@
 title: "EMR Cluster Setup Instructions"
 author: "Amit Arora"
 ---
-{{< include login-to-saxanet.qmd >}} 
 
-Amazon Elastic MapReduce (EMR) is the industry-leading cloud big data solution for petabyte-scale data processing, interactive analytics, and machine learning using open-source frameworks such as Apache Spark, Apache Hive, and Presto. Follow these instructions _step-by-step_ to setup an EMR cluster.
+## Part-1- Lambda
 
-::: callout-note
-You can click on any screenshot on this page to see its full size version.
-:::
+{{< include ../lambda-docker/_lambda.qmd >}} 
 
-1. Login to your AWS Console. Type _EMR_ in the search bar.
-[![](img/emr1.png)](img/emr1.png)
+## Part-2- Cloud9
 
-1. It will take you to the Amazon EMR page with the clusters link highlighted. Spend a minute on the "_How Elastic Map Reduce Works_" section, this should now appear familiar. Click on the __Create Cluster__ button. This will launch the cluster creation page.
-[![](img/emr2.png)](img/emr2.png)
+{{< include ../lambda-docker/_cloud9.qmd >}} 
 
-1. This quick start page contains a bunch of commonly used defaults. Notice that there is a link for __Go to advanced options__.
-[![](img/emr3.png)](img/emr3.png)
+## Part-3- Docker-Lambda
 
-1. What you see on the page is a __quick start__ option, click on the __Go to advanced options__ link.
-[![](img/emr-adv-options.png)](img/emr-adv-options.png)
-
-1. Now you will be guided through a sequence of steps where you will have access to all cluster configuration options and customizations. Starting with __Software Configuration__.
-
-1. Select __EMR Release 6.1.0__ from the drop down. The default boxes that are checked are good enough. _Notice that these selections include Spark as well that we shall be using throughout this course._ For more details on all the software packages available see the [EMR release guide](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/). Under _Edit software settings_ select _Load JSON from S3_ and copy paste `s3://bigdatateaching/bootstrap/cluster-config.json`. This is for configuring _Spark_, while we do not need Spark in this lab but this will come in handy when creating EMR Clusters for running Spark jobs in future labs and assignments. For an explanation of these settings, please see [this link from AWS documentation](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-spark-configure.html#emr-spark-maximizeresourceallocation).
-[![](img/emr-adv-pg1.png)](img/emr-adv-pg1.png)
-
-1. Now on this page leave all options configured as defaults. __Make sure that the _Auto-termination_ checkbox is checked__, as the name suggests, this will auto-terminate your cluster when it has not been in use for an hour. Click Next.
-[![](img/emr-adv-pg2.png)](img/emr-adv-pg2.png)
-
-1. Provide a name for this cluster, you can call it __hadoop-cluster-1__. In the __Bootstrap Actions__ section select a bootstrap action as _custom action_ and provide this S3 path `s3://bigdatateaching/bootstrap/bigdata-bootstrap_emr6.sh` for the custom boostrapt script. Click Next.
-[![](img/emr-adv-pg3.png)](img/emr-adv-pg3.png)
-
-1. Next on the __Security Options__ page leave all settings as is __except__ selecting the same key pair that you created in lab 1. This is essential to be able to login into the cluster. From the drop down for __EC2 key pair__ choose a key pair that you created in lab 1.
-[![](img/emr-adv-pg4.png)](img/emr-adv-pg4.png)
-
-1. Press the __Create cluster__ button. This will start the cluster creation process.
-[![](img/emr-starting.png)](img/emr-starting.png)
-
-1. The cluster creation will take anywhere between 15 to 25 minutes to complete. The cluster status should be __Starting__ to begin with. __It may so happen that the your cluster may get _Terminated_ because the m5 instance is not available in the availability zone (AZ) that is automatically selected (for e.g. us-east-1a, if this happens, press the _Clone_ cluster button and this time change either the AZ or the instance type (to m3).__
-[![](img/emr6.png)](img/emr6.png)
-
-1. In a few minutes, the cluster status should change to __Running__ and then to __Bootstrapping__.
-[![](img/emr7.png)](img/emr7.png)
-[![](img/emr-adv-bootstrapping.png)](img/emr-adv-bootstrapping.png)
+{{< include ../lambda-docker/_docker.qmd >}} 
 
 
-1. Finally, the cluster status should change to __Waiting, cluster ready__. The __Waiting__ here refers to the cluster waiting for __you__ to assign it a task to do.
-[![](img/emr9.png)](img/emr9.png)
-
-1. You should see the same status for the cluster on the __Clusters__ page.
-[![](img/emr8.png)](img/emr8.png)
-
-1. Click on the __Hardware__ tab and you should be able to see the master node and the two core nodes.
-[![](img/emr10.png)](img/emr10.png)
-
-1. Now we are ready to SSH into the cluster. By SSH into the cluster, we mean SSH into the __Master__ (also called __Driver__) node of the cluster. Copy paste the __Master public DNS__ and SSH into it from your laptop like you would to a regular EC2 VM, with one difference, the username is *hadoop*. This was the command for my cluster.
-
-    ```bash
-    # the DNS name of the master node in the command below would
-    # be different for you.
-    ssh hadoop@ec2-35-175-104-71.compute-1.amazonaws.com
-    ```
-    
-:::{.callout-caution collapse="true"}
-## Why am I not able to SSH into the Master Node?
-You are not able to SSH into the master node because the __Security Group__ associated with the master node does not allow SSH from the Internet. 
-
-Edit the security group to add a rule to all SSH (TCP port 22) from anywhere on the Internet (0.0.0.0/0)
-
-[![](img/emr-master-sg.png)](img/emr-master-sg.png)
-[![](img/emr13.png)](img/emr13.png)
-:::
-
-1. Once you are able to SSH you should see a Terminal like this.
-[![](img/emr-terminal.png)](img/emr-terminal.png)
-
-1. To _Terminate_ the cluster select the cluster you want to terminate on the __Clusters__ page and click on the __Terminate__ button. There is no option to stop a cluster.
-
-1. Finally, everything that we did to create this cluster can be accomplished via the CLI. Click on the __AWS CLI Export__ and it would open a pop-up dialog box as shown in the screenshot below. You could copy paste this CLI command in a bash script and run the bash script the next time you need to create a cluster. You can use Cloud9 to run this command/script.
-[![](img/emr-cli.png)](img/emr-cli.png)
-
-## GitHub Classroom
-
-[GitHub Classroom Link]({{< var gh-classroom.lab04 >}})
 
 
