@@ -1,0 +1,208 @@
+---
+title: "Lecture 2"
+subtitle: "Course overview. Introduction to big data concepts. The Cloud."
+author: "{{< var instructor.name >}}"
+institute:
+- "{{< var university.name >}}"
+- "{{< var course.semester >}}"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: custom.scss
+    transition: fade
+    background-transition: fade
+    highlight-style: ayu-mirage
+    code-copy: true
+---
+
+## Look back
+
+* Great use of **Slack**
+* Big data definition
+* Used the shell in Linux on a virtual machine through Codespaces
+
+## Agenda and Goals for Today
+
+* Quick tour of the cloud services that are used in the course
+* Extended Lab: 
+  * Setting up AWS accounts
+  * Starting VMs in the cloud and connecting to them
+  
+---
+
+## Glossary
+
+```{r, echo = FALSE}
+library(magrittr)
+library(tibble)
+library(kableExtra)
+tribble( ~"Term", ~"Definition",
+         "Local", "Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application.",
+         "Remote", "Any machine you connect to via ssh or other means."
+) %>%
+  kable(format = "html") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "40em")
+```
+
+## Working on a single machine
+
+You are most likely using traditional data analysis tools, which are **single threaded** and run on **a single machine**. 
+
+<img src="img/r-logo.png" width=250>
+
+<img src="img/python-logo.png">
+
+
+## The **BIG DATA** problem
+
+<img src="img/moores.png">
+
+## Is Moore's Law Dead?
+
+---
+
+## New Hardware 
+
+### Need
+
+* The demand for data processing will not be met by relying on the same technology. 
+* The key to modern data processing is **new semiconductors**
+  * Not just squeezing more transistors per area
+  * Need new compute architectures that are built and optimized for specialized functions
+* Specialized edge hardware for Edge Computing
+* While many declare Moore’s Law to be broken or no longer valid, in reality it’s not the law that is broken but rather a heat problem.
+
+### What
+
+* Graphic Processing Units (GPUs)
+
+* Field Programmable Gate Arrays (FPGAs)
+
+* Data Processing Units (DPUs)
+
+* Photonic computing
+
+## So, we can't store or process data on a single machine, what do we do?
+
+<img src="img/medium-6.png" width=800>
+
+
+## We distribute
+
+More CPUs, more memory, more storage!
+
+<img src="img/distribute-the-data.png" width=600>
+
+# How do we do that?
+
+
+## Simple, we use the **cloud**
+
+<img src="img/cloud-providers.png" width=800>
+
+## Cloud computing is a big deal!
+
+### Benefits
+
+* Provides access to low-cost computing
+
+* Costs are decreasing every year
+
+* Elastic
+
+* PAAS works!
+
+* Many other benefits...
+
+<img src="img/scale-up-scale-out.png">
+
+## What is **the claaaaaaawd** (the cloud)
+
+<img src="https://media.giphy.com/media/YMXpTBoVQbL9N8MKZa/giphy.gif">
+
+
+## What is the cloud?
+
+### \\kloud\\ noun
+
+**the practice of storing regularly used computer data on multiple servers that can be accessed through the Internet**
+
+
+**Using someone else's computer(s)**
+
+
+## NIST Definition
+
+<img src="img/cloud-nist.png">
+
+## Service Models
+
+<img src="img/cloud-service-models-traditional.png">
+
+##
+
+<img src="img/cloud-service-models-hotel.png">
+
+## The evolution of the Cloud
+
+```{r, echo=F}
+library(magrittr)
+library(tibble)
+library(kableExtra)
+tribble( ~Yesterday, ~Today, ~Tomorrow,
+         "Limited number of tools and vendors", 
+         "Many tools and vendors to work with",
+         "Integrated tools and vendors",
+         "One platform - few devices", 
+  "Multiple platforms - many devices",
+  "Connected platforms and devices",
+  "Data is scarce but manageable", 
+  "Overabundance of data",
+  "Data is used for important business decisions",
+  "IT has major influence and control", 
+  "IT has limited influence and control",
+  "IT is strategic to the business",
+  "People only work when they are at work", 
+  "People work wherever they want",
+  "People have access to what they need, wherever they are",
+) %>% 
+  kable(format = "html") %>% 
+  kable_styling(full_width = F) %>%
+  column_spec(1, width = "30em") %>%
+  column_spec(2, width = "30em") %>% 
+  column_spec(3, width = "30em") %>% 
+  scroll_box(height = "400px")
+```
+
+## What does the cloud look like? {background-image="http://i2.cdn.turner.com/money/dam/assets/140903164019-cloud-data-center-thumb-1280x720.png"}
+
+
+## Virtual Visit to a Microsoft Azure Data Center
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/80aK2_iwMOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+![](img/msft-boydton.png)
+
+## Microsoft Azure Data Center in Boydton, VA
+
+---
+
+## Loudon County, VA is called "CLoudon"
+
+* How data centers power VA's Loudon County: 
+https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx
+
+* The heart of "The Cloud" is in Virginia: https://www.cbsnews.com/news/cloud-computing-loudoun-county-virginia/
+
+* CBS Sunday Morning Visits the Home of the Internet in Loudoun County: https://biz.loudoun.gov/2017/10/30/cbs-sunday-morning-visits-loudoun/
+
+![](img/nova-datacenter-locations.png)
+
+##  70% of the world's internet traffic passes through Loudon County, VA
+
+
+# Time for Lab!

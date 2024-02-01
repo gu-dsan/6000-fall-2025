@@ -1,0 +1,263 @@
+---
+title: "Lecture 5"
+subtitle: "Introduction to Dask"
+author: "{{< var instructor.name >}}"
+institute:
+- "{{< var university.name >}}"
+- "{{< var course.semester >}}"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: custom.scss
+    transition: fade
+    background-transition: fade
+    highlight-style: ayu-mirage
+    code-copy: true
+---
+# Today's Plan
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(vembedr)
+
+options(dplyr.print_min = 6, dplyr.print_max = 6)
+theme_set(theme_gray(base_size = 18))
+```
+
+::: {.incremental}
+1. What is Dask? 
+
+2. Dask DataFrames
+
+3. Dask DataFrame Best Practices
+
+4. Other Dask Data Structures
+
+5. Moving to a Dask Cluster
+
+6. Machine Learning using Dask
+
+7. Dask and Apache Spark
+
+8. Further Reading
+
+:::
+
+---
+
+## Takeaway
+
+<br><br>
+
+> Dask provides an easy to use Python interface for data science and machine learning workloads. If you are familiar with Pandas and Numpy you can become productive with Dask very quickly. Dask is used by individual researchers as well as institutions across a broad set of domains.
+
+::: aside
+Matthew Rocklin (2015).
+Dask: Parallel Computation with Blocked algorithms
+and Task Scheduling.
+[https://conference.scipy.org/proceedings/scipy2015/pdfs/matthew_rocklin.pdf](https://conference.scipy.org/proceedings/scipy2015/pdfs/matthew_rocklin.pdf)
+:::
+
+## What is Dask?
+
+
+
+<br>
+<br>
+
+
+::: {style="text-align: center"}
+Dask is an open-source flexible library for parallel computing in Python.
+:::
+
+
+::: {style="text-align: center"}
+```{r, echo=FALSE}
+embed_youtube("1kkFZ4P-XHg", width = 560, height = 340)
+```
+:::
+---
+
+## Ok, but what is it really...
+
+1. **Blocked Algorithms**^[[What is a blocked algorithm](https://nhigham.com/2021/10/28/what-is-a-blocked-algorithm/)]: Take a very large dataset that cannot fit into memory and break it into many many smaller parts each of which can be computed upon independantly, combine the results.
+
+2. **Directed Acyclic Graphs (DAGs)**: Create a graph to represent this sequence of operations.
+
+3. **Distributed Compute**: Compute the results by executing this graph on a compute platform (multi-core CPU, multiple multi-core CPUs).
+
+## As a programmer what do I need to know?
+
+Dask is composed of two parts: **Dynamic Task Scheduling** and **Big Data Collections** (such as parallel arrays, dataframes and lists). More details on the [Dask Website](https://docs.dask.org/en/stable/).
+
+![](img/dask-overview.svg){fig-format="svg"}
+
+## Talk is cheap. Show me the code.
+
+**Data**: All of the NYC yellow taxi trip data files from 2021.
+<br>
+
+::: columns
+::: {.column width="100%"}
+```
+import time
+from dask import dataframe as dd
+
+# Dask is able to read multiple files without us having to write a loop
+df = dd.read_parquet("s3://bigdatateaching/nyctaxi-yellow-tripdata/2021/yellow_tripdata_2021-*.parquet")
+
+# Lets take dask for a spin, how about finding the average of
+# a few columns of interest: trip_distance, passenger_count, total_amount
+start = time.perf_counter()
+results = df[['trip_distance', 'total_amount']].mean().compute().to_frame().reset_index()
+end = time.perf_counter()
+
+# set column names for the resulting dataframe
+results.columns = ["feature", "mean"]
+```
+:::
+:::
+
+## Millions of rows processed in a few seconds
+
+Data that would not fit into the 16GB RAM of my laptop all at one time is easily analyzed and in quick time too!
+![](img/dask-results.png)
+
+## Dask DataFrames
+
+::: columns
+::: {.column width="75%"}
+- Think of Dask DataFrames as collection of multiple Pandas dataframes.
+
+- Each Pandas dataframe contains rows that are grouped together based on an index.
+
+- Operations on a Dask DataFrame become faster because they happen in parallel across multiple partitions.
+
+- The individual Pandas dataframes may live on disk or on other machines.
+
+:::
+
+::: {.column width="25%"}
+![Dask DataFrame](img/dask_dataframe.png)
+:::
+:::  
+
+## Dask DataFrames (contd.)
+
+- Provide a subset of the Pandas API.
+
+- Following operations are fast
+
+  - Element-wise operations: `df.x + df.y, df * df`
+  - Row-wise selections: `df[df.x > 0]`
+  - groupby-aggregate: `df.groupby('x').min()`
+  - Join with pandas DataFrames: `dd.merge(df1, df2, on='id')`
+  - Rolling averages: df.rolling(...)
+  - Pearson’s correlation: df[['col1', 'col2']].corr()
+
+- **[Official Reference](https://docs.dask.org/en/stable/dataframe.html)**, **[Code Samples](https://examples.dask.org/dataframe.html)**
+
+
+## Dask DataFrame (contd.)
+
+::: {.incremental}
+- <font color="red">Question</font>: Since Dask DataFrame operations are *parallel*, does it mean Dask is always faster than Pandas?
+
+- <font color="green">Answer</font>: Actually, no. Dask is used when we operate on data that does not fit into memory and needs to be distributed (across cores, on the same machine, better still across multiple machines). 
+
+> Pandas is highly optimized for performance, with critical code paths written in Cython or C. More [here](https://pandas.pydata.org/about/).
+
+- Other Dask *collections*: [Array](https://docs.dask.org/en/stable/array.html), [Bag](https://docs.dask.org/en/stable/bag.html) and also [Delayed](https://docs.dask.org/en/stable/delayed.html) and [Futures](https://docs.dask.org/en/stable/futures.html).
+
+::: 
+
+## Dask DataFrames, when not to use
+
+- Setting a new index from an unsorted column.
+
+- Operations like groupby-apply and join on unsorted columns.
+
+- Operations that are slow in Pandas, such as iterating row-by-row, remain slow on a Dask DataFrame.
+
+## Moving to a Dask Cluster
+
+- To truly see the power of Dask and horizontal scaling in action, we need to move out of our local machine and onto a cluster.
+
+- Creating a Dask cluster is a _lot of work_ involving networking, security and compute. Unlike an EMR cluster, there is no GUI for creating a Dask cluster.
+
+- Several options exist, including something called _Deployment as a service_ i.e. creating a cluster by calling an API, not a cloud provider API but an APIU provided by a SaaS which in turn does all the behind the scenes work of creating the cluster by calling (many) cloud provider APIs. See [Coiled](https://coiled.io/blog/scalable-python-deployments-as-a-service-2/).
+
+## Moving to a Dask Cluster (contd.)
+
+- There are open source solutions also which provide a _cloud agnostic_ way of deploying Dask clusters. No matter whether you are on AWS, Azure or GCP, you call the same API. See [Dask Cloud Provider](https://cloudprovider.dask.org/en/latest/).
+
+- Cloud providers such as AWS provide _Infrastructure as Code_ templates to create Dask Clusters. These template (`yaml` or `json` files) are _declarative_ i.e. they describe what infrastructure you want to create and the _Infrastructure as Code_ service takes care of translating these templates into API calls that actually create these resources.
+
+## Moving to a Dask Cluster (contd.)
+
+- Similar to EMR, Dask clusters have the concept of a _Scheduler_ and a collection of _Workers_.
+
+- The compute for a Dask cluster can be provided by a collection of EC2 VMs like we saw with EMR.
+
+- It could also be provided by a _**serverless compute engine**_ such as [_AWS Fargate_](https://aws.amazon.com/fargate/) where we do not create or manage the _server_ (hence serverless) but only specify the container image to run and the memory and CPU requirements.
+
+## Machine Learning using Dask
+
+- Dask.org page says **_Scale the Python tools you love_**. How about Machine Learning libraries?
+
+- [Dask-ML](ml.dask.org) provides scalable machine learning in Python using Dask alongside popular machine learning libraries like Scikit-Learn, XGBoost, and others.
+
+- Dask-ML helps with both compute bound (such as grid search) and memory bound (dataset too large) ML tasks.
+
+## Dask and Apache Spark
+
+- There is hardly ever (probably never) a single solution that works for all big data analytics use-cases.
+
+- Dask or Spark is a question that often comes up because they do have overlapping functionality. From the Dask website: [Comparison to Spark](https://docs.dask.org/en/stable/spark.html).
+
+- A rule of thumb: <font color="green">If you are designing an Extract Transform Load (ETL) pipeline and want to use SQL then stick with Spark ecosystem (Hadoop, Hudi, Iceberg etc.), if you want to remain within the Python ecosystem (Pandas, Numpy, scikit-learn, joblib) then Dask could be a good choice.</font>
+
+## Further Reading
+
+1. Dask and Spark
+    - [https://www.databricks.com/session/dask-and-apache-spark](https://www.databricks.com/session/dask-and-apache-spark)
+    - [https://coiled.io/blog/dask-as-a-spark-replacement/](https://coiled.io/blog/dask-as-a-spark-replacement/)
+    - [https://dzone.com/articles/example-of-etl-application-using-apache-spark-and](https://dzone.com/articles/example-of-etl-application-using-apache-spark-and)
+    - [https://medium.com/geekculture/dask-or-spark-a-comparison-for-data-scientists-d4cba8ba9ef7](https://medium.com/geekculture/dask-or-spark-a-comparison-for-data-scientists-d4cba8ba9ef7)
+
+1. Cluster creation
+    - [https://docs.coiled.io/user_guide/cluster_creation.html](https://docs.coiled.io/user_guide/cluster_creation.html)
+    - [https://cloudprovider.dask.org/en/latest/aws.html](https://cloudprovider.dask.org/en/latest/aws.html)
+    - [https://docs.dask.org/en/stable/deploying-python.html](https://docs.dask.org/en/stable/deploying-python.html)
+
+## Further Reading (contd.)
+
+1. Dask-ML
+    - [https://examples.dask.org/machine-learning/xgboost.html](https://examples.dask.org/machine-learning/xgboost.html)
+    - [https://ml.dask.org/](https://ml.dask.org/)
+
+1.  Blogs on Dask
+    - [https://aws.amazon.com/blogs/publicsector/analyze-terabyte-scale-geospatial-datasets-with-dask-and-jupyter-on-aws/](https://aws.amazon.com/blogs/publicsector/analyze-terabyte-scale-geospatial-datasets-with-dask-and-jupyter-on-aws/)
+    - [https://medium.com/capital-one-tech/dask-and-rapids-the-next-big-things-for-data-science-and-machine-learning-at-capital-one-d4bba136cc70](https://medium.com/capital-one-tech/dask-and-rapids-the-next-big-things-for-data-science-and-machine-learning-at-capital-one-d4bba136cc70)
+    - [https://spell.ml/blog/large-scale-etl-jobs-using-dask-Xyl8GhEAACQAjK6h](https://spell.ml/blog/large-scale-etl-jobs-using-dask-Xyl8GhEAACQAjK6h)
+
+## Further Reading (contd.)
+
+1. Misc.
+    - [https://www.analyticsvidhya.com/blog/2018/08/dask-big-datasets-machine_learning-python/](https://www.analyticsvidhya.com/blog/2018/08/dask-big-datasets-machine_learning-python/)
+    - [https://hub.docker.com/r/daskdev/dask/tags](https://hub.docker.com/r/daskdev/dask/tags)
+    - [https://blog.dask.org/2020/07/30/beginners-config](https://blog.dask.org/2020/07/30/beginners-config)
+    - [Dask JupyterLab extension](https://www.youtube.com/watch?v=EX_voquHdk0)
+    - [https://docs.dask.org/en/stable/deploying-cli.html](https://docs.dask.org/en/stable/deploying-cli.html)
+
+1. Dask Issues.
+    - [https://github.com/dask/distributed/issues/1015](https://github.com/dask/distributed/issues/1015)
+    - [https://stackoverflow.com/questions/65982439/dask-aws-cluster-error-when-initializing-user-data-is-limited-to-16384-bytes](https://stackoverflow.com/questions/65982439/dask-aws-cluster-error-when-initializing-user-data-is-limited-to-16384-bytes)
+    - [https://github.com/dask/dask/issues/4843](https://github.com/dask/dask/issues/4843)
+
+

@@ -141,14 +141,10 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html" rel="" target="">
- <span class="menu-text">Syllabus</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html" rel="" target="">
- <span class="menu-text">Schedule</span></a>
-  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">syllabus.qmd</span></li>
+  <li class="dropdown-header">
+ <span class="menu-text">schedule.qmd</span></li>
   <li class="nav-item">
     <a class="nav-link" href="../content/index.html" rel="" target="">
  <span class="menu-text">Content</span></a>
@@ -311,9 +307,9 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
   <li><a href="#creating-cloud9-environment" id="toc-creating-cloud9-environment" class="nav-link" data-scroll-target="#creating-cloud9-environment">Creating Cloud9 Environment</a></li>
   <li><a href="#part-3--docker-lambda" id="toc-part-3--docker-lambda" class="nav-link" data-scroll-target="#part-3--docker-lambda">Part-3- Docker-Lambda</a></li>
   <li><a href="#setting-up-basic-docker-images-in-cloud9" id="toc-setting-up-basic-docker-images-in-cloud9" class="nav-link" data-scroll-target="#setting-up-basic-docker-images-in-cloud9">Setting up Basic Docker Images in Cloud9</a></li>
-  <li><a href="#lambda-docker-image" id="toc-lambda-docker-image" class="nav-link" data-scroll-target="#lambda-docker-image">Lambda Docker Image</a></li>
+  <li><a href="#lambda-docker-imagelab-demonstration" id="toc-lambda-docker-imagelab-demonstration" class="nav-link" data-scroll-target="#lambda-docker-imagelab-demonstration">Lambda Docker Image(Lab-Demonstration)</a></li>
   </ul></li>
-  <li><a href="#lambda-yahoo-finance-exercise" id="toc-lambda-yahoo-finance-exercise" class="nav-link" data-scroll-target="#lambda-yahoo-finance-exercise">Lambda Yahoo Finance Exercise</a>
+  <li><a href="#lambda-yahoo-finance-exercise-lab-submission-part-2" id="toc-lambda-yahoo-finance-exercise-lab-submission-part-2" class="nav-link" data-scroll-target="#lambda-yahoo-finance-exercise-lab-submission-part-2">Lambda Yahoo Finance Exercise (LAB Submission-Part-2)</a>
   <ul class="collapse">
   <li><a href="#python-setup" id="toc-python-setup" class="nav-link" data-scroll-target="#python-setup">Python Setup</a></li>
   <li><a href="#coding-requirements" id="toc-coding-requirements" class="nav-link" data-scroll-target="#coding-requirements">Coding Requirements:</a></li>
@@ -321,12 +317,12 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
   <li><a href="#deploying-docker-container-as-a-lambda-function" id="toc-deploying-docker-container-as-a-lambda-function" class="nav-link" data-scroll-target="#deploying-docker-container-as-a-lambda-function">Deploying Docker Container as a Lambda Function</a>
   <ul class="collapse">
   <li><a href="#posting-docker-image-to-ecr" id="toc-posting-docker-image-to-ecr" class="nav-link" data-scroll-target="#posting-docker-image-to-ecr">Posting Docker Image to ECR</a></li>
-  <li><a href="#docker-setup-in-lambda" id="toc-docker-setup-in-lambda" class="nav-link" data-scroll-target="#docker-setup-in-lambda">Docker Setup in Lambda</a>
+  <li><a href="#docker-setup-in-lambda" id="toc-docker-setup-in-lambda" class="nav-link" data-scroll-target="#docker-setup-in-lambda">Docker Setup in Lambda</a></li>
+  </ul></li>
+  <li><a href="#set-up-function-url-for-a-rest-api" id="toc-set-up-function-url-for-a-rest-api" class="nav-link" data-scroll-target="#set-up-function-url-for-a-rest-api">Set up Function URL for a REST API</a>
   <ul class="collapse">
-  <li><a href="#take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc" id="toc-take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc" class="nav-link" data-scroll-target="#take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc"><strong>Take a screenshot of the success output from the test you made in Lambda into your Word doc</strong></a></li>
+  <li><a href="#submit-the-lambda-url-in-lambda-docker-url.json-file.-make-sure-that-if-a-payload-is-given-from-the-local-terminal-in-your-laptop-the-lambda-function-returns-the-intended-result." id="toc-submit-the-lambda-url-in-lambda-docker-url.json-file.-make-sure-that-if-a-payload-is-given-from-the-local-terminal-in-your-laptop-the-lambda-function-returns-the-intended-result." class="nav-link" data-scroll-target="#submit-the-lambda-url-in-lambda-docker-url.json-file.-make-sure-that-if-a-payload-is-given-from-the-local-terminal-in-your-laptop-the-lambda-function-returns-the-intended-result.">** Submit the Lambda URL in <code>lambda-docker-url.json</code> file. Make sure that if a payload is given from the local terminal in your laptop, the lambda function returns the intended result.**</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#set-up-function-url-for-a-rest-api" id="toc-set-up-function-url-for-a-rest-api" class="nav-link" data-scroll-target="#set-up-function-url-for-a-rest-api">Set up Function URL for a REST API</a></li>
   <li><a href="#run-unit-tests-of-your-rest-api" id="toc-run-unit-tests-of-your-rest-api" class="nav-link" data-scroll-target="#run-unit-tests-of-your-rest-api">Run Unit Tests of your REST API</a></li>
   </ul>
 </nav>
@@ -572,15 +568,15 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </ul>
 <p><img src="img/cloud9-docker-test-run.PNG" class="img-fluid"></p>
 </section>
-<section id="lambda-docker-image" class="level2">
-<h2 class="anchored" data-anchor-id="lambda-docker-image">Lambda Docker Image</h2>
+<section id="lambda-docker-imagelab-demonstration" class="level2">
+<h2 class="anchored" data-anchor-id="lambda-docker-imagelab-demonstration">Lambda Docker Image(Lab-Demonstration)</h2>
 <p>Note that this Dockerfile is invoking your <code>requirements.txt</code> file to install any packages from pip and the app.py lambda_handler function to run the python code.</p>
 <blockquote class="blockquote">
 <p>Now you might think how does this <code>requirements.txt</code> file work? Each library which needs to be installed will be listed here. Think of Docker as a virtual environment where you can install any package you need and then you would list them in the <code>requirements.txt</code> file. A small example of this is given in the following screenshot below. When the requirements.txt file has been changed, you will have to build and redeploy the docker image.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="requirements-example.png" class="img-fluid figure-img"></p>
+<p><img src="img/requirements-example.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">requirements.txt</figcaption>
 </figure>
 </div>
@@ -671,8 +667,8 @@ docker run -p PORT CONTAINER NAME
 <p><img src="img/cloud9-docker-4-result.PNG" class="img-fluid"></p>
 </section>
 </section>
-<section id="lambda-yahoo-finance-exercise" class="level1">
-<h1>Lambda Yahoo Finance Exercise</h1>
+<section id="lambda-yahoo-finance-exercise-lab-submission-part-2" class="level1">
+<h1>Lambda Yahoo Finance Exercise (LAB Submission-Part-2)</h1>
 <section id="python-setup" class="level2">
 <h2 class="anchored" data-anchor-id="python-setup">Python Setup</h2>
 <p>Return the price of any stock symbol that is submitted through the payload value for Lambda. For example, the goal is to get the DOW stock price if I run the command: <code>http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"payload":"DOW"}'</code></p>
@@ -727,7 +723,7 @@ docker run -p PORT CONTAINER NAME
 </div>
 <ol type="1">
 <li><p><strong>Use the following test inputs to confirm your function can handle all the errors gracefully: APPL, AAPL, appl, DOW, dow. Unknown tickers need to be handled and case of the ticker should not matter</strong>.</p></li>
-<li><p><strong>Take a screenshot of your terminal with all 5 test cases and their result and place into your Word doc</strong>.</p></li>
+<li><p><strong>Submit the bash history where this function is implemented in the file <code>lambda-local-test.txt</code>.</strong></p></li>
 <li><p><strong>Once your code is ready to go with Lambda, add, commit, and push the files (app.py, Dockerfile, requirements.txt) to GitHub</strong>.</p></li>
 </ol>
 </section>
@@ -777,9 +773,6 @@ docker run -p PORT CONTAINER NAME
 <p><img src="img/lambda-docker-3-test.PNG" class="img-fluid"></p>
 <p>The result of your test will be shown in a green box, and just click on the <code>Details</code> arrow to see the summary. Note that the stock price came back successfully. The billed duration in the example is <strong>2578 ms</strong>, with “Init duration” contributing <strong>709.68 ms</strong> and the code execution contributing <strong>1867.85 ms</strong>. The results are rounded to the nearest millisecond, but are calculated at the 10 microsecond level, WOW!</p>
 <p><img src="img/lambda-docker-4-success.PNG" class="img-fluid"></p>
-<section id="take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc" class="level3">
-<h3 class="anchored" data-anchor-id="take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc"><strong>Take a screenshot of the success output from the test you made in Lambda into your Word doc</strong></h3>
-</section>
 </section>
 </section>
 <section id="set-up-function-url-for-a-rest-api" class="level1">
@@ -792,8 +785,13 @@ docker run -p PORT CONTAINER NAME
 <p><img src="img/lambda-functionurl-confirm.png" class="img-fluid"></p>
 <p>Run the following command in Cloud9 to confirm that you are able to query the Function URL properly <code>curl -X POST [YOUR-FUNCTION-URL] -d '{"payload" : "goog"}' --header "Content-Type: application/json"</code>.</p>
 <p><img src="img/lambda-functionurl-test.png" class="img-fluid"></p>
-<section id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-as-an-input-like-payload-aapldowmsft.-provide-an-extra-screenshot-of-your-test-of-this-functionality-in-your-word-doc-and-clearly-identify-that-this-is-your-bonus-work.-send-back-multiple-statuscode-200-body-stock-a-price-stock-b-price" class="level4">
-<h4 class="anchored" data-anchor-id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-as-an-input-like-payload-aapldowmsft.-provide-an-extra-screenshot-of-your-test-of-this-functionality-in-your-word-doc-and-clearly-identify-that-this-is-your-bonus-work.-send-back-multiple-statuscode-200-body-stock-a-price-stock-b-price">EXTRA CREDIT - <strong>5% bonus</strong>. Modify your app.py to accept multiple stocks as an input like {“payload” : “AAPL,DOW,MSFT”}. Provide an extra screenshot of your test of this functionality in your Word doc and clearly identify that this is your bonus work. Send back multiple <code>{"statusCode" : 200, "body" : [{"stock" : "A", "price" : "#####"}, {"stock" : "B", "price" : "#####"}]}</code></h4>
+<section id="submit-the-lambda-url-in-lambda-docker-url.json-file.-make-sure-that-if-a-payload-is-given-from-the-local-terminal-in-your-laptop-the-lambda-function-returns-the-intended-result." class="level3">
+<h3 class="anchored" data-anchor-id="submit-the-lambda-url-in-lambda-docker-url.json-file.-make-sure-that-if-a-payload-is-given-from-the-local-terminal-in-your-laptop-the-lambda-function-returns-the-intended-result.">** Submit the Lambda URL in <code>lambda-docker-url.json</code> file. Make sure that if a payload is given from the local terminal in your laptop, the lambda function returns the intended result.**</h3>
+<section id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-like-payload-aapldowmsft-as-an-input-and-create-a-new-lambda-function.-provide-an-extra-file-in-your-repo-named-bonus-test-url.json-of-your-test.-it-should-return-with-the-given-input-like-the-following-result-below" class="level4">
+<h4 class="anchored" data-anchor-id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-like-payload-aapldowmsft-as-an-input-and-create-a-new-lambda-function.-provide-an-extra-file-in-your-repo-named-bonus-test-url.json-of-your-test.-it-should-return-with-the-given-input-like-the-following-result-below">EXTRA CREDIT - <strong>5% bonus</strong>. Modify your app.py to accept multiple stocks like {“payload” : “AAPL,DOW,MSFT”} as an input and create a new lambda function. Provide an extra file in your repo named <code>bonus-test-url.json</code> of your test. It should return with the given input like the following result below:</h4>
+<pre class="bashrc"><code>{"statusCode" : 200,
+ "body" : [{"stock" : "A", "price" : "#####"}, {"stock" : "B", "price" : "#####"}]
+}</code></pre>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -807,6 +805,7 @@ Important
 <p>Make sure you git add, commit, and push all your work on your container!</p>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="run-unit-tests-of-your-rest-api" class="level1">
