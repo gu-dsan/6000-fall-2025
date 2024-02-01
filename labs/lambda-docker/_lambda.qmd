@@ -1,0 +1,121 @@
+---
+title: "Lambda Basics"
+---
+
+# Lambda Basics
+
+Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages. These microfunctions can be triggered in a variety of ways, including time, text message, web traffic, or even voice commands. The execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data. There can be thousands of executions happening simultaneously. Lambda is billed by the millisecond (ms).
+
+## "Hello World" Lambda
+
+Launch AWS Academy and get to the AWS Console. Find the Lambda service from the search bar.
+[![](img/lambda-0.PNG)](img/lambda-0.PNG)
+
+The dashboard shows the Lambda functions that have been made, some metrics on Lambda usage. Click on the orange `Create Function` button.
+
+[![](img/lambda-dashboard.jpg)](img/lambda-dashboard.jpg)
+
+Here you have to fill out the details for your Lambda function. There are several parts to set up.
+
+1. You will leave the default option `Author from scratch` so that you can code directly from the Lambda service.
+
+1. Set your `Function name` as `test-lambda`.
+
+1. Choose your `Runtime` as `Python 3.11`
+
+1. Click on the `Change default execution role` dropdown, then select `Use an existing role` option, and finally pick the existing role `LabRole`. 
+
+[![](img/lambda-1.PNG)](img/lambda-1.PNG)
+
+
+1. Under `Advanced Settings` check the `Enable Function URL` checkbox and select `None` for Auth type. This will create an HTTPS endpoint that you can access from your web browser or `cURL` command without authentication (in a real world scenario the authentication piece is usually handled by an `API Gateway`).
+
+[![](img/lambda-advanced-settings.png)](img/lambda-advanced-settings.png)
+
+1. Now click on the orange `Create function` button.
+
+You now have your environment for Lambda! In the upper function overview tab, you can select a variety of triggers and destinations for the Lambda. We will leave these alone for now. You can explore both on your own time to see the options.
+
+[![](img/lambda-2.PNG)](img/lambda-2.PNG)
+
+Let's start with the basic test of the "Hello World" code that was provided in the Python code. Click on the blue `Test` button.
+
+[![](img/lambda-3-w-url.PNG)](img/lambda-3-w-url.PNG)
+
+This will launch a popup to configure your event. You can submit a JSON payload to the test that will mimic input data that the Lambda function can process. Start off by setting `Event name` to `mytest`. Then you can leave the `Event JSON` for now, but you will come back to it for future iterations of experimentation. Click on the orange `save` button.
+
+[![](img/lambda-4.PNG)](img/lambda-4.PNG)
+
+Click on the blue `Test` button again. If you click on the arrow then you can choose to change or make a new test environment like you did on the previous step.
+
+[![](img/lambda-5.PNG)](img/lambda-5.PNG)
+
+Your test will execute, and the results will be shown. Several pieces of info are important:
+
+- Name of the test that was conducted
+- Response object that the function returned
+- Function logs that include the duration of the function, billed direction, memory max (for pricing), and actual memory used
+- Status in the upper right
+
+[![](img/lambda-6.PNG)](img/lambda-6.PNG)
+
+You are now ready to invoke your newly deployed Lambda function through your web browser or through `cURL`. Copy the function URL and paste it in your browser's address bar.
+
+[![](img/lambda-browser.jpg)](img/lambda-browser.jpg)
+
+Now try invoking the Lambda from a `cURL` command (this requires `cURL` to be available on your machine).
+
+[![](img/lambda-curl.jpg)](img/lambda-curl.jpg)
+
+
+OPTIONAL - If you wanted to set your Lambda to run on a regular schedule, like a crontab, you would add a trigger with the `Add trigger` button in the Function Overview and select `EventBridge (CloudWatch Events)`. The Trigger add would look like this for setting a job to run every day at 10:15am UTC.
+
+[![](img/lambda-trigger-cron.PNG)](img/lambda-trigger-cron.PNG)
+
+## Exploring the Lambda File System - **LAB SUBMISSION COMPONENT**
+
+In this section, you will a make use of AWS Lambda to see how serverless infrastructure works.
+For this assignment, you will need to submit a set of JSON files along with other required files.
+
+ In AWS Lambda, for an output to be generated, you will may use `json.dumps` to dump a dictionary to the `body` value in the return statement. This is one of many methods you can use! We encourage you to experiment with few different methods and choose what works the best given your case. A screenshot is attached below for reference. Also note that `indent=2` argument for `json.dumps`, it comes in handy for producting a pretty printed output. 
+
+ A dictionary is basically defined as a key:value pair, this is also the building block of json format. 
+
+Each time you make a change to the code, you will have to click on the `Deploy` button and then the blue `Test` button.
+
+>Note the use of the `dict` constructor for creating the dictionary. This is an alternate, more readable (arguably slower though) way of creating a Python dictionary. Also note that `indent=2` argument for `json.dumps`, it comes in handy for producting a pretty printed output.
+
+[![](img/lambda-body.png)](img/lambda-body.png)
+
+1. Use the `pathlib` library and its `iterdir()` method in Python to view the contents of the root directory (the `/` is referred to as the `root` directory). Make a new key in the Lambda called `root` in the return JSON and send the contents of the root directory. This might take a few tries! How do you deal with objects that need to become strings?
+
+>Hint!: Think how you can pass objects in a string? For this you can use something like this: 
+
+```{.python}
+
+f'string here {object}'
+
+```
+2. Return the contents of the event input variable to the lambda_handler function as additional item in the return JSON as `event`.
+
+3. Return the python version using the `executable()` method in the `sys` library. The key should be `py_version`.
+
+4. Return the current username using the `subprocess` library and the `whoami` shell command. The key should be `username`.
+
+5. Note that all the new keys you are adding to the response should be nested as part of the `body`. So essentially, the response contains of two keys: a `statusCode` which specifies if the call successed or failed (a statusCode value other than 200 indicates a failure) and a `body` key which has the contents of the response.
+
+After these have been executed, copy the function URL and put it in `lambda-test-url.json`
+
+The response from the server should be like this:
+
+```{.python}
+{ "statusCode": 200,
+  "body": {
+    "message": "Hello from Lambda!",
+    "root": "..."
+    "event": "...",
+    "py_version": "...",
+    "username": "..."
+  }
+}
+```

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Docker</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="_docker_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_docker_files/libs/quarto-html/quarto.js"></script>
+<script src="_docker_files/libs/quarto-html/popper.min.js"></script>
+<script src="_docker_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_docker_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_docker_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_docker_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_docker_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_docker_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_docker_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Docker</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="setting-up-basic-docker-images-in-cloud9" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-basic-docker-images-in-cloud9">Setting up Basic Docker Images in Cloud9</h2>
+<div class="callout-important:">
+<p><strong><em>This lab will take a lot of time! You will need atleast 5-6 hours on average to work on this lab. Please make sure you start this assignment as soon as possible</em></strong></p>
+</div>
+<p>Docker image building in Cloud9 is easy since the docker package is already set up. You just have to write some code and run Linux commands!</p>
+<ul>
+<li><p>In Cloud9, start off by cloning your git repository from either the source control button on the lefthand sidebar or through the terminal.</p></li>
+<li><p>In the root of your repository, create three empty text files in that folder called <code>Dockerfile</code>, <code>app.py</code>, and <code>requirements.txt</code>.</p></li>
+<li><p>The results should look like below and have the symbols change automatically:</p></li>
+</ul>
+<p><img src="img/cloud9-docker-empty-files.png" class="img-fluid"></p>
+<ul>
+<li>Open up the <code>Dockerfile</code> and add the following text (note the # lines are comments just like python!)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>FROM python:<span class="fl">3.11</span><span class="op">-</span>slim<span class="op">-</span>buster</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>CMD [<span class="st">"python"</span>, <span class="st">"-c"</span>, <span class="st">"import platform; print(f</span><span class="ch">\"</span><span class="st">version: {platform.python_version()}</span><span class="ch">\"</span><span class="st">)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Go to the terminal and change directories to the location of your Dockerfile. Run the command <code>docker build ./ -t test</code></li>
+</ul>
+<p><img src="img/cloud9-docker-test-build.PNG" class="img-fluid"></p>
+<ul>
+<li>Run the command <code>docker run test</code> to see if your Dockerfile worked!</li>
+</ul>
+<p><img src="img/cloud9-docker-test-run.PNG" class="img-fluid"></p>
+</section>
+<section id="lambda-docker-image" class="level2">
+<h2 class="anchored" data-anchor-id="lambda-docker-image">Lambda Docker Image</h2>
+<p>Note that this Dockerfile is invoking your <code>requirements.txt</code> file to install any packages from pip and the app.py lambda_handler function to run the python code.</p>
+<blockquote class="blockquote">
+<p>Now you might think how does this <code>requirements.txt</code> file work? Each library which needs to be installed will be listed here. Think of Docker as a virtual environment where you can install any package you need and then you would list them in the <code>requirements.txt</code> file. A small example of this is given in the following screenshot below. When the requirements.txt file has been changed, you will have to build and redeploy the docker image.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="requirements-example.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">requirements.txt</figcaption>
+</figure>
+</div>
+<ul>
+<li>Use the new Dockerfile contents below for your <code>Dockerfile</code>.</li>
+</ul>
+<p>A few examples of how to build a docker file along with some documentation is given below in this link: https://spacelift.io/blog/dockerfile. You can scroll down to see how a docker commands work and what they do. This will be useful in making this a relatively simple task.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>FROM public.ecr.aws<span class="op">/</span><span class="kw">lambda</span><span class="op">/</span>python:<span class="fl">3.11</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">##### copy requirements file and install necessary packages</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ***CODE TO DO***</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ADD the requirements.txt into the ${LAMBDA_TASK_ROOT} directory in the container</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>RUN pip3 install <span class="op">-</span>r ${LAMBDA_TASK_ROOT}<span class="op">/</span>requirements.txt <span class="op">--</span>target <span class="st">"$</span><span class="sc">{LAMBDA_TASK_ROOT}</span><span class="st">"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">##### Copy function code to docker container</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ***CODE TO DO***</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ADD the app.py file into the ${LAMBDA_TASK_ROOT} directory in the container</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">##### SET THE COMMAND OF THE CONTAINER FOR THE LAMBDA HANDLER</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># app (name of py file)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># handler (name of function to execute for lambda job)</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>CMD [ <span class="st">"app.lambda_handler"</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Note that the ADD and COPY commands in Docker for this instance are similar. The ADD function is more advanced and can auto-extract compressed files into the image. Please use the given python version for this assignment. This assignment was mainly designed to be used with python 3.11. If you a version of python which is lower, we cannot say if it would be compatible.</p></li>
+<li><p>Set up your python file <code>app.py</code> with a function called <code>lambda_handler</code> that accepts the <code>event</code> and <code>context</code> arguments. Wait, we have already done this in basic Lambda! <strong><em>Copy your function from the Lambda service.</em></strong> This will ensure that the response is the same through basic Lambda and through the Docker Lambda.</p></li>
+<li><p>Since you made changes to the Dockerfile and your app.py files, you need to build a new Docker image. Run the command <code>docker build ./ -t lambda-test</code> so that you name the image something new.</p></li>
+<li><p>This has to be done every time you make changes to the <code>app.py</code> file or the <code>Dockerfile</code>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The syntax of <code>docker build</code> is as follows:</p>
+<pre class="bashrc"><code>docker build PATH -t 'CONTAINER NAME'
+
+#Container name can be changed in this instance, but lambda-test is preferred.
+#  -t is a flag which tags the container with a name 
+#  In the above command, ./ is the path where the container would be built. 
+#  Can you recall where does ./ lead to?
+</code></pre>
+</div>
+</div>
+<div class="callout-hint">
+<p>Try running the command <code>docker images</code> to see the images you have in your local environment.</p>
+</div>
+<p><img src="img/cloud9-docker-3-build.PNG" class="img-fluid"></p>
+<ul>
+<li>“Running” the python script requires two steps because the Lambda container is built as a listening service that will execute when there is a payload provided to it.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The syntax of <code>docker run</code> is as follows:</p>
+<pre class="bashrc"><code>
+docker run -p PORT CONTAINER NAME
+
+#-p flag specifies which port needs to be used for the container to start running.
+# CONTAINER NAME can be anything, we defined it to be lambda-test in this scenario.</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>Run the command <code>docker run -p 8080:8080 lambda-test</code> to set up the service on your first terminal tab. This will run the service and listen for triggers. Next, click on the green plus icon and choose <code>New Terminal</code> to launch a new bash terminal.</li>
+</ol>
+<p><img src="img/cloud9-docker-4-run.PNG" class="img-fluid"></p>
+<ol type="1">
+<li>In this second terminal, run the command <code>curl -XPOST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"payload":"hello world!"}'</code>. This <em>should</em> return the same response as what you saw in the Lambda service. Also, go back to the first terminal tab to see the summary of execution message.</li>
+</ol>
+<p><img src="img/cloud9-docker-4-result.PNG" class="img-fluid"></p>
+</section>
+<section id="lambda-yahoo-finance-exercise" class="level1">
+<h1>Lambda Yahoo Finance Exercise</h1>
+<section id="python-setup" class="level2">
+<h2 class="anchored" data-anchor-id="python-setup">Python Setup</h2>
+<p>Return the price of any stock symbol that is submitted through the payload value for Lambda. For example, the goal is to get the DOW stock price if I run the command: <code>http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"payload":"DOW"}'</code></p>
+<ul>
+<li><p>The url has to be dynamic based on the input stock symbol: https://finance.yahoo.com/quote/DOW</p></li>
+<li><p>Use the requests and beautifulsoup packages to build the function. Note you will need to add these libraries to the <code>requirements.txt</code> file.</p></li>
+<li><p>Start your <code>app.py</code> file with this start code.</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://finance.yahoo.com/quote/DOW"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># need headers to get pull from yahoo finance</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> {<span class="st">'Connection'</span>: <span class="st">'keep-alive'</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Expires'</span>: <span class="st">'-1'</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Upgrade-Insecure-Requests'</span>: <span class="st">'1'</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">'User-Agent'</span>: <span class="st">'Mozilla/5.0 (Windows NT 10.0; WOW64) </span><span class="ch">\</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">           AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, headers<span class="op">=</span>header)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> soup.find(<span class="st">"fin-streamer"</span>, {<span class="st">'data-field'</span>:<span class="st">"regularMarketPrice"</span>, <span class="st">'data-symbol'</span> : stock.upper()}).text</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"price=</span><span class="sc">{</span>price<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="coding-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="coding-requirements">Coding Requirements:</h2>
+<ol type="1">
+<li>Add a try-except framework if any part of your code errors. Use the command <code>error=traceback.format_exc()</code> to capture the error. What do you return when the function errors instead?</li>
+<li>Ensure that if your function does not receive an input or if it receives an invalid stock ticker that it returns a 404 status code. For no input use the message <code>"No stock provided"</code> and for an invalid ticker choose <code>"Invalid stock provided"</code></li>
+<li>Make the url dynamic to the input stock symbol specified</li>
+<li>Integrate your code into the Lambda framework - event input and response output</li>
+<li>Ensure the response object for a successful request looks like <code>{"statusCode" : 200, "body" : {"stock" : "A", "price" : "#####"}}</code>.</li>
+</ol>
+<div class="callout-hint">
+<p>Hint #1: Try developing using the python console in Cloud9 before integrating into your app.py file. You don’t want to have to build a Docker image every code change, right?</p>
+<ul>
+<li>This process is mainly only for prototyping. You would do this by writing the entire python code first in app.py file, then running the following command in the terminal :</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> app.py <span class="at">--payload</span> {<span class="st">'payload'</span>: <span class="st">'stock'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hint #2: Once you put the code into the Lambda framework, you will have to build and run to complete a development integration.</p>
+<p>Hint #3: Implement a basic logger function to see where you might be going wrong? is ther a certain way to pass an input string to the event handler function? Try printing the event out to the console.</p>
+</div>
+<ol type="1">
+<li><p><strong>Use the following test inputs to confirm your function can handle all the errors gracefully: APPL, AAPL, appl, DOW, dow. Unknown tickers need to be handled and case of the ticker should not matter</strong>.</p></li>
+<li><p><strong>Take a screenshot of your terminal with all 5 test cases and their result and place into your Word doc</strong>.</p></li>
+<li><p><strong>Once your code is ready to go with Lambda, add, commit, and push the files (app.py, Dockerfile, requirements.txt) to GitHub</strong>.</p></li>
+</ol>
+</section>
+</section>
+<section id="deploying-docker-container-as-a-lambda-function" class="level1">
+<h1>Deploying Docker Container as a Lambda Function</h1>
+<section id="posting-docker-image-to-ecr" class="level2">
+<h2 class="anchored" data-anchor-id="posting-docker-image-to-ecr">Posting Docker Image to ECR</h2>
+<p>ECR stands for <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Elastic Container Registry</a>.</p>
+<ul>
+<li><p>Run the command <code>aws ecr create-repository --repository-name docker-lambda</code> to make a new repo in the elastic container registry to store your new containers.</p></li>
+<li><p>Run the commands to grab info on your AWS account and region.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>aws_region<span class="op">=</span>$(aws configure get region)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>aws_account_id<span class="op">=</span>$(aws sts get<span class="op">-</span>caller<span class="op">-</span>identity <span class="op">--</span>query <span class="st">'Account'</span> <span class="op">--</span>output text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Run the following command to configure your authentication to talk to the ECR service. Note how we use BASH variable with the <code>$</code> so that you don’t have to manually enter your region or account id.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>aws ecr get<span class="op">-</span>login<span class="op">-</span>password <span class="op">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>region $aws_region <span class="op">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> docker login <span class="op">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>username AWS <span class="op">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>password<span class="op">-</span>stdin $aws_account_id.dkr.ecr.$aws_region.amazonaws.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Tag the image in the ECR registry by running the command <code>docker tag lambda-docker-build $aws_account_id.dkr.ecr.$aws_region.amazonaws.com/docker-lambda</code></p>
+<ul>
+<li>The final <code>docker-lambda</code> is referring to the new repository you just built a few commands ago.</li>
+</ul></li>
+<li><p>Push the image to docker by running the command <code>docker push $aws_account_id.dkr.ecr.$aws_region.amazonaws.com/docker-lambda</code></p></li>
+</ul>
+<p><img src="img/cloud9-docker-ecr-push.PNG" class="img-fluid"></p>
+<p>Read more about pushing a Docker image to ECR <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">here</a>.</p>
+</section>
+<section id="docker-setup-in-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="docker-setup-in-lambda">Docker Setup in Lambda</h2>
+<p>Go back to the Lambda dashboard by going to this <a href="https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/discover">link</a>. Make a new function by clicking on the orange <code>Create function</code> button.</p>
+<ul>
+<li><p>You must select the <code>Container image</code> option that is the third item on the top row of options for Lambda.</p></li>
+<li><p>Name your function <code>container-test</code></p></li>
+<li><p>Set your <code>Execution role</code> like we did earlier so that you use <code>LabRole</code></p></li>
+<li><p>Click on the <code>Browse images</code> button to find the container you just uploaded!</p></li>
+</ul>
+<p><img src="img/lambda-docker-1-summary.PNG" class="img-fluid"></p>
+<ul>
+<li>A popup will launch and you have to select the repository (“docker lambda”) and then your image, which will be called “latest” by default. Click on the orange <code>Select image</code> button.</li>
+</ul>
+<p><img src="img/lambda-docker-0-popup.PNG" class="img-fluid"></p>
+<p>Now you see the same overview page for the Lambda. Since this is a container image and not simple code, we cannot actually preview anything. Just click on the <code>Test</code> tab.</p>
+<p><img src="img/lambda-docker-2-created.PNG" class="img-fluid"></p>
+<p>Set a name for your test <code>aapl-test</code> and change the event JSON to look like <code>{"payload" : "AAPL"}</code>. Once you are satisfied, click on the <code>Save</code> button and then the orange <code>Test</code> button.</p>
+<p><img src="img/lambda-docker-3-test.PNG" class="img-fluid"></p>
+<p>The result of your test will be shown in a green box, and just click on the <code>Details</code> arrow to see the summary. Note that the stock price came back successfully. The billed duration in the example is <strong>2578 ms</strong>, with “Init duration” contributing <strong>709.68 ms</strong> and the code execution contributing <strong>1867.85 ms</strong>. The results are rounded to the nearest millisecond, but are calculated at the 10 microsecond level, WOW!</p>
+<p><img src="img/lambda-docker-4-success.PNG" class="img-fluid"></p>
+<section id="take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc" class="level3">
+<h3 class="anchored" data-anchor-id="take-a-screenshot-of-the-success-output-from-the-test-you-made-in-lambda-into-your-word-doc"><strong>Take a screenshot of the success output from the test you made in Lambda into your Word doc</strong></h3>
+</section>
+</section>
+</section>
+<section id="set-up-function-url-for-a-rest-api" class="level1">
+<h1>Set up Function URL for a REST API</h1>
+<p>Let’s get the REST API up and running for your Lambda function so that you could call this function with other scripts! Go to the <code>Configuration</code> tab, then the <code>Function URL</code> section, then click <code>Create function URL</code>.</p>
+<p><img src="img/lambda-functionurl-page.png" class="img-fluid"></p>
+<p>Select <code>NONE</code> as the authentication type. This ensures that anyone with your URL can query the API without security issues. Note this is VERY bad practice if you are in the real world and putting this into production!</p>
+<p><img src="img/lambda-functionurl-create.png" class="img-fluid"></p>
+<p>Take the <code>Function URL</code> on this page and use as the url for your new REST API. Confirm it work by running it in your browser. It may not work as intended becuase you didn’t provide the Lambda function with an input.</p>
+<p><img src="img/lambda-functionurl-confirm.png" class="img-fluid"></p>
+<p>Run the following command in Cloud9 to confirm that you are able to query the Function URL properly <code>curl -X POST [YOUR-FUNCTION-URL] -d '{"payload" : "goog"}' --header "Content-Type: application/json"</code>.</p>
+<p><img src="img/lambda-functionurl-test.png" class="img-fluid"></p>
+<section id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-as-an-input-like-payload-aapldowmsft.-provide-an-extra-screenshot-of-your-test-of-this-functionality-in-your-word-doc-and-clearly-identify-that-this-is-your-bonus-work.-send-back-multiple-statuscode-200-body-stock-a-price-stock-b-price" class="level4">
+<h4 class="anchored" data-anchor-id="extra-credit---5-bonus.-modify-your-app.py-to-accept-multiple-stocks-as-an-input-like-payload-aapldowmsft.-provide-an-extra-screenshot-of-your-test-of-this-functionality-in-your-word-doc-and-clearly-identify-that-this-is-your-bonus-work.-send-back-multiple-statuscode-200-body-stock-a-price-stock-b-price">EXTRA CREDIT - <strong>5% bonus</strong>. Modify your app.py to accept multiple stocks as an input like {“payload” : “AAPL,DOW,MSFT”}. Provide an extra screenshot of your test of this functionality in your Word doc and clearly identify that this is your bonus work. Send back multiple <code>{"statusCode" : 200, "body" : [{"stock" : "A", "price" : "#####"}, {"stock" : "B", "price" : "#####"}]}</code></h4>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you git add, commit, and push all your work on your container!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="run-unit-tests-of-your-rest-api" class="level1">
+<h1>Run Unit Tests of your REST API</h1>
+<p>Launch Sage Maker Studio, clone your Git repo, and run the jupyter notebook <code>lambda-api-testing.ipynb</code>. DO NOT change any of the cells. This will create a new file called <code>lambda-test.json</code>.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

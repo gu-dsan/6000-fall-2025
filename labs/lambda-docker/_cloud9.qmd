@@ -1,0 +1,40 @@
+---
+title: "Cloud9 Setup"
+---
+
+# Cloud9 Setup
+
+Follow these instructions _step-by-step_ to setup your Cloud9 in AWS. The screenshots may look a bit different than what you are seeing, but the flow is the same.
+
+## Creating Cloud9 Environment
+
+1. Search for `cloud9` in the search bar of your AWS console as shown in the figure below.
+
+[![](img/cloud9_step0.PNG)](img/cloud9_step0.PNG)
+
+2. Once on the Cloud9 splash screen, click on the orange button `Create environment`.
+
+[![](img/cloud9_step1.PNG)](img/cloud9_step1.PNG)
+
+3. Enter a Name for your environment. Leave the description blank. The figure below shows sample text you could use. Once you enter your name, scroll down to the next section.
+
+[![](img/cloud9_step2.PNG)](img/cloud9_step2.PNG)
+
+4. There are a few options here. You have to make a few changes.
+    - The **Instance type** section is to select how large an instance for Cloud9. **Select the `t3.small` instance type**
+    - The **Platform** section is for selecting the operating system for your new instance. **Leave as the default**
+    - The **Timeout** option is set so your instance will hibernate after 30 minutes so you are not charged for the instance 24/7. This is a major problem for cloud services because you can run up a bill quite quickly! **Leave as the default**
+    - In Network Settings, **Connection** is how to connect to your instance. **Select `Secure Shell (SSH)`**
+    - Finally, click the orange button `Create`
+
+[![](img/cloud9_step3.PNG)](img/cloud9_step3.PNG)
+
+5. You will be sent to the environments page of the Cloud9 service. Your environment is now building. In the table below, for your environment (the row), click on the `Open` button in Cloud9 IDE column. In the screenshot, we named it `cloud9-env`.
+
+[![](img/cloud9_step4.PNG)](img/cloud9_step4.PNG)
+
+6. The environment will be configured for you. This takes a few minutes. 
+
+[![](img/cloud9_step5.PNG)](img/cloud9_step5.PNG)
+
+Once the environment setup screen goes away then you are ready to use Cloud9. If you get a warning message, just click "OK".

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lambda Basics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="_lambda_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_lambda_files/libs/quarto-html/quarto.js"></script>
+<script src="_lambda_files/libs/quarto-html/popper.min.js"></script>
+<script src="_lambda_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_lambda_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_lambda_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_lambda_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_lambda_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_lambda_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_lambda_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lambda Basics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="lambda-basics" class="level1">
+<h1>Lambda Basics</h1>
+<p>Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages. These microfunctions can be triggered in a variety of ways, including time, text message, web traffic, or even voice commands. The execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data. There can be thousands of executions happening simultaneously. Lambda is billed by the millisecond (ms).</p>
+<section id="hello-world-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="hello-world-lambda">“Hello World” Lambda</h2>
+<p>Launch AWS Academy and get to the AWS Console. Find the Lambda service from the search bar. <a href="img/lambda-0.PNG"><img src="img/lambda-0.PNG" class="img-fluid"></a></p>
+<p>The dashboard shows the Lambda functions that have been made, some metrics on Lambda usage. Click on the orange <code>Create Function</code> button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-dashboard.jpg"><img src="img/lambda-dashboard.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>Here you have to fill out the details for your Lambda function. There are several parts to set up.</p>
+<ol type="1">
+<li><p>You will leave the default option <code>Author from scratch</code> so that you can code directly from the Lambda service.</p></li>
+<li><p>Set your <code>Function name</code> as <code>test-lambda</code>.</p></li>
+<li><p>Choose your <code>Runtime</code> as <code>Python 3.11</code></p></li>
+<li><p>Click on the <code>Change default execution role</code> dropdown, then select <code>Use an existing role</code> option, and finally pick the existing role <code>LabRole</code>.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-1.PNG"><img src="img/lambda-1.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<ol type="1">
+<li>Under <code>Advanced Settings</code> check the <code>Enable Function URL</code> checkbox and select <code>None</code> for Auth type. This will create an HTTPS endpoint that you can access from your web browser or <code>cURL</code> command without authentication (in a real world scenario the authentication piece is usually handled by an <code>API Gateway</code>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-advanced-settings.png"><img src="img/lambda-advanced-settings.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<ol type="1">
+<li>Now click on the orange <code>Create function</code> button.</li>
+</ol>
+<p>You now have your environment for Lambda! In the upper function overview tab, you can select a variety of triggers and destinations for the Lambda. We will leave these alone for now. You can explore both on your own time to see the options.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-2.PNG"><img src="img/lambda-2.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>Let’s start with the basic test of the “Hello World” code that was provided in the Python code. Click on the blue <code>Test</code> button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-3-w-url.PNG"><img src="img/lambda-3-w-url.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>This will launch a popup to configure your event. You can submit a JSON payload to the test that will mimic input data that the Lambda function can process. Start off by setting <code>Event name</code> to <code>mytest</code>. Then you can leave the <code>Event JSON</code> for now, but you will come back to it for future iterations of experimentation. Click on the orange <code>save</code> button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-4.PNG"><img src="img/lambda-4.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>Click on the blue <code>Test</code> button again. If you click on the arrow then you can choose to change or make a new test environment like you did on the previous step.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-5.PNG"><img src="img/lambda-5.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>Your test will execute, and the results will be shown. Several pieces of info are important:</p>
+<ul>
+<li>Name of the test that was conducted</li>
+<li>Response object that the function returned</li>
+<li>Function logs that include the duration of the function, billed direction, memory max (for pricing), and actual memory used</li>
+<li>Status in the upper right</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-6.PNG"><img src="img/lambda-6.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>You are now ready to invoke your newly deployed Lambda function through your web browser or through <code>cURL</code>. Copy the function URL and paste it in your browser’s address bar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-browser.jpg"><img src="img/lambda-browser.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>Now try invoking the Lambda from a <code>cURL</code> command (this requires <code>cURL</code> to be available on your machine).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-curl.jpg"><img src="img/lambda-curl.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>OPTIONAL - If you wanted to set your Lambda to run on a regular schedule, like a crontab, you would add a trigger with the <code>Add trigger</code> button in the Function Overview and select <code>EventBridge (CloudWatch Events)</code>. The Trigger add would look like this for setting a job to run every day at 10:15am UTC.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-trigger-cron.PNG"><img src="img/lambda-trigger-cron.PNG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section>
+<section id="exploring-the-lambda-file-system---lab-submission-component" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-lambda-file-system---lab-submission-component">Exploring the Lambda File System - <strong>LAB SUBMISSION COMPONENT</strong></h2>
+<p>In this section, you will a make use of AWS Lambda to see how serverless infrastructure works. For this assignment, you will need to submit a set of JSON files along with other required files.</p>
+<p>In AWS Lambda, for an output to be generated, you will may use <code>json.dumps</code> to dump a dictionary to the <code>body</code> value in the return statement. This is one of many methods you can use! We encourage you to experiment with few different methods and choose what works the best given your case. A screenshot is attached below for reference. Also note that <code>indent=2</code> argument for <code>json.dumps</code>, it comes in handy for producting a pretty printed output.</p>
+<p>A dictionary is basically defined as a key:value pair, this is also the building block of json format.</p>
+<p>Each time you make a change to the code, you will have to click on the <code>Deploy</code> button and then the blue <code>Test</code> button.</p>
+<blockquote class="blockquote">
+<p>Note the use of the <code>dict</code> constructor for creating the dictionary. This is an alternate, more readable (arguably slower though) way of creating a Python dictionary. Also note that <code>indent=2</code> argument for <code>json.dumps</code>, it comes in handy for producting a pretty printed output.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/lambda-body.png"><img src="img/lambda-body.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<ol type="1">
+<li>Use the <code>pathlib</code> library and its <code>iterdir()</code> method in Python to view the contents of the root directory (the <code>/</code> is referred to as the <code>root</code> directory). Make a new key in the Lambda called <code>root</code> in the return JSON and send the contents of the root directory. This might take a few tries! How do you deal with objects that need to become strings?</li>
+</ol>
+<blockquote class="blockquote">
+<p>Hint!: Think how you can pass objects in a string? For this you can use something like this:</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">f'string here </span><span class="sc">{</span><span class="bu">object</span><span class="sc">}</span><span class="ss">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><p>Return the contents of the event input variable to the lambda_handler function as additional item in the return JSON as <code>event</code>.</p></li>
+<li><p>Return the python version using the <code>executable()</code> method in the <code>sys</code> library. The key should be <code>py_version</code>.</p></li>
+<li><p>Return the current username using the <code>subprocess</code> library and the <code>whoami</code> shell command. The key should be <code>username</code>.</p></li>
+<li><p>Note that all the new keys you are adding to the response should be nested as part of the <code>body</code>. So essentially, the response contains of two keys: a <code>statusCode</code> which specifies if the call successed or failed (a statusCode value other than 200 indicates a failure) and a <code>body</code> key which has the contents of the response.</p></li>
+</ol>
+<p>After these have been executed, copy the function URL and put it in <code>lambda-test-url.json</code></p>
+<p>The response from the server should be like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{ <span class="st">"statusCode"</span>: <span class="dv">200</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"body"</span>: {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"message"</span>: <span class="st">"Hello from Lambda!"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"root"</span>: <span class="st">"..."</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"event"</span>: <span class="st">"..."</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"py_version"</span>: <span class="st">"..."</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"username"</span>: <span class="st">"..."</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
