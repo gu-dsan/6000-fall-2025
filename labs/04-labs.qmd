@@ -5,15 +5,15 @@ author: "Amit Arora"
 
 ## Part-1- Lambda
 
-{{< include ../lambda-docker/_lambda.qmd >}} 
+{{< include lambda-docker/_lambda.qmd >}} 
 
 ## Part-2- Cloud9
 
-{{< include ../lambda-docker/_cloud9.qmd >}} 
+{{< include lambda-docker/_cloud9.qmd >}} 
 
 ## Part-3- Docker-Lambda
 
-{{< include ../lambda-docker/_docker.qmd >}} 
+{{< include lambda-docker/_docker.qmd >}} 
 
 
 

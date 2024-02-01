@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Amit Arora">
 <meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
 
-<title>PPOL 5206 – content</title>
+<title>PPOL 5206 - Lab 10</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,9 +74,23 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </script>
 
 
+<meta property="og:title" content="PPOL 5206 - Lab 10">
+<meta property="og:description" content="PPOL 5206 Spring 2024">
+<meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta property="og:site-name" content="PPOL 5206">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="PPOL 5206 - Lab 10">
+<meta name="twitter:description" content="PPOL 5206 Spring 2024">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta name="twitter:creator" content="@aarora79">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -101,11 +116,11 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../content/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../content/index.html" rel="" target="">
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../labs/index.html" rel="" target="">
+    <a class="nav-link active" href="../labs/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
@@ -128,7 +143,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/01-content.html">Course content</a></li><li class="breadcrumb-item"><a href="../content/02-content.html">2: Cloud services</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/01-labs.html">Labs content</a></li><li class="breadcrumb-item"><a href="../labs/10-labs.html">10: Spark Streaming</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -151,8 +166,8 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lectures and labs</span></a>
+  <a href="../labs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
   </div>
 </li>
       </ul>
@@ -160,7 +175,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Course content</span></a>
+ <span class="menu-text">Labs content</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -168,86 +183,74 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/01-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/01-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1: Course overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/02-content.html" class="sidebar-item-text sidebar-link active">
+  <a href="../labs/02-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2: Cloud services</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/03-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/03-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3: Parallelization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/04-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4: Lambda-Docker</span></a>
+  <a href="../labs/04-labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: MapReduce &amp; Hadoop</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/05-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/05-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5: Parallel computing with Dask</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/06-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/06-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6: Intro to Apache Spark</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/07-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/07-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7: Spark SQL &amp; Dataframes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/08-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/08-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8: Spark ML</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/09-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/09-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9: Spark NLP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/10-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/10-labs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">10: Spark Streaming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/11-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/11-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11: Serverless &amp; DevOps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/12-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12: Data engineering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/13-content.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/13-labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13: Ray, RAPIDS &amp; DuckDB</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/14-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14: Feature Store, Vector DB &amp; Misc.</span></a>
   </div>
 </li>
       </ul>
@@ -257,45 +260,32 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#about-todays-class" id="toc-about-todays-class" class="nav-link active" data-scroll-target="#about-todays-class">About today’s class</a></li>
-  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
-  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#lab" id="toc-lab" class="nav-link" data-scroll-target="#lab">Lab</a></li>
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header">
+<h1 class="title display-7">Lab 10</h1>
+<p class="subtitle lead">PPOL 5206 Spring 2024</p>
 
+</header>
 
-<section id="about-todays-class" class="level2">
-<h2 class="anchored" data-anchor-id="about-todays-class">About today’s class</h2>
-<p>Introduction to cloud services to be used throughout the semester.</p>
-</section>
-<section id="readings" class="level2">
-<h2 class="anchored" data-anchor-id="readings">Readings</h2>
-<p>Readings for this lecture (to be completed <strong><em>before this class</em></strong>):<br>
-- <a href="https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092862" target="_blank">Laberis - What is Cloud</a><br>
-- <a href="https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092863" target="_blank">Rittinghouse - The Evolution of Cloud</a></p>
-</section>
-<section id="slides" class="level2">
-<h2 class="anchored" data-anchor-id="slides">Slides</h2>
-<p>The slides for today’s lesson are <a href="../slides/02-slides.html" target="_blank">available online</a> as an HTML file. You can also click in the slides below and navigate through them with your left and right arrow keys.</p>
-</section>
-<section id="lab" class="level2">
-<h2 class="anchored" data-anchor-id="lab">Lab</h2>
-<p>Accessing cloud services, starting and connecting to a virtual machine, S3 commands. The lab for today’s lesson is <a href="../labs/02-labs.html" target="_blank">available online</a> as an HTML file.</p>
-</section>
-<section id="assignment" class="level2">
-<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
-<p><a href="https://classroom.github.com/a/PiBawARk">GitHub Classroom Link</a></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure that you are connected to the <em>Saxanet</em> WiFi network and <em>not</em> the <em>GuestNet</em> network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. <strong>Use SaxaNet</strong>. #</p>
+</div>
+</div>
+<section id="github-classroom" class="level2">
+<h2 class="anchored" data-anchor-id="github-classroom">GitHub Classroom</h2>
+<p><a href="https://classroom.github.com/a/RPHthXPH">GitHub Classroom Link</a></p>
 
 
 </section>
