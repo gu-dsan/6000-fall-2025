@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
+
+<title>PPOL 5206 - Syllabus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href=".//files/img/ppol5206-logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
+</script>
+
+
+<meta property="og:title" content="PPOL 5206 - Syllabus">
+<meta property="og:description" content="This syllabus was last updated on Thursday, February 01, 2024 at 08:28 PM">
+<meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta property="og:site-name" content="PPOL 5206">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="PPOL 5206 - Syllabus">
+<meta name="twitter:description" content="This syllabus was last updated on Thursday, February 01, 2024 at 08:28 PM">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
+<meta name="twitter:creator" content="@aarora79">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">PPOL 5206</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./syllabus.html" aria-current="page">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./content/index.html">
+ <span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./labs/index.html">
+ <span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources/index.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://georgetown-ime2320.slack.com"><i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Syllabus</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="grid course-details course-details-smaller">
+<section id="instructor" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="instructor">Instructor</h3>
+<ul>
+<li><i class="fa-solid fa-user" aria-hidden="true"></i> &nbsp; <a href="https://www.linkedin.com/in/amit-arora-539120a/">Amit Arora</a></li>
+<li><i class="fa-solid fa-university" aria-hidden="true"></i> &nbsp; Online</li>
+<li><i class="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp; <a href="mailto:aa1603@georgetown.edu">aa1603@georgetown.edu</a></li>
+<li><i class="fa-brands fa-twitter" aria-hidden="true"></i> &nbsp; <a href="https://www.twitter.com/aarora79">aarora79</a></li>
+<li><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> &nbsp; <a href="https://calendar.app.google/VDNgfyh5vG4pmJi38">Schedule an appointment</a></li>
+</ul>
+</section>
+<section id="course-details" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="course-details">Course details</h3>
+<ul>
+<li><i class="fa-solid fa-calendar" aria-hidden="true"></i> &nbsp; Thursdays</li>
+<li><i class="fa-solid fa-calendar-alt" aria-hidden="true"></i> &nbsp; January 11 – May 9, 2024</li>
+<li><i class="fa-solid fa-clock" aria-hidden="true"></i> &nbsp; 6:30–9:00 PM</li>
+<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> &nbsp; Car Barn 204</li>
+<li><i class="fa-brands fa-slack" aria-hidden="true"></i> &nbsp; <a href="https://georgetown-ime2320.slack.com">Slack</a></li>
+</ul>
+</section>
+</div>
+<p><strong>This syllabus was last updated on Thursday, February 01, 2024 at 08:28 PM</strong></p>
+<section id="instructors" class="level3">
+<h3 class="anchored" data-anchor-id="instructors">Instructors</h3>
+<ul>
+<li><a href="mailto:aa1603@georgetown.edu">Amit Arora</a></li>
+</ul>
+</section>
+<section id="tas" class="level3">
+<h3 class="anchored" data-anchor-id="tas">TAs</h3>
+<ul>
+<li><a href="mailto:do343@georgetown.edu">Dheeraj Oruganty</a></li>
+</ul>
+<section id="communication" class="level4">
+<h4 class="anchored" data-anchor-id="communication">Communication</h4>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The primary mode of communications will be <a href="https://georgetown-ime2320.slack.com"><strong>Slack</strong></a><strong>.</strong></p>
+<p><strong>Instructional team e-mail:</strong> <a href="mailto:ppol5206-spring-2023@georgetown.edu">ppol5206-spring-2023@georgetown.edu</a><br>
+This is the preferred way of contacting the professors privately</p>
+</div>
+</div>
+<p>This website will be up-to-date on information about the course</p>
+<hr>
+</section>
+</section>
+<section id="course-description" class="level3">
+<h3 class="anchored" data-anchor-id="course-description">Course Description</h3>
+<p>Data is everywhere! Many times, the data is just too big to analyze with traditional programming libraries on your laptop. That is where cloud providers and distributed computation save the day. This is a hands-on, practical workshop-style course about using cloud computing resources to do analysis and manipulation of big data datasets that are too large to fit on a single machine and/or analyzed with traditional tools. The course will focus on techniques (such as Concurrency) and tools (such as Apache Spark) for working with Big Data.</p>
+<p>You will understand how to ingest the data, and then massage, clean, transform, analyze, and model it within the context of big data analytics. You will be able to think more programmatically and logically about your big data needs, tools, and issues.</p>
+</section>
+<section id="learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Setup, operate and manage big data tools and cloud infrastructure, including Spark, MapReduce, Amazon Web Services</li>
+<li>Use ancillary tools that support big data processing, including git and the Linux command line</li>
+<li>Execute a big data analytics exercise from start to finish: ingest, wrangle, clean, analyze, store, and present</li>
+<li>Develop strategies to break down large problems and datasets into manageable pieces</li>
+<li>Identify broad spectrum resources and documentation to remain current with big data tools and developments</li>
+<li>Communicate and interpret the big data analytics results through written and verbal methods</li>
+</ul>
+</section>
+<section id="pre-requisites" class="level3">
+<h3 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h3>
+<ul>
+<li>Experience with Python and SQL. <strong>Note:</strong> We will use Python as the primary interface to Apache Spark, through <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></li>
+<li>Experience with git and GitHub</li>
+</ul>
+<p>Some tutorials to brush up on these skills:</p>
+<ul>
+<li><a href="http://rogerdudler.github.io/git-guide/">git - the simple guide</a></li>
+<li><a href="https://dev.to/unseenwizzard/learn-git-concepts-not-commands-4gjc">Nico Riedmann’s Learn git concepts, not commands</a></li>
+<li><a href="https://sqlbolt.com/">SQLBolt - Learn SQL with simple, interactive exercises</a></li>
+</ul>
+</section>
+<section id="books-software-and-cloud-resources" class="level2">
+<h2 class="anchored" data-anchor-id="books-software-and-cloud-resources">Books, Software and Cloud Resources</h2>
+<section id="readings-for-assigned-readings" class="level3">
+<h3 class="anchored" data-anchor-id="readings-for-assigned-readings">Readings (for assigned readings)</h3>
+<p>There is no required textbook for the course. We have selected specific chapters from several sources as well as several seminal papers in the big data space, and these will be provided to you in PDF format. We may also provide supplemental materials (articles, links, videos, etc.) to complement the readings. <strong>You must read assigned readings prior to the lectures.</strong></p>
+</section>
+<section id="cloud-resources" class="level3">
+<h3 class="anchored" data-anchor-id="cloud-resources">Cloud Resources</h3>
+<p>You will use cloud resources on <a href="http://aws.amazon.com">Amazon Web Services</a>. We will discuss how to setup your accounts and environments in class and lab within the first couple of weeks. You will get credits on both platforms that will be enough to support your coursework throughout the semester.</p>
+</section>
+<section id="modules" class="level3">
+<h3 class="anchored" data-anchor-id="modules">Modules</h3>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="zgvzhpwxku" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zgvzhpwxku .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zgvzhpwxku .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zgvzhpwxku .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zgvzhpwxku .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zgvzhpwxku .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zgvzhpwxku .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zgvzhpwxku .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zgvzhpwxku .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zgvzhpwxku .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zgvzhpwxku .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zgvzhpwxku .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zgvzhpwxku .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zgvzhpwxku .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zgvzhpwxku .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zgvzhpwxku .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zgvzhpwxku .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zgvzhpwxku .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zgvzhpwxku .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zgvzhpwxku .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zgvzhpwxku .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zgvzhpwxku .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zgvzhpwxku .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zgvzhpwxku .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zgvzhpwxku .gt_left {
+  text-align: left;
+}
+
+#zgvzhpwxku .gt_center {
+  text-align: center;
+}
+
+#zgvzhpwxku .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zgvzhpwxku .gt_font_normal {
+  font-weight: normal;
+}
+
+#zgvzhpwxku .gt_font_bold {
+  font-weight: bold;
+}
+
+#zgvzhpwxku .gt_font_italic {
+  font-style: italic;
+}
+
+#zgvzhpwxku .gt_super {
+  font-size: 65%;
+}
+
+#zgvzhpwxku .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#zgvzhpwxku .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zgvzhpwxku .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zgvzhpwxku .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zgvzhpwxku .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zgvzhpwxku .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zgvzhpwxku .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;">
+  <colgroup>
+    <col>
+    <col style="width:100px;">
+    <col>
+    <col>
+  </colgroup>
+  <thead class="gt_header">
+    <tr>
+      <td colspan="4" class="gt_heading gt_title gt_font_normal" style="font-size: 24; font-weight: bold;">Schedule for the semester PPOL 5206 Spring 2024</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">This course is divided into 3 phases: Intro to Big Data and the Cloud, Apache Spark Ecosystem, Other Big Data technologies &amp; misc. topics.</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: bold;" scope="col" id="Date">Date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: bold;" scope="col" id="Module">Module</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-weight: bold;" scope="col" id="Notes">Notes</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Phase 1">Phase 1</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">Intro to Big Data and the Cloud</th>
+<td headers="Phase 1 stub_1_1 date" class="gt_row gt_right">2024-01-11</td>
+<td headers="Phase 1 stub_1_1 title" class="gt_row gt_left"><div class="gt_from_md"><p>Course overview</p>
+</div></td>
+<td headers="Phase 1 stub_1_1 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Course overview. Introduction to big data concepts. The Cloud.</p>
+</div></td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">Intro to Big Data and the Cloud</th>
+<td headers="Phase 1 stub_1_2 date" class="gt_row gt_right">2024-01-18</td>
+<td headers="Phase 1 stub_1_2 title" class="gt_row gt_left"><div class="gt_from_md"><p>Cloud services</p>
+</div></td>
+<td headers="Phase 1 stub_1_2 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Setting up your AWS account.</p>
+</div></td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub">Intro to Big Data and the Cloud</th>
+<td headers="Phase 1 stub_1_3 date" class="gt_row gt_right">2024-01-25</td>
+<td headers="Phase 1 stub_1_3 title" class="gt_row gt_left"><div class="gt_from_md"><p>Parallelization</p>
+</div></td>
+<td headers="Phase 1 stub_1_3 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Explore parallelization with <a href="https://docs.python.org/3/library/multiprocessing.html">Python multiprocessing</a>.</p>
+</div></td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub">Intro to Big Data and the Cloud</th>
+<td headers="Phase 1 stub_1_4 date" class="gt_row gt_right">2024-02-01</td>
+<td headers="Phase 1 stub_1_4 title" class="gt_row gt_left"><div class="gt_from_md"><p>Event driven cloud processing, containers and code portability</p>
+</div></td>
+<td headers="Phase 1 stub_1_4 notes" class="gt_row gt_left"><div class="gt_from_md"><p><a href="./labs/04-labs.html">Lab 4</a>,"Building Docker containers and working with AWS Lambda."</p>
+</div></td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub">Intro to Big Data and the Cloud</th>
+<td headers="Phase 1 stub_1_5 date" class="gt_row gt_right">2024-02-08</td>
+<td headers="Phase 1 stub_1_5 title" class="gt_row gt_left"><div class="gt_from_md"><p>DuckDB, Polars and file formats</p>
+</div></td>
+<td headers="Phase 1 stub_1_5 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Working with Big Data on a single machine wht DuckDB and Python Polars.</p>
+</div></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Phase 2">Phase 2</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 2 stub_1_6 date" class="gt_row gt_right">2024-02-15</td>
+<td headers="Phase 2 stub_1_6 title" class="gt_row gt_left"><div class="gt_from_md"><p>Intro to <a href="https://spark.apache.org/">Apache Spark</a> - <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">Spark RDD</a></p>
+</div></td>
+<td headers="Phase 2 stub_1_6 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Setting up <a href="https://spark.apache.org/">Apache Spark</a> on Amazon SageMaker &amp; EMR. Analyze datasets using Spark <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">Resilient Distributed Datasets (RDD)</a>.</p>
+</div></td></tr>
+    <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 2 stub_1_7 date" class="gt_row gt_right">2024-02-22</td>
+<td headers="Phase 2 stub_1_7 title" class="gt_row gt_left"><div class="gt_from_md"><p><a href="https://spark.apache.org/sql/">Spark SQL</a> &amp; <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark Dataframes</a></p>
+</div></td>
+<td headers="Phase 2 stub_1_7 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Structured data processing with <a href="https://spark.apache.org/sql/">Spark SQL</a> and the <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark DataFrame API</a>.</p>
+</div></td></tr>
+    <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Phase 2 stub_1_8 date" class="gt_row gt_right">2024-03-07</td>
+<td headers="Phase 2 stub_1_8 title" class="gt_row gt_left" style="background-color: rgba(128,188,216,0.8); color: #000000; font-weight: bold;"><div class="gt_from_md"><p>NO CLASS - Spring Break</p>
+</div></td>
+<td headers="Phase 2 stub_1_8 notes" class="gt_row gt_left"><div class="gt_from_md"></div></td></tr>
+    <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 2 stub_1_9 date" class="gt_row gt_right">2024-03-14</td>
+<td headers="Phase 2 stub_1_9 title" class="gt_row gt_left"><div class="gt_from_md"><p><a href="https://spark.apache.org/docs/latest/ml-guide.html">Spark ML</a></p>
+</div></td>
+<td headers="Phase 2 stub_1_9 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Scaling machine learning with Spark.</p>
+</div></td></tr>
+    <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 2 stub_1_10 date" class="gt_row gt_right">2024-03-21</td>
+<td headers="Phase 2 stub_1_10 title" class="gt_row gt_left"><div class="gt_from_md"><p><a href="https://nlp.johnsnowlabs.com/">Spark NLP</a></p>
+</div></td>
+<td headers="Phase 2 stub_1_10 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Natural Language Propcessing Using Spark.</p>
+</div></td></tr>
+    <tr><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 2 stub_1_11 date" class="gt_row gt_right">2024-04-11</td>
+<td headers="Phase 2 stub_1_11 title" class="gt_row gt_left"><div class="gt_from_md"><p>Accelerate Python workloads with <a href="https://ray.io">Ray</a>, <a href="https://rapids.ai/">RAPIDS</a></p>
+</div></td>
+<td headers="Phase 2 stub_1_11 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Using Ray and RAPIDS (GPUs for big data analytics).</p>
+</div></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Phase 3">Phase 3</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_12" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Phase 3 stub_1_12 date" class="gt_row gt_right">2024-03-28</td>
+<td headers="Phase 3 stub_1_12 title" class="gt_row gt_left" style="background-color: rgba(128,188,216,0.8); color: #000000; font-weight: bold;"><div class="gt_from_md"><p>NO CLASS - Easter Break</p>
+</div></td>
+<td headers="Phase 3 stub_1_12 notes" class="gt_row gt_left"><div class="gt_from_md"></div></td></tr>
+    <tr><th id="stub_1_13" scope="row" class="gt_row gt_left gt_stub">Apache Spark Ecosystem</th>
+<td headers="Phase 3 stub_1_13 date" class="gt_row gt_right">2024-04-04</td>
+<td headers="Phase 3 stub_1_13 title" class="gt_row gt_left"><div class="gt_from_md"><p><a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html">Spark Streaming</a></p>
+</div></td>
+<td headers="Phase 3 stub_1_13 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Working with streaming data using Spark Streaming.</p>
+</div></td></tr>
+    <tr><th id="stub_1_14" scope="row" class="gt_row gt_left gt_stub">Other Big Data technologies &amp; misc. topics</th>
+<td headers="Phase 3 stub_1_14 date" class="gt_row gt_right">2024-04-18</td>
+<td headers="Phase 3 stub_1_14 title" class="gt_row gt_left"><div class="gt_from_md"><p>ML Feature Store</p>
+</div></td>
+<td headers="Phase 3 stub_1_14 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Preparing and sotring ML ready data with feature stores.</p>
+</div></td></tr>
+    <tr><th id="stub_1_15" scope="row" class="gt_row gt_left gt_stub">Other Big Data technologies &amp; misc. topics</th>
+<td headers="Phase 3 stub_1_15 date" class="gt_row gt_right">2024-04-25</td>
+<td headers="Phase 3 stub_1_15 title" class="gt_row gt_left"><div class="gt_from_md"><p>Vector Databases</p>
+</div></td>
+<td headers="Phase 3 stub_1_15 notes" class="gt_row gt_left"><div class="gt_from_md"><p>Big data for generative AI.</p>
+</div></td></tr>
+    <tr><th id="stub_1_16" scope="row" class="gt_row gt_left gt_stub">Other Big Data technologies &amp; misc. topics</th>
+<td headers="Phase 3 stub_1_16 date" class="gt_row gt_right">2024-05-02</td>
+<td headers="Phase 3 stub_1_16 title" class="gt_row gt_left"><div class="gt_from_md"><p>Project discussion &amp; Open Session</p>
+</div></td>
+<td headers="Phase 3 stub_1_16 notes" class="gt_row gt_left"><div class="gt_from_md"><p><em><strong>Last class for the semester</strong></em></p>
+</div></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>IT IS YOUR RESPONSIBILITY TO MANAGE THE CREDITS AND RESOURCES PROVIDED TO YOU. YOU MUST SHUT DOWN YOUR CLOUD RESOURCES WHEN NOT IN USE.</strong></p>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-activities-communication-and-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="learning-activities-communication-and-evaluation">Learning Activities, Communication and Evaluation</h2>
+<p>This is a hands-on, practical, workshop style course that provides opportunities to use the tools and techniques discussed in class. Although this is not a programming course per se, there is programming involved.</p>
+<section id="lectures-and-labs" class="level3">
+<h3 class="anchored" data-anchor-id="lectures-and-labs">Lectures and Labs</h3>
+<p>This course is split into a lecture/lab format, where every class session will have a lecture portion, and most sessions will have an in-class lab portion:</p>
+<ul>
+<li>During the lecture, we will discuss the concepts and techniques as well as the history and development of these big data tools and cloud platforms.</li>
+<li>During the lab sessions, you will be completing exercises and following examples which are designed to show you how to implement the ideas and concepts with various tools. We will start the labs in class but we will not finish. It is your responsibility to complete the labs (<strong>which is part of the grade</strong>) and will enable your learning.</li>
+</ul>
+<p>Lectures may not cover all the material and some topics will be introduced in the lab or through readings/assignments.</p>
+</section>
+<section id="office-hours" class="level3">
+<h3 class="anchored" data-anchor-id="office-hours">Office Hours</h3>
+<p>Instructors and TAs will hold recurring office hours to answer questions, review material, and support your learning. The times, dates, and location of office hours will be announced via Canvas and Slack in advance.</p>
+</section>
+<section id="readings" class="level3">
+<h3 class="anchored" data-anchor-id="readings">Readings</h3>
+<p>On certain weeks, readings will be assigned to prepare you for the lecture material being presented. These readings should take an hour or less per week.</p>
+</section>
+<section id="online-quizzes" class="level3">
+<h3 class="anchored" data-anchor-id="online-quizzes">Online Quizzes</h3>
+<p>Quizzes will be given a few times during the semester during lab or lecture at random intervals and times. Quizzes ensure you are keeping up with the material presented in the class. Quizzes are meant to be brief and low-stress with a time limit of 5-10 minutes. The material will be drawn from lectures, labs, and readings.</p>
+</section>
+<section id="lab-deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="lab-deliverables">Lab Deliverables</h3>
+<p>Each lab will have a deliverable. It is essential that you learn the skills presented in the labs so that you can effectively complete the assignments and the big data project. The lab deliverables can sometimes be completed during lab, however, it is your responsibility to complete the deliverable as part of your work outside of lecture/lab time.</p>
+</section>
+<section id="homework-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="homework-assignments">Homework Assignments</h3>
+<p>You will be several homework assignments for roughly half of the semester. The goal of these problem sets is to hone your big data skills by answering some questions about large datasets. The problem sets will build on the labs and will be much more in-depth. Deliverables from the assignment will usually include code written for your programs and the output produced.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Please start assignments as soon as they are posted. These assignments can take several hours to complete depending on your familiarity with the material. You will not complete the assignments on time if you start the day they are due.</strong></p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We reuse problem set questions, we expect students not to copy, refer to, or look at the solutions in preparing their answers. Since this is a graduate-level class, we expect students to want to learn and not search online for answers. See Academic Integrity section.</p>
+</div>
+</div>
+</section>
+<section id="big-data-analytics-project" class="level3">
+<h3 class="anchored" data-anchor-id="big-data-analytics-project">Big Data Analytics Project</h3>
+<p>Students will assemble into groups of no more than 4 students. You will perform and write up an analysis of a <em>big</em> dataset using the tools learned in class. <em>Big</em> is defined as “a dataset that is so large that you cannot work with it on a laptop.”</p>
+<p>You will each conduct big data project using Reddit textual data. This project will encompass all of the skills you will learn throughout the semester including data ingestion, transformation, analysis, natural language processing, and machine learning. Similar to previous core courses, the big data project will be a product you can share with the world to demonstrate your data science expertise. Intermediate project assignments will help you incrementally build towards your final portfolio. There will be assignments on exploratory data analysis, machine learning, and natural language processing. Each successive assignment and the final submissions will incorporate feedback from your peers, TAs, and professors. The final timelines and deliverables for the project will be announced in class.</p>
+</section>
+</section>
+<section id="grading-and-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="grading-and-evaluation">Grading and Evaluation</h2>
+<ul>
+<li>Group project : 40%</li>
+<li>Assignments : 30%</li>
+<li>Lab completions : 20%</li>
+<li>Quizzes : 10%</li>
+</ul>
+<p>Total is 100%. We have no plans to curve the final grade, and the final letter grade will be:</p>
+<ul>
+<li>A: &gt;= 92.5</li>
+<li>A-: 89.5 - 92.49</li>
+<li>B+: 87.99 - 89.49</li>
+<li>B: 81.5 - 87.98</li>
+<li>B-: 79.5 - 81.49</li>
+</ul>
+</section>
+<section id="submitting-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="submitting-your-work">Submitting your work</h2>
+<section id="github-classroom" class="level3">
+<h3 class="anchored" data-anchor-id="github-classroom">GitHub classroom</h3>
+<p>We use Github Classroom for all class deliverables: assignments, labs, and the final project. Submitting your work is the process of committing your files and results to your local repository <strong>and</strong> then pushing it to GitHub.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You must submit everything through GitHub!</p>
+</div>
+</div>
+<section id="use-the-final-submission-commit-message" class="level4">
+<h4 class="anchored" data-anchor-id="use-the-final-submission-commit-message">Use the <code>final-submission</code> commit message</h4>
+<p>When you are ready for your work to be evaluated, you <strong>MUST</strong> use the commit message <code>final-submission</code>. If you do not use the commit message <code>final-submission</code> we will assume that you are still working in the repository and we will only grade what is present. By submitting that commit message, you are stating that you are finished with the assignment and are ready for feedback.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you understand the difference between a git <code>commit</code> and a <code>push</code>, and that you <code>push</code> your repository successfully to GitHub.</p>
+</div>
+</div>
+<p>In case you need to make a correction after your <code>final-submission</code> <strong>and</strong> the submission deadline has not yet passed, then you can <em>amend</em> your previous commit. See <a href="https://www.atlassian.com/git/tutorials/rewriting-history">amending a commit</a> for instructions. <strong>Do not change the commit message,</strong> it should continue say “final-submission” after the amend.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>No further edits to your GitHub repository are allowed after using the <code>final-submission</code> commit message.</strong></p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will use <strong>commit datetime</strong> and <strong>commit message</strong> to assess lateness.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="late-policy" class="level3">
+<h3 class="anchored" data-anchor-id="late-policy">Late policy</h3>
+<p>In lieu of extensions, there is a tiered deduction scale if a deliverable is late. Late penalties only apply to labs and assignments.</p>
+<p>We will assess exceptional circumstances on a case-by-case basis, and only if we are made aware before a deliverable’s deadline, not after.</p>
+<ul>
+<li>A late penalty of 10% per day, up to 4 days, will be assessed for assignments and labs that are submitted with a <code>final-submission</code> commit message after the deadline. You may still submit a missed lab or assignment up until the last day of class (May 2) with a maximum possible grade of 60%.</li>
+<li>Missed in-class quizzes cannot be made up and will receive a grade of zero.</li>
+<li>Project deadlines are fixed and have no extensions or late penalty. A missed project deliverable will receive a grade of zero.</li>
+</ul>
+</section>
+</section>
+<section id="other-course-policies" class="level2">
+<h2 class="anchored" data-anchor-id="other-course-policies">Other course policies</h2>
+<section id="attendance-and-punctuality" class="level3">
+<h3 class="anchored" data-anchor-id="attendance-and-punctuality">Attendance and punctuality</h3>
+<p>Attendance is mandatory and will be taken. Given the technical nature of this course, and the breadth of topics discussed, you are expected to attend each class, to complete all readings, and to participate actively in lectures, discussions and exercises. We understand there may be times you may need to miss class, please inform us in advance if you are not able to attend class for any reason. However, it is up to you to keep up.</p>
+</section>
+<section id="participation" class="level3">
+<h3 class="anchored" data-anchor-id="participation">Participation</h3>
+<p>We love participation. Read. Raise your hand. Ask questions. Make comments. Challenge us. Acknowledge us. If we speak for three hours to a silent classroom, it is a lot more boring and tiring for everyone.</p>
+</section>
+<section id="laptop-and-phone-use" class="level3">
+<h3 class="anchored" data-anchor-id="laptop-and-phone-use">Laptop and phone use</h3>
+<p>You must bring your laptop to class to work on labs. No phone use is allowed during lecture. You may use your laptop during lecture to take notes, but please refrain from other activities. We reserve the right to ask you to put your phones and laptops away. You may not use your computer or phone while your peers or guest speakers are presenting.</p>
+</section>
+<section id="communication-and-slack-rules" class="level3">
+<h3 class="anchored" data-anchor-id="communication-and-slack-rules">Communication and Slack Rules</h3>
+<ul>
+<li>All announcements will be posted on Canvas and Slack</li>
+<li>Use Slack for any question you may have about the course, about assignments or any technical issue. This way everyone can learn from each others questions. We will be monitoring and providing answers on a regular basis. <strong>Make sure you understand <a href="#what-is-allowed">what is allowed in Slack.</a></strong></li>
+<li>Individual emails containing any course question that is not personal will not be answered</li>
+<li>Slack DMs are not to be used <strong>unless</strong> we DM you first and you can respond to our message. Students may not initiate DMs.</li>
+<li>Keep an eye on the questions posted in Slack. Use the search function. It’s very possible that we have already answered a question, and we reserve the right to point you to the syllabus, previous Slack messages, or other document containing the information requested</li>
+<li>Assignment, lab and project questions will only be answered on Slack up to 12 hours before something is due</li>
+</ul>
+</section>
+<section id="open-door-policy" class="level3">
+<h3 class="anchored" data-anchor-id="open-door-policy">Open Door Policy</h3>
+<p>Please approach or get in touch with us if something is not working for you regarding the class, methods, etc. Our pledge to you is to provide the best learning experience possible. If you have any issue please do not wait until the last minute to speak with us. You will find that we are fair, reasonable, and flexible and we care deeply about your learning and success.</p>
+</section>
+</section>
+<section id="academic-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="academic-integrity">Academic Integrity</h2>
+<p>As a Jesuit, Catholic university, committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character.The University spells out the specific minimum standards for academic integrity in its Honor Code, as well as the procedures to be followed if academic dishonesty is suspected.</p>
+<p>Over and above the honor code, in this course we will seek to create an engaged and passionate learning environment, characterized by respect and courtesy in both our discourse and our ways of paying attention to one another.</p>
+<p>The code of academic integrity applies to all courses at Georgetown University. Please become familiar with the code. All students are expected to maintain the highest level of academic integrity throughout the course of the semester.Please note that acts of academic dishonesty during the course will be prosecuted and harsh penalties may be sought for such acts. Students are responsible for knowing what acts constitute academic dishonesty. The code may be found at <a href="https://bulletin.georgetown.edu/regulations/honor/">https://bulletin.georgetown.edu/regulations/honor/.</a></p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>We have a ZERO TOLERANCE POLICY and students found to be in violation will be reported and penalized. The consequences of any violation may include: additional points penalty, getting a grade of zero, automatically failing the course, and suspension or expulsion from the program.</strong></p>
+</div>
+</div>
+<section id="definition-of-collaboration" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-collaboration">Definition of collaboration</h3>
+<p>In the spirit of fostering a collective and inclusive learning environment, we acknowledge that you will work and study with your peers. We also acknowledge that you use web resources (code examples specifically), and that in writing a program many of you will most likely use the same libraries, functions and other similar instructions in your scripts. However:</p>
+<ul>
+<li><strong>You must write your own code.</strong> This will be verified for every assignment against every submission, and any similarity greater than 60% between students on a given assignment will be considered to be unauthorized collaboration.</li>
+<li><strong>You must do your individual work in your own cloud resources.</strong> This will be verified for every assignment. We know the fingerprint of your cloud account and subscriptions and we can tell.</li>
+</ul>
+</section>
+<section id="what-is-allowed" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-allowed">What is allowed</h3>
+<ul>
+<li>Collaborating with other students during in-class labs to facilitate collective learning</li>
+<li>Using Slack for helping one-another as long as:
+<ul>
+<li>You do not provide answers directly but only discuss potential approaches</li>
+<li>You only share up to a few lines of code for everyone’s benefit for the resolution of a specific question or issue</li>
+</ul></li>
+<li>Using anything (code, resources, tips, approaches, etc.) provided by the instructional team</li>
+</ul>
+</section>
+<section id="what-is-forbidden" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-forbidden">What is forbidden</h3>
+<p>The following actions are <strong>not permitted in any way</strong> and are considered a violation of academic integrity:</p>
+<ul>
+<li>Copying and sharing code <em>between students</em> in <strong>individual</strong> assignments or <em>across goups</em> in the <strong>group project</strong></li>
+<li>Sharing anything on any individual assignment</li>
+<li>Using code snippets found online (stack overflow, etc.) and not commenting the source</li>
+<li>Plagiarism of any kind</li>
+<li>Using any <a href="#use-of-generative-ai-tools">Generative Artificial Intelligence</a> tool without acknowledging it</li>
+<li>Using someone else’s cloud resources</li>
+<li>Making your private GitHub repos public</li>
+<li>Sharing or posting any course materials anywhere</li>
+<li>Faking or tampering with git commit dates or messages</li>
+</ul>
+</section>
+</section>
+<section id="use-of-generative-ai-tools" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-generative-ai-tools">Use of Generative AI tools</h2>
+<p>We recognize the recent availability of very powerful generative AI tools like Chat-GPT, GitHub Copilot, and others. These tools can help us be more effective and we embrace their use.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You are allowed to use GAI tools in a <em>non substantial</em> way.</p>
+<p>What does <em>non substantial</em> mean?</p>
+<p><strong>It means that whatever is generated by GAI must not make up the majority of the work you do.</strong></p>
+<p>Any use of these tools must abide to the following rules:</p>
+<ul>
+<li>You must comment which code blocks were generated by GAI</li>
+<li>You must note which written sections were generated by GAI</li>
+<li>If you used a prompt to ask the GAI tool to do something, you must include it</li>
+</ul>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Any deviation from these rules is considered a violation of <a href="#academic-integrity">academic integrity</a> and will be acted on.</p>
+</div>
+</div>
+</section>
+<section id="var-university.name-resources-and-policies" class="level2">
+<h2 class="anchored" data-anchor-id="var-university.name-resources-and-policies">Georgetown University resources and policies</h2>
+<section id="georgetown-universitys-plagiarism-policy" class="level3">
+<h3 class="anchored" data-anchor-id="georgetown-universitys-plagiarism-policy">Georgetown University’s Plagiarism Policy</h3>
+<p>Plagiarism or academic dishonesty in any form will not be tolerated and may result in a failing grade. All Honor Code violations will be submitted to the Honor Council.</p>
+<p>Academic integrity is central to the learning and teaching process. Students are expected to conduct themselves in a manner that will contribute to the maintenance of academic integrity by making all reasonable efforts to prevent the occurrence of academic dishonesty. Academic dishonesty includes (but is not limited to) obtaining or giving aid on an examination, having unauthorized prior knowledge of an examination, doing work for another student, and plagiarism of all types, including copying code.</p>
+<p>Plagiarism is the intentional or unintentional presentation of another person’s idea or product as one’s own. Plagiarism includes, but is not limited to the following: copying verbatim all or part of another’s written work; using phrases, charts, figures, illustrations, code, or mathematical/scientific solutions without citing the source; paraphrasing ideas, conclusions, or research without citing the source; and using all or part of a literary plot, poem, film, musical score, or other artistic product without attributing the work to its creator. Students can avoid unintentional plagiarism by following carefully accepted scholarly practices. Notes taken for papers and research projects should accurately record sources cited, quoted, paraphrased, or summarized sources and articles should be acknowledged in footnotes.</p>
+</section>
+<section id="honor-system" class="level3">
+<h3 class="anchored" data-anchor-id="honor-system">Honor System</h3>
+<p>All students are expected to maintain the highest standards of academic and personal integrity in pursuit of their education at Georgetown. Academic dishonesty, including plagiarism, in any form, is a serious offense, and students found in violation are subject to academic penalties that include, but are not limited to, failure of the course, termination from the program, and revocation of degrees already conferred. All students are held to the Georgetown University Honor Code. For more information about the Honor Code <a href="http://gervaseprograms.georgetown.edu/honor/">http://gervaseprograms.georgetown.edu/honor/</a></p>
+</section>
+<section id="academic-integrity-and-courtesy" class="level3">
+<h3 class="anchored" data-anchor-id="academic-integrity-and-courtesy">Academic Integrity and Courtesy</h3>
+<p>As a Jesuit, Catholic university committed to the education of the whole person, Georgetown expects all members of the academic community, students and faculty, to strive for excellence in scholarship and in character. The University spells out the specific minimum standards for academic integrity in its Honor Code and the procedures to be followed if academic dishonesty is suspected. Over and above the honor code, in this course, we will seek to create an engaged and passionate learning environment characterized by respect and courtesy in both our discourse and our ways of paying attention to one another.</p>
+</section>
+<section id="academic-resource-center" class="level3">
+<h3 class="anchored" data-anchor-id="academic-resource-center">Academic Resource Center</h3>
+<p><a href="https://academicsupport.georgetown.edu/">The Academic Resource Center (ARC)</a> is the campus office responsible for reviewing medical documentation and determining reasonable accommodations for students with disabilities. You can reach the ARC via email at <a href="mailto::arc@georgetown.edu">arc@georgetown.edu.</a></p>
+</section>
+<section id="counseling-and-psychiatric-services-caps" class="level3">
+<h3 class="anchored" data-anchor-id="counseling-and-psychiatric-services-caps">Counseling and Psychiatric Services (CAPS)</h3>
+<p>As Georgetown faculty, you are among the most important individuals in some of the students’ lives. They may turn to you when they are struggling and in times of need, or you may be one of the first to notice when they are distressed.</p>
+<p>The CAPS website has tips for faculty on how to deal with struggling or distressed students. 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician.</p>
+</section>
+<section id="emergency-preparedness-and-hoyalert" class="level3">
+<h3 class="anchored" data-anchor-id="emergency-preparedness-and-hoyalert">Emergency Preparedness and HOYAlert</h3>
+<p>We encourage all faculty to become familiar with Georgetown’s Office of Emergency Management and sign up for HOYAlert to receive important safety and University operating status updates. Faculty teaching at the Georgetown Downtown campus might also want to sign up for AlertDC to obtain safety and traffic updates.</p>
+</section>
+<section id="office-of-institutional-compliance-and-ethics" class="level3">
+<h3 class="anchored" data-anchor-id="office-of-institutional-compliance-and-ethics">Office of Institutional Compliance and Ethics</h3>
+<p>The Office of Institutional Compliance and Ethics supports and coordinates many compliance-related activities the University undertakes. With the endorsement and assistance of the University’s senior leadership, this Office is responsible for leading the development, implementation, and operation of the Georgetown Institutional Compliance and Ethics Program.</p>
+</section>
+<section id="office-of-institutional-diversity-equity-and-affirmative-action-ideaa" class="level3">
+<h3 class="anchored" data-anchor-id="office-of-institutional-diversity-equity-and-affirmative-action-ideaa">Office of Institutional Diversity, Equity and Affirmative Action (IDEAA)</h3>
+<p>The mission of IDEAA is to promote a deep understanding and appreciation among the diverse members of the University community to result in justice and equality in educational, employment, and contracting opportunities, as well as to lead efforts to create an inclusive academic and work environment.</p>
+</section>
+<section id="title-ixsexual-misconduct" class="level3">
+<h3 class="anchored" data-anchor-id="title-ixsexual-misconduct">Title IX/Sexual Misconduct</h3>
+<p>Georgetown University and its faculty are committed to supporting survivors and those impacted by sexual misconduct, which includes sexual assault, sexual harassment, relationship violence, and stalking. Georgetown requires faculty members unless otherwise designated as confidential, to report all disclosures of sexual misconduct to the University Title IX Coordinator or a Deputy Title IX Coordinator. Suppose you disclose an incident of sexual misconduct to a professor in or outside of the classroom (except disclosures in papers). In that case, that faculty member must report the incident to the Title IX Coordinator or Deputy Title IX Coordinator. The coordinator will, in turn, reach out to the student to provide support, resources, and the option to meet—[Please note that the student is not required to meet with the Title IX coordinator.]. More information about reporting options and resources can be found on the <a href="https://sexualassault.georgetown.edu/resourcecenter">Sexual Misconduct Website.</a></p>
+<p>If you would prefer to speak to someone confidentially, Georgetown has a number of fully confidential professional resources that can provide support and assistance. These resources include:</p>
+<ul>
+<li>Health Education Services for Sexual Assault Response and Prevention: confidential email sarp@georgetown.edu</li>
+<li>Counseling and Psychiatric Services (CAPS): 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician</li>
+</ul>
+<p><em>Title IX Sexual Misconduct Statement</em> Please know that as faculty members, we are committed to supporting survivors of sexual misconduct, including relationship violence and sexual assault. However, university policy also requires us to report any disclosures about sexual misconduct to the Title IX Coordinator, whose role is to coordinate the University’s response to sexual misconduct.</p>
+<p>Georgetown has a number of fully confidential professional resources who can provide support and assistance to survivors of sexual assault and other forms of sexual misconduct. These resources include:</p>
+<ul>
+<li><a href="https://sexualassault.georgetown.edu/get-help/#">Getting Help</a></li>
+<li>Jen Schweer, MA, LPC<br>Associate Director of Health Education Services for Sexual Assault Response and Prevention (202) 687-032<br><a href="mailto:jls242@georgetown.edu">jls242@georgetown.edu</a></li>
+<li>Erica Shirley, Trauma Specialist<br>Counseling and Psychiatric Services (CAPS)<br>(202) 687-6985<br><a href="mailto:els54@georgetown.edu">els54@georgetown.edu</a></li>
+</ul>
+</section>
+<section id="threat-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="threat-assessment">Threat Assessment</h3>
+<p>Georgetown University established its Threat Assessment program as part of an extensive emergency planning initiative. The program at Georgetown has been developed and implemented to meet current best practices and national standards for hazard planning in higher education institutions and workplace violence prevention.</p>
+</section>
+<section id="special-accommodations" class="level3">
+<h3 class="anchored" data-anchor-id="special-accommodations">Special Accommodations</h3>
+<p>If you believe that you have a disability that will affect your performance in this class, don’t hesitate to get in touch with the <a href="mailto:arc@georgetown.edu">Academic Resource Center</a> for further information. The center is located in the Leavey Center, Suite 335. The Academic Resource Center is the campus office responsible for reviewing documentation provided by students with disabilities and determining reasonable accommodations according to the Americans with Disabilities Act (ADA) and University policies.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2024 by <a href="https://www.linkedin.com/in/amit-arora-539120a/">Amit Arora</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-ppol/ppol5206s24-class-site.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,131 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/resources/index.html</loc>
-    <lastmod>2024-02-01T23:27:37.244Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/index.html</loc>
-    <lastmod>2024-02-01T23:27:36.564Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/11-labs.html</loc>
-    <lastmod>2024-02-01T23:27:35.878Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/09-labs.html</loc>
-    <lastmod>2024-02-01T23:27:34.720Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/07-labs.html</loc>
-    <lastmod>2024-02-01T23:27:34.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/05-labs.html</loc>
-    <lastmod>2024-02-01T23:27:33.012Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/03-labs.html</loc>
-    <lastmod>2024-02-01T23:27:31.380Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/labs/01-labs.html</loc>
-    <lastmod>2024-02-01T23:27:30.363Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/index.html</loc>
-    <lastmod>2024-02-01T23:27:29.315Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/13-content.html</loc>
-    <lastmod>2024-02-01T23:27:28.612Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/11-content.html</loc>
-    <lastmod>2024-02-01T23:27:27.956Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/09-content.html</loc>
-    <lastmod>2024-02-01T23:27:27.265Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/07-content.html</loc>
-    <lastmod>2024-02-01T23:27:26.565Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/05-content.html</loc>
-    <lastmod>2024-02-01T23:27:25.862Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/content/03-content.html</loc>
-    <lastmod>2024-02-01T23:27:25.143Z</lastmod>
+    <loc>https://aa1603.georgetown.edu/ppol5206/about.html</loc>
+    <lastmod>2024-02-02T01:26:21.664Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/01-content.html</loc>
-    <lastmod>2024-02-01T23:27:24.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aa1603.georgetown.edu/ppol5206/about.html</loc>
-    <lastmod>2024-02-01T23:27:24.005Z</lastmod>
+    <lastmod>2024-02-02T01:26:22.477Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/02-content.html</loc>
-    <lastmod>2024-02-01T23:27:24.785Z</lastmod>
+    <lastmod>2024-02-02T01:26:23.390Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/03-content.html</loc>
+    <lastmod>2024-02-02T01:26:24.340Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/04-content.html</loc>
-    <lastmod>2024-02-01T23:27:25.499Z</lastmod>
+    <lastmod>2024-02-02T01:26:25.188Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/05-content.html</loc>
+    <lastmod>2024-02-02T01:26:25.999Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/06-content.html</loc>
-    <lastmod>2024-02-01T23:27:26.218Z</lastmod>
+    <lastmod>2024-02-02T01:26:26.789Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/07-content.html</loc>
+    <lastmod>2024-02-02T01:26:27.531Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/08-content.html</loc>
-    <lastmod>2024-02-01T23:27:26.919Z</lastmod>
+    <lastmod>2024-02-02T01:26:28.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/09-content.html</loc>
+    <lastmod>2024-02-02T01:26:29.834Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/10-content.html</loc>
-    <lastmod>2024-02-01T23:27:27.624Z</lastmod>
+    <lastmod>2024-02-02T01:26:32.343Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/11-content.html</loc>
+    <lastmod>2024-02-02T01:26:33.463Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/12-content.html</loc>
-    <lastmod>2024-02-01T23:27:28.281Z</lastmod>
+    <lastmod>2024-02-02T01:26:34.290Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/13-content.html</loc>
+    <lastmod>2024-02-02T01:26:38.600Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/content/14-content.html</loc>
-    <lastmod>2024-02-01T23:27:28.962Z</lastmod>
+    <lastmod>2024-02-02T01:26:39.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/content/index.html</loc>
+    <lastmod>2024-02-02T01:26:40.278Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/index.html</loc>
-    <lastmod>2024-02-01T23:27:29.692Z</lastmod>
+    <lastmod>2024-02-02T01:26:41.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/01-labs.html</loc>
+    <lastmod>2024-02-02T01:26:43.811Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/02-labs.html</loc>
-    <lastmod>2024-02-01T23:27:31.028Z</lastmod>
+    <lastmod>2024-02-02T01:26:44.737Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/03-labs.html</loc>
+    <lastmod>2024-02-02T01:26:45.432Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/04-labs.html</loc>
-    <lastmod>2024-02-01T23:27:32.662Z</lastmod>
+    <lastmod>2024-02-02T01:26:47.100Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/05-labs.html</loc>
+    <lastmod>2024-02-02T01:26:47.798Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/06-labs.html</loc>
-    <lastmod>2024-02-01T23:27:33.375Z</lastmod>
+    <lastmod>2024-02-02T01:26:48.565Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/07-labs.html</loc>
+    <lastmod>2024-02-02T01:26:55.515Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/08-labs.html</loc>
-    <lastmod>2024-02-01T23:27:34.361Z</lastmod>
+    <lastmod>2024-02-02T01:26:56.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/09-labs.html</loc>
+    <lastmod>2024-02-02T01:26:56.957Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/10-labs.html</loc>
-    <lastmod>2024-02-01T23:27:35.072Z</lastmod>
+    <lastmod>2024-02-02T01:26:57.642Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/11-labs.html</loc>
+    <lastmod>2024-02-02T01:27:03.335Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/13-labs.html</loc>
-    <lastmod>2024-02-01T23:27:36.230Z</lastmod>
+    <lastmod>2024-02-02T01:27:03.990Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/labs/index.html</loc>
+    <lastmod>2024-02-02T01:27:04.653Z</lastmod>
   </url>
   <url>
     <loc>https://aa1603.georgetown.edu/ppol5206/labs/login-to-saxanet.html</loc>
-    <lastmod>2024-02-01T23:27:36.882Z</lastmod>
+    <lastmod>2024-02-02T01:27:05.296Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/resources/index.html</loc>
+    <lastmod>2024-02-02T01:27:05.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/schedule.html</loc>
+    <lastmod>2024-02-02T01:27:11.182Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/01-slides.html</loc>
+    <lastmod>2024-02-02T01:27:15.402Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/02-slides.html</loc>
+    <lastmod>2024-02-02T01:27:18.399Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/03-slides.html</loc>
+    <lastmod>2024-02-02T01:27:21.482Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/04-slides.html</loc>
+    <lastmod>2024-02-02T01:27:22.537Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/05-slides.html</loc>
+    <lastmod>2024-02-02T01:27:26.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/06-slides.html</loc>
+    <lastmod>2024-02-02T01:27:33.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/07-slides.html</loc>
+    <lastmod>2024-02-02T01:27:39.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/08-slides.html</loc>
+    <lastmod>2024-02-02T01:27:44.542Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/09-slides.html</loc>
+    <lastmod>2024-02-02T01:27:48.417Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/10-slides.html</loc>
+    <lastmod>2024-02-02T01:27:51.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/11-slides.html</loc>
+    <lastmod>2024-02-02T01:27:52.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/12-slides.html</loc>
+    <lastmod>2024-02-02T01:27:54.239Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/13-slides.html</loc>
+    <lastmod>2024-02-02T01:28:05.920Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/slides/14-slides.html</loc>
+    <lastmod>2024-02-02T01:28:06.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aa1603.georgetown.edu/ppol5206/syllabus.html</loc>
+    <lastmod>2024-02-02T01:28:13.060Z</lastmod>
   </url>
 </urlset>
