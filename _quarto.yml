@@ -70,7 +70,7 @@ website:
               file: content/02-content.qmd
             - text: "3: Parallelization"
               file: content/03-content.qmd
-            - text: "4: MapReduce & Hadoop"
+            - text: "4: Lambda-Docker"
               file: content/04-content.qmd
             - text: "5: Parallel computing with Dask"
               file: content/05-content.qmd
@@ -109,7 +109,7 @@ website:
               file: labs/02-labs.qmd
             - text: "3: Parallelization"
               file: labs/03-labs.qmd
-            - text: "4: MapReduce & Hadoop"
+            - text: "4: Lambda-Docker"
               file: labs/04-labs.qmd
             - text: "5: Parallel computing with Dask"
               file: labs/05-labs.qmd

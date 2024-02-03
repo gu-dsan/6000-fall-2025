@@ -515,7 +515,11 @@
     "href": "labs/01-labs.html",
     "title": "Lab 1",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/01-labs.html#goals",
@@ -606,7 +610,11 @@
     "href": "labs/02-labs.html",
     "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet.\nFollow these instructions step-by-step to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #\nFollow these instructions step-by-step to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same."
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/02-labs.html#login-into-the-aws-console",
@@ -648,7 +656,11 @@
     "href": "labs/03-labs.html",
     "title": "Lab 3",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/03-labs.html#github-classroom",
@@ -658,6 +670,7 @@
     "text": "GitHub Classroom\nGitHub Classroom Link"
   },
   {
+<<<<<<< HEAD
     "objectID": "labs/04-labs.html",
     "href": "labs/04-labs.html",
     "title": "EMR Cluster Setup Instructions",
@@ -670,13 +683,94 @@
     "title": "EMR Cluster Setup Instructions",
     "section": "GitHub Classroom",
     "text": "GitHub Classroom\nGitHub Classroom Link"
+=======
+    "objectID": "labs/04-labs.html#hello-world-lambda",
+    "href": "labs/04-labs.html#hello-world-lambda",
+    "title": "Docker",
+    "section": "“Hello World” Lambda",
+    "text": "“Hello World” Lambda\nLaunch AWS Academy and get to the AWS Console. Find the Lambda service from the search bar. \nThe dashboard shows the Lambda functions that have been made, some metrics on Lambda usage. Click on the orange Create Function button.\n\n\n\n\n\nHere you have to fill out the details for your Lambda function. There are several parts to set up.\n\nYou will leave the default option Author from scratch so that you can code directly from the Lambda service.\nSet your Function name as test-lambda.\nChoose your Runtime as Python 3.11\nClick on the Change default execution role dropdown, then select Use an existing role option, and finally pick the existing role LabRole.\n\n\n\n\n\n\n\nUnder Advanced Settings check the Enable Function URL checkbox and select None for Auth type. This will create an HTTPS endpoint that you can access from your web browser or cURL command without authentication (in a real world scenario the authentication piece is usually handled by an API Gateway).\n\n\n\n\n\n\n\nNow click on the orange Create function button.\n\nYou now have your environment for Lambda! In the upper function overview tab, you can select a variety of triggers and destinations for the Lambda. We will leave these alone for now. You can explore both on your own time to see the options.\n\n\n\n\n\nLet’s start with the basic test of the “Hello World” code that was provided in the Python code. Click on the blue Test button.\n\n\n\n\n\nThis will launch a popup to configure your event. You can submit a JSON payload to the test that will mimic input data that the Lambda function can process. Start off by setting Event name to mytest. Then you can leave the Event JSON for now, but you will come back to it for future iterations of experimentation. Click on the orange save button.\n\n\n\n\n\nClick on the blue Test button again. If you click on the arrow then you can choose to change or make a new test environment like you did on the previous step.\n\n\n\n\n\nYour test will execute, and the results will be shown. Several pieces of info are important:\n\nName of the test that was conducted\nResponse object that the function returned\nFunction logs that include the duration of the function, billed direction, memory max (for pricing), and actual memory used\nStatus in the upper right\n\n\n\n\n\n\nYou are now ready to invoke your newly deployed Lambda function through your web browser or through cURL. Copy the function URL and paste it in your browser’s address bar.\n\n\n\n\n\nNow try invoking the Lambda from a cURL command (this requires cURL to be available on your machine).\n\n\n\n\n\nOPTIONAL - If you wanted to set your Lambda to run on a regular schedule, like a crontab, you would add a trigger with the Add trigger button in the Function Overview and select EventBridge (CloudWatch Events). The Trigger add would look like this for setting a job to run every day at 10:15am UTC."
+  },
+  {
+    "objectID": "labs/04-labs.html#exploring-the-lambda-file-system---lab-submission-component",
+    "href": "labs/04-labs.html#exploring-the-lambda-file-system---lab-submission-component",
+    "title": "Docker",
+    "section": "Exploring the Lambda File System - LAB SUBMISSION COMPONENT",
+    "text": "Exploring the Lambda File System - LAB SUBMISSION COMPONENT\nIn this section, you will a make use of AWS Lambda to see how serverless infrastructure works. For this assignment, you will need to submit a set of JSON files along with other required files.\nIn AWS Lambda, for an output to be generated, you will may use json.dumps to dump a dictionary to the body value in the return statement. This is one of many methods you can use! We encourage you to experiment with few different methods and choose what works the best given your case. A screenshot is attached below for reference. Also note that indent=2 argument for json.dumps, it comes in handy for producting a pretty printed output.\nA dictionary is basically defined as a key:value pair, this is also the building block of json format.\nEach time you make a change to the code, you will have to click on the Deploy button and then the blue Test button.\n\nNote the use of the dict constructor for creating the dictionary. This is an alternate, more readable (arguably slower though) way of creating a Python dictionary. Also note that indent=2 argument for json.dumps, it comes in handy for producting a pretty printed output.\n\n\n\n\n\n\n\nUse the pathlib library and its iterdir() method in Python to view the contents of the root directory (the / is referred to as the root directory). Make a new key in the Lambda called root in the return JSON and send the contents of the root directory. This might take a few tries! How do you deal with objects that need to become strings?\n\n\nHint!: Think how you can pass objects in a string? For this you can use something like this:\n\n\nf'string here {object}'\n\nReturn the contents of the event input variable to the lambda_handler function as additional item in the return JSON as event.\nReturn the python version using the executable() method in the sys library. The key should be py_version.\nReturn the current username using the subprocess library and the whoami shell command. The key should be username.\nNote that all the new keys you are adding to the response should be nested as part of the body. So essentially, the response contains of two keys: a statusCode which specifies if the call successed or failed (a statusCode value other than 200 indicates a failure) and a body key which has the contents of the response.\n\nAfter these have been executed, copy the function URL and put it in lambda-test-url.json\nThe response from the server should be like this:\n{ \"statusCode\": 200,\n  \"body\": {\n    \"message\": \"Hello from Lambda!\",\n    \"root\": \"...\"\n    \"event\": \"...\",\n    \"py_version\": \"...\",\n    \"username\": \"...\"\n  }\n}"
+  },
+  {
+    "objectID": "labs/04-labs.html#part-2--cloud9",
+    "href": "labs/04-labs.html#part-2--cloud9",
+    "title": "Docker",
+    "section": "Part-2- Cloud9",
+    "text": "Part-2- Cloud9"
+  },
+  {
+    "objectID": "labs/04-labs.html#creating-cloud9-environment",
+    "href": "labs/04-labs.html#creating-cloud9-environment",
+    "title": "Docker",
+    "section": "Creating Cloud9 Environment",
+    "text": "Creating Cloud9 Environment\n\nSearch for cloud9 in the search bar of your AWS console as shown in the figure below.\n\n\n\n\n\n\n\nOnce on the Cloud9 splash screen, click on the orange button Create environment.\n\n\n\n\n\n\n\nEnter a Name for your environment. Leave the description blank. The figure below shows sample text you could use. Once you enter your name, scroll down to the next section.\n\n\n\n\n\n\n\nThere are a few options here. You have to make a few changes.\n\nThe Instance type section is to select how large an instance for Cloud9. Select the t3.small instance type\nThe Platform section is for selecting the operating system for your new instance. Leave as the default\nThe Timeout option is set so your instance will hibernate after 30 minutes so you are not charged for the instance 24/7. This is a major problem for cloud services because you can run up a bill quite quickly! Leave as the default\nIn Network Settings, Connection is how to connect to your instance. Select Secure Shell (SSH)\nFinally, click the orange button Create\n\n\n\n\n\n\n\n\nYou will be sent to the environments page of the Cloud9 service. Your environment is now building. In the table below, for your environment (the row), click on the Open button in Cloud9 IDE column. In the screenshot, we named it cloud9-env.\n\n\n\n\n\n\n\nThe environment will be configured for you. This takes a few minutes.\n\n\n\n\n\n\nOnce the environment setup screen goes away then you are ready to use Cloud9. If you get a warning message, just click “OK”."
+  },
+  {
+    "objectID": "labs/04-labs.html#part-3--docker-lambda",
+    "href": "labs/04-labs.html#part-3--docker-lambda",
+    "title": "Docker",
+    "section": "Part-3- Docker-Lambda",
+    "text": "Part-3- Docker-Lambda"
+  },
+  {
+    "objectID": "labs/04-labs.html#setting-up-basic-docker-images-in-cloud9",
+    "href": "labs/04-labs.html#setting-up-basic-docker-images-in-cloud9",
+    "title": "Docker",
+    "section": "Setting up Basic Docker Images in Cloud9",
+    "text": "Setting up Basic Docker Images in Cloud9\n\n\n\n\n\n\nImportant:\n\n\n\nThis lab will take a lot of time! You will need atleast 5-6 hours on average to work on this lab. Please make sure you start this assignment as soon as possible\n\n\nDocker image building in Cloud9 is easy since the docker package is already set up. You just have to write some code and run Linux commands!\n\nIn Cloud9, start off by cloning your git repository from either the source control button on the lefthand sidebar or through the terminal.\nIn the root of your repository, create three empty text files in that folder called Dockerfile, app.py, and requirements.txt.\nThe results should look like below and have the symbols change automatically:\n\n\n\nOpen up the Dockerfile and add the following text (note the # lines are comments just like python!)\n\n# syntax=docker/dockerfile:1\n\n# adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image\n# https://docs.aws.amazon.com/lambda/latest/dg/python-image.html\nFROM python:3.11-slim-buster\n\nCMD [\"python\", \"-c\", \"import platform; print(f\\\"version: {platform.python_version()}\\\")\"]\n\nGo to the terminal and change directories to the location of your Dockerfile. Run the command docker build ./ -t test\n\n\n\nRun the command docker run test to see if your Dockerfile worked!"
+  },
+  {
+    "objectID": "labs/04-labs.html#lambda-docker-imagelab-demonstration",
+    "href": "labs/04-labs.html#lambda-docker-imagelab-demonstration",
+    "title": "Docker",
+    "section": "Lambda Docker Image(Lab-Demonstration)",
+    "text": "Lambda Docker Image(Lab-Demonstration)\nNote that this Dockerfile is invoking your requirements.txt file to install any packages from pip and the app.py lambda_handler function to run the python code.\n\nNow you might think how does this requirements.txt file work? Each library which needs to be installed will be listed here. Think of Docker as a virtual environment where you can install any package you need and then you would list them in the requirements.txt file. A small example of this is given in the following screenshot below. When the requirements.txt file has been changed, you will have to build and redeploy the docker image.\n\n\n\n\nrequirements.txt\n\n\n\nUse the new Dockerfile contents below for your Dockerfile.\n\nA few examples of how to build a docker file along with some documentation is given below in this link: https://spacelift.io/blog/dockerfile. You can scroll down to see how a docker commands work and what they do. This will be useful in making this a relatively simple task.\n# syntax=docker/dockerfile:1\n\n# adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image\n# https://docs.aws.amazon.com/lambda/latest/dg/python-image.html\nFROM public.ecr.aws/lambda/python:3.11\n\n##### copy requirements file and install necessary packages\n\n# ***CODE TO DO***\n# ADD the requirements.txt into the ${LAMBDA_TASK_ROOT} directory in the container\n\nRUN pip3 install -r ${LAMBDA_TASK_ROOT}/requirements.txt --target \"${LAMBDA_TASK_ROOT}\"\n\n##### Copy function code to docker container\n\n# ***CODE TO DO***\n# ADD the app.py file into the ${LAMBDA_TASK_ROOT} directory in the container\n\n##### SET THE COMMAND OF THE CONTAINER FOR THE LAMBDA HANDLER\n# app (name of py file)\n# handler (name of function to execute for lambda job)\nCMD [ \"app.lambda_handler\" ]\n\nNote that the ADD and COPY commands in Docker for this instance are similar. The ADD function is more advanced and can auto-extract compressed files into the image. Please use the given python version for this assignment. This assignment was mainly designed to be used with python 3.11. If you a version of python which is lower, we cannot say if it would be compatible.\nSet up your python file app.py with a function called lambda_handler that accepts the event and context arguments. Wait, we have already done this in basic Lambda! Copy your function from the Lambda service. This will ensure that the response is the same through basic Lambda and through the Docker Lambda.\nSince you made changes to the Dockerfile and your app.py files, you need to build a new Docker image. Run the command docker build ./ -t lambda-test so that you name the image something new.\nThis has to be done every time you make changes to the app.py file or the Dockerfile.\n\n\n\n\n\n\n\nImportant\n\n\n\nThe syntax of docker build is as follows:\ndocker build PATH -t 'CONTAINER NAME'\n\n#Container name can be changed in this instance, but lambda-test is preferred.\n#  -t is a flag which tags the container with a name \n#  In the above command, ./ is the path where the container would be built. \n#  Can you recall where does ./ lead to?\n\n\n\n\n\n\n\n\n\nHint\n\n\n\nTry running the command docker images to see the images you have in your local environment.\n\n\n\n\n“Running” the python script requires two steps because the Lambda container is built as a listening service that will execute when there is a payload provided to it.\n\n\n\n\n\n\n\nImportant\n\n\n\nThe syntax of docker run is as follows:\n\ndocker run -p PORT CONTAINER NAME\n\n#-p flag specifies which port needs to be used for the container to start running.\n# CONTAINER NAME can be anything, we defined it to be lambda-test in this scenario.\n\n\n\nRun the command docker run -p 8080:8080 lambda-test to set up the service on your first terminal tab. This will run the service and listen for triggers. Next, click on the green plus icon and choose New Terminal to launch a new bash terminal.\n\n\n\nIn this second terminal, run the command curl -XPOST \"http://localhost:8080/2015-03-31/functions/function/invocations\" -d '{\"payload\":\"hello world!\"}'. This should return the same response as what you saw in the Lambda service. Also, go back to the first terminal tab to see the summary of execution message."
+  },
+  {
+    "objectID": "labs/04-labs.html#python-setup",
+    "href": "labs/04-labs.html#python-setup",
+    "title": "Docker",
+    "section": "Python Setup",
+    "text": "Python Setup\nReturn the price of any stock symbol that is submitted through the payload value for Lambda. For example, the goal is to get the DOW stock price if I run the command: http://localhost:8080/2015-03-31/functions/function/invocations\" -d '{\"payload\":\"DOW\"}'\n\nThe url has to be dynamic based on the input stock symbol: https://finance.yahoo.com/quote/DOW\nUse the requests and beautifulsoup packages to build the function. Note you will need to add these libraries to the requirements.txt file.\nStart your app.py file with this start code.\n\nimport os\nimport json\nimport requests\nimport traceback\nfrom bs4 import BeautifulSoup\n\nurl = f\"https://finance.yahoo.com/quote/DOW\"\n\n# need headers to get pull from yahoo finance\nheader = {'Connection': 'keep-alive',\n          'Expires': '-1',\n          'Upgrade-Insecure-Requests': '1',\n          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) \\\n           AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'\n          }\n\nresponse = requests.get(url, headers=header)\nsoup = BeautifulSoup(response.text, \"html.parser\")\nprice = soup.find(\"fin-streamer\", {'data-field':\"regularMarketPrice\", 'data-symbol' : stock.upper()}).text\n\nprint(f\"price={price}\")"
+  },
+  {
+    "objectID": "labs/04-labs.html#coding-requirements",
+    "href": "labs/04-labs.html#coding-requirements",
+    "title": "Docker",
+    "section": "Coding Requirements:",
+    "text": "Coding Requirements:\n\nAdd a try-except framework if any part of your code errors. Use the command error=traceback.format_exc() to capture the error. What do you return when the function errors instead?\nEnsure that if your function does not receive an input or if it receives an invalid stock ticker that it returns a 404 status code. For no input use the message \"No stock provided\" and for an invalid ticker choose \"Invalid stock provided\"\nMake the url dynamic to the input stock symbol specified\nIntegrate your code into the Lambda framework - event input and response output\nEnsure the response object for a successful request looks like {\"statusCode\" : 200, \"body\" : {\"stock\" : \"A\", \"price\" : \"#####\"}}.\n\n\n\n\n\n\n\nImportant:\n\n\n\nPlease use indent = 2 when dumping the response to make sure the response is easily readable\n\n\n\n\n\n\n\n\nHint\n\n\n\nHint #1: Try developing using the python console in Cloud9 before integrating into your app.py file. You don’t want to have to build a Docker image every code change, right?\n\nThis process is mainly only for prototyping. You would do this by writing the entire python code first in app.py file, then running the following command in the terminal :\n\n\npython app.py --payload {'payload': 'stock'}\nHint #2: Once you put the code into the Lambda framework, you will have to build and run to complete a development integration.\nHint #3: Implement a basic logger function to see where you might be going wrong? is ther a certain way to pass an input string to the event handler function? Try printing the event out to the console.\n\n\n\nUse the following test inputs to confirm your function can handle all the errors gracefully: APPL, AAPL, appl, DOW, dow. Unknown tickers need to be handled and case of the ticker should not matter.\nSubmit the bash history where this function is implemented in the file lambda-local-test.txt.\nOnce your code is ready to go with Lambda, add, commit, and push the files (app.py, Dockerfile, requirements.txt) to GitHub."
+  },
+  {
+    "objectID": "labs/04-labs.html#posting-docker-image-to-ecr",
+    "href": "labs/04-labs.html#posting-docker-image-to-ecr",
+    "title": "Docker",
+    "section": "Posting Docker Image to ECR",
+    "text": "Posting Docker Image to ECR\nECR stands for Elastic Container Registry.\n\nRun the command aws ecr create-repository --repository-name docker-lambda to make a new repo in the elastic container registry to store your new containers.\nRun the commands to grab info on your AWS account and region.\naws_region=$(aws configure get region)\naws_account_id=$(aws sts get-caller-identity --query 'Account' --output text)\nRun the following command to configure your authentication to talk to the ECR service. Note how we use BASH variable with the $ so that you don’t have to manually enter your region or account id.\naws ecr get-login-password \\\n--region $aws_region \\\n| docker login \\\n--username AWS \\\n--password-stdin $aws_account_id.dkr.ecr.$aws_region.amazonaws.com\nTag the image in the ECR registry by running the command docker tag lambda-docker-build $aws_account_id.dkr.ecr.$aws_region.amazonaws.com/docker-lambda\n\nThe final docker-lambda is referring to the new repository you just built a few commands ago.\n\nPush the image to docker by running the command docker push $aws_account_id.dkr.ecr.$aws_region.amazonaws.com/docker-lambda\n\n\nRead more about pushing a Docker image to ECR here."
+  },
+  {
+    "objectID": "labs/04-labs.html#docker-setup-in-lambda",
+    "href": "labs/04-labs.html#docker-setup-in-lambda",
+    "title": "Docker",
+    "section": "Docker Setup in Lambda",
+    "text": "Docker Setup in Lambda\nGo back to the Lambda dashboard by going to this link. Make a new function by clicking on the orange Create function button.\n\nYou must select the Container image option that is the third item on the top row of options for Lambda.\nName your function container-test\nSet your Execution role like we did earlier so that you use LabRole\nClick on the Browse images button to find the container you just uploaded!\n\n\n\nA popup will launch and you have to select the repository (“docker lambda”) and then your image, which will be called “latest” by default. Click on the orange Select image button.\n\n\nNow you see the same overview page for the Lambda. Since this is a container image and not simple code, we cannot actually preview anything. Just click on the Test tab.\n\nSet a name for your test aapl-test and change the event JSON to look like {\"payload\" : \"AAPL\"}. Once you are satisfied, click on the Save button and then the orange Test button.\n\nThe result of your test will be shown in a green box, and just click on the Details arrow to see the summary. Note that the stock price came back successfully. The billed duration in the example is 2578 ms, with “Init duration” contributing 709.68 ms and the code execution contributing 1867.85 ms. The results are rounded to the nearest millisecond, but are calculated at the 10 microsecond level, WOW!"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/05-labs.html",
     "href": "labs/05-labs.html",
     "title": "Lab 5",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/05-labs.html#github-classroom",
@@ -690,7 +784,11 @@
     "href": "labs/06-labs.html",
     "title": "Lab 6",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/06-labs.html#github-classroom",
@@ -704,7 +802,11 @@
     "href": "labs/07-labs.html",
     "title": "Lab 7 - SparkSQL",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/07-labs.html#the-right-data-tool",
@@ -746,7 +848,11 @@
     "href": "labs/08-labs.html",
     "title": "Lab 8",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/08-labs.html#github-classroom",
@@ -760,7 +866,11 @@
     "href": "labs/09-labs.html",
     "title": "Lab 9",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/09-labs.html#github-classroom",
@@ -774,7 +884,11 @@
     "href": "labs/10-labs.html",
     "title": "Lab 10",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/10-labs.html#github-classroom",
@@ -788,7 +902,11 @@
     "href": "labs/11-labs.html",
     "title": "Lambda & Docker",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/11-labs.html#hello-world-lambda",
@@ -858,7 +976,11 @@
     "href": "labs/13-labs.html",
     "title": "Lab 13",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/13-labs.html#github-classroom",
@@ -879,7 +1001,11 @@
     "href": "labs/login-to-saxanet.html",
     "title": "PPOL 5206",
     "section": "",
+<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
+=======
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "resources/index.html",
@@ -1757,6 +1883,7 @@
     "text": "Anatomy of an asyncio Python program\n\n\n\n\nWrite a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.\nCreate a coroutine i.e. an async wrapper function to the blocking function using async and await, with the call to blocking function made using the asyncio.to_thread function. This enables the coroutine execution in a separate thread.\nCreate another coroutine that makes multiple calls (in a loop, list comprehension) to the async wrapper created in the previous step and awaits completion of all of the invocations using the asyncio.gather function.\nCall the coroutine created in the previous step from another function using the asyncio.run function.\n\n\n\nimport time\nimport asyncio\n\ndef my_blocking_func(i):\n    # some blocking code such as an api call\n    print(f\"{i}, entry\")\n    time.sleep(1)\n    print(f\"{i}, exiting\")\n    return None\n  \nasync def async_my_blocking_func(i: int):\n    return await asyncio.to_thread(my_blocking_func, i)\n\nasync def async_my_blocking_func_for_multiple(n: int):\n    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])\n\nif __name__ == \"__main__\":\n    # async version\n    s = time.perf_counter()\n    n = 20\n    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))\n    elapsed_async = time.perf_counter() - s\n    print(f\"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds\")"
   },
   {
+<<<<<<< HEAD
     "objectID": "slides/04-slides.html#agenda-and-goals-for-today",
     "href": "slides/04-slides.html#agenda-and-goals-for-today",
     "title": "Lecture 4",
@@ -2021,6 +2148,321 @@
     "title": "Lecture 4",
     "section": "Extra links",
     "text": "Extra links\nhttps://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/\nserverless web scraper with python and lambda - up to date simple example https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78"
+=======
+    "objectID": "slides/04-slides.html#section",
+    "href": "slides/04-slides.html#section",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "Looking back\n\nLinux and version control\nPython and parallelization\nIntro to the Cloud\nSetup of AWS Services\n\n\n\nToday\n\nIntro to Hadoop and MapReduce\nHadoop Streaming\nLab/Demo (depending on time):\n\nStart a cluster on AWS\nRun a sample Hadoop job\nRun a simluated mapreduce job using the command line\nRun a Hadoop Streaming job"
+  },
+  {
+    "objectID": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
+    "href": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
+    "title": "Lecture 4",
+    "section": "Yesterday’s hardware for big data processing",
+    "text": "Yesterday’s hardware for big data processing\n\nThe 1990’s solution\nOne big box, all processors share memory\nThis was:\n\nVery expensive\nLow volume\n\nIt was all premium hardware. And yet is still was not big enough!"
+  },
+  {
+    "objectID": "slides/04-slides.html#enter-commodity-hardware",
+    "href": "slides/04-slides.html#enter-commodity-hardware",
+    "title": "Lecture 4",
+    "section": "Enter commodity hardware!",
+    "text": "Enter commodity hardware!\n\nConsumer-grade hardware\nNot expensive, premium nor fancy in any way\nDesktop-like servers are cheap, so buy a lot!\n\nEasy to add capacity\nCheaper per CPU/disk\n\nBut\nNeed more complex software to be able to run on lots of smaller/cheaper machines."
+  },
+  {
+    "objectID": "slides/04-slides.html#problems-with-cheap-hardware",
+    "href": "slides/04-slides.html#problems-with-cheap-hardware",
+    "title": "Lecture 4",
+    "section": "Problems with cheap hardware",
+    "text": "Problems with cheap hardware\n\nFailures\n\n1-5% hard drives/year\n0.2% DIMMs/year\n\nNetwork speed vs. shared memory\n\nMuch more latency\nNetwork slower than storage\n\nUneven performance"
+  },
+  {
+    "objectID": "slides/04-slides.html#hang-on-to-this-thought",
+    "href": "slides/04-slides.html#hang-on-to-this-thought",
+    "title": "Lecture 4",
+    "section": "Hang on to this thought!",
+    "text": "Hang on to this thought!"
+  },
+  {
+    "objectID": "slides/04-slides.html#meet-doug-cutting",
+    "href": "slides/04-slides.html#meet-doug-cutting",
+    "title": "Lecture 4",
+    "section": "Meet Doug Cutting",
+    "text": "Meet Doug Cutting\n\n\n\n\n\nIn 1997, Doug Cutting started writing the first version of Lucene (a full text search library).\nIn 2001, Lucene moves to the Apache Software Foundation, and Mike Cafarella joins Doug and create a Lucene subproject called Nutch, a web-crawler. Nutch uses Lucene to index the contents of a web page as it crawls it.\nNutch and Lucene were deployed on a single machine (single core processor, 1GB RAM, 8 HDDs ~ 1TB), achieved decent performance, but they needed something that would be scalable enough to be able to index the web."
+  },
+  {
+    "objectID": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
+    "href": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
+    "title": "Lecture 4",
+    "section": "Doug and Mike set out to to improve Nutch",
+    "text": "Doug and Mike set out to to improve Nutch\nThey needed a to build some kind of distributed storage layer to be the foundation of a scalable system. The came up with these requirements:\n\nSchemaless\nDurable\nCapable of handling component failure\nAutomatically rebalanced\n\n\nDoes this sound familiar?"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-1",
+    "href": "slides/04-slides.html#section-1",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "The Google File System (GFS) Paper\nIt describes how Google stored its information, at scale, using a reliable and high-available storage system can be built on commodity machines considering that failures are the norm rather than the exception.\nGFS is: * optimized for special application environment * fault tolerance is built in * centralized metadata management * simplify the operation semantics * decouple I/O and metadata operations"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-2",
+    "href": "slides/04-slides.html#section-2",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "The Google MapReduce Paper\nDescribes how Google processes data, at scale using MapReduce, a paradigm based on functional programming. MapReduce is an approach and infrastructure for doing things at scale. MapReduce is two things:\n\nA data processing model named MapReduce\nA distributed, large scale data processing paradigm.\n\nWhich provides the following benefits:\n\nMoves the computation to the data\nAutomatic parallelization and distribution\nFault tolerance\nI/O scheduling\nIntegrated status and monitoring"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-3",
+    "href": "slides/04-slides.html#section-3",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "The MapReduce model\n\nMap function takes an input pair and produces a set of intermediate key/value pairs. The MapReduce library groups together all intermediate values associated with the same intermediate key and passes them to the Reduce function.\nReduce function accepts an intermediate key and a set of values for that key. It merges together these values to form a possibly smaller set of values. Typically just zero or one output value is produced per Reduce invocation."
+  },
+  {
+    "objectID": "slides/04-slides.html#section-4",
+    "href": "slides/04-slides.html#section-4",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "The advantages\n\nThe model is relatively easy to use, even for programmers without experience with parallel and distributed systems since it handles parallelization, fault-tolerance, locality optimization, and load balancing.\nA large variety of problems are easily expressible as MapReduce computations.\nThis paper developed an implementation of MapReduce that scales to large clusters of machines comprising thousands of machines."
+  },
+  {
+    "objectID": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
+    "href": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
+    "title": "Lecture 4",
+    "section": "The genesis of Hadoop: an implementation of Google’s ideas",
+    "text": "The genesis of Hadoop: an implementation of Google’s ideas\n\nUsing the Google papers as a specification, they started implementing the ideas in Java in 2004 and created the Nutch Distributed File System (NDFS).\nThe main purpose of this file system was to abstract the cluster’s storage so that it presents itself as a single, reliable, file system.\nAnother first class featuer of the system was its ability to handle failures without operator interventions and it can run on inexpensive, commodity hardware components\nIn 2006, Hadoop was created by moving NDFS (which becamie HDFS) and the MapReduce implementation out of Lucene. Hadoop 1.0 was released. 1.8TB of data sorts in 188 nodes in 48hours. Doug Cutting goes to work at Yahoo!\nIn 2007, LinkedIn, Twitter and Facebook started adopting this new tool and contributing back to the project. Yahoo! is running their first production Hadoop cluster with 1,000 machines.\nIn 2008, Yahoo! is running a 10,000 core cluster. World record created for fastest sorting of 1Tb in 209 seconds using a 910 node cluster. Cloudera is formed.\nIn 2009, Yahoo!’s cluster is 24,000 cores and claims to sort 1TB in 62 seconds. Amazon introduces Elastic MapReduce. HDFS and MapReduce become their own separate sub-projects.\nIn 2010, Yahoo!’s cluster is 4,000 and ~70PB, Facebook’s is 2,300 nodes and ~40PB.\nIn 2011, Yahoo!’s cluster is 42,000 nodes\nIn 2017, Twitter Hadoop cluster has over 500 Petabytes of data. Biggest cluster over 10k nodes. Read more here"
+  },
+  {
+    "objectID": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
+    "href": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
+    "title": "Lecture 4",
+    "section": "Trivia question: why is it named Hadoop?",
+    "text": "Trivia question: why is it named Hadoop?"
+  },
+  {
+    "objectID": "slides/04-slides.html#tangent-why-open-source-matters",
+    "href": "slides/04-slides.html#tangent-why-open-source-matters",
+    "title": "Lecture 4",
+    "section": "Tangent: Why Open Source Matters!",
+    "text": "Tangent: Why Open Source Matters!\nThe Google File System is not popular as a program among the business world… why???\nHadoop has become the standard for cluster storage because it is open source!!\nWho has heard of Colossus? (Google’s next version of GFS)\nReview of GFS vs. Hadoop"
+  },
+  {
+    "objectID": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
+    "href": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
+    "title": "Lecture 4",
+    "section": "What is Hadoop 1.0: MapReduce Engine and HDFS",
+    "text": "What is Hadoop 1.0: MapReduce Engine and HDFS\n\nMapReduce performs the computations and manages cluster\n\nThe Job Tracker is the master planner\nThe Task Tracker runs each task\n\nHDFS stores the data"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-5",
+    "href": "slides/04-slides.html#section-5",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "Hadoop 1.0 Problems\n\nMonolithic\nMapReduce had too many responsibilites\nAssigning cluster resources\nManaging job execution\nDoing data processing\nInterfacing with client applications\nOnly supported MapReduce\nHad a single NameNode to manage the cluster (single point of failure)\nBatch oriented and extremely inefficient with iterative queries\n\n\n\n\n\n\nYARN & Hadoop 2.0\n\nCluster management capability gets pulled out of MapReduce and becomes YARN (Yet Anothe Resource Negotiator), decoupling cluster operations from data pipeline\nAllowed for other applications to run on a cluster\nHadoop 2.0 was released in 2013"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-6",
+    "href": "slides/04-slides.html#section-6",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "A MapReduce Job (1.0)\n\n\n\nA MapReduce Job (2.0+)"
+  },
+  {
+    "objectID": "slides/04-slides.html#how-yarn-manages-the-cluster",
+    "href": "slides/04-slides.html#how-yarn-manages-the-cluster",
+    "title": "Lecture 4",
+    "section": "How YARN manages the Cluster",
+    "text": "How YARN manages the Cluster"
+  },
+  {
+    "objectID": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
+    "href": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
+    "title": "Lecture 4",
+    "section": "The Hadoop Architecture is Scalable",
+    "text": "The Hadoop Architecture is Scalable"
+  },
+  {
+    "objectID": "slides/04-slides.html#hadoop-3.0-released-2017",
+    "href": "slides/04-slides.html#hadoop-3.0-released-2017",
+    "title": "Lecture 4",
+    "section": "Hadoop 3.0 (Released 2017)",
+    "text": "Hadoop 3.0 (Released 2017)\n\nSupports multiple standby NameNodes.\nSupports multiple NameNodes for multiple namespaces.\nStorage overhead reduced from 200% to 50%\n\nSupports GPUs\n\nSupports for Microsoft Azure Data Lake and Aliyun Object Storage System file-system connectors\nRewrite of Hadoop Shell\nMapReduce task Level Native Optimization.\nIntroduces more powerful YARN"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-7",
+    "href": "slides/04-slides.html#section-7",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "The Current Hadoop Ecosystem: https://hadoopecosystemtable.github.io/"
+  },
+  {
+    "objectID": "slides/04-slides.html#map",
+    "href": "slides/04-slides.html#map",
+    "title": "Lecture 4",
+    "section": "Map",
+    "text": "Map\n\n\n\n\nMap tasks are broken into the following phases:\n\nrecord reader: translates the input split generated by the input format into records or key/value pairs\nmap: function that executes on every input record\ncombiner: acts as a localized reducer to pre-aggregate within the map phase\npartitioner: takes intermediate key/value pairs from the mapper (or combiner if used) and splits them up into shards, one shard per reducer"
+  },
+  {
+    "objectID": "slides/04-slides.html#reduce",
+    "href": "slides/04-slides.html#reduce",
+    "title": "Lecture 4",
+    "section": "Reduce",
+    "text": "Reduce\n\n\n\n\nReduce tasks are broken into the following phases:\n\nshuffle and sort: this phase takes the output files written by all of the partitioners and downloads the files to the local node where the reducer code will run\nreducer: function that executes on every group of records for the same key\noutput format: translates the final key/value pair and writes out to a file by a record writer"
+  },
+  {
+    "objectID": "slides/04-slides.html#combining-everything-into-mapreduce",
+    "href": "slides/04-slides.html#combining-everything-into-mapreduce",
+    "title": "Lecture 4",
+    "section": "Combining Everything into MapReduce",
+    "text": "Combining Everything into MapReduce"
+  },
+  {
+    "objectID": "slides/04-slides.html#map-only",
+    "href": "slides/04-slides.html#map-only",
+    "title": "Lecture 4",
+    "section": "Map Only",
+    "text": "Map Only\n\n\n\n\nExamples of map-only jobs:\n\nFiltering\nData reorganization\nRunning a task in an embarrassingly parallel way"
+  },
+  {
+    "objectID": "slides/04-slides.html#map-and-reduce",
+    "href": "slides/04-slides.html#map-and-reduce",
+    "title": "Lecture 4",
+    "section": "Map and Reduce",
+    "text": "Map and Reduce\n\nSingle reducer\n\n\n\nMultiple reducers"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-8",
+    "href": "slides/04-slides.html#section-8",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "Benefits of Hadoop/MapReduce\n\nFault tolerance\nMap and Reduce functions are simple to understand and easy to program\n\n\n\nLimitations of Hadoop/MapReduce\n\nEverything has to be expressed in a map or reduce, and sometimes you can’t\nThere is no control over the order in which map or reduce run\nData is not indexed\nHigh overhead\nYou cannot leverage parallelism if you have an extremely large number of very small files (smaller than a single block)\nOnly suited for batch-processing, not real-time"
+  },
+  {
+    "objectID": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
+    "href": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
+    "title": "Lecture 4",
+    "section": "Everything begins and ends in a distributed filesystem",
+    "text": "Everything begins and ends in a distributed filesystem"
+  },
+  {
+    "objectID": "slides/04-slides.html#distributed-filesystems",
+    "href": "slides/04-slides.html#distributed-filesystems",
+    "title": "Lecture 4",
+    "section": "Distributed filesystems",
+    "text": "Distributed filesystems"
+  },
+  {
+    "objectID": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
+    "href": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
+    "title": "Lecture 4",
+    "section": "Cloud Object Storage vs HDFS",
+    "text": "Cloud Object Storage vs HDFS\n\nIndependent scalability\nIntegration via simple REST API calls\nLower cost\nNo single point of failure"
+  },
+  {
+    "objectID": "slides/04-slides.html#cloud-based-hadoop-clusters",
+    "href": "slides/04-slides.html#cloud-based-hadoop-clusters",
+    "title": "Lecture 4",
+    "section": "Cloud based Hadoop Clusters",
+    "text": "Cloud based Hadoop Clusters\nAmazon Elastic MapReduce (EMR) and Azure HDInsight\n\nOn Premises\n\n\n\nCloud Based (note the storage layer)"
+  },
+  {
+    "objectID": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
+    "href": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
+    "title": "Lecture 4",
+    "section": "Accessing Data in Distributed Object/File System",
+    "text": "Accessing Data in Distributed Object/File System\nFor files in the Cluster HDFS\n\ndirectory/data/ which is a shortcut to\n/user/hadoop/directory/data/\n\nFor files in Amazon S3\nThe service name is S3 and the data container is called a “bucket (bucket_name)” * s3://bucket_name/directory/data/\nFor Files in Azure Blob\nThe service name is Azure Storage Account (your_account) and the data container is called a “container (container)”. There can be many containers in a storage account.\n\nwasb://container@your_account.blob.core.windows.net/directory/data/"
+  },
+  {
+    "objectID": "slides/04-slides.html#hdfs-essential-commands",
+    "href": "slides/04-slides.html#hdfs-essential-commands",
+    "title": "Lecture 4",
+    "section": "HDFS essential commands",
+    "text": "HDFS essential commands\nWhat commands have we discussed about the Linux file system that we want for HDFS?\n#| code-line-numbers: false\n# list files\nhdfs dfs -ls <hdfs path>\n\n# make directories\nhdfs dfs -mkdir <folder location>\n\n# touch an empty file\nhdfs dfs -touchz <hdfs path>\n\n# \"put\" file to hdfs\nhdfs dfs -put <other file path> <dest hdfs path>\n\n# \"get\" file from hdfs\nhdfs dfs -get <other file path> <dest hdfs path>"
+  },
+  {
+    "objectID": "slides/04-slides.html#hdfs-essential-commands-1",
+    "href": "slides/04-slides.html#hdfs-essential-commands-1",
+    "title": "Lecture 4",
+    "section": "HDFS essential commands",
+    "text": "HDFS essential commands\n# other flag commands, after command and subcommand\nhdfs dfs -cat <hdfs path> #print contents of file\nhdfs dfs -mv <old hdfs path> <new hdfs path> # move file/folder\nhdfs dfs -rm <hdfs path> #only one file\nhdfs dfs -rmr <hdfs path> # recursive flag!\nhdfs dfs -chmod 777 <hdfs path> # set permissions\nhdfs dfs -setfacl -m default:user:sqoop:rwx <hdfs path> # access control list\nReview common commands here\nMore common commands"
+  },
+  {
+    "objectID": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
+    "href": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
+    "title": "Lecture 4",
+    "section": "How to programmatically interact with HDFS from python?",
+    "text": "How to programmatically interact with HDFS from python?\n\nUse a python library (hdfs, snakebite, pydoop)\nWhat I do…\nsubprocess to call the real functions!\n\n\nimport subprocess\n\n# local path of the file\nlocal_path = '/home/hadoop/test_dir/myfile.txt'\n\n# can be a new file name or a just folder destination\nhdfs_path = '/user/hadoop/data_folder/'\n\n# construct string command to execute in linux\nlinux_command = f'hdfs dfs -put {local_path} {hdfs_path}'\n\n# run in linux, grab result code and message\nresult_code, result_message = subprocess.getstatusoutput(linux_command)\n\n# raise an error if command did not exit properly\nif result_code != 0:\n  raise TypeError(f'exit code: {result_code}, {result_message}')"
+  },
+  {
+    "objectID": "slides/04-slides.html#writing-mapreduce-applications",
+    "href": "slides/04-slides.html#writing-mapreduce-applications",
+    "title": "Lecture 4",
+    "section": "Writing MapReduce applications",
+    "text": "Writing MapReduce applications\nHadoop is written in Java and provides a Java API that allows you to specify the following:\n\nThe input and output data locations in your distributed object/file system\nThe Map and Reduce functions which are providede in the form of Java classes\nMany kinds of job parameters and configurations\n\nOh no! What if I want to use other programming languages?"
+  },
+  {
+    "objectID": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
+    "href": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
+    "title": "Lecture 4",
+    "section": "The name Hadoop Streaming comes from the Unix Streams",
+    "text": "The name Hadoop Streaming comes from the Unix Streams"
+  },
+  {
+    "objectID": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
+    "href": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
+    "title": "Lecture 4",
+    "section": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework",
+    "text": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework\nIt uses an existing Java program to run non-java programs!\n\nKeys and values can be single or compound"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-10",
+    "href": "slides/04-slides.html#section-10",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "Advantages of Hadoop Streaming\n\nUsing existing code-base (non Java)\nLeveraging Hadoop framework to scale out\n\n\n\nLimitations of Hadoop Streaming\n\nNo combiner or partitioner, just map -> shuffle-sort -> reduce\nEverything is text. Your programs have to parse everything appropriately and convert strings to other data types as needed. You also have manually create the key/value pair for output.\nIf using R or Python, you must limit your programs to the base libraries."
+  },
+  {
+    "objectID": "slides/04-slides.html#basic-python-mapper",
+    "href": "slides/04-slides.html#basic-python-mapper",
+    "title": "Lecture 4",
+    "section": "Basic Python Mapper",
+    "text": "Basic Python Mapper\n#!/usr/bin/env python\n\nimport sys\n\nif __name__ == \"__main__\":\n for line in sys.stdin:\n     for word in line.split():\n         sys.stdout.write(\"{}\\t1\\n\".format(word))\n\nThe first line makes this an executable Python script\nRead in line\nSplit line by space into single words\nFor every line: produce an output in the form of word\\t1 where \\t is a tab\nOutput is always a key and value pair!"
+  },
+  {
+    "objectID": "slides/04-slides.html#basic-python-reducer",
+    "href": "slides/04-slides.html#basic-python-reducer",
+    "title": "Lecture 4",
+    "section": "Basic Python Reducer",
+    "text": "Basic Python Reducer\n\n\n#!/usr/bin/env python\n\nimport sys\n\ndef stdout(key, val):\n  sys.stdout.write(f\"{key}\\t{val}\\n\")\n\nif __name__ == '__main__':\n curkey = None\n total = 0\n for line in sys.stdin:\n     key, val = line.split(\"\\t\")\n     val = int(val)\n\n     if key == curkey:\n         total += val\n     else:\n         if curkey is not None:\n              stdout(curkey, total)\n\n         curkey = key\n         total = val\n\n stdout(curkey, total)\n\n\n\n\nThe first line makes this an executable Python script\nMake stdout function\nRead in line and stores in memory\nLook at the key from the key/value\nRead next line and compare key\nKeep reading lines and storing lines in memory until the key is different\nWhen new key is received, take all the lines from the previous key and do something and write out result\nRepeat until all lines are processed"
+  },
+  {
+    "objectID": "slides/04-slides.html#section-11",
+    "href": "slides/04-slides.html#section-11",
+    "title": "Lecture 4",
+    "section": "",
+    "text": "hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input [[input-location]] \\\n-output [[output-location]] \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py\n\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar launches Hadoop with the hadoop-streaming.jar\n-files /home/hadoop/hadoop-streaming/basic-mapper.py,/home/hadoop/hadoop-streaming/basic-reducer.py tells the job to “ship” the executable mapper and reducer scripts (the actual filename and absolute path) to every node on the cluster. This line must always be second when you need to ship files with your job.\n-input [[input-location]] tells the Hadoop the location of your source data in a distributed object/filesystem. If you specify a directory, all files in the directory will be used as inputs\n-output [[output-location]] tells the Hadoop the location of your output data in a distributed object/filesystem. This parameter is just a name of a location, and it must not exist before running the job otherwise the job will fail.\n-mapper basic-mapper.py and reducer basic-reducer.py specify the commands to run as a mapper and reducer, respectively. These must be shell scripts or native Linux commands. If you are using a script, you must “ship” it to the nodes with the -files parameter above."
+  },
+  {
+    "objectID": "slides/04-slides.html#gotchas",
+    "href": "slides/04-slides.html#gotchas",
+    "title": "Lecture 4",
+    "section": "Gotcha’s",
+    "text": "Gotcha’s\n\nThe output location of the job (HFDF, S3, Blob) must not exist before running a job. You will get an error if you try to write out to an existing/non-empty location\nYou have to ship or package your executables with the job.\nHadoop/Java error messages can be cryptic and only give you errors regarding the framework. If you need to debug your script you will need to look at the stdout/stderr logs\nYou need to specify the full path name of your mapper and reducer scripts"
+  },
+  {
+    "objectID": "slides/04-slides.html#example-code",
+    "href": "slides/04-slides.html#example-code",
+    "title": "Lecture 4",
+    "section": "Example code",
+    "text": "Example code\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input /user/hadoop/in_data \\\n-output /user/hadoop/in_data \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py"
+  },
+  {
+    "objectID": "slides/04-slides.html#hadoop-references",
+    "href": "slides/04-slides.html#hadoop-references",
+    "title": "Lecture 4",
+    "section": "Hadoop References",
+    "text": "Hadoop References\n\nHadoop 3.3.1: https://hadoop.apache.org/docs/r3.3.1/\n\nHDFS Filesystem Commands: https://hadoop.apache.org/docs/r3.3.1/hadoop-project-dist/hadoop-common/FileSystemShell.html\n\nHadoop Streaming https://hadoop.apache.org/docs/r3.3.1/hadoop-streaming/HadoopStreaming.html"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "slides/05-slides.html#takeaway",
@@ -3945,7 +4387,11 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
+<<<<<<< HEAD
     "text": "Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\n\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\nThis syllabus was last updated on Thursday, February 01, 2024 at 04:13 PM"
+=======
+    "text": "Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\n\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\nThis syllabus was last updated on Thursday, February 01, 2024 at 08:28 PM"
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "syllabus.html#books-software-and-cloud-resources",

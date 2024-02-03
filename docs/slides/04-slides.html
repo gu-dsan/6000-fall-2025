@@ -395,14 +395,22 @@
     }
   </style>
 <meta property="og:title" content="PPOL 5206 - Lecture 4">
+<<<<<<< HEAD
 <meta property="og:description" content="Containers &amp; Lambda">
+=======
+<meta property="og:description" content="MapReduce, Hadoop, and Hadoop Streaming">
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta property="og:site-name" content="PPOL 5206">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="600">
 <meta property="og:image:width" content="518">
 <meta name="twitter:title" content="PPOL 5206 - Lecture 4">
+<<<<<<< HEAD
 <meta name="twitter:description" content="Containers &amp; Lambda">
+=======
+<meta name="twitter:description" content="MapReduce, Hadoop, and Hadoop Streaming">
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -415,7 +423,11 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Lecture 4</h1>
+<<<<<<< HEAD
   <p class="subtitle">Containers &amp; Lambda</p>
+=======
+  <p class="subtitle">MapReduce, Hadoop, and Hadoop Streaming</p>
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -432,6 +444,7 @@ Amit Arora
 </div>
 
 </section>
+<<<<<<< HEAD
 <section id="agenda-and-goals-for-today" class="slide level2">
 <h2>Agenda and Goals for Today</h2>
 <div class="columns">
@@ -854,11 +867,676 @@ Amit Arora
 <h2>Extra links</h2>
 <p><a href="https://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/" class="uri">https://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/</a></p>
 <p>serverless web scraper with python and lambda - up to date simple example <a href="https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78" class="uri">https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78</a></p>
+=======
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<h3 id="looking-back">Looking back</h3>
+<ul>
+<li><p>Linux and version control</p></li>
+<li><p>Python and parallelization</p></li>
+<li><p>Intro to the Cloud</p></li>
+<li><p>Setup of AWS Services</p></li>
+</ul>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="today">Today</h3>
+<ul>
+<li><p>Intro to Hadoop and MapReduce</p></li>
+<li><p>Hadoop Streaming</p></li>
+<li><p>Lab/Demo (depending on time):</p>
+<ul>
+<li>Start a cluster on AWS</li>
+<li>Run a sample Hadoop job</li>
+<li>Run a simluated mapreduce job using the command line</li>
+<li>Run a Hadoop Streaming job</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="yesterdays-hardware-for-big-data-processing" class="slide level2">
+<h2>Yesterday’s hardware for big data processing</h2>
+<div class="column" style="width:47%;">
+<h3 id="the-1990s-solution">The 1990’s solution</h3>
+<p><strong>One big box, all processors share memory</strong></p>
+<p>This was:</p>
+<ul>
+<li>Very expensive</li>
+<li>Low volume</li>
+</ul>
+<p>It was all <em>premium</em> hardware. <strong>And yet is still was not big enough!</strong></p>
+</div>
+<div class="column" style="width:10%;">
+
+</div>
+<div class="column" style="width:37%;">
+<p><img src="img/yesterdays-hardware.jpg" width="350"></p>
+</div>
+</section>
+<section id="enter-commodity-hardware" class="slide level2">
+<h2>Enter commodity hardware!</h2>
+<div class="column" style="width:47%;">
+<h3 id="consumer-grade-hardware">Consumer-grade hardware</h3>
+<p>Not expensive, premium nor fancy in any way</p>
+<p><strong>Desktop-like servers are cheap, so buy a lot!</strong></p>
+<ul>
+<li>Easy to add capacity</li>
+<li>Cheaper per CPU/disk</li>
+</ul>
+<h3 id="but">But</h3>
+<p>Need more complex software to be able to run on lots of smaller/cheaper machines.</p>
+</div>
+<div class="column" style="width:47%;">
+<p><img src="img/hardware-big-data.jpg" width="350"></p>
+</div>
+</section>
+<section id="problems-with-cheap-hardware" class="slide level2">
+<h2>Problems with cheap hardware</h2>
+<div class="column" style="width:47%;">
+<h3 id="failures">Failures</h3>
+<ul>
+<li>1-5% hard drives/year</li>
+<li>0.2% DIMMs/year</li>
+</ul>
+<h3 id="network-speed-vs.-shared-memory">Network speed vs.&nbsp;shared memory</h3>
+<ul>
+<li>Much more latency</li>
+<li>Network slower than storage</li>
+</ul>
+<h3 id="uneven-performance">Uneven performance</h3>
+</div>
+<div class="column" style="width:47%;">
+<p><img src="img/cheap-hw.jpg"></p>
+</div>
+</section>
+<section>
+<section id="big-data-processing-systems-build-on-average-machines-which-fail-pretty-often" class="title-slide slide level1 section center">
+<h1>Big data processing systems build on average machines which fail pretty often!</h1>
+
+</section>
+<section id="hang-on-to-this-thought" class="slide level2">
+<h2>Hang on to this thought!</h2>
+</section>
+<section id="meet-doug-cutting" class="slide level2">
+<h2>Meet <a href="https://en.wikipedia.org/wiki/Doug_Cutting">Doug Cutting</a></h2>
+<div class="column" style="width:47%;">
+<p><img src="img/doug-cutting.jpeg" width="350"></p>
+</div>
+<div class="column" style="width:47%;">
+<ul>
+<li>In 1997, Doug Cutting started writing the first version of <a href="https://lucene.apache.org/">Lucene</a> (a full text search library).</li>
+<li>In 2001, Lucene moves to the <a href="https://apache.org/">Apache Software Foundation</a>, and <a href="https://en.wikipedia.org/wiki/Mike_Cafarella">Mike Cafarella</a> joins Doug and create a Lucene subproject called <a href="http://nutch.apache.org/">Nutch</a>, a web-crawler. Nutch uses Lucene to index the contents of a web page as it crawls it.</li>
+<li>Nutch and Lucene were deployed on a <strong>single machine</strong> (single core processor, 1GB RAM, 8 HDDs ~ 1TB), achieved decent performance, but they needed something that would be scalable enough to be able to index the web.</li>
+</ul>
+</div>
+</section>
+<section id="doug-and-mike-set-out-to-to-improve-nutch" class="slide level2">
+<h2>Doug and Mike set out to to improve Nutch</h2>
+<p>They needed a to build some kind of distributed storage layer to be the foundation of a scalable system. The came up with these requirements:</p>
+<ul>
+<li>Schemaless</li>
+<li>Durable</li>
+<li>Capable of handling component failure</li>
+<li>Automatically rebalanced</li>
+</ul>
+<div class="fragment">
+<p><strong>Does this sound familiar?</strong></p>
+</div>
+</section></section>
+<section>
+<section id="in-2003-and-2004-google-publishes-two-seminal-papers" class="title-slide slide level1 section center">
+<h1>In 2003 and 2004 Google publishes two seminal papers</h1>
+
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<p><img src="img/gfs-paper.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="the-google-file-system-gfs-paper">The Google File System (GFS) Paper</h3>
+<p>It describes how Google stored its information, at scale, using a reliable and high-available storage system can be built on commodity machines considering that failures are the norm rather than the exception.</p>
+<p>GFS is: * optimized for special application environment * fault tolerance is built in * centralized metadata management * simplify the operation semantics * decouple I/O and metadata operations</p>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<p><img src="img/mr-paper.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="the-google-mapreduce-paper">The Google MapReduce Paper</h3>
+<p>Describes how Google processes data, at scale using MapReduce, a paradigm based on functional programming. MapReduce is an approach and infrastructure for doing things at scale. MapReduce is two things:</p>
+<ol type="1">
+<li>A data processing model named MapReduce</li>
+<li>A distributed, large scale data processing paradigm.</li>
+</ol>
+<p>Which provides the following benefits:</p>
+<ul>
+<li>Moves the computation to the data</li>
+<li>Automatic parallelization and distribution</li>
+<li>Fault tolerance</li>
+<li>I/O scheduling</li>
+<li>Integrated status and monitoring</li>
+</ul>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<p><img src="img/mr-paper.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<p><strong>The MapReduce model</strong></p>
+<ol type="1">
+<li>Map function takes an input pair and produces a set of intermediate key/value pairs. The MapReduce library groups together all intermediate values associated with the same intermediate key and passes them to the Reduce function.</li>
+<li>Reduce function accepts an intermediate key and a set of values for that key. It merges together these values to form a possibly smaller set of values. Typically just zero or one output value is produced per Reduce invocation.</li>
+</ol>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<p><img src="img/mr-paper.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<p><strong>The advantages</strong></p>
+<ol type="1">
+<li>The model is relatively easy to use, even for programmers without experience with parallel and distributed systems since it handles parallelization, fault-tolerance, locality optimization, and load balancing.</li>
+<li>A large variety of problems are easily expressible as MapReduce computations.</li>
+<li>This paper developed an implementation of MapReduce that scales to large clusters of machines comprising thousands of machines.</li>
+</ol>
+</div>
+</section>
+<section id="the-genesis-of-hadoop-an-implementation-of-googles-ideas" class="slide level2 smaller">
+<h2>The genesis of <em>Hadoop</em>: an implementation of Google’s ideas</h2>
+<ul>
+<li>Using the Google papers as a specification, they started implementing the ideas in Java in 2004 and created the <em>Nutch Distributed File System (NDFS)</em>.</li>
+<li>The main purpose of this file system was to abstract the cluster’s storage so that it presents itself as a single, reliable, file system.</li>
+<li>Another first class featuer of the system was its ability to handle failures without operator interventions and it can run on inexpensive, commodity hardware components</li>
+<li>In 2006, Hadoop was created by moving NDFS (which becamie HDFS) and the MapReduce implementation out of Lucene. Hadoop 1.0 was released. 1.8TB of data sorts in 188 nodes in 48hours. Doug Cutting goes to work at Yahoo!</li>
+<li>In 2007, LinkedIn, Twitter and Facebook started adopting this new tool and contributing back to the project. Yahoo! is running their first production Hadoop cluster with 1,000 machines.</li>
+<li>In 2008, Yahoo! is running a 10,000 core cluster. World record created for fastest sorting of 1Tb in 209 seconds using a 910 node cluster. Cloudera is formed.</li>
+<li>In 2009, Yahoo!’s cluster is 24,000 cores and claims to sort 1TB in 62 seconds. Amazon introduces Elastic MapReduce. HDFS and MapReduce become their own separate sub-projects.</li>
+<li>In 2010, Yahoo!’s cluster is 4,000 and ~70PB, Facebook’s is 2,300 nodes and ~40PB.</li>
+<li>In 2011, Yahoo!’s cluster is 42,000 nodes</li>
+<li>In 2017, Twitter Hadoop cluster has over 500 Petabytes of data. Biggest cluster over 10k nodes. <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2017/the-infrastructure-behind-twitter-scale">Read more here</a></li>
+</ul>
+</section>
+<section id="trivia-question-why-is-it-named-hadoop" class="slide level2">
+<h2>Trivia question: why is it named Hadoop?</h2>
+<div class="fragment">
+<div class="column" style="width:47%;">
+<p><img src="img/nyt-hadoop2.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<p><img src="img/apache-hadoop-logo.svg"></p>
+</div>
+</div>
+</section>
+<section id="tangent-why-open-source-matters" class="slide level2">
+<h2>Tangent: Why Open Source Matters!</h2>
+<p>The Google File System is not popular as a program among the business world… why???</p>
+<p>Hadoop has become the standard for cluster storage because it is open source!!</p>
+<p>Who has heard of Colossus? (Google’s next version of GFS)</p>
+<p><a href="https://pierrezemb.fr/posts/colossus-google/">Review of GFS vs.&nbsp;Hadoop</a></p>
+</section>
+<section id="what-is-hadoop-1.0-mapreduce-engine-and-hdfs" class="slide level2">
+<h2>What is Hadoop 1.0: MapReduce Engine and HDFS</h2>
+<div class="column" style="width:47%;">
+<h3 id="mapreduce-performs-the-computations-and-manages-cluster">MapReduce performs the computations and manages cluster</h3>
+<ul>
+<li>The <em>Job Tracker</em> is the master planner</li>
+<li>The <em>Task Tracker</em> runs each task</li>
+</ul>
+<h3 id="hdfs-stores-the-data">HDFS stores the data</h3>
+</div>
+<div class="column" style="width:47%;">
+<p><img src="img/michael-noll-hadoop-1-0.png"></p>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<h3 id="hadoop-1.0-problems">Hadoop 1.0 Problems</h3>
+<ul>
+<li>Monolithic</li>
+<li>MapReduce had too many responsibilites</li>
+<li>Assigning cluster resources</li>
+<li>Managing job execution</li>
+<li>Doing data processing</li>
+<li>Interfacing with client applications</li>
+<li>Only supported MapReduce</li>
+<li>Had a single <em>NameNode</em> to manage the cluster (single point of failure)</li>
+<li>Batch oriented and extremely inefficient with iterative queries</li>
+</ul>
+<p><img src="img/arch1-0.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<div class="fragment">
+<!-- -->
+<h3 id="yarn-hadoop-2.0">YARN &amp; Hadoop 2.0</h3>
+<ul>
+<li>Cluster management capability gets pulled out of MapReduce and becomes YARN (Yet Anothe Resource Negotiator), decoupling cluster operations from data pipeline</li>
+<li>Allowed for other applications to run on a cluster</li>
+<li>Hadoop 2.0 was released in 2013</li>
+</ul>
+<p><img src="img/arch2-0.png"></p>
+</div>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<h3 id="a-mapreduce-job-1.0">A MapReduce Job (1.0)</h3>
+<p><img src="img/how-hadoop-runs-1-0.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="a-mapreduce-job-2.0">A MapReduce Job (2.0+)</h3>
+<p><img src="img/hddg_0701.png"></p>
+</div>
+</section>
+<section id="how-yarn-manages-the-cluster" class="slide level2">
+<h2>How YARN manages the Cluster</h2>
+<div class="imgcenter">
+<p><img data-src="img/hddg_0402.png" width="550"></p>
+</div>
+</section>
+<section id="the-hadoop-architecture-is-scalable" class="slide level2">
+<h2>The Hadoop Architecture is Scalable</h2>
+<div class="column" style="width:47%;">
+<p><img src="img/dawh_0202.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<p><img src="img/hadoop-doesnt-care-about-data-size.png"></p>
+</div>
+</section>
+<section id="hadoop-3.0-released-2017" class="slide level2">
+<h2>Hadoop 3.0 (Released 2017)</h2>
+<ul>
+<li>Supports multiple standby NameNodes.</li>
+<li>Supports multiple NameNodes for multiple namespaces.</li>
+<li>Storage overhead reduced from 200% to 50%
+<ul>
+<li>Supports GPUs</li>
+</ul></li>
+<li>Supports for Microsoft Azure Data Lake and Aliyun Object Storage System file-system connectors</li>
+<li>Rewrite of Hadoop Shell</li>
+<li>MapReduce task Level Native Optimization.</li>
+<li>Introduces more powerful YARN</li>
+</ul>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<img data-src="img/hadoop-ecosystem.png" class="r-stretch">
+<p>The Current Hadoop Ecosystem: <a href="https://hadoopecosystemtable.github.io/" class="uri">https://hadoopecosystemtable.github.io/</a></p>
+</section></section>
+<section>
+<section id="lets-revisit-map-and-reduce-and-learn-more-about-mapreduce" class="title-slide slide level1 section center">
+<h1>Let’s revisit Map and Reduce and learn more about MapReduce</h1>
+
+</section>
+<section id="map" class="slide level2">
+<h2>Map</h2>
+<div class="column" style="width:47%;">
+<p><img src="img/dawh_0203.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="map-tasks-are-broken-into-the-following-phases">Map tasks are broken into the following phases:</h3>
+<ul>
+<li><strong>record reader:</strong> translates the <em>input split</em> generated by the <em>input format</em> into records or key/value pairs</li>
+<li><strong>map:</strong> function that executes on every input record</li>
+<li><strong>combiner:</strong> acts as a <em>localized</em> reducer to pre-aggregate within the map phase</li>
+<li><strong>partitioner:</strong> takes intermediate key/value pairs from the mapper (or combiner if used) and splits them up into shards, one shard per reducer</li>
+</ul>
+</div>
+</section>
+<section id="reduce" class="slide level2">
+<h2>Reduce</h2>
+<div class="column" style="width:47%;">
+<p><img src="img/dawh_0204.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="reduce-tasks-are-broken-into-the-following-phases">Reduce tasks are broken into the following phases:</h3>
+<ul>
+<li><strong>shuffle and sort:</strong> this phase takes the output files written by all of the partitioners and downloads the files to the local node where the <em>reducer</em> code will run</li>
+<li><strong>reducer:</strong> function that executes on every group of records for the same key</li>
+<li><strong>output format:</strong> translates the final key/value pair and writes out to a file by a record writer</li>
+</ul>
+</div>
+</section>
+<section id="combining-everything-into-mapreduce" class="slide level2">
+<h2>Combining Everything into MapReduce</h2>
+<div class="center">
+<p><img src="img/dawh_0205.png"></p>
+</div>
+</section></section>
+<section>
+<section id="some-typical-mapreduce-patterns" class="title-slide slide level1 section center">
+<h1>Some typical MapReduce patterns</h1>
+
+</section>
+<section id="map-only" class="slide level2">
+<h2>Map Only</h2>
+<div class="column" style="width:47%;">
+<p><img src="img/hddg_0205.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="examples-of-map-only-jobs">Examples of map-only jobs:</h3>
+<ul>
+<li>Filtering</li>
+<li>Data reorganization</li>
+<li>Running a task in an embarrassingly parallel way</li>
+</ul>
+</div>
+</section>
+<section id="map-and-reduce" class="slide level2">
+<h2>Map and Reduce</h2>
+<div class="column" style="width:47%;">
+<h3 id="single-reducer">Single reducer</h3>
+<p><img src="img/hddg_0203.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="multiple-reducers">Multiple reducers</h3>
+<p><img src="img/hddg_0204.png"></p>
+</div>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<h3 id="benefits-of-hadoopmapreduce">Benefits of Hadoop/MapReduce</h3>
+<ul>
+<li><p>Fault tolerance</p></li>
+<li><p>Map and Reduce functions are simple to understand and easy to program</p></li>
+</ul>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="limitations-of-hadoopmapreduce">Limitations of Hadoop/MapReduce</h3>
+<ul>
+<li><p>Everything has to be expressed in a map or reduce, and sometimes you can’t</p></li>
+<li><p>There is no control over the order in which map or reduce run</p></li>
+<li><p>Data is not indexed</p></li>
+<li><p>High overhead</p></li>
+<li><p>You cannot leverage parallelism if you have an extremely large number of very small files (smaller than a single block)</p></li>
+<li><p>Only suited for batch-processing, not real-time</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="working-with-your-data-in-a-cluster" class="title-slide slide level1 section center">
+<h1>Working with your data in a cluster</h1>
+
+</section>
+<section id="everything-begins-and-ends-in-a-distributed-filesystem" class="slide level2">
+<h2>Everything begins and ends in a distributed filesystem</h2>
+<div class="center">
+<p><img src="img/dawh_0208.png" width="850"></p>
+</div>
+</section>
+<section id="distributed-filesystems" class="slide level2">
+<h2>Distributed filesystems</h2>
+<div class="center">
+<p><img src="img/distributed-file-systems.png" width="850"></p>
+</div>
+</section>
+<section id="cloud-object-storage-vs-hdfs" class="slide level2">
+<h2>Cloud Object Storage vs HDFS</h2>
+<ul>
+<li><p>Independent scalability</p></li>
+<li><p>Integration via simple REST API calls</p></li>
+<li><p>Lower cost</p></li>
+<li><p>No single point of failure</p></li>
+</ul>
+</section>
+<section id="cloud-based-hadoop-clusters" class="slide level2">
+<h2>Cloud based Hadoop Clusters</h2>
+<p>Amazon Elastic MapReduce (EMR) and Azure HDInsight</p>
+<div class="column" style="width:47%;">
+<h3 id="on-premises">On Premises</h3>
+<p><img src="img/dawh_0202.png"></p>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="cloud-based-note-the-storage-layer">Cloud Based (note the storage layer)</h3>
+<p><img src="img/cloud-hadoop-arch.png"></p>
+</div>
+</section>
+<section id="accessing-data-in-distributed-objectfile-system" class="slide level2">
+<h2>Accessing Data in Distributed Object/File System</h2>
+<h3 id="for-files-in-the-cluster-hdfs">For files in the <em>Cluster HDFS</em></h3>
+<ul>
+<li><code>directory/data/</code> which is a shortcut to</li>
+<li><code>/user/hadoop/directory/data/</code></li>
+</ul>
+<h3 id="for-files-in-amazon-s3">For files in <em>Amazon S3</em></h3>
+<p>The service name is <em>S3</em> and the data container is called a “bucket (<code>bucket_name</code>)” * <code>s3://bucket_name/directory/data/</code></p>
+<h3 id="for-files-in-azure-blob">For Files in Azure Blob</h3>
+<p>The service name is <em>Azure Storage Account</em> (<code>your_account</code>) and the data container is called a “container (<code>container</code>)”. There can be many containers in a storage account.</p>
+<ul>
+<li><code>wasb://container@your_account.blob.core.windows.net/directory/data/</code></li>
+</ul>
+</section>
+<section id="hdfs-essential-commands" class="slide level2">
+<h2>HDFS essential commands</h2>
+<p>What commands have we discussed about the Linux file system that we want for HDFS?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| code-line-numbers: false</span>
+<span id="cb1-2"><a href="#cb1-2"></a># list files</span>
+<span id="cb1-3"><a href="#cb1-3"></a>hdfs dfs -ls &lt;hdfs path&gt;</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a># make directories</span>
+<span id="cb1-6"><a href="#cb1-6"></a>hdfs dfs -mkdir &lt;folder location&gt;</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a># touch an empty file</span>
+<span id="cb1-9"><a href="#cb1-9"></a>hdfs dfs -touchz &lt;hdfs path&gt;</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a># "put" file to hdfs</span>
+<span id="cb1-12"><a href="#cb1-12"></a>hdfs dfs -put &lt;other file path&gt; &lt;dest hdfs path&gt;</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a># "get" file from hdfs</span>
+<span id="cb1-15"><a href="#cb1-15"></a>hdfs dfs -get &lt;other file path&gt; &lt;dest hdfs path&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hdfs-essential-commands-1" class="slide level2">
+<h2>HDFS essential commands</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a># other flag commands, after command and subcommand</span>
+<span id="cb2-2"><a href="#cb2-2"></a>hdfs dfs -cat &lt;hdfs path&gt; #print contents of file</span>
+<span id="cb2-3"><a href="#cb2-3"></a>hdfs dfs -mv &lt;old hdfs path&gt; &lt;new hdfs path&gt; # move file/folder</span>
+<span id="cb2-4"><a href="#cb2-4"></a>hdfs dfs -rm &lt;hdfs path&gt; #only one file</span>
+<span id="cb2-5"><a href="#cb2-5"></a>hdfs dfs -rmr &lt;hdfs path&gt; # recursive flag!</span>
+<span id="cb2-6"><a href="#cb2-6"></a>hdfs dfs -chmod 777 &lt;hdfs path&gt; # set permissions</span>
+<span id="cb2-7"><a href="#cb2-7"></a>hdfs dfs -setfacl -m default:user:sqoop:rwx &lt;hdfs path&gt; # access control list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://www.geeksforgeeks.org/hdfs-commands/">Review common commands here</a><br>
+<a href="https://mindmajix.com/hadoop-hdfs-commands-with-examples">More common commands</a></p>
+</section>
+<section id="how-to-programmatically-interact-with-hdfs-from-python" class="slide level2">
+<h2>How to programmatically interact with HDFS from python?</h2>
+<ul>
+<li><p>Use a python library (hdfs, snakebite, pydoop)</p></li>
+<li><p>What I do…</p></li>
+<li><p>subprocess to call the real functions!</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a>import subprocess</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a># local path of the file</span>
+<span id="cb3-5"><a href="#cb3-5"></a>local_path = '/home/hadoop/test_dir/myfile.txt'</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a># can be a new file name or a just folder destination</span>
+<span id="cb3-8"><a href="#cb3-8"></a>hdfs_path = '/user/hadoop/data_folder/'</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a># construct string command to execute in linux</span>
+<span id="cb3-11"><a href="#cb3-11"></a>linux_command = f'hdfs dfs -put {local_path} {hdfs_path}'</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a># run in linux, grab result code and message</span>
+<span id="cb3-14"><a href="#cb3-14"></a>result_code, result_message = subprocess.getstatusoutput(linux_command)</span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a># raise an error if command did not exit properly</span>
+<span id="cb3-17"><a href="#cb3-17"></a>if result_code != 0:</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  raise TypeError(f'exit code: {result_code}, {result_message}')</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="writing-mapreduce-applications" class="slide level2">
+<h2>Writing MapReduce applications</h2>
+<p>Hadoop is written in Java and provides a Java API that allows you to specify the following:</p>
+<ul>
+<li><p>The input and output data locations in your distributed object/file system</p></li>
+<li><p>The Map and Reduce functions which are providede in the form of Java classes</p></li>
+<li><p>Many kinds of job parameters and configurations</p></li>
+</ul>
+<p>Oh no! What if I want to use other programming languages?</p>
+</section>
+<section id="section-9" class="slide level2" data-background-image="img/java-logo.png" data-background-size="contain">
+<h2></h2>
+
+<img data-src="img/no-sign.png" style="width: 50%; margin: auto; display: block;" class="r-stretch"></section></section>
+<section>
+<section id="introducing-hadoop-streaming" class="title-slide slide level1 center" data-background-image="img/stream_1024.gif" data-background-size="cover">
+<h1><span style="color: #ffffff;">Introducing Hadoop Streaming</span></h1>
+
+<img data-src="img/3x.png" style="width: 50%; margin: auto; display: block;" class="r-stretch"></section>
+<section id="the-name-hadoop-streaming-comes-from-the-unix-streams" class="slide level2">
+<h2>The name <em>Hadoop Streaming</em> comes from the <em>Unix Streams</em></h2>
+
+<img data-src="img/unix-streams.png" class="imgcenter r-stretch"></section>
+<section id="hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework" class="slide level2">
+<h2>Hadoop Streaming allows you to run <em>any executable script</em> on the Hadoop Framework</h2>
+<p>It uses an existing Java program to run non-java programs!</p>
+
+<img data-src="img/dawh_0301.png" class="imgcenter r-stretch" width="700"><p>Keys and values can be single or compound</p>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<div class="column" style="width:47%;">
+<h3 id="advantages-of-hadoop-streaming">Advantages of Hadoop Streaming</h3>
+<ul>
+<li><p>Using existing code-base (non Java)</p></li>
+<li><p>Leveraging Hadoop framework to scale out</p></li>
+</ul>
+</div>
+<div class="column" style="width:47%;">
+<h3 id="limitations-of-hadoop-streaming">Limitations of Hadoop Streaming</h3>
+<ul>
+<li><p>No combiner or partitioner, just map -&gt; shuffle-sort -&gt; reduce</p></li>
+<li><p>Everything is text. Your programs have to parse everything appropriately and convert strings to other data types as needed. You also have manually create the key/value pair for output.</p></li>
+<li><p>If using R or Python, you must limit your programs to the base libraries.</p></li>
+</ul>
+</div>
+</section>
+<section id="basic-python-mapper" class="slide level2">
+<h2>Basic Python Mapper</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>#!/usr/bin/env python</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>import sys</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>if __name__ == "__main__":</span>
+<span id="cb4-6"><a href="#cb4-6"></a> for line in sys.stdin:</span>
+<span id="cb4-7"><a href="#cb4-7"></a>     for word in line.split():</span>
+<span id="cb4-8"><a href="#cb4-8"></a>         sys.stdout.write("{}\t1\n".format(word))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The first line makes this an executable Python script</li>
+<li>Read in line</li>
+<li>Split line by space into single words</li>
+<li>For every line: produce an output in the form of <code>word\t1</code> where <code>\t</code> is a tab</li>
+<li>Output is always a key and value pair!</li>
+</ul>
+</section>
+<section id="basic-python-reducer" class="slide level2">
+<h2>Basic Python Reducer</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>#!/usr/bin/env python</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>import sys</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>def stdout(key, val):</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  sys.stdout.write(f"{key}\t{val}\n")</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>if __name__ == '__main__':</span>
+<span id="cb5-9"><a href="#cb5-9"></a> curkey = None</span>
+<span id="cb5-10"><a href="#cb5-10"></a> total = 0</span>
+<span id="cb5-11"><a href="#cb5-11"></a> for line in sys.stdin:</span>
+<span id="cb5-12"><a href="#cb5-12"></a>     key, val = line.split("\t")</span>
+<span id="cb5-13"><a href="#cb5-13"></a>     val = int(val)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a>     if key == curkey:</span>
+<span id="cb5-16"><a href="#cb5-16"></a>         total += val</span>
+<span id="cb5-17"><a href="#cb5-17"></a>     else:</span>
+<span id="cb5-18"><a href="#cb5-18"></a>         if curkey is not None:</span>
+<span id="cb5-19"><a href="#cb5-19"></a>              stdout(curkey, total)</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a>         curkey = key</span>
+<span id="cb5-22"><a href="#cb5-22"></a>         total = val</span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a> stdout(curkey, total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<ul>
+<li>The first line makes this an executable Python script</li>
+<li>Make stdout function</li>
+<li>Read in line and stores in memory</li>
+<li>Look at the key from the key/value</li>
+<li>Read next line and compare key</li>
+<li>Keep reading lines and storing lines in memory until the key is different</li>
+<li>When new key is received, take all the lines from the previous key and do something and write out result</li>
+<li>Repeat until all lines are processed</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="section-11" class="slide level2 smaller">
+<h2></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \</span>
+<span id="cb6-2"><a href="#cb6-2"></a>-files basic-mapper.py,basic-reducer.py \</span>
+<span id="cb6-3"><a href="#cb6-3"></a>-input [[input-location]] \</span>
+<span id="cb6-4"><a href="#cb6-4"></a>-output [[output-location]] \</span>
+<span id="cb6-5"><a href="#cb6-5"></a>-mapper basic-mapper.py \</span>
+<span id="cb6-6"><a href="#cb6-6"></a>-reducer basic-reducer.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><code>hadoop jar /usr/lib/hadoop/hadoop-streaming.jar</code> launches Hadoop with the <code>hadoop-streaming.jar</code></p></li>
+<li><p><code>-files /home/hadoop/hadoop-streaming/basic-mapper.py,/home/hadoop/hadoop-streaming/basic-reducer.py</code> tells the job to “ship” the executable mapper and reducer scripts (the actual filename and absolute path) to every node on the cluster. <strong>This line must always be second when you need to ship files with your job.</strong></p></li>
+<li><p><code>-input [[input-location]]</code> tells the Hadoop the location of your source data in a distributed object/filesystem. If you specify a directory, all files in the directory will be used as inputs</p></li>
+<li><p><code>-output [[output-location]]</code> tells the Hadoop the location of your output data in a distributed object/filesystem. <strong>This parameter is just a name of a location, and it must not exist before running the job otherwise the job will fail.</strong></p></li>
+<li><p><code>-mapper basic-mapper.py</code> and <code>reducer basic-reducer.py</code> specify the commands to run as a mapper and reducer, respectively. <strong>These must be shell scripts or native Linux commands.</strong> If you are using a script, you must “ship” it to the nodes with the <code>-files</code> parameter above.</p></li>
+</ul>
+</section>
+<section id="gotchas" class="slide level2">
+<h2>Gotcha’s</h2>
+<ul>
+<li><p>The output location of the job (HFDF, S3, Blob) must <em>not exist</em> before running a job. You will get an error if you try to write out to an existing/non-empty location</p></li>
+<li><p>You have to <em>ship</em> or <em>package</em> your executables with the job.</p></li>
+<li><p>Hadoop/Java error messages can be cryptic and only give you errors regarding the framework. If you need to debug your script you will need to look at the stdout/stderr logs</p></li>
+<li><p>You need to specify the full path name of your mapper and reducer scripts</p></li>
+</ul>
+</section>
+<section id="example-code" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \</span>
+<span id="cb7-2"><a href="#cb7-2"></a>-files basic-mapper.py,basic-reducer.py \</span>
+<span id="cb7-3"><a href="#cb7-3"></a>-input /user/hadoop/in_data \</span>
+<span id="cb7-4"><a href="#cb7-4"></a>-output /user/hadoop/in_data \</span>
+<span id="cb7-5"><a href="#cb7-5"></a>-mapper basic-mapper.py \</span>
+<span id="cb7-6"><a href="#cb7-6"></a>-reducer basic-reducer.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hadoop-references" class="slide level2">
+<h2>Hadoop References</h2>
+<ul>
+<li><p>Hadoop 3.3.1: <a href="https://hadoop.apache.org/docs/r3.3.1/" class="uri">https://hadoop.apache.org/docs/r3.3.1/</a></p>
+<ul>
+<li>HDFS Filesystem Commands: <a href="https://hadoop.apache.org/docs/r3.3.1/hadoop-project-dist/hadoop-common/FileSystemShell.html" class="uri">https://hadoop.apache.org/docs/r3.3.1/hadoop-project-dist/hadoop-common/FileSystemShell.html</a></li>
+</ul></li>
+<li><p>Hadoop Streaming <a href="https://hadoop.apache.org/docs/r3.3.1/hadoop-streaming/HadoopStreaming.html" class="uri">https://hadoop.apache.org/docs/r3.3.1/hadoop-streaming/HadoopStreaming.html</a></p></li>
+</ul>
+</section></section>
+<section id="cluster-demo-if-there-is-time" class="title-slide slide level1 center">
+<h1>Cluster Demo (if there is time)</h1>
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 
 <div class="footer footer-default">
 
 </div>
+<<<<<<< HEAD
 </section></section>
+=======
+</section>
+>>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
     </div>
   </div>
 

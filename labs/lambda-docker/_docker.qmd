@@ -42,7 +42,7 @@ CMD ["python", "-c", "import platform; print(f\"version: {platform.python_versio
 
 ![](img/cloud9-docker-test-run.PNG)
 
-## Lambda Docker Image
+## Lambda Docker Image(Lab-Demonstration)
 
 
 
@@ -52,7 +52,7 @@ Note that this Dockerfile is invoking your `requirements.txt` file to install an
   Each library which needs to be installed will be listed here. Think of Docker as a virtual environment where you can install any package you need and then you would list them in the `requirements.txt` file. A small example of this is given in the following screenshot below.
   When the requirements.txt file has been changed, you will have to build and redeploy the docker image.
 
-  ![requirements.txt](requirements-example.png)
+  ![requirements.txt](img/requirements-example.png)
 
 
 * Use the new Dockerfile contents below for your `Dockerfile`. 
@@ -134,7 +134,7 @@ docker run -p PORT CONTAINER NAME
 
 ![](img/cloud9-docker-4-result.PNG)
 
-# Lambda Yahoo Finance Exercise
+# Lambda Yahoo Finance Exercise (LAB Submission-Part-2)
 
 
 ## Python Setup
@@ -205,7 +205,7 @@ Hint #3: Implement a basic logger function to see where you might be going wrong
 
 1. **Use the following test inputs to confirm your function can handle all the errors gracefully: APPL, AAPL, appl, DOW, dow. Unknown tickers need to be handled and case of the ticker should not matter**.
 
-2. **Take a screenshot of your terminal with all 5 test cases and their result and place into your Word doc**.
+2. **Submit the bash history where this function is implemented in the file `lambda-local-test.txt`.**
 
 3. **Once your code is ready to go with Lambda, add, commit, and push the files (app.py, Dockerfile, requirements.txt) to GitHub**.
 
@@ -274,8 +274,6 @@ The result of your test will be shown in a green box, and just click on the `Det
 
 ![](img/lambda-docker-4-success.PNG)
 
-### **Take a screenshot of the success output from the test you made in Lambda into your Word doc**
-
 # Set up Function URL for a REST API
 
 Let's get the REST API up and running for your Lambda function so that you could call this function with other scripts! Go to the `Configuration` tab, then the `Function URL` section, then click `Create function URL`.
@@ -294,7 +292,14 @@ Run the following command in Cloud9 to confirm that you are able to query the Fu
 
 ![](img/lambda-functionurl-test.png)
 
-#### EXTRA CREDIT - **5% bonus**. Modify your app.py to accept multiple stocks as an input like {"payload" : "AAPL,DOW,MSFT"}. Provide an extra screenshot of your test of this functionality in your Word doc and clearly identify that this is your bonus work. Send back multiple  `{"statusCode" : 200, "body" : [{"stock" : "A", "price" : "#####"}, {"stock" : "B", "price" : "#####"}]}`
+### ** Submit the Lambda URL in `lambda-docker-url.json` file. Make sure that if a payload is given from the local terminal in your laptop, the lambda function returns the intended result.**
+
+#### EXTRA CREDIT - **5% bonus**. Modify your app.py to accept multiple stocks like {"payload" : "AAPL,DOW,MSFT"} as an input and create a new lambda function. Provide an extra file in your repo named `bonus-test-url.json` of your test. It should return with the given input like the following result below: 
+```{.bashrc}
+{"statusCode" : 200,
+ "body" : [{"stock" : "A", "price" : "#####"}, {"stock" : "B", "price" : "#####"}]
+}
+```
 
 :::callout-important
 Make sure you git add, commit, and push all your work on your container!
