@@ -11,7 +11,7 @@
 
 ### Why should you care?
 
-![](img/meme_ship_machine.png)
+![](docker/img/meme_ship_machine.png)
 
 ## History of Virtualization
 
@@ -20,7 +20,7 @@
 - Virtualization first introduced in IBM in the 1960s
 - VMWare started in 
 
-![](img/virtualization-timeline.png)
+![](docker/img/virtualization-timeline.png)
 
 [link](https://www.servethehome.com/virtualization-long-history/)
 
@@ -38,7 +38,7 @@
 :::
 ::: {.column width="50%"}
 
-![](img/vm-diagram.png)
+![](docker/img/vm-diagram.png)
 
 
 
@@ -61,7 +61,7 @@
 :::
 ::: {.column width="50%"}
 
-![](img/container-diagram.png)
+![](docker/img/container-diagram.png)
 
 
 
@@ -70,7 +70,7 @@
 
 ## Docker vs. Virtual Machine
 
-![](img/vm-vs-container.PNG)
+![](docker/img/vm-vs-container.PNG)
 
 ## Docker Container Architecture
 
@@ -78,21 +78,21 @@
 - Containers are executing applications deployed based on an image
 - Container images become containers at runtime (Docker Engine!)
 
-![](img/Docker-Architecture.png)
+![](docker/img/Docker-Architecture.png)
 
 ## Containers are not enough
 
-![](img/containers-dont-solve-everything.jpg)
+![](docker/img/containers-dont-solve-everything.jpg)
 
 ## Container lifecycle
 
 * Containers (like applications) need a lifecycle
 
-![](img/container-lifecycle.png)
+![](docker/img/container-lifecycle.png)
 
 ## Container orchestration
 
-![](img/container-orchestration.jpg)
+![](docker/img/container-orchestration.jpg)
 
 # Building Docker images
 
@@ -100,14 +100,14 @@
 
 Each command to modify the environment is a layer in your build process
 
-![](img/docker-layers.png)
+![](docker/img/docker-layers.png)
 
 ## Docker base images
 
 * The first command in a Docker build is to call `FROM XXXXX`. This is the base image that has the core OS-level software.
 * smaller size == faster execution
 
-![](img/docker-base-images.png)
+![](docker/img/docker-base-images.png)
 
 ## The storage problem of containers
 
@@ -115,7 +115,7 @@ Each command to modify the environment is a layer in your build process
 * Containers need persistent storage sometimes
 * Docker volumes live outside the container and allow for permanent storage
 
-![](img/docker-volumes.png)
+![](docker/img/docker-volumes.png)
 
 ## Dockerfile Syntax
 
@@ -137,7 +137,7 @@ Each command to modify the environment is a layer in your build process
 * `CMD command param1 param2` - Final command to prepare the launching container. Typically occurs before an `ENTRYPOINT` instruction or as its own standalone command. `CMD` can be overwritten by new `docker run` arguments.
 * `ENTRYPOINT command param1 param2` - Command that will run the Docker container as an executable, such as a web server, Jupter environment, or data pipeline.
 
-![](img/docker-cmd-entrypoint.png)
+![](docker/img/docker-cmd-entrypoint.png)
 
 ## Dockerfile Syntax Examples
 

@@ -16,6 +16,9 @@ format:
     code-copy: true
 ---
 
+
+
+
 ## Agenda and Goals for Today
 
 :::: {.columns}

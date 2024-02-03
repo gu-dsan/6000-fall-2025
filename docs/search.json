@@ -515,11 +515,7 @@
     "href": "labs/01-labs.html",
     "title": "Lab 1",
     "section": "",
-<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/01-labs.html#goals",
@@ -610,11 +606,7 @@
     "href": "labs/02-labs.html",
     "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet.\nFollow these instructions step-by-step to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #\nFollow these instructions step-by-step to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same."
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/02-labs.html#login-into-the-aws-console",
@@ -656,11 +648,7 @@
     "href": "labs/03-labs.html",
     "title": "Lab 3",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/03-labs.html#github-classroom",
@@ -670,20 +658,6 @@
     "text": "GitHub Classroom\nGitHub Classroom Link"
   },
   {
-<<<<<<< HEAD
-    "objectID": "labs/04-labs.html",
-    "href": "labs/04-labs.html",
-    "title": "EMR Cluster Setup Instructions",
-    "section": "",
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet.\nAmazon Elastic MapReduce (EMR) is the industry-leading cloud big data solution for petabyte-scale data processing, interactive analytics, and machine learning using open-source frameworks such as Apache Spark, Apache Hive, and Presto. Follow these instructions step-by-step to setup an EMR cluster."
-  },
-  {
-    "objectID": "labs/04-labs.html#github-classroom",
-    "href": "labs/04-labs.html#github-classroom",
-    "title": "EMR Cluster Setup Instructions",
-    "section": "GitHub Classroom",
-    "text": "GitHub Classroom\nGitHub Classroom Link"
-=======
     "objectID": "labs/04-labs.html#hello-world-lambda",
     "href": "labs/04-labs.html#hello-world-lambda",
     "title": "Docker",
@@ -759,18 +733,13 @@
     "title": "Docker",
     "section": "Docker Setup in Lambda",
     "text": "Docker Setup in Lambda\nGo back to the Lambda dashboard by going to this link. Make a new function by clicking on the orange Create function button.\n\nYou must select the Container image option that is the third item on the top row of options for Lambda.\nName your function container-test\nSet your Execution role like we did earlier so that you use LabRole\nClick on the Browse images button to find the container you just uploaded!\n\n\n\nA popup will launch and you have to select the repository (“docker lambda”) and then your image, which will be called “latest” by default. Click on the orange Select image button.\n\n\nNow you see the same overview page for the Lambda. Since this is a container image and not simple code, we cannot actually preview anything. Just click on the Test tab.\n\nSet a name for your test aapl-test and change the event JSON to look like {\"payload\" : \"AAPL\"}. Once you are satisfied, click on the Save button and then the orange Test button.\n\nThe result of your test will be shown in a green box, and just click on the Details arrow to see the summary. Note that the stock price came back successfully. The billed duration in the example is 2578 ms, with “Init duration” contributing 709.68 ms and the code execution contributing 1867.85 ms. The results are rounded to the nearest millisecond, but are calculated at the 10 microsecond level, WOW!"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/05-labs.html",
     "href": "labs/05-labs.html",
     "title": "Lab 5",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/05-labs.html#github-classroom",
@@ -784,11 +753,7 @@
     "href": "labs/06-labs.html",
     "title": "Lab 6",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/06-labs.html#github-classroom",
@@ -802,11 +767,7 @@
     "href": "labs/07-labs.html",
     "title": "Lab 7 - SparkSQL",
     "section": "",
-<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/07-labs.html#the-right-data-tool",
@@ -848,11 +809,7 @@
     "href": "labs/08-labs.html",
     "title": "Lab 8",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/08-labs.html#github-classroom",
@@ -866,11 +823,7 @@
     "href": "labs/09-labs.html",
     "title": "Lab 9",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/09-labs.html#github-classroom",
@@ -884,11 +837,7 @@
     "href": "labs/10-labs.html",
     "title": "Lab 10",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/10-labs.html#github-classroom",
@@ -902,11 +851,7 @@
     "href": "labs/11-labs.html",
     "title": "Lambda & Docker",
     "section": "",
-<<<<<<< HEAD
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/11-labs.html#hello-world-lambda",
@@ -976,11 +921,7 @@
     "href": "labs/13-labs.html",
     "title": "Lab 13",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "labs/13-labs.html#github-classroom",
@@ -1001,11 +942,7 @@
     "href": "labs/login-to-saxanet.html",
     "title": "PPOL 5206",
     "section": "",
-<<<<<<< HEAD
-    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet."
-=======
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "resources/index.html",
@@ -1883,7 +1820,6 @@
     "text": "Anatomy of an asyncio Python program\n\n\n\n\nWrite a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.\nCreate a coroutine i.e. an async wrapper function to the blocking function using async and await, with the call to blocking function made using the asyncio.to_thread function. This enables the coroutine execution in a separate thread.\nCreate another coroutine that makes multiple calls (in a loop, list comprehension) to the async wrapper created in the previous step and awaits completion of all of the invocations using the asyncio.gather function.\nCall the coroutine created in the previous step from another function using the asyncio.run function.\n\n\n\nimport time\nimport asyncio\n\ndef my_blocking_func(i):\n    # some blocking code such as an api call\n    print(f\"{i}, entry\")\n    time.sleep(1)\n    print(f\"{i}, exiting\")\n    return None\n  \nasync def async_my_blocking_func(i: int):\n    return await asyncio.to_thread(my_blocking_func, i)\n\nasync def async_my_blocking_func_for_multiple(n: int):\n    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])\n\nif __name__ == \"__main__\":\n    # async version\n    s = time.perf_counter()\n    n = 20\n    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))\n    elapsed_async = time.perf_counter() - s\n    print(f\"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds\")"
   },
   {
-<<<<<<< HEAD
     "objectID": "slides/04-slides.html#agenda-and-goals-for-today",
     "href": "slides/04-slides.html#agenda-and-goals-for-today",
     "title": "Lecture 4",
@@ -2148,321 +2084,6 @@
     "title": "Lecture 4",
     "section": "Extra links",
     "text": "Extra links\nhttps://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/\nserverless web scraper with python and lambda - up to date simple example https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78"
-=======
-    "objectID": "slides/04-slides.html#section",
-    "href": "slides/04-slides.html#section",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "Looking back\n\nLinux and version control\nPython and parallelization\nIntro to the Cloud\nSetup of AWS Services\n\n\n\nToday\n\nIntro to Hadoop and MapReduce\nHadoop Streaming\nLab/Demo (depending on time):\n\nStart a cluster on AWS\nRun a sample Hadoop job\nRun a simluated mapreduce job using the command line\nRun a Hadoop Streaming job"
-  },
-  {
-    "objectID": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
-    "href": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
-    "title": "Lecture 4",
-    "section": "Yesterday’s hardware for big data processing",
-    "text": "Yesterday’s hardware for big data processing\n\nThe 1990’s solution\nOne big box, all processors share memory\nThis was:\n\nVery expensive\nLow volume\n\nIt was all premium hardware. And yet is still was not big enough!"
-  },
-  {
-    "objectID": "slides/04-slides.html#enter-commodity-hardware",
-    "href": "slides/04-slides.html#enter-commodity-hardware",
-    "title": "Lecture 4",
-    "section": "Enter commodity hardware!",
-    "text": "Enter commodity hardware!\n\nConsumer-grade hardware\nNot expensive, premium nor fancy in any way\nDesktop-like servers are cheap, so buy a lot!\n\nEasy to add capacity\nCheaper per CPU/disk\n\nBut\nNeed more complex software to be able to run on lots of smaller/cheaper machines."
-  },
-  {
-    "objectID": "slides/04-slides.html#problems-with-cheap-hardware",
-    "href": "slides/04-slides.html#problems-with-cheap-hardware",
-    "title": "Lecture 4",
-    "section": "Problems with cheap hardware",
-    "text": "Problems with cheap hardware\n\nFailures\n\n1-5% hard drives/year\n0.2% DIMMs/year\n\nNetwork speed vs. shared memory\n\nMuch more latency\nNetwork slower than storage\n\nUneven performance"
-  },
-  {
-    "objectID": "slides/04-slides.html#hang-on-to-this-thought",
-    "href": "slides/04-slides.html#hang-on-to-this-thought",
-    "title": "Lecture 4",
-    "section": "Hang on to this thought!",
-    "text": "Hang on to this thought!"
-  },
-  {
-    "objectID": "slides/04-slides.html#meet-doug-cutting",
-    "href": "slides/04-slides.html#meet-doug-cutting",
-    "title": "Lecture 4",
-    "section": "Meet Doug Cutting",
-    "text": "Meet Doug Cutting\n\n\n\n\n\nIn 1997, Doug Cutting started writing the first version of Lucene (a full text search library).\nIn 2001, Lucene moves to the Apache Software Foundation, and Mike Cafarella joins Doug and create a Lucene subproject called Nutch, a web-crawler. Nutch uses Lucene to index the contents of a web page as it crawls it.\nNutch and Lucene were deployed on a single machine (single core processor, 1GB RAM, 8 HDDs ~ 1TB), achieved decent performance, but they needed something that would be scalable enough to be able to index the web."
-  },
-  {
-    "objectID": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
-    "href": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
-    "title": "Lecture 4",
-    "section": "Doug and Mike set out to to improve Nutch",
-    "text": "Doug and Mike set out to to improve Nutch\nThey needed a to build some kind of distributed storage layer to be the foundation of a scalable system. The came up with these requirements:\n\nSchemaless\nDurable\nCapable of handling component failure\nAutomatically rebalanced\n\n\nDoes this sound familiar?"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-1",
-    "href": "slides/04-slides.html#section-1",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "The Google File System (GFS) Paper\nIt describes how Google stored its information, at scale, using a reliable and high-available storage system can be built on commodity machines considering that failures are the norm rather than the exception.\nGFS is: * optimized for special application environment * fault tolerance is built in * centralized metadata management * simplify the operation semantics * decouple I/O and metadata operations"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-2",
-    "href": "slides/04-slides.html#section-2",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "The Google MapReduce Paper\nDescribes how Google processes data, at scale using MapReduce, a paradigm based on functional programming. MapReduce is an approach and infrastructure for doing things at scale. MapReduce is two things:\n\nA data processing model named MapReduce\nA distributed, large scale data processing paradigm.\n\nWhich provides the following benefits:\n\nMoves the computation to the data\nAutomatic parallelization and distribution\nFault tolerance\nI/O scheduling\nIntegrated status and monitoring"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-3",
-    "href": "slides/04-slides.html#section-3",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "The MapReduce model\n\nMap function takes an input pair and produces a set of intermediate key/value pairs. The MapReduce library groups together all intermediate values associated with the same intermediate key and passes them to the Reduce function.\nReduce function accepts an intermediate key and a set of values for that key. It merges together these values to form a possibly smaller set of values. Typically just zero or one output value is produced per Reduce invocation."
-  },
-  {
-    "objectID": "slides/04-slides.html#section-4",
-    "href": "slides/04-slides.html#section-4",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "The advantages\n\nThe model is relatively easy to use, even for programmers without experience with parallel and distributed systems since it handles parallelization, fault-tolerance, locality optimization, and load balancing.\nA large variety of problems are easily expressible as MapReduce computations.\nThis paper developed an implementation of MapReduce that scales to large clusters of machines comprising thousands of machines."
-  },
-  {
-    "objectID": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
-    "href": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
-    "title": "Lecture 4",
-    "section": "The genesis of Hadoop: an implementation of Google’s ideas",
-    "text": "The genesis of Hadoop: an implementation of Google’s ideas\n\nUsing the Google papers as a specification, they started implementing the ideas in Java in 2004 and created the Nutch Distributed File System (NDFS).\nThe main purpose of this file system was to abstract the cluster’s storage so that it presents itself as a single, reliable, file system.\nAnother first class featuer of the system was its ability to handle failures without operator interventions and it can run on inexpensive, commodity hardware components\nIn 2006, Hadoop was created by moving NDFS (which becamie HDFS) and the MapReduce implementation out of Lucene. Hadoop 1.0 was released. 1.8TB of data sorts in 188 nodes in 48hours. Doug Cutting goes to work at Yahoo!\nIn 2007, LinkedIn, Twitter and Facebook started adopting this new tool and contributing back to the project. Yahoo! is running their first production Hadoop cluster with 1,000 machines.\nIn 2008, Yahoo! is running a 10,000 core cluster. World record created for fastest sorting of 1Tb in 209 seconds using a 910 node cluster. Cloudera is formed.\nIn 2009, Yahoo!’s cluster is 24,000 cores and claims to sort 1TB in 62 seconds. Amazon introduces Elastic MapReduce. HDFS and MapReduce become their own separate sub-projects.\nIn 2010, Yahoo!’s cluster is 4,000 and ~70PB, Facebook’s is 2,300 nodes and ~40PB.\nIn 2011, Yahoo!’s cluster is 42,000 nodes\nIn 2017, Twitter Hadoop cluster has over 500 Petabytes of data. Biggest cluster over 10k nodes. Read more here"
-  },
-  {
-    "objectID": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
-    "href": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
-    "title": "Lecture 4",
-    "section": "Trivia question: why is it named Hadoop?",
-    "text": "Trivia question: why is it named Hadoop?"
-  },
-  {
-    "objectID": "slides/04-slides.html#tangent-why-open-source-matters",
-    "href": "slides/04-slides.html#tangent-why-open-source-matters",
-    "title": "Lecture 4",
-    "section": "Tangent: Why Open Source Matters!",
-    "text": "Tangent: Why Open Source Matters!\nThe Google File System is not popular as a program among the business world… why???\nHadoop has become the standard for cluster storage because it is open source!!\nWho has heard of Colossus? (Google’s next version of GFS)\nReview of GFS vs. Hadoop"
-  },
-  {
-    "objectID": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
-    "href": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
-    "title": "Lecture 4",
-    "section": "What is Hadoop 1.0: MapReduce Engine and HDFS",
-    "text": "What is Hadoop 1.0: MapReduce Engine and HDFS\n\nMapReduce performs the computations and manages cluster\n\nThe Job Tracker is the master planner\nThe Task Tracker runs each task\n\nHDFS stores the data"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-5",
-    "href": "slides/04-slides.html#section-5",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "Hadoop 1.0 Problems\n\nMonolithic\nMapReduce had too many responsibilites\nAssigning cluster resources\nManaging job execution\nDoing data processing\nInterfacing with client applications\nOnly supported MapReduce\nHad a single NameNode to manage the cluster (single point of failure)\nBatch oriented and extremely inefficient with iterative queries\n\n\n\n\n\n\nYARN & Hadoop 2.0\n\nCluster management capability gets pulled out of MapReduce and becomes YARN (Yet Anothe Resource Negotiator), decoupling cluster operations from data pipeline\nAllowed for other applications to run on a cluster\nHadoop 2.0 was released in 2013"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-6",
-    "href": "slides/04-slides.html#section-6",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "A MapReduce Job (1.0)\n\n\n\nA MapReduce Job (2.0+)"
-  },
-  {
-    "objectID": "slides/04-slides.html#how-yarn-manages-the-cluster",
-    "href": "slides/04-slides.html#how-yarn-manages-the-cluster",
-    "title": "Lecture 4",
-    "section": "How YARN manages the Cluster",
-    "text": "How YARN manages the Cluster"
-  },
-  {
-    "objectID": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
-    "href": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
-    "title": "Lecture 4",
-    "section": "The Hadoop Architecture is Scalable",
-    "text": "The Hadoop Architecture is Scalable"
-  },
-  {
-    "objectID": "slides/04-slides.html#hadoop-3.0-released-2017",
-    "href": "slides/04-slides.html#hadoop-3.0-released-2017",
-    "title": "Lecture 4",
-    "section": "Hadoop 3.0 (Released 2017)",
-    "text": "Hadoop 3.0 (Released 2017)\n\nSupports multiple standby NameNodes.\nSupports multiple NameNodes for multiple namespaces.\nStorage overhead reduced from 200% to 50%\n\nSupports GPUs\n\nSupports for Microsoft Azure Data Lake and Aliyun Object Storage System file-system connectors\nRewrite of Hadoop Shell\nMapReduce task Level Native Optimization.\nIntroduces more powerful YARN"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-7",
-    "href": "slides/04-slides.html#section-7",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "The Current Hadoop Ecosystem: https://hadoopecosystemtable.github.io/"
-  },
-  {
-    "objectID": "slides/04-slides.html#map",
-    "href": "slides/04-slides.html#map",
-    "title": "Lecture 4",
-    "section": "Map",
-    "text": "Map\n\n\n\n\nMap tasks are broken into the following phases:\n\nrecord reader: translates the input split generated by the input format into records or key/value pairs\nmap: function that executes on every input record\ncombiner: acts as a localized reducer to pre-aggregate within the map phase\npartitioner: takes intermediate key/value pairs from the mapper (or combiner if used) and splits them up into shards, one shard per reducer"
-  },
-  {
-    "objectID": "slides/04-slides.html#reduce",
-    "href": "slides/04-slides.html#reduce",
-    "title": "Lecture 4",
-    "section": "Reduce",
-    "text": "Reduce\n\n\n\n\nReduce tasks are broken into the following phases:\n\nshuffle and sort: this phase takes the output files written by all of the partitioners and downloads the files to the local node where the reducer code will run\nreducer: function that executes on every group of records for the same key\noutput format: translates the final key/value pair and writes out to a file by a record writer"
-  },
-  {
-    "objectID": "slides/04-slides.html#combining-everything-into-mapreduce",
-    "href": "slides/04-slides.html#combining-everything-into-mapreduce",
-    "title": "Lecture 4",
-    "section": "Combining Everything into MapReduce",
-    "text": "Combining Everything into MapReduce"
-  },
-  {
-    "objectID": "slides/04-slides.html#map-only",
-    "href": "slides/04-slides.html#map-only",
-    "title": "Lecture 4",
-    "section": "Map Only",
-    "text": "Map Only\n\n\n\n\nExamples of map-only jobs:\n\nFiltering\nData reorganization\nRunning a task in an embarrassingly parallel way"
-  },
-  {
-    "objectID": "slides/04-slides.html#map-and-reduce",
-    "href": "slides/04-slides.html#map-and-reduce",
-    "title": "Lecture 4",
-    "section": "Map and Reduce",
-    "text": "Map and Reduce\n\nSingle reducer\n\n\n\nMultiple reducers"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-8",
-    "href": "slides/04-slides.html#section-8",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "Benefits of Hadoop/MapReduce\n\nFault tolerance\nMap and Reduce functions are simple to understand and easy to program\n\n\n\nLimitations of Hadoop/MapReduce\n\nEverything has to be expressed in a map or reduce, and sometimes you can’t\nThere is no control over the order in which map or reduce run\nData is not indexed\nHigh overhead\nYou cannot leverage parallelism if you have an extremely large number of very small files (smaller than a single block)\nOnly suited for batch-processing, not real-time"
-  },
-  {
-    "objectID": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
-    "href": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
-    "title": "Lecture 4",
-    "section": "Everything begins and ends in a distributed filesystem",
-    "text": "Everything begins and ends in a distributed filesystem"
-  },
-  {
-    "objectID": "slides/04-slides.html#distributed-filesystems",
-    "href": "slides/04-slides.html#distributed-filesystems",
-    "title": "Lecture 4",
-    "section": "Distributed filesystems",
-    "text": "Distributed filesystems"
-  },
-  {
-    "objectID": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
-    "href": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
-    "title": "Lecture 4",
-    "section": "Cloud Object Storage vs HDFS",
-    "text": "Cloud Object Storage vs HDFS\n\nIndependent scalability\nIntegration via simple REST API calls\nLower cost\nNo single point of failure"
-  },
-  {
-    "objectID": "slides/04-slides.html#cloud-based-hadoop-clusters",
-    "href": "slides/04-slides.html#cloud-based-hadoop-clusters",
-    "title": "Lecture 4",
-    "section": "Cloud based Hadoop Clusters",
-    "text": "Cloud based Hadoop Clusters\nAmazon Elastic MapReduce (EMR) and Azure HDInsight\n\nOn Premises\n\n\n\nCloud Based (note the storage layer)"
-  },
-  {
-    "objectID": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
-    "href": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
-    "title": "Lecture 4",
-    "section": "Accessing Data in Distributed Object/File System",
-    "text": "Accessing Data in Distributed Object/File System\nFor files in the Cluster HDFS\n\ndirectory/data/ which is a shortcut to\n/user/hadoop/directory/data/\n\nFor files in Amazon S3\nThe service name is S3 and the data container is called a “bucket (bucket_name)” * s3://bucket_name/directory/data/\nFor Files in Azure Blob\nThe service name is Azure Storage Account (your_account) and the data container is called a “container (container)”. There can be many containers in a storage account.\n\nwasb://container@your_account.blob.core.windows.net/directory/data/"
-  },
-  {
-    "objectID": "slides/04-slides.html#hdfs-essential-commands",
-    "href": "slides/04-slides.html#hdfs-essential-commands",
-    "title": "Lecture 4",
-    "section": "HDFS essential commands",
-    "text": "HDFS essential commands\nWhat commands have we discussed about the Linux file system that we want for HDFS?\n#| code-line-numbers: false\n# list files\nhdfs dfs -ls <hdfs path>\n\n# make directories\nhdfs dfs -mkdir <folder location>\n\n# touch an empty file\nhdfs dfs -touchz <hdfs path>\n\n# \"put\" file to hdfs\nhdfs dfs -put <other file path> <dest hdfs path>\n\n# \"get\" file from hdfs\nhdfs dfs -get <other file path> <dest hdfs path>"
-  },
-  {
-    "objectID": "slides/04-slides.html#hdfs-essential-commands-1",
-    "href": "slides/04-slides.html#hdfs-essential-commands-1",
-    "title": "Lecture 4",
-    "section": "HDFS essential commands",
-    "text": "HDFS essential commands\n# other flag commands, after command and subcommand\nhdfs dfs -cat <hdfs path> #print contents of file\nhdfs dfs -mv <old hdfs path> <new hdfs path> # move file/folder\nhdfs dfs -rm <hdfs path> #only one file\nhdfs dfs -rmr <hdfs path> # recursive flag!\nhdfs dfs -chmod 777 <hdfs path> # set permissions\nhdfs dfs -setfacl -m default:user:sqoop:rwx <hdfs path> # access control list\nReview common commands here\nMore common commands"
-  },
-  {
-    "objectID": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
-    "href": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
-    "title": "Lecture 4",
-    "section": "How to programmatically interact with HDFS from python?",
-    "text": "How to programmatically interact with HDFS from python?\n\nUse a python library (hdfs, snakebite, pydoop)\nWhat I do…\nsubprocess to call the real functions!\n\n\nimport subprocess\n\n# local path of the file\nlocal_path = '/home/hadoop/test_dir/myfile.txt'\n\n# can be a new file name or a just folder destination\nhdfs_path = '/user/hadoop/data_folder/'\n\n# construct string command to execute in linux\nlinux_command = f'hdfs dfs -put {local_path} {hdfs_path}'\n\n# run in linux, grab result code and message\nresult_code, result_message = subprocess.getstatusoutput(linux_command)\n\n# raise an error if command did not exit properly\nif result_code != 0:\n  raise TypeError(f'exit code: {result_code}, {result_message}')"
-  },
-  {
-    "objectID": "slides/04-slides.html#writing-mapreduce-applications",
-    "href": "slides/04-slides.html#writing-mapreduce-applications",
-    "title": "Lecture 4",
-    "section": "Writing MapReduce applications",
-    "text": "Writing MapReduce applications\nHadoop is written in Java and provides a Java API that allows you to specify the following:\n\nThe input and output data locations in your distributed object/file system\nThe Map and Reduce functions which are providede in the form of Java classes\nMany kinds of job parameters and configurations\n\nOh no! What if I want to use other programming languages?"
-  },
-  {
-    "objectID": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
-    "href": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
-    "title": "Lecture 4",
-    "section": "The name Hadoop Streaming comes from the Unix Streams",
-    "text": "The name Hadoop Streaming comes from the Unix Streams"
-  },
-  {
-    "objectID": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
-    "href": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
-    "title": "Lecture 4",
-    "section": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework",
-    "text": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework\nIt uses an existing Java program to run non-java programs!\n\nKeys and values can be single or compound"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-10",
-    "href": "slides/04-slides.html#section-10",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "Advantages of Hadoop Streaming\n\nUsing existing code-base (non Java)\nLeveraging Hadoop framework to scale out\n\n\n\nLimitations of Hadoop Streaming\n\nNo combiner or partitioner, just map -> shuffle-sort -> reduce\nEverything is text. Your programs have to parse everything appropriately and convert strings to other data types as needed. You also have manually create the key/value pair for output.\nIf using R or Python, you must limit your programs to the base libraries."
-  },
-  {
-    "objectID": "slides/04-slides.html#basic-python-mapper",
-    "href": "slides/04-slides.html#basic-python-mapper",
-    "title": "Lecture 4",
-    "section": "Basic Python Mapper",
-    "text": "Basic Python Mapper\n#!/usr/bin/env python\n\nimport sys\n\nif __name__ == \"__main__\":\n for line in sys.stdin:\n     for word in line.split():\n         sys.stdout.write(\"{}\\t1\\n\".format(word))\n\nThe first line makes this an executable Python script\nRead in line\nSplit line by space into single words\nFor every line: produce an output in the form of word\\t1 where \\t is a tab\nOutput is always a key and value pair!"
-  },
-  {
-    "objectID": "slides/04-slides.html#basic-python-reducer",
-    "href": "slides/04-slides.html#basic-python-reducer",
-    "title": "Lecture 4",
-    "section": "Basic Python Reducer",
-    "text": "Basic Python Reducer\n\n\n#!/usr/bin/env python\n\nimport sys\n\ndef stdout(key, val):\n  sys.stdout.write(f\"{key}\\t{val}\\n\")\n\nif __name__ == '__main__':\n curkey = None\n total = 0\n for line in sys.stdin:\n     key, val = line.split(\"\\t\")\n     val = int(val)\n\n     if key == curkey:\n         total += val\n     else:\n         if curkey is not None:\n              stdout(curkey, total)\n\n         curkey = key\n         total = val\n\n stdout(curkey, total)\n\n\n\n\nThe first line makes this an executable Python script\nMake stdout function\nRead in line and stores in memory\nLook at the key from the key/value\nRead next line and compare key\nKeep reading lines and storing lines in memory until the key is different\nWhen new key is received, take all the lines from the previous key and do something and write out result\nRepeat until all lines are processed"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-11",
-    "href": "slides/04-slides.html#section-11",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input [[input-location]] \\\n-output [[output-location]] \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py\n\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar launches Hadoop with the hadoop-streaming.jar\n-files /home/hadoop/hadoop-streaming/basic-mapper.py,/home/hadoop/hadoop-streaming/basic-reducer.py tells the job to “ship” the executable mapper and reducer scripts (the actual filename and absolute path) to every node on the cluster. This line must always be second when you need to ship files with your job.\n-input [[input-location]] tells the Hadoop the location of your source data in a distributed object/filesystem. If you specify a directory, all files in the directory will be used as inputs\n-output [[output-location]] tells the Hadoop the location of your output data in a distributed object/filesystem. This parameter is just a name of a location, and it must not exist before running the job otherwise the job will fail.\n-mapper basic-mapper.py and reducer basic-reducer.py specify the commands to run as a mapper and reducer, respectively. These must be shell scripts or native Linux commands. If you are using a script, you must “ship” it to the nodes with the -files parameter above."
-  },
-  {
-    "objectID": "slides/04-slides.html#gotchas",
-    "href": "slides/04-slides.html#gotchas",
-    "title": "Lecture 4",
-    "section": "Gotcha’s",
-    "text": "Gotcha’s\n\nThe output location of the job (HFDF, S3, Blob) must not exist before running a job. You will get an error if you try to write out to an existing/non-empty location\nYou have to ship or package your executables with the job.\nHadoop/Java error messages can be cryptic and only give you errors regarding the framework. If you need to debug your script you will need to look at the stdout/stderr logs\nYou need to specify the full path name of your mapper and reducer scripts"
-  },
-  {
-    "objectID": "slides/04-slides.html#example-code",
-    "href": "slides/04-slides.html#example-code",
-    "title": "Lecture 4",
-    "section": "Example code",
-    "text": "Example code\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input /user/hadoop/in_data \\\n-output /user/hadoop/in_data \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py"
-  },
-  {
-    "objectID": "slides/04-slides.html#hadoop-references",
-    "href": "slides/04-slides.html#hadoop-references",
-    "title": "Lecture 4",
-    "section": "Hadoop References",
-    "text": "Hadoop References\n\nHadoop 3.3.1: https://hadoop.apache.org/docs/r3.3.1/\n\nHDFS Filesystem Commands: https://hadoop.apache.org/docs/r3.3.1/hadoop-project-dist/hadoop-common/FileSystemShell.html\n\nHadoop Streaming https://hadoop.apache.org/docs/r3.3.1/hadoop-streaming/HadoopStreaming.html"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "slides/05-slides.html#takeaway",
@@ -4387,11 +4008,7 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-<<<<<<< HEAD
     "text": "Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\n\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\nThis syllabus was last updated on Thursday, February 01, 2024 at 04:13 PM"
-=======
-    "text": "Amit Arora\n   Online\n   aa1603@georgetown.edu\n   aarora79\n   Schedule an appointment\n\n\n\n\n\n   Thursdays\n   January 11 – May 9, 2024\n   6:30–9:00 PM\n   Car Barn 204\n   Slack\nThis syllabus was last updated on Thursday, February 01, 2024 at 08:28 PM"
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
   },
   {
     "objectID": "syllabus.html#books-software-and-cloud-resources",

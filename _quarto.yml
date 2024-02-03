@@ -70,9 +70,9 @@ website:
               file: content/02-content.qmd
             - text: "3: Parallelization"
               file: content/03-content.qmd
-            - text: "4: Lambda-Docker"
+            - text: "4: Docker & Lambda"
               file: content/04-content.qmd
-            - text: "5: Parallel computing with Dask"
+            - text: "5: DuckDB, Polars and file formats"
               file: content/05-content.qmd
             - text: "6: Intro to Apache Spark"
               file: content/06-content.qmd

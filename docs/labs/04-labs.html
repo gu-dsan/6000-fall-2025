@@ -137,22 +137,14 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 
 
 <meta property="og:title" content="PPOL 5206 - EMR Cluster Setup Instructions">
-<<<<<<< HEAD
-<meta property="og:description" content="Amazon Elastic MapReduce (EMR) is the industry-leading cloud big data solution for petabyte-scale data processing, interactive analytics, and machine learning using open-source frameworks such as…">
-=======
 <meta property="og:description" content="Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages.">
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta property="og:site-name" content="PPOL 5206">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="600">
 <meta property="og:image:width" content="518">
 <meta name="twitter:title" content="PPOL 5206 - EMR Cluster Setup Instructions">
-<<<<<<< HEAD
-<meta name="twitter:description" content="Amazon Elastic MapReduce (EMR) is the industry-leading cloud big data solution for petabyte-scale data processing, interactive analytics, and machine learning using open-source frameworks such as…">
-=======
 <meta name="twitter:description" content="Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages.">
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -208,11 +200,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-<<<<<<< HEAD
-      <h1 class="quarto-secondary-nav-title">EMR Cluster Setup Instructions</h1>
-=======
       <h1 class="quarto-secondary-nav-title">Docker</h1>
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -265,7 +253,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../labs/04-labs.html" class="sidebar-item-text sidebar-link active">4: MapReduce &amp; Hadoop</a>
+  <a href="../labs/04-labs.html" class="sidebar-item-text sidebar-link active">4: Lambda-Docker</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,12 +343,6 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<<<<<<< HEAD
-<h1 class="title d-none d-lg-block display-7">EMR Cluster Setup Instructions</h1>
-
-</header>
-
-=======
 <h1 class="title d-none d-lg-block display-7">Docker</h1>
 
 </header>
@@ -652,7 +634,6 @@ Important:
 <li><p>Since you made changes to the Dockerfile and your app.py files, you need to build a new Docker image. Run the command <code>docker build ./ -t lambda-test</code> so that you name the image something new.</p></li>
 <li><p>This has to be done every time you make changes to the <code>app.py</code> file or the <code>Dockerfile</code>.</p></li>
 </ul>
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -673,10 +654,6 @@ Important
 </code></pre>
 </div>
 </div>
-<<<<<<< HEAD
-<p>Amazon Elastic MapReduce (EMR) is the industry-leading cloud big data solution for petabyte-scale data processing, interactive analytics, and machine learning using open-source frameworks such as Apache Spark, Apache Hive, and Presto. Follow these instructions <em>step-by-step</em> to setup an EMR cluster.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-=======
 <div class="callout-hint callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -695,17 +672,12 @@ Hint
 <li>“Running” the python script requires two steps because the Lambda container is built as a listening service that will execute when there is a payload provided to it.</li>
 </ul>
 <div class="callout-important callout callout-style-default callout-captioned">
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-<<<<<<< HEAD
-Note
-=======
 Important
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -720,10 +692,6 @@ docker run -p PORT CONTAINER NAME
 <ol type="1">
 <li>Run the command <code>docker run -p 8080:8080 lambda-test</code> to set up the service on your first terminal tab. This will run the service and listen for triggers. Next, click on the green plus icon and choose <code>New Terminal</code> to launch a new bash terminal.</li>
 </ol>
-<<<<<<< HEAD
-<div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-=======
 <p><img src="img/cloud9-docker-4-run.PNG" class="img-fluid"></p>
 <ol type="1">
 <li>In this second terminal, run the command <code>curl -XPOST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"payload":"hello world!"}'</code>. This <em>should</em> return the same response as what you saw in the Lambda service. Also, go back to the first terminal tab to see the summary of execution message.</li>
@@ -878,16 +846,11 @@ Hint
 }</code></pre>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-<<<<<<< HEAD
-Why am I not able to SSH into the Master Node?
-=======
 Important
->>>>>>> 5cfd7cc16e257c0a05ca9589ee545fcbfa2d7d0d
 </div>
 </div>
 <div class="callout-body-container callout-body">

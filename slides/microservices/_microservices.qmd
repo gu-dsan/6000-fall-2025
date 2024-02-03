@@ -21,7 +21,7 @@ The name Lambda is derived from Lambda calculus, a mathematical system to expres
 
 ## Lambda Details
 
-![](img/lambda-example.png)
+![](microservices/img/lambda-example.png)
 
 - Micro executions without dealing with any hardware, "serverless" computation.
 - Can run many copies of code depending on number of requests or files.
@@ -46,7 +46,7 @@ The name Lambda is derived from Lambda calculus, a mathematical system to expres
 :::
 
 ::: {.column width="50%"}
-![[`Lambda triggers`](img/lambda-triggers.gif)](img/lambda-triggers.gif)
+![[`Lambda triggers`](microservices/img/lambda-triggers.gif)](microservices/img/lambda-triggers.gif)
 :::
 :::
 
