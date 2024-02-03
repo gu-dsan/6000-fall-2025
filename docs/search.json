@@ -1757,319 +1757,270 @@
     "text": "Anatomy of an asyncio Python program\n\n\n\n\nWrite a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.\nCreate a coroutine i.e. an async wrapper function to the blocking function using async and await, with the call to blocking function made using the asyncio.to_thread function. This enables the coroutine execution in a separate thread.\nCreate another coroutine that makes multiple calls (in a loop, list comprehension) to the async wrapper created in the previous step and awaits completion of all of the invocations using the asyncio.gather function.\nCall the coroutine created in the previous step from another function using the asyncio.run function.\n\n\n\nimport time\nimport asyncio\n\ndef my_blocking_func(i):\n    # some blocking code such as an api call\n    print(f\"{i}, entry\")\n    time.sleep(1)\n    print(f\"{i}, exiting\")\n    return None\n  \nasync def async_my_blocking_func(i: int):\n    return await asyncio.to_thread(my_blocking_func, i)\n\nasync def async_my_blocking_func_for_multiple(n: int):\n    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])\n\nif __name__ == \"__main__\":\n    # async version\n    s = time.perf_counter()\n    n = 20\n    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))\n    elapsed_async = time.perf_counter() - s\n    print(f\"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds\")"
   },
   {
-    "objectID": "slides/04-slides.html#section",
-    "href": "slides/04-slides.html#section",
+    "objectID": "slides/04-slides.html#agenda-and-goals-for-today",
+    "href": "slides/04-slides.html#agenda-and-goals-for-today",
     "title": "Lecture 4",
-    "section": "",
-    "text": "Looking back\n\nLinux and version control\nPython and parallelization\nIntro to the Cloud\nSetup of AWS Services\n\n\n\nToday\n\nIntro to Hadoop and MapReduce\nHadoop Streaming\nLab/Demo (depending on time):\n\nStart a cluster on AWS\nRun a sample Hadoop job\nRun a simluated mapreduce job using the command line\nRun a Hadoop Streaming job"
+    "section": "Agenda and Goals for Today",
+    "text": "Agenda and Goals for Today\n\n\nLecture\n\nDocker containers\n\nBackground and concepts\nSyntax and commands\nExamples\n\nLambda/microservices\n\nBackground and concepts\nSyntax and commands\nExamples\n\n\n\nLab\n\nLambda service exploration\nCloud9 Setup\nDocker Container exploration in Cloud9"
   },
   {
-    "objectID": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
-    "href": "slides/04-slides.html#yesterdays-hardware-for-big-data-processing",
+    "objectID": "slides/04-slides.html#logistics-and-review",
+    "href": "slides/04-slides.html#logistics-and-review",
     "title": "Lecture 4",
-    "section": "Yesterday’s hardware for big data processing",
-    "text": "Yesterday’s hardware for big data processing\n\nThe 1990’s solution\nOne big box, all processors share memory\nThis was:\n\nVery expensive\nLow volume\n\nIt was all premium hardware. And yet is still was not big enough!"
+    "section": "Logistics and Review",
+    "text": "Logistics and Review\n\n\nDeadlines\n\nAssignment 1: Python Skills Due Sept 5 11:59pm\nLab 2: Cloud Tooling Due Sept 5 6pm\nAssignment 2: Shell & Linux Due Sept 11 11:59pm\nLab 3: Parallel Computing Due Sept 12 6pm\nAssignment 3: Parallelization Due Sept 18 11:59pm\nLab 4: Docker and Lambda Due Sept 19 6pm\nAssignment 4: Containers Due Sept 25 11:59pm\nLab 5: DuckDB & Polars Due Sept 26 6pm\n\n\nLook back and ahead\n\nContinue to use Slack for questions!\nParallelization in Python\nConcepts of map and reduce\nChoosing when to re-factor/optimize code for scalability\nQuestions on Assignment 3: Parallelization?"
   },
   {
-    "objectID": "slides/04-slides.html#enter-commodity-hardware",
-    "href": "slides/04-slides.html#enter-commodity-hardware",
+    "objectID": "slides/04-slides.html#process-isolation-and-deployment",
+    "href": "slides/04-slides.html#process-isolation-and-deployment",
     "title": "Lecture 4",
-    "section": "Enter commodity hardware!",
-    "text": "Enter commodity hardware!\n\nConsumer-grade hardware\nNot expensive, premium nor fancy in any way\nDesktop-like servers are cheap, so buy a lot!\n\nEasy to add capacity\nCheaper per CPU/disk\n\nBut\nNeed more complex software to be able to run on lots of smaller/cheaper machines."
+    "section": "Process Isolation and Deployment",
+    "text": "Process Isolation and Deployment\n\nEncapsulate all the dependencies of your code\nDeploy your code into production in the same environment as your development space\nRun your code without other processes affecting your work\nYou need virtualization!"
   },
   {
-    "objectID": "slides/04-slides.html#problems-with-cheap-hardware",
-    "href": "slides/04-slides.html#problems-with-cheap-hardware",
+    "objectID": "slides/04-slides.html#motivation",
+    "href": "slides/04-slides.html#motivation",
     "title": "Lecture 4",
-    "section": "Problems with cheap hardware",
-    "text": "Problems with cheap hardware\n\nFailures\n\n1-5% hard drives/year\n0.2% DIMMs/year\n\nNetwork speed vs. shared memory\n\nMuch more latency\nNetwork slower than storage\n\nUneven performance"
+    "section": "Motivation",
+    "text": "Motivation\nWhy should you care?"
   },
   {
-    "objectID": "slides/04-slides.html#hang-on-to-this-thought",
-    "href": "slides/04-slides.html#hang-on-to-this-thought",
+    "objectID": "slides/04-slides.html#history-of-virtualization",
+    "href": "slides/04-slides.html#history-of-virtualization",
     "title": "Lecture 4",
-    "section": "Hang on to this thought!",
-    "text": "Hang on to this thought!"
+    "section": "History of Virtualization",
+    "text": "History of Virtualization\n\nTwo types of virtualization - hardware and software\nHardware time sharing started in the late 1950s\nVirtualization first introduced in IBM in the 1960s\nVMWare started in\n\n\nlink"
   },
   {
-    "objectID": "slides/04-slides.html#meet-doug-cutting",
-    "href": "slides/04-slides.html#meet-doug-cutting",
+    "objectID": "slides/04-slides.html#virtual-machines",
+    "href": "slides/04-slides.html#virtual-machines",
     "title": "Lecture 4",
-    "section": "Meet Doug Cutting",
-    "text": "Meet Doug Cutting\n\n\n\n\n\nIn 1997, Doug Cutting started writing the first version of Lucene (a full text search library).\nIn 2001, Lucene moves to the Apache Software Foundation, and Mike Cafarella joins Doug and create a Lucene subproject called Nutch, a web-crawler. Nutch uses Lucene to index the contents of a web page as it crawls it.\nNutch and Lucene were deployed on a single machine (single core processor, 1GB RAM, 8 HDDs ~ 1TB), achieved decent performance, but they needed something that would be scalable enough to be able to index the web."
+    "section": "Virtual Machines",
+    "text": "Virtual Machines\n\n\n\nHardware server is the host\nMultiple virtual machines can sit on the hypervisor as “guests”\nPros: decades of development in VMs, multiple emulated full computers on single hardware, allows for infrastructure “lift and shift” to the cloud\nCons: VM images very large (10-100s GBs), “guest” OS takes up resources, large start up cost\n\nlink"
   },
   {
-    "objectID": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
-    "href": "slides/04-slides.html#doug-and-mike-set-out-to-to-improve-nutch",
+    "objectID": "slides/04-slides.html#containers-1",
+    "href": "slides/04-slides.html#containers-1",
     "title": "Lecture 4",
-    "section": "Doug and Mike set out to to improve Nutch",
-    "text": "Doug and Mike set out to to improve Nutch\nThey needed a to build some kind of distributed storage layer to be the foundation of a scalable system. The came up with these requirements:\n\nSchemaless\nDurable\nCapable of handling component failure\nAutomatically rebalanced\n\n\nDoes this sound familiar?"
+    "section": "Containers",
+    "text": "Containers\n\n\n\nPackage and run applications in isolated environment\nGreat for production work, not as much for developmental work\nDocker application manages “guest” applications with a single operating system\nPros: Lightweight (10-100s MBs), faster spin up time, one host can manage many more containers\nCons: containers must all work with the same OS, somewhat less secure due to shared OS resources, only 10 years old\n\nlink"
   },
   {
-    "objectID": "slides/04-slides.html#section-1",
-    "href": "slides/04-slides.html#section-1",
+    "objectID": "slides/04-slides.html#docker-vs.-virtual-machine",
+    "href": "slides/04-slides.html#docker-vs.-virtual-machine",
     "title": "Lecture 4",
-    "section": "",
-    "text": "The Google File System (GFS) Paper\nIt describes how Google stored its information, at scale, using a reliable and high-available storage system can be built on commodity machines considering that failures are the norm rather than the exception.\nGFS is: * optimized for special application environment * fault tolerance is built in * centralized metadata management * simplify the operation semantics * decouple I/O and metadata operations"
+    "section": "Docker vs. Virtual Machine",
+    "text": "Docker vs. Virtual Machine"
   },
   {
-    "objectID": "slides/04-slides.html#section-2",
-    "href": "slides/04-slides.html#section-2",
+    "objectID": "slides/04-slides.html#docker-container-architecture",
+    "href": "slides/04-slides.html#docker-container-architecture",
     "title": "Lecture 4",
-    "section": "",
-    "text": "The Google MapReduce Paper\nDescribes how Google processes data, at scale using MapReduce, a paradigm based on functional programming. MapReduce is an approach and infrastructure for doing things at scale. MapReduce is two things:\n\nA data processing model named MapReduce\nA distributed, large scale data processing paradigm.\n\nWhich provides the following benefits:\n\nMoves the computation to the data\nAutomatic parallelization and distribution\nFault tolerance\nI/O scheduling\nIntegrated status and monitoring"
+    "section": "Docker Container Architecture",
+    "text": "Docker Container Architecture\n\nImages are a snapshot of instructions for setup of an application environment\nContainers are executing applications deployed based on an image\nContainer images become containers at runtime (Docker Engine!)"
   },
   {
-    "objectID": "slides/04-slides.html#section-3",
-    "href": "slides/04-slides.html#section-3",
+    "objectID": "slides/04-slides.html#containers-are-not-enough",
+    "href": "slides/04-slides.html#containers-are-not-enough",
     "title": "Lecture 4",
-    "section": "",
-    "text": "The MapReduce model\n\nMap function takes an input pair and produces a set of intermediate key/value pairs. The MapReduce library groups together all intermediate values associated with the same intermediate key and passes them to the Reduce function.\nReduce function accepts an intermediate key and a set of values for that key. It merges together these values to form a possibly smaller set of values. Typically just zero or one output value is produced per Reduce invocation."
+    "section": "Containers are not enough",
+    "text": "Containers are not enough"
   },
   {
-    "objectID": "slides/04-slides.html#section-4",
-    "href": "slides/04-slides.html#section-4",
+    "objectID": "slides/04-slides.html#container-lifecycle",
+    "href": "slides/04-slides.html#container-lifecycle",
     "title": "Lecture 4",
-    "section": "",
-    "text": "The advantages\n\nThe model is relatively easy to use, even for programmers without experience with parallel and distributed systems since it handles parallelization, fault-tolerance, locality optimization, and load balancing.\nA large variety of problems are easily expressible as MapReduce computations.\nThis paper developed an implementation of MapReduce that scales to large clusters of machines comprising thousands of machines."
+    "section": "Container lifecycle",
+    "text": "Container lifecycle\n\nContainers (like applications) need a lifecycle"
   },
   {
-    "objectID": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
-    "href": "slides/04-slides.html#the-genesis-of-hadoop-an-implementation-of-googles-ideas",
+    "objectID": "slides/04-slides.html#container-orchestration",
+    "href": "slides/04-slides.html#container-orchestration",
     "title": "Lecture 4",
-    "section": "The genesis of Hadoop: an implementation of Google’s ideas",
-    "text": "The genesis of Hadoop: an implementation of Google’s ideas\n\nUsing the Google papers as a specification, they started implementing the ideas in Java in 2004 and created the Nutch Distributed File System (NDFS).\nThe main purpose of this file system was to abstract the cluster’s storage so that it presents itself as a single, reliable, file system.\nAnother first class featuer of the system was its ability to handle failures without operator interventions and it can run on inexpensive, commodity hardware components\nIn 2006, Hadoop was created by moving NDFS (which becamie HDFS) and the MapReduce implementation out of Lucene. Hadoop 1.0 was released. 1.8TB of data sorts in 188 nodes in 48hours. Doug Cutting goes to work at Yahoo!\nIn 2007, LinkedIn, Twitter and Facebook started adopting this new tool and contributing back to the project. Yahoo! is running their first production Hadoop cluster with 1,000 machines.\nIn 2008, Yahoo! is running a 10,000 core cluster. World record created for fastest sorting of 1Tb in 209 seconds using a 910 node cluster. Cloudera is formed.\nIn 2009, Yahoo!’s cluster is 24,000 cores and claims to sort 1TB in 62 seconds. Amazon introduces Elastic MapReduce. HDFS and MapReduce become their own separate sub-projects.\nIn 2010, Yahoo!’s cluster is 4,000 and ~70PB, Facebook’s is 2,300 nodes and ~40PB.\nIn 2011, Yahoo!’s cluster is 42,000 nodes\nIn 2017, Twitter Hadoop cluster has over 500 Petabytes of data. Biggest cluster over 10k nodes. Read more here"
+    "section": "Container orchestration",
+    "text": "Container orchestration"
   },
   {
-    "objectID": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
-    "href": "slides/04-slides.html#trivia-question-why-is-it-named-hadoop",
+    "objectID": "slides/04-slides.html#docker-layers",
+    "href": "slides/04-slides.html#docker-layers",
     "title": "Lecture 4",
-    "section": "Trivia question: why is it named Hadoop?",
-    "text": "Trivia question: why is it named Hadoop?"
+    "section": "Docker layers",
+    "text": "Docker layers\nEach command to modify the environment is a layer in your build process"
   },
   {
-    "objectID": "slides/04-slides.html#tangent-why-open-source-matters",
-    "href": "slides/04-slides.html#tangent-why-open-source-matters",
+    "objectID": "slides/04-slides.html#docker-base-images",
+    "href": "slides/04-slides.html#docker-base-images",
     "title": "Lecture 4",
-    "section": "Tangent: Why Open Source Matters!",
-    "text": "Tangent: Why Open Source Matters!\nThe Google File System is not popular as a program among the business world… why???\nHadoop has become the standard for cluster storage because it is open source!!\nWho has heard of Colossus? (Google’s next version of GFS)\nReview of GFS vs. Hadoop"
+    "section": "Docker base images",
+    "text": "Docker base images\n\nThe first command in a Docker build is to call FROM XXXXX. This is the base image that has the core OS-level software.\nsmaller size == faster execution"
   },
   {
-    "objectID": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
-    "href": "slides/04-slides.html#what-is-hadoop-1.0-mapreduce-engine-and-hdfs",
+    "objectID": "slides/04-slides.html#the-storage-problem-of-containers",
+    "href": "slides/04-slides.html#the-storage-problem-of-containers",
     "title": "Lecture 4",
-    "section": "What is Hadoop 1.0: MapReduce Engine and HDFS",
-    "text": "What is Hadoop 1.0: MapReduce Engine and HDFS\n\nMapReduce performs the computations and manages cluster\n\nThe Job Tracker is the master planner\nThe Task Tracker runs each task\n\nHDFS stores the data"
+    "section": "The storage problem of containers",
+    "text": "The storage problem of containers\n\nWhen containers are killed, all temporary is lost! What to do…\nContainers need persistent storage sometimes\nDocker volumes live outside the container and allow for permanent storage"
   },
   {
-    "objectID": "slides/04-slides.html#section-5",
-    "href": "slides/04-slides.html#section-5",
+    "objectID": "slides/04-slides.html#dockerfile-syntax",
+    "href": "slides/04-slides.html#dockerfile-syntax",
     "title": "Lecture 4",
-    "section": "",
-    "text": "Hadoop 1.0 Problems\n\nMonolithic\nMapReduce had too many responsibilites\nAssigning cluster resources\nManaging job execution\nDoing data processing\nInterfacing with client applications\nOnly supported MapReduce\nHad a single NameNode to manage the cluster (single point of failure)\nBatch oriented and extremely inefficient with iterative queries\n\n\n\n\n\n\nYARN & Hadoop 2.0\n\nCluster management capability gets pulled out of MapReduce and becomes YARN (Yet Anothe Resource Negotiator), decoupling cluster operations from data pipeline\nAllowed for other applications to run on a cluster\nHadoop 2.0 was released in 2013"
+    "section": "Dockerfile Syntax",
+    "text": "Dockerfile Syntax\nStudents explain what each command is doing\n\nFormat is always INSTRUCTION arguments\nFROM [--platform=<platform>] <image>[:<tag>] [AS <name>] - Pulling the base image to start with\nRUN <command> or RUN [\"executable\", \"param1\", \"param2\"] - Run commands of any type\nVOLUME - Creates mountpoint for Docker volume\nENV <key>=<value> ... - Set environment variables for your container\nWORKDIR - Sets working directory for other commands\nEXPOSE <port> [<port>/<protocol>...] - Open a port for the container\nCOPY [--chown=<user>:<group>] [--chmod=<perms>] <src>... <dest> - Copies files from host file system to container file system. Note working directory matters in the container too!\nADD - Copy with a link to allow for reusing of already built layers. Helps with build speed!"
   },
   {
-    "objectID": "slides/04-slides.html#section-6",
-    "href": "slides/04-slides.html#section-6",
+    "objectID": "slides/04-slides.html#dockerfile-cmd-and-entrypoint",
+    "href": "slides/04-slides.html#dockerfile-cmd-and-entrypoint",
     "title": "Lecture 4",
-    "section": "",
-    "text": "A MapReduce Job (1.0)\n\n\n\nA MapReduce Job (2.0+)"
+    "section": "Dockerfile CMD and ENTRYPOINT",
+    "text": "Dockerfile CMD and ENTRYPOINT\n\nShould have a purpose for your container and have it run something!\nCMD command param1 param2 - Final command to prepare the launching container. Typically occurs before an ENTRYPOINT instruction or as its own standalone command. CMD can be overwritten by new docker run arguments.\nENTRYPOINT command param1 param2 - Command that will run the Docker container as an executable, such as a web server, Jupter environment, or data pipeline."
   },
   {
-    "objectID": "slides/04-slides.html#how-yarn-manages-the-cluster",
-    "href": "slides/04-slides.html#how-yarn-manages-the-cluster",
+    "objectID": "slides/04-slides.html#dockerfile-syntax-examples",
+    "href": "slides/04-slides.html#dockerfile-syntax-examples",
     "title": "Lecture 4",
-    "section": "How YARN manages the Cluster",
-    "text": "How YARN manages the Cluster"
+    "section": "Dockerfile Syntax Examples",
+    "text": "Dockerfile Syntax Examples\n\nRUN [\"/bin/bash\", \"-c\", \"echo hello\"]\n\nFROM busybox\nENV FOO=/bar\nWORKDIR ${FOO}   # WORKDIR /bar\nADD . $FOO       # ADD . /bar\nCOPY \\$FOO /quux # COPY $FOO /quu\n# syntax=docker/dockerfile:1\nFROM python:3.6\nADD mypackage.tgz wheels/\nRUN --network=none pip install --find-links wheels mypackage\nDockerfile reference link"
   },
   {
-    "objectID": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
-    "href": "slides/04-slides.html#the-hadoop-architecture-is-scalable",
+    "objectID": "slides/04-slides.html#s3-example",
+    "href": "slides/04-slides.html#s3-example",
     "title": "Lecture 4",
-    "section": "The Hadoop Architecture is Scalable",
-    "text": "The Hadoop Architecture is Scalable"
+    "section": "S3 example",
+    "text": "S3 example\n# syntax=docker/dockerfile:1\nFROM python:3\nRUN pip install awscli\nRUN --mount=type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ..."
   },
   {
-    "objectID": "slides/04-slides.html#hadoop-3.0-released-2017",
-    "href": "slides/04-slides.html#hadoop-3.0-released-2017",
+    "objectID": "slides/04-slides.html#web-server-example",
+    "href": "slides/04-slides.html#web-server-example",
     "title": "Lecture 4",
-    "section": "Hadoop 3.0 (Released 2017)",
-    "text": "Hadoop 3.0 (Released 2017)\n\nSupports multiple standby NameNodes.\nSupports multiple NameNodes for multiple namespaces.\nStorage overhead reduced from 200% to 50%\n\nSupports GPUs\n\nSupports for Microsoft Azure Data Lake and Aliyun Object Storage System file-system connectors\nRewrite of Hadoop Shell\nMapReduce task Level Native Optimization.\nIntroduces more powerful YARN"
+    "section": "Web server example",
+    "text": "Web server example\nFROM debian:stable\nRUN apt-get update && apt-get install -y --force-yes apache2\nEXPOSE 80 443\nVOLUME [\"/var/www\", \"/var/log/apache2\", \"/etc/apache2\"]\nENTRYPOINT [\"/usr/sbin/apache2ctl\", \"-D\", \"FOREGROUND\"]"
   },
   {
-    "objectID": "slides/04-slides.html#section-7",
-    "href": "slides/04-slides.html#section-7",
+    "objectID": "slides/04-slides.html#docker-for-python-jobs",
+    "href": "slides/04-slides.html#docker-for-python-jobs",
     "title": "Lecture 4",
-    "section": "",
-    "text": "The Current Hadoop Ecosystem: https://hadoopecosystemtable.github.io/"
+    "section": "Docker for Python jobs",
+    "text": "Docker for Python jobs\nBasic needs:\n\nDockerfile that sets up environment\nApplication code to execute\nList of packages to install\n\nWalkthrough"
   },
   {
-    "objectID": "slides/04-slides.html#map",
-    "href": "slides/04-slides.html#map",
+    "objectID": "slides/04-slides.html#docker-python-example",
+    "href": "slides/04-slides.html#docker-python-example",
     "title": "Lecture 4",
-    "section": "Map",
-    "text": "Map\n\n\n\n\nMap tasks are broken into the following phases:\n\nrecord reader: translates the input split generated by the input format into records or key/value pairs\nmap: function that executes on every input record\ncombiner: acts as a localized reducer to pre-aggregate within the map phase\npartitioner: takes intermediate key/value pairs from the mapper (or combiner if used) and splits them up into shards, one shard per reducer"
+    "section": "Docker Python example",
+    "text": "Docker Python example\n\nWrite your Dockerfile\n\nFROM python:3.8-slim-buster\nWORKDIR /app\nCOPY requirements.txt requirements.txt\nRUN pip3 install -r requirements.txt\nCOPY . .\nCMD [ \"python3\", \"-m\" , \"flask\", \"run\", \"--host=0.0.0.0\"]\n\nBuild the docker image using a tag and version number docker build ./ -t docker-tag-name:1.0. Read about docker building options here.\nCheck your docker images in your local file system using docker images\nTest your docker image using docker run -it docker-tag-name. Read about the flags here. The i is to keep STDIN open, the t is for pseudo-TTY mode (shell).\nDeploy your docker image somewhere!"
   },
   {
-    "objectID": "slides/04-slides.html#reduce",
-    "href": "slides/04-slides.html#reduce",
+    "objectID": "slides/04-slides.html#docker-links",
+    "href": "slides/04-slides.html#docker-links",
     "title": "Lecture 4",
-    "section": "Reduce",
-    "text": "Reduce\n\n\n\n\nReduce tasks are broken into the following phases:\n\nshuffle and sort: this phase takes the output files written by all of the partitioners and downloads the files to the local node where the reducer code will run\nreducer: function that executes on every group of records for the same key\noutput format: translates the final key/value pair and writes out to a file by a record writer"
+    "section": "Docker links",
+    "text": "Docker links\nAWS examples\nArticle discussing performance considerations\nWhat are containers?"
   },
   {
-    "objectID": "slides/04-slides.html#combining-everything-into-mapreduce",
-    "href": "slides/04-slides.html#combining-everything-into-mapreduce",
+    "objectID": "slides/04-slides.html#overview",
+    "href": "slides/04-slides.html#overview",
     "title": "Lecture 4",
-    "section": "Combining Everything into MapReduce",
-    "text": "Combining Everything into MapReduce"
+    "section": "Overview",
+    "text": "Overview\n\nLambda (or \\(\\lambda\\)) is the name given to anonymous functions in some languages like Python.\nLambda is a powerful tool to build serverless microfunctions in a variety of programming languages that can be triggered in a variety of ways.\nThe execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data.\nThere can be thousands of executions happening simultaneously.\nLambda is billed by the millisecond (ms).\n\n\n\nThe name Lambda is derived from Lambda calculus, a mathematical system to express computation introduced by Dr. Alonzo Church in the 1930s. See wikipedia entry on Lambda calculus for why the symbol \\(\\lambda\\) was choosen."
   },
   {
-    "objectID": "slides/04-slides.html#map-only",
-    "href": "slides/04-slides.html#map-only",
+    "objectID": "slides/04-slides.html#lambda-details",
+    "href": "slides/04-slides.html#lambda-details",
     "title": "Lecture 4",
-    "section": "Map Only",
-    "text": "Map Only\n\n\n\n\nExamples of map-only jobs:\n\nFiltering\nData reorganization\nRunning a task in an embarrassingly parallel way"
+    "section": "Lambda Details",
+    "text": "Lambda Details\n\n\nMicro executions without dealing with any hardware, “serverless” computation.\nCan run many copies of code depending on number of requests or files.\nSupported languages: Java, Go, PowerShell, Node.js, C#, Python, and Ruby.\n\nProvides a Runtime API which allows you to use any additional programming languages to author your functions\n\nPricing based on RAM and time used - Lambda pricing\n\nMax execution time - 15 minutes\nMax RAM - 10 GB"
   },
   {
-    "objectID": "slides/04-slides.html#map-and-reduce",
-    "href": "slides/04-slides.html#map-and-reduce",
+    "objectID": "slides/04-slides.html#lambda-triggers",
+    "href": "slides/04-slides.html#lambda-triggers",
     "title": "Lecture 4",
-    "section": "Map and Reduce",
-    "text": "Map and Reduce\n\nSingle reducer\n\n\n\nMultiple reducers"
+    "section": "Lambda triggers",
+    "text": "Lambda triggers\n\n\n\nLambdas only start executing in response to an event, such as an API being invoked, a schedule or more complex things.\nA Lambda function is used primarily in the following two ways:\n\nHosting an API, this is done in conjunction with an Amazon API Gateway.\nRunning custom code to respond to events such as a new file showing up in an S3 bucket, a row being deleted from a database etc.\n\n\n\n\n\n\nLambda triggers"
   },
   {
-    "objectID": "slides/04-slides.html#section-8",
-    "href": "slides/04-slides.html#section-8",
+    "objectID": "slides/04-slides.html#different-ways-to-invoke-lambda",
+    "href": "slides/04-slides.html#different-ways-to-invoke-lambda",
     "title": "Lecture 4",
-    "section": "",
-    "text": "Benefits of Hadoop/MapReduce\n\nFault tolerance\nMap and Reduce functions are simple to understand and easy to program\n\n\n\nLimitations of Hadoop/MapReduce\n\nEverything has to be expressed in a map or reduce, and sometimes you can’t\nThere is no control over the order in which map or reduce run\nData is not indexed\nHigh overhead\nYou cannot leverage parallelism if you have an extremely large number of very small files (smaller than a single block)\nOnly suited for batch-processing, not real-time"
+    "section": "Different ways to invoke Lambda",
+    "text": "Different ways to invoke Lambda\n Source: Understanding the different ways to invoke Lambda function"
   },
   {
-    "objectID": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
-    "href": "slides/04-slides.html#everything-begins-and-ends-in-a-distributed-filesystem",
+    "objectID": "slides/04-slides.html#some-real-world-use-cases-for-a-lambda",
+    "href": "slides/04-slides.html#some-real-world-use-cases-for-a-lambda",
     "title": "Lecture 4",
-    "section": "Everything begins and ends in a distributed filesystem",
-    "text": "Everything begins and ends in a distributed filesystem"
+    "section": "Some real world use-cases for a Lambda",
+    "text": "Some real world use-cases for a Lambda\n\nTransforming a picture taken by a delivery agent into a desired format and storing it in S3 in real-time.\nAs a front-end (along with an API Gateway) to a ML model to provide real-time prediction to a customer clicking a link on a website .\nA backend API that gets invoked when a QR code is scanned.\nA simple single page website with a form.\nSending a scheduled newsletter to email addresses on a mailing list.\n\nAWS Lambda customer case studies"
   },
   {
-    "objectID": "slides/04-slides.html#distributed-filesystems",
-    "href": "slides/04-slides.html#distributed-filesystems",
+    "objectID": "slides/04-slides.html#lambda-can-be-set-on-a-schedule",
+    "href": "slides/04-slides.html#lambda-can-be-set-on-a-schedule",
     "title": "Lecture 4",
-    "section": "Distributed filesystems",
-    "text": "Distributed filesystems"
+    "section": "Lambda can be set on a schedule",
+    "text": "Lambda can be set on a schedule\n\nSimilar to Linux Crontab or Windows Task Scheduler\n\nexample of schedule trigger\n\nSite for translating crontab symbols to next execution: https://crontab.guru/\nSite for generating crontab syntax from dropdown options: https://crontab-generator.org/"
   },
   {
-    "objectID": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
-    "href": "slides/04-slides.html#cloud-object-storage-vs-hdfs",
+    "objectID": "slides/04-slides.html#lambda-coding-choices",
+    "href": "slides/04-slides.html#lambda-coding-choices",
     "title": "Lecture 4",
-    "section": "Cloud Object Storage vs HDFS",
-    "text": "Cloud Object Storage vs HDFS\n\nIndependent scalability\nIntegration via simple REST API calls\nLower cost\nNo single point of failure"
+    "section": "Lambda coding choices",
+    "text": "Lambda coding choices\nLevels of Lambda complexity:\n\nCode written directly on the AWS Lambda console\nZip archive\nDocker Containers"
   },
   {
-    "objectID": "slides/04-slides.html#cloud-based-hadoop-clusters",
-    "href": "slides/04-slides.html#cloud-based-hadoop-clusters",
+    "objectID": "slides/04-slides.html#lambda-basic-code-demo",
+    "href": "slides/04-slides.html#lambda-basic-code-demo",
     "title": "Lecture 4",
-    "section": "Cloud based Hadoop Clusters",
-    "text": "Cloud based Hadoop Clusters\nAmazon Elastic MapReduce (EMR) and Azure HDInsight\n\nOn Premises\n\n\n\nCloud Based (note the storage layer)"
+    "section": "Lambda basic code demo",
+    "text": "Lambda basic code demo\n\nBeyond any simple prototyping, you would probably never use this method.\nThe “hello world” example and then numbers with an endpoint\n\nhttps://frankcorso.dev/aws-lambda-function-endpoint-api-gateway.html"
   },
   {
-    "objectID": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
-    "href": "slides/04-slides.html#accessing-data-in-distributed-objectfile-system",
+    "objectID": "slides/04-slides.html#using-a-zip-archive-for-lambda",
+    "href": "slides/04-slides.html#using-a-zip-archive-for-lambda",
     "title": "Lecture 4",
-    "section": "Accessing Data in Distributed Object/File System",
-    "text": "Accessing Data in Distributed Object/File System\nFor files in the Cluster HDFS\n\ndirectory/data/ which is a shortcut to\n/user/hadoop/directory/data/\n\nFor files in Amazon S3\nThe service name is S3 and the data container is called a “bucket (bucket_name)” * s3://bucket_name/directory/data/\nFor Files in Azure Blob\nThe service name is Azure Storage Account (your_account) and the data container is called a “container (container)”. There can be many containers in a storage account.\n\nwasb://container@your_account.blob.core.windows.net/directory/data/"
+    "section": "Using a Zip archive for Lambda",
+    "text": "Using a Zip archive for Lambda\n\nThe Lambda code (say the index.py file) and all the dependencies i.e. Python packages used by the code are packaged together in a Zip file, typically called function.zip.\n\nBe careful to always install these packages in a special directory specifically created for the Lambda function so to not override anything currently installed in your existing Python installation.\n\nThe function.zip file is put in an S3 bucket and the Lambda is configured to pull it from there.\nExample script for building a Lambda function.zip and uploading it to S3.\n\nAWS example of zip archive"
   },
   {
-    "objectID": "slides/04-slides.html#hdfs-essential-commands",
-    "href": "slides/04-slides.html#hdfs-essential-commands",
+    "objectID": "slides/04-slides.html#lambda-with-docker-containers",
+    "href": "slides/04-slides.html#lambda-with-docker-containers",
     "title": "Lecture 4",
-    "section": "HDFS essential commands",
-    "text": "HDFS essential commands\nWhat commands have we discussed about the Linux file system that we want for HDFS?\n#| code-line-numbers: false\n# list files\nhdfs dfs -ls <hdfs path>\n\n# make directories\nhdfs dfs -mkdir <folder location>\n\n# touch an empty file\nhdfs dfs -touchz <hdfs path>\n\n# \"put\" file to hdfs\nhdfs dfs -put <other file path> <dest hdfs path>\n\n# \"get\" file from hdfs\nhdfs dfs -get <other file path> <dest hdfs path>"
+    "section": "Lambda with Docker containers",
+    "text": "Lambda with Docker containers\nAWS example Walkthrough post"
   },
   {
-    "objectID": "slides/04-slides.html#hdfs-essential-commands-1",
-    "href": "slides/04-slides.html#hdfs-essential-commands-1",
+    "objectID": "slides/04-slides.html#dockerfile",
+    "href": "slides/04-slides.html#dockerfile",
     "title": "Lecture 4",
-    "section": "HDFS essential commands",
-    "text": "HDFS essential commands\n# other flag commands, after command and subcommand\nhdfs dfs -cat <hdfs path> #print contents of file\nhdfs dfs -mv <old hdfs path> <new hdfs path> # move file/folder\nhdfs dfs -rm <hdfs path> #only one file\nhdfs dfs -rmr <hdfs path> # recursive flag!\nhdfs dfs -chmod 777 <hdfs path> # set permissions\nhdfs dfs -setfacl -m default:user:sqoop:rwx <hdfs path> # access control list\nReview common commands here\nMore common commands"
+    "section": "Dockerfile",
+    "text": "Dockerfile\n# syntax=docker/dockerfile:1\n\n# adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image\n# https://docs.aws.amazon.com/lambda/latest/dg/python-image.html\nFROM public.ecr.aws/lambda/python:3.9\n\n# copy requirements file and install necessary packages\nADD requirements.txt ${LAMBDA_TASK_ROOT}\nRUN pip3 install -r ${LAMBDA_TASK_ROOT}/requirements.txt --target \"${LAMBDA_TASK_ROOT}\"\n\n# Copy function code to docker container\nCOPY app.py ${LAMBDA_TASK_ROOT}\n\n# app (name of py file)\n# handler (name of function to execute for lambda job)\nCMD [ \"app.lambda_handler\" ]"
   },
   {
-    "objectID": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
-    "href": "slides/04-slides.html#how-to-programmatically-interact-with-hdfs-from-python",
+    "objectID": "slides/04-slides.html#interactivity-with-lambda",
+    "href": "slides/04-slides.html#interactivity-with-lambda",
     "title": "Lecture 4",
-    "section": "How to programmatically interact with HDFS from python?",
-    "text": "How to programmatically interact with HDFS from python?\n\nUse a python library (hdfs, snakebite, pydoop)\nWhat I do…\nsubprocess to call the real functions!\n\n\nimport subprocess\n\n# local path of the file\nlocal_path = '/home/hadoop/test_dir/myfile.txt'\n\n# can be a new file name or a just folder destination\nhdfs_path = '/user/hadoop/data_folder/'\n\n# construct string command to execute in linux\nlinux_command = f'hdfs dfs -put {local_path} {hdfs_path}'\n\n# run in linux, grab result code and message\nresult_code, result_message = subprocess.getstatusoutput(linux_command)\n\n# raise an error if command did not exit properly\nif result_code != 0:\n  raise TypeError(f'exit code: {result_code}, {result_message}')"
+    "section": "Interactivity with Lambda?",
+    "text": "Interactivity with Lambda?\nIf you “hack” it!"
   },
   {
-    "objectID": "slides/04-slides.html#writing-mapreduce-applications",
-    "href": "slides/04-slides.html#writing-mapreduce-applications",
+    "objectID": "slides/04-slides.html#connecting-multiple-lambdas-together",
+    "href": "slides/04-slides.html#connecting-multiple-lambdas-together",
     "title": "Lecture 4",
-    "section": "Writing MapReduce applications",
-    "text": "Writing MapReduce applications\nHadoop is written in Java and provides a Java API that allows you to specify the following:\n\nThe input and output data locations in your distributed object/file system\nThe Map and Reduce functions which are providede in the form of Java classes\nMany kinds of job parameters and configurations\n\nOh no! What if I want to use other programming languages?"
+    "section": "Connecting multiple Lambdas together",
+    "text": "Connecting multiple Lambdas together\nConnecting multiple lambda using AWS Step Functions"
   },
   {
-    "objectID": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
-    "href": "slides/04-slides.html#the-name-hadoop-streaming-comes-from-the-unix-streams",
+    "objectID": "slides/04-slides.html#performance-optimization",
+    "href": "slides/04-slides.html#performance-optimization",
     "title": "Lecture 4",
-    "section": "The name Hadoop Streaming comes from the Unix Streams",
-    "text": "The name Hadoop Streaming comes from the Unix Streams"
+    "section": "Performance optimization",
+    "text": "Performance optimization\nwarm start vs cold start\nDiscussion post on AWS"
   },
   {
-    "objectID": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
-    "href": "slides/04-slides.html#hadoop-streaming-allows-you-to-run-any-executable-script-on-the-hadoop-framework",
+    "objectID": "slides/04-slides.html#extra-links",
+    "href": "slides/04-slides.html#extra-links",
     "title": "Lecture 4",
-    "section": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework",
-    "text": "Hadoop Streaming allows you to run any executable script on the Hadoop Framework\nIt uses an existing Java program to run non-java programs!\n\nKeys and values can be single or compound"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-10",
-    "href": "slides/04-slides.html#section-10",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "Advantages of Hadoop Streaming\n\nUsing existing code-base (non Java)\nLeveraging Hadoop framework to scale out\n\n\n\nLimitations of Hadoop Streaming\n\nNo combiner or partitioner, just map -> shuffle-sort -> reduce\nEverything is text. Your programs have to parse everything appropriately and convert strings to other data types as needed. You also have manually create the key/value pair for output.\nIf using R or Python, you must limit your programs to the base libraries."
-  },
-  {
-    "objectID": "slides/04-slides.html#basic-python-mapper",
-    "href": "slides/04-slides.html#basic-python-mapper",
-    "title": "Lecture 4",
-    "section": "Basic Python Mapper",
-    "text": "Basic Python Mapper\n#!/usr/bin/env python\n\nimport sys\n\nif __name__ == \"__main__\":\n for line in sys.stdin:\n     for word in line.split():\n         sys.stdout.write(\"{}\\t1\\n\".format(word))\n\nThe first line makes this an executable Python script\nRead in line\nSplit line by space into single words\nFor every line: produce an output in the form of word\\t1 where \\t is a tab\nOutput is always a key and value pair!"
-  },
-  {
-    "objectID": "slides/04-slides.html#basic-python-reducer",
-    "href": "slides/04-slides.html#basic-python-reducer",
-    "title": "Lecture 4",
-    "section": "Basic Python Reducer",
-    "text": "Basic Python Reducer\n\n\n#!/usr/bin/env python\n\nimport sys\n\ndef stdout(key, val):\n  sys.stdout.write(f\"{key}\\t{val}\\n\")\n\nif __name__ == '__main__':\n curkey = None\n total = 0\n for line in sys.stdin:\n     key, val = line.split(\"\\t\")\n     val = int(val)\n\n     if key == curkey:\n         total += val\n     else:\n         if curkey is not None:\n              stdout(curkey, total)\n\n         curkey = key\n         total = val\n\n stdout(curkey, total)\n\n\n\n\nThe first line makes this an executable Python script\nMake stdout function\nRead in line and stores in memory\nLook at the key from the key/value\nRead next line and compare key\nKeep reading lines and storing lines in memory until the key is different\nWhen new key is received, take all the lines from the previous key and do something and write out result\nRepeat until all lines are processed"
-  },
-  {
-    "objectID": "slides/04-slides.html#section-11",
-    "href": "slides/04-slides.html#section-11",
-    "title": "Lecture 4",
-    "section": "",
-    "text": "hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input [[input-location]] \\\n-output [[output-location]] \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py\n\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar launches Hadoop with the hadoop-streaming.jar\n-files /home/hadoop/hadoop-streaming/basic-mapper.py,/home/hadoop/hadoop-streaming/basic-reducer.py tells the job to “ship” the executable mapper and reducer scripts (the actual filename and absolute path) to every node on the cluster. This line must always be second when you need to ship files with your job.\n-input [[input-location]] tells the Hadoop the location of your source data in a distributed object/filesystem. If you specify a directory, all files in the directory will be used as inputs\n-output [[output-location]] tells the Hadoop the location of your output data in a distributed object/filesystem. This parameter is just a name of a location, and it must not exist before running the job otherwise the job will fail.\n-mapper basic-mapper.py and reducer basic-reducer.py specify the commands to run as a mapper and reducer, respectively. These must be shell scripts or native Linux commands. If you are using a script, you must “ship” it to the nodes with the -files parameter above."
-  },
-  {
-    "objectID": "slides/04-slides.html#gotchas",
-    "href": "slides/04-slides.html#gotchas",
-    "title": "Lecture 4",
-    "section": "Gotcha’s",
-    "text": "Gotcha’s\n\nThe output location of the job (HFDF, S3, Blob) must not exist before running a job. You will get an error if you try to write out to an existing/non-empty location\nYou have to ship or package your executables with the job.\nHadoop/Java error messages can be cryptic and only give you errors regarding the framework. If you need to debug your script you will need to look at the stdout/stderr logs\nYou need to specify the full path name of your mapper and reducer scripts"
-  },
-  {
-    "objectID": "slides/04-slides.html#example-code",
-    "href": "slides/04-slides.html#example-code",
-    "title": "Lecture 4",
-    "section": "Example code",
-    "text": "Example code\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar \\\n-files basic-mapper.py,basic-reducer.py \\\n-input /user/hadoop/in_data \\\n-output /user/hadoop/in_data \\\n-mapper basic-mapper.py \\\n-reducer basic-reducer.py"
-  },
-  {
-    "objectID": "slides/04-slides.html#hadoop-references",
-    "href": "slides/04-slides.html#hadoop-references",
-    "title": "Lecture 4",
-    "section": "Hadoop References",
-    "text": "Hadoop References\n\nHadoop 3.3.1: https://hadoop.apache.org/docs/r3.3.1/\n\nHDFS Filesystem Commands: https://hadoop.apache.org/docs/r3.3.1/hadoop-project-dist/hadoop-common/FileSystemShell.html\n\nHadoop Streaming https://hadoop.apache.org/docs/r3.3.1/hadoop-streaming/HadoopStreaming.html"
+    "section": "Extra links",
+    "text": "Extra links\nhttps://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/\nserverless web scraper with python and lambda - up to date simple example https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78"
   },
   {
     "objectID": "slides/05-slides.html#takeaway",

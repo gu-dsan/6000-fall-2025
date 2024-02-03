@@ -1,0 +1,164 @@
+# Lambda
+
+## Overview
+
+- Lambda (or $\lambda$) is the name given to anonymous functions in some languages like Python. 
+
+- Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages that can be triggered in a variety of ways. 
+
+- The execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data. 
+
+- There can be thousands of executions happening simultaneously. 
+
+- Lambda is billed by the millisecond (ms). 
+
+::: {.aside}
+The name Lambda is derived from Lambda calculus, a mathematical system to express computation introduced by Dr. Alonzo Church in the 1930s. See wikipedia entry on [Lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) for why the symbol $\lambda$ was choosen.
+:::
+
+# AWS Lambda Functions
+---
+
+## Lambda Details
+
+![](img/lambda-example.png)
+
+- Micro executions without dealing with any hardware, "serverless" computation.
+- Can run many copies of code depending on number of requests or files.
+- Supported languages: Java, Go, PowerShell, Node.js, C#, Python, and Ruby.
+     * Provides a Runtime API which allows you to use any additional programming languages to author your functions
+- Pricing based on RAM and time used - [Lambda pricing](https://aws.amazon.com/lambda/pricing/)
+    * Max execution time - 15 minutes
+    * Max RAM - 10 GB
+
+---
+
+## Lambda triggers
+
+:::: {.columns}
+::: {.column width="50%"}
+
+- Lambdas only start executing in response to an **event**, such as an API being invoked, a schedule or more complex things.
+
+- A Lambda function is used primarily in the following two ways:
+    * Hosting an API, this is done in conjunction with an [Amazon API Gateway](https://aws.amazon.com/api-gateway/).
+    * Running custom code to respond to events such as a new file showing up in an S3 bucket, a row being deleted from a database etc.
+:::
+
+::: {.column width="50%"}
+![[`Lambda triggers`](img/lambda-triggers.gif)](img/lambda-triggers.gif)
+:::
+:::
+
+## Different ways to invoke Lambda
+
+![[`Ways to invoke Lambda`](https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2019/06/27/Screen-Shot-2019-06-27-at-2.23.51-PM-1024x510.png)](https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2019/06/27/Screen-Shot-2019-06-27-at-2.23.51-PM-1024x510.png)
+Source: [Understanding the different ways to invoke Lambda function](https://aws.amazon.com/blogs/architecture/understanding-the-different-ways-to-invoke-lambda-functions/)
+
+## Some real world use-cases for a Lambda
+
+1. Transforming a picture taken by a delivery agent into a desired format and storing it in S3 in real-time.
+
+1. As a front-end (along with an API Gateway) to a ML model to provide real-time prediction to a customer clicking a link on a website .
+
+1. A backend API that gets invoked when a QR code is scanned.
+
+1. A simple single page website with a form.
+
+1. Sending a scheduled newsletter to email addresses on a mailing list.
+
+[AWS Lambda customer case studies](https://aws.amazon.com/lambda/resources/customer-case-studies/)
+
+
+## Lambda can be set on a schedule
+
+* Similar to Linux Crontab or Windows Task Scheduler
+
+[example of schedule trigger](https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html)
+
+* Site for translating crontab symbols to next execution: https://crontab.guru/
+* Site for generating crontab syntax from dropdown options: https://crontab-generator.org/
+
+## Lambda coding choices
+
+Levels of Lambda complexity:
+
+1. Code written directly on the AWS Lambda console
+1. Zip archive
+1. Docker Containers
+
+---
+
+## Lambda basic code demo
+
+1. Beyond any simple prototyping, you would probably never use this method.
+
+1. The "hello world" example and then numbers with an endpoint
+    * <https://frankcorso.dev/aws-lambda-function-endpoint-api-gateway.html>
+
+
+## Using a Zip archive for Lambda
+
+1. The Lambda code (say the `index.py` file) and all the dependencies i.e. Python packages used by the code are packaged together in a Zip file, typically called `function.zip`.
+    - Be careful to always install these packages in a special directory specifically created for the Lambda function so to not override anything currently installed in your existing Python installation.
+
+1. The `function.zip` file is put in an S3 bucket and the Lambda is configured to pull it from there.
+
+1. Example [script](https://github.com/aws-samples/llm-apps-workshop/blob/main/blogs/rag/api/deploy.sh) for building a Lambda `function.zip` and uploading it to S3.
+
+[AWS example of zip archive](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html)
+
+
+## Lambda with Docker containers
+
+[AWS example](https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-base)
+[Walkthrough post](https://www.philschmid.de/aws-lambda-with-custom-docker-image)
+
+## Dockerfile
+
+```{{bash}}
+# syntax=docker/dockerfile:1
+
+# adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image
+# https://docs.aws.amazon.com/lambda/latest/dg/python-image.html
+FROM public.ecr.aws/lambda/python:3.9
+
+# copy requirements file and install necessary packages
+ADD requirements.txt ${LAMBDA_TASK_ROOT}
+RUN pip3 install -r ${LAMBDA_TASK_ROOT}/requirements.txt --target "${LAMBDA_TASK_ROOT}"
+
+# Copy function code to docker container
+COPY app.py ${LAMBDA_TASK_ROOT}
+
+# app (name of py file)
+# handler (name of function to execute for lambda job)
+CMD [ "app.lambda_handler" ]
+```
+
+## Interactivity with Lambda?
+
+
+[If you "hack" it!](https://www.keithrozario.com/2019/08/interactive-shell-on-a-lambda-function.html)
+
+---
+
+## Connecting multiple Lambdas together
+
+[Connecting multiple lambda using AWS Step Functions](https://medium.com/zenofai/create-an-etl-solution-using-aws-step-functions-lambda-and-glue-302623bc2fea)
+
+---
+
+## Performance optimization
+
+#### warm start vs cold start
+
+[Discussion post on AWS](https://aws.amazon.com/blogs/compute/operating-lambda-performance-optimization-part-1/)
+
+
+## Extra links
+
+<https://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/>
+
+serverless web scraper with python and lambda - up to date simple example
+<https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78>
+

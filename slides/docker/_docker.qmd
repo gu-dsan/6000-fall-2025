@@ -1,0 +1,222 @@
+# Containers
+
+## Process Isolation and Deployment
+
+- Encapsulate all the dependencies of your code
+- Deploy your code into production in the same environment as your development space
+- Run your code without other processes affecting your work
+- You need virtualization!
+
+## Motivation
+
+### Why should you care?
+
+![](img/meme_ship_machine.png)
+
+## History of Virtualization
+
+- Two types of virtualization - hardware and software
+- Hardware time sharing started in the late 1950s
+- Virtualization first introduced in IBM in the 1960s
+- VMWare started in 
+
+![](img/virtualization-timeline.png)
+
+[link](https://www.servethehome.com/virtualization-long-history/)
+
+## Virtual Machines
+
+:::: {.columns}
+::: {.column width="50%"}
+
+* Hardware server is the host
+* Multiple virtual machines can sit on the hypervisor as "guests"
+* Pros: decades of development in VMs, multiple emulated full computers on single hardware, allows for infrastructure "lift and shift" to the cloud
+* Cons: VM images very large (10-100s GBs), "guest" OS takes up resources, large start up cost
+
+[link](https://www.vmware.com/topics/glossary/content/vms-vs-containers.html)
+:::
+::: {.column width="50%"}
+
+![](img/vm-diagram.png)
+
+
+
+:::
+::::
+
+## Containers
+
+:::: {.columns}
+::: {.column width="50%"}
+
+* Package and run applications in isolated environment
+* Great for production work, not as much for developmental work
+* Docker application manages "guest" applications with a single operating system
+* Pros: Lightweight (10-100s MBs), faster spin up time, one host can manage many more containers
+* Cons: containers must all work with the same OS, somewhat less secure due to shared OS resources, only 10 years old
+
+[link](https://www.vmware.com/topics/glossary/content/vms-vs-containers.html)
+
+:::
+::: {.column width="50%"}
+
+![](img/container-diagram.png)
+
+
+
+:::
+::::
+
+## Docker vs. Virtual Machine
+
+![](img/vm-vs-container.PNG)
+
+## Docker Container Architecture
+
+- Images are a snapshot of instructions for setup of an application environment
+- Containers are executing applications deployed based on an image
+- Container images become containers at runtime (Docker Engine!)
+
+![](img/Docker-Architecture.png)
+
+## Containers are not enough
+
+![](img/containers-dont-solve-everything.jpg)
+
+## Container lifecycle
+
+* Containers (like applications) need a lifecycle
+
+![](img/container-lifecycle.png)
+
+## Container orchestration
+
+![](img/container-orchestration.jpg)
+
+# Building Docker images
+
+## Docker layers
+
+Each command to modify the environment is a layer in your build process
+
+![](img/docker-layers.png)
+
+## Docker base images
+
+* The first command in a Docker build is to call `FROM XXXXX`. This is the base image that has the core OS-level software.
+* smaller size == faster execution
+
+![](img/docker-base-images.png)
+
+## The storage problem of containers
+
+* When containers are killed, all temporary is lost! What to do...
+* Containers need persistent storage sometimes
+* Docker volumes live outside the container and allow for permanent storage
+
+![](img/docker-volumes.png)
+
+## Dockerfile Syntax
+
+**Students explain what each command is doing**
+
+* Format is always `INSTRUCTION arguments`
+* `FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]` - Pulling the base image to start with
+* `RUN <command>` or `RUN ["executable", "param1", "param2"]` - Run commands of any type
+* `VOLUME` - Creates mountpoint for Docker volume
+* `ENV <key>=<value> ...` - Set environment variables for your container
+* `WORKDIR` - Sets working directory for other commands
+* `EXPOSE <port> [<port>/<protocol>...]` - Open a port for the container
+* `COPY [--chown=<user>:<group>] [--chmod=<perms>] <src>... <dest>` - Copies files from host file system to container file system. Note working directory matters in the container too!
+* `ADD` - Copy with a link to allow for reusing of already built layers. Helps with build speed!
+
+## Dockerfile CMD and ENTRYPOINT
+
+* Should have a purpose for your container and have it run something!
+* `CMD command param1 param2` - Final command to prepare the launching container. Typically occurs before an `ENTRYPOINT` instruction or as its own standalone command. `CMD` can be overwritten by new `docker run` arguments.
+* `ENTRYPOINT command param1 param2` - Command that will run the Docker container as an executable, such as a web server, Jupter environment, or data pipeline.
+
+![](img/docker-cmd-entrypoint.png)
+
+## Dockerfile Syntax Examples
+
+- `RUN ["/bin/bash", "-c", "echo hello"]`
+
+```{{bash}}
+FROM busybox
+ENV FOO=/bar
+WORKDIR ${FOO}   # WORKDIR /bar
+ADD . $FOO       # ADD . /bar
+COPY \$FOO /quux # COPY $FOO /quu
+```
+
+```{{bash}}
+# syntax=docker/dockerfile:1
+FROM python:3.6
+ADD mypackage.tgz wheels/
+RUN --network=none pip install --find-links wheels mypackage
+```
+
+[Dockerfile reference link](https://docs.docker.com/engine/reference/builder/)
+
+## S3 example
+
+```{{bash}}
+# syntax=docker/dockerfile:1
+FROM python:3
+RUN pip install awscli
+RUN --mount=type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ...
+```
+
+## Web server example
+
+```{{bash}}
+FROM debian:stable
+RUN apt-get update && apt-get install -y --force-yes apache2
+EXPOSE 80 443
+VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+```
+
+## Docker for Python jobs
+
+Basic needs:
+
+- Dockerfile that sets up environment
+- Application code to execute
+- List of packages to install
+
+[Walkthrough](https://docs.docker.com/language/python/build-images/)
+
+
+## Docker Python example
+
+1. Write your Dockerfile
+
+```{.bash}
+FROM python:3.8-slim-buster
+WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+COPY . .
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+```
+
+2. Build the docker image using a tag and version number `docker build ./ -t docker-tag-name:1.0`. Read about docker building options [here](https://docs.docker.com/engine/reference/commandline/build/).
+
+3. Check your docker images in your local file system using `docker images`
+
+4. Test your docker image using `docker run -it docker-tag-name`. Read about the flags [here](https://docs.docker.com/engine/reference/run/). The `i` is to keep STDIN open, the `t` is for pseudo-TTY mode (shell).
+
+5. Deploy your docker image somewhere!
+
+
+## Docker links
+
+[AWS examples](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-spark-docker.html)
+
+[Article discussing performance considerations](https://pythonspeed.com/articles/base-image-python-docker-images/)
+
+[What are containers?](https://www.docker.com/resources/what-container/)
