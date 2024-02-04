@@ -1,0 +1,136 @@
+# Polars
+
+Lightning-fast DataFrame library for Rust and Python
+
+## Before we begin..
+
+>[Pandas](https://pandas.pydata.org/) is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.
+
+::: {.incremental}
+
+1. Pandas is slow, well yes but also, not so much if you use it the right way.
+
+  - [Apache Arrow and the "10 Things I Hate About pandas"](https://wesmckinney.com/blog/apache-arrow-pandas-internals/) (<font color=red size=5>A 2017 post from the creator of Pandas..</font>)
+
+  - [50 times faster data loading for Pandas: no problem](https://blog.esciencecenter.nl/irregular-data-in-pandas-using-c-88ce311cb9ef) (<font color=red size=5>but this is an old 2019 article..</font>)
+
+  - [Is Pandas really that slow?](https://medium.com/@tommerrissin/is-pandas-really-that-slow-cff4352e4f58)
+
+1. [Pandas 2.0 and the arrow revolution](https://datapythonista.me/blog/pandas-20-and-the-arrow-revolution-part-i)
+
+:::
+
+## Polars
+
+![[`Polars`](polars/img/polars.jpg)](polars/img/polars.jpg)
+
+## Why is Polars faster than Pandas?
+
+::: {.incremental}
+1. **Polars is written in Rust**. Rust is a compiled language, Python is an interpreted language.
+    - Compiled language: you generate the machine code only once then run it, subsequent runs do not need the compilation step.
+    - Interpreted language: code has to be parsed, interpreted and converted into machine code every single time.
+
+1. **Parallelization**: Vectorized operations that can be executed in parallel on multiple CPU cores.
+
+1. **Lazy evaluation**: Polars supports two APIs lazy as well as eager evaluation (used by pandas). In lazy evaluation, a query is executed only when required. While in eager evaluation, a query is executed immediately.
+
+1. **Polars uses [Arrow](https://arrow.apache.org/)** as its in-memory representation of data. Similar to how pandas uses Numpy (although Pandas 2.0 does allow using Arrow as the backend in addition to Numpy).
+    - [Excerpt from [this post](https://news.ycombinator.com/item?id=26454585) from [Ritchie Vink](https://github.com/ritchie46), author of Polars] Arrow provides the efficient data structures and some compute kernels, like a SUM, a FILTER, a MAX etc. Arrow is not a query engine. Polars is a DataFrame library on top of arrow that has implemented efficient algorithms for JOINS, GROUPBY, PIVOTs, MELTs, QUERY OPTIMIZATION, etc. (the things you expect from a DF lib).
+    - **Polars could be best described as an in-memory DataFrame library with a query optimizer**.
+:::
+
+## Ease of use
+
+1. Familiar API for users of Pandas: there are differences in syntax `polars != pandas` but it is still a Dataframe API making it straightforward to perform common operations such as filtering, aggregating, and joining data. See [migrating from Pandas](https://pola-rs.github.io/polars-book/user-guide/migration/pandas/)
+
+    **Reading data**
+
+    ```{.python}
+    # must install s3fs -> "pip install s3fs"
+
+    # Using Polars
+    import polars as pl
+    polars_df = pl.read_parquet("s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet")
+
+    # using Pandas
+    import pandas as pd
+    pandas_df = pd.read_parquet("s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet")
+    ```
+
+    **Selecting columns (see [Pushdown optimization](https://stackoverflow.com/questions/68713020/what-is-filter-pushdown-optimization))**
+
+    ```{.python}
+    # Using Polars
+    selected_columns_polars = polars_df[['column1', 'column2']]
+
+    # Using Pandas
+    selected_columns_pandas = pandas_df[['column1', 'column2']]
+    ```
+
+## Ease of use (contd.)
+
+1. Familiar API for users of Pandas:
+
+    **Filtering data**
+    
+    ```{.python}
+    # Using Polars
+    filtered_polars = polars_df[polars_df['column1'] > 10]
+
+    # Using Pandas
+    filtered_pandas = pandas_df[pandas_df['column1'] > 10]
+    ```
+
+    **Even though you can write Polars code that looks like Pandas, it is better to `write idiomatic Polars code` that takes advantages of unique features Polars offers**.
+
+1. [Migrating from Apache Spark](https://pola-rs.github.io/polars-book/user-guide/migration/spark/): Whereas the Spark DataFrame is analogous to a collection of rows, a Polars DataFrame is closer to a collection of columns.
+
+
+# Installation, data loading and basic operations
+
+Install polars via pip.
+
+```{.bash}
+pip install polars
+```
+
+Import polars in your Python code and read data as usual
+
+```{.python}
+import polars as pl
+df = pl.read_parquet("s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet")
+df.head()
+
+shape: (5, 19)
+┌──────────┬────────────┬──────────────┬──────────────┬─────┬──────────────┬──────────────┬──────────────┬─────────────┐
+│ VendorID ┆ tpep_picku ┆ tpep_dropoff ┆ passenger_co ┆ ... ┆ improvement_ ┆ total_amount ┆ congestion_s ┆ Airport_fee │
+│ ---      ┆ p_datetime ┆ _datetime    ┆ unt          ┆     ┆ surcharge    ┆ ---          ┆ urcharge     ┆ ---         │
+│ i32      ┆ ---        ┆ ---          ┆ ---          ┆     ┆ ---          ┆ f64          ┆ ---          ┆ f64         │
+│          ┆ datetime[n ┆ datetime[ns] ┆ i64          ┆     ┆ f64          ┆              ┆ f64          ┆             │
+│          ┆ s]         ┆              ┆              ┆     ┆              ┆              ┆              ┆             │
+╞══════════╪════════════╪══════════════╪══════════════╪═════╪══════════════╪══════════════╪══════════════╪═════════════╡
+│ 1        ┆ 2023-06-01 ┆ 2023-06-01   ┆ 1            ┆ ... ┆ 1.0          ┆ 33.6         ┆ 2.5          ┆ 0.0         │
+│          ┆ 00:08:48   ┆ 00:29:41     ┆              ┆     ┆              ┆              ┆              ┆             │
+│ 1        ┆ 2023-06-01 ┆ 2023-06-01   ┆ 0            ┆ ... ┆ 1.0          ┆ 23.6         ┆ 2.5          ┆ 0.0         │
+│          ┆ 00:15:04   ┆ 00:25:18     ┆              ┆     ┆              ┆              ┆              ┆             │
+│ 1        ┆ 2023-06-01 ┆ 2023-06-01   ┆ 1            ┆ ... ┆ 1.0          ┆ 60.05        ┆ 0.0          ┆ 1.75        │
+└──────────┴────────────┴──────────────┴──────────────┴─────┴──────────────┴──────────────┴──────────────┴─────────────┘
+```
+
+## A Polars DataFrame processing pipeline example
+
+Here is an example that we will run as part of the lab in a little bit. 
+
+>**Think how you would code this same pipeline in Pandas...**
+
+![Polars pipeline](polars/img/polars-pipeline.png)
+
+## Further reading
+
+- [Polars](https://github.com/pola-rs/polars)
+- [User guide](https://pola-rs.github.io/polars-book/user-guide/) <--- **MUST READ**
+- [Polars GitHub repo](https://github.com/pola-rs/polars)
+- [Pandas Vs Polars: a syntax and speed comparison](https://towardsdatascience.com/pandas-vs-polars-a-syntax-and-speed-comparison-5aa54e27497e)
+- [Tips & tricks for working with strings in Polars](https://towardsdatascience.com/tips-and-tricks-for-working-with-strings-in-polars-ec6bb74aeec2)
+

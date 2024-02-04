@@ -1,0 +1,387 @@
+# Filesystems
+
+## Raw ingredients of storage systems
+
+:::: {.columns}
+
+:::{.column width="50%"}
+- Disk drives (magnetic HDDs or SSDs)
+- RAM
+- Networking and CPU
+- Serialization
+- Compression
+- Caching
+:::
+
+:::{.column width="50%"}
+![](filesystems-and-filetypes/img/fode_0602.png){height="500px"}
+:::
+
+::::
+
+::: aside
+Reis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O'Reilly Media.
+:::
+
+## Single machine vs. distributed storage
+
+![](filesystems-and-filetypes/img/fode_0604.png){fig-align="center"}
+
+
+::: {layout-ncol=2}
+### Single machine 
+
+- They are commonly used for storing operating system files, application files, and user data files.
+- Filesystems are also used in databases to store data files, transaction logs, and backups.
+
+
+## Distributed storage
+
+- A distributed filesystem is a type of filesystem that spans multiple computers.
+- It provides a unified view of files across all the computers in the system.
+- Have existed before cloud
+:::
+
+::: aside
+Reis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O'Reilly Media.
+:::
+
+## File storage
+
+A file is a data entity with specific read, write, and reference characteristics used by software and operating systems. 
+
+::: {layout-ncol=3}
+
+### Local disk
+
+- Operating system–managed filesystems on local disk partition of SSD or magnetic disk:
+  - NTFS (Windows)
+  - HFS+ (MacOS)
+  - ext4 (Linux)() on a local disk partition of SSD or magnetic disk
+
+
+### Network-attached (NAS)
+
+- File storage system to clients over a network
+- Including redundancy and reliability, fine-grained control of resources, storage pooling across multiple disks for large virtual volumes, and file sharing across multiple machines
+
+### Cloud filesystems
+
+- **Not object store (more on that later)**
+- **Not the virtual hard drive attached to a virtual machine**
+- Fully managed filesystem which takes care of networking, managing disk clusters, failures, and configuration (Azure Files, Amazon Elastic Filesystem)
+- Backed by Object Store
+:::
+
+::: aside
+Reis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O'Reilly Media.
+:::
+
+
+## Object stores
+
+The term object storage is somewhat confusing because object has several meanings in computer science. In this context, we’re talking about a specialized file-like construct. It could be any type of file: TXT, CSV, JSON, images, videos, audio, or pretty much any type of file.
+
+
+
+:::: {layout="[[33, 33, 33], [100]]" layout-valign="top"}
+
+::: {#cell1}
+![](filesystems-and-filetypes/img/s3-blob.png)
+:::
+
+::: {#cell2}
+![](filesystems-and-filetypes/img/fode_0608.png)
+:::
+
+::: {#cell3}
+![](filesystems-and-filetypes/img/object-storage-structure.png)
+:::
+
+::: {#cell4}
+- Contains objects of all shapes and sizes.
+- Every object gets a unique identifier
+- Objects are immutable; cannot be modifier in place (unlike local FS)
+- Distributed by design
+- Massively scalable REST API access
+:::
+
+
+::::
+
+
+
+## Distributed FS vs Object Store
+
+|     | Distributed File System | Object Storage |
+|---|-------------------------|----------------|
+| Organization| Files in hierarchical directories | Flat organization (though there can be overlays to provide hierarchical files structure) |
+| Method | POSIX File Operations | REST API |
+| Immutability | None: Random writes anywhere in file | Immutable: need to replace/append entire object |\
+| Performance | Performs best for smaller files | Performs best for large files |
+| Scalability| Millions of files | Billions of objects |
+
+Both provide:
+
+- Fault tolerance
+- Availability and consistency
+
+## Before: Data locality (for Hadoop)
+
+![](filesystems-and-filetypes/img/hdg-0202.png){fig-align="center" height="500"}
+
+::: aside
+White, T. E. (2015). Hadoop: The Definitive Guide, 4th Edition. United States: O'Reilly Media, Incorporated.
+:::
+
+
+## Today: de-coupling storage from compute
+
+![](filesystems-and-filetypes/img/tcdl_0106.png){fig-align="center"}
+
+::: aside
+Gopalan, R. (2022). The Cloud Data Lake. United States: O'Reilly Media.
+:::
+
+# Data on-disk formats
+
+## Plain Text (CSV, TDF, FWF)
+
+![](https://meme-generator.com/wp-content/uploads/mememe/2021/04/we-shared-the-csv-with-a-different-separator-335529-1.jpg){fig-align="center" height="400"}
+
+- Pay attention to encodings!
+- Lines end in linefeed, carriage-return, or both together depending on the OS that generated
+- Typically, a single line of text contains a single record
+
+## JSON
+
+:::: {layout="[[100], [33, 33, 33]]"}
+
+::: {.callout-warning}
+JSON files have two flavors: `JSON Lines` vs. `JSON`. Typically when we say data is in JSON format, we imply it's `JSON Lines` which means that there is a single JSON object per line, and there are multiple lines.
+:::
+
+::: {#c2}
+### JSON Lines
+
+Four records, one per line. No ending comma.
+
+```{.json}
+{"id":1, "name":"marck", "last_name":"vaisman"}
+{"id":2, "name":"anderson", "last_name":"monken"}
+{"id":3, "name":"amit", "last_name":"arora"}
+{"id":4, "name":"abhijit", "last_name":"dasgupta"}
+```
+:::
+
+:::{#c3}
+### JSON
+
+Four records enclosed in a JSON Array
+
+```{.json}
+[
+  {"id":1, "name":"marck", "last_name":"vaisman"},
+  {"id":2, "name":"anderson", "last_name":"monken"},
+  {"id":3, "name":"amit", "last_name":"arora"},
+  {"id":4, "name":"abhijit", "last_name":"dasgupta"},
+]
+```
+:::
+::::
+
+## Binary files
+
+![](https://fileinfo.com/img/ss/xl/bin_1956.png){fig-align="center"}
+
+## Issues with common file formats, particularly CSVs:
+
+- Still ubiquitous and highly error prone (even in 2023)
+- The default delimiter is also one of the most familiar characters in the English language—the comma
+- Not a uniform format
+  - Delimiter (comma, tab, semi-colon, custom)
+  - Quote characters (single or doble quote)
+  - Escaping to appropriately handle string data
+- Doesn’t natively encode schema information 
+- No direct support for nested structures
+- Encoding and schema information must be configured in the target system to ensure appropriate ingestion
+- Autodetection is a convenience feature provided in many cloud environments but is inappropriate for production ingestion, and can be painfully slow
+- Data engineers are often forced to work with CSV data and then build robust exception handling and error detection to ensure data quality on ingestion
+
+# Introducing Apache Parquet
+
+## Apache Parquet
+
+- Free and open-source column-oriented data storage format
+- Created by Twitter and Cloudera
+- v1.0 released in July, 2013
+- Stores data in a columnar format (as opposed to row format) and is designed to realize excellent read and write performance
+- Parquet-encoded data builds in schema information and natively supports nested data
+- Parquet is portable
+- Has become the standard for modern data warehouses and big data tools
+- Supported by R and Python through [Apache Arrow](https://arrow.apache.org/) (more on that coming up!)
+
+## Traditional row-store
+
+:::: {layout="[50, 50]" layout-valign="top"}
+
+::: {#col1}
+![](https://data-mozart.com/wp-content/uploads/2023/04/Row-store-1024x576.png)
+:::
+
+::: {#col2}
+![](https://data-mozart.com/wp-content/uploads/2023/04/Row-based-scan-1024x576.png)
+:::
+::::
+
+Say you wanted to answer the question _"How many balls did we sell?_, the engine must scan each and every row until the end!
+
+::: aside
+[Parquet file format, everything you need to know](https://data-mozart.com/parquet-file-format-everything-you-need-to-know/)
+:::
+
+## Column-store
+
+![](https://data-mozart.com/wp-content/uploads/2023/04/Column-store-1024x576.png)
+
+::: aside
+[Parquet file format, everything you need to know](https://data-mozart.com/parquet-file-format-everything-you-need-to-know/)
+:::
+
+::: aside
+[Parquet file format, everything you need to know](https://data-mozart.com/parquet-file-format-everything-you-need-to-know/)
+:::
+
+
+## Row groups
+
+:::: {layout="[50, 50]" layout-valign="top"}
+
+::: {#col1}
+### Data is stored in row groups!
+![](https://data-mozart.com/wp-content/uploads/2023/04/Row-store-1024x576.png)
+:::
+
+::: {#col2}
+### Only the required fields 
+![](https://data-mozart.com/wp-content/uploads/2023/04/Row-based-scan-1024x576.png)
+:::
+::::
+
+::: aside
+[Parquet file format, everything you need to know](https://data-mozart.com/parquet-file-format-everything-you-need-to-know/)
+:::
+
+## Metadata, compression, and dictionary encoding
+
+:::: {layout="[50, 50]" layout-valign="top"}
+
+::: {#col1}
+![](https://data-mozart.com/wp-content/uploads/2023/04/Format-1024x576.png)
+:::
+
+::: {#col2}
+![](https://data-mozart.com/wp-content/uploads/2023/04/Dictionary-1024x576.png)
+:::
+::::
+
+::: aside
+[Parquet file format, everything you need to know](https://data-mozart.com/parquet-file-format-everything-you-need-to-know/)
+:::
+
+## Apache Arrow for in-memory
+
+> Apache Arrow is a development platform for in-memory analytics. It contains a set of technologies that enable big data systems to process and move data fast. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware.
+
+
+::: aside
+Topol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing.
+:::
+
+## Before Arrow
+
+![](filesystems-and-filetypes/img/before-arrow.jpg)
+
+::: aside
+Topol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing.
+:::
+
+## After Arrow
+
+![](filesystems-and-filetypes/img/after-arrow.jpg)
+
+::: aside
+Topol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing.
+:::
+
+## Arrow Compatibility
+
+![](filesystems-and-filetypes/img/data-processing.jpg)
+
+::: aside
+Topol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing.
+:::
+
+
+
+## Arrow Performance
+
+:::: {layout="[50, 50]" layout-valign="top"}
+
+::: {#col1}
+![](filesystems-and-filetypes/img/file-size-perf-numbers.jpg)
+:::
+
+::: {#col2}
+![](filesystems-and-filetypes/img/mean-calc-mem-runtime.jpg)
+:::
+::::
+
+::: aside
+Topol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing.
+:::
+
+
+## Use Arrow to read/write CSVs and Parquet
+
+:::: {layout="[50, 50]" layout-valign="top"}
+
+::: {#col1}
+### Python
+
+Use the `pyarrow` library or straight from `pandas`
+
+```{.python}
+import pandas as pd
+pd.read_csv(engine = 'pyarrow')
+pd.read_parquet
+
+import pyarrow.csv
+pyarrow.csv.read_csv()
+
+import pyarrow.parquet
+pyarrow.parquet.read_table()
+```
+:::
+
+::: {#col2}
+### R
+
+Use the `arrow` package
+
+```{.r}
+library(arrow)
+
+read_csv_arrow()
+read_parquet()
+read_json_arrow()
+
+write_csv_arrow()
+write_parquet()
+```
+:::
+::::
+
+**Recommendation:** save your intermediate and analytical datasets as `Parquet`!
+
+

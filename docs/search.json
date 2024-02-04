@@ -2086,130 +2086,326 @@
     "text": "Extra links\nhttps://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/\nserverless web scraper with python and lambda - up to date simple example https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78"
   },
   {
-    "objectID": "slides/05-slides.html#takeaway",
-    "href": "slides/05-slides.html#takeaway",
+    "objectID": "slides/05-slides.html#agenda-and-goals-for-today",
+    "href": "slides/05-slides.html#agenda-and-goals-for-today",
     "title": "Lecture 5",
-    "section": "Takeaway",
-    "text": "Takeaway\n\n\nDask provides an easy to use Python interface for data science and machine learning workloads. If you are familiar with Pandas and Numpy you can become productive with Dask very quickly. Dask is used by individual researchers as well as institutions across a broad set of domains.\n\n\n\nMatthew Rocklin (2015). Dask: Parallel Computation with Blocked algorithms and Task Scheduling. https://conference.scipy.org/proceedings/scipy2015/pdfs/matthew_rocklin.pdf"
+    "section": "Agenda and Goals for Today",
+    "text": "Agenda and Goals for Today\n\n\nLecture\n\nDistributed file systems\nModern file types\nWorking with large tabular data on a single node\n\nDuckDB\nPolars\n\n\n\nLab\n\nRun a similar task with Pandas, polars and duckdb"
   },
   {
-    "objectID": "slides/05-slides.html#what-is-dask",
-    "href": "slides/05-slides.html#what-is-dask",
+    "objectID": "slides/05-slides.html#logistics-and-review",
+    "href": "slides/05-slides.html#logistics-and-review",
     "title": "Lecture 5",
-    "section": "What is Dask?",
-    "text": "What is Dask?\n \n\nDask is an open-source flexible library for parallel computing in Python."
+    "section": "Logistics and Review",
+    "text": "Logistics and Review\n\n\nDeadlines\n\nAssignment 1: Python Skills Due Sept 5 11:59pm\nLab 2: Cloud Tooling Due Sept 5 6pm\nAssignment 2: Shell & Linux Due Sept 11 11:59pm\nLab 3: Parallel Computing Due Sept 12 6pm\nAssignment 3: Parallelization Due Sept 18 11:59pm\nLab 4: Docker and Lambda Due Sept 19 6pm\nAssignment 4: Containers Due Sept 25 11:59pm\nLab 5: DuckDB & Polars Due Sept 26 6pm\n\n\nLook back and ahead\n\nContinue to use Slack for questions!\nDocker (containerization)\nLambda functions\nComing up: Spark and project"
   },
   {
-    "objectID": "slides/05-slides.html#ok-but-what-is-it-really",
-    "href": "slides/05-slides.html#ok-but-what-is-it-really",
+    "objectID": "slides/05-slides.html#raw-ingredients-of-storage-systems",
+    "href": "slides/05-slides.html#raw-ingredients-of-storage-systems",
     "title": "Lecture 5",
-    "section": "Ok, but what is it really…",
-    "text": "Ok, but what is it really…\n\nBlocked Algorithms1: Take a very large dataset that cannot fit into memory and break it into many many smaller parts each of which can be computed upon independantly, combine the results.\nDirected Acyclic Graphs (DAGs): Create a graph to represent this sequence of operations.\nDistributed Compute: Compute the results by executing this graph on a compute platform (multi-core CPU, multiple multi-core CPUs).\n\nWhat is a blocked algorithm"
+    "section": "Raw ingredients of storage systems",
+    "text": "Raw ingredients of storage systems\n\n\n\nDisk drives (magnetic HDDs or SSDs)\nRAM\nNetworking and CPU\nSerialization\nCompression\nCaching\n\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
   },
   {
-    "objectID": "slides/05-slides.html#as-a-programmer-what-do-i-need-to-know",
-    "href": "slides/05-slides.html#as-a-programmer-what-do-i-need-to-know",
+    "objectID": "slides/05-slides.html#single-machine-vs.-distributed-storage",
+    "href": "slides/05-slides.html#single-machine-vs.-distributed-storage",
     "title": "Lecture 5",
-    "section": "As a programmer what do I need to know?",
-    "text": "As a programmer what do I need to know?\nDask is composed of two parts: Dynamic Task Scheduling and Big Data Collections (such as parallel arrays, dataframes and lists). More details on the Dask Website."
+    "section": "Single machine vs. distributed storage",
+    "text": "Single machine vs. distributed storage\n\n\n\n\n\n\n\n\nSingle machine\n\nThey are commonly used for storing operating system files, application files, and user data files.\nFilesystems are also used in databases to store data files, transaction logs, and backups.\n\n\n\nDistributed storage\n\nA distributed filesystem is a type of filesystem that spans multiple computers.\nIt provides a unified view of files across all the computers in the system.\nHave existed before cloud\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
   },
   {
-    "objectID": "slides/05-slides.html#talk-is-cheap.-show-me-the-code.",
-    "href": "slides/05-slides.html#talk-is-cheap.-show-me-the-code.",
+    "objectID": "slides/05-slides.html#file-storage",
+    "href": "slides/05-slides.html#file-storage",
     "title": "Lecture 5",
-    "section": "Talk is cheap. Show me the code.",
-    "text": "Talk is cheap. Show me the code.\nData: All of the NYC yellow taxi trip data files from 2021. \n\n\nimport time\nfrom dask import dataframe as dd\n\n# Dask is able to read multiple files without us having to write a loop\ndf = dd.read_parquet(\"s3://bigdatateaching/nyctaxi-yellow-tripdata/2021/yellow_tripdata_2021-*.parquet\")\n\n# Lets take dask for a spin, how about finding the average of\n# a few columns of interest: trip_distance, passenger_count, total_amount\nstart = time.perf_counter()\nresults = df[['trip_distance', 'total_amount']].mean().compute().to_frame().reset_index()\nend = time.perf_counter()\n\n# set column names for the resulting dataframe\nresults.columns = [\"feature\", \"mean\"]"
+    "section": "File storage",
+    "text": "File storage\nA file is a data entity with specific read, write, and reference characteristics used by software and operating systems.\n\n\n\nLocal disk\n\nOperating system–managed filesystems on local disk partition of SSD or magnetic disk:\n\nNTFS (Windows)\nHFS+ (MacOS)\next4 (Linux)() on a local disk partition of SSD or magnetic disk\n\n\n\n\nNetwork-attached (NAS)\n\nFile storage system to clients over a network\nIncluding redundancy and reliability, fine-grained control of resources, storage pooling across multiple disks for large virtual volumes, and file sharing across multiple machines\n\n\n\nCloud filesystems\n\nNot object store (more on that later)\nNot the virtual hard drive attached to a virtual machine\nFully managed filesystem which takes care of networking, managing disk clusters, failures, and configuration (Azure Files, Amazon Elastic Filesystem)\nBacked by Object Store\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
   },
   {
-    "objectID": "slides/05-slides.html#millions-of-rows-processed-in-a-few-seconds",
-    "href": "slides/05-slides.html#millions-of-rows-processed-in-a-few-seconds",
+    "objectID": "slides/05-slides.html#object-stores",
+    "href": "slides/05-slides.html#object-stores",
     "title": "Lecture 5",
-    "section": "Millions of rows processed in a few seconds",
-    "text": "Millions of rows processed in a few seconds\nData that would not fit into the 16GB RAM of my laptop all at one time is easily analyzed and in quick time too!"
+    "section": "Object stores",
+    "text": "Object stores\nThe term object storage is somewhat confusing because object has several meanings in computer science. In this context, we’re talking about a specialized file-like construct. It could be any type of file: TXT, CSV, JSON, images, videos, audio, or pretty much any type of file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContains objects of all shapes and sizes.\nEvery object gets a unique identifier\nObjects are immutable; cannot be modifier in place (unlike local FS)\nDistributed by design\nMassively scalable REST API access"
   },
   {
-    "objectID": "slides/05-slides.html#dask-dataframes",
-    "href": "slides/05-slides.html#dask-dataframes",
+    "objectID": "slides/05-slides.html#distributed-fs-vs-object-store",
+    "href": "slides/05-slides.html#distributed-fs-vs-object-store",
     "title": "Lecture 5",
-    "section": "Dask DataFrames",
-    "text": "Dask DataFrames\n\n\n\nThink of Dask DataFrames as collection of multiple Pandas dataframes.\nEach Pandas dataframe contains rows that are grouped together based on an index.\nOperations on a Dask DataFrame become faster because they happen in parallel across multiple partitions.\nThe individual Pandas dataframes may live on disk or on other machines.\n\n\n\n\n\nDask DataFrame"
+    "section": "Distributed FS vs Object Store",
+    "text": "Distributed FS vs Object Store\n\n\n\n\n\n\n\n\n\nDistributed File System\nObject Storage\n\n\n\n\nOrganization\nFiles in hierarchical directories\nFlat organization (though there can be overlays to provide hierarchical files structure)\n\n\nMethod\nPOSIX File Operations\nREST API\n\n\nImmutability\nNone: Random writes anywhere in file\nImmutable: need to replace/append entire object\n\n\nScalability\nMillions of files\nBillions of objects\n\n\n\nBoth provide:\n\nFault tolerance\nAvailability and consistency"
   },
   {
-    "objectID": "slides/05-slides.html#dask-dataframes-contd.",
-    "href": "slides/05-slides.html#dask-dataframes-contd.",
+    "objectID": "slides/05-slides.html#before-data-locality-for-hadoop",
+    "href": "slides/05-slides.html#before-data-locality-for-hadoop",
     "title": "Lecture 5",
-    "section": "Dask DataFrames (contd.)",
-    "text": "Dask DataFrames (contd.)\n\nProvide a subset of the Pandas API.\nFollowing operations are fast\n\nElement-wise operations: df.x + df.y, df * df\nRow-wise selections: df[df.x > 0]\ngroupby-aggregate: df.groupby('x').min()\nJoin with pandas DataFrames: dd.merge(df1, df2, on='id')\nRolling averages: df.rolling(…)\nPearson’s correlation: df[[‘col1’, ‘col2’]].corr()\n\nOfficial Reference, Code Samples"
+    "section": "Before: Data locality (for Hadoop)",
+    "text": "Before: Data locality (for Hadoop)\n\n\n\n\n\n\n\nWhite, T. E. (2015). Hadoop: The Definitive Guide, 4th Edition. United States: O’Reilly Media, Incorporated."
   },
   {
-    "objectID": "slides/05-slides.html#dask-dataframe-contd.",
-    "href": "slides/05-slides.html#dask-dataframe-contd.",
+    "objectID": "slides/05-slides.html#today-de-coupling-storage-from-compute",
+    "href": "slides/05-slides.html#today-de-coupling-storage-from-compute",
     "title": "Lecture 5",
-    "section": "Dask DataFrame (contd.)",
-    "text": "Dask DataFrame (contd.)\n\n\nQuestion: Since Dask DataFrame operations are parallel, does it mean Dask is always faster than Pandas?\nAnswer: Actually, no. Dask is used when we operate on data that does not fit into memory and needs to be distributed (across cores, on the same machine, better still across multiple machines).\n\n\nPandas is highly optimized for performance, with critical code paths written in Cython or C. More here.\n\n\nOther Dask collections: Array, Bag and also Delayed and Futures."
+    "section": "Today: de-coupling storage from compute",
+    "text": "Today: de-coupling storage from compute\n\n\n\n\n\n\n\nGopalan, R. (2022). The Cloud Data Lake. United States: O’Reilly Media."
   },
   {
-    "objectID": "slides/05-slides.html#dask-dataframes-when-not-to-use",
-    "href": "slides/05-slides.html#dask-dataframes-when-not-to-use",
+    "objectID": "slides/05-slides.html#plain-text-csv-tdf-fwf",
+    "href": "slides/05-slides.html#plain-text-csv-tdf-fwf",
     "title": "Lecture 5",
-    "section": "Dask DataFrames, when not to use",
-    "text": "Dask DataFrames, when not to use\n\nSetting a new index from an unsorted column.\nOperations like groupby-apply and join on unsorted columns.\nOperations that are slow in Pandas, such as iterating row-by-row, remain slow on a Dask DataFrame."
+    "section": "Plain Text (CSV, TDF, FWF)",
+    "text": "Plain Text (CSV, TDF, FWF)\n\n\n\n\n\n\nPay attention to encodings!\nLines end in linefeed, carriage-return, or both together depending on the OS that generated\nTypically, a single line of text contains a single record"
   },
   {
-    "objectID": "slides/05-slides.html#moving-to-a-dask-cluster",
-    "href": "slides/05-slides.html#moving-to-a-dask-cluster",
+    "objectID": "slides/05-slides.html#json",
+    "href": "slides/05-slides.html#json",
     "title": "Lecture 5",
-    "section": "Moving to a Dask Cluster",
-    "text": "Moving to a Dask Cluster\n\nTo truly see the power of Dask and horizontal scaling in action, we need to move out of our local machine and onto a cluster.\nCreating a Dask cluster is a lot of work involving networking, security and compute. Unlike an EMR cluster, there is no GUI for creating a Dask cluster.\nSeveral options exist, including something called Deployment as a service i.e. creating a cluster by calling an API, not a cloud provider API but an APIU provided by a SaaS which in turn does all the behind the scenes work of creating the cluster by calling (many) cloud provider APIs. See Coiled."
+    "section": "JSON",
+    "text": "JSON\n\n\n\n\n\n\n\n\nWarning\n\n\nJSON files have two flavors: JSON Lines vs. JSON. Typically when we say data is in JSON format, we imply it’s JSON Lines which means that there is a single JSON object per line, and there are multiple lines.\n\n\n\n\n\n\nJSON Lines\nFour records, one per line. No ending comma.\n{\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"}\n{\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"}\n{\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"}\n{\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"}\n\n\nJSON\nFour records enclosed in a JSON Array\n[\n  {\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"},\n  {\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"},\n  {\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"},\n  {\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"},\n]"
   },
   {
-    "objectID": "slides/05-slides.html#moving-to-a-dask-cluster-contd.",
-    "href": "slides/05-slides.html#moving-to-a-dask-cluster-contd.",
+    "objectID": "slides/05-slides.html#binary-files",
+    "href": "slides/05-slides.html#binary-files",
     "title": "Lecture 5",
-    "section": "Moving to a Dask Cluster (contd.)",
-    "text": "Moving to a Dask Cluster (contd.)\n\nThere are open source solutions also which provide a cloud agnostic way of deploying Dask clusters. No matter whether you are on AWS, Azure or GCP, you call the same API. See Dask Cloud Provider.\nCloud providers such as AWS provide Infrastructure as Code templates to create Dask Clusters. These template (yaml or json files) are declarative i.e. they describe what infrastructure you want to create and the Infrastructure as Code service takes care of translating these templates into API calls that actually create these resources."
+    "section": "Binary files",
+    "text": "Binary files"
   },
   {
-    "objectID": "slides/05-slides.html#moving-to-a-dask-cluster-contd.-1",
-    "href": "slides/05-slides.html#moving-to-a-dask-cluster-contd.-1",
+    "objectID": "slides/05-slides.html#issues-with-common-file-formats-particularly-csvs",
+    "href": "slides/05-slides.html#issues-with-common-file-formats-particularly-csvs",
     "title": "Lecture 5",
-    "section": "Moving to a Dask Cluster (contd.)",
-    "text": "Moving to a Dask Cluster (contd.)\n\nSimilar to EMR, Dask clusters have the concept of a Scheduler and a collection of Workers.\nThe compute for a Dask cluster can be provided by a collection of EC2 VMs like we saw with EMR.\nIt could also be provided by a serverless compute engine such as AWS Fargate where we do not create or manage the server (hence serverless) but only specify the container image to run and the memory and CPU requirements."
+    "section": "Issues with common file formats, particularly CSVs:",
+    "text": "Issues with common file formats, particularly CSVs:\n\nStill ubiquitous and highly error prone (even in 2023)\nThe default delimiter is also one of the most familiar characters in the English language—the comma\nNot a uniform format\n\nDelimiter (comma, tab, semi-colon, custom)\nQuote characters (single or doble quote)\nEscaping to appropriately handle string data\n\nDoesn’t natively encode schema information\nNo direct support for nested structures\nEncoding and schema information must be configured in the target system to ensure appropriate ingestion\nAutodetection is a convenience feature provided in many cloud environments but is inappropriate for production ingestion, and can be painfully slow\nData engineers are often forced to work with CSV data and then build robust exception handling and error detection to ensure data quality on ingestion"
   },
   {
-    "objectID": "slides/05-slides.html#machine-learning-using-dask",
-    "href": "slides/05-slides.html#machine-learning-using-dask",
+    "objectID": "slides/05-slides.html#apache-parquet",
+    "href": "slides/05-slides.html#apache-parquet",
     "title": "Lecture 5",
-    "section": "Machine Learning using Dask",
-    "text": "Machine Learning using Dask\n\nDask.org page says Scale the Python tools you love. How about Machine Learning libraries?\nDask-ML provides scalable machine learning in Python using Dask alongside popular machine learning libraries like Scikit-Learn, XGBoost, and others.\nDask-ML helps with both compute bound (such as grid search) and memory bound (dataset too large) ML tasks."
+    "section": "Apache Parquet",
+    "text": "Apache Parquet\n\nFree and open-source column-oriented data storage format\nCreated by Twitter and Cloudera\nv1.0 released in July, 2013\nStores data in a columnar format (as opposed to row format) and is designed to realize excellent read and write performance\nParquet-encoded data builds in schema information and natively supports nested data\nParquet is portable\nHas become the standard for modern data warehouses and big data tools\nSupported by R and Python through Apache Arrow (more on that coming up!)"
   },
   {
-    "objectID": "slides/05-slides.html#dask-and-apache-spark",
-    "href": "slides/05-slides.html#dask-and-apache-spark",
+    "objectID": "slides/05-slides.html#traditional-row-store",
+    "href": "slides/05-slides.html#traditional-row-store",
     "title": "Lecture 5",
-    "section": "Dask and Apache Spark",
-    "text": "Dask and Apache Spark\n\nThere is hardly ever (probably never) a single solution that works for all big data analytics use-cases.\nDask or Spark is a question that often comes up because they do have overlapping functionality. From the Dask website: Comparison to Spark.\nA rule of thumb: If you are designing an Extract Transform Load (ETL) pipeline and want to use SQL then stick with Spark ecosystem (Hadoop, Hudi, Iceberg etc.), if you want to remain within the Python ecosystem (Pandas, Numpy, scikit-learn, joblib) then Dask could be a good choice."
+    "section": "Traditional row-store",
+    "text": "Traditional row-store\n\n\n\n\n\n\n\n\n\n\nSay you wanted to answer the question “How many balls did we sell?, the engine must scan each and every row until the end!\n\n\nParquet file format, everything you need to know"
+  },
+  {
+    "objectID": "slides/05-slides.html#column-store",
+    "href": "slides/05-slides.html#column-store",
+    "title": "Lecture 5",
+    "section": "Column-store",
+    "text": "Column-store\n\n\n\n\nParquet file format, everything you need to know\n\nParquet file format, everything you need to know"
+  },
+  {
+    "objectID": "slides/05-slides.html#row-groups",
+    "href": "slides/05-slides.html#row-groups",
+    "title": "Lecture 5",
+    "section": "Row groups",
+    "text": "Row groups\n\n\n\nData is stored in row groups!\n\n\n\nOnly the required fields\n\n\n\n\n\n\nParquet file format, everything you need to know"
+  },
+  {
+    "objectID": "slides/05-slides.html#metadata-compression-and-dictionary-encoding",
+    "href": "slides/05-slides.html#metadata-compression-and-dictionary-encoding",
+    "title": "Lecture 5",
+    "section": "Metadata, compression, and dictionary encoding",
+    "text": "Metadata, compression, and dictionary encoding\n\n\n\n\n\n\n\n\n\n\n\n\nParquet file format, everything you need to know"
+  },
+  {
+    "objectID": "slides/05-slides.html#apache-arrow-for-in-memory",
+    "href": "slides/05-slides.html#apache-arrow-for-in-memory",
+    "title": "Lecture 5",
+    "section": "Apache Arrow for in-memory",
+    "text": "Apache Arrow for in-memory\n\nApache Arrow is a development platform for in-memory analytics. It contains a set of technologies that enable big data systems to process and move data fast. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware.\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+  },
+  {
+    "objectID": "slides/05-slides.html#before-arrow",
+    "href": "slides/05-slides.html#before-arrow",
+    "title": "Lecture 5",
+    "section": "Before Arrow",
+    "text": "Before Arrow\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+  },
+  {
+    "objectID": "slides/05-slides.html#after-arrow",
+    "href": "slides/05-slides.html#after-arrow",
+    "title": "Lecture 5",
+    "section": "After Arrow",
+    "text": "After Arrow\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+  },
+  {
+    "objectID": "slides/05-slides.html#arrow-compatibility",
+    "href": "slides/05-slides.html#arrow-compatibility",
+    "title": "Lecture 5",
+    "section": "Arrow Compatibility",
+    "text": "Arrow Compatibility\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+  },
+  {
+    "objectID": "slides/05-slides.html#arrow-performance",
+    "href": "slides/05-slides.html#arrow-performance",
+    "title": "Lecture 5",
+    "section": "Arrow Performance",
+    "text": "Arrow Performance\n\n\n\n\n\n\n\n\n\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+  },
+  {
+    "objectID": "slides/05-slides.html#use-arrow-to-readwrite-csvs-and-parquet",
+    "href": "slides/05-slides.html#use-arrow-to-readwrite-csvs-and-parquet",
+    "title": "Lecture 5",
+    "section": "Use Arrow to read/write CSVs and Parquet",
+    "text": "Use Arrow to read/write CSVs and Parquet\n\n\n\nPython\nUse the pyarrow library or straight from pandas\nimport pandas as pd\npd.read_csv(engine = 'pyarrow')\npd.read_parquet\n\nimport pyarrow.csv\npyarrow.csv.read_csv()\n\nimport pyarrow.parquet\npyarrow.parquet.read_table()\n\n\nR\nUse the arrow package\nlibrary(arrow)\n\nread_csv_arrow()\nread_parquet()\nread_json_arrow()\n\nwrite_csv_arrow()\nwrite_parquet()\n\n\n\nRecommendation: save your intermediate and analytical datasets as Parquet!"
+  },
+  {
+    "objectID": "slides/05-slides.html#before-we-begin..",
+    "href": "slides/05-slides.html#before-we-begin..",
+    "title": "Lecture 5",
+    "section": "Before we begin..",
+    "text": "Before we begin..\n\nPandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.\n\n\n\nPandas is slow, well yes but also, not so much if you use it the right way.\n\n\nApache Arrow and the “10 Things I Hate About pandas” (A 2017 post from the creator of Pandas..)\n50 times faster data loading for Pandas: no problem (but this is an old 2019 article..)\nIs Pandas really that slow?\n\n\nPandas 2.0 and the arrow revolution"
+  },
+  {
+    "objectID": "slides/05-slides.html#polars-1",
+    "href": "slides/05-slides.html#polars-1",
+    "title": "Lecture 5",
+    "section": "Polars",
+    "text": "Polars\n\nPolars"
+  },
+  {
+    "objectID": "slides/05-slides.html#why-is-polars-faster-than-pandas",
+    "href": "slides/05-slides.html#why-is-polars-faster-than-pandas",
+    "title": "Lecture 5",
+    "section": "Why is Polars faster than Pandas?",
+    "text": "Why is Polars faster than Pandas?\n\n\nPolars is written in Rust. Rust is a compiled language, Python is an interpreted language.\n\nCompiled language: you generate the machine code only once then run it, subsequent runs do not need the compilation step.\nInterpreted language: code has to be parsed, interpreted and converted into machine code every single time.\n\nParallelization: Vectorized operations that can be executed in parallel on multiple CPU cores.\nLazy evaluation: Polars supports two APIs lazy as well as eager evaluation (used by pandas). In lazy evaluation, a query is executed only when required. While in eager evaluation, a query is executed immediately.\nPolars uses Arrow as its in-memory representation of data. Similar to how pandas uses Numpy (although Pandas 2.0 does allow using Arrow as the backend in addition to Numpy).\n\n[Excerpt from this post from Ritchie Vink, author of Polars] Arrow provides the efficient data structures and some compute kernels, like a SUM, a FILTER, a MAX etc. Arrow is not a query engine. Polars is a DataFrame library on top of arrow that has implemented efficient algorithms for JOINS, GROUPBY, PIVOTs, MELTs, QUERY OPTIMIZATION, etc. (the things you expect from a DF lib).\nPolars could be best described as an in-memory DataFrame library with a query optimizer."
+  },
+  {
+    "objectID": "slides/05-slides.html#ease-of-use",
+    "href": "slides/05-slides.html#ease-of-use",
+    "title": "Lecture 5",
+    "section": "Ease of use",
+    "text": "Ease of use\n\nFamiliar API for users of Pandas: there are differences in syntax polars != pandas but it is still a Dataframe API making it straightforward to perform common operations such as filtering, aggregating, and joining data. See migrating from Pandas\nReading data\n# must install s3fs -> \"pip install s3fs\"\n\n# Using Polars\nimport polars as pl\npolars_df = pl.read_parquet(\"s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet\")\n\n# using Pandas\nimport pandas as pd\npandas_df = pd.read_parquet(\"s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet\")\nSelecting columns (see Pushdown optimization)\n# Using Polars\nselected_columns_polars = polars_df[['column1', 'column2']]\n\n# Using Pandas\nselected_columns_pandas = pandas_df[['column1', 'column2']]"
+  },
+  {
+    "objectID": "slides/05-slides.html#ease-of-use-contd.",
+    "href": "slides/05-slides.html#ease-of-use-contd.",
+    "title": "Lecture 5",
+    "section": "Ease of use (contd.)",
+    "text": "Ease of use (contd.)\n\nFamiliar API for users of Pandas:\nFiltering data\n# Using Polars\nfiltered_polars = polars_df[polars_df['column1'] > 10]\n\n# Using Pandas\nfiltered_pandas = pandas_df[pandas_df['column1'] > 10]\nEven though you can write Polars code that looks like Pandas, it is better to write idiomatic Polars code that takes advantages of unique features Polars offers.\nMigrating from Apache Spark: Whereas the Spark DataFrame is analogous to a collection of rows, a Polars DataFrame is closer to a collection of columns."
+  },
+  {
+    "objectID": "slides/05-slides.html#a-polars-dataframe-processing-pipeline-example",
+    "href": "slides/05-slides.html#a-polars-dataframe-processing-pipeline-example",
+    "title": "Lecture 5",
+    "section": "A Polars DataFrame processing pipeline example",
+    "text": "A Polars DataFrame processing pipeline example\nHere is an example that we will run as part of the lab in a little bit.\n\nThink how you would code this same pipeline in Pandas…\n\n\nPolars pipeline"
   },
   {
     "objectID": "slides/05-slides.html#further-reading",
     "href": "slides/05-slides.html#further-reading",
     "title": "Lecture 5",
-    "section": "Further Reading",
-    "text": "Further Reading\n\nDask and Spark\n\nhttps://www.databricks.com/session/dask-and-apache-spark\nhttps://coiled.io/blog/dask-as-a-spark-replacement/\nhttps://dzone.com/articles/example-of-etl-application-using-apache-spark-and\nhttps://medium.com/geekculture/dask-or-spark-a-comparison-for-data-scientists-d4cba8ba9ef7\n\nCluster creation\n\nhttps://docs.coiled.io/user_guide/cluster_creation.html\nhttps://cloudprovider.dask.org/en/latest/aws.html\nhttps://docs.dask.org/en/stable/deploying-python.html"
+    "section": "Further reading",
+    "text": "Further reading\n\nPolars\nUser guide <— MUST READ\nPolars GitHub repo\nPandas Vs Polars: a syntax and speed comparison\nTips & tricks for working with strings in Polars"
   },
   {
-    "objectID": "slides/05-slides.html#further-reading-contd.",
-    "href": "slides/05-slides.html#further-reading-contd.",
+    "objectID": "slides/05-slides.html#duckdb-1",
+    "href": "slides/05-slides.html#duckdb-1",
     "title": "Lecture 5",
-    "section": "Further Reading (contd.)",
-    "text": "Further Reading (contd.)\n\nDask-ML\n\nhttps://examples.dask.org/machine-learning/xgboost.html\nhttps://ml.dask.org/\n\nBlogs on Dask\n\nhttps://aws.amazon.com/blogs/publicsector/analyze-terabyte-scale-geospatial-datasets-with-dask-and-jupyter-on-aws/\nhttps://medium.com/capital-one-tech/dask-and-rapids-the-next-big-things-for-data-science-and-machine-learning-at-capital-one-d4bba136cc70\nhttps://spell.ml/blog/large-scale-etl-jobs-using-dask-Xyl8GhEAACQAjK6h"
+    "section": "DuckDB",
+    "text": "DuckDB\n\nDuckDB is an in-process SQL OLAP database management system.\n\n\nIt is like sqllite, but for analytics. What does this mean? It means that your database runs inside your process, there are no servers to manage, no remote system to connect to. Very snappy, easy to experiment with SQL like syntax.\n\n\nDuckDB does vectorized processing i.e. loads chunks of data into memory (tries to keep everything in the CPU’s L1 and L2 cache) and is thus able to handle datasets bigger than the amount of RAM available.\nDuckDB supports Python, R and a host of other languages.\n\n\n\nPaper on DuckDB by Hannes Mühleisen & Mark Raasveldt\nDuckDB: an Embeddable Analytical Database"
   },
   {
-    "objectID": "slides/05-slides.html#further-reading-contd.-1",
-    "href": "slides/05-slides.html#further-reading-contd.-1",
+    "objectID": "slides/05-slides.html#duckdb---quick-introduction",
+    "href": "slides/05-slides.html#duckdb---quick-introduction",
     "title": "Lecture 5",
-    "section": "Further Reading (contd.)",
-    "text": "Further Reading (contd.)\n\nMisc.\n\nhttps://www.analyticsvidhya.com/blog/2018/08/dask-big-datasets-machine_learning-python/\nhttps://hub.docker.com/r/daskdev/dask/tags\nhttps://blog.dask.org/2020/07/30/beginners-config\nDask JupyterLab extension\nhttps://docs.dask.org/en/stable/deploying-cli.html\n\nDask Issues.\n\nhttps://github.com/dask/distributed/issues/1015\nhttps://stackoverflow.com/questions/65982439/dask-aws-cluster-error-when-initializing-user-data-is-limited-to-16384-bytes\nhttps://github.com/dask/dask/issues/4843"
+    "section": "DuckDB - quick introduction",
+    "text": "DuckDB - quick introduction\nDuckDB is an in-process SQL OLAP database management system\npip install duckdb\n\nDuck DB"
+  },
+  {
+    "objectID": "slides/05-slides.html#key-features",
+    "href": "slides/05-slides.html#key-features",
+    "title": "Lecture 5",
+    "section": "Key Features",
+    "text": "Key Features\n\nColumnar Storage & Vectorized Query processing: DuckDB contains a columnar-vectorized query execution engine, where queries are still interpreted, but a large batch of values (a “vector”) are processed in one operation.\n\nMost analytical queries (think group by and summarize) or even data retrieval for training ML models require retrieving a subset of columns and now the entire row, columnar storage make this faster.\n\nIn-Memory Processing: all data needed for processing is brought within the process memory (recall that columnar storage format helps with this) making the queries run faster (no call to a database over the network).\nSQL Support: highly Postgres-compatible version of SQL1.\nACID Compliance: Transactional guarantees (ACID properties) through bulk-optimized Multi-Version Concurrency Control (MVCC).\n\nFriendlier SQL with DuckDB"
+  },
+  {
+    "objectID": "slides/05-slides.html#use-cases-for-duckdb",
+    "href": "slides/05-slides.html#use-cases-for-duckdb",
+    "title": "Lecture 5",
+    "section": "Use-cases for DuckDB",
+    "text": "Use-cases for DuckDB\n\nData Warehousing\nBusiness Intelligence\nReal-time Analytics\nIoT Data Processing"
+  },
+  {
+    "objectID": "slides/05-slides.html#duckdb-in-the-wild",
+    "href": "slides/05-slides.html#duckdb-in-the-wild",
+    "title": "Lecture 5",
+    "section": "DuckDB in the wild",
+    "text": "DuckDB in the wild\n\nHow We Silently Switched Mode’s In-Memory Data Engine to DuckDB To Boost Visual Data Exploration Speed\nWhy we built Rill with DuckDB\nLeveraging DuckDB for enhanced performance in dbt projects"
+  },
+  {
+    "objectID": "slides/05-slides.html#how-might-you-think-about-duckdb---diy-version",
+    "href": "slides/05-slides.html#how-might-you-think-about-duckdb---diy-version",
+    "title": "Lecture 5",
+    "section": "How might you think about DuckDB - DIY Version",
+    "text": "How might you think about DuckDB - DIY Version\n\nDatalake and DuckDB\nUsing DuckDB in AWS Lambda\nModern Data Stack in a Box with DuckDB: DuckDB, Meltano, Dbt, Apache Superset"
+  },
+  {
+    "objectID": "slides/05-slides.html#how-might-you-think-about-duckdb---fully-managed",
+    "href": "slides/05-slides.html#how-might-you-think-about-duckdb---fully-managed",
+    "title": "Lecture 5",
+    "section": "How might you think about DuckDB - Fully-managed",
+    "text": "How might you think about DuckDB - Fully-managed\n\n\n\n\n\nMotherDuck Architecture\n\n\n\n\nArchitecture and capabilities\nSeamlessly analyze data, whether it sits on your laptop, in the cloud or split between. Hybrid execution automatically plans each part of your query and determines where it’s best computed. If you use DuckDB with data lakes in s3, it’ll be much faster to run your analyses on MotherDuck.\n\nDuckDB Vs MotherDuck"
+  },
+  {
+    "objectID": "slides/05-slides.html#setting-up-duckdb",
+    "href": "slides/05-slides.html#setting-up-duckdb",
+    "title": "Lecture 5",
+    "section": "Setting Up DuckDB",
+    "text": "Setting Up DuckDB\n\nConfiguration and Initialization: DuckDB is deeply integrated into Python and R for efficient interactive data analysis. DuckDB provides APIs for Java, C, C++, Julia, Swift, and others.\npip install duckdb\n# OR\nconda install python-duckdb -c conda-forge\nConnecting to DuckDB\nimport duckdb\n# directly query a Pandas DataFrame\nimport pandas as pd\ndf = pd.read_csv(\"https://raw.githubusercontent.com/anly503/datasets/main/EconomistData.csv\")\nduckdb.sql('SELECT * FROM df')"
+  },
+  {
+    "objectID": "slides/05-slides.html#setting-up-duckdb-contd.",
+    "href": "slides/05-slides.html#setting-up-duckdb-contd.",
+    "title": "Lecture 5",
+    "section": "Setting Up DuckDB (contd.)",
+    "text": "Setting Up DuckDB (contd.)\n\nSupported data formats: DuckDB can ingest data from a wide variety of formats – both on-disk and in-memory. See the data ingestion page for more information.\nimport duckdb\nduckdb.read_csv('example.csv')                # read a CSV file into a Relation\nduckdb.read_parquet('example.parquet')        # read a Parquet file into a Relation\nduckdb.read_json('example.json')              # read a JSON file into a Relation\n\nduckdb.sql('SELECT * FROM \"example.csv\"')     # directly query a CSV file\nduckdb.sql('SELECT * FROM \"example.parquet\"') # directly query a Parquet file\nduckdb.sql('SELECT * FROM \"example.json\"')    # directly query a JSON file"
+  },
+  {
+    "objectID": "slides/05-slides.html#querying-duckdb",
+    "href": "slides/05-slides.html#querying-duckdb",
+    "title": "Lecture 5",
+    "section": "Querying DuckDB",
+    "text": "Querying DuckDB\nEssential reading: Friendlier SQL with DuckDB, SQL Introduction\nBasic SQL Queries:\nimport duckdb\nimport pandas as pd\nbabynames = pd.read_parquet(\"https://github.com/anly503/datasets/raw/main/babynames.parquet.zstd\")\nduckdb.sql(\"select count(*)  from babynames where Name='John'\")\nAggregations and Grouping\nduckdb.sql(\"select State, Name, count(*) as count  from babynames group by State, Name order by State desc, count desc\")"
+  },
+  {
+    "objectID": "slides/05-slides.html#querying-duckdb-contd.",
+    "href": "slides/05-slides.html#querying-duckdb-contd.",
+    "title": "Lecture 5",
+    "section": "Querying DuckDB (contd.)",
+    "text": "Querying DuckDB (contd.)\nEssential reading: From & Join clauses\nJoins and Subqueries\n# -- join two tables together\nduckdb.sql(\"SELECT * FROM table_name JOIN other_table ON (table_name.key = other_table.key\")\nWindow Functions\npowerplants = pd.read_csv(\"https://raw.githubusercontent.com/anly503/datasets/main/powerplants.csv\", parse_dates=[\"date\"])\nq = \"\"\"\nSELECT \"plant\", \"date\",\n    AVG(\"MWh\") OVER (\n        PARTITION BY \"plant\"\n        ORDER BY \"date\" ASC\n        RANGE BETWEEN INTERVAL 3 DAYS PRECEDING\n                  AND INTERVAL 3 DAYS FOLLOWING)\n        AS \"MWh 7-day Moving Average\"\nFROM powerplants\nORDER BY 1, 2;\n\"\"\"\nduckdb.sql(q)"
+  },
+  {
+    "objectID": "slides/05-slides.html#using-the-duckdb-cli-shell",
+    "href": "slides/05-slides.html#using-the-duckdb-cli-shell",
+    "title": "Lecture 5",
+    "section": "Using the DuckDB CLI & Shell",
+    "text": "Using the DuckDB CLI & Shell\n\nInstall the DuckDB CLI (download link) OR use it in your browser via shell.duckdb.org/ for easy data exploration using just SQL.\nOnce installed you can import a local file into the shell and run queries.\n\nYou can download powerplants.csv from here.\n\n\nC:\\Users\\<username>\\Downloads\\duckdb_cli-windows-amd64>duckdb\nv0.8.1 6536a77232\nEnter \".help\" for usage hints.\nConnected to a transient in-memory database.\nUse \".open FILENAME\" to reopen on a persistent database.\nD CREATE TABLE powerplants AS SELECT * FROM read_csv_auto('powerplants.csv');\nD DESCRIBE powerplants;\n┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐\n│ column_name │ column_type │  null   │   key   │ default │ extra │\n│   varchar   │   varchar   │ varchar │ varchar │ varchar │ int32 │\n├─────────────┼─────────────┼─────────┼─────────┼─────────┼───────┤\n│ plant       │ VARCHAR     │ YES     │         │         │       │\n│ date        │ DATE        │ YES     │         │         │       │\n│ MWh         │ BIGINT      │ YES     │         │         │       │\n└─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘\nD  SELECT * from powerplants where plant='Boston' and date='2019-01-02';\n┌─────────┬────────────┬────────┐\n│  plant  │    date    │  MWh   │\n│ varchar │    date    │ int64  │\n├─────────┼────────────┼────────┤\n│ Boston  │ 2019-01-02 │ 564337 │\n└─────────┴────────────┴────────┘\nD"
+  },
+  {
+    "objectID": "slides/05-slides.html#profiling-in-duckdb",
+    "href": "slides/05-slides.html#profiling-in-duckdb",
+    "title": "Lecture 5",
+    "section": "Profiling in DuckDB",
+    "text": "Profiling in DuckDB\n\nQuery Optimization: Use the EXPLAIN & ANALYZE keywords to understand how your query is being executed (see Query Plan and the time being spent in individual steps of your query.\nD EXPLAIN ANALYZE SELECT * from powerplants where plant='Boston' and date='2019-01-02';\nDuckDB will use all the cores available on the underlying compute, but you can adjust it (scenario: your process is not the only application on that VM, you want to limit the amount of resources it gets). Full configuration available here.\nD select current_setting('threads');\n┌────────────────────────────┐\n│ current_setting('threads') │\n│           int64            │\n├────────────────────────────┤\n│                          8 │\n└────────────────────────────┘\nD SET threads=4;\nD select current_setting('threads');\n┌────────────────────────────┐\n│ current_setting('threads') │\n│           int64            │\n├────────────────────────────┤\n│                          4 │\n└────────────────────────────┘\nD"
+  },
+  {
+    "objectID": "slides/05-slides.html#a-simple-example-of-using-duckdb-and-apache-arrow-using-nyc-taxi-dataset",
+    "href": "slides/05-slides.html#a-simple-example-of-using-duckdb-and-apache-arrow-using-nyc-taxi-dataset",
+    "title": "Lecture 5",
+    "section": "A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset",
+    "text": "A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset\nThis notebook reads the NYC taxi dataset files for the year 2021 (about ~29 million rows) and runs some analytics operation on this dataset. This dataset is too big to fit into memory.\n\nWe read the data from S3 using apache Arrow (pyarrow).\nThe zero-copy integration between DuckDB and Apache Arrow allows for rapid analysis of larger than memory datasets in Python and R using either SQL or relational APIs.\nWe create a DuckDB instance in memory and using the connection to this in-memory database We run some simple analytics operations using SQL syntax.\n\nAlso see https://duckdb.org/2021/12/03/duck-arrow.html"
+  },
+  {
+    "objectID": "slides/05-slides.html#further-reading-1",
+    "href": "slides/05-slides.html#further-reading-1",
+    "title": "Lecture 5",
+    "section": "Further reading",
+    "text": "Further reading\n\nParallel Grouped Aggregation in DuckDB\nMeta queries\nProfiling queries in DuckDB\nDuckDB tutorial for beginners\nDuckDB CLI API\nUsing DuckDB in AWS Lambda\nRevisiting the Poor Man’s Data Lake with MotherDuck\nSupercharge your data processing with DuckDB\nFriendlier SQL with DuckDB\nBuilding and deploying data apps with DuckDB and Streamlit"
   },
   {
     "objectID": "slides/06-slides.html#starting-with-our-big-dataset",

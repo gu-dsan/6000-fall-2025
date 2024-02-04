@@ -1,0 +1,281 @@
+# DuckDB
+
+An in-process SQL OLAP database management system
+
+## DuckDB
+
+1. [DuckDB](https://duckdb.org/) is an in-process [SQL](https://en.wikipedia.org/wiki/SQL) [OLAP](https://en.wikipedia.org/wiki/Online_analytical_processing) database management system.
+
+>It is like sqllite, but for analytics. What does this mean? It means that your database runs inside your process, there are no servers to manage, no remote system to connect to. Very snappy, easy to experiment with SQL like syntax.
+
+1. DuckDB does **vectorized processing** i.e. loads chunks of data into memory (tries to keep everything in the CPU's L1 and L2 cache) and is thus able to handle datasets bigger than the amount of RAM available.
+
+1. DuckDB supports Python, R and a host of other languages.
+
+::: aside
+Paper on DuckDB by Hannes Mühleisen & Mark Raasveldt  
+
+[**DuckDB: an Embeddable Analytical Database**](https://hannes.muehleisen.org/publications/SIGMOD2019-demo-duckdb.pdf)
+:::
+
+## DuckDB - quick introduction
+
+[DuckDB](https://duckdb.org/) is an in-process SQL OLAP database management system
+
+```{.bash}
+pip install duckdb
+```
+
+![Duck DB](duckdb/img/duckdb.png)
+
+## Key Features
+
+1. **Columnar Storage & Vectorized Query processing**: DuckDB contains a columnar-vectorized query execution engine, where queries are still interpreted, but a large batch of values (a “vector”) are processed in one operation. 
+    - Most analytical queries (think group by and summarize) or even data retrieval for training ML models require retrieving a subset of columns and now the entire row, columnar storage make this faster.
+
+1. **In-Memory Processing**: all data needed for processing is brought within the process memory (recall that columnar storage format helps with this) making the queries run faster (no call to a database over the network).
+
+1. **SQL Support**: highly Postgres-compatible version of SQL[^1].
+
+1. **ACID Compliance**: Transactional guarantees (ACID properties) through bulk-optimized Multi-Version Concurrency Control (MVCC). 
+
+[^1]: [Friendlier SQL with DuckDB](https://duckdb.org/2022/05/04/friendlier-sql.html)
+
+
+## Use-cases for DuckDB
+
+1. Data Warehousing
+1. Business Intelligence
+1. Real-time Analytics
+1. IoT Data Processing
+
+## DuckDB in the wild
+
+1. [How We Silently Switched Mode’s In-Memory Data Engine to DuckDB To Boost Visual Data Exploration Speed](https://mode.com/blog/how-we-switched-in-memory-data-engine-to-duck-db-to-boost-visual-data-exploration-speed/)
+
+1. [Why we built Rill with DuckDB](https://www.rilldata.com/blog/why-we-built-rill-with-duckdb)
+
+1. [Leveraging DuckDB for enhanced performance in dbt projects](https://www.astrafy.io/articles/leveraging-duckdb-for-enhanced-performance-in-dbt-projects)
+
+
+## How might you think about DuckDB - DIY Version
+
+![Datalake and DuckDB](duckdb/img/duckdb.drawio.png)
+
+1. [Using DuckDB in AWS Lambda](https://tobilg.com/using-duckdb-in-aws-lambda)
+
+1. [Modern Data Stack in a Box with DuckDB](https://duckdb.org/2022/10/12/modern-data-stack-in-a-box.html): DuckDB, Meltano, Dbt, Apache Superset
+
+
+## How might you think about DuckDB - Fully-managed
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+![MotherDuck Architecture](duckdb/img/motherduck-architecture.png)
+:::
+
+::: {.column width="40%"}
+1. [Architecture and capabilities](https://motherduck.com/docs/architecture-and-capabilities/)
+
+1. Seamlessly analyze data, whether it sits on your laptop, in the cloud or split between. Hybrid execution automatically plans each part of your query and determines where it’s best computed. If you use DuckDB with data lakes in s3, it’ll be much faster to run your analyses on MotherDuck.
+
+[DuckDB Vs MotherDuck](https://kestra.io/blogs/2023-07-28-duckdb-vs-motherduck)
+:::
+
+::::
+
+## Setting Up DuckDB
+
+1. **Configuration and Initialization**: DuckDB is deeply integrated into Python and R for efficient interactive data analysis. DuckDB provides APIs for Java, C, C++, Julia, Swift, and others.
+
+    ```{.python}
+    pip install duckdb
+    # OR
+    conda install python-duckdb -c conda-forge
+    ```
+    
+1. **Connecting to DuckDB**
+
+    ```{.python}
+    import duckdb
+    # directly query a Pandas DataFrame
+    import pandas as pd
+    df = pd.read_csv("https://raw.githubusercontent.com/anly503/datasets/main/EconomistData.csv")
+    duckdb.sql('SELECT * FROM df')
+    ```
+
+## Setting Up DuckDB (contd.)
+
+1. **Supported data formats**: DuckDB can ingest data from a wide variety of formats – both on-disk and in-memory. See the [data ingestion page](https://duckdb.org/docs/api/python/data_ingestion) for more information.
+
+    ```{.python}
+    import duckdb
+    duckdb.read_csv('example.csv')                # read a CSV file into a Relation
+    duckdb.read_parquet('example.parquet')        # read a Parquet file into a Relation
+    duckdb.read_json('example.json')              # read a JSON file into a Relation
+
+    duckdb.sql('SELECT * FROM "example.csv"')     # directly query a CSV file
+    duckdb.sql('SELECT * FROM "example.parquet"') # directly query a Parquet file
+    duckdb.sql('SELECT * FROM "example.json"')    # directly query a JSON file
+    ```
+
+## Querying DuckDB
+
+Essential reading: [Friendlier SQL with DuckDB](https://duckdb.org/2022/05/04/friendlier-sql.html), [SQL Introduction](https://duckdb.org/docs/sql/introduction)
+
+**Basic SQL Queries**:
+
+```{.python}
+import duckdb
+import pandas as pd
+babynames = pd.read_parquet("https://github.com/anly503/datasets/raw/main/babynames.parquet.zstd")
+duckdb.sql("select count(*)  from babynames where Name='John'")
+```
+
+**Aggregations and Grouping**
+
+```{.python}
+duckdb.sql("select State, Name, count(*) as count  from babynames group by State, Name order by State desc, count desc") 
+```
+
+## Querying DuckDB (contd.)
+
+Essential reading: [From & Join clauses](https://duckdb.org/docs/sql/query_syntax/from.html)
+
+**Joins and Subqueries**
+
+```{.python}
+# -- join two tables together
+duckdb.sql("SELECT * FROM table_name JOIN other_table ON (table_name.key = other_table.key")
+```
+
+**Window Functions**
+
+```{.python}
+powerplants = pd.read_csv("https://raw.githubusercontent.com/anly503/datasets/main/powerplants.csv", parse_dates=["date"])
+q = """
+SELECT "plant", "date",
+    AVG("MWh") OVER (
+        PARTITION BY "plant"
+        ORDER BY "date" ASC
+        RANGE BETWEEN INTERVAL 3 DAYS PRECEDING
+                  AND INTERVAL 3 DAYS FOLLOWING)
+        AS "MWh 7-day Moving Average"
+FROM powerplants
+ORDER BY 1, 2;
+"""
+duckdb.sql(q)
+```
+
+## Using the DuckDB CLI & Shell
+
+1. Install the DuckDB CLI ([download link](http://duckdb.org/docs/installation/)) OR use it in your browser via [shell.duckdb.org/](https://shell.duckdb.org/) for easy data exploration using just SQL.
+
+1. Once installed you can import a local file into the shell and run queries.
+    - You can download `powerplants.csv` from [here](https://raw.githubusercontent.com/anly503/datasets/main/powerplants.csv).
+
+```{.python}
+C:\Users\<username>\Downloads\duckdb_cli-windows-amd64>duckdb
+v0.8.1 6536a77232
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+D CREATE TABLE powerplants AS SELECT * FROM read_csv_auto('powerplants.csv');
+D DESCRIBE powerplants;
+┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
+│ column_name │ column_type │  null   │   key   │ default │ extra │
+│   varchar   │   varchar   │ varchar │ varchar │ varchar │ int32 │
+├─────────────┼─────────────┼─────────┼─────────┼─────────┼───────┤
+│ plant       │ VARCHAR     │ YES     │         │         │       │
+│ date        │ DATE        │ YES     │         │         │       │
+│ MWh         │ BIGINT      │ YES     │         │         │       │
+└─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘
+D  SELECT * from powerplants where plant='Boston' and date='2019-01-02';
+┌─────────┬────────────┬────────┐
+│  plant  │    date    │  MWh   │
+│ varchar │    date    │ int64  │
+├─────────┼────────────┼────────┤
+│ Boston  │ 2019-01-02 │ 564337 │
+└─────────┴────────────┴────────┘
+D
+```
+
+## Profiling in DuckDB
+
+1. Query Optimization: Use the EXPLAIN & ANALYZE keywords to understand how your query is being executed (see [Query Plan](https://en.wikipedia.org/wiki/Query_plan#:~:text=A%20query%20plan%20(or%20query,model%20concept%20of%20access%20plans.)) and the time being spent in individual steps of your query.
+    
+    ```{.markdown}
+    D EXPLAIN ANALYZE SELECT * from powerplants where plant='Boston' and date='2019-01-02';
+    ```
+
+1. DuckDB will use all the cores available on the underlying compute, but you can adjust it (scenario: your process is not the only application on that VM, you want to limit the amount of resources it gets). Full configuration available [here](https://duckdb.org/docs/sql/configuration.html).
+
+    ```{.markdown}
+    D select current_setting('threads');
+    ┌────────────────────────────┐
+    │ current_setting('threads') │
+    │           int64            │
+    ├────────────────────────────┤
+    │                          8 │
+    └────────────────────────────┘
+    D SET threads=4;
+    D select current_setting('threads');
+    ┌────────────────────────────┐
+    │ current_setting('threads') │
+    │           int64            │
+    ├────────────────────────────┤
+    │                          4 │
+    └────────────────────────────┘
+    D
+    ```
+
+# Benchmarks and Comparisons
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. This is a tricky topic, in general, you can make your choosen solution look better by focussing on metrics on which your choosen solution provides better results. 
+    - In general, [TPC-H](https://www.tpc.org/tpch/) and [TPC-DS](https://www.tpc.org/tpcds/) are considered the standard benchmarks for data processing.
+
+1. Some links to explore further:
+
+- **Reddit post**: [Benchmarking for DuckDB and Polars](https://www.reddit.com/r/datascience/comments/13yd2m9/benchmarking_for_duckdb_and_polars/)
+
+- **TPC-H benchmarks for DuckDB**: did not find anything on the duckdb.org, but [this site](https://www.architecture-performance.fr/categories_blog/benchmark/) has several DuckDB TPC-H benchmarks.
+
+- **[Benchmarking, Snowflake, Databricks, Synapse, BigQuery, Redshift, Trino, DuckDB and Hyper using TPCH-](https://datamonkeysite.com/2023/03/09/benchmarking-snowflake-databricks-synapse-bigquery-and-duckdb-using-tpch-sf100/)** 
+
+::: 
+::: {.column width="50%"}
+![TPC-DS](duckdb/img/TPC-DS-Homepage.png)
+:::
+::::
+
+## A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset
+
+This notebook reads the NYC taxi dataset files for the year 2021 (about ~29 million rows) and runs some analytics operation on this dataset. This dataset is too big to fit into memory.  
+
+1. We read the data from S3 using apache Arrow (pyarrow).
+
+1. The zero-copy integration between DuckDB and Apache Arrow allows for rapid analysis of larger than memory datasets in Python and R using either SQL or relational APIs.
+
+1. We create a DuckDB instance in memory and using the connection to this in-memory database We run some simple analytics operations using SQL syntax.
+
+Also see [https://duckdb.org/2021/12/03/duck-arrow.html](https://duckdb.org/2021/12/03/duck-arrow.html)
+
+## Further reading
+
+1. [Parallel Grouped Aggregation in DuckDB](https://duckdb.org/2022/03/07/aggregate-hashtable.html)
+1. [Meta queries](https://duckdb.org/docs/guides/meta/list_tables)
+1. [Profiling queries in DuckDB](https://duckdb.org/dev/profiling)
+1. [DuckDB tutorial for beginners](https://motherduck.com/blog/duckdb-tutorial-for-beginners/)
+1. [DuckDB CLI API](https://duckdb.org/docs/api/cli)
+1. [Using DuckDB in AWS Lambda](https://tobilg.com/using-duckdb-in-aws-lambda)
+1. [Revisiting the Poor Man’s Data Lake with MotherDuck](https://dagster.io/blog/poor-mans-datalake-motherduck)
+1. [Supercharge your data processing with DuckDB](https://medium.com/learning-sql/supercharge-your-data-processing-with-duckdb-cea907196704)
+1. [Friendlier SQL with DuckDB](https://duckdb.org/2022/05/04/friendlier-sql.html)
+1. [Building and deploying data apps with DuckDB and Streamlit](https://medium.com/@octavianzarzu/build-and-deploy-apps-with-duckdb-and-streamlit-in-under-one-hour-852cd31cccce)
+
