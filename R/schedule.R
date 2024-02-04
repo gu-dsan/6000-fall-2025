@@ -59,3 +59,4 @@ get_schedule_as_table <- function() {
       ) %>%
       fmt_markdown(columns = c("title", "notes"))
 }
+# get_schedule_as_table()
