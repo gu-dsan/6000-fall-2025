@@ -1,0 +1,73 @@
+# Project Introduction {.section}
+
+## Reddit Data!
+
+::: {.imgcenter}
+<img src="project-introduction/img/reddit.jpg" width=300>
+:::
+
+## Reddit BIG data
+
+### Data from 2021-01 to 2023-03
+### Comments 71,786 files (10MB blobs), 749GB, 6,114,480,451 comments (original 7.7TB)
+### Submissions 26186 files (10MB blobs), 268GB, 892,832,344 submissions (original 3.2TB)
+
+
+## Reddit Background
+
+::: {.column width="49%"}
+<img src="project-introduction/img/reddit-paper-fig1.png">
+:::
+
+::: {.column width="49%"}
+<img src="project-introduction/img/reddit-paper-fig4.png">
+:::
+
+## Comparison of social data infrastructure
+
+::: {.imgcenter}
+<img src="project-introduction/img/reddit-paper-table3.png" width=700>
+:::
+
+
+## Data Dictionary
+
+::: {.column width="49%"}
+<img src="project-introduction/img/reddit-paper-table1.png">
+:::
+
+::: {.column width="49%"}
+<img src="project-introduction/img/reddit-paper-table2.png">
+:::
+
+## Timeline
+
+#### Detailed requirements will be published in the next week
+
+| Deliverable | Deadline|
+|-------------|--------|
+| Project EDA Milestone|	2023-11-06 11:59pm|
+| Project NLP Milestone|	2023-11-20 11:59pm|
+| Project Peer Feedback| 	2023-11-20 11:59pm|
+| Project ML Milestone| 	2023-11-30 11:59pm|
+| Final Project Milestone| 2023-12-08 11:59pm|
+
+## Deliverables
+
+* EDA - project plan, initial data exploration, summary graphs and tables, some data transformation
+
+* NLP - external dataset merging, more data transformation, leverage an NLP model
+
+* Peer feedback - review another group's projet and provide constructive feedback on their EDA milestone.
+
+* ML - build several ML models, compare performance, answer some interesting questions
+
+* Final delivery - complete output that takes into account feedback given by instructors and peers for your project, improved analysis and work from intermediate deliverables
+
+## Next Steps
+
+* Form into groups of 3-4 students. Register on Canvas by 10/10
+* Discuss potential interesting questions with your group
+* Consider what type of split to the data you will want, do you want to look at a specific subreddit, time period, etc.
+* Think about potential external data to merge with your Reddit data
+* More to come next week!

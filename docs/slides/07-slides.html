@@ -395,14 +395,14 @@
     }
   </style>
 <meta property="og:title" content="PPOL 5206 - Lecture 7">
-<meta property="og:description" content="Spark DataFrames">
+<meta property="og:description" content="Spark UDFs and project introduction">
 <meta property="og:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta property="og:site-name" content="PPOL 5206">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="600">
 <meta property="og:image:width" content="518">
 <meta name="twitter:title" content="PPOL 5206 - Lecture 7">
-<meta name="twitter:description" content="Spark DataFrames">
+<meta name="twitter:description" content="Spark UDFs and project introduction">
 <meta name="twitter:image" content="https://aa1603.georgetown.edu/ppol5206/files/img/ppol5206-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -415,7 +415,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Lecture 7</h1>
-  <p class="subtitle">Spark DataFrames</p>
+  <p class="subtitle">Spark UDFs and project introduction</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -432,279 +432,53 @@ Amit Arora
 </div>
 
 </section>
-<section class="slide level2">
-
-<div class="cell">
-
-</div>
-<div class="column" style="width:47%;">
-<h3 id="looking-back">Looking Back</h3>
+<section id="agenda-and-goals-for-today" class="slide level2">
+<h2>Agenda and Goals for Today</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="lecture">Lecture</h3>
 <ul>
-<li>Intro to Hadoop and MapReduce</li>
-<li>Hadoop Streaming</li>
-<li>Dask</li>
-<li>Intro to Spark</li>
-<li>Spark RDDs</li>
+<li>Spark Diagnostics</li>
+<li>Spark UDFs</li>
+<li>Project</li>
 </ul>
-<h3 id="future">Future</h3>
+</div><div class="column" style="width:50%;">
+<h3 id="lab">Lab</h3>
 <ul>
-<li>Spark ML</li>
-<li>Project Introduction</li>
-<li>Spark Streaming</li>
-<li>Spark NLP</li>
-<li>DataBricks on Azure</li>
+<li>Spark on Sagemaker</li>
+<li>Spark DataFrames</li>
+<li>Spark UDFs</li>
 </ul>
 </div>
-<div class="column" style="width:47%;">
-<h3 id="today">Today</h3>
+</div>
+</section>
+<section id="logistics-and-review" class="slide level2">
+<h2>Logistics and Review</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="deadlines">Deadlines</h3>
 <ul>
-<li><p>Review of Distributed Hardware and Spark RDDs</p></li>
-<li><p>Spark DataFrames</p></li>
-<li><p>SparkSQL</p></li>
-<li><p>Lab:</p>
+<li>~~Assignment 5: DuckDB &amp; Polars ~~</li>
+<li>~~Lab 6: Intro to Spark ~~</li>
+<li>Lab 7: Spark DataFrames</li>
+<li>Lab 8: SparkNLP</li>
+<li>Assignment 6: Spark (Multi-part)</li>
+<li>Lab 9: SparkML</li>
+<li>Lab 10: Spark Streaming</li>
+<li>Lab 11: Dask</li>
+<li>Lab 12: Ray</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="look-back-and-ahead">Look back and ahead</h3>
 <ul>
-<li>Start a Hadoop cluster on AWS Elastic MapReduce (EMR) <strong>with a bootstrap script</strong></li>
-<li>Use Jupyter and Pyspark as front end to Spark</li>
-<li>Get to know Spark DataFrames</li>
-</ul></li>
-<li><p>Quiz on Hadoop Streaming and HDFS (due Friday October 14)</p></li>
+<li>Searching Slack for existing Q&amp;A - like StackOverflow!</li>
+<li>Spark RDDs, Spark DataFrames</li>
+<li>Now: More Spark and Project</li>
+<li>Next week: SparkNLP and more Project</li>
 </ul>
 </div>
-</section>
-<section>
-<section id="essential-hardwarehadoop-topics" class="title-slide slide level1 section center">
-<h1>Essential Hardware/Hadoop Topics</h1>
-
-</section>
-<section id="aws-academy" class="slide level2">
-<h2>AWS Academy</h2>
-<ul>
-<li><p>Credit limit - $100</p></li>
-<li><p>Course numbers:</p>
-<ul>
-<li>Course #1 - 24178</li>
-<li>Course #2 - 27354</li>
-<li>Course #3 - 22802</li>
-<li>Course #4 - 26418</li>
-</ul></li>
-</ul>
-<p>STAY WITH COURSE 24178 UNLESS YOU HAVE RUN OUT OF CREDITS OR &gt;$90 USED!</p>
-<p>Note that you will have to repeat several setup steps:</p>
-<ul>
-<li>security group</li>
-<li>EC2 keypair uploading (the AWS part only)</li>
-<li>sagemaker setup</li>
-<li>any S3 uploading or copying as well as bucket creation as necessary</li>
-<li>EMR configuration</li>
-</ul>
-</section>
-<section id="memory-disk-and-network" class="slide level2">
-<h2>Memory, Disk and Network</h2>
-<div class="imgcenter">
-<p><img src="img/latency4.png" width="800"></p>
 </div>
 </section>
-<section id="mapreducehadoop-was-groundbreaking" class="slide level2">
-<h2>MapReduce/Hadoop was groundbreaking</h2>
-<ul>
-<li><p>It provided a simple API (map and reduce steps)</p></li>
-<li><p>It provided <strong>fault tolerance</strong>, which made it possible to scale to 100s/1000s of nodes of <em>commodity machines</em> where the likelihood of a node failing midway through a job was very high</p>
-<ul>
-<li>Computations on very large datasets failed and recovered and jobs completed</li>
-</ul></li>
-</ul>
-</section>
-<section id="fault-tolerance-came-at-a-cost" class="slide level2">
-<h2><strong>Fault tolerance</strong> came at a cost!</h2>
-<ul>
-<li>Between each map and reduce step, MapReduce shuffles its data and writes intermediate data to disk
-<ul>
-<li>Reading/writing to disk is 100x slower than in-memory</li>
-<li>Network communication is 1,000,000x slower than in-memory</li>
-</ul></li>
-</ul>
-</section>
-<section id="review-of-file-systems" class="slide level2">
-<h2>Review of File Systems</h2>
-<p>What are the possible file system options for each item: <strong>S3</strong>, <strong>HDFS</strong>, <strong>Local file system</strong></p>
-<div class="fragment highlight-red" data-fragment-index="1">
-<p>hadoop jar /usr/lib/hadoop/hadoop-streaming.jar #1<br>
-</p>
-</div>
-<div class="fragment highlight-red" data-fragment-index="2">
-<p>-files basic-mapper.py,basic-reducer.py #2<br>
-</p>
-</div>
-<div class="fragment highlight-red" data-fragment-index="4">
-<p>-input /user/hadoop/in_data #3<br>
--output /user/hadoop/in_data #3<br>
-</p>
-</div>
-<div class="fragment highlight-red" data-fragment-index="6">
-<p>-mapper basic-mapper.py #4<br>
--reducer basic-reducer.py #4</p>
-</div>
-<div class="fragment fade-up" data-fragment-index="2">
-<ol type="1">
-<li>Local file system</li>
-</ol>
-</div>
-<div class="fragment fade-up" data-fragment-index="4">
-<ol start="2" type="1">
-<li>Local file system or S3</li>
-</ol>
-</div>
-<div class="fragment fade-up" data-fragment-index="6">
-<ol start="3" type="1">
-<li>HDFS or S3</li>
-</ol>
-</div>
-<div class="fragment fade-up" data-fragment-index="8">
-<ol start="4" type="1">
-<li>HDFS - why??</li>
-</ol>
-</div>
-</section></section>
-<section>
-<section id="start-your-spark-cluster-on-aws" class="title-slide slide level1 section center">
-<h1>Start your Spark Cluster on AWS</h1>
-
-</section>
-<section id="cluster-setup---1-install-miniconda" class="slide level2">
-<h2>Cluster Setup - 1 (install miniconda)</h2>
-<pre><code>echo "Installing Miniconda"
-curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh
-
-echo $(date "+%B %d %T")
-
-bash /tmp/miniconda.sh -b -p /mnt/miniconda
-rm /tmp/miniconda.sh
-ln -s /mnt/miniconda $HOME/miniconda
-echo -e '\nexport PATH=$HOME/miniconda/bin:$PATH' &gt;&gt; $HOME/.bashrc
-source $HOME/.bashrc
-conda update conda -y
-
-echo $(date "+%B %d %T")
-</code></pre>
-</section>
-<section id="cluster-setup---2-install-cluster-packages" class="slide level2">
-<h2>Cluster Setup - 2 (install cluster packages)</h2>
-<pre><code>echo "Installing common Python pacakges on master and workers"
-#conda install \
-#-c defaults \
-#-c conda-forge \
-#-y \
-#python=3.7 \
-#dask-yarn \
-#pyarrow \
-#s3fs \
-#bokeh \
-#conda-pack \
-#tornado
-
-aws s3 cp s3://bigdatateaching/bootstrap/worker_environment.yaml /tmp/worker_environment.yaml
-
-conda env update -n base --file /tmp/worker_environment.yaml
-
-echo $(date "+%B %d %T")</code></pre>
-</section>
-<section id="cluster-setup---3-print-python-packages" class="slide level2">
-<h2>Cluster Setup - 3 (Print python packages)</h2>
-<pre><code>if [ "$IS_MASTER" = false ]; then
-    echo "Python packages installed in worker nodes:"
-    conda list
-fi</code></pre>
-</section>
-<section id="cluster-setup---4-setup-master-node" class="slide level2">
-<h2>Cluster Setup - 4 (Setup master node)</h2>
-<pre><code>sudo yum install -y git libcurl-devel htop
-echo "Installing Master node Python libraries"
-conda install \
--c defaults \
--c conda-forge \
--y \
-notebook \
-ipywidgets \
-jupyter-server-proxy \
-findspark \
-matplotlib \
-jupyterlab \
-scikit-learn \
-nltk \
-scipy \
-beautifulsoup4 \
-nose \
-lxml \
-hdf5 \
-seaborn \
-boto3
-
-pip install -U nbclassic&gt;=0.2.8 
-# issue with older nbclassic - https://github.com/jupyterlab/jupyterlab/issues/10228
-
-echo $(date "+%B %d %T")
-
-pip install spark-nlp
-
-echo $(date "+%B %d %T")</code></pre>
-</section>
-<section id="cluster-setup---5-jupyter-lab-setup" class="slide level2">
-<h2>Cluster Setup - 5 (Jupyter Lab Setup)</h2>
-<pre><code>mkdir -p $HOME/.jupyter
-
-cat &lt;&lt;EOF &gt;&gt; $HOME/.jupyter/jupyter_notebook_config.py
-c.NotebookApp.open_browser = False
-c.NotebookApp.ip = '0.0.0.0'
-c.NotebookApp.port = 8765
-c.NotebookApp.token = ''
-EOF</code></pre>
-</section>
-<section id="cluster-setup---6-other-sys-admin" class="slide level2">
-<h2>Cluster Setup - 6 (Other Sys Admin)</h2>
-<pre><code>cat &lt;&lt;EOF &gt; /tmp/jupyter-lab.service
-[Unit]
-Description="Jupyter Lab Server"
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/su -s /bin/bash hadoop -c "cd $HOME; $HOME/miniconda/bin/jupyter lab" &gt;&gt; /mnt/tmp/jupyter-lab.log 2&gt;&amp;1
-[Install]
-WantedBy=multi-user.target
-EOF
-sudo mv /tmp/jupyter-lab.service /etc/systemd/system
-sudo chmod 644 /etc/systemd/system/jupyter-lab.service
-sudo systemctl start jupyter-lab
-
-echo "Starting Jupyter Notebook Server"
-sudo systemctl daemon-reload
-sudo systemctl start jupyter-lab
-
-conda init
-echo -e "\nalias pip='$HOME/miniconda/bin/pip'" &gt;&gt; $HOME/.bashrc
-echo -e "\nalias python='$HOME/miniconda/bin/python'" &gt;&gt; $HOME/.bashrc</code></pre>
-</section>
-<section id="review-of-logs-in-emr" class="slide level2">
-<h2>Review of Logs in EMR</h2>
-<div class="imgcenter">
-<p><img src="img/emr-folder-log.png" width="500"></p>
-</div>
-<ul>
-<li>Node -&gt; first node option -&gt; bootstrap-actions -&gt; 1 -&gt; stdout.gz</li>
-<li><strong>Click to View/Download</strong></li>
-<li><a href="https://aws-logs-011789619187-us-east-1.s3.amazonaws.com/elasticmapreduce/j-2C1SB2C6GEQBU/node/i-00492036dbf62ebcf/bootstrap-actions/1/stdout.gz?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIQCNBbhXwxL0fIE4NWjwIZf7BspSCwTAAyTV1AdGnyswFAIfIxC7cbxfiuPw5E9pAmyt7frztH%2B5XObOYlnF7ahwISruAghqEAAaDDAxMTc4OTYxOTE4NyIMKvhPAmeUG0StWi6AKssCDHArk70gzuQmP5Lv0HYDQN0I7Mt93ydDHhCjFqQjgC1uBIRPLRt4nVnf3MZE48pFwOVQkKvfmIvbP0aFkI1iSZ4Wzo6Fuzf%2Fr5QG54YxX274YVOoiPpxyi78OW%2BumZT1IyyZ8dSKTrYXNVZLEGP3GJU73KdtlHQJblHP%2BO7jeepbBPz5U%2BTZn7aP0hMujGA35Zy9IXU0EMu%2BxhL0vMEwsk9WSwFuy8khCVZut9ngnC%2B%2FwB8v%2FpB5tPXtUJUJs6fJfpcc6LM0qjjYIwNrf9PjbPjkdFlEVoi0j7V%2B0exbqurmarWE%2Fzy87JWSDJimFPl%2Ft0EkQmvEFHK1sWVXqHj62q7HBKFEFN2%2B87rH8SOaHFwd%2FdE789c00%2BSujJYnRjKhSWzrr1lVtukbFNNJBvQCA7npXQV%2Fz0ro8eBUE4SaCjpZEsaoqOq88kHcvjDd8pKaBjqIAptxmNhNcT9P6YLjcDFO8mjJdkQGa5gW2vt70E6qfl27uZh%2FqtkvBEo3uPzdh2f%2FVdxlG9DW8Q1zpVg1q9cK4WqMoVbffKIvkgCfi%2FMm3w9T%2FVJcGe0shBkh1%2Fl7vOABEpZRtWCtFaP4Ep8Co%2F8zIOlDBIadY4GuWSgvH5pgBJz4Y3waZX4Xf0r1y05usPYj0OFttvGU7Dxu2T82jum7w%2FYhjdjh4E5QvIMBXhrrZ34rs3bcNzaLvZ2k2wffLlTAtzHGOnKZemrx%2BXmGPbj4FP4EB1dwB%2BSPjYQ0K7gkVtS392qk60FBzdUR6ZIGNALmg%2BskkSeG8bGmd9l3Mj5vE76c8u8fItNi%2FA%3D%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20221011T030707Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=29&amp;X-Amz-Credential=ASIAQFPVXJ7Z3ZIDSAUP%2F20221011%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=fb11604e1cba7fd52130eea6e039f122e24c48b830c554050942ecace3aabc87">Example log file</a></li>
-</ul>
-</section>
-<section id="check-the-bootup-routine-for-your-ec2" class="slide level2">
-<h2>Check the Bootup Routine for your EC2</h2>
-<ul>
-<li>Hardware tab</li>
-<li>Master Instance Group</li>
-<li>Instance ID of EC2</li>
-<li>EC2 Hardware Details</li>
-<li>Actions -&gt; “Monitor and troubleshoot” -&gt; Get system log</li>
-<li>Actions -&gt; “Monitor and troubleshoot” -&gt; Get instance screenshot</li>
-</ul>
-</section></section>
 <section>
 <section id="spark-a-unified-engine" class="title-slide slide level1 section center">
 <h1>Spark: a Unified Engine</h1>
@@ -713,1398 +487,7 @@ echo -e "\nalias python='$HOME/miniconda/bin/python'" &gt;&gt; $HOME/.bashrc</co
 <section id="connected-and-extensible" class="slide level2">
 <h2>Connected and extensible</h2>
 <div class="imgcenter">
-<p><img src="img/spark-connectors.png" width="600"></p>
-</div>
-</section>
-<section id="three-data-structure-apis" class="slide level2">
-<h2>Three data structure APIs</h2>
-<ol type="1">
-<li><p><strong>RDDs</strong> (Resilient Distributed Datasets)</p></li>
-<li><p><strong>DataFrames</strong> SQL-like structured datasets with query operations</p></li>
-<li><p><strong>Datasets</strong> A mixture of RDDs and DataFrames</p></li>
-</ol>
-</section>
-<section id="spark-vs.-hadoop" class="slide level2">
-<h2>Spark vs.&nbsp;Hadoop</h2>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="tzadqqjqhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-:where(#tzadqqjqhk) .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-:where(#tzadqqjqhk) .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-:where(#tzadqqjqhk) .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-:where(#tzadqqjqhk) .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-:where(#tzadqqjqhk) .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-:where(#tzadqqjqhk) .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-:where(#tzadqqjqhk) .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-:where(#tzadqqjqhk) .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-:where(#tzadqqjqhk) .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-:where(#tzadqqjqhk) .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-:where(#tzadqqjqhk) .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-:where(#tzadqqjqhk) .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-:where(#tzadqqjqhk) .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-:where(#tzadqqjqhk) .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-:where(#tzadqqjqhk) .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-:where(#tzadqqjqhk) .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-:where(#tzadqqjqhk) .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-:where(#tzadqqjqhk) .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#tzadqqjqhk) .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_left {
-  text-align: left;
-}
-
-:where(#tzadqqjqhk) .gt_center {
-  text-align: center;
-}
-
-:where(#tzadqqjqhk) .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-:where(#tzadqqjqhk) .gt_font_normal {
-  font-weight: normal;
-}
-
-:where(#tzadqqjqhk) .gt_font_bold {
-  font-weight: bold;
-}
-
-:where(#tzadqqjqhk) .gt_font_italic {
-  font-style: italic;
-}
-
-:where(#tzadqqjqhk) .gt_super {
-  font-size: 65%;
-}
-
-:where(#tzadqqjqhk) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-:where(#tzadqqjqhk) .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-:where(#tzadqqjqhk) .gt_indent_1 {
-  text-indent: 5px;
-}
-
-:where(#tzadqqjqhk) .gt_indent_2 {
-  text-indent: 10px;
-}
-
-:where(#tzadqqjqhk) .gt_indent_3 {
-  text-indent: 15px;
-}
-
-:where(#tzadqqjqhk) .gt_indent_4 {
-  text-indent: 20px;
-}
-
-:where(#tzadqqjqhk) .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Hadoop Limitation">Hadoop Limitation</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Spark Approach">Spark Approach</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Hadoop Limitation" class="gt_row gt_left">For iterative processes and interactive use, Hadoop and MapReduce's mandatory dumping of output to disk proved to be a huge bottleneck. In ML, for example, users rely on iterative processes to train-test-retrain.</td>
-<td headers="Spark Approach" class="gt_row gt_left">Spark uses an in-memory processing paradigm, which lowers the disk IO substantially. Spark uses DAGs to store details of each transformation done on a parallelized dataset and does not process them to get results until required (lazy).</td></tr>
-    <tr><td headers="Hadoop Limitation" class="gt_row gt_left">Traditional Hadoop applications needed the data first to be copied to HDFS (or other distributed filesystem) and then did the processing.</td>
-<td headers="Spark Approach" class="gt_row gt_left">Spark works equally well with HDFS or any POSIX style filesystem. However, parallel Spark needs the data to be distributed.</td></tr>
-    <tr><td headers="Hadoop Limitation" class="gt_row gt_left">Mappers needed a data-localization phase in which the data was written to the local filesystem to bring resilience.</td>
-<td headers="Spark Approach" class="gt_row gt_left">Resilience in Spark is brough about by the DAGs, in which a missing RDD is re-calculated by following the path from which the RDD was created.</td></tr>
-    <tr><td headers="Hadoop Limitation" class="gt_row gt_left">Hadoop is built on Java and you must use Java to take advantage of all of it's capabilities. Although you can run non-Java scripts with Hadoop Streaming, it is still running a Java Framework.</td>
-<td headers="Spark Approach" class="gt_row gt_left">Spark is developed in Scala, and it has a unified API with so you can use Spark with Scala, Java, R and Python.</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="reviewing-the-rdd" class="title-slide slide level1 section center">
-<h1>Reviewing the RDD</h1>
-
-</section>
-<section id="transformations-and-actions-key-spark-concept" class="slide level2">
-<h2>Transformations and Actions (key Spark concept)</h2>
-<div class="imgcenter">
-<p><img src="img/transformations-and-actions.png"></p>
-</div>
-</section>
-<section id="how-to-create-and-rdd" class="slide level2">
-<h2>How to create and RDD?</h2>
-<p>RDDs can be created in two ways:</p>
-<div>
-<ul>
-<li class="fragment"><p><strong>Transforming an existing RDD:</strong> just like a call to <code>map</code> on a list returns a new list, many higher order functions defined on RDDs return a <strong>new</strong> RDD</p></li>
-<li class="fragment"><p><strong>From a <code>SparkContext</code> or <code>SparkSession</code> object:</strong> the <code>SparkContext</code> object (renamed <code>SparkSession</code>) can be though of as your handle to the Spark cluster. It represents a connection <em>between</em> the Spark Cluster and your application/client. It defines a handful of methods which can be used to create and populate a new RDD:</p>
-<ul>
-<li class="fragment"><strong><code>parallelize:</code></strong> converts a local object into an RDD</li>
-<li class="fragment"><strong><code>textFile:</code></strong> reads a <strong>text</strong> file from your filesystem and returns an RDD of strings</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="transformations-and-actions" class="slide level2">
-<h2>Transformations and Actions</h2>
-<p>Spark defines <em><strong>transformations</strong></em> and <em><strong>actions</strong></em> on RDDs:</p>
-<p><strong>Transformations</strong> return new RDDs as results.</p>
-<div class="fragment fade-in" data-fragment-index="1">
-<p><span style="color:#cc0000">Transformations are <strong>lazy</strong>, their result RDD is not immediately computed.</span></p>
-</div>
-<p><br> <br></p>
-<p><strong>Actions</strong> compute a result based on an RDD which is either returned or saved to an external filesystem.</p>
-<div class="fragment fade-in" data-fragment-index="1">
-<p><span style="color:#cc0000">Actions are <strong>eager</strong>, their result is immediately computed.</span></p>
-</div>
-</section>
-<section id="common-rdd-transformations" class="slide level2">
-<h2>Common <code>RDD</code> Transformations</h2>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="berdpvumsn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-:where(#berdpvumsn) .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-:where(#berdpvumsn) .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-:where(#berdpvumsn) .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-:where(#berdpvumsn) .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-:where(#berdpvumsn) .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-:where(#berdpvumsn) .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-:where(#berdpvumsn) .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-:where(#berdpvumsn) .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-:where(#berdpvumsn) .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-:where(#berdpvumsn) .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-:where(#berdpvumsn) .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-:where(#berdpvumsn) .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-:where(#berdpvumsn) .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-:where(#berdpvumsn) .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#berdpvumsn) .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-:where(#berdpvumsn) .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-:where(#berdpvumsn) .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#berdpvumsn) .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-:where(#berdpvumsn) .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#berdpvumsn) .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-:where(#berdpvumsn) .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#berdpvumsn) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#berdpvumsn) .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#berdpvumsn) .gt_left {
-  text-align: left;
-}
-
-:where(#berdpvumsn) .gt_center {
-  text-align: center;
-}
-
-:where(#berdpvumsn) .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-:where(#berdpvumsn) .gt_font_normal {
-  font-weight: normal;
-}
-
-:where(#berdpvumsn) .gt_font_bold {
-  font-weight: bold;
-}
-
-:where(#berdpvumsn) .gt_font_italic {
-  font-style: italic;
-}
-
-:where(#berdpvumsn) .gt_super {
-  font-size: 65%;
-}
-
-:where(#berdpvumsn) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-:where(#berdpvumsn) .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-:where(#berdpvumsn) .gt_indent_1 {
-  text-indent: 5px;
-}
-
-:where(#berdpvumsn) .gt_indent_2 {
-  text-indent: 10px;
-}
-
-:where(#berdpvumsn) .gt_indent_3 {
-  text-indent: 15px;
-}
-
-:where(#berdpvumsn) .gt_indent_4 {
-  text-indent: 20px;
-}
-
-:where(#berdpvumsn) .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Method">Method</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>map</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Expresses a one-to-one transformation and transforms each element of a collection into one element of the resulting collection</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>flatMap</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Expresses a one-to-many transformation and transforms each element to 0 or more elements</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>filter</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Applies filter function that returns a boolean and returs an RDD of elements that have passed the filter condition</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>distinct</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns RDD with duplicates removed</p>
-</div></td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="common-rdd-actions" class="slide level2">
-<h2>Common <code>RDD</code> Actions</h2>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="fyihmyoyxw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-:where(#fyihmyoyxw) .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-:where(#fyihmyoyxw) .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-:where(#fyihmyoyxw) .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-:where(#fyihmyoyxw) .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-:where(#fyihmyoyxw) .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-:where(#fyihmyoyxw) .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-:where(#fyihmyoyxw) .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-:where(#fyihmyoyxw) .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-:where(#fyihmyoyxw) .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-:where(#fyihmyoyxw) .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-:where(#fyihmyoyxw) .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-:where(#fyihmyoyxw) .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-:where(#fyihmyoyxw) .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-:where(#fyihmyoyxw) .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-:where(#fyihmyoyxw) .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-:where(#fyihmyoyxw) .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-:where(#fyihmyoyxw) .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-:where(#fyihmyoyxw) .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#fyihmyoyxw) .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_left {
-  text-align: left;
-}
-
-:where(#fyihmyoyxw) .gt_center {
-  text-align: center;
-}
-
-:where(#fyihmyoyxw) .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-:where(#fyihmyoyxw) .gt_font_normal {
-  font-weight: normal;
-}
-
-:where(#fyihmyoyxw) .gt_font_bold {
-  font-weight: bold;
-}
-
-:where(#fyihmyoyxw) .gt_font_italic {
-  font-style: italic;
-}
-
-:where(#fyihmyoyxw) .gt_super {
-  font-size: 65%;
-}
-
-:where(#fyihmyoyxw) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-:where(#fyihmyoyxw) .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-:where(#fyihmyoyxw) .gt_indent_1 {
-  text-indent: 5px;
-}
-
-:where(#fyihmyoyxw) .gt_indent_2 {
-  text-indent: 10px;
-}
-
-:where(#fyihmyoyxw) .gt_indent_3 {
-  text-indent: 15px;
-}
-
-:where(#fyihmyoyxw) .gt_indent_4 {
-  text-indent: 20px;
-}
-
-:where(#fyihmyoyxw) .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Method">Method</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>collect</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns <strong>all</strong> distributed elements of the <code>RDD</code> to the driver</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>count</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns the number of elements in an <code>RDD</code></p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>take</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns the first <em>n</em> elements of the <code>RDD</code></p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>reduce</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Combines elements of the <code>RDD</code> together using some function and returns result</p>
-</div></td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="collect-caution" class="slide level2">
-<h2><code>collect</code> <strong>CAUTION</strong></h2>
-<div class="imgcenter">
-<p><img src="img/collect-warning.png"></p>
+<p><img src="spark_udfs/img/spark-connectors.png" width="600"></p>
 </div>
 </section>
 <section id="caching-and-persistence" class="slide level2">
@@ -2116,1062 +499,409 @@ echo -e "\nalias python='$HOME/miniconda/bin/python'" &gt;&gt; $HOME/.bashrc</co
 <li><code>cache():</code> is a shortcut for using default storage level, which is memory only</li>
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section></section>
-<section>
-<section id="dataframes" class="title-slide slide level1 section center">
-<h1>DataFrames</h1>
-
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a># caches error RDD in memory, but only after an action is run</span>
+<span id="cb1-2"><a href="#cb1-2"></a>errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="review-of-pysparksql-cheatsheet" class="slide level2">
 <h2>Review of PySparkSQL Cheatsheet</h2>
 <p><a href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf">https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf</a></p>
 </section>
-<section id="dataframes-in-a-nutshell" class="slide level2">
-<h2>DataFrames in a nutshell</h2>
-<p><code>DataFrames</code> are…</p>
-<p><strong>Datasets organized into named columns</strong></p>
-<p>Conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood.</p>
-<p><strong>A relational API over Spark’s RDDs</strong></p>
-<p>Because sometimes it’s more convenient to use declarative relational APIs than functional APIs for analysis jobs:</p>
-<div class="column" style="width:47%;">
-<ul>
-<li><code>select</code></li>
-<li><code>where</code></li>
-<li><code>limit</code></li>
-</ul>
-</div>
-<div class="column" style="width:47%;">
-<ul>
-<li><code>orderBy</code></li>
-<li><code>groupBy</code></li>
-<li><code>join</code></li>
-</ul>
-</div>
-<p><strong>Able to be automatically aggresively optimized</strong></p>
-<p>SparkSQL applies years of research on relational optimizations in the database community to Spark</p>
-</section>
-<section id="dataframe-data-types" class="slide level2">
-<h2>DataFrame Data Types</h2>
-<p>SparkSQL’s <code>DataFrames</code> operate on a restricted (yet broad) set of data types. These are the most common:</p>
-<ul>
-<li>Integer types (at different lengths): <strong><code>ByteType</code></strong>, <strong><code>ShortType</code></strong>, <strong><code>IntegerType</code></strong>, <strong><code>LongType</code></strong></li>
-<li>Decimal types: <strong><code>Float</code></strong>, <strong><code>Double</code></strong></li>
-<li><strong><code>BooleanType</code></strong></li>
-<li><strong><code>StringType</code></strong></li>
-<li>Date/Time: <strong><code>TimestampType</code></strong>, <strong><code>DateType</code></strong></li>
-</ul>
-</section>
-<section id="a-dataframe" class="slide level2">
-<h2>A <code>DataFrame</code></h2>
-<div class="imgcenter">
-<p><img src="img/dataframe.png"></p>
-</div>
-</section>
-<section id="getting-a-look-at-your-data" class="slide level2">
-<h2>Getting a look at your data</h2>
-<p>There are a few ways you can have a look at your data in <code>DataFrames</code>:</p>
-<ul>
-<li><p><strong><code>show()</code></strong> pretty-prints <code>DataFrame</code> in tabular form. Shows first 20 elements</p></li>
-<li><p><strong><code>printSchema()</code></strong> prints the schema of your <code>DataFrame</code> in a tree format.</p></li>
-</ul>
-</section>
-<section id="common-dataframe-transformations" class="slide level2">
-<h2>Common <code>DataFrame</code> Transformations</h2>
-<p>Like on RDD’s, transformations on <code>DataFrames</code> are:</p>
-<ol type="1">
-<li>Operations that return another <code>DataFrame</code> as a results</li>
-<li>Are lazily evaluated</li>
-</ol>
-</section>
-<section id="some-common-transformations-include" class="slide level2">
-<h2>Some common transformations include:</h2>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="sqdombuvlp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-:where(#sqdombuvlp) .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-:where(#sqdombuvlp) .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-:where(#sqdombuvlp) .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-:where(#sqdombuvlp) .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-:where(#sqdombuvlp) .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-:where(#sqdombuvlp) .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-:where(#sqdombuvlp) .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-:where(#sqdombuvlp) .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-:where(#sqdombuvlp) .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-:where(#sqdombuvlp) .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-:where(#sqdombuvlp) .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-:where(#sqdombuvlp) .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-:where(#sqdombuvlp) .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-:where(#sqdombuvlp) .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#sqdombuvlp) .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-:where(#sqdombuvlp) .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-:where(#sqdombuvlp) .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#sqdombuvlp) .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-:where(#sqdombuvlp) .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#sqdombuvlp) .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-:where(#sqdombuvlp) .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#sqdombuvlp) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#sqdombuvlp) .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#sqdombuvlp) .gt_left {
-  text-align: left;
-}
-
-:where(#sqdombuvlp) .gt_center {
-  text-align: center;
-}
-
-:where(#sqdombuvlp) .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-:where(#sqdombuvlp) .gt_font_normal {
-  font-weight: normal;
-}
-
-:where(#sqdombuvlp) .gt_font_bold {
-  font-weight: bold;
-}
-
-:where(#sqdombuvlp) .gt_font_italic {
-  font-style: italic;
-}
-
-:where(#sqdombuvlp) .gt_super {
-  font-size: 65%;
-}
-
-:where(#sqdombuvlp) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-:where(#sqdombuvlp) .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-:where(#sqdombuvlp) .gt_indent_1 {
-  text-indent: 5px;
-}
-
-:where(#sqdombuvlp) .gt_indent_2 {
-  text-indent: 10px;
-}
-
-:where(#sqdombuvlp) .gt_indent_3 {
-  text-indent: 15px;
-}
-
-:where(#sqdombuvlp) .gt_indent_4 {
-  text-indent: 20px;
-}
-
-:where(#sqdombuvlp) .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Method">Method</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>select</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Selects a set of named columns and returns a new <code>DataFrame</code> with those columns as a result</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>agg</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Performs aggregations on a series of columns and returns a new <code>DataFrame</code> with the calculated output</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>groupBy</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Groups the DataFrame using the specified columns, usually used before some kind of aggregation</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>join</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Inner join with another DataFrame</p>
-</div></td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>Other transformations include: <code>filter</code>, <code>limit</code>, <code>orderBy</code>, <code>where</code>.</p>
-</section>
-<section id="specifying-columns" class="slide level2">
-<h2>Specifying columns</h2>
-<p>Most methods take a parameter of type <code>Column</code> or <code>String</code>, always referring to some attribute/column in the the DataFrame.</p>
-<p>You can select and work with columns in ways using the DataFrame API:</p>
-<ol type="1">
-<li><p>Using $ notation: <code>df.filter($"age" &gt; 18)</code></p></li>
-<li><p>Referring to the DataFrame: <code>df.filter(df("age") &gt; 18)</code></p></li>
-<li><p>Using SQL query string: <code>df.filter("age &gt; 18")</code></p></li>
-</ol>
-</section>
-<section id="filtering-in-sparksql" class="slide level2">
-<h2>Filtering in SparkSQL</h2>
-<p>The DataFrame API makes two methods available for filtering: <code>filter</code> and <code>where</code>. They are equivalent!</p>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>employee_df.<span class="bu">filter</span>(<span class="st">"age &gt; 30"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>is equivalent to</p>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>employee_df.where(<span class="st">"age &gt; 30"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="use-either-dataframe-api-and-sparksql" class="slide level2">
-<h2>Use either DataFrame API and SparkSQL</h2>
-<p>The DataFrame API and SparkSQL syntax can be used interchangeably!</p>
-<p><strong>Example:</strong> return the firstname and lastname of all the employees over the age over 25 that reside in Washington D.C.</p>
-</section>
-<section id="dataframe-api" class="slide level2">
-<h2>DataFrame API</h2>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>results <span class="op">=</span> df.select(<span class="st">"firstname"</span>, <span class="st">"lastname"</span>) <span class="op">\</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>            .where(<span class="st">"city == 'Washington D.C.' &amp;&amp; age &gt;= 25"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="sparksql" class="slide level2">
-<h2>SparkSQL</h2>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>spark.sql(<span class="st">"select firstname, lastname from df_view where city == 'Washington D.C.' and age &gt;= 25"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>          </span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co"># * Note: you have to register `df` using `df.createOrReplaceTempView("df_view")`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="grouping-and-aggregating-on-dataframes" class="slide level2">
-<h2>Grouping and aggregating on DataFrames</h2>
-<p>Some of the most common tasks on structured data tables include:</p>
-<ol type="1">
-<li>Grouping by a certain attributed</li>
-<li>Doing some kind of aggregation on the grouping, like a count</li>
-</ol>
-<p>For grouping and aggregating, SparkSQL provides a <strong><code>groupBy</code></strong> function which returns a <code>RelationalGroupedDataset</code> which has several standard aggregation functions like <strong><code>count</code></strong>, <strong><code>sum</code></strong>, <strong><code>max</code></strong>, <strong><code>min</code></strong>, and <strong><code>avg</code></strong>.</p>
-</section>
-<section id="how-to-group" class="slide level2">
-<h2>How to group</h2>
-<ul>
-<li>Call a <code>groupBy</code> on a specific attribute/column of a DataFrame</li>
-<li>followed by a call to <code>agg</code></li>
-</ul>
-<div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>results <span class="op">=</span> df.groupBy(<span class="st">"state"</span>) <span class="op">\</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>            .agg(<span class="bu">sum</span>(<span class="st">"sales"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="actions-on-dataframes" class="slide level2">
-<h2>Actions on DataFrames</h2>
-<p>Like RDDs, <code>DataFrames</code> also have their own set of actions:</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="zfydcxnxpm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-:where(#zfydcxnxpm) .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-:where(#zfydcxnxpm) .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-:where(#zfydcxnxpm) .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-:where(#zfydcxnxpm) .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-:where(#zfydcxnxpm) .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-:where(#zfydcxnxpm) .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-:where(#zfydcxnxpm) .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-:where(#zfydcxnxpm) .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-:where(#zfydcxnxpm) .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-:where(#zfydcxnxpm) .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-:where(#zfydcxnxpm) .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-:where(#zfydcxnxpm) .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-:where(#zfydcxnxpm) .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-:where(#zfydcxnxpm) .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-:where(#zfydcxnxpm) .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-:where(#zfydcxnxpm) .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-:where(#zfydcxnxpm) .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-:where(#zfydcxnxpm) .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#zfydcxnxpm) .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_left {
-  text-align: left;
-}
-
-:where(#zfydcxnxpm) .gt_center {
-  text-align: center;
-}
-
-:where(#zfydcxnxpm) .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-:where(#zfydcxnxpm) .gt_font_normal {
-  font-weight: normal;
-}
-
-:where(#zfydcxnxpm) .gt_font_bold {
-  font-weight: bold;
-}
-
-:where(#zfydcxnxpm) .gt_font_italic {
-  font-style: italic;
-}
-
-:where(#zfydcxnxpm) .gt_super {
-  font-size: 65%;
-}
-
-:where(#zfydcxnxpm) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-:where(#zfydcxnxpm) .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-:where(#zfydcxnxpm) .gt_indent_1 {
-  text-indent: 5px;
-}
-
-:where(#zfydcxnxpm) .gt_indent_2 {
-  text-indent: 10px;
-}
-
-:where(#zfydcxnxpm) .gt_indent_3 {
-  text-indent: 15px;
-}
-
-:where(#zfydcxnxpm) .gt_indent_4 {
-  text-indent: 20px;
-}
-
-:where(#zfydcxnxpm) .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Method">Method</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>collect</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns an <strong>array</strong> that contains all the rows in the DataFrame to the driver</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>count</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns the number of rows in a DataFrame</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>first</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns the first row in the DataFrame</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>show</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Displays the top 20 rows in the DataFrame</p>
-</div></td></tr>
-    <tr><td headers="Method" class="gt_row gt_left"><div class="gt_from_md"><p><code>take</code></p>
-</div></td>
-<td headers="Description" class="gt_row gt_left"><div class="gt_from_md"><p>Returns the first <em>n</em> rows of the RDD</p>
-</div></td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="collect-caution-1" class="slide level2">
+<section id="collect-caution" class="slide level2">
 <h2><code>collect</code> <strong>CAUTION</strong></h2>
 <div class="imgcenter">
-<p><img src="img/collect-warning.png"></p>
+<p><img src="spark_udfs/img/collect-warning.png"></p>
 </div>
 </section>
-<section id="limitations-on-dataframe" class="slide level2">
-<h2>Limitations on <code>DataFrame</code></h2>
-<ul>
-<li>Can only use DataFrame data types</li>
-<li>If your unstructured data cannot be reformulated to adhere to some kind of schema, it would be better to use RDDs.</li>
-</ul>
+<section id="review-of-htop" class="slide level2">
+<h2>Review of htop</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/htop.jpg"></p>
+</div>
+</section>
+<section id="htop-top-section-explanation" class="slide level2">
+<h2>htop top section explanation</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/htop-top.jpg"></p>
+</div>
+</section>
+<section id="htop-bottom-section-explanation" class="slide level2">
+<h2>htop bottom section explanation</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/htop-bottom.jpg"></p>
+</div>
+<p><a href="https://codeahoy.com/2017/01/20/hhtop-explained-visually/">https://codeahoy.com/2017/01/20/hhtop-explained-visually/</a></p>
 </section></section>
-<section id="one-of-the-most-common-performance-bottlenecks-of-new-spark-users-happens-because-you-re-evaluate-several-transformations-when-you-could-cache-intermediate-results-to-memory" class="title-slide slide level1 center">
-<h1>One of the most common performance bottlenecks of new Spark users happens because you re-evaluate several transformations when you could cache intermediate results to memory!</h1>
+<section>
+<section id="spark-diagnostic-ui" class="title-slide slide level1 section center">
+<h1>Spark Diagnostic UI</h1>
+
+</section>
+<section id="understanding-how-the-cluster-is-running-your-job" class="slide level2">
+<h2>Understanding how the cluster is running your job</h2>
+<p>Spark Application UI shows important facts about you Spark job:</p>
+<ul>
+<li>Event timeline for each stage of your work</li>
+<li>Directed acyclical graph (DAG) of your job</li>
+<li>Spark job history</li>
+<li>Status of Spark executors</li>
+<li>Physical / logical plans for any SQL queries</li>
+</ul>
+<h4 id="tool-to-confirm-you-are-getting-the-horizontal-scaling-that-you-need">Tool to confirm you are getting the horizontal scaling that you need!</h4>
+<p>Adapted from <a href="https://docs.aws.amazon.com/glue/latest/dg/monitor-spark-ui.html">AWS Glue Spark UI docs</a> and <a href="https://spark.apache.org/docs/latest/web-ui.html">Spark UI docs</a></p>
+</section>
+<section id="spark-ui---event-timeline" class="slide level2">
+<h2>Spark UI - Event timeline</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-ui-timeline.png" width="700"></p>
+</div>
+</section>
+<section id="spark-ui---dag" class="slide level2">
+<h2>Spark UI - DAG</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-ui-dag.png" width="700"></p>
+</div>
+</section>
+<section id="spark-ui---job-history" class="slide level2">
+<h2>Spark UI - Job History</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-ui-jobhistory.png" width="700"></p>
+</div>
+</section>
+<section id="spark-ui---executors" class="slide level2">
+<h2>Spark UI - Executors</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-ui-executors.png" width="700"></p>
+</div>
+</section>
+<section id="spark-ui---sql" class="slide level2">
+<h2>Spark UI - SQL</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-ui-sql.png" width="700"></p>
+</div>
+</section></section>
+<section id="demo-of-spark-ui-diagnostics-in-azureml" class="title-slide slide level1 center">
+<h1>Demo of Spark UI Diagnostics in AzureML</h1>
 
 </section>
 
-<section id="lab" class="title-slide slide level1 section center">
-<h1>Lab</h1>
+<section>
+<section id="pyspark-user-defined-functions" class="title-slide slide level1 center">
+<h1>PySpark User Defined Functions</h1>
+
+</section>
+<section id="udf-workflow" class="slide level2">
+<h2>UDF Workflow</h2>
+<div class="imgcenter">
+<p><img src="spark_udfs/img/spark-udf.png" width="700"></p>
+</div>
+</section>
+<section id="udf-code-structure" class="slide level2">
+<h2>UDF Code Structure</h2>
+<h3 id="clear-input---a-single-row-of-data-with-one-or-more-columns-used">Clear input - a single row of data with one or more columns used</h3>
+<h3 id="function---some-work-written-in-python-that-process-the-input-using-python-syntax.-no-pyspark-needed">Function - some work written in python that process the input using python syntax. No PySpark needed!</h3>
+<h3 id="clear-output---output-with-a-scoped-data-type">Clear output - output with a scoped data type</h3>
+</section>
+<section id="udf-example" class="slide level2">
+<h2>UDF Example</h2>
+<p>Problem: make a new column with ages for adults-only</p>
+<pre><code>+-------+--------------+
+|room_id|   guests_ages|
++-------+--------------+
+|      1|  [18, 19, 17]|
+|      2|   [25, 27, 5]|
+|      3|[34, 38, 8, 7]|
++-------+--------------+</code></pre>
+<p>Adapted from <a href="https://blog.damavis.com/en/avoiding-udfs-in-apache-spark/">UDFs in Spark</a></p>
+</section>
+<section id="udf-code-solution" class="slide level2">
+<h2>UDF Code Solution</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>from pyspark.sql.functions import udf, col</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>@udf("array&lt;integer&gt;")</span>
+<span id="cb3-4"><a href="#cb3-4"></a>   def filter_adults(elements):</span>
+<span id="cb3-5"><a href="#cb3-5"></a>   return list(filter(lambda x: x &gt;= 18, elements))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a># alternatively</span>
+<span id="cb3-8"><a href="#cb3-8"></a>from pyspark.sql.types IntegerType, ArrayType</span>
+<span id="cb3-9"><a href="#cb3-9"></a>@udf(returnType=ArrayType(IntegerType()))</span>
+<span id="cb3-10"><a href="#cb3-10"></a>def filter_adults(elements):</span>
+<span id="cb3-11"><a href="#cb3-11"></a>   return list(filter(lambda x: x &gt;= 18, elements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>+-------+----------------+------------+
+|room_id| guests_ages    | adults_ages|
++-------+----------------+------------+
+| 1     | [18, 19, 17]   |    [18, 19]|
+| 2     | [25, 27, 5]    |    [25, 27]|
+| 3     | [34, 38, 8, 7] |    [34, 38]|
+| 4     |[56, 49, 18, 17]|[56, 49, 18]|
++-------+----------------+------------+</code></pre>
+</section>
+<section id="alternative-to-spark-udf" class="slide level2">
+<h2>Alternative to Spark UDF</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a># Spark 3.1</span>
+<span id="cb5-2"><a href="#cb5-2"></a>from pyspark.sql.functions import col, filter, lit</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>df.withColumn('adults_ages',</span>
+<span id="cb5-5"><a href="#cb5-5"></a>              filter(col('guests_ages'), lambda x: x &gt;= lit(18))).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="another-udf-example" class="slide level2">
+<h2>Another UDF Example</h2>
+<ul>
+<li>Separate function definition form</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb6-2"><a href="#cb6-2"></a>from pyspark.sql.types import LongType</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a># define the function that can be tested locally</span>
+<span id="cb6-5"><a href="#cb6-5"></a>def squared(s):</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  return s * s</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a># wrap the function in udf for spark and define the output type</span>
+<span id="cb6-9"><a href="#cb6-9"></a>squared_udf = udf(squared, LongType())</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a># execute the udf</span>
+<span id="cb6-12"><a href="#cb6-12"></a>df = spark.table("test")</span>
+<span id="cb6-13"><a href="#cb6-13"></a>display(df.select("id", squared_udf("id").alias("id_squared")))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Single function definition form</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb7-2"><a href="#cb7-2"></a>@udf("long")</span>
+<span id="cb7-3"><a href="#cb7-3"></a>def squared_udf(s):</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  return s * s</span>
+<span id="cb7-5"><a href="#cb7-5"></a>df = spark.table("test")</span>
+<span id="cb7-6"><a href="#cb7-6"></a>display(df.select("id", squared_udf("id").alias("id_squared")))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="can-also-refer-to-a-udf-in-sql" class="slide level2">
+<h2>Can also refer to a UDF in SQL</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {{sql}} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>spark.udf.register("squaredWithPython", squared)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>select id, squaredWithPython(id) as id_squared from test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Consider all the corner cases</li>
+<li>Where could the data be null or an unexpected value</li>
+<li>Leverage python control structure to handle corner cases</li>
+</ul>
+<p><a href="https://docs.databricks.com/en/udf/python.html">source</a></p>
+</section>
+<section id="udf-speed-comparison" class="slide level2">
+<h2>UDF Speed Comparison</h2>
+<div class="column" style="width:53%;">
+<p><img src="spark_udfs/img/spark-udf-speed.png" width="700"></p>
+</div>
+<div class="column" style="width:45%;">
+<p>Costs:</p>
+<ul>
+<li>Serialization/deserialization (think pickle files)</li>
+<li>Data movement between JVM and Python</li>
+<li>Less Spark optimization possible</li>
+</ul>
+<p>Other ways to make your Spark jobs faster <a href="https://sparkbyexamples.com/spark/spark-performance-tuning/">source</a>:</p>
+<ul>
+<li>Cache/persist your data into memory</li>
+<li>Using Spark DataFrames over Spark RDDs</li>
+<li>Using Spark SQL functions before jumping into UDFs</li>
+<li>Save to serialized data formats like Parquet</li>
+</ul>
+</div>
+</section>
+<section id="pandas-udf" class="slide level2">
+<h2>Pandas UDF</h2>
+<p>From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>@pandas_udf("string")</span>
+<span id="cb9-2"><a href="#cb9-2"></a>def to_upper(s: pd.Series) -&gt; pd.Series:</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    return s.str.upper()</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>df = spark.createDataFrame([("John Doe",)], ("name",))</span>
+<span id="cb9-6"><a href="#cb9-6"></a>df.select(to_upper("name")).show()</span>
+<span id="cb9-7"><a href="#cb9-7"></a>+--------------+</span>
+<span id="cb9-8"><a href="#cb9-8"></a>|to_upper(name)|</span>
+<span id="cb9-9"><a href="#cb9-9"></a>+--------------+</span>
+<span id="cb9-10"><a href="#cb9-10"></a>|      JOHN DOE|</span>
+<span id="cb9-11"><a href="#cb9-11"></a>+--------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="another-example" class="slide level2">
+<h2>Another example</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>@pandas_udf("first string, last string")</span>
+<span id="cb10-2"><a href="#cb10-2"></a>def split_expand(s: pd.Series) -&gt; pd.DataFrame:</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    return s.str.split(expand=True)</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>df = spark.createDataFrame([("John Doe",)], ("name",))</span>
+<span id="cb10-7"><a href="#cb10-7"></a>df.select(split_expand("name")).show()</span>
+<span id="cb10-8"><a href="#cb10-8"></a>+------------------+</span>
+<span id="cb10-9"><a href="#cb10-9"></a>|split_expand(name)|</span>
+<span id="cb10-10"><a href="#cb10-10"></a>+------------------+</span>
+<span id="cb10-11"><a href="#cb10-11"></a>|       [John, Doe]|</span>
+<span id="cb10-12"><a href="#cb10-12"></a>+------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html">https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html</a></p>
+</section>
+<section id="scalar-pandas-udfs" class="slide level2">
+<h2>Scalar Pandas UDFs</h2>
+<ul>
+<li>Vectorizing scalar operations - one plus one</li>
+<li>Pandas UDF needs to have same size input and output series</li>
+</ul>
+<h4 id="udf-form">UDF Form</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a># Use udf to define a row-at-a-time udf</span>
+<span id="cb11-4"><a href="#cb11-4"></a>@udf('double')</span>
+<span id="cb11-5"><a href="#cb11-5"></a># Input/output are both a single double value</span>
+<span id="cb11-6"><a href="#cb11-6"></a>def plus_one(v):</span>
+<span id="cb11-7"><a href="#cb11-7"></a>      return v + 1</span>
+<span id="cb11-8"><a href="#cb11-8"></a></span>
+<span id="cb11-9"><a href="#cb11-9"></a>df.withColumn('v2', plus_one(df.v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="pandas-udf-form---faster-vectorized-form">Pandas UDF Form - <strong>faster vectorized form</strong></h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>from pyspark.sql.functions import pandas_udf, PandasUDFType</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a># Use pandas_udf to define a Pandas UDF</span>
+<span id="cb12-4"><a href="#cb12-4"></a>@pandas_udf('double', PandasUDFType.SCALAR)</span>
+<span id="cb12-5"><a href="#cb12-5"></a># Input/output are both a pandas.Series of doubles</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>def pandas_plus_one(v):</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    return v + 1</span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a>df.withColumn('v2', pandas_plus_one(df.v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://www.databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html">source</a></p>
+</section>
+<section id="grouped-map-pandas-udfs" class="slide level2">
+<h2>Grouped Map Pandas UDFs</h2>
+<ul>
+<li>Split, apply, combine using Pandas syntax</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1"></a>@pandas_udf(df.schema, PandasUDFType.GROUPED_MAP)</span>
+<span id="cb13-2"><a href="#cb13-2"></a># Input/output are both a pandas.DataFrame</span>
+<span id="cb13-3"><a href="#cb13-3"></a>def subtract_mean(pdf):</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    return pdf.assign(v=pdf.v - pdf.v.mean())</span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>df.groupby('id').apply(subtract_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comparison-of-scalar-and-grouped-map-pandas-udfs" class="slide level2">
+<h2>Comparison of Scalar and Grouped Map Pandas UDFs</h2>
+<div class="column" style="width:53%;">
+<ul>
+<li><p>Input of the user-defined function:</p>
+<ul>
+<li>Scalar: pandas.Series</li>
+<li>Grouped map: pandas.DataFrame</li>
+</ul></li>
+<li><p>Output of the user-defined function:</p>
+<ul>
+<li>Scalar: pandas.Series</li>
+<li>Grouped map: pandas.DataFrame</li>
+</ul></li>
+<li><p>Grouping semantics:</p>
+<ul>
+<li>Scalar: no grouping semantics</li>
+<li>Grouped map: defined by “groupby” clause</li>
+</ul></li>
+<li><p>Output size:</p>
+<ul>
+<li>Scalar: same as input size</li>
+<li>Grouped map: any size</li>
+</ul></li>
+</ul>
+</div>
+<div class="column" style="width:45%;">
+<p><img src="spark_udfs/img/pandas-udf-comparison.png"></p>
+</div>
+</section></section>
+<section>
+<section id="project-introduction" class="title-slide slide level1 section center">
+<h1>Project Introduction</h1>
+
+</section>
+<section id="reddit-data" class="slide level2">
+<h2>Reddit Data!</h2>
+<div class="imgcenter">
+<p><img src="project-introduction/img/reddit.jpg" width="300"></p>
+</div>
+</section>
+<section id="reddit-big-data" class="slide level2">
+<h2>Reddit BIG data</h2>
+<h3 id="data-from-2021-01-to-2023-03">Data from 2021-01 to 2023-03</h3>
+<h3 id="comments-71786-files-10mb-blobs-749gb-6114480451-comments-original-7.7tb">Comments 71,786 files (10MB blobs), 749GB, 6,114,480,451 comments (original 7.7TB)</h3>
+<h3 id="submissions-26186-files-10mb-blobs-268gb-892832344-submissions-original-3.2tb">Submissions 26186 files (10MB blobs), 268GB, 892,832,344 submissions (original 3.2TB)</h3>
+</section>
+<section id="reddit-background" class="slide level2">
+<h2>Reddit Background</h2>
+<div class="column" style="width:49%;">
+<p><img src="project-introduction/img/reddit-paper-fig1.png"></p>
+</div>
+<div class="column" style="width:49%;">
+<p><img src="project-introduction/img/reddit-paper-fig4.png"></p>
+</div>
+</section>
+<section id="comparison-of-social-data-infrastructure" class="slide level2">
+<h2>Comparison of social data infrastructure</h2>
+<div class="imgcenter">
+<p><img src="project-introduction/img/reddit-paper-table3.png" width="700"></p>
+</div>
+</section>
+<section id="data-dictionary" class="slide level2">
+<h2>Data Dictionary</h2>
+<div class="column" style="width:49%;">
+<p><img src="project-introduction/img/reddit-paper-table1.png"></p>
+</div>
+<div class="column" style="width:49%;">
+<p><img src="project-introduction/img/reddit-paper-table2.png"></p>
+</div>
+</section>
+<section id="timeline" class="slide level2">
+<h2>Timeline</h2>
+<h4 id="detailed-requirements-will-be-published-in-the-next-week">Detailed requirements will be published in the next week</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Deliverable</th>
+<th>Deadline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project EDA Milestone</td>
+<td>2023-11-06 11:59pm</td>
+</tr>
+<tr class="even">
+<td>Project NLP Milestone</td>
+<td>2023-11-20 11:59pm</td>
+</tr>
+<tr class="odd">
+<td>Project Peer Feedback</td>
+<td>2023-11-20 11:59pm</td>
+</tr>
+<tr class="even">
+<td>Project ML Milestone</td>
+<td>2023-11-30 11:59pm</td>
+</tr>
+<tr class="odd">
+<td>Final Project Milestone</td>
+<td>2023-12-08 11:59pm</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="deliverables" class="slide level2">
+<h2>Deliverables</h2>
+<ul>
+<li><p>EDA - project plan, initial data exploration, summary graphs and tables, some data transformation</p></li>
+<li><p>NLP - external dataset merging, more data transformation, leverage an NLP model</p></li>
+<li><p>Peer feedback - review another group’s projet and provide constructive feedback on their EDA milestone.</p></li>
+<li><p>ML - build several ML models, compare performance, answer some interesting questions</p></li>
+<li><p>Final delivery - complete output that takes into account feedback given by instructors and peers for your project, improved analysis and work from intermediate deliverables</p></li>
+</ul>
+</section>
+<section id="next-steps" class="slide level2">
+<h2>Next Steps</h2>
+<ul>
+<li>Form into groups of 3-4 students. Register on Canvas by 10/10</li>
+<li>Discuss potential interesting questions with your group</li>
+<li>Consider what type of split to the data you will want, do you want to look at a specific subreddit, time period, etc.</li>
+<li>Think about potential external data to merge with your Reddit data</li>
+<li>More to come next week!</li>
+</ul>
+</section></section>
+<section id="lab-time" class="title-slide slide level1 section center">
+<h1>Lab time!</h1>
 
 <div class="footer footer-default">
 
@@ -3388,44 +1118,6 @@ echo -e "\nalias python='$HOME/miniconda/bin/python'" &gt;&gt; $HOME/.bashrc</co
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

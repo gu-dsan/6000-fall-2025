@@ -2695,95 +2695,18 @@
     "text": "Limitations on DataFrame\n\nCan only use DataFrame data types\nIf your unstructured data cannot be reformulated to adhere to some kind of schema, it would be better to use RDDs."
   },
   {
-    "objectID": "slides/07-slides.html#aws-academy",
-    "href": "slides/07-slides.html#aws-academy",
+    "objectID": "slides/07-slides.html#agenda-and-goals-for-today",
+    "href": "slides/07-slides.html#agenda-and-goals-for-today",
     "title": "Lecture 7",
-    "section": "AWS Academy",
-    "text": "AWS Academy\n\nCredit limit - $100\nCourse numbers:\n\nCourse #1 - 24178\nCourse #2 - 27354\nCourse #3 - 22802\nCourse #4 - 26418\n\n\nSTAY WITH COURSE 24178 UNLESS YOU HAVE RUN OUT OF CREDITS OR >$90 USED!\nNote that you will have to repeat several setup steps:\n\nsecurity group\nEC2 keypair uploading (the AWS part only)\nsagemaker setup\nany S3 uploading or copying as well as bucket creation as necessary\nEMR configuration"
+    "section": "Agenda and Goals for Today",
+    "text": "Agenda and Goals for Today\n\n\nLecture\n\nSpark Diagnostics\nSpark UDFs\nProject\n\n\nLab\n\nSpark on Sagemaker\nSpark DataFrames\nSpark UDFs"
   },
   {
-    "objectID": "slides/07-slides.html#memory-disk-and-network",
-    "href": "slides/07-slides.html#memory-disk-and-network",
+    "objectID": "slides/07-slides.html#logistics-and-review",
+    "href": "slides/07-slides.html#logistics-and-review",
     "title": "Lecture 7",
-    "section": "Memory, Disk and Network",
-    "text": "Memory, Disk and Network"
-  },
-  {
-    "objectID": "slides/07-slides.html#mapreducehadoop-was-groundbreaking",
-    "href": "slides/07-slides.html#mapreducehadoop-was-groundbreaking",
-    "title": "Lecture 7",
-    "section": "MapReduce/Hadoop was groundbreaking",
-    "text": "MapReduce/Hadoop was groundbreaking\n\nIt provided a simple API (map and reduce steps)\nIt provided fault tolerance, which made it possible to scale to 100s/1000s of nodes of commodity machines where the likelihood of a node failing midway through a job was very high\n\nComputations on very large datasets failed and recovered and jobs completed"
-  },
-  {
-    "objectID": "slides/07-slides.html#fault-tolerance-came-at-a-cost",
-    "href": "slides/07-slides.html#fault-tolerance-came-at-a-cost",
-    "title": "Lecture 7",
-    "section": "Fault tolerance came at a cost!",
-    "text": "Fault tolerance came at a cost!\n\nBetween each map and reduce step, MapReduce shuffles its data and writes intermediate data to disk\n\nReading/writing to disk is 100x slower than in-memory\nNetwork communication is 1,000,000x slower than in-memory"
-  },
-  {
-    "objectID": "slides/07-slides.html#review-of-file-systems",
-    "href": "slides/07-slides.html#review-of-file-systems",
-    "title": "Lecture 7",
-    "section": "Review of File Systems",
-    "text": "Review of File Systems\nWhat are the possible file system options for each item: S3, HDFS, Local file system\n\nhadoop jar /usr/lib/hadoop/hadoop-streaming.jar #1\n\n\n\n-files basic-mapper.py,basic-reducer.py #2\n\n\n\n-input /user/hadoop/in_data #3\n-output /user/hadoop/in_data #3\n\n\n\n-mapper basic-mapper.py #4\n-reducer basic-reducer.py #4\n\n\n\nLocal file system\n\n\n\n\nLocal file system or S3\n\n\n\n\nHDFS or S3\n\n\n\n\nHDFS - why??"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---1-install-miniconda",
-    "href": "slides/07-slides.html#cluster-setup---1-install-miniconda",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 1 (install miniconda)",
-    "text": "Cluster Setup - 1 (install miniconda)\necho \"Installing Miniconda\"\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh\n\necho $(date \"+%B %d %T\")\n\nbash /tmp/miniconda.sh -b -p /mnt/miniconda\nrm /tmp/miniconda.sh\nln -s /mnt/miniconda $HOME/miniconda\necho -e '\\nexport PATH=$HOME/miniconda/bin:$PATH' >> $HOME/.bashrc\nsource $HOME/.bashrc\nconda update conda -y\n\necho $(date \"+%B %d %T\")"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---2-install-cluster-packages",
-    "href": "slides/07-slides.html#cluster-setup---2-install-cluster-packages",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 2 (install cluster packages)",
-    "text": "Cluster Setup - 2 (install cluster packages)\necho \"Installing common Python pacakges on master and workers\"\n#conda install \\\n#-c defaults \\\n#-c conda-forge \\\n#-y \\\n#python=3.7 \\\n#dask-yarn \\\n#pyarrow \\\n#s3fs \\\n#bokeh \\\n#conda-pack \\\n#tornado\n\naws s3 cp s3://bigdatateaching/bootstrap/worker_environment.yaml /tmp/worker_environment.yaml\n\nconda env update -n base --file /tmp/worker_environment.yaml\n\necho $(date \"+%B %d %T\")"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---3-print-python-packages",
-    "href": "slides/07-slides.html#cluster-setup---3-print-python-packages",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 3 (Print python packages)",
-    "text": "Cluster Setup - 3 (Print python packages)\nif [ \"$IS_MASTER\" = false ]; then\n    echo \"Python packages installed in worker nodes:\"\n    conda list\nfi"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---4-setup-master-node",
-    "href": "slides/07-slides.html#cluster-setup---4-setup-master-node",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 4 (Setup master node)",
-    "text": "Cluster Setup - 4 (Setup master node)\nsudo yum install -y git libcurl-devel htop\necho \"Installing Master node Python libraries\"\nconda install \\\n-c defaults \\\n-c conda-forge \\\n-y \\\nnotebook \\\nipywidgets \\\njupyter-server-proxy \\\nfindspark \\\nmatplotlib \\\njupyterlab \\\nscikit-learn \\\nnltk \\\nscipy \\\nbeautifulsoup4 \\\nnose \\\nlxml \\\nhdf5 \\\nseaborn \\\nboto3\n\npip install -U nbclassic>=0.2.8 \n# issue with older nbclassic - https://github.com/jupyterlab/jupyterlab/issues/10228\n\necho $(date \"+%B %d %T\")\n\npip install spark-nlp\n\necho $(date \"+%B %d %T\")"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---5-jupyter-lab-setup",
-    "href": "slides/07-slides.html#cluster-setup---5-jupyter-lab-setup",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 5 (Jupyter Lab Setup)",
-    "text": "Cluster Setup - 5 (Jupyter Lab Setup)\nmkdir -p $HOME/.jupyter\n\ncat <<EOF >> $HOME/.jupyter/jupyter_notebook_config.py\nc.NotebookApp.open_browser = False\nc.NotebookApp.ip = '0.0.0.0'\nc.NotebookApp.port = 8765\nc.NotebookApp.token = ''\nEOF"
-  },
-  {
-    "objectID": "slides/07-slides.html#cluster-setup---6-other-sys-admin",
-    "href": "slides/07-slides.html#cluster-setup---6-other-sys-admin",
-    "title": "Lecture 7",
-    "section": "Cluster Setup - 6 (Other Sys Admin)",
-    "text": "Cluster Setup - 6 (Other Sys Admin)\ncat <<EOF > /tmp/jupyter-lab.service\n[Unit]\nDescription=\"Jupyter Lab Server\"\n\n[Service]\nType=simple\nExecStart=/usr/bin/su -s /bin/bash hadoop -c \"cd $HOME; $HOME/miniconda/bin/jupyter lab\" >> /mnt/tmp/jupyter-lab.log 2>&1\n[Install]\nWantedBy=multi-user.target\nEOF\nsudo mv /tmp/jupyter-lab.service /etc/systemd/system\nsudo chmod 644 /etc/systemd/system/jupyter-lab.service\nsudo systemctl start jupyter-lab\n\necho \"Starting Jupyter Notebook Server\"\nsudo systemctl daemon-reload\nsudo systemctl start jupyter-lab\n\nconda init\necho -e \"\\nalias pip='$HOME/miniconda/bin/pip'\" >> $HOME/.bashrc\necho -e \"\\nalias python='$HOME/miniconda/bin/python'\" >> $HOME/.bashrc"
-  },
-  {
-    "objectID": "slides/07-slides.html#review-of-logs-in-emr",
-    "href": "slides/07-slides.html#review-of-logs-in-emr",
-    "title": "Lecture 7",
-    "section": "Review of Logs in EMR",
-    "text": "Review of Logs in EMR\n\n\n\n\nNode -> first node option -> bootstrap-actions -> 1 -> stdout.gz\nClick to View/Download\nExample log file"
-  },
-  {
-    "objectID": "slides/07-slides.html#check-the-bootup-routine-for-your-ec2",
-    "href": "slides/07-slides.html#check-the-bootup-routine-for-your-ec2",
-    "title": "Lecture 7",
-    "section": "Check the Bootup Routine for your EC2",
-    "text": "Check the Bootup Routine for your EC2\n\nHardware tab\nMaster Instance Group\nInstance ID of EC2\nEC2 Hardware Details\nActions -> “Monitor and troubleshoot” -> Get system log\nActions -> “Monitor and troubleshoot” -> Get instance screenshot"
+    "section": "Logistics and Review",
+    "text": "Logistics and Review\n\n\nDeadlines\n\n~~Assignment 5: DuckDB & Polars ~~\n~~Lab 6: Intro to Spark ~~\nLab 7: Spark DataFrames\nLab 8: SparkNLP\nAssignment 6: Spark (Multi-part)\nLab 9: SparkML\nLab 10: Spark Streaming\nLab 11: Dask\nLab 12: Ray\n\n\nLook back and ahead\n\nSearching Slack for existing Q&A - like StackOverflow!\nSpark RDDs, Spark DataFrames\nNow: More Spark and Project\nNext week: SparkNLP and more Project"
   },
   {
     "objectID": "slides/07-slides.html#connected-and-extensible",
@@ -2793,67 +2716,11 @@
     "text": "Connected and extensible"
   },
   {
-    "objectID": "slides/07-slides.html#three-data-structure-apis",
-    "href": "slides/07-slides.html#three-data-structure-apis",
-    "title": "Lecture 7",
-    "section": "Three data structure APIs",
-    "text": "Three data structure APIs\n\nRDDs (Resilient Distributed Datasets)\nDataFrames SQL-like structured datasets with query operations\nDatasets A mixture of RDDs and DataFrames"
-  },
-  {
-    "objectID": "slides/07-slides.html#spark-vs.-hadoop",
-    "href": "slides/07-slides.html#spark-vs.-hadoop",
-    "title": "Lecture 7",
-    "section": "Spark vs. Hadoop",
-    "text": "Spark vs. Hadoop\n\n\n\n\n\n\n  \n  \n    \n      Hadoop Limitation\n      Spark Approach\n    \n  \n  \n    For iterative processes and interactive use, Hadoop and MapReduce's mandatory dumping of output to disk proved to be a huge bottleneck. In ML, for example, users rely on iterative processes to train-test-retrain.\nSpark uses an in-memory processing paradigm, which lowers the disk IO substantially. Spark uses DAGs to store details of each transformation done on a parallelized dataset and does not process them to get results until required (lazy).\n    Traditional Hadoop applications needed the data first to be copied to HDFS (or other distributed filesystem) and then did the processing.\nSpark works equally well with HDFS or any POSIX style filesystem. However, parallel Spark needs the data to be distributed.\n    Mappers needed a data-localization phase in which the data was written to the local filesystem to bring resilience.\nResilience in Spark is brough about by the DAGs, in which a missing RDD is re-calculated by following the path from which the RDD was created.\n    Hadoop is built on Java and you must use Java to take advantage of all of it's capabilities. Although you can run non-Java scripts with Hadoop Streaming, it is still running a Java Framework.\nSpark is developed in Scala, and it has a unified API with so you can use Spark with Scala, Java, R and Python."
-  },
-  {
-    "objectID": "slides/07-slides.html#transformations-and-actions-key-spark-concept",
-    "href": "slides/07-slides.html#transformations-and-actions-key-spark-concept",
-    "title": "Lecture 7",
-    "section": "Transformations and Actions (key Spark concept)",
-    "text": "Transformations and Actions (key Spark concept)"
-  },
-  {
-    "objectID": "slides/07-slides.html#how-to-create-and-rdd",
-    "href": "slides/07-slides.html#how-to-create-and-rdd",
-    "title": "Lecture 7",
-    "section": "How to create and RDD?",
-    "text": "How to create and RDD?\nRDDs can be created in two ways:\n\n\nTransforming an existing RDD: just like a call to map on a list returns a new list, many higher order functions defined on RDDs return a new RDD\nFrom a SparkContext or SparkSession object: the SparkContext object (renamed SparkSession) can be though of as your handle to the Spark cluster. It represents a connection between the Spark Cluster and your application/client. It defines a handful of methods which can be used to create and populate a new RDD:\n\nparallelize: converts a local object into an RDD\ntextFile: reads a text file from your filesystem and returns an RDD of strings"
-  },
-  {
-    "objectID": "slides/07-slides.html#transformations-and-actions",
-    "href": "slides/07-slides.html#transformations-and-actions",
-    "title": "Lecture 7",
-    "section": "Transformations and Actions",
-    "text": "Transformations and Actions\nSpark defines transformations and actions on RDDs:\nTransformations return new RDDs as results.\n\nTransformations are lazy, their result RDD is not immediately computed.\n\n \nActions compute a result based on an RDD which is either returned or saved to an external filesystem.\n\nActions are eager, their result is immediately computed."
-  },
-  {
-    "objectID": "slides/07-slides.html#common-rdd-transformations",
-    "href": "slides/07-slides.html#common-rdd-transformations",
-    "title": "Lecture 7",
-    "section": "Common RDD Transformations",
-    "text": "Common RDD Transformations\n\n\n\n\n\n\n  \n  \n    \n      Method\n      Description\n    \n  \n  \n    map\n\nExpresses a one-to-one transformation and transforms each element of a collection into one element of the resulting collection\n\n    flatMap\n\nExpresses a one-to-many transformation and transforms each element to 0 or more elements\n\n    filter\n\nApplies filter function that returns a boolean and returs an RDD of elements that have passed the filter condition\n\n    distinct\n\nReturns RDD with duplicates removed"
-  },
-  {
-    "objectID": "slides/07-slides.html#common-rdd-actions",
-    "href": "slides/07-slides.html#common-rdd-actions",
-    "title": "Lecture 7",
-    "section": "Common RDD Actions",
-    "text": "Common RDD Actions\n\n\n\n\n\n\n  \n  \n    \n      Method\n      Description\n    \n  \n  \n    collect\n\nReturns all distributed elements of the RDD to the driver\n\n    count\n\nReturns the number of elements in an RDD\n\n    take\n\nReturns the first n elements of the RDD\n\n    reduce\n\nCombines elements of the RDD together using some function and returns result"
-  },
-  {
-    "objectID": "slides/07-slides.html#collect-caution",
-    "href": "slides/07-slides.html#collect-caution",
-    "title": "Lecture 7",
-    "section": "collect CAUTION",
-    "text": "collect CAUTION"
-  },
-  {
     "objectID": "slides/07-slides.html#caching-and-persistence",
     "href": "slides/07-slides.html#caching-and-persistence",
     "title": "Lecture 7",
     "section": "Caching and Persistence",
-    "text": "Caching and Persistence\nBy default, RDDs are recomputed every time you run an action on them. This can be expensive (in time) if you need to use a dataset more than once.\nSpark allows you to control what is cached in memory.\nTo tell spark to cache an object in memory, use persist() or cache():\n\ncache(): is a shortcut for using default storage level, which is memory only\npersist(): can be customized to other ways to persist data (including both memory and/or disk)\n\n\n# caches error RDD in memory, but only after an action is run\nerrors = logs.filter(lambda x: \"error\" in x and \"2019-12\" in x).cache()"
+    "text": "Caching and Persistence\nBy default, RDDs are recomputed every time you run an action on them. This can be expensive (in time) if you need to use a dataset more than once.\nSpark allows you to control what is cached in memory.\nTo tell spark to cache an object in memory, use persist() or cache():\n\ncache(): is a shortcut for using default storage level, which is memory only\npersist(): can be customized to other ways to persist data (including both memory and/or disk)\n\n# caches error RDD in memory, but only after an action is run\nerrors = logs.filter(lambda x: \"error\" in x and \"2019-12\" in x).cache()"
   },
   {
     "objectID": "slides/07-slides.html#review-of-pysparksql-cheatsheet",
@@ -2863,116 +2730,221 @@
     "text": "Review of PySparkSQL Cheatsheet\nhttps://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf"
   },
   {
-    "objectID": "slides/07-slides.html#dataframes-in-a-nutshell",
-    "href": "slides/07-slides.html#dataframes-in-a-nutshell",
-    "title": "Lecture 7",
-    "section": "DataFrames in a nutshell",
-    "text": "DataFrames in a nutshell\nDataFrames are…\nDatasets organized into named columns\nConceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood.\nA relational API over Spark’s RDDs\nBecause sometimes it’s more convenient to use declarative relational APIs than functional APIs for analysis jobs:\n\n\nselect\nwhere\nlimit\n\n\n\n\norderBy\ngroupBy\njoin\n\n\nAble to be automatically aggresively optimized\nSparkSQL applies years of research on relational optimizations in the database community to Spark"
-  },
-  {
-    "objectID": "slides/07-slides.html#dataframe-data-types",
-    "href": "slides/07-slides.html#dataframe-data-types",
-    "title": "Lecture 7",
-    "section": "DataFrame Data Types",
-    "text": "DataFrame Data Types\nSparkSQL’s DataFrames operate on a restricted (yet broad) set of data types. These are the most common:\n\nInteger types (at different lengths): ByteType, ShortType, IntegerType, LongType\nDecimal types: Float, Double\nBooleanType\nStringType\nDate/Time: TimestampType, DateType"
-  },
-  {
-    "objectID": "slides/07-slides.html#a-dataframe",
-    "href": "slides/07-slides.html#a-dataframe",
-    "title": "Lecture 7",
-    "section": "A DataFrame",
-    "text": "A DataFrame"
-  },
-  {
-    "objectID": "slides/07-slides.html#getting-a-look-at-your-data",
-    "href": "slides/07-slides.html#getting-a-look-at-your-data",
-    "title": "Lecture 7",
-    "section": "Getting a look at your data",
-    "text": "Getting a look at your data\nThere are a few ways you can have a look at your data in DataFrames:\n\nshow() pretty-prints DataFrame in tabular form. Shows first 20 elements\nprintSchema() prints the schema of your DataFrame in a tree format."
-  },
-  {
-    "objectID": "slides/07-slides.html#common-dataframe-transformations",
-    "href": "slides/07-slides.html#common-dataframe-transformations",
-    "title": "Lecture 7",
-    "section": "Common DataFrame Transformations",
-    "text": "Common DataFrame Transformations\nLike on RDD’s, transformations on DataFrames are:\n\nOperations that return another DataFrame as a results\nAre lazily evaluated"
-  },
-  {
-    "objectID": "slides/07-slides.html#some-common-transformations-include",
-    "href": "slides/07-slides.html#some-common-transformations-include",
-    "title": "Lecture 7",
-    "section": "Some common transformations include:",
-    "text": "Some common transformations include:\n\n\n\n\n\n\n  \n  \n    \n      Method\n      Description\n    \n  \n  \n    select\n\nSelects a set of named columns and returns a new DataFrame with those columns as a result\n\n    agg\n\nPerforms aggregations on a series of columns and returns a new DataFrame with the calculated output\n\n    groupBy\n\nGroups the DataFrame using the specified columns, usually used before some kind of aggregation\n\n    join\n\nInner join with another DataFrame\n\n  \n  \n  \n\n\n\n\nOther transformations include: filter, limit, orderBy, where."
-  },
-  {
-    "objectID": "slides/07-slides.html#specifying-columns",
-    "href": "slides/07-slides.html#specifying-columns",
-    "title": "Lecture 7",
-    "section": "Specifying columns",
-    "text": "Specifying columns\nMost methods take a parameter of type Column or String, always referring to some attribute/column in the the DataFrame.\nYou can select and work with columns in ways using the DataFrame API:\n\nUsing $ notation: df.filter($\"age\" > 18)\nReferring to the DataFrame: df.filter(df(\"age\") > 18)\nUsing SQL query string: df.filter(\"age > 18\")"
-  },
-  {
-    "objectID": "slides/07-slides.html#filtering-in-sparksql",
-    "href": "slides/07-slides.html#filtering-in-sparksql",
-    "title": "Lecture 7",
-    "section": "Filtering in SparkSQL",
-    "text": "Filtering in SparkSQL\nThe DataFrame API makes two methods available for filtering: filter and where. They are equivalent!\n\nemployee_df.filter(\"age > 30\").show()\n\nis equivalent to\n\nemployee_df.where(\"age > 30\").show()"
-  },
-  {
-    "objectID": "slides/07-slides.html#use-either-dataframe-api-and-sparksql",
-    "href": "slides/07-slides.html#use-either-dataframe-api-and-sparksql",
-    "title": "Lecture 7",
-    "section": "Use either DataFrame API and SparkSQL",
-    "text": "Use either DataFrame API and SparkSQL\nThe DataFrame API and SparkSQL syntax can be used interchangeably!\nExample: return the firstname and lastname of all the employees over the age over 25 that reside in Washington D.C."
-  },
-  {
-    "objectID": "slides/07-slides.html#dataframe-api",
-    "href": "slides/07-slides.html#dataframe-api",
-    "title": "Lecture 7",
-    "section": "DataFrame API",
-    "text": "DataFrame API\n\nresults = df.select(\"firstname\", \"lastname\") \\\n            .where(\"city == 'Washington D.C.' && age >= 25\")"
-  },
-  {
-    "objectID": "slides/07-slides.html#sparksql",
-    "href": "slides/07-slides.html#sparksql",
-    "title": "Lecture 7",
-    "section": "SparkSQL",
-    "text": "SparkSQL\n\nspark.sql(\"select firstname, lastname from df_view where city == 'Washington D.C.' and age >= 25\")\n          \n# * Note: you have to register `df` using `df.createOrReplaceTempView(\"df_view\")`"
-  },
-  {
-    "objectID": "slides/07-slides.html#grouping-and-aggregating-on-dataframes",
-    "href": "slides/07-slides.html#grouping-and-aggregating-on-dataframes",
-    "title": "Lecture 7",
-    "section": "Grouping and aggregating on DataFrames",
-    "text": "Grouping and aggregating on DataFrames\nSome of the most common tasks on structured data tables include:\n\nGrouping by a certain attributed\nDoing some kind of aggregation on the grouping, like a count\n\nFor grouping and aggregating, SparkSQL provides a groupBy function which returns a RelationalGroupedDataset which has several standard aggregation functions like count, sum, max, min, and avg."
-  },
-  {
-    "objectID": "slides/07-slides.html#how-to-group",
-    "href": "slides/07-slides.html#how-to-group",
-    "title": "Lecture 7",
-    "section": "How to group",
-    "text": "How to group\n\nCall a groupBy on a specific attribute/column of a DataFrame\nfollowed by a call to agg\n\n\nresults = df.groupBy(\"state\") \\\n            .agg(sum(\"sales\"))"
-  },
-  {
-    "objectID": "slides/07-slides.html#actions-on-dataframes",
-    "href": "slides/07-slides.html#actions-on-dataframes",
-    "title": "Lecture 7",
-    "section": "Actions on DataFrames",
-    "text": "Actions on DataFrames\nLike RDDs, DataFrames also have their own set of actions:\n\n\n\n\n\n\n  \n  \n    \n      Method\n      Description\n    \n  \n  \n    collect\n\nReturns an array that contains all the rows in the DataFrame to the driver\n\n    count\n\nReturns the number of rows in a DataFrame\n\n    first\n\nReturns the first row in the DataFrame\n\n    show\n\nDisplays the top 20 rows in the DataFrame\n\n    take\n\nReturns the first n rows of the RDD"
-  },
-  {
-    "objectID": "slides/07-slides.html#collect-caution-1",
-    "href": "slides/07-slides.html#collect-caution-1",
+    "objectID": "slides/07-slides.html#collect-caution",
+    "href": "slides/07-slides.html#collect-caution",
     "title": "Lecture 7",
     "section": "collect CAUTION",
     "text": "collect CAUTION"
   },
   {
-    "objectID": "slides/07-slides.html#limitations-on-dataframe",
-    "href": "slides/07-slides.html#limitations-on-dataframe",
+    "objectID": "slides/07-slides.html#review-of-htop",
+    "href": "slides/07-slides.html#review-of-htop",
     "title": "Lecture 7",
-    "section": "Limitations on DataFrame",
-    "text": "Limitations on DataFrame\n\nCan only use DataFrame data types\nIf your unstructured data cannot be reformulated to adhere to some kind of schema, it would be better to use RDDs."
+    "section": "Review of htop",
+    "text": "Review of htop"
+  },
+  {
+    "objectID": "slides/07-slides.html#htop-top-section-explanation",
+    "href": "slides/07-slides.html#htop-top-section-explanation",
+    "title": "Lecture 7",
+    "section": "htop top section explanation",
+    "text": "htop top section explanation"
+  },
+  {
+    "objectID": "slides/07-slides.html#htop-bottom-section-explanation",
+    "href": "slides/07-slides.html#htop-bottom-section-explanation",
+    "title": "Lecture 7",
+    "section": "htop bottom section explanation",
+    "text": "htop bottom section explanation\n\n\n\nhttps://codeahoy.com/2017/01/20/hhtop-explained-visually/"
+  },
+  {
+    "objectID": "slides/07-slides.html#understanding-how-the-cluster-is-running-your-job",
+    "href": "slides/07-slides.html#understanding-how-the-cluster-is-running-your-job",
+    "title": "Lecture 7",
+    "section": "Understanding how the cluster is running your job",
+    "text": "Understanding how the cluster is running your job\nSpark Application UI shows important facts about you Spark job:\n\nEvent timeline for each stage of your work\nDirected acyclical graph (DAG) of your job\nSpark job history\nStatus of Spark executors\nPhysical / logical plans for any SQL queries\n\nTool to confirm you are getting the horizontal scaling that you need!\nAdapted from AWS Glue Spark UI docs and Spark UI docs"
+  },
+  {
+    "objectID": "slides/07-slides.html#spark-ui---event-timeline",
+    "href": "slides/07-slides.html#spark-ui---event-timeline",
+    "title": "Lecture 7",
+    "section": "Spark UI - Event timeline",
+    "text": "Spark UI - Event timeline"
+  },
+  {
+    "objectID": "slides/07-slides.html#spark-ui---dag",
+    "href": "slides/07-slides.html#spark-ui---dag",
+    "title": "Lecture 7",
+    "section": "Spark UI - DAG",
+    "text": "Spark UI - DAG"
+  },
+  {
+    "objectID": "slides/07-slides.html#spark-ui---job-history",
+    "href": "slides/07-slides.html#spark-ui---job-history",
+    "title": "Lecture 7",
+    "section": "Spark UI - Job History",
+    "text": "Spark UI - Job History"
+  },
+  {
+    "objectID": "slides/07-slides.html#spark-ui---executors",
+    "href": "slides/07-slides.html#spark-ui---executors",
+    "title": "Lecture 7",
+    "section": "Spark UI - Executors",
+    "text": "Spark UI - Executors"
+  },
+  {
+    "objectID": "slides/07-slides.html#spark-ui---sql",
+    "href": "slides/07-slides.html#spark-ui---sql",
+    "title": "Lecture 7",
+    "section": "Spark UI - SQL",
+    "text": "Spark UI - SQL"
+  },
+  {
+    "objectID": "slides/07-slides.html#udf-workflow",
+    "href": "slides/07-slides.html#udf-workflow",
+    "title": "Lecture 7",
+    "section": "UDF Workflow",
+    "text": "UDF Workflow"
+  },
+  {
+    "objectID": "slides/07-slides.html#udf-code-structure",
+    "href": "slides/07-slides.html#udf-code-structure",
+    "title": "Lecture 7",
+    "section": "UDF Code Structure",
+    "text": "UDF Code Structure\nClear input - a single row of data with one or more columns used\nFunction - some work written in python that process the input using python syntax. No PySpark needed!\nClear output - output with a scoped data type"
+  },
+  {
+    "objectID": "slides/07-slides.html#udf-example",
+    "href": "slides/07-slides.html#udf-example",
+    "title": "Lecture 7",
+    "section": "UDF Example",
+    "text": "UDF Example\nProblem: make a new column with ages for adults-only\n+-------+--------------+\n|room_id|   guests_ages|\n+-------+--------------+\n|      1|  [18, 19, 17]|\n|      2|   [25, 27, 5]|\n|      3|[34, 38, 8, 7]|\n+-------+--------------+\nAdapted from UDFs in Spark"
+  },
+  {
+    "objectID": "slides/07-slides.html#udf-code-solution",
+    "href": "slides/07-slides.html#udf-code-solution",
+    "title": "Lecture 7",
+    "section": "UDF Code Solution",
+    "text": "UDF Code Solution\nfrom pyspark.sql.functions import udf, col\n\n@udf(\"array<integer>\")\n   def filter_adults(elements):\n   return list(filter(lambda x: x >= 18, elements))\n\n# alternatively\nfrom pyspark.sql.types IntegerType, ArrayType\n@udf(returnType=ArrayType(IntegerType()))\ndef filter_adults(elements):\n   return list(filter(lambda x: x >= 18, elements))\n+-------+----------------+------------+\n|room_id| guests_ages    | adults_ages|\n+-------+----------------+------------+\n| 1     | [18, 19, 17]   |    [18, 19]|\n| 2     | [25, 27, 5]    |    [25, 27]|\n| 3     | [34, 38, 8, 7] |    [34, 38]|\n| 4     |[56, 49, 18, 17]|[56, 49, 18]|\n+-------+----------------+------------+"
+  },
+  {
+    "objectID": "slides/07-slides.html#alternative-to-spark-udf",
+    "href": "slides/07-slides.html#alternative-to-spark-udf",
+    "title": "Lecture 7",
+    "section": "Alternative to Spark UDF",
+    "text": "Alternative to Spark UDF\n# Spark 3.1\nfrom pyspark.sql.functions import col, filter, lit\n\ndf.withColumn('adults_ages',\n              filter(col('guests_ages'), lambda x: x >= lit(18))).show()"
+  },
+  {
+    "objectID": "slides/07-slides.html#another-udf-example",
+    "href": "slides/07-slides.html#another-udf-example",
+    "title": "Lecture 7",
+    "section": "Another UDF Example",
+    "text": "Another UDF Example\n\nSeparate function definition form\n\nfrom pyspark.sql.functions import udf\nfrom pyspark.sql.types import LongType\n\n# define the function that can be tested locally\ndef squared(s):\n  return s * s\n\n# wrap the function in udf for spark and define the output type\nsquared_udf = udf(squared, LongType())\n\n# execute the udf\ndf = spark.table(\"test\")\ndisplay(df.select(\"id\", squared_udf(\"id\").alias(\"id_squared\")))\n\nSingle function definition form\n\nfrom pyspark.sql.functions import udf\n@udf(\"long\")\ndef squared_udf(s):\n  return s * s\ndf = spark.table(\"test\")\ndisplay(df.select(\"id\", squared_udf(\"id\").alias(\"id_squared\")))"
+  },
+  {
+    "objectID": "slides/07-slides.html#can-also-refer-to-a-udf-in-sql",
+    "href": "slides/07-slides.html#can-also-refer-to-a-udf-in-sql",
+    "title": "Lecture 7",
+    "section": "Can also refer to a UDF in SQL",
+    "text": "Can also refer to a UDF in SQL\nspark.udf.register(\"squaredWithPython\", squared)\nselect id, squaredWithPython(id) as id_squared from test\n\nConsider all the corner cases\nWhere could the data be null or an unexpected value\nLeverage python control structure to handle corner cases\n\nsource"
+  },
+  {
+    "objectID": "slides/07-slides.html#udf-speed-comparison",
+    "href": "slides/07-slides.html#udf-speed-comparison",
+    "title": "Lecture 7",
+    "section": "UDF Speed Comparison",
+    "text": "UDF Speed Comparison\n\n\n\n\nCosts:\n\nSerialization/deserialization (think pickle files)\nData movement between JVM and Python\nLess Spark optimization possible\n\nOther ways to make your Spark jobs faster source:\n\nCache/persist your data into memory\nUsing Spark DataFrames over Spark RDDs\nUsing Spark SQL functions before jumping into UDFs\nSave to serialized data formats like Parquet"
+  },
+  {
+    "objectID": "slides/07-slides.html#pandas-udf",
+    "href": "slides/07-slides.html#pandas-udf",
+    "title": "Lecture 7",
+    "section": "Pandas UDF",
+    "text": "Pandas UDF\nFrom PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.\n@pandas_udf(\"string\")\ndef to_upper(s: pd.Series) -> pd.Series:\n    return s.str.upper()\n\ndf = spark.createDataFrame([(\"John Doe\",)], (\"name\",))\ndf.select(to_upper(\"name\")).show()\n+--------------+\n|to_upper(name)|\n+--------------+\n|      JOHN DOE|\n+--------------+"
+  },
+  {
+    "objectID": "slides/07-slides.html#another-example",
+    "href": "slides/07-slides.html#another-example",
+    "title": "Lecture 7",
+    "section": "Another example",
+    "text": "Another example\n@pandas_udf(\"first string, last string\")\ndef split_expand(s: pd.Series) -> pd.DataFrame:\n    return s.str.split(expand=True)\n\n\ndf = spark.createDataFrame([(\"John Doe\",)], (\"name\",))\ndf.select(split_expand(\"name\")).show()\n+------------------+\n|split_expand(name)|\n+------------------+\n|       [John, Doe]|\n+------------------+\nhttps://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html"
+  },
+  {
+    "objectID": "slides/07-slides.html#scalar-pandas-udfs",
+    "href": "slides/07-slides.html#scalar-pandas-udfs",
+    "title": "Lecture 7",
+    "section": "Scalar Pandas UDFs",
+    "text": "Scalar Pandas UDFs\n\nVectorizing scalar operations - one plus one\nPandas UDF needs to have same size input and output series\n\nUDF Form\nfrom pyspark.sql.functions import udf\n\n# Use udf to define a row-at-a-time udf\n@udf('double')\n# Input/output are both a single double value\ndef plus_one(v):\n      return v + 1\n\ndf.withColumn('v2', plus_one(df.v))\nPandas UDF Form - faster vectorized form\nfrom pyspark.sql.functions import pandas_udf, PandasUDFType\n\n# Use pandas_udf to define a Pandas UDF\n@pandas_udf('double', PandasUDFType.SCALAR)\n# Input/output are both a pandas.Series of doubles\n\ndef pandas_plus_one(v):\n    return v + 1\n\ndf.withColumn('v2', pandas_plus_one(df.v))\nsource"
+  },
+  {
+    "objectID": "slides/07-slides.html#grouped-map-pandas-udfs",
+    "href": "slides/07-slides.html#grouped-map-pandas-udfs",
+    "title": "Lecture 7",
+    "section": "Grouped Map Pandas UDFs",
+    "text": "Grouped Map Pandas UDFs\n\nSplit, apply, combine using Pandas syntax\n\n@pandas_udf(df.schema, PandasUDFType.GROUPED_MAP)\n# Input/output are both a pandas.DataFrame\ndef subtract_mean(pdf):\n    return pdf.assign(v=pdf.v - pdf.v.mean())\n\ndf.groupby('id').apply(subtract_mean)"
+  },
+  {
+    "objectID": "slides/07-slides.html#comparison-of-scalar-and-grouped-map-pandas-udfs",
+    "href": "slides/07-slides.html#comparison-of-scalar-and-grouped-map-pandas-udfs",
+    "title": "Lecture 7",
+    "section": "Comparison of Scalar and Grouped Map Pandas UDFs",
+    "text": "Comparison of Scalar and Grouped Map Pandas UDFs\n\n\nInput of the user-defined function:\n\nScalar: pandas.Series\nGrouped map: pandas.DataFrame\n\nOutput of the user-defined function:\n\nScalar: pandas.Series\nGrouped map: pandas.DataFrame\n\nGrouping semantics:\n\nScalar: no grouping semantics\nGrouped map: defined by “groupby” clause\n\nOutput size:\n\nScalar: same as input size\nGrouped map: any size"
+  },
+  {
+    "objectID": "slides/07-slides.html#reddit-data",
+    "href": "slides/07-slides.html#reddit-data",
+    "title": "Lecture 7",
+    "section": "Reddit Data!",
+    "text": "Reddit Data!"
+  },
+  {
+    "objectID": "slides/07-slides.html#reddit-big-data",
+    "href": "slides/07-slides.html#reddit-big-data",
+    "title": "Lecture 7",
+    "section": "Reddit BIG data",
+    "text": "Reddit BIG data\nData from 2021-01 to 2023-03\nComments 71,786 files (10MB blobs), 749GB, 6,114,480,451 comments (original 7.7TB)\nSubmissions 26186 files (10MB blobs), 268GB, 892,832,344 submissions (original 3.2TB)"
+  },
+  {
+    "objectID": "slides/07-slides.html#reddit-background",
+    "href": "slides/07-slides.html#reddit-background",
+    "title": "Lecture 7",
+    "section": "Reddit Background",
+    "text": "Reddit Background"
+  },
+  {
+    "objectID": "slides/07-slides.html#comparison-of-social-data-infrastructure",
+    "href": "slides/07-slides.html#comparison-of-social-data-infrastructure",
+    "title": "Lecture 7",
+    "section": "Comparison of social data infrastructure",
+    "text": "Comparison of social data infrastructure"
+  },
+  {
+    "objectID": "slides/07-slides.html#data-dictionary",
+    "href": "slides/07-slides.html#data-dictionary",
+    "title": "Lecture 7",
+    "section": "Data Dictionary",
+    "text": "Data Dictionary"
+  },
+  {
+    "objectID": "slides/07-slides.html#timeline",
+    "href": "slides/07-slides.html#timeline",
+    "title": "Lecture 7",
+    "section": "Timeline",
+    "text": "Timeline\nDetailed requirements will be published in the next week\n\n\n\nDeliverable\nDeadline\n\n\n\n\nProject EDA Milestone\n2023-11-06 11:59pm\n\n\nProject NLP Milestone\n2023-11-20 11:59pm\n\n\nProject Peer Feedback\n2023-11-20 11:59pm\n\n\nProject ML Milestone\n2023-11-30 11:59pm\n\n\nFinal Project Milestone\n2023-12-08 11:59pm"
+  },
+  {
+    "objectID": "slides/07-slides.html#deliverables",
+    "href": "slides/07-slides.html#deliverables",
+    "title": "Lecture 7",
+    "section": "Deliverables",
+    "text": "Deliverables\n\nEDA - project plan, initial data exploration, summary graphs and tables, some data transformation\nNLP - external dataset merging, more data transformation, leverage an NLP model\nPeer feedback - review another group’s projet and provide constructive feedback on their EDA milestone.\nML - build several ML models, compare performance, answer some interesting questions\nFinal delivery - complete output that takes into account feedback given by instructors and peers for your project, improved analysis and work from intermediate deliverables"
+  },
+  {
+    "objectID": "slides/07-slides.html#next-steps",
+    "href": "slides/07-slides.html#next-steps",
+    "title": "Lecture 7",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nForm into groups of 3-4 students. Register on Canvas by 10/10\nDiscuss potential interesting questions with your group\nConsider what type of split to the data you will want, do you want to look at a specific subreddit, time period, etc.\nThink about potential external data to merge with your Reddit data\nMore to come next week!"
   },
   {
     "objectID": "slides/08-slides.html#aws-academy",

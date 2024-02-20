@@ -1,6 +1,19 @@
 ---
 title: "Lecture 7"
-subtitle: "Spark UDFs and Project Introduction"
+subtitle: "Spark UDFs and project introduction"
+author: "{{< var instructor.name >}}"
+institute:
+- "{{< var university.name >}}"
+- "{{< var course.semester >}}"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: custom.scss
+    transition: fade
+    background-transition: fade
+    highlight-style: ayu-mirage
+    code-copy: true
 ---
 
 ## Agenda and Goals for Today

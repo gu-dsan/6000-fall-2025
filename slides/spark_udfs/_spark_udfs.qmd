@@ -3,7 +3,7 @@
 ## Connected and extensible
 
 ::: {.imgcenter}
-<img src="img/spark-connectors.png" width=600>
+<img src="spark_udfs/img/spark-connectors.png" width=600>
 :::
 
 ## Caching and Persistence
@@ -30,25 +30,25 @@ errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
 ## `collect` **CAUTION**
 
 ::: {.imgcenter}
-<img src="img/collect-warning.png">
+<img src="spark_udfs/img/collect-warning.png">
 :::
 
 ## Review of htop
 
 ::: {.imgcenter}
-<img src="img/htop.jpg">
+<img src="spark_udfs/img/htop.jpg">
 :::
 
 ## htop top section explanation
 
 ::: {.imgcenter}
-<img src="img/htop-top.jpg">
+<img src="spark_udfs/img/htop-top.jpg">
 :::
 
 ## htop bottom section explanation
 
 ::: {.imgcenter}
-<img src="img/htop-bottom.jpg">
+<img src="spark_udfs/img/htop-bottom.jpg">
 :::
 
 [https://codeahoy.com/2017/01/20/hhtop-explained-visually/](https://codeahoy.com/2017/01/20/hhtop-explained-visually/)
@@ -75,31 +75,31 @@ and [Spark UI docs](https://spark.apache.org/docs/latest/web-ui.html)
 ## Spark UI - Event timeline
 
 ::: {.imgcenter}
-<img src="img/spark-ui-timeline.png" width=700>
+<img src="spark_udfs/img/spark-ui-timeline.png" width=700>
 :::
 
 ## Spark UI - DAG
 
 ::: {.imgcenter}
-<img src="img/spark-ui-dag.png" width=700>
+<img src="spark_udfs/img/spark-ui-dag.png" width=700>
 :::
 
 ## Spark UI - Job History
 
 ::: {.imgcenter}
-<img src="img/spark-ui-jobhistory.png" width=700>
+<img src="spark_udfs/img/spark-ui-jobhistory.png" width=700>
 :::
 
 ## Spark UI - Executors
 
 ::: {.imgcenter}
-<img src="img/spark-ui-executors.png" width=700>
+<img src="spark_udfs/img/spark-ui-executors.png" width=700>
 :::
 
 ## Spark UI - SQL
 
 ::: {.imgcenter}
-<img src="img/spark-ui-sql.png" width=700>
+<img src="spark_udfs/img/spark-ui-sql.png" width=700>
 :::
 
 # Demo of Spark UI Diagnostics in AzureML
@@ -109,7 +109,7 @@ and [Spark UI docs](https://spark.apache.org/docs/latest/web-ui.html)
 ## UDF Workflow
 
 ::: {.imgcenter}
-<img src="img/spark-udf.png" width=700>
+<img src="spark_udfs/img/spark-udf.png" width=700>
 :::
 
 ## UDF Code Structure
@@ -220,7 +220,7 @@ select id, squaredWithPython(id) as id_squared from test
 ## UDF Speed Comparison
 
 ::: {.column width="53%"}
-<img src="img/spark-udf-speed.png" width=700>
+<img src="spark_udfs/img/spark-udf-speed.png" width=700>
 :::
 
 ::: {.column width="45%"}
@@ -351,5 +351,5 @@ df.groupby('id').apply(subtract_mean)
 :::
 
 ::: {.column width="45%"}
-<img src="img/pandas-udf-comparison.png">
+<img src="spark_udfs/img/pandas-udf-comparison.png">
 :::
