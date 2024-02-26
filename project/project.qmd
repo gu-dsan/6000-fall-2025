@@ -1,0 +1,146 @@
+---
+title: Project
+date: last-modified
+date-format: "dddd MMM D, YYYY [at] h:m a"
+---
+
+
+## The Reddit Archive dataset
+
+Your team will work with a subset of the _Reddit Archive data_. This dataset used to be publicly available until [Reddit made changes to its API terms of service](https://en.wikipedia.org/wiki/2023_Reddit_API_controversy). The time period that you will be working with is before the change in API terms.
+
+The data you will use spans January 2022 to March 2023. There are two datasets that we are making available to you: 
+
+* submissions: 412 GB of plain-text json files representing 109 million entries
+* comments: 918 GB of plain-text json files representing 701 entries
+
+For ease of use, both datasets have been pre-processed: 
+
+* The number of original fields/columns was reduced
+* The original Unix timestamp values were converted to actual timestamps
+* The original text JSON files were saved as parquet
+  
+The available parquet dataset sizes are 14 GB for submissions and 95 GB for comments. For a sneak peek of the original data, you can [download a sample.](sample.zip) 
+
+This is a very rich dataset and it is up to you to decide how you are going to use it. You will select one or more topics of interest to explore and use the Reddit data **and one or more external datasets** to perform a meaningful analysis.
+
+We recommend you read [this paper](https://ojs.aaai.org/index.php/ICWSM/article/download/7347/7201/) which talks about the dataset, and you may want to look at [several papers written about or using the Reddit data](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C21&q=pushshift+reddit&btnG=) for inspiration.
+
+## Tools
+
+You will use a Serverless Spark Cluster in Azure or a Spark Processing Job in Sagemaker to analyze, transform, and process your data and create one or more analytical datasets. We will provide specific instructions on how to access the data in both Azure and AWS.
+
+Develop your Spark code similar to how it has been discussed in class:
+
+* Iterate quickly in a local notebook
+* Scale up to a small cluster to ensure your code still works
+* Productionalize with a larger cluster or remote processing job to run your full pipeline.
+
+Smaller derivative data sets can be processed locally if needed for plotting or
+reporting. 
+
+## Objectives
+
+In every project as data scientists, in addition to doing modeling and machine learning work, you will also be responsible (either individually or as part of a team) for providing the following as part of a project:
+
+* **Findings:** what does the data say?
+* **Conclusions:** what is your interpretation of the data?
+* **Recommendations:** what can be done to address the question/problem at hand
+
+Your analyses in this project will focus on the first two above. Your work must provide the audience with an understanding of the topic you are analyzing, presenting, and discussing. The objective is to find a topic of interest, work with the data, and present it to an audience that may not know very much about the subject using a data-driven approach.
+
+## Milestones
+
+The project will be executed over several milestones, and each one has a specific set of requirements. There are four major milestones and a feedback deliverable (click on each one for the appropriate instructions and description):
+
+1. [Milestone 1: Define the questions and Exploratory Data Analysis](eda.html)
+1. [Milestone 2: NLP and external data overlay](nlp.html)
+1. [Peer Feedback: Give and receive peer feedback](feedback.html)
+1. [Milestone 3: Machine Learning](ml.html)
+1. [Milestone 4: Final delivery](final.html) [TO BE RELEASED SOON]
+
+All of your work will be done within the team GitHub repository, and each milestone will be tagged with a specific [release tag](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) by the due date.  
+
+1. Milestone 1 (EDA): will be tagged `v0.1-eda`
+1. Milestone 2 (NLP): will be tagged `v0.2-nlp`
+1. Milestone 3 (ML): will be tagged `v0.3-ml`
+1. Milestone 4 (Final): will be tagged `v1.0-final`
+
+## Team repository structure
+
+All of your work will be done within your _team's GitHub repository_. Milestone submissions will happen by tagging specific commits.
+
+You will work within an **organized** repository and apply coding and development best practices. The repository has the following structure:
+
+
+```
+├── README.md
+├── code
+├── data
+├── docs
+└── website-source
+```
+
+Additional structure specifications for other components of the project can be
+found in the [Website
+guidance](https://gu-dsan.github.io/6000-fall-2023/project/website.html). 
+
+### Description
+
+* The `code/` directory is where you will write all of your notebooks and scripts. You will have a combination of Pyspark and Python notebooks, and one sub-directory per major task area. You may add additional sub-directories as needed to modularize your development.
+* The `data/` directory should contain your (small) data files and should have multiple sub-directories (i.e. raw, processed, analytical, etc.) as needed. **No large datasets are permitted**
+* The `docs/` folder should contain your website, with the source code for the
+website residing in `website-source/`. This can then be deployed using [Github
+Pages](https://pages.github.com) if you so choose. 
+
+### Code
+
+* Your code files must be well-organized
+* Do not work in a messy repository and then try to clean it up
+* In notebooks, use Markdown cells to explain what you are doing and the decisions you are making
+* Do not write monolithic Notebooks or scripts
+* Modularize your code (a script should do a single task)
+* Use code comments so others can understand and leverage your code in the future
+* Use functions to promote code reuse
+
+
+## Team contribution
+
+All team members must contribute to the project equally and fairly. Individual team member contributions will be assessed through a) the count and content of commits, and b) a peer evaluation form. **If peer evaluations indicate that students within a team are not contributing equally, those students will receive a grade penalty and a lower grade than the rest of their team.**
+
+## Peer Feedback
+
+* Giving feedback: Each group will review one other group's EDA deliverable. Criteria will be provided as the basis of the evaluation. The deliverable is a single word document that is provided to the team receiving feedback.
+* Receiving feedback: Each group will receive feedback from another group. The group receiving feedback will email the group providing feedback with their EDA deliverable.
+
+## Grading rubric
+
+The project will be evaluated using the following high-level criteria:
+
+* Level of analytical rigor at the graduate student level
+* Level of technical approach
+* Appropriate use of tools
+* Quality and clarity of your writing and overall presentation
+
+::: {.callout-important}
+The project milestones are cumulative. Therefore, we will grade the project after the final submission with a holistic project rubric. We will qualitatively grade the milestones, and we will provide feedback and a trending grade with each milestone. It is up to you to incorporate the feedback provided. If your milestone trending grade is lower than you expected, and you do not incorporate the feedback we provide for improvement, do not expect your final project grade to improve.
+:::
+
+- If a deliverable exceeds the requirements and expectations, that is considered A level work.
+- If a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.
+- If a deliverable does not meet the requirements, that is considered B or lesser level work.
+
+Deductions will be made for any of the following reasons:
+
+- There is a lack of analytical rigor:
+    - Analytical decisions are not justified
+    - Analysis is too simplistic
+- Visualizations or tables are not professionally formatted
+- Big data files included in the repository
+- Instructions are not followed
+- There are missing sections of the deliverable
+- The overall presentation and/or writing is sloppy
+- There are no comments in your code
+- There are absolute filename links in your code
+- The repository structure is sloppy
+- Files are named incorrectly (wrong extensions, wrong case, etc.)

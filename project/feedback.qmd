@@ -1,0 +1,86 @@
+---
+title: "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone"
+date: last-modified
+date-format: "dddd MMM D, YYYY [at] h:m a"
+---
+
+
+**IMPORTANT: The first step in the feedback process is submitting your work to be reviewed. This MUST be completed as part of your EDA deliverable by submitting the URL of your public-facing website. Submitting the URL is part of EDA and must be completed by the EDA Milestone deadline.**
+
+In this deliverable, your group will collectively provide feedback to another group's EDA deliverable. This will consist of a shared document (such as Google Doc) that is exported and submitted to the other team and Canvas. 
+
+## Table of Contents
+
+* What to Look for in the EDA Deliverable
+* Required Content and Structure of Feedback
+* Submission Details
+
+## What to Look for in the EDA Deliverable
+
+In preparation for your review of the other group, review the EDA deliverable requirements.
+
+You will conduct a broad review of the project, including the topic, the goals, the technical proposals, and the initial EDA work.
+
+* Comment on the overall topic and its relevance and achievability
+* Review the 10 planned goals for the project
+    * Are the complex enough? Are they too easy?
+    * How well connected are the planned pieces of analysis?
+    * Ensure that business goals have no technical language and are compelling for a non-technical audience
+    * Are the technical proposals reasonable?
+    * Is there a discussion about the external dataset that will be used? Does it make sense to include this dataset given the project goals?
+* EDA work
+    * Do the basic data quality checks make sense? Is there anything missing?
+    * Are there 5 graphs and do they fit well with the project goals?
+    * Are there 3 tables and do they connect to the project goals?
+    * Are there three data transformations and a regex search? Are these steps completed well?
+* Deliverable level of excellence
+    * Quality of visualizations
+    * Quality of tables
+    * Quality of writing and grammar
+    * Quality of website. Is it well formatted? Are all the notebooks available to the audience?
+
+## Required Content and Structure of Feedback
+
+Your Word document must have the following sections. These sections are based on the description of the requirements for the deliverable in the prior section. You must write in full sentences and explain your feedback. This feedback is meant to improve the project!
+
+1. Overall impressions
+1. Project plan
+1. EDA work
+1. Quality of content
+1. Lessons learned
+
+#### Overall impressions
+
+Provide your feedback on the overall project and any comments on how to improve the success of this group. Provide both constructive criticism and positive feedback.
+
+#### Project plan
+
+Walk through each goal and provide feedback on the goals and technical proposals.
+
+#### EDA work
+
+How can the group improve their analysis? What would you like to see that is not already there?
+
+#### Quality of content
+
+If there are any issues with the quality of the website/writing/tables/visualization, outline them here. Ensure you are clear on what element you are providing feedback on.
+
+#### Lessons learned
+
+Close with positive feedback for the group. What did you learn from reviewing their project? Are there styles of analysis or topics that inspired you to do something similar in your project?
+
+## Submission Details
+
+1. Write the feedback document in a shared space according to the required specifications. Ensure that your whole group agrees with and contributes to the content.
+
+1. Email all members of the group you are reviewing a copy of your feedback document, cc'ing the instructor email [dsan6000-instructors@georgetown.edu](dsan6000-instructors@georgetown.edu). Get the group members from the announcement of groups [here](https://georgetown.instructure.com/courses/172712/discussion_topics/1149298)
+
+1. Submit the Word document to Canvas in [this assignment](https://georgetown.instructure.com/courses/172712/assignments/958321)
+
+**ALL ACTIONS MUST BE COMPLETED BY THE DUE DATE. NO EXCEPTIONS.**
+
+## Next Steps
+
+1. Acknowledge the feedback you received from your reviewer group.
+1. Meet with your group on how you plan to respond to the feedback and incorporate it into your project.
+1. Future deliverables will require you to adopt and/or respond to the feedback received from this peer feedback milestone and the instructors.

@@ -1,0 +1,46 @@
+---
+title: "Website"
+date: last-modified
+date-format: "dddd MMM D, YYYY [at] h:m a"
+---
+
+The output of the project will be delivered through a self-contained website in the `docs/` subdirectory, having `index.html` as the starting point. You will build the website incrementally over the milestones.
+
+The code to build the website will be in the `website-source/` directory.
+
+## Structure 
+
+The website must have the following structure:
+
+* Landing and project description page - `docs/index.html` - You are populating this site during the final submission
+* Exploratory data analysis page - `docs/eda.html` - You are populating this site during milestone 1
+* NLP page - `docs/nlp.html` - You are populating this site during milestone 2
+* ML page  - `docs/ml.html` - You are populating this site during milestone 3
+* Conclusion page - `docs/conclusion.html` - You are populating this site during the final submission
+
+
+## Requirements
+
+- Your website **must be accessible via an `index.html` file in the `docs/`folder.** You can build the website using the tool(s) of your preference. Choose however you would like to build your website (using `quarto`, `Rmarkdown`, editing HTML directly, any other framework, etc.)
+- You can use CSS frameworks, such as [Bootstrap](https://getbootstrap.com/), [Materialize](https://materializecss.com/), or [Distill](https://distill.pub/about/) and include external libraries (jQuery, leaflet.js, moment.js, etc.).  Layers such as NVD3, Vega-lite, Highcharts, etc. are allowed. Many of these have wrapper packages in R and Python. For example, the package `altair` (in both [R](https://vegawidget.github.io/altair/) and [Python](https://altair-viz.github.io)) wraps Vega-lite, and the package `plotly` (in both [R](https://plotly.com/r) and [Python](https://plotly.com/python)), among other packages, wraps D3. Other packages you may use are any of the [`htmlwidgets`](https://www.htmlwidgets.org) packages in R, [`bokeh`](https://bokeh.org) or [`holoviz`](https://holoviz.org) (and it's accompanying ecosystem) in Python, as well as specialized packages for geospatial ([`leaflet`](https://rstudio.github.io/leaflet/), [`tmap`](https://geocompr.robinlovelace.net/adv-map.html) in R, [`folium`](https://python-visualization.github.io/folium/index.html) in Python) and networks ([`igraph`](https://igraph.org), [`NetworkX`](https://networkx.org), `bokeh`, `plotly`). 
+- You do not need to make the site public as we will look at it from the repository. You may make it public (just the website sub-directory) using your preferred method. 
+- No custom backends (Node.js, Python, etc) and database systems, such as Postgres or MySQL.
+- The communication needs to be effective with clean aesthetics, but you do not need to get too fancy.
+- You may include the `html` exports of notebooks
+
+::: {.callout-warning}
+- Note that a raw Jupyter notebook rendered in HTML is **not** an appropriate
+webpage for your final submission. The code, computing and guts of your work
+should not be visible, and the output should be well-formatted and understandable
+to a non-technical reader. You must link to the appropriate technical files
+(notebooks, scripts) so that inquisitive minds (and instructors) can go. 
+- All data visualizations and tables should be properly labelled, with captions
+if necessary, and should stand alone without reading through your narrative
+content. If you are referring to your table or figure in your narrative, it must
+be of the form `Table 1` or `Figure 1`, and the corresponding table/figure
+should then have a caption which includes the appropriate table or figure
+number. See [this page](https://quarto.org/docs/authoring/cross-references.html)
+if you are using Quarto as your website generator. For other technologies,
+follow the formats outlined in this page. 
+:::
+
