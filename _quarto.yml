@@ -13,7 +13,7 @@ project:
     - "slides/css/"
     - "slides/*_files/"
     - "labs/img/"
-    - "project/"
+
 
 # See https://quarto.org/docs/projects/code-execution.html#freeze
 execute:
@@ -48,10 +48,10 @@ website:
         file: content/index.qmd
       - text: "Labs"
         file: labs/index.qmd
+      - text: "Project"
+        file: project/index.qmd
       - text: "Resources"
         file: resources/index.qmd
-      - text: "Project"
-        file: project/project.qmd
       - icon: slack
         href: "https://georgetown-ime2320.slack.com"
         aria-label: Slack
@@ -144,21 +144,21 @@ website:
       contents:
         - section: "Overview"
           contents:
-            - labs/project.qmd
-        - section: "Project content"
+            - project/index.qmd
+        - section: "Project contents"
           contents:
-            - text: "Project Overview"
-              file: project/project.qmd
-            - text: "Milestone 1: EDA"
-              file: project/eda.qmd
-            - text: "Milestone 2: NLP"
-              file: project/nlp.qmd
-            - text: "Peer Feedback"
-              file: project/feedback.qmd
-            - text: "Milestone 3: ML"
-              file: project/ml.qmd
-            - text: "Milestone 4: Final"
-              file: project/final.qmd
+            - text: "1: EDA"
+              file: project/01-project.qmd
+            - text: "2: NLP"
+              file: project/02-project.qmd
+            - text: "3: Peer feedback"
+              file: project/03-project.qmd
+            - text: "4: ML"
+              file: project/04-project.qmd
+            - text: "5: Final"
+              file: project/05-project.qmd
+            - text: "6: Website"
+              file: project/06-project.qmd
 
   page-footer:
     left: |

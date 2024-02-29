@@ -1,8 +1,5 @@
 ---
 title: "Milestone 1: Frame your analysis and EDA"
-# date: last-modified
-date: "2024-02-26 08:10:00 AM"
-date-format: "dddd MMM D, YYYY [at] h:m a"
 ---
 
 **You should thoroughly read through the entire assignment before beginning your work! Don't start costly cloud resources until you are ready.**

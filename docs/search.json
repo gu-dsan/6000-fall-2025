@@ -945,6 +945,272 @@
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
   },
   {
+    "objectID": "project/01-project.html",
+    "href": "project/01-project.html",
+    "title": "Milestone 1: Frame your analysis and EDA",
+    "section": "",
+    "text": "You should thoroughly read through the entire assignment before beginning your work! Don’t start costly cloud resources until you are ready.\nCode and data saved locally on the cluster will be lost when the cluster terminates. If you want to keep data, you must store it in a blob storage location. You must store the results (i.e. any plots, csv files) in the data folder of this repo."
+  },
+  {
+    "objectID": "project/01-project.html#first-time-setup",
+    "href": "project/01-project.html#first-time-setup",
+    "title": "Milestone 1: Frame your analysis and EDA",
+    "section": "First time setup",
+    "text": "First time setup\nTHIS SECTION IS IN PROGRESS AS INFRASTRUCTURE IS BEING FINALIZED\n\nIf all of the following steps are successful then it means your environment is set up correctly and you are all set to begin your project.\n\nSet up your git credentials.\nCreate a shared cluster for your team.\nClone this repo.\nCreate a notebook, call it project_eda.\nFollow the example notebook steps to interact with the data in your preferred computing environment.\nCheck the changed files (this would be the project_eda notebook) in the repo.\nExport the project_eda notebook to IPython Notebook and check in the project_eda.ipynb file in the repo."
+  },
+  {
+    "objectID": "project/01-project.html#submission-details",
+    "href": "project/01-project.html#submission-details",
+    "title": "Milestone 1: Frame your analysis and EDA",
+    "section": "Submission Details",
+    "text": "Submission Details\nIn this assignment, you will start working with your Reddit data, decide on the scope of your project, and outline your 10 business goals.\nYou will use the file project_starter_script.py to get your Reddit data from Azure Blob Storage, note that you do not need to copy the data to your local environment. The project_starter_script.py notebook also contains sample code for a basic EDA example and saves the results in the local repo so that it can be checked in. It also has an example of saving intermediate big data.\nYou will develop EDA notebook(s) using PySpark. All your big data analysis must be in PySpark. In this assignment, you will examine the dataset, make transformations of the data, produce summary statistics and graphs of the data, and answer some of your business goals that only require exploratory work. You may choose to put all your work into one notebook or you may choose to separate it. Either is fine!\n\n\n\n\n\n\nOutput data sizes\n\n\n\nREMEMBER!!! All the output you are making MUST MUST MUST be small data. Can you make a graph of all 1 million+ rows of spark data? NO! You MUST MUST MUST take that big data and collapse it into reasonable data to put into a table or a graph. You should never collect more than ~10,000 rows back to you.\n\n\n\nMinimum requirements:\n\nMake a project plan for your Reddit data with 10 topics that you plan on exploring.\nPropose 10 different avenues of analysis for your data.\nAny good data science project can be broken into at least 10 topics. These topics should vary in complexity to include exploratory (2-3), NLP (3-5), and ML (3-5) ideas. Each entry of your 10 must include the “business goal” as well as the “technical proposal” for finding the answers. We want to see the “Executive Summary” view of the questions as well as the “Data Science” plans for making it happen. The business goal cannot have any technical language and must be accessible to an audience without a data science background.\n\nExample question based on the data science subreddit https://www.reddit.com/r/datascience/Links to an external site.:\n\n\nBusiness goal: Determine the most popular programming languages and the most effective programming languages used to conduct geospatial data analysis.\n\n\nTechnical proposal: Use NLP to identify posts that mention geospatial terms and one or more programming languages. Conduct counts of which programming languages are mentioned the most along with these geospatial terms. Analyze counts over time to check for major deviations and identify the leaders. Conduct sentiment analysis of the posts to assign positive or negative values to programming languages. Present findings for volume metrics and sentiment analysis for the top 5 programming languages to answer the “popular” and “effective” insights for geospatial analysis.\n\nEach business goal must be 1-2 sentences while each technical proposal must be at least 3 sentences. There must be enough details about your plans so you can get feedback. Include these business requirements in a markdown cell in the project_eda notebook.\nConduct your exploratory data analysis.\n\n\nReport on the basic info about your dataset. What are the interesting columns? What is the schema? How many rows do you have? etc. etc.\nConduct basic data quality checks! Make sure there are no missing values, check the length of the comments, and remove rows of data that might be corrupted. Even if you think all your data is perfect, you still need to demonstrate that with your analysis.\nProduce at least 5 interesting graphs about your dataset. Think about the dimensions that are interesting for your Reddit data! There are millions of choices. Make sure your graphs are connected to your business questions.\nProduce at least 3 interesting summary tables about your dataset. You can decide how to split up your data into categories, time slices, etc. There are infinite ways you can make summary statistics. Be unique, creative, and interesting!\nUse data transformations to make AT LEAST 3 new variables that are relevant to your business questions. We cannot be more specific because this depends on your project and what you want to explore!\nImplement regex searches for specific keywords of interest to produce dummy variables and then make statistics that are related to your business questions. Note, that you DO NOT have to do textual cleaning of the data at this point. The next assignment on NLP will focus on the textual cleaning and analysis aspect.\nFind some type of external data to join onto your Reddit data. Don’t know what to pick? Consider a time-related dataset. Stock prices, game details over time, active users on a platform, sports scores, covid cases, etc., etc. While you may not need to join this external data with your entire dataset, you must have at least one analysis that connects to external data. You do not have to join the external data and analyze it yet, just find it.\nIf you are planning to make any custom datasets that are derived from your Reddit data, make them now. These datasets might be graph-focused, or maybe they are time series focused, it is completely up to you!\n\nCreate a website using your project_eda notebook. This could be as simple as publishing your notebook on GitHub pages.\n\nHere is a simple example that describes how to publish a notebook to GitHub.\nWhen you publish to GitHub, it will give you a warning that this repo is private but the published website would be Public, which is OK.\n\nWe expect you to put significant effort into this assignment. This assignment only requires the Jupyter notebooks."
+  },
+  {
+    "objectID": "project/01-project.html#submitting-the-assignment",
+    "href": "project/01-project.html#submitting-the-assignment",
+    "title": "Milestone 1: Frame your analysis and EDA",
+    "section": "Submitting the Assignment",
+    "text": "Submitting the Assignment\nYou will follow the submission process for all labs and assignments:\n\nCommit and push your files\nExport any of the notebooks you created as IPython and/or html files, and add them to your repository from your local machine before you tag the release\nTag the submission release commit with the v0.1-eda tag by the due date\nMake sure to push to GitHub\nSPECIFIC TO THIS DELIVERABLE - submit the URL for your public-facing website to the assignment on Canvas.\n\nMake sure you commit only the files requested, and push your repository to GitHub!\nThe files to be committed and pushed to the repository for this assignment are:\n\nREADME.md\n.gitignore\nLICENSE\ncode/project_starter_script.py\ncode/project_eda.ipynb\nimg/*\ndata/*\n\nMake sure that your project_eda notebook includes both a list of the business problems you are solving and the charts and summary tables as described above in the minimum requirements section."
+  },
+  {
+    "objectID": "project/01-project.html#grading-rubric",
+    "href": "project/01-project.html#grading-rubric",
+    "title": "Milestone 1: Frame your analysis and EDA",
+    "section": "Grading Rubric",
+    "text": "Grading Rubric\nMany of the assignments you will work on are open-ended. Grading is generally holistic, meaning that there will not always be specific point value for individual elements of a deliverable. Each deliverable submission is unique and will be compared to all other submissions.\n\nIf a deliverable exceeds the requirements and expectations, that is considered A level work.\nIf a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.\nIf a deliverable does not meet the requirements, that is considered B or lesser level work.\n\nAll deliverables must meet the following general requirements, in addition to the specific requirements of each deliverable:\nIf your submission meets or exceeds the requirements, is creative, is well thought-out, has proper presentation and grammar, and is at the graduate student level, then the submission will get full credit. Otherwise, partial credit will be given and deductions may be made for any of the following reasons:\nPoints will be deducted for any of the following reasons:\n\nAny instruction is not followed\nThere are missing sections of the deliverable\nThe overall presentation and/or writing is sloppy\nThere are no comments in your code\nThere are files in the repository other than those requested\nThere are absolute filename links in your code\nThe repository structure is altered in any way\nFiles are named incorrectly (wrong extensions, wrong case, etc.)"
+  },
+  {
+    "objectID": "project/02-project.html",
+    "href": "project/02-project.html",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "",
+    "text": "Important\n\n\n\nYou should read through the entire milestone instructions before beginning your work! Don’t start the cloud resources until you are ready.\nCode and data saved locally on the cluster will be lost when the cluster terminates. Remember to save intermediate and analytical datasets to a location you can access again. Your deliverable artifacts (charts, summary csv files, etc.) must be saved in the data/ folder of this repo."
+  },
+  {
+    "objectID": "project/02-project.html#table-of-contents",
+    "href": "project/02-project.html#table-of-contents",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nSetup for NLP\nMilestone description\nAnalysis Requirements\nMilestone web page requirements\nSubmission Instructions"
+  },
+  {
+    "objectID": "project/02-project.html#setup",
+    "href": "project/02-project.html#setup",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Setup",
+    "text": "Setup\n\nInstall the SparkNLP package to your Spark environment. Refer to the labs for examples of installing SparkNLP into a Sagemaker or Azure Spark environment.\nCreate a sub-directory named nlp in the code/ folder within the repository.\nCreate one or more Notebooks in the nlp sub-directory as needed."
+  },
+  {
+    "objectID": "project/02-project.html#milestone-description",
+    "href": "project/02-project.html#milestone-description",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Milestone description",
+    "text": "Milestone description\nIn this milestone, you will develop Python and Pyspark notebooks to perform the following tasks:\n\nExpand your analysis of Reddit data\nConduct NLP processing work\nMerge/overlay your external data, including EDA\nStart to answer some of your analytical questions.\n\nWe expect you to put significant effort into this.\n\n\n\n\n\n\nOutput data sizes\n\n\n\nREMEMBER!!! All the output you are making MUST be small data. Can you make a graph of all 1 million+ rows of spark data? NO! You MUST take that big data and collapse it into reasonable data to put into a table or a graph. You should never collect more than ~10,000 rows."
+  },
+  {
+    "objectID": "project/02-project.html#requirements",
+    "href": "project/02-project.html#requirements",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Requirements",
+    "text": "Requirements\n\nAdd external data\n\nAcquire, clean, and merge your external data source(s) onto your Reddit data. Produce appropriate charts/tables showing the distribution of your external data alongside your Reddit data. Make sure you include proper citation(s)/attribution(s) for your external data.\n\n\n\nConduct your natural language processing work\n\nConduct basic data text checks/analysis on your data. What are the most common words overall or over time? What is the distribution of text lengths? What are important words according to TF-IDF?\nIdentify important keywords for your Reddit data and use regex searches to create at least two dummy variables to identify comments on particular topics.\nClean your text data using johnsnowlabs sparkNLP. Think about a few standard procedures to use: stop words, stemming, lemmatizing, removing unusual characters, matching synonyms, etc. You must use at least five NLP cleaning procedures.\n\n\n\nBuild a sentiment model\n\nBuild at least one sentiment model using the sparkNLP framework. Pick a pre-trained model or train your own model. You can start with a simple pos/neg/neu sentiment. Maybe you will want to build your own textual classification model…. that is completely up to you and your topical interests and technical goals. You must report a table of summary statistics from any model(s) leveraged.\n\n\n\nVisualize\n\nProduce at least 3 interesting graphs about your resulting dataset. Think about the dimensions that are interesting for your Reddit data. There are millions of choices. Make sure your graphs are connected to your analytical questions.\n\n\n\nSummary tables\n\nProduce at least 3 interesting tables about your resulting dataset. You can decide how to split up your data into categories, time slices, etc. There are infinite ways you can make summary statistics. Be unique, creative, and interesting!\n\n\n\nSave output\n\nSave your output datasets in parquet format. This will allow you to more quickly work on your next assignment focused on ML without having to re-run any of your transformations."
+  },
+  {
+    "objectID": "project/02-project.html#milestone-web-page-requirements",
+    "href": "project/02-project.html#milestone-web-page-requirements",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Milestone web page requirements",
+    "text": "Milestone web page requirements\nIn this milestone, you will only be populating content in the NLP page docs/nlp.html with the following sections:\n\nExecutive summary\n\nWrite 1-2 paragraphs on your NLP accomplishments. You can include up to 2 images or tables. This is the section to describe the high-level results and the most important information only! This summary must be NON-TECHNICAL! Think about how to touch on your business goals without going into much detail.\n\n\n\nAnalysis report\n\nWrite a data analysis style report of 4-6 text paragraphs (each paragraph at least 4 sentences). This is where you will discuss your NLP work and present all your interesting tables and figures. You can save the images or take snips from your notebook. This part is for you to write up the analysis work you have already done. Be creative, be awesome!! Show off to a future employer your amazing data science skills!\n\nThe flow of the report is up to you. Maybe you want to split the text by business goal or organize the prose into a data journey story.\nYou must reference all the business goals that you have accomplished in this report. Did your technical proposal change as you started working with the data?\nIf you made changes to your business goals, discuss your analytical justification for changing your plans. It is OK that plans change, though it is important to describe why.\nYour visualizations must follow the visualization best practices you learned in the visualization class. There must be titles, axis labels, legends as needed, etc.\n\n\nInclude links to all your NLP coding notebooks and sources for your external data so that your audience can look at your work. Make sure you put your exported notebooks into a public place so your audience can see your notebooks."
+  },
+  {
+    "objectID": "project/02-project.html#submission-instructions",
+    "href": "project/02-project.html#submission-instructions",
+    "title": "Milestone 2: Add external data and perform NLP",
+    "section": "Submission instructions",
+    "text": "Submission instructions\n\nCommit and push your files\nExport any of the notebooks you created as IPython and/or html files, and add them to your repository from your local machine before you tag the release\nTag the submission release commit with the v0.2-nlp tag by the due date\nMake sure to push to GitHub"
+  },
+  {
+    "objectID": "project/03-project.html",
+    "href": "project/03-project.html",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "",
+    "text": "IMPORTANT: The first step in the feedback process is submitting your work to be reviewed. This MUST be completed as part of your EDA deliverable by submitting the URL of your public-facing website. Submitting the URL is part of EDA and must be completed by the EDA Milestone deadline.\nIn this deliverable, your group will collectively provide feedback to another group’s EDA deliverable. This will consist of a shared document (such as Google Doc) that is exported and submitted to the other team and Canvas."
+  },
+  {
+    "objectID": "project/03-project.html#table-of-contents",
+    "href": "project/03-project.html#table-of-contents",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nWhat to Look for in the EDA Deliverable\nRequired Content and Structure of Feedback\nSubmission Details"
+  },
+  {
+    "objectID": "project/03-project.html#what-to-look-for-in-the-eda-deliverable",
+    "href": "project/03-project.html#what-to-look-for-in-the-eda-deliverable",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "What to Look for in the EDA Deliverable",
+    "text": "What to Look for in the EDA Deliverable\nIn preparation for your review of the other group, review the EDA deliverable requirements.\nYou will conduct a broad review of the project, including the topic, the goals, the technical proposals, and the initial EDA work.\n\nComment on the overall topic and its relevance and achievability\nReview the 10 planned goals for the project\n\nAre the complex enough? Are they too easy?\nHow well connected are the planned pieces of analysis?\nEnsure that business goals have no technical language and are compelling for a non-technical audience\nAre the technical proposals reasonable?\nIs there a discussion about the external dataset that will be used? Does it make sense to include this dataset given the project goals?\n\nEDA work\n\nDo the basic data quality checks make sense? Is there anything missing?\nAre there 5 graphs and do they fit well with the project goals?\nAre there 3 tables and do they connect to the project goals?\nAre there three data transformations and a regex search? Are these steps completed well?\n\nDeliverable level of excellence\n\nQuality of visualizations\nQuality of tables\nQuality of writing and grammar\nQuality of website. Is it well formatted? Are all the notebooks available to the audience?"
+  },
+  {
+    "objectID": "project/03-project.html#required-content-and-structure-of-feedback",
+    "href": "project/03-project.html#required-content-and-structure-of-feedback",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "Required Content and Structure of Feedback",
+    "text": "Required Content and Structure of Feedback\nYour Word document must have the following sections. These sections are based on the description of the requirements for the deliverable in the prior section. You must write in full sentences and explain your feedback. This feedback is meant to improve the project!\n\nOverall impressions\nProject plan\nEDA work\nQuality of content\nLessons learned\n\n\nOverall impressions\nProvide your feedback on the overall project and any comments on how to improve the success of this group. Provide both constructive criticism and positive feedback.\n\n\nProject plan\nWalk through each goal and provide feedback on the goals and technical proposals.\n\n\nEDA work\nHow can the group improve their analysis? What would you like to see that is not already there?\n\n\nQuality of content\nIf there are any issues with the quality of the website/writing/tables/visualization, outline them here. Ensure you are clear on what element you are providing feedback on.\n\n\nLessons learned\nClose with positive feedback for the group. What did you learn from reviewing their project? Are there styles of analysis or topics that inspired you to do something similar in your project?"
+  },
+  {
+    "objectID": "project/03-project.html#submission-details",
+    "href": "project/03-project.html#submission-details",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "Submission Details",
+    "text": "Submission Details\n\nWrite the feedback document in a shared space according to the required specifications. Ensure that your whole group agrees with and contributes to the content.\nEmail all members of the group you are reviewing a copy of your feedback document, cc’ing the instructor email dsan6000-instructors@georgetown.edu. Get the group members from the announcement of groups here\nSubmit the Word document to Canvas in this assignment\n\nALL ACTIONS MUST BE COMPLETED BY THE DUE DATE. NO EXCEPTIONS."
+  },
+  {
+    "objectID": "project/03-project.html#next-steps",
+    "href": "project/03-project.html#next-steps",
+    "title": "Peer Feedback Milestone: Get and receive feedback on your EDA Milestone",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nAcknowledge the feedback you received from your reviewer group.\nMeet with your group on how you plan to respond to the feedback and incorporate it into your project.\nFuture deliverables will require you to adopt and/or respond to the feedback received from this peer feedback milestone and the instructors."
+  },
+  {
+    "objectID": "project/04-project.html",
+    "href": "project/04-project.html",
+    "title": "Milestone 3: Machine Learning",
+    "section": "",
+    "text": "You should read through the entire milestone instructions before beginning your work! Don’t start the cluster until you are ready.\nCode and data saved locally on the cluster will be lost when the cluster terminates. Remember to save intermediate and analytical datasets. Your deliverable artifacts (charts, summary csv files, etc.) must be saved in the data/ folder of this repo."
+  },
+  {
+    "objectID": "project/04-project.html#table-of-contents",
+    "href": "project/04-project.html#table-of-contents",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nMilestone description\nAnalysis Requirements\nMilestone web page requirements\nSubmission Instructions"
+  },
+  {
+    "objectID": "project/04-project.html#setup",
+    "href": "project/04-project.html#setup",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Setup",
+    "text": "Setup\n\nCreate a sub-directory named ml in the code/ folder within the repository.\nCreate one or more Notebooks in the ml sub-directory as needed."
+  },
+  {
+    "objectID": "project/04-project.html#milestone-description",
+    "href": "project/04-project.html#milestone-description",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Milestone description",
+    "text": "Milestone description\nIn this milestone, you will develop Python and Pyspark notebooks to perform the following tasks:\n\nConduct machine learning on your big data\nEvaluate the performance of your models\nInterpret your results for your analytical questions\nCommunicate your results on your group website\n\nWe expect you to put significant effort into this.\n\n\n\n\n\n\nOutput file sizes\n\n\n\nREMEMBER!!! All the output you are making MUST be small data. Can you make a graph of all 1 million+ rows of spark data? NO! You MUST take that big data and collapse it into reasonable data to put into a table or a graph. You should never collect more than ~10,000 rows."
+  },
+  {
+    "objectID": "project/04-project.html#requirements",
+    "href": "project/04-project.html#requirements",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Requirements",
+    "text": "Requirements\n\nPreparing data\n\nPrepare your data for modeling. Conduct any remaining feature transformations and apply additional textual processing steps to have the needed variables in your data.\nConduct at least 2 ML transformations for your data by applying string indexer, vectorizer, or other transformers.\nSplit data into testing and training data if you are running supervised models.\n\n\n\nBuilding machine learning models\n\nUse machine learning to answer at least two different business questions (more is always fine!) from your data. Within each analysis, you will compare the performance of two or more models types by selecting at least two different hyperparameter sets OR at least two different pretrained models. The choice of hyperparameter/model comparison depends on your analysis.\nAt least one of these model analyses must leverage Spark ML models where you conduct the training, testing, and validation yourself. The other analysis can use pre-trained models for your inference tasks.\n\n\n\nEvaluate model performance\n\nRun model evaluation metrics (ROC AUC, Confusion Matrix, Accuracy, F1-score, R2, etc.) on your models and/or hyperparameter options.\nEvaluate your models using at least two different metrics and compare and interpret your results, for each ML analysis.\n\n\n\nSummarize your ML work\n\nPrepare at least 1 appropriate table and at least 1 chart for each ML analysis. You do not need one for every model / hyperparameter set.\n\n\n\nSaving model output and using it for inference\n\nYou must save at least one ML model.\nDemonstrate that you can save your best ML model: load the prepared model into your notebook and start making predictions without any additional training. This can be done in a separate notebook."
+  },
+  {
+    "objectID": "project/04-project.html#pipelines",
+    "href": "project/04-project.html#pipelines",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Pipelines",
+    "text": "Pipelines\nApply at least one pipeline to your ML analysis so that you can compare hyperparameters and model options without having to re-run large parts of code."
+  },
+  {
+    "objectID": "project/04-project.html#milestone-web-page-requirements",
+    "href": "project/04-project.html#milestone-web-page-requirements",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Milestone web page requirements",
+    "text": "Milestone web page requirements\nIn this milestone, you will only be populating content in the ML page code/ml.html with the following sections:\n\nExecutive summary\n\nWrite 1-2 paragraphs on your ML accomplishments. You can include up to 2 images or tables. Your writing must be excellent and persuasive. 3 sentences total will not cut it. The expectation is to write at least 8 sentences. This is the section to describe the high-level results and the most important information only! This summary must be NON-TECHNICAL! Think about how to touch on your business goals without going into much detail.\n\n\n\nAnalysis report\n\nWrite a data analysis style report of 4-6 text paragraphs (each paragraph at least 4 sentences). This is where you will discuss your ML prep, execution, and evaluation. During that prose, you will present all your tables and figures. You can save the images or take snips from your Jupyter notebook. This part is for you to write up the analysis work you have already done. Be creative, be awesome!! Show off to a future employer your amazing data science skills!\n\nThe flow of the report is up to you. Maybe you want to split the text by business goal or organize the prose into a data journey story.\nYou must reference all the business goals that you have accomplished in this report. Did your technical proposal change as you started working with the data?\nIf you made changes to your business goals, discuss your analytical justification for changing your plans. It is OK that plans change, though it is important to describe why.\nYour visualizations must follow the visualization best practices you learned in the visualization class. There should be titles, axis labels, legends as needed, etc.\n\n\nInclude links to all your ML coding notebooks. Make sure you put your exported notebooks into a public place so your audience can see your notebooks."
+  },
+  {
+    "objectID": "project/04-project.html#submission-instructions",
+    "href": "project/04-project.html#submission-instructions",
+    "title": "Milestone 3: Machine Learning",
+    "section": "Submission instructions",
+    "text": "Submission instructions\n\nCommit and push your files\nExport any of the notebooks you created as IPython and/or html files, and add them to your repository from your local machine before you tag the release\nTag the submission release commit with the v0.3-ml tag by the due date\nMake sure to push to GitHub"
+  },
+  {
+    "objectID": "project/05-project.html",
+    "href": "project/05-project.html",
+    "title": "Milestone 4: Final Submission",
+    "section": "",
+    "text": "This final milestone is worth 40% of your final grade. Thus, we expect you to put significant effort into this.\nYou should read through the entire milestone instructions before beginning your work! Don’t use computing resources until you are ready.\n\n\n\nMilestone 4: Final Deliverable\n\nTable of Contents\nSetup\nMilestone description\nAnalysis Requirements\nFinal milestone web page requirements\n\nReviewing and editing your existing website\nIntroduction page\nNLP and ML pages\nDiscussion page\nConclusion page\nEDA page\n\nExecutive summary\nAnalysis report\n\n\nSubmission instructions\n\n\n\n\n\nSince you are making updates to your code you do not need to make any new subdirectories. Be sure to indicate on your website or in your Git repo which parts of your project have been updated.\n\n\n\nIn this assignment you will complete your project, making sure that it is ready for primetime. This means that your project website has been improved since your intermediate assignments and will wow any future employers.\nYou will populate the following pages: - docs/index.html - docs/conclusion.html - docs/discussion.html\nYou will update and improve the following pages: - docs/eda.html - docs/nlp.html - docs/ml.html\nRemember, all your big data analysis must be in PySpark unless an exception has been made. You may choose to put all your work into one notebook or you may choose to keep separate notebooks for your work. It might be the case that you have to do very little additional coding for your final deliverable. This really depends on the status of your existing project work and how much more effort you have to put into building it out to be great! More refinement is always better! Iteration always helps! Keep improving the project!\n\n\n\n\nExpand on your analysis from the intermediate assignments in some manner. Do you add an additional data transformation? Try one more model? Try a different NLP text method? It does not have to be groundbreaking at this point, but think about how you can make minor updates to improve the work further.\nMake sure to indicate in an appendix on your conclusion page what updates you made to your analysis since your intermediate deliverables.\n\n\n\n\n\n\n\nSpell check, grammar check, read for clarity. Make sure all your pages are well-written and free of errors!\nSubmit all your notebooks used in the project to the Git repo. You must also have all your notebooks available on your website. Make sure you have these notebooks available in html format that is easily viewable by a web user. Points will be deducted for linking to ipynb files that must be downloaded.\nCan your audience access all of your code files?\nJust the ipynb is not a valid webpage. It is really hard to navigate. You need to save your outputs and create the webpages, suitable for a non-data scientist audience.\nA public website is required. Your team MUST have a self-contained website that can be opened locally upon download and navigable by any web browser. You can assume an available internet connection (in case you are calling JS libraries).\nIf you do choose to publish your website publicly, you must update the README to include its URL.\n\n\n\n\n\nYou will write up an introduction for your entire project of at least 4 text paragraphs and 2-5 informative graphs/images/tables.\nThis is a NON-TECHNICAL introduction. There should be no technical language, equations, etc. Talk about what the project, its goals, and why it matters!\nAll your analytical goals/questions and technical proposals must be listed out at the end as an appendix to your introduction.\nAdapt your project plan analytical goals/questions with any changes you have made to your project since you started.\nIt is OK if you did not get to all of your analytical goals/questions.\nIf you already wrote up your introduction as part of an earlier deliverable, great! Then that is less work for you now.\n\n\n\n\n\nYou made these pages in earlier deliverables. This means you only have to make updates and improvements to these two pages.\nImprove usability of your pages by fixing issues with html, placement, blurry graphics, etc.\nStrengthen the analytical justification of the decisions you made in your project. This text is critical so the audience understands why you followed the path of work that you did.\n\n\n\n\n\nYou must organize the feedback you have received on the project into the following categories:\n\nProject plans\nEDA work\nNLP work\nML work\nWebsite/results\n\nProvide bullet points summarizing each piece of meaningful feedback received from your instructors and your peers. After you outline the feedback received, you must write 1-3 sentences describing how you have incorporated the feedback into your project or explain why you have chosen not to.\n\n\n\n\n\nYou will write up 3-5 text paragraphs with 2-5 informative graphs/images/tables that summarize and conclude on all the existing work you have done in the project.\nYou must have a section that discusses the planned next steps in the project. It does not mean that you will actually implement these next steps, but it is important to outline your vision for how you would move the project forward if you had another month to conduct your work.\nMake sure you are not repeating yourself from the methods pages.\nThe introduction and conclusion should serve as book ends to your project. If those pages are read without any of the middle pages, one should still be able to understand the purpose of the project, its impact, and your next steps.\n\n\n\n\nYour website/eda.html will be populated with the following sections:\n\n\n\nWrite 1-2 paragraphs on your EDA accomplishments. You can include up to 2 images or tables. Your writing must be excellent and persuasive. 3 sentences total will not cut it. The expectation is to write at least 8 sentences. This is the section to describe the high-level results and the most important information only! This summary must be NON-TECHNICAL! Think about how to touch on your business goals without going into much detail.\n\n\n\n\n\nWrite a data analysis style report of 4-6 text paragraphs (each paragraph at least 4 sentences). This is where you will discuss your data ingestion, data cleaning, and data evaluation. During that prose, you will present all your tables and figures. You can save the images or take snips from your Jupyter notebook. This part is for you to write up the analysis work you have already done. Be creative, be awesome!! Show off to a future employer your amazing data science skills!\n\nThe flow of the report is up to you. Maybe you want to split the text by business goal or organize the prose into a data journey story.\nYou must reference all the business goals that you have accomplished in this report. Did your technical proposal change as you started working with the data?\nIf you made changes to your business goals, discuss your analytical justification for changing your plans. It is OK that plans change, though it is important to describe why.\nYour visualizations must follow the visualization best practices you learned in ANLY 503. There should be titles, axis labels, legends as needed, etc.\n\n\nInclude links to all your EDA coding notebooks and sources for your external data so that your audience can look at your work.\n\nipynb files MUST show the requisite outputs, they will be penalized even if the code is present. We need to see the outputs from your coding cells in addition to your website.\n\n\n\n\n\n\n\nCommit and push your files\nExport any of the notebooks you created as IPython and/or html files, and add them to your repository from your local machine before you tag the release\nTag the submission release commit with the v1.0-final tag by the due date\nMake sure to push to GitHub"
+  },
+  {
+    "objectID": "project/06-project.html",
+    "href": "project/06-project.html",
+    "title": "Website",
+    "section": "",
+    "text": "The output of the project will be delivered through a self-contained website in the docs/ subdirectory, having index.html as the starting point. You will build the website incrementally over the milestones.\nThe code to build the website will be in the website-source/ directory."
+  },
+  {
+    "objectID": "project/06-project.html#structure",
+    "href": "project/06-project.html#structure",
+    "title": "Website",
+    "section": "Structure",
+    "text": "Structure\nThe website must have the following structure:\n\nLanding and project description page - docs/index.html - You are populating this site during the final submission\nExploratory data analysis page - docs/eda.html - You are populating this site during milestone 1\nNLP page - docs/nlp.html - You are populating this site during milestone 2\nML page - docs/ml.html - You are populating this site during milestone 3\nConclusion page - docs/conclusion.html - You are populating this site during the final submission"
+  },
+  {
+    "objectID": "project/06-project.html#requirements",
+    "href": "project/06-project.html#requirements",
+    "title": "Website",
+    "section": "Requirements",
+    "text": "Requirements\n\nYour website must be accessible via an index.html file in the docs/folder. You can build the website using the tool(s) of your preference. Choose however you would like to build your website (using quarto, Rmarkdown, editing HTML directly, any other framework, etc.)\nYou can use CSS frameworks, such as Bootstrap, Materialize, or Distill and include external libraries (jQuery, leaflet.js, moment.js, etc.). Layers such as NVD3, Vega-lite, Highcharts, etc. are allowed. Many of these have wrapper packages in R and Python. For example, the package altair (in both R and Python) wraps Vega-lite, and the package plotly (in both R and Python), among other packages, wraps D3. Other packages you may use are any of the htmlwidgets packages in R, bokeh or holoviz (and it’s accompanying ecosystem) in Python, as well as specialized packages for geospatial (leaflet, tmap in R, folium in Python) and networks (igraph, NetworkX, bokeh, plotly).\nYou do not need to make the site public as we will look at it from the repository. You may make it public (just the website sub-directory) using your preferred method.\nNo custom backends (Node.js, Python, etc) and database systems, such as Postgres or MySQL.\nThe communication needs to be effective with clean aesthetics, but you do not need to get too fancy.\nYou may include the html exports of notebooks\n\n\n\n\n\n\n\nWarning\n\n\n\n\nNote that a raw Jupyter notebook rendered in HTML is not an appropriate webpage for your final submission. The code, computing and guts of your work should not be visible, and the output should be well-formatted and understandable to a non-technical reader. You must link to the appropriate technical files (notebooks, scripts) so that inquisitive minds (and instructors) can go.\nAll data visualizations and tables should be properly labelled, with captions if necessary, and should stand alone without reading through your narrative content. If you are referring to your table or figure in your narrative, it must be of the form Table 1 or Figure 1, and the corresponding table/figure should then have a caption which includes the appropriate table or figure number. See this page if you are using Quarto as your website generator. For other technologies, follow the formats outlined in this page."
+  },
+  {
+    "objectID": "project/index.html",
+    "href": "project/index.html",
+    "title": "Project",
+    "section": "",
+    "text": "Your team will work with a subset of the Reddit Archive data. This dataset used to be publicly available until Reddit made changes to its API terms of service. The time period that you will be working with is before the change in API terms.\nThe data you will use spans January 2022 to March 2023. There are two datasets that we are making available to you:\n\nsubmissions: 412 GB of plain-text json files representing 109 million entries\ncomments: 918 GB of plain-text json files representing 701 entries\n\nFor ease of use, both datasets have been pre-processed:\n\nThe number of original fields/columns was reduced\nThe original Unix timestamp values were converted to actual timestamps\nThe original text JSON files were saved as parquet\n\nThe available parquet dataset sizes are 14 GB for submissions and 95 GB for comments. For a sneak peek of the original data, you can download a sample.\nThis is a very rich dataset and it is up to you to decide how you are going to use it. You will select one or more topics of interest to explore and use the Reddit data and one or more external datasets to perform a meaningful analysis.\nWe recommend you read this paper which talks about the dataset, and you may want to look at several papers written about or using the Reddit data for inspiration."
+  },
+  {
+    "objectID": "project/index.html#tools",
+    "href": "project/index.html#tools",
+    "title": "Project",
+    "section": "Tools",
+    "text": "Tools\nYou will use a Serverless Spark Cluster in Azure or a Spark Processing Job in Sagemaker to analyze, transform, and process your data and create one or more analytical datasets. We will provide specific instructions on how to access the data in both Azure and AWS.\nDevelop your Spark code similar to how it has been discussed in class:\n\nIterate quickly in a local notebook\nScale up to a small cluster to ensure your code still works\nProductionalize with a larger cluster or remote processing job to run your full pipeline.\n\nSmaller derivative data sets can be processed locally if needed for plotting or reporting."
+  },
+  {
+    "objectID": "project/index.html#objectives",
+    "href": "project/index.html#objectives",
+    "title": "Project",
+    "section": "Objectives",
+    "text": "Objectives\nIn every project as data scientists, in addition to doing modeling and machine learning work, you will also be responsible (either individually or as part of a team) for providing the following as part of a project:\n\nFindings: what does the data say?\nConclusions: what is your interpretation of the data?\nRecommendations: what can be done to address the question/problem at hand\n\nYour analyses in this project will focus on the first two above. Your work must provide the audience with an understanding of the topic you are analyzing, presenting, and discussing. The objective is to find a topic of interest, work with the data, and present it to an audience that may not know very much about the subject using a data-driven approach."
+  },
+  {
+    "objectID": "project/index.html#milestones",
+    "href": "project/index.html#milestones",
+    "title": "Project",
+    "section": "Milestones",
+    "text": "Milestones\nThe project will be executed over several milestones, and each one has a specific set of requirements. There are four major milestones and a feedback deliverable (click on each one for the appropriate instructions and description):\n\nMilestone 1: Define the questions and Exploratory Data Analysis\nMilestone 2: NLP and external data overlay\nPeer Feedback: Give and receive peer feedback\nMilestone 3: Machine Learning\nMilestone 4: Final delivery [TO BE RELEASED SOON]\n\nAll of your work will be done within the team GitHub repository, and each milestone will be tagged with a specific release tag by the due date.\n\nMilestone 1 (EDA): will be tagged v0.1-eda\nMilestone 2 (NLP): will be tagged v0.2-nlp\nMilestone 3 (ML): will be tagged v0.3-ml\nMilestone 4 (Final): will be tagged v1.0-final"
+  },
+  {
+    "objectID": "project/index.html#team-repository-structure",
+    "href": "project/index.html#team-repository-structure",
+    "title": "Project",
+    "section": "Team repository structure",
+    "text": "Team repository structure\nAll of your work will be done within your team’s GitHub repository. Milestone submissions will happen by tagging specific commits.\nYou will work within an organized repository and apply coding and development best practices. The repository has the following structure:\n├── README.md\n├── code\n├── data\n├── docs\n└── website-source\nAdditional structure specifications for other components of the project can be found in the Website guidance.\n\nDescription\n\nThe code/ directory is where you will write all of your notebooks and scripts. You will have a combination of Pyspark and Python notebooks, and one sub-directory per major task area. You may add additional sub-directories as needed to modularize your development.\nThe data/ directory should contain your (small) data files and should have multiple sub-directories (i.e. raw, processed, analytical, etc.) as needed. No large datasets are permitted\nThe docs/ folder should contain your website, with the source code for the website residing in website-source/. This can then be deployed using Github Pages if you so choose.\n\n\n\nCode\n\nYour code files must be well-organized\nDo not work in a messy repository and then try to clean it up\nIn notebooks, use Markdown cells to explain what you are doing and the decisions you are making\nDo not write monolithic Notebooks or scripts\nModularize your code (a script should do a single task)\nUse code comments so others can understand and leverage your code in the future\nUse functions to promote code reuse"
+  },
+  {
+    "objectID": "project/index.html#team-contribution",
+    "href": "project/index.html#team-contribution",
+    "title": "Project",
+    "section": "Team contribution",
+    "text": "Team contribution\nAll team members must contribute to the project equally and fairly. Individual team member contributions will be assessed through a) the count and content of commits, and b) a peer evaluation form. If peer evaluations indicate that students within a team are not contributing equally, those students will receive a grade penalty and a lower grade than the rest of their team."
+  },
+  {
+    "objectID": "project/index.html#peer-feedback",
+    "href": "project/index.html#peer-feedback",
+    "title": "Project",
+    "section": "Peer Feedback",
+    "text": "Peer Feedback\n\nGiving feedback: Each group will review one other group’s EDA deliverable. Criteria will be provided as the basis of the evaluation. The deliverable is a single word document that is provided to the team receiving feedback.\nReceiving feedback: Each group will receive feedback from another group. The group receiving feedback will email the group providing feedback with their EDA deliverable."
+  },
+  {
+    "objectID": "project/index.html#grading-rubric",
+    "href": "project/index.html#grading-rubric",
+    "title": "Project",
+    "section": "Grading rubric",
+    "text": "Grading rubric\nThe project will be evaluated using the following high-level criteria:\n\nLevel of analytical rigor at the graduate student level\nLevel of technical approach\nAppropriate use of tools\nQuality and clarity of your writing and overall presentation\n\n\n\n\n\n\n\nImportant\n\n\n\nThe project milestones are cumulative. Therefore, we will grade the project after the final submission with a holistic project rubric. We will qualitatively grade the milestones, and we will provide feedback and a trending grade with each milestone. It is up to you to incorporate the feedback provided. If your milestone trending grade is lower than you expected, and you do not incorporate the feedback we provide for improvement, do not expect your final project grade to improve.\n\n\n\nIf a deliverable exceeds the requirements and expectations, that is considered A level work.\nIf a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.\nIf a deliverable does not meet the requirements, that is considered B or lesser level work.\n\nDeductions will be made for any of the following reasons:\n\nThere is a lack of analytical rigor:\n\nAnalytical decisions are not justified\nAnalysis is too simplistic\n\nVisualizations or tables are not professionally formatted\nBig data files included in the repository\nInstructions are not followed\nThere are missing sections of the deliverable\nThe overall presentation and/or writing is sloppy\nThere are no comments in your code\nThere are absolute filename links in your code\nThe repository structure is sloppy\nFiles are named incorrectly (wrong extensions, wrong case, etc.)"
+  },
+  {
     "objectID": "resources/index.html",
     "href": "resources/index.html",
     "title": "Resources",
