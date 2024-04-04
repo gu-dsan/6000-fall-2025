@@ -65,7 +65,24 @@ Machine Learning Feature Store
 
 # Vector Databases
 
+- Store entities (text, images, audio, video, anything really..) represented as embeddings.
+    - Embeddings are numerical representations of entities in high dimensional spaces.
+    - Embeddings encode (semantic) meaning associated with the objects.
+
+- Provide fast similarity search between entities (of course represented as vector embeddings).
+    - Focus is not on finding the exact match, but most similar matches.
+
+
 ## Why do we need vector databases?
+
+- Central to Generative AI apps.
+    - Extend the capabilities of LLMs.
+    - Avoid hallucinations.
+
+- Use cases include
+    - Product search
+    - Troubleshooting and incident response
+    - Of course, RAG!
 
 ## Algorithms for similarity searh
 

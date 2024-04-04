@@ -4414,7 +4414,7 @@
     "href": "slides/14-slides.html#why-do-we-need-vector-databases",
     "title": "Lecture 14",
     "section": "Why do we need vector databases?",
-    "text": "Why do we need vector databases?"
+    "text": "Why do we need vector databases?\n\nCentral to Generative AI apps.\n\nExtend the capabilities of LLMs.\nAvoid hallucinations.\n\nUse cases include\n\nProduct search\nTroubleshooting and incident response\nOf course, RAG!"
   },
   {
     "objectID": "slides/14-slides.html#algorithms-for-similarity-searh",
