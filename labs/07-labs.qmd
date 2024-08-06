@@ -15,7 +15,7 @@ editor_options:
 {{< include login-to-saxanet.qmd >}} 
 
 ```{r setup, include=FALSE}
-library(tidyverse)
+#library(tidyverse)
 library(reticulate)
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -67,14 +67,14 @@ Anything you can do, I can do in parallel!
 
 [TDS big data options](https://towardsdatascience.com/beyond-pandas-spark-dask-vaex-and-other-big-data-technologies-battling-head-to-head-a453a1f8cc13)
 
-```{r}
+```{.r}
 head(starwars)
 ```
 
 ### Reading in data {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```{.r}
 library(arrow)
 library(dplyr)
 
@@ -82,14 +82,14 @@ starwars <- arrow::read_parquet('starwars.parquet')
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 import os
 import pandas as pd
 starwars = pd.read_parquet('starwars.parquet')
 ```
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 import pyspark
 from pyspark.sql.functions import udf, lit, col
 from pyspark.sql import SparkSession
@@ -115,12 +115,12 @@ starwars_select <- starwars %>% select(name, height, mass)
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars_select = starwars[['name','height','mass']]
 ```
 
 #### PySparkSQL
-```{python, eval = FALSE}
+```{.python}
 starwars_select = starwars.select(['name','height','mass'])
 ```
 
@@ -133,13 +133,13 @@ starwars_filter <- starwars %>% filter(height > 110,
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars_filter = starwars[(starwars.height > 110) & 
                         (starwars.homeworld == "Tatooine")]
 ```
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 starwars_filter = starwars[(col('height') > 110) &
                     (col('homeworld') == "Tatooine")]
 ```
@@ -155,7 +155,7 @@ starwars <- starwars %>%
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars['tatooine_dummy'] = starwars.apply(
                                   lambda x: True if x.homeworld == 'Tatooine' 
                                         else False, 
@@ -164,7 +164,7 @@ starwars['tatooine_dummy'] = starwars.apply(
 
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 from pyspark.sql.types import BooleanType
 @udf(returnType=BooleanType())
 def dummy_tatooine(x):
@@ -185,12 +185,12 @@ starwars %>% head(5)
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars.head(5)
 ```
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 starwars.take(5) # RDD version
 
 starwars.show(5) # SQL version
@@ -205,12 +205,12 @@ starwars %>% group_by(species) %>% summarize(mean_height = mean(height))
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars.groupby('species')['height'].mean()
 ```
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 starwars.groupBy('species').mean('height').collect()
 ```
 
@@ -222,14 +222,14 @@ starwars %>% group_by(species) %>% filter(height = max(height))
 ```
 
 #### Pandas
-```{python, eval = FALSE}
+```{.python}
 starwars.iloc[starwars.groupby('species').height.idxmax().tolist(),:]
 
 starwars.sort_values('height',ascending=False).groupby('species').first()
 ```
 
 #### PySpark
-```{python, eval = FALSE}
+```{.python}
 temp_df = starwars.groupBy('species').agg(f.max('height').alias('height'))
 starwars.groupBy.join(temp_df,on='height',how='leftsemi').show()
 

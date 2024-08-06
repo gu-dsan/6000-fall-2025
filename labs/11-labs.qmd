@@ -7,7 +7,7 @@ author: "{{< var instructor.name >}}"
 {{< include login-to-saxanet.qmd >}} 
 
 ```{r setup, include=FALSE}
-library(tidyverse)
+
 library(reticulate)
 knitr::opts_chunk$set(echo = TRUE)
 ```
