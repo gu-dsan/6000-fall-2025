@@ -3,7 +3,7 @@ title: "Big Data Analytics & Cloud Computing"
 subtitle: |
   "Learn how to analyze Big Data using cloud computing and technologies such as Concurrency, Spark and others in this hands-on, practical workshop-style course."
 details: |
-  PPOL 5206 • Spring 2024<br>Amit Arora, McCourt School of Public Policy<br>Georgetown University
+  DSAN 6000 • Fall 2024<br>Amit Arora, Graduate School of Arts and Science<br>Georgetown University
 sidebar: false
 toc: false
 page-layout: full

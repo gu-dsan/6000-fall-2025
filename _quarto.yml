@@ -22,19 +22,19 @@ execute:
 description-meta: "Analyze Big Data using cloud computing and technologies such as Apache Spark"
 
 website:
-  title: "PPOL 5206"
-  site-url: "https://aa1603.georgetown.edu/ppol5206"
+  title: "DSAN 6000"
+  site-url: "https://aa1603.georgetown.edu/dsan6000"
   google-analytics: G-N2B9K684GE
 
-  favicon: "/files/img/ppol5206-logo.png"
+  favicon: "/files/img/dsan6000-logo.png"
 
   twitter-card:
-    image: "/files/img/ppol5206-logo.png"
+    image: "/files/img/dsan6000-logo.png"
     card-style: summary_large_image
     creator: "@aarora79"
 
   open-graph:
-    image: "/files/img/ppol5206-logo.png"
+    image: "/files/img/dsan6000-logo.png"
     locale: en_US
 
   navbar:

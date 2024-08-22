@@ -12,34 +12,34 @@ instructor:
   appointment_url: https://calendar.app.google/VDNgfyh5vG4pmJi38
 
 ta:
-  name: Dheeraj Oruganty
-  name_no_title: Dheeraj Oruganty
-  email: do343@georgetown.edu
+  name: Tereza Martinkova
+  name_no_title: Tereza Martinkova
+  email: tm1450@georgetown.edu
   
 course:
-  number: "PPOL 5206"
-  semester: "Spring 2024"
-  days: "Thursdays"
+  number: "DSAN 6000"
+  semester: "Fall 2024"
+  days: "Wednesdays"
   time: "6:30–9:00 PM"
-  location: "Car Barn 204"
-  dates: "January 11 – May 9, 2024"
-  github: "https://github.com/gu-ppol/ppol5206s24-class-site.git"
-  github_org: https://github.com/gu-ppol/
-  url: "https://aa1603.georgetown.edu/ppol5206"
+  location: "Car Barn 309"
+  dates: "August 28 – December 12, 2024"
+  github: "https://github.com/gu-dsan/6000-fall-2024.git"
+  github_org: https://github.com/gu-dsan/
+  url: "https://aa1603.georgetown.edu/dsan6000"
   copyright_year: "2024"
-  slack: "https://georgetown-ime2320.slack.com"
-  email: ppol5206-spring-2023@georgetown.edu
+  slack: "https://dsan6000fall2024.slack.com"
+  email: dsan-Fall-2024@georgetown.edu
   class_start_hhmmss: "183000"
   class_end_hhmmss: "210000"
-  lab0: https://georgetown.instructure.com/courses/167183/assignments/840211
-  lms_course_url: https://georgetown.instructure.com/courses/187746
+  lab0: https://georgetown.instructure.com/courses/193302/assignments
+  lms_course_url: https://georgetown.instructure.com/courses/193302
   lms_course_url_md: "[`{{< var course.lms_course_url >}}`]({{< var course.lms_course_url >}})"
 
 gh-classroom:
-  lab01: "https://classroom.github.com/a/fK9435lZ"
-  lab02: https://classroom.github.com/a/Ese3QMY2
-  lab03: https://classroom.github.com/a/cPoKidPY
-  lab04: https://classroom.github.com/a/YOdnid2E
+  lab01: "https://classroom.github.com/a/cIT1byyd"
+  lab02: https://classroom.github.com/a/vVcfO1EA
+  lab03: https://classroom.github.com/a/JkalyilX
+  lab04: https://classroom.github.com/a/VlVbNlV8
   lab05: https://classroom.github.com/a/F3_mh_ZK
   lab06: https://classroom.github.com/a/GxnjF_Mf
   lab07: https://classroom.github.com/a/pIkPrmlv
@@ -51,10 +51,10 @@ gh-classroom:
   lab13p1: https://classroom.github.com/a/yFvXUYP9
   lab13p2: https://classroom.github.com/a/dHbVdu4V
   lab14: null
-  a01: https://classroom.github.com/a/ksHP_NcK
-  a02: https://classroom.github.com/a/PiBawARk
-  a03: https://classroom.github.com/a/T-rSBiQ3
-  a04: https://classroom.github.com/a/lAn30ST-
+  a01: 
+  a02: https://classroom.github.com/a/x1ajmcEq
+  a03: 
+  a04: https://classroom.github.com/a/ADi4vxUM
   a05: https://classroom.github.com/a/dEk7Zjfh
   a06p1: https://classroom.github.com/a/Qguf2Bh8
   a06p2: https://classroom.github.com/a/MEZtY09Y
@@ -66,8 +66,8 @@ university:
   lms_url: https://canvas.georgetown.edu
 
 school:
-  name: McCourt School of Public Policy
-  url: "https://mccourt.georgetown.edu/"
+  name: Graduate School of Arts and Science
+  url: "https://analytics.georgetown.edu/"
 
 reading :
   lebris: https://georgetown.instructure.com/courses/167183/files/folder/Readings?preview=10092862
