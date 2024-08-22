@@ -23,7 +23,7 @@
 
 1. To render the entire website locally (and avoid the problem with the slides not rendering correctly) run the `quarto render` command. This will re-build the entire website and the site will be available in the [`docs`](docs) folder. ***This is the recommended way for building and testing the entire site***.
 
-1. Once the website is rendered locally you can take the contents of the [`_site`](_site) folder and upload it to your website. This website is currently hosted on [Georgetown Domains](https://georgetown.domains) and for now I manually SCP the contents to Georgetown Domains using WinSCP.
+1. Once the website is rendered locally you can take the contents of the [`docs`](docs) folder and upload it to your website. This website is currently hosted on [Georgetown Domains](https://georgetown.domains) and for now I manually SCP the contents to Georgetown Domains using WinSCP.
 
 ## Licenses
 
