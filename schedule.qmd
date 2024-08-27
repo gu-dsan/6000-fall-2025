@@ -7,109 +7,30 @@ format:
     toc: false
 ---
 
-```{r packages-data, include=FALSE}
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(gt)
-library(glue)
-library(gtExtras)
+| Section | Instructor | Day            | Location      |
+|---------|------------|----------------|---------------|
+| 01      | Abhijit    | Tu 6:30-9:00   | Car Barn 204  |
+| 02      | Amit       | W 6:30-9:00    | Car Barn 309  |
+| 03      | Marck      | M 6:30-9:00    | Car Barn 204  |
+|         |            |                |               |
 
-withr::with_dir(here::here(), {
-  print(here::here())
-  schedule_nested <- read_csv(here::here(file.path("data", "schedule.csv")))
-  schedule_ical_file <- file.path("files", "schedule.ics")
-})
 
-base_url <- yaml::read_yaml(here::here("_quarto.yml"))$website$`site-url`
-course_number <- yaml::read_yaml(here::here("_variables.yml"))$course$number
-semester <- yaml::read_yaml(here::here("_variables.yml"))$course$semester
-ical_url_absolute <- file.path(base_url, schedule_ical_file)
-```
-
-::: {.schedule-page}
-
-Here's your roadmap for the semester!
-
-- [**Content**](/content/) ({{< fa book-open-reader >}}): This page contains the lecture slides for the week.
-
-- [**Lab**](/lab/) ({{< fa laptop-code >}}): This page contains lab for the week. This is usually a step-by-step instruction accompanied by a GitHub repo. A GitHub classroom link would be provided, once you accept an assignment (in GitHub classroom parlance everything is an assignment) a new repo would be created for you to work in. You will be starting this activity **_in class_** and submitting it before the due-date (Wednesday of next week 11:59PM unless otherwise stated).
-
-- [**Assignment**](/assignment/) ({{< fa pen-ruler >}}): This page contains the instructions for each assignment. Similar to the labs, there would be a GitHub classroom link provided to you for each assignment. Unlike the labs the assignments are more detailed and require significantly more coding effort. Assignments are also due by Wednesday of next week 11:59PM unless otherwise stated.
-
-::: {.callout-tip}
-
-## Subscribe!
-
-You can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:
-
-::: {.grid}
-
-::: {.g-col-12 .g-col-md-2}
-<p class="download-btn"><a class="btn btn-danger btn-sm" href="/`r schedule_ical_file`" role="button">{{< fa calendar-alt >}} Download</a></p>
-:::
-
-::: {.g-col-12 .g-col-md-10}
-<p><input class="form-control" type="text" value="`r ical_url_absolute`" onclick="this.select()" readonly></p>
-:::
-
-:::
-
-:::
-
-```{r echo=FALSE}
-num_phases <- length(unique(schedule_nested$subgroup))
-phases <- paste(unique(schedule_nested %>% select(group) %>% drop_na() %>% pull(group)), collapse=", ")
-
-schedule_nested[is.na(schedule_nested)] <- ""
-schedule_nested %>%
- gt(rowname_col = "group", groupname_col = "subgroup") %>%
-  gt_highlight_rows(columns = c("title"),
-                     rows = str_detect(title, "NO CLASS"),
-                     fill = "#80bcd8",
-                     alpha = 0.8,
-                     font_weight = "bold",
-                     font_color = "#000000",
-                     bold_target_only = FALSE,
-                     target_col = c()) %>%
-  cols_width(    
-    starts_with("date") ~ px(100)    
-  ) %>%
-  cols_width(    
-    starts_with("lecture") ~ px(100)    
-  ) %>%
-  cols_width(    
-    starts_with("lab") ~ px(100)    
-  ) %>%
-  cols_label(
-    group = "Category",
-    subgroup = "Subgroup",
-    date = "Date",
-    title="Module",
-    lecture="Lecture",
-    lab="Lab",
-    notes="Notes"
-  ) %>%
-  tab_header(title=glue("Schedule for the semester {course_number} {semester}"),
-             subtitle=glue("This course is divided into {num_phases} phases: {phases}.")) %>%
-  tab_style(
-     locations = cells_column_labels(columns = everything()),
-     style     = list(
-       #Give a thick border below
-       cell_borders(sides = "bottom", weight = px(3)),
-       #Make text bold
-       cell_text(weight = "bold")
-     )
-   ) %>% 
-   #Apply different style to the title
-   tab_style(
-     locations = cells_title(groups = "title"),
-     style     = list(
-       cell_text(weight = "bold", size = 24)
-     )
-   ) %>%
-   fmt_markdown(columns = c("title", "notes", "lecture", "lab"))
-   
-```
-
-:::
+| Monday (Marck)     | Session | Tuesday (Abhijit)  | Session | Wednesday (Amit)  | Session | Notes                                           |
+|--------------------|---------|--------------------|---------|-------------------|---------|---------------------------------------------------|
+| 8/26/2024          |         | 8/27/2024          |         | 8/28/2024         | 1       | All Sections combined                              |
+| 9/2/2024           | Labor Day | 9/3/2024         | 2       | 9/4/2024          | 2       | Abhijit async or in-person Friday                  |
+| 9/9/2024           | 3       | 9/10/2024          | 3       | 9/11/2024         | 3       |                                                    |
+| 9/16/2024          | 4       | 9/17/2024          | 4       | 9/18/2024         | 4       | Amit unavailable, virtual class for section 2      |
+| 9/23/2024          | 5       | 9/24/2024          | 5       | 9/25/2024         | 5       |                                                    |
+| 9/30/2024          | 6       | 10/1/2024          | 6       | 10/2/2024         | 6       |                                                    |
+| 10/7/2024          | 7       | 10/8/2024          | 7       | 10/9/2024         | 7       |                                                    |
+| 10/14/2024         | Mid Semester Holiday | 10/15/2024 | 8   | 10/16/2024        | 8       | Marck async or in-person Friday                    |
+| 10/21/2024         | 9       | 10/22/2024         | 9       | 10/23/2024        | 9       |                                                    |
+| 10/28/2024         | 10      | 10/29/2024         | 10      | 10/30/2024        | 10      |                                                    |
+| 11/4/2024          | 11      | 11/5/2024          | 11      | 11/6/2024         | 11      |                                                    |
+| 11/11/2024         | 12      | 11/12/2024         | 12      | 11/13/2024        | 12      |                                                    |
+| 11/18/2024         | 13      | 11/19/2024         | 13      | 11/20/2024        | 13      |                                                    |
+| 11/25/2024         | no class | 11/26/2024    | no class | 11/27/2024      | thanksgiving | No class this week                                |
+| 12/2/2024          | 14      | 12/3/2024          | 14      | 12/4/2024         | 14      | Amit unavailable, reschedule section 2 for week of 12/9 |
+| 12/9/2024          | Projects | 12/10/2024        | Projects | 12/11/2024       |         | Project presentation (tentative)                   |
+| 12/16/2024         |         | 12/17/2024         |         | 12/18/2024        |         |                                                    |

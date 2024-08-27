@@ -1,12 +1,11 @@
-author: Amit Arora
+author: DSAN6000 Professors
 instructor:
-  name: Amit Arora
-  name_no_title: Amit Arora
-  email: aa1603@georgetown.edu
-  url: "https://www.linkedin.com/in/amit-arora-539120a/"
-  twitter: aarora79
-  github: aarora79
+  name: Amit Arora, Marck Vaisman, Abhijit Dasgupta
+  name_no_title: Amit Arora, Marck Vaisman, Abhijit Dasgupta
+  email: dsan6000-instructors@georgetown.edu
+  url: "https://analytics.georgetown.edu/faculty-staff/"
   office: "Online"
+  twitter:
   contact_policy: >-
     E-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (*really*), but also remember that life can be busy and chaotic for everyone (including me!), so if I don't respond right away, don't worry!
   appointment_url: https://calendar.app.google/VDNgfyh5vG4pmJi38
@@ -19,7 +18,7 @@ ta:
 course:
   number: "DSAN 6000"
   semester: "Fall 2024"
-  days: "Wednesdays"
+  days: "Mondays (Prof Marck), Tuesdays (Prof Abhijit), Wednesdays (Prof Amit)"
   time: "6:30–9:00 PM"
   location: "Car Barn 309"
   dates: "August 28 – December 12, 2024"
@@ -34,6 +33,7 @@ course:
   lab0: https://georgetown.instructure.com/courses/193302/assignments
   lms_course_url: https://georgetown.instructure.com/courses/193302
   lms_course_url_md: "[`{{< var course.lms_course_url >}}`]({{< var course.lms_course_url >}})"
+  last_day_of_class: "Dec 12th, 2024"
 
 gh-classroom:
   lab01: "https://classroom.github.com/a/cIT1byyd"
