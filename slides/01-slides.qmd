@@ -45,12 +45,70 @@ These are also pinned on the Slack `main` channel
 :::
 
 
-## Instructional Team - Professor
 
-::: columns
-::: {.column width="75%" .r-fit-text}
+## Instructional Team - Professors
 
-Amit Arora
+## Marck Vaisman
+
+:::: {.columns} 
+::: {.column width="75%"}
+* AI & ML Cloud Architect and Data Scientist at Microsoft
+* Teaching at GWU since 2015 (9 year) and Georgetown since 2016 
+* Co-Founder of DataCommunityDC
+* R Fanatic
+
+Fun Facts
+
+* I love music and try to play music at the beginning of class, typically EDM. Other genres I love:
+  * Latin
+  * Bluegrass
+  * Chill
+* I speak fluent Spanish, I grew up in Venezuela
+* Love beer & bourbon
+* Goofball
+* Westie owner
+* I can speak like [Donald Duck](https://en.wikipedia.org/wiki/Donald_Duck)
+:::
+
+::: {.column width="25%"}
+![](img/marck-vaisman-headshot.jpg)
+:::
+::::
+
+
+## Abhijit Dasgupta
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+- Data Science Associate Director at AstraZeneca supporting Oncology R&D
+  - bioinformatics, biomarkers, clinical studies
+  - autoencoders, survival analysis, signal processing
+- Adjunct Professor at Georgetown  since 2020
+- R and reproducible research evangelist
+  - Python is cool too!!
+- Co-founder of Statistical Programming DC (with Marck Vaisman)
+
+
+Fun Facts
+
+- I'm a 4th degree black belt in Aikido, 
+  - over 30 years experience providing flyer miles 
+- Exploring global whiskey, currently on Japan
+- Active in community theater, mainly behind but sometimes on-stage. 
+
+:::
+
+::: {.column width="25%"}
+
+![](img/abhijit.jpg)
+:::
+::::
+
+## Amit Arora
+
+:::: {.columns} 
+::: {.column width="75%"}
 
 * Principal Solutions Architect - AI/ML at AWS
 * Adjunct Professor at Georgetown University
@@ -65,31 +123,10 @@ Fun Facts
 :::
 
 ::: {.column width="25%"}
-
 ![](img/Amit.png 'Amit Arora')
 :::
-:::  
- 
-## Instructional Team - TA
+::::
 
-::: columns
-::: {.column width="75%"}
-
-Dheeraj Oruganty
-
-- Educational Background: Achieved a Bachelor's Degree in Computer Science from Jawaharlal Nehru Institute of Technology in Hyderabad.
-- Internship: Served as a Machine Learning Intern at Cluzters.ai, contributing to the development of machine vision models tailored for edge devices.
-- Personal Interests: Finds joy participating in hikes, meeting new people and embarking on road trips.
-- Interesting Tidbits: Explored 6 different countries in the past 90 days.
-- Adventurous Journey: Undertook a remarkable 15-hour road trip on a motorcycle in India!
-
-:::
-
-::: {.column width="25%"}
-![](img/dheeraj.jpg 'Dheeraj Oruganty')
-
-:::
-::: 
 
 ## Course Description
 
