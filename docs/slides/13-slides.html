@@ -394,9 +394,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <meta property="og:title" content="DSAN 6000 - Lecture 13">
 <meta property="og:description" content="Polars, DuckDB  and RAPIDS">
 <meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
@@ -483,94 +480,24 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>Coming from Pandas to Polars</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>type</th>
-      <th>c</th>
-      <th>size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>m</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>n</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>o</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>m</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>m</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>n</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>n</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="st">"type"</span>: [<span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"o"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"n"</span>],</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="st">"c"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
+<span id="cb4-5"><a href="#cb4-5"></a>})</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>df[<span class="st">"size"</span>] <span class="op">=</span> df.groupby(<span class="st">"c"</span>)[<span class="st">"type"</span>].transform(<span class="bu">len</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (7, 3)</small><table border="1" class="dataframe"><thead><tr><th>type</th><th>c</th><th>size</th></tr><tr><td>str</td><td>i64</td><td>u32</td></tr></thead><tbody><tr><td>"m"</td><td>1</td><td>3</td></tr><tr><td>"n"</td><td>1</td><td>3</td></tr><tr><td>"o"</td><td>1</td><td>3</td></tr><tr><td>"m"</td><td>2</td><td>4</td></tr><tr><td>"m"</td><td>2</td><td>4</td></tr><tr><td>"n"</td><td>2</td><td>4</td></tr><tr><td>"n"</td><td>2</td><td>4</td></tr></tbody></table></div>
-</div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb5-2"><a href="#cb5-2"></a>df <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="st">"type"</span>: [<span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"o"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"n"</span>],</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">"c"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
+<span id="cb5-5"><a href="#cb5-5"></a>})</span>
+<span id="cb5-6"><a href="#cb5-6"></a>df.select([</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    pl.<span class="bu">all</span>(),</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    pl.col(<span class="st">"type"</span>).count().over(<span class="st">"c"</span>).alias(<span class="st">"size"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <blockquote>
@@ -596,7 +523,7 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <section id="duckdb" class="slide level2">
 <h2>DuckDB</h2>
 <p><a href="https://duckdb.org/">DuckDB</a> is an in-process SQL OLAP database management system</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">pip</span> install duckdb==0.7.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">pip</span> install duckdb==0.7.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="./img/duckdb.png" class="r-stretch quarto-figure-center"><p class="caption">Duck DB</p><p>Also checkout <a href="https://motherduck.com/">MotherDuck</a></p>
 </section>

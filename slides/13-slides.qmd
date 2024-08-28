@@ -77,7 +77,7 @@ df = pd.read_parquet("s3a://bigdatateaching/nyctaxi-yellow-tripdata/2021/yellow_
 ::: columns
 
 ::: {.column width="50%"}
-```{python}
+```{.python}
 import pandas as pd
 df = pd.DataFrame({
     "type": ["m", "n", "o", "m", "m", "n", "n"],
@@ -90,7 +90,7 @@ df
 :::
 
 ::: {.column width="50%"}
-```{python}
+```{.python}
 import polars as pl
 df = pl.DataFrame({
     "type": ["m", "n", "o", "m", "m", "n", "n"],

@@ -4344,7 +4344,7 @@
     "href": "slides/13-slides.html#coming-from-pandas-to-polars",
     "title": "Lecture 13",
     "section": "Coming from Pandas to Polars",
-    "text": "Coming from Pandas to Polars\n\n\n\n\n\n\n\n\n  \n    \n      \n      type\n      c\n      size\n    \n  \n  \n    \n      0\n      m\n      1\n      3\n    \n    \n      1\n      n\n      1\n      3\n    \n    \n      2\n      o\n      1\n      3\n    \n    \n      3\n      m\n      2\n      4\n    \n    \n      4\n      m\n      2\n      4\n    \n    \n      5\n      n\n      2\n      4\n    \n    \n      6\n      n\n      2\n      4\n    \n  \n\n\n\n\n\n\n\n\n\nshape: (7, 3)typecsizestri64u32\"m\"13\"n\"13\"o\"13\"m\"24\"m\"24\"n\"24\"n\"24\n\n\n\n\n\nhttps://pola-rs.github.io/polars-book/user-guide/coming_from_pandas.html"
+    "text": "Coming from Pandas to Polars\n\n\nimport pandas as pd\ndf = pd.DataFrame({\n    \"type\": [\"m\", \"n\", \"o\", \"m\", \"m\", \"n\", \"n\"],\n    \"c\": [1, 1, 1, 2, 2, 2, 2],\n})\n\ndf[\"size\"] = df.groupby(\"c\")[\"type\"].transform(len)\ndf\n\nimport polars as pl\ndf = pl.DataFrame({\n    \"type\": [\"m\", \"n\", \"o\", \"m\", \"m\", \"n\", \"n\"],\n    \"c\": [1, 1, 1, 2, 2, 2, 2],\n})\ndf.select([\n    pl.all(),\n    pl.col(\"type\").count().over(\"c\").alias(\"size\")\n])\n\n\n\nhttps://pola-rs.github.io/polars-book/user-guide/coming_from_pandas.html"
   },
   {
     "objectID": "slides/13-slides.html#coming-from-spark-to-polars",
