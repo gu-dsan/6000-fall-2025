@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
+
+<title>DSAN 6000 - Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../files/img/dsan6000-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
+</script>
+
+
+<meta property="og:title" content="DSAN 6000 - Project">
+<meta property="og:description" content="Your team will work with a subset of the Reddit Archive data. This dataset used to be publicly available until Reddit made changes to its API terms of service.">
+<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta property="og:site-name" content="DSAN 6000">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="DSAN 6000 - Project">
+<meta name="twitter:description" content="Your team will work with a subset of the Reddit Archive data. This dataset used to be publicly available until Reddit made changes to its API terms of service.">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta name="twitter:creator" content="@aarora79">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSAN 6000</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.html">
+ <span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../labs/index.html">
+ <span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../project/index.html" aria-current="page">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources/index.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dsan6000fall2024.slack.com"><i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Project</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Overview</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/index.html" class="sidebar-item-text sidebar-link active">Project</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Project contents</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/01-project.html" class="sidebar-item-text sidebar-link">1: EDA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/02-project.html" class="sidebar-item-text sidebar-link">2: NLP</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/03-project.html" class="sidebar-item-text sidebar-link">3: Peer feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/04-project.html" class="sidebar-item-text sidebar-link">4: ML</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/05-project.html" class="sidebar-item-text sidebar-link">5: Final</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/06-project.html" class="sidebar-item-text sidebar-link">6: Website</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-reddit-archive-dataset" id="toc-the-reddit-archive-dataset" class="nav-link active" data-scroll-target="#the-reddit-archive-dataset">The Reddit Archive dataset</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#milestones" id="toc-milestones" class="nav-link" data-scroll-target="#milestones">Milestones</a></li>
+  <li><a href="#team-repository-structure" id="toc-team-repository-structure" class="nav-link" data-scroll-target="#team-repository-structure">Team repository structure</a>
+  <ul class="collapse">
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  </ul></li>
+  <li><a href="#team-contribution" id="toc-team-contribution" class="nav-link" data-scroll-target="#team-contribution">Team contribution</a></li>
+  <li><a href="#peer-feedback" id="toc-peer-feedback" class="nav-link" data-scroll-target="#peer-feedback">Peer Feedback</a></li>
+  <li><a href="#grading-rubric" id="toc-grading-rubric" class="nav-link" data-scroll-target="#grading-rubric">Grading rubric</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7">Project</h1>
+
+</header>
+
+<section id="the-reddit-archive-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-reddit-archive-dataset">The Reddit Archive dataset</h2>
+<p>Your team will work with a subset of the <em>Reddit Archive data</em>. This dataset used to be publicly available until <a href="https://en.wikipedia.org/wiki/2023_Reddit_API_controversy">Reddit made changes to its API terms of service</a>. The time period that you will be working with is before the change in API terms.</p>
+<p>The data you will use spans January 2022 to March 2023. There are two datasets that we are making available to you:</p>
+<ul>
+<li>submissions: 412 GB of plain-text json files representing 109 million entries</li>
+<li>comments: 918 GB of plain-text json files representing 701 entries</li>
+</ul>
+<p>For ease of use, both datasets have been pre-processed:</p>
+<ul>
+<li>The number of original fields/columns was reduced</li>
+<li>The original Unix timestamp values were converted to actual timestamps</li>
+<li>The original text JSON files were saved as parquet</li>
+</ul>
+<p>The available parquet dataset sizes are 14 GB for submissions and 95 GB for comments. For a sneak peek of the original data, you can <a href="sample.zip">download a sample.</a></p>
+<p>This is a very rich dataset and it is up to you to decide how you are going to use it. You will select one or more topics of interest to explore and use the Reddit data <strong>and one or more external datasets</strong> to perform a meaningful analysis.</p>
+<p>We recommend you read <a href="https://ojs.aaai.org/index.php/ICWSM/article/download/7347/7201/">this paper</a> which talks about the dataset, and you may want to look at <a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=pushshift+reddit&amp;btnG=">several papers written about or using the Reddit data</a> for inspiration.</p>
+</section>
+<section id="tools" class="level2">
+<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<p>You will use a Serverless Spark Cluster in Azure or a Spark Processing Job in Sagemaker to analyze, transform, and process your data and create one or more analytical datasets. We will provide specific instructions on how to access the data in both Azure and AWS.</p>
+<p>Develop your Spark code similar to how it has been discussed in class:</p>
+<ul>
+<li>Iterate quickly in a local notebook</li>
+<li>Scale up to a small cluster to ensure your code still works</li>
+<li>Productionalize with a larger cluster or remote processing job to run your full pipeline.</li>
+</ul>
+<p>Smaller derivative data sets can be processed locally if needed for plotting or reporting.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>In every project as data scientists, in addition to doing modeling and machine learning work, you will also be responsible (either individually or as part of a team) for providing the following as part of a project:</p>
+<ul>
+<li><strong>Findings:</strong> what does the data say?</li>
+<li><strong>Conclusions:</strong> what is your interpretation of the data?</li>
+<li><strong>Recommendations:</strong> what can be done to address the question/problem at hand</li>
+</ul>
+<p>Your analyses in this project will focus on the first two above. Your work must provide the audience with an understanding of the topic you are analyzing, presenting, and discussing. The objective is to find a topic of interest, work with the data, and present it to an audience that may not know very much about the subject using a data-driven approach.</p>
+</section>
+<section id="milestones" class="level2">
+<h2 class="anchored" data-anchor-id="milestones">Milestones</h2>
+<p>The project will be executed over several milestones, and each one has a specific set of requirements. There are four major milestones and a feedback deliverable (click on each one for the appropriate instructions and description):</p>
+<ol type="1">
+<li><a href="eda.html">Milestone 1: Define the questions and Exploratory Data Analysis</a></li>
+<li><a href="nlp.html">Milestone 2: NLP and external data overlay</a></li>
+<li><a href="feedback.html">Peer Feedback: Give and receive peer feedback</a></li>
+<li><a href="ml.html">Milestone 3: Machine Learning</a></li>
+<li><a href="final.html">Milestone 4: Final delivery</a> [TO BE RELEASED SOON]</li>
+</ol>
+<p>All of your work will be done within the team GitHub repository, and each milestone will be tagged with a specific <a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository">release tag</a> by the due date.</p>
+<ol type="1">
+<li>Milestone 1 (EDA): will be tagged <code>v0.1-eda</code></li>
+<li>Milestone 2 (NLP): will be tagged <code>v0.2-nlp</code></li>
+<li>Milestone 3 (ML): will be tagged <code>v0.3-ml</code></li>
+<li>Milestone 4 (Final): will be tagged <code>v1.0-final</code></li>
+</ol>
+</section>
+<section id="team-repository-structure" class="level2">
+<h2 class="anchored" data-anchor-id="team-repository-structure">Team repository structure</h2>
+<p>All of your work will be done within your <em>team’s GitHub repository</em>. Milestone submissions will happen by tagging specific commits.</p>
+<p>You will work within an <strong>organized</strong> repository and apply coding and development best practices. The repository has the following structure:</p>
+<pre><code>├── README.md
+├── code
+├── data
+├── docs
+└── website-source</code></pre>
+<p>Additional structure specifications for other components of the project can be found in the <a href="https://gu-dsan.github.io/6000-fall-2023/project/website.html">Website guidance</a>.</p>
+<section id="description" class="level3">
+<h3 class="anchored" data-anchor-id="description">Description</h3>
+<ul>
+<li>The <code>code/</code> directory is where you will write all of your notebooks and scripts. You will have a combination of Pyspark and Python notebooks, and one sub-directory per major task area. You may add additional sub-directories as needed to modularize your development.</li>
+<li>The <code>data/</code> directory should contain your (small) data files and should have multiple sub-directories (i.e.&nbsp;raw, processed, analytical, etc.) as needed. <strong>No large datasets are permitted</strong></li>
+<li>The <code>docs/</code> folder should contain your website, with the source code for the website residing in <code>website-source/</code>. This can then be deployed using <a href="https://pages.github.com">Github Pages</a> if you so choose.</li>
+</ul>
+</section>
+<section id="code" class="level3">
+<h3 class="anchored" data-anchor-id="code">Code</h3>
+<ul>
+<li>Your code files must be well-organized</li>
+<li>Do not work in a messy repository and then try to clean it up</li>
+<li>In notebooks, use Markdown cells to explain what you are doing and the decisions you are making</li>
+<li>Do not write monolithic Notebooks or scripts</li>
+<li>Modularize your code (a script should do a single task)</li>
+<li>Use code comments so others can understand and leverage your code in the future</li>
+<li>Use functions to promote code reuse</li>
+</ul>
+</section>
+</section>
+<section id="team-contribution" class="level2">
+<h2 class="anchored" data-anchor-id="team-contribution">Team contribution</h2>
+<p>All team members must contribute to the project equally and fairly. Individual team member contributions will be assessed through a) the count and content of commits, and b) a peer evaluation form. <strong>If peer evaluations indicate that students within a team are not contributing equally, those students will receive a grade penalty and a lower grade than the rest of their team.</strong></p>
+</section>
+<section id="peer-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="peer-feedback">Peer Feedback</h2>
+<ul>
+<li>Giving feedback: Each group will review one other group’s EDA deliverable. Criteria will be provided as the basis of the evaluation. The deliverable is a single word document that is provided to the team receiving feedback.</li>
+<li>Receiving feedback: Each group will receive feedback from another group. The group receiving feedback will email the group providing feedback with their EDA deliverable.</li>
+</ul>
+</section>
+<section id="grading-rubric" class="level2">
+<h2 class="anchored" data-anchor-id="grading-rubric">Grading rubric</h2>
+<p>The project will be evaluated using the following high-level criteria:</p>
+<ul>
+<li>Level of analytical rigor at the graduate student level</li>
+<li>Level of technical approach</li>
+<li>Appropriate use of tools</li>
+<li>Quality and clarity of your writing and overall presentation</li>
+</ul>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The project milestones are cumulative. Therefore, we will grade the project after the final submission with a holistic project rubric. We will qualitatively grade the milestones, and we will provide feedback and a trending grade with each milestone. It is up to you to incorporate the feedback provided. If your milestone trending grade is lower than you expected, and you do not incorporate the feedback we provide for improvement, do not expect your final project grade to improve.</p>
+</div>
+</div>
+<ul>
+<li>If a deliverable exceeds the requirements and expectations, that is considered A level work.</li>
+<li>If a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.</li>
+<li>If a deliverable does not meet the requirements, that is considered B or lesser level work.</li>
+</ul>
+<p>Deductions will be made for any of the following reasons:</p>
+<ul>
+<li>There is a lack of analytical rigor:
+<ul>
+<li>Analytical decisions are not justified</li>
+<li>Analysis is too simplistic</li>
+</ul></li>
+<li>Visualizations or tables are not professionally formatted</li>
+<li>Big data files included in the repository</li>
+<li>Instructions are not followed</li>
+<li>There are missing sections of the deliverable</li>
+<li>The overall presentation and/or writing is sloppy</li>
+<li>There are no comments in your code</li>
+<li>There are absolute filename links in your code</li>
+<li>The repository structure is sloppy</li>
+<li>Files are named incorrectly (wrong extensions, wrong case, etc.)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2024 by <a href="https://analytics.georgetown.edu/faculty-staff/">Amit Arora, Marck Vaisman, Abhijit Dasgupta</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan/6000-fall-2024.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

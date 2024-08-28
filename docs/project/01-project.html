@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
+
+<title>DSAN 6000 - Milestone 1: Frame your analysis and EDA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../files/img/dsan6000-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
+</script>
+
+
+<meta property="og:title" content="DSAN 6000 - Milestone 1: Frame your analysis and EDA">
+<meta property="og:description" content="You should thoroughly read through the entire assignment before beginning your work! Don’t start costly cloud resources until you are ready.">
+<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta property="og:site-name" content="DSAN 6000">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="DSAN 6000 - Milestone 1: Frame your analysis and EDA">
+<meta name="twitter:description" content="You should thoroughly read through the entire assignment before beginning your work! Don’t start costly cloud resources until you are ready.">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta name="twitter:creator" content="@aarora79">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSAN 6000</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.html">
+ <span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../labs/index.html">
+ <span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../project/index.html" aria-current="page">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources/index.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dsan6000fall2024.slack.com"><i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Milestone 1: Frame your analysis and EDA</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Overview</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/index.html" class="sidebar-item-text sidebar-link">Project</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Project contents</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/01-project.html" class="sidebar-item-text sidebar-link active">1: EDA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/02-project.html" class="sidebar-item-text sidebar-link">2: NLP</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/03-project.html" class="sidebar-item-text sidebar-link">3: Peer feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/04-project.html" class="sidebar-item-text sidebar-link">4: ML</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/05-project.html" class="sidebar-item-text sidebar-link">5: Final</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/06-project.html" class="sidebar-item-text sidebar-link">6: Website</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#first-time-setup" id="toc-first-time-setup" class="nav-link active" data-scroll-target="#first-time-setup">First time setup</a></li>
+  <li><a href="#submission-details" id="toc-submission-details" class="nav-link" data-scroll-target="#submission-details">Submission Details</a>
+  <ul class="collapse">
+  <li><a href="#minimum-requirements" id="toc-minimum-requirements" class="nav-link" data-scroll-target="#minimum-requirements">Minimum requirements:</a></li>
+  </ul></li>
+  <li><a href="#submitting-the-assignment" id="toc-submitting-the-assignment" class="nav-link" data-scroll-target="#submitting-the-assignment">Submitting the Assignment</a></li>
+  <li><a href="#grading-rubric" id="toc-grading-rubric" class="nav-link" data-scroll-target="#grading-rubric">Grading Rubric</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7">Milestone 1: Frame your analysis and EDA</h1>
+
+</header>
+
+<p><strong>You should thoroughly read through the entire assignment before beginning your work! Don’t start costly cloud resources until you are ready.</strong></p>
+<p><strong>Code and data saved locally on the cluster will be lost when the cluster terminates. If you want to keep data, you must store it in a blob storage location. You must store the results (i.e.&nbsp;any plots, csv files) in the data folder of this repo.</strong></p>
+<section id="first-time-setup" class="level2">
+<h2 class="anchored" data-anchor-id="first-time-setup">First time setup</h2>
+<p><strong>THIS SECTION IS IN PROGRESS AS INFRASTRUCTURE IS BEING FINALIZED</strong></p>
+<!-- If this is your first time working on this repo, then you would need to perform the following steps. The details of how these steps are to be performed are available [ADB Setup guide](adb_setup.md). -->
+<p>If all of the following steps are successful then it means your environment is set up correctly and you are all set to begin your project.</p>
+<ol type="1">
+<li><p>Set up your git credentials.</p></li>
+<li><p>Create a shared cluster for your team.</p></li>
+<li><p>Clone this repo.</p></li>
+<li><p>Create a notebook, call it <code>project_eda</code>.</p></li>
+<li><p>Follow the example notebook steps to interact with the data in your preferred computing environment.</p></li>
+<li><p>Check the changed files (this would be the <code>project_eda</code> notebook) in the repo.</p></li>
+<li><p>Export the <code>project_eda</code> notebook to <code>IPython Notebook</code> and check in the <code>project_eda.ipynb</code> file in the repo.</p></li>
+</ol>
+</section>
+<section id="submission-details" class="level2">
+<h2 class="anchored" data-anchor-id="submission-details">Submission Details</h2>
+<p>In this assignment, you will start working with your Reddit data, decide on the scope of your project, and outline your 10 business goals.</p>
+<p>You will use the file <code>project_starter_script.py</code> to get your Reddit data from Azure Blob Storage, note that you do not need to copy the data to your local environment. The <code>project_starter_script.py</code> notebook also contains sample code for a basic EDA example and saves the results in the local repo so that it can be checked in. It also has an example of saving intermediate big data.</p>
+<p>You will develop EDA notebook(s) using PySpark. All your big data analysis must be in PySpark. In this assignment, you will examine the dataset, make transformations of the data, produce summary statistics and graphs of the data, and answer some of your business goals that only require exploratory work. You may choose to put all your work into one notebook or you may choose to separate it. Either is fine!</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Output data sizes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>REMEMBER!!! All the output you are making MUST MUST MUST be small data. Can you make a graph of all 1 million+ rows of spark data? NO! You MUST MUST MUST take that big data and collapse it into reasonable data to put into a table or a graph. You should never collect more than ~10,000 rows back to you.</p>
+</div>
+</div>
+<section id="minimum-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-requirements">Minimum requirements:</h3>
+<ol type="1">
+<li><p>Make a project plan for your Reddit data with 10 topics that you plan on exploring.</p>
+<p><b>Propose 10 different avenues of analysis for your data.</b></p>
+<p>Any good data science project can be broken into at least 10 topics. These topics should vary in complexity to include exploratory (2-3), NLP (3-5), and ML (3-5) ideas. Each entry of your 10 must include the “business goal” as well as the “technical proposal” for finding the answers. We want to see the “Executive Summary” view of the questions as well as the “Data Science” plans for making it happen. The business goal cannot have any technical language and must be accessible to an audience without a data science background.</p>
+<blockquote class="blockquote">
+<p>Example question based on the data science subreddit https://www.reddit.com/r/datascience/Links to an external site.:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>Business goal</code>: Determine the most popular programming languages and the most effective programming languages used to conduct geospatial data analysis.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>Technical proposal</code>: Use NLP to identify posts that mention geospatial terms and one or more programming languages. Conduct counts of which programming languages are mentioned the most along with these geospatial terms. Analyze counts over time to check for major deviations and identify the leaders. Conduct sentiment analysis of the posts to assign positive or negative values to programming languages. Present findings for volume metrics and sentiment analysis for the top 5 programming languages to answer the “popular” and “effective” insights for geospatial analysis.</p>
+</blockquote>
+<p>Each business goal must be 1-2 sentences while each technical proposal must be at least 3 sentences. There must be enough details about your plans so you can get feedback.<b> Include these business requirements in a markdown cell in the <code>project_eda</code> notebook.</b></p></li>
+<li><p>Conduct your exploratory data analysis.</p></li>
+</ol>
+<ul>
+<li><p>Report on the basic info about your dataset. What are the interesting columns? What is the schema? How many rows do you have? etc. etc.</p></li>
+<li><p>Conduct basic data quality checks! Make sure there are no missing values, check the length of the comments, and remove rows of data that might be corrupted. Even if you think all your data is perfect, you still need to demonstrate that with your analysis.</p></li>
+<li><p>Produce at least <strong>5 interesting graphs</strong> about your dataset. Think about the dimensions that are interesting for your Reddit data! There are millions of choices. Make sure your graphs are connected to your business questions.</p></li>
+<li><p>Produce at least <strong>3 interesting summary tables</strong> about your dataset. You can decide how to split up your data into categories, time slices, etc. There are infinite ways you can make summary statistics. Be unique, creative, and interesting!</p></li>
+<li><p>Use data transformations to make <strong>AT LEAST 3 new variables</strong> that are relevant to your business questions. We cannot be more specific because this depends on your project and what you want to explore!</p></li>
+<li><p>Implement regex searches for specific keywords of interest to produce dummy variables and then make statistics that are related to your business questions. Note, that you DO NOT have to do textual cleaning of the data at this point. The next assignment on NLP will focus on the textual cleaning and analysis aspect.</p></li>
+<li><p>Find some type of external data to join onto your Reddit data. Don’t know what to pick? Consider a time-related dataset. Stock prices, game details over time, active users on a platform, sports scores, covid cases, etc., etc. While you may not need to join this external data with your entire dataset, you must have at least one analysis that connects to external data. You do not have to join the external data and analyze it yet, just find it.</p></li>
+<li><p>If you are planning to make any custom datasets that are derived from your Reddit data, make them now. These datasets might be graph-focused, or maybe they are time series focused, it is completely up to you!</p></li>
+</ul>
+<p>Create a website using your <code>project_eda</code> notebook. This could be as simple as publishing your notebook on GitHub pages.</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/publish-jupiter-notebook-file-as-web-app/">Here</a> is a simple example that describes how to publish a notebook to GitHub.</li>
+<li>When you publish to GitHub, it will give you a warning that this repo is private but the published website would be Public, which is OK.</li>
+</ul>
+<p>We expect you to put <strong><em>significant</em></strong> effort into this assignment. This assignment only requires the Jupyter notebooks.</p>
+</section>
+</section>
+<section id="submitting-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="submitting-the-assignment">Submitting the Assignment</h2>
+<p>You will follow the submission process for all labs and assignments:</p>
+<ol type="1">
+<li>Commit and push your files</li>
+<li>Export any of the notebooks you created as IPython and/or html files, and add them to your repository from your local machine <strong>before you tag the release</strong></li>
+<li>Tag the submission release commit with the <code>v0.1-eda</code> tag by the due date</li>
+<li>Make sure to push to GitHub</li>
+<li><strong>SPECIFIC TO THIS DELIVERABLE</strong> - submit the URL for your public-facing website to the <a href="https://georgetown.instructure.com/courses/172712/assignments/958317">assignment on Canvas</a>.</li>
+</ol>
+<p>Make sure you commit <strong>only the files requested</strong>, and push your repository to GitHub!</p>
+<p>The files to be committed and pushed to the repository for this assignment are:</p>
+<ul>
+<li><code>README.md</code></li>
+<li><code>.gitignore</code></li>
+<li><code>LICENSE</code></li>
+<li><code>code/project_starter_script.py</code></li>
+<li><code>code/project_eda.ipynb</code></li>
+<li><code>img/*</code></li>
+<li><code>data/*</code></li>
+</ul>
+<p><b>Make sure that your <code>project_eda</code> notebook includes both a list of the business problems you are solving and the charts and summary tables as described above in the minimum requirements section.</b></p>
+</section>
+<section id="grading-rubric" class="level2">
+<h2 class="anchored" data-anchor-id="grading-rubric">Grading Rubric</h2>
+<p>Many of the assignments you will work on are open-ended. Grading is generally holistic, meaning that there will not always be specific point value for individual elements of a deliverable. Each deliverable submission is unique and will be compared to all other submissions.</p>
+<ul>
+<li>If a deliverable exceeds the requirements and expectations, that is considered A level work.</li>
+<li>If a deliverable just meets the requirements and expectations, that is considered A-/B+ level work.</li>
+<li>If a deliverable does not meet the requirements, that is considered B or lesser level work.</li>
+</ul>
+<p>All deliverables must meet the following general requirements, in addition to the specific requirements of each deliverable:</p>
+<p>If your submission meets or exceeds the requirements, is creative, is well thought-out, has proper presentation and grammar, and is at the graduate student level, then the submission will get full credit. Otherwise, partial credit will be given and deductions may be made for any of the following reasons:</p>
+<p>Points will be deducted for any of the following reasons:</p>
+<ul>
+<li>Any instruction is not followed</li>
+<li>There are missing sections of the deliverable</li>
+<li>The overall presentation and/or writing is sloppy</li>
+<li>There are no comments in your code</li>
+<li>There are files in the repository other than those requested</li>
+<li>There are absolute filename links in your code</li>
+<li>The repository structure is altered in any way</li>
+<li>Files are named incorrectly (wrong extensions, wrong case, etc.)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2024 by <a href="https://analytics.georgetown.edu/faculty-staff/">Amit Arora, Marck Vaisman, Abhijit Dasgupta</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan/6000-fall-2024.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
