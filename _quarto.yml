@@ -26,15 +26,15 @@ website:
   site-url: "https://aa1603.georgetown.edu/dsan6000"
   google-analytics: G-N2B9K684GE
 
-  favicon: "/files/img/dsan6000-logo.png"
+  favicon: "files/img/dsan6000-logo.png"
 
   twitter-card:
-    image: "/files/img/dsan6000-logo.png"
+    image: "files/img/dsan6000-logo.png"
     card-style: summary_large_image
     creator: "@aarora79"
 
   open-graph:
-    image: "/files/img/dsan6000-logo.png"
+    image: "files/img/dsan6000-logo.png"
     locale: en_US
 
   navbar:
@@ -53,7 +53,7 @@ website:
       - text: "Resources"
         file: resources/index.qmd
       - icon: slack
-        href: "https://georgetown-ime2320.slack.com"
+        href: "https://dsan6000fall2024.slack.com"
         aria-label: Slack
 
   sidebar:
