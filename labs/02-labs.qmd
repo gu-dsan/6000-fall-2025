@@ -75,40 +75,37 @@ If you already had an AWS account prior to logging into AWS Academy you would ne
 
 The Amazon SageMaker Studio is one of the data science tools that we will be using during this course. We will set a SageMaker Studio domain and start a Jupyter Notebook as part of this task so that we can use it for future labs.
 
+::: callout-note
+
+1. All screenshots on this page are clickable i.e. you can click on these to see an enlarged version of the screenshot for better clarity.
+
+1. Pay special attention to portions of the screenshot highlighted in a red rectangle, they usually correspond to non-default options. If you miss any of these your SageMaker domain would not be created correctly and you may have to repeat the entire procedure.
+:::
+
 1. Navigate to SageMaker Studio.
 [![](img/1-landing-page.png)](img/1-landing-page.png)
 
 1. Select Amazon Sagemaker, Click on Domains on the side bar
 [![](img/2-domain-page.png)](img/2-domain-page.png)
 
+1. Select **Set up for organizations**.
+[![](img/2-1-domain-page.png)](img/2-1-domain-page.png)
+
 1. Click on Create Domain, This screen should pop up!
 [![](img/3-domain-setup.png)](img/3-domain-setup.png)
 
 1. Enter a name for your domain as shown above. Click on next
 
-1. Click on the arrow under Canvas and Disable everything related to canvas as shown in the screenshot
-[![](img/5-canvas-setup.png)](img/5-canvas-setup.png)
+1. Select **Use an existing role** and then select **LabRole**.
+[![](img/sm-iam.png)](img/sm-iam.png)
 
-::: callout-important
+1. On the next page, do the following:
 
-Under `Canvas Ready to use models` configuration, select `Use an Existing execution role` and paste the `ARN` of your `LabRole`. To do this, open your AWS console in another tab, while keeping this tab open, Search for IAM and follow the steps below.
-:::
+    - **Disable both settings under MLOps configuration**.
+    - Under **Canvas ready to use model configuration** section, select "Use existing role" -> "Custom IAM role ARN" and in the edit box type the ARN of the **LabRole** role. The ARN of the **LabRole** is of the form `arn:aws:iam::your_account_id:role/LabRole`, copy paste this string in the **Custom IAM role ARN** box and then replace `your_account_id` with the account id of your AWS account. You can find the account id of your AWS account in the top right corner of your browser window (it is highlighted in the red rectangle in this screenshot, enter it without the "-", for example `987733172745`).
 
-1. Go to IAM Dashboard.
-[![](img/7-IAM-setup.png)](img/7-IAM-setup.png)
-
-1. Click on Roles on the sidebar, then select **LabRole**
-[![](img/8-IAM-Role-Select.png)](img/8-IAM-Role-Select.png)
-
-1. You should see ARN on the top. Copy the ARN by clicking the copy button
-[![](img/9-IAM-ARN-Select.png)](img/9-IAM-ARN-Select.png)
-
-1. You should see this!
-[![](img/10-IAM-ARN-Copy.png)](img/10-IAM-ARN-Copy.png)
-
-1. Go back to the setup page. Paste the ARN As shown in Step-5. Click on Next
-[![](img/11-Setup-next.png)](img/11-Setup-next.png)
-
+    [![](img/sm-configure-apps.png)](img/sm-configure-apps.png)
+    
 1. Follow the screenshot
 [![](img/12-Setup-step-4.png)](img/12-Setup-step-4.png)
 

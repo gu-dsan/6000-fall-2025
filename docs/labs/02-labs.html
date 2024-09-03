@@ -338,32 +338,39 @@ Note
 <section id="task-2-create-a-sagemaker-studio-domain-and-notebook" class="level1">
 <h1>Task 2: Create a SageMaker Studio Domain and Notebook</h1>
 <p>The Amazon SageMaker Studio is one of the data science tools that we will be using during this course. We will set a SageMaker Studio domain and start a Jupyter Notebook as part of this task so that we can use it for future labs.</p>
-<ol type="1">
-<li><p>Navigate to SageMaker Studio. <a href="img/1-landing-page.png"><img src="img/1-landing-page.png" class="img-fluid"></a></p></li>
-<li><p>Select Amazon Sagemaker, Click on Domains on the side bar <a href="img/2-domain-page.png"><img src="img/2-domain-page.png" class="img-fluid"></a></p></li>
-<li><p>Click on Create Domain, This screen should pop up! <a href="img/3-domain-setup.png"><img src="img/3-domain-setup.png" class="img-fluid"></a></p></li>
-<li><p>Enter a name for your domain as shown above. Click on next</p></li>
-<li><p>Click on the arrow under Canvas and Disable everything related to canvas as shown in the screenshot <a href="img/5-canvas-setup.png"><img src="img/5-canvas-setup.png" class="img-fluid"></a></p></li>
-</ol>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Under <code>Canvas Ready to use models</code> configuration, select <code>Use an Existing execution role</code> and paste the <code>ARN</code> of your <code>LabRole</code>. To do this, open your AWS console in another tab, while keeping this tab open, Search for IAM and follow the steps below.</p>
+<ol type="1">
+<li><p>All screenshots on this page are clickable i.e.&nbsp;you can click on these to see an enlarged version of the screenshot for better clarity.</p></li>
+<li><p>Pay special attention to portions of the screenshot highlighted in a red rectangle, they usually correspond to non-default options. If you miss any of these your SageMaker domain would not be created correctly and you may have to repeat the entire procedure.</p></li>
+</ol>
 </div>
 </div>
 <ol type="1">
-<li><p>Go to IAM Dashboard. <a href="img/7-IAM-setup.png"><img src="img/7-IAM-setup.png" class="img-fluid"></a></p></li>
-<li><p>Click on Roles on the sidebar, then select <strong>LabRole</strong> <a href="img/8-IAM-Role-Select.png"><img src="img/8-IAM-Role-Select.png" class="img-fluid"></a></p></li>
-<li><p>You should see ARN on the top. Copy the ARN by clicking the copy button <a href="img/9-IAM-ARN-Select.png"><img src="img/9-IAM-ARN-Select.png" class="img-fluid"></a></p></li>
-<li><p>You should see this! <a href="img/10-IAM-ARN-Copy.png"><img src="img/10-IAM-ARN-Copy.png" class="img-fluid"></a></p></li>
-<li><p>Go back to the setup page. Paste the ARN As shown in Step-5. Click on Next <a href="img/11-Setup-next.png"><img src="img/11-Setup-next.png" class="img-fluid"></a></p></li>
+<li><p>Navigate to SageMaker Studio. <a href="img/1-landing-page.png"><img src="img/1-landing-page.png" class="img-fluid"></a></p></li>
+<li><p>Select Amazon Sagemaker, Click on Domains on the side bar <a href="img/2-domain-page.png"><img src="img/2-domain-page.png" class="img-fluid"></a></p></li>
+<li><p>Select <strong>Set up for organizations</strong>. <a href="img/2-1-domain-page.png"><img src="img/2-1-domain-page.png" class="img-fluid"></a></p></li>
+<li><p>Click on Create Domain, This screen should pop up! <a href="img/3-domain-setup.png"><img src="img/3-domain-setup.png" class="img-fluid"></a></p></li>
+<li><p>Enter a name for your domain as shown above. Click on next</p></li>
+<li><p>Select <strong>Use an existing role</strong> and then select <strong>LabRole</strong>. <a href="img/sm-iam.png"><img src="img/sm-iam.png" class="img-fluid"></a></p></li>
+<li><p>On the next page, do the following:</p>
+<ul>
+<li><strong>Disable both settings under MLOps configuration</strong>.</li>
+<li>Under <strong>Canvas ready to use model configuration</strong> section, select “Use existing role” -&gt; “Custom IAM role ARN” and in the edit box type the ARN of the <strong>LabRole</strong> role. The ARN of the <strong>LabRole</strong> is of the form <code>arn:aws:iam::your_account_id:role/LabRole</code>, copy paste this string in the <strong>Custom IAM role ARN</strong> box and then replace <code>your_account_id</code> with the account id of your AWS account. You can find the account id of your AWS account in the top right corner of your browser window (it is highlighted in the red rectangle in this screenshot, enter it without the “-”, for example <code>987733172745</code>).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/sm-configure-apps.png"><img src="img/sm-configure-apps.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div></li>
 <li><p>Follow the screenshot <a href="img/12-Setup-step-4.png"><img src="img/12-Setup-step-4.png" class="img-fluid"></a></p></li>
 <li><p>Click on next. <a href="img/13-Setup-step4-next.png"><img src="img/13-Setup-step4-next.png" class="img-fluid"></a></p></li>
 <li><p>Select Public Internet Access, follow the screenshot and click on next. <strong><em>Note that the subnet and security group ids for your account would be different from what you see in the screenshot. Select all the subnets in the drop down (we will discuss in class why this is required).</em></strong> <a href="img/14-VPC-setup.png"><img src="img/14-VPC-setup.png" class="img-fluid"></a></p></li>
