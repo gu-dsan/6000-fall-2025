@@ -199,15 +199,12 @@ We will analyze the a simple dataset using our freshly created SageMaker Studio 
 
 1. The notebook downloads the dataset from your S3 bucket and has some tasks for you to do. **Complete tasks 2, 3, 4 and 5 marked in the notebook and checkin the completed notebook in the git repo**.
 
-## Shutting down SageMaker Studio
+## Shutting down SageMaker Spaces
 
 It is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.
 
-1. Click on _File -> Shutdown_.
-#[![](img/aws-create-sm12.png)](img/aws-create-sm12.png)
-
-1. Select _Shutdown All_.
-#[![](img/aws-create-sm13.png)](img/aws-create-sm13.png)
+1. Navigate back to Sagemaker Studio, Select Jupyter Lab, Click on Stop
+[![](img/32-Jupyter-Shutdown.png)](img/32-Jupyter-Shutdown.png)
 
 ::: callout-important
 
@@ -219,6 +216,34 @@ At the end of this lab:
 
 1. Make sure you have ended the lab in AWS Educate by pressing the _End Lab_ button.
 :::
+
+## (Optional) Using VSCode Instead of Jupyter Notebooks
+
+
+SageMaker Studio Has added support for VSCode and the steps to run it are below:
+
+1. Navigate back to Sagemaker Studio, Select Code Editor, Click on Create Code Editor Space
+[![](img/33-VSC-1.png)](img/33-VSC-1.png)
+
+1. Follow the screenshot and click on Create Space
+[![](img/34-VSC-2.png)](img/34-VSC-2.png)
+
+1. Now select the instance type you want to use. Click on Run Space. Wait for a while then click on Open Code Editor.
+
+[![](img/35-VSC-3.png)](img/35-VSC-3.png)
+
+1. Now you can start using VS Code as you do on your local machine.
+
+[![](img/36-VSC-4.png)](img/36-VSC-4.png)
+
+::: callout-important
+
+This service also has to be shutdown as jupyter notebook. Since you only have 50$, not shutting a notebook down, can cost upto 20$ a day for instances such as `ml.g4dn.xlarge`. It is very important to shutdown the space after working on it. If you spend 50$ on this account, **YOU WILL LOSE ALL DATA**. NO, you cannot recover the data after the account is shutdown. Therefore it is recommended to make regular commits to github as you work on your assignments or labs.
+:::
+
+1. To stop Code Editor Space, Go back to Sagemaker Studio, Click on Code editor.
+[![](img/37-VSC-stop)](img/37-VSC-stop)
+
 
 ## GitHub Classroom
 

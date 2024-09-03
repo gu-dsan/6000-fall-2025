@@ -72,6 +72,7 @@ gtag('js', new Date());
 gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="DSAN 6000 - Lab 2 Amazon Web Services (AWS) Setup Instructions">
 <meta property="og:description" content="{{< var course.number >}} {{< var course.semester >}}">
@@ -475,12 +476,11 @@ Note
 <li><p>Once the repo is cloned, double click on the repo folder and then on the <em>analytics.ipynb</em> file in the repo. This will open the Jupyter notebook in a SageMaker Studio Notebook. <a href="img/aws-sm-nb1.png"><img src="img/aws-sm-nb1.png" class="img-fluid"></a></p></li>
 <li><p>The notebook downloads the dataset from your S3 bucket and has some tasks for you to do. <strong>Complete tasks 2, 3, 4 and 5 marked in the notebook and checkin the completed notebook in the git repo</strong>.</p></li>
 </ol>
-<section id="shutting-down-sagemaker-studio" class="level2">
-<h2 class="anchored" data-anchor-id="shutting-down-sagemaker-studio">Shutting down SageMaker Studio</h2>
+<section id="shutting-down-sagemaker-spaces" class="level2">
+<h2 class="anchored" data-anchor-id="shutting-down-sagemaker-spaces">Shutting down SageMaker Spaces</h2>
 <p>It is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.</p>
 <ol type="1">
-<li><p>Click on <em>File -&gt; Shutdown</em>. #<a href="img/aws-create-sm12.png"><img src="img/aws-create-sm12.png" class="img-fluid"></a></p></li>
-<li><p>Select <em>Shutdown All</em>. #<a href="img/aws-create-sm13.png"><img src="img/aws-create-sm13.png" class="img-fluid"></a></p></li>
+<li>Navigate back to Sagemaker Studio, Select Jupyter Lab, Click on Stop <a href="img/32-Jupyter-Shutdown.png"><img src="img/32-Jupyter-Shutdown.png" class="img-fluid"></a></li>
 </ol>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -500,6 +500,44 @@ Important
 </ol>
 </div>
 </div>
+</section>
+<section id="optional-using-vscode-instead-of-jupyter-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="optional-using-vscode-instead-of-jupyter-notebooks">(Optional) Using VSCode Instead of Jupyter Notebooks</h2>
+<p>SageMaker Studio Has added support for VSCode and the steps to run it are below:</p>
+<ol type="1">
+<li><p>Navigate back to Sagemaker Studio, Select Code Editor, Click on Create Code Editor Space <a href="img/33-VSC-1.png"><img src="img/33-VSC-1.png" class="img-fluid"></a></p></li>
+<li><p>Follow the screenshot and click on Create Space <a href="img/34-VSC-2.png"><img src="img/34-VSC-2.png" class="img-fluid"></a></p></li>
+<li><p>Now select the instance type you want to use. Click on Run Space. Wait for a while then click on Open Code Editor.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/35-VSC-3.png"><img src="img/35-VSC-3.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<ol type="1">
+<li>Now you can start using VS Code as you do on your local machine.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/36-VSC-4.png"><img src="img/36-VSC-4.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This service also has to be shutdown as jupyter notebook. Since you only have 50<span class="math inline">\(, not shutting a notebook down, can cost upto 20\)</span> a day for instances such as <code>ml.g4dn.xlarge</code>. It is very important to shutdown the space after working on it. If you spend 50$ on this account, <strong>YOU WILL LOSE ALL DATA</strong>. NO, you cannot recover the data after the account is shutdown. Therefore it is recommended to make regular commits to github as you work on your assignments or labs.</p>
+</div>
+</div>
+<ol type="1">
+<li>To stop Code Editor Space, Go back to Sagemaker Studio, Click on Code editor. <a href="img/37-VSC-stop"><img src="img/37-VSC-stop.png" class="img-fluid"></a></li>
+</ol>
 </section>
 <section id="github-classroom" class="level2">
 <h2 class="anchored" data-anchor-id="github-classroom">GitHub Classroom</h2>

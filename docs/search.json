@@ -630,11 +630,18 @@
     "text": "Launching Sagemaker Studio\n\nClick on Domains on the sidebar. Select your domain and click on User Profiles.\n\n\n\n\n\n\n\nSelect launch and Click on Studio\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThis is called a managed service, you get to work on the notebook without having to deal with the creation steps for the underlying infrastructure. You can easily change this configuration as per the requirements of the analytics/machine learning job you are running.\n\n\n\nThis should open up\n\n\n\n\n\n\n\nSelect JupyterLab and Click on Create JupyterLab Space \nA Jupyter Notebook session should open up"
   },
   {
-    "objectID": "labs/02-labs.html#shutting-down-sagemaker-studio",
-    "href": "labs/02-labs.html#shutting-down-sagemaker-studio",
+    "objectID": "labs/02-labs.html#shutting-down-sagemaker-spaces",
+    "href": "labs/02-labs.html#shutting-down-sagemaker-spaces",
     "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
-    "section": "Shutting down SageMaker Studio",
-    "text": "Shutting down SageMaker Studio\nIt is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.\n\nClick on File -> Shutdown. #\nSelect Shutdown All. #\n\n\n\n\n\n\n\nImportant\n\n\n\nAt the end of this lab:\n\nMake sure you shutdown SageMaker Studio.\nMake sure you shutdown EC2 VM.\nMake sure you have ended the lab in AWS Educate by pressing the End Lab button."
+    "section": "Shutting down SageMaker Spaces",
+    "text": "Shutting down SageMaker Spaces\nIt is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.\n\nNavigate back to Sagemaker Studio, Select Jupyter Lab, Click on Stop \n\n\n\n\n\n\n\nImportant\n\n\n\nAt the end of this lab:\n\nMake sure you shutdown SageMaker Studio.\nMake sure you shutdown EC2 VM.\nMake sure you have ended the lab in AWS Educate by pressing the End Lab button."
+  },
+  {
+    "objectID": "labs/02-labs.html#optional-using-vscode-instead-of-jupyter-notebooks",
+    "href": "labs/02-labs.html#optional-using-vscode-instead-of-jupyter-notebooks",
+    "title": "Lab 2 Amazon Web Services (AWS) Setup Instructions",
+    "section": "(Optional) Using VSCode Instead of Jupyter Notebooks",
+    "text": "(Optional) Using VSCode Instead of Jupyter Notebooks\nSageMaker Studio Has added support for VSCode and the steps to run it are below:\n\nNavigate back to Sagemaker Studio, Select Code Editor, Click on Create Code Editor Space \nFollow the screenshot and click on Create Space \nNow select the instance type you want to use. Click on Run Space. Wait for a while then click on Open Code Editor.\n\n\n\n\n\n\n\nNow you can start using VS Code as you do on your local machine.\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis service also has to be shutdown as jupyter notebook. Since you only have 50\\(, not shutting a notebook down, can cost upto 20\\) a day for instances such as ml.g4dn.xlarge. It is very important to shutdown the space after working on it. If you spend 50$ on this account, YOU WILL LOSE ALL DATA. NO, you cannot recover the data after the account is shutdown. Therefore it is recommended to make regular commits to github as you work on your assignments or labs.\n\n\n\nTo stop Code Editor Space, Go back to Sagemaker Studio, Click on Code editor."
   },
   {
     "objectID": "labs/02-labs.html#github-classroom",
