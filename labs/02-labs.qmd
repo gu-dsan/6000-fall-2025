@@ -197,7 +197,7 @@ We will analyze the a simple dataset using our freshly created SageMaker Studio 
 1. Once the repo is cloned, double click on the repo folder and then on the _analytics.ipynb_ file in the repo. This will open the Jupyter notebook in a SageMaker Studio Notebook.
 [![](img/aws-sm-nb1.png)](img/aws-sm-nb1.png)
 
-1. The notebook downloads the dataset from your S3 bucket and has some tasks for you to do. **Complete tasks 2, 3, 4 and 5 marked in the notebook and checkin the completed notebook in the git repo**.
+1. The notebook downloads the dataset from your GitHub and has code to create an S3 bucket in your account and copy the dataset there. There are some tasks to be completed in the noteobok. **Complete tasks marked in the notebook and checkin the completed notebook in the git repo**.
 
 ## Shutting down SageMaker Spaces
 
