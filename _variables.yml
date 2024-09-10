@@ -77,3 +77,8 @@ reading :
   dean: https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf
   rocklin: http://conference.scipy.org.s3-website-us-east-1.amazonaws.com/proceedings/scipy2015/pdfs/matthew_rocklin.pdf
   damji: https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf
+
+due_dates:
+  assignment02: "September 18, 2024"
+  assignment03: "September 25, 2024"
+  lab03: "September 18, 2024"

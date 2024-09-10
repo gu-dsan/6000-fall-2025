@@ -35,9 +35,9 @@ format:
 - Continued great use of [Slack]{style="color: red;"} {{< fa brands slack >}}
   - Nice interactions
 - Due date reminders:  
-  - Assignment 2: **Wednesday, 31st January**
-  - Lab 3: **Wednesday, 31st January**
-  - Assignment 3: **Wednesday, 7th February**
+  - Assignment 2: {{< var due_dates.assignment02 >}}
+  - Lab 3: {{< var due_dates.lab03 >}}
+  - Assignment 3: {{< var due_dates.assignment03 >}}
 
 
 ## Glossary
