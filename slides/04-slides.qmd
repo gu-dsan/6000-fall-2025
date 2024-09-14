@@ -1,6 +1,6 @@
 ---
-title: "Lecture 4"
-subtitle: "Containers & Lambda"
+title: "Lecture 5"
+subtitle: "DuckDB, Polars and file formats"
 author: "{{< var instructor.name >}}"
 institute:
 - "{{< var university.name >}}"
@@ -17,8 +17,6 @@ format:
 ---
 
 
-
-
 ## Agenda and Goals for Today
 
 :::: {.columns}
@@ -26,15 +24,11 @@ format:
 
 ### Lecture
 
-* Docker containers
-    * Background and concepts
-    * Syntax and commands
-    * Examples
-
-* Lambda/microservices
-    * Background and concepts
-    * Syntax and commands
-    * Examples
+* Distributed file systems
+* Modern file types
+* Working with large tabular data on a single node
+  * DuckDB
+  * Polars
 
 :::
 
@@ -42,9 +36,7 @@ format:
 
 ### Lab
 
-- Lambda service exploration
-- Cloud9 Setup
-- Docker Container exploration in Cloud9
+* Run a similar task with Pandas, polars and duckdb
 
 :::
 ::::
@@ -71,13 +63,20 @@ format:
 ### Look back and ahead
 
 * Continue to use Slack for questions!
-* Parallelization in Python
-* Concepts of `map` and `reduce`
-* Choosing when to re-factor/optimize code for scalability
-* **Questions on Assignment 3: Parallelization?**
+* Docker (containerization)
+* Lambda functions
+* Coming up: Spark and project
 
 :::
 ::::
 
-{{< include docker/_docker.qmd >}}
-{{< include microservices/_microservices.qmd >}}
+
+{{< include filesystems-and-filetypes/_filesystems-and-filetypes.qmd >}}
+{{< include polars/_polars.qmd >}}
+{{< include duckdb/_duckdb.qmd >}}
+
+
+
+## GitHub Classroom
+
+[GitHub Classroom Link]({{< var gh-classroom.a04 >}})

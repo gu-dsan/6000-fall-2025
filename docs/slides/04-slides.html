@@ -13,7 +13,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Amit Arora, Marck Vaisman, Abhijit Dasgupta">
-  <title>DSAN 6000 - Lecture 4</title>
+  <title>DSAN 6000 - Lecture 5</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -394,15 +394,15 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="DSAN 6000 - Lecture 4">
-<meta property="og:description" content="Containers &amp; Lambda">
+<meta property="og:title" content="DSAN 6000 - Lecture 5">
+<meta property="og:description" content="DuckDB, Polars and file formats">
 <meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
 <meta property="og:site-name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="600">
 <meta property="og:image:width" content="518">
-<meta name="twitter:title" content="DSAN 6000 - Lecture 4">
-<meta name="twitter:description" content="Containers &amp; Lambda">
+<meta name="twitter:title" content="DSAN 6000 - Lecture 5">
+<meta name="twitter:description" content="DuckDB, Polars and file formats">
 <meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -414,8 +414,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lecture 4</h1>
-  <p class="subtitle">Containers &amp; Lambda</p>
+  <h1 class="title">Lecture 5</h1>
+  <p class="subtitle">DuckDB, Polars and file formats</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -438,25 +438,18 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <div class="column" style="width:50%;">
 <h3 id="lecture">Lecture</h3>
 <ul>
-<li>Docker containers
+<li>Distributed file systems</li>
+<li>Modern file types</li>
+<li>Working with large tabular data on a single node
 <ul>
-<li>Background and concepts</li>
-<li>Syntax and commands</li>
-<li>Examples</li>
-</ul></li>
-<li>Lambda/microservices
-<ul>
-<li>Background and concepts</li>
-<li>Syntax and commands</li>
-<li>Examples</li>
+<li>DuckDB</li>
+<li>Polars</li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <h3 id="lab">Lab</h3>
 <ul>
-<li>Lambda service exploration</li>
-<li>Cloud9 Setup</li>
-<li>Docker Container exploration in Cloud9</li>
+<li>Run a similar task with Pandas, polars and duckdb</li>
 </ul>
 </div>
 </div>
@@ -480,385 +473,827 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h3 id="look-back-and-ahead">Look back and ahead</h3>
 <ul>
 <li>Continue to use Slack for questions!</li>
-<li>Parallelization in Python</li>
-<li>Concepts of <code>map</code> and <code>reduce</code></li>
-<li>Choosing when to re-factor/optimize code for scalability</li>
-<li><strong>Questions on Assignment 3: Parallelization?</strong></li>
+<li>Docker (containerization)</li>
+<li>Lambda functions</li>
+<li>Coming up: Spark and project</li>
 </ul>
 </div>
 </div>
 </section>
 <section>
-<section id="containers" class="title-slide slide level1 center">
-<h1>Containers</h1>
+<section id="filesystems" class="title-slide slide level1 center">
+<h1>Filesystems</h1>
 
 </section>
-<section id="process-isolation-and-deployment" class="slide level2">
-<h2>Process Isolation and Deployment</h2>
-<ul>
-<li>Encapsulate all the dependencies of your code</li>
-<li>Deploy your code into production in the same environment as your development space</li>
-<li>Run your code without other processes affecting your work</li>
-<li>You need virtualization!</li>
-</ul>
-</section>
-<section id="motivation" class="slide level2">
-<h2>Motivation</h2>
-<h3 id="why-should-you-care">Why should you care?</h3>
-
-<img data-src="docker/img/meme_ship_machine.png" class="r-stretch"></section>
-<section id="history-of-virtualization" class="slide level2">
-<h2>History of Virtualization</h2>
-<ul>
-<li>Two types of virtualization - hardware and software</li>
-<li>Hardware time sharing started in the late 1950s</li>
-<li>Virtualization first introduced in IBM in the 1960s</li>
-<li>VMWare started in</li>
-</ul>
-
-<img data-src="docker/img/virtualization-timeline.png" class="r-stretch"><p><a href="https://www.servethehome.com/virtualization-long-history/">link</a></p>
-</section>
-<section id="virtual-machines" class="slide level2">
-<h2>Virtual Machines</h2>
+<section id="raw-ingredients-of-storage-systems" class="slide level2">
+<h2>Raw ingredients of storage systems</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li>Hardware server is the host</li>
-<li>Multiple virtual machines can sit on the hypervisor as “guests”</li>
-<li>Pros: decades of development in VMs, multiple emulated full computers on single hardware, allows for infrastructure “lift and shift” to the cloud</li>
-<li>Cons: VM images very large (10-100s GBs), “guest” OS takes up resources, large start up cost</li>
+<li>Disk drives (magnetic HDDs or SSDs)</li>
+<li>RAM</li>
+<li>Networking and CPU</li>
+<li>Serialization</li>
+<li>Compression</li>
+<li>Caching</li>
 </ul>
-<p><a href="https://www.vmware.com/topics/glossary/content/vms-vs-containers.html">link</a></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="docker/img/vm-diagram.png"></p>
+<p><img data-src="filesystems-and-filetypes/img/fode_0602.png" height="500"></p>
 </div>
 </div>
-</section>
-<section id="containers-1" class="slide level2">
-<h2>Containers</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li>Package and run applications in isolated environment</li>
-<li>Great for production work, not as much for developmental work</li>
-<li>Docker application manages “guest” applications with a single operating system</li>
-<li>Pros: Lightweight (10-100s MBs), faster spin up time, one host can manage many more containers</li>
-<li>Cons: containers must all work with the same OS, somewhat less secure due to shared OS resources, only 10 years old</li>
-</ul>
-<p><a href="https://www.vmware.com/topics/glossary/content/vms-vs-containers.html">link</a></p>
-</div><div class="column" style="width:50%;">
-<p><img data-src="docker/img/container-diagram.png"></p>
-</div>
-</div>
-</section>
-<section id="docker-vs.-virtual-machine" class="slide level2">
-<h2>Docker vs.&nbsp;Virtual Machine</h2>
-
-<img data-src="docker/img/vm-vs-container.PNG" class="r-stretch"></section>
-<section id="docker-container-architecture" class="slide level2">
-<h2>Docker Container Architecture</h2>
-<ul>
-<li>Images are a snapshot of instructions for setup of an application environment</li>
-<li>Containers are executing applications deployed based on an image</li>
-<li>Container images become containers at runtime (Docker Engine!)</li>
-</ul>
-
-<img data-src="docker/img/Docker-Architecture.png" class="r-stretch"></section>
-<section id="containers-are-not-enough" class="slide level2">
-<h2>Containers are not enough</h2>
-
-<img data-src="docker/img/containers-dont-solve-everything.jpg" class="r-stretch"></section>
-<section id="container-lifecycle" class="slide level2">
-<h2>Container lifecycle</h2>
-<ul>
-<li>Containers (like applications) need a lifecycle</li>
-</ul>
-
-<img data-src="docker/img/container-lifecycle.png" class="r-stretch"></section>
-<section id="container-orchestration" class="slide level2">
-<h2>Container orchestration</h2>
-
-<img data-src="docker/img/container-orchestration.jpg" class="r-stretch"></section></section>
-<section>
-<section id="building-docker-images" class="title-slide slide level1 center">
-<h1>Building Docker images</h1>
-
-</section>
-<section id="docker-layers" class="slide level2">
-<h2>Docker layers</h2>
-<p>Each command to modify the environment is a layer in your build process</p>
-
-<img data-src="docker/img/docker-layers.png" class="r-stretch"></section>
-<section id="docker-base-images" class="slide level2">
-<h2>Docker base images</h2>
-<ul>
-<li>The first command in a Docker build is to call <code>FROM XXXXX</code>. This is the base image that has the core OS-level software.</li>
-<li>smaller size == faster execution</li>
-</ul>
-
-<img data-src="docker/img/docker-base-images.png" class="r-stretch"></section>
-<section id="the-storage-problem-of-containers" class="slide level2">
-<h2>The storage problem of containers</h2>
-<ul>
-<li>When containers are killed, all temporary is lost! What to do…</li>
-<li>Containers need persistent storage sometimes</li>
-<li>Docker volumes live outside the container and allow for permanent storage</li>
-</ul>
-
-<img data-src="docker/img/docker-volumes.png" class="r-stretch"></section>
-<section id="dockerfile-syntax" class="slide level2">
-<h2>Dockerfile Syntax</h2>
-<p><strong>Students explain what each command is doing</strong></p>
-<ul>
-<li>Format is always <code>INSTRUCTION arguments</code></li>
-<li><code>FROM [--platform=&lt;platform&gt;] &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</code> - Pulling the base image to start with</li>
-<li><code>RUN &lt;command&gt;</code> or <code>RUN ["executable", "param1", "param2"]</code> - Run commands of any type</li>
-<li><code>VOLUME</code> - Creates mountpoint for Docker volume</li>
-<li><code>ENV &lt;key&gt;=&lt;value&gt; ...</code> - Set environment variables for your container</li>
-<li><code>WORKDIR</code> - Sets working directory for other commands</li>
-<li><code>EXPOSE &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</code> - Open a port for the container</li>
-<li><code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] [--chmod=&lt;perms&gt;] &lt;src&gt;... &lt;dest&gt;</code> - Copies files from host file system to container file system. Note working directory matters in the container too!</li>
-<li><code>ADD</code> - Copy with a link to allow for reusing of already built layers. Helps with build speed!</li>
-</ul>
-</section>
-<section id="dockerfile-cmd-and-entrypoint" class="slide level2">
-<h2>Dockerfile CMD and ENTRYPOINT</h2>
-<ul>
-<li>Should have a purpose for your container and have it run something!</li>
-<li><code>CMD command param1 param2</code> - Final command to prepare the launching container. Typically occurs before an <code>ENTRYPOINT</code> instruction or as its own standalone command. <code>CMD</code> can be overwritten by new <code>docker run</code> arguments.</li>
-<li><code>ENTRYPOINT command param1 param2</code> - Command that will run the Docker container as an executable, such as a web server, Jupter environment, or data pipeline.</li>
-</ul>
-
-<img data-src="docker/img/docker-cmd-entrypoint.png" class="r-stretch"></section>
-<section id="dockerfile-syntax-examples" class="slide level2">
-<h2>Dockerfile Syntax Examples</h2>
-<ul>
-<li><code>RUN ["/bin/bash", "-c", "echo hello"]</code></li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>FROM busybox</span>
-<span id="cb1-2"><a href="#cb1-2"></a>ENV FOO=/bar</span>
-<span id="cb1-3"><a href="#cb1-3"></a>WORKDIR ${FOO}   # WORKDIR /bar</span>
-<span id="cb1-4"><a href="#cb1-4"></a>ADD . $FOO       # ADD . /bar</span>
-<span id="cb1-5"><a href="#cb1-5"></a>COPY \$FOO /quux # COPY $FOO /quu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a># syntax=docker/dockerfile:1</span>
-<span id="cb2-2"><a href="#cb2-2"></a>FROM python:3.6</span>
-<span id="cb2-3"><a href="#cb2-3"></a>ADD mypackage.tgz wheels/</span>
-<span id="cb2-4"><a href="#cb2-4"></a>RUN --network=none pip install --find-links wheels mypackage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference link</a></p>
-</section>
-<section id="s3-example" class="slide level2">
-<h2>S3 example</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a># syntax=docker/dockerfile:1</span>
-<span id="cb3-2"><a href="#cb3-2"></a>FROM python:3</span>
-<span id="cb3-3"><a href="#cb3-3"></a>RUN pip install awscli</span>
-<span id="cb3-4"><a href="#cb3-4"></a>RUN --mount=type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="web-server-example" class="slide level2">
-<h2>Web server example</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>FROM debian:stable</span>
-<span id="cb4-2"><a href="#cb4-2"></a>RUN apt-get update &amp;&amp; apt-get install -y --force-yes apache2</span>
-<span id="cb4-3"><a href="#cb4-3"></a>EXPOSE 80 443</span>
-<span id="cb4-4"><a href="#cb4-4"></a>VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]</span>
-<span id="cb4-5"><a href="#cb4-5"></a>ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="docker-for-python-jobs" class="slide level2">
-<h2>Docker for Python jobs</h2>
-<p>Basic needs:</p>
-<ul>
-<li>Dockerfile that sets up environment</li>
-<li>Application code to execute</li>
-<li>List of packages to install</li>
-</ul>
-<p><a href="https://docs.docker.com/language/python/build-images/">Walkthrough</a></p>
-</section>
-<section id="docker-python-example" class="slide level2">
-<h2>Docker Python example</h2>
-<ol type="1">
-<li>Write your Dockerfile</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">FROM</span> python:3.8-slim-buster</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">WORKDIR</span> /app</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">COPY</span> requirements.txt requirements.txt</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">RUN</span> pip3 install <span class="at">-r</span> requirements.txt</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">COPY</span> . .</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">CMD</span> [ <span class="st">"python3"</span>, <span class="st">"-m"</span> , <span class="st">"flask"</span>, <span class="st">"run"</span>, <span class="st">"--host=0.0.0.0"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li><p>Build the docker image using a tag and version number <code>docker build ./ -t docker-tag-name:1.0</code>. Read about docker building options <a href="https://docs.docker.com/engine/reference/commandline/build/">here</a>.</p></li>
-<li><p>Check your docker images in your local file system using <code>docker images</code></p></li>
-<li><p>Test your docker image using <code>docker run -it docker-tag-name</code>. Read about the flags <a href="https://docs.docker.com/engine/reference/run/">here</a>. The <code>i</code> is to keep STDIN open, the <code>t</code> is for pseudo-TTY mode (shell).</p></li>
-<li><p>Deploy your docker image somewhere!</p></li>
-</ol>
-</section>
-<section id="docker-links" class="slide level2">
-<h2>Docker links</h2>
-<p><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-spark-docker.html">AWS examples</a></p>
-<p><a href="https://pythonspeed.com/articles/base-image-python-docker-images/">Article discussing performance considerations</a></p>
-<p><a href="https://www.docker.com/resources/what-container/">What are containers?</a></p>
-</section></section>
-<section>
-<section id="lambda" class="title-slide slide level1 center">
-<h1>Lambda</h1>
-
-</section>
-<section id="overview" class="slide level2">
-<h2>Overview</h2>
-<ul>
-<li><p>Lambda (or <span class="math inline">\(\lambda\)</span>) is the name given to anonymous functions in some languages like Python.</p></li>
-<li><p>Lambda is a powerful tool to build serverless microfunctions in a variety of programming languages that can be triggered in a variety of ways.</p></li>
-<li><p>The execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data.</p></li>
-<li><p>There can be thousands of executions happening simultaneously.</p></li>
-<li><p>Lambda is billed by the millisecond (ms).</p></li>
-</ul>
 
 <aside><div>
-<p>The name Lambda is derived from Lambda calculus, a mathematical system to express computation introduced by Dr.&nbsp;Alonzo Church in the 1930s. See wikipedia entry on <a href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda calculus</a> for why the symbol <span class="math inline">\(\lambda\)</span> was choosen.</p>
-</div></aside></section></section>
-<section>
-<section id="aws-lambda-functions" class="title-slide slide level1 center">
-<h1>AWS Lambda Functions</h1>
-
-</section>
-<section id="lambda-details" class="slide level2">
-<h2>Lambda Details</h2>
-
-<img data-src="microservices/img/lambda-example.png" class="r-stretch"><ul>
-<li>Micro executions without dealing with any hardware, “serverless” computation.</li>
-<li>Can run many copies of code depending on number of requests or files.</li>
-<li>Supported languages: Java, Go, PowerShell, Node.js, C#, Python, and Ruby.
+<p>Reis,&nbsp;J.,&nbsp;Housley,&nbsp;M.&nbsp;(2022).&nbsp;Fundamentals of Data Engineering.&nbsp;United States:&nbsp;O’Reilly Media.</p>
+</div></aside></section>
+<section id="single-machine-vs.-distributed-storage" class="slide level2">
+<h2>Single machine vs.&nbsp;distributed storage</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="filesystems-and-filetypes/img/fode_0604.png"></p>
+</figure>
+</div>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><strong>Single machine</strong></p>
 <ul>
-<li>Provides a Runtime API which allows you to use any additional programming languages to author your functions</li>
-</ul></li>
-<li>Pricing based on RAM and time used - <a href="https://aws.amazon.com/lambda/pricing/">Lambda pricing</a>
+<li>They are commonly used for storing operating system files, application files, and user data files.</li>
+<li>Filesystems are also used in databases to store data files, transaction logs, and backups.</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><strong>Distributed storage</strong></p>
 <ul>
-<li>Max execution time - 15 minutes</li>
-<li>Max RAM - 10 GB</li>
+<li>A distributed filesystem is a type of filesystem that spans multiple computers.</li>
+<li>It provides a unified view of files across all the computers in the system.</li>
+<li>Have existed before cloud</li>
+</ul>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Reis,&nbsp;J.,&nbsp;Housley,&nbsp;M.&nbsp;(2022).&nbsp;Fundamentals of Data Engineering.&nbsp;United States:&nbsp;O’Reilly Media.</p>
+</div></aside></section>
+<section id="file-storage" class="slide level2">
+<h2>File storage</h2>
+<p>A file is a data entity with specific read, write, and reference characteristics used by software and operating systems.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong>Local disk</strong></p>
+<ul>
+<li>Operating system–managed filesystems on local disk partition of SSD or magnetic disk:
+<ul>
+<li>NTFS (Windows)</li>
+<li>HFS+ (MacOS)</li>
+<li>ext4 (Linux)() on a local disk partition of SSD or magnetic disk</li>
 </ul></li>
 </ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong>Network-attached (NAS)</strong></p>
+<ul>
+<li>File storage system to clients over a network</li>
+<li>Including redundancy and reliability, fine-grained control of resources, storage pooling across multiple disks for large virtual volumes, and file sharing across multiple machines</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><strong>Cloud filesystems</strong></p>
+<ul>
+<li><strong>Not object store (more on that later)</strong></li>
+<li><strong>Not the virtual hard drive attached to a virtual machine</strong></li>
+<li>Fully managed filesystem which takes care of networking, managing disk clusters, failures, and configuration (Azure Files, Amazon Elastic Filesystem)</li>
+<li>Backed by Object Store</li>
+</ul>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Reis,&nbsp;J.,&nbsp;Housley,&nbsp;M.&nbsp;(2022).&nbsp;Fundamentals of Data Engineering.&nbsp;United States:&nbsp;O’Reilly Media.</p>
+</div></aside></section>
+<section id="object-stores" class="slide level2">
+<h2>Object stores</h2>
+<p>The term object storage is somewhat confusing because object has several meanings in computer science. In this context, we’re talking about a specialized file-like construct. It could be any type of file: TXT, CSV, JSON, images, videos, audio, or pretty much any type of file.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="cell1" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="filesystems-and-filetypes/img/s3-blob.png"></p>
+</div>
+<div id="cell2" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="filesystems-and-filetypes/img/fode_0608.png"></p>
+</div>
+<div id="cell3" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="filesystems-and-filetypes/img/object-storage-structure.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="cell4" class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<ul>
+<li>Contains objects of all shapes and sizes.</li>
+<li>Every object gets a unique identifier</li>
+<li>Objects are immutable; cannot be modifier in place (unlike local FS)</li>
+<li>Distributed by design</li>
+<li>Massively scalable REST API access</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="lambda-triggers" class="slide level2">
-<h2>Lambda triggers</h2>
+<section id="distributed-fs-vs-object-store" class="slide level2">
+<h2>Distributed FS vs Object Store</h2>
+<table>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 56%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Distributed File System</th>
+<th>Object Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Organization</td>
+<td>Files in hierarchical directories</td>
+<td>Flat organization (though there can be overlays to provide hierarchical files structure)</td>
+</tr>
+<tr class="even">
+<td>Method</td>
+<td>POSIX File Operations</td>
+<td>REST API</td>
+</tr>
+<tr class="odd">
+<td>Immutability</td>
+<td>None: Random writes anywhere in file</td>
+<td>Immutable: need to replace/append entire object</td>
+</tr>
+<tr class="even">
+<td>Scalability</td>
+<td>Millions of files</td>
+<td>Billions of objects</td>
+</tr>
+</tbody>
+</table>
+<p>Both provide:</p>
+<ul>
+<li>Fault tolerance</li>
+<li>Availability and consistency</li>
+</ul>
+</section>
+<section id="before-data-locality-for-hadoop" class="slide level2">
+<h2>Before: Data locality (for Hadoop)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="filesystems-and-filetypes/img/hdg-0202.png" height="500"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>White,&nbsp;T.&nbsp;E.&nbsp;(2015).&nbsp;Hadoop: The Definitive Guide, 4th Edition.&nbsp;United States:&nbsp;O’Reilly Media, Incorporated.</p>
+</div></aside></section>
+<section id="today-de-coupling-storage-from-compute" class="slide level2">
+<h2>Today: de-coupling storage from compute</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="filesystems-and-filetypes/img/tcdl_0106.png"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Gopalan,&nbsp;R.&nbsp;(2022).&nbsp;The Cloud Data Lake.&nbsp;United States:&nbsp;O’Reilly Media.</p>
+</div></aside></section></section>
+<section>
+<section id="data-on-disk-formats" class="title-slide slide level1 center">
+<h1>Data on-disk formats</h1>
+
+</section>
+<section id="plain-text-csv-tdf-fwf" class="slide level2">
+<h2>Plain Text (CSV, TDF, FWF)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://meme-generator.com/wp-content/uploads/mememe/2021/04/we-shared-the-csv-with-a-different-separator-335529-1.jpg" height="400"></p>
+</figure>
+</div>
+<ul>
+<li>Pay attention to encodings!</li>
+<li>Lines end in linefeed, carriage-return, or both together depending on the OS that generated</li>
+<li>Typically, a single line of text contains a single record</li>
+</ul>
+</section>
+<section id="json" class="slide level2">
+<h2>JSON</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="callout callout-warning callout-captioned callout-style-default quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>JSON files have two flavors: <code>JSON Lines</code> vs.&nbsp;<code>JSON</code>. Typically when we say data is in JSON format, we imply it’s <code>JSON Lines</code> which means that there is a single JSON object per line, and there are multiple lines.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="c2" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<h3 id="json-lines">JSON Lines</h3>
+<p>Four records, one per line. No ending comma.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"marck"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"vaisman"</span><span class="fu">}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">2</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"anderson"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"monken"</span><span class="fu">}</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">3</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"amit"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"arora"</span><span class="fu">}</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">4</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"abhijit"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"dasgupta"</span><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c3" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<h3 id="json-1">JSON</h3>
+<p>Four records enclosed in a JSON Array</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">[</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"marck"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"vaisman"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">2</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"anderson"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"monken"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">3</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"amit"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"arora"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="dv">4</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span><span class="st">"abhijit"</span><span class="fu">,</span> <span class="dt">"last_name"</span><span class="fu">:</span><span class="st">"dasgupta"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="binary-files" class="slide level2">
+<h2>Binary files</h2>
+
+<img data-src="https://fileinfo.com/img/ss/xl/bin_1956.png" class="r-stretch quarto-figure-center"></section>
+<section id="issues-with-common-file-formats-particularly-csvs" class="slide level2">
+<h2>Issues with common file formats, particularly CSVs:</h2>
+<ul>
+<li>Still ubiquitous and highly error prone (even in 2023)</li>
+<li>The default delimiter is also one of the most familiar characters in the English language—the comma</li>
+<li>Not a uniform format
+<ul>
+<li>Delimiter (comma, tab, semi-colon, custom)</li>
+<li>Quote characters (single or doble quote)</li>
+<li>Escaping to appropriately handle string data</li>
+</ul></li>
+<li>Doesn’t natively encode schema information</li>
+<li>No direct support for nested structures</li>
+<li>Encoding and schema information must be configured in the target system to ensure appropriate ingestion</li>
+<li>Autodetection is a convenience feature provided in many cloud environments but is inappropriate for production ingestion, and can be painfully slow</li>
+<li>Data engineers are often forced to work with CSV data and then build robust exception handling and error detection to ensure data quality on ingestion</li>
+</ul>
+</section></section>
+<section>
+<section id="introducing-apache-parquet" class="title-slide slide level1 center">
+<h1>Introducing Apache Parquet</h1>
+
+</section>
+<section id="apache-parquet" class="slide level2">
+<h2>Apache Parquet</h2>
+<ul>
+<li>Free and open-source column-oriented data storage format</li>
+<li>Created by Twitter and Cloudera</li>
+<li>v1.0 released in July, 2013</li>
+<li>Stores data in a columnar format (as opposed to row format) and is designed to realize excellent read and write performance</li>
+<li>Parquet-encoded data builds in schema information and natively supports nested data</li>
+<li>Parquet is portable</li>
+<li>Has become the standard for modern data warehouses and big data tools</li>
+<li>Supported by R and Python through <a href="https://arrow.apache.org/">Apache Arrow</a> (more on that coming up!)</li>
+</ul>
+</section>
+<section id="traditional-row-store" class="slide level2">
+<h2>Traditional row-store</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="col1" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Row-store-1024x576.png"></p>
+</div>
+<div id="col2" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Row-based-scan-1024x576.png"></p>
+</div>
+</div>
+</div>
+<p>Say you wanted to answer the question <em>“How many balls did we sell?</em>, the engine must scan each and every row until the end!</p>
+
+<aside><div>
+<p><a href="https://data-mozart.com/parquet-file-format-everything-you-need-to-know/">Parquet file format, everything you need to know</a></p>
+</div></aside></section>
+<section id="column-store" class="slide level2">
+<h2>Column-store</h2>
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Column-store-1024x576.png"></p>
+
+
+<aside><div>
+<p><a href="https://data-mozart.com/parquet-file-format-everything-you-need-to-know/">Parquet file format, everything you need to know</a></p>
+</div><div>
+<p><a href="https://data-mozart.com/parquet-file-format-everything-you-need-to-know/">Parquet file format, everything you need to know</a></p>
+</div></aside></section>
+<section id="row-groups" class="slide level2">
+<h2>Row groups</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="col1" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h3 id="data-is-stored-in-row-groups">Data is stored in row groups!</h3>
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Row-store-1024x576.png"></p>
+</div>
+<div id="col2" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h3 id="only-the-required-fields">Only the required fields</h3>
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Row-based-scan-1024x576.png"></p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><a href="https://data-mozart.com/parquet-file-format-everything-you-need-to-know/">Parquet file format, everything you need to know</a></p>
+</div></aside></section>
+<section id="metadata-compression-and-dictionary-encoding" class="slide level2">
+<h2>Metadata, compression, and dictionary encoding</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="col1" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Format-1024x576.png"></p>
+</div>
+<div id="col2" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="https://data-mozart.com/wp-content/uploads/2023/04/Dictionary-1024x576.png"></p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><a href="https://data-mozart.com/parquet-file-format-everything-you-need-to-know/">Parquet file format, everything you need to know</a></p>
+</div></aside></section>
+<section id="apache-arrow-for-in-memory" class="slide level2">
+<h2>Apache Arrow for in-memory</h2>
+<blockquote>
+<p>Apache Arrow is a development platform for in-memory analytics. It contains a set of technologies that enable big data systems to process and move data fast. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware.</p>
+</blockquote>
+
+<aside><div>
+<p>Topol,&nbsp;M.,&nbsp;McKinney,&nbsp;W.&nbsp;(2022).&nbsp;In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data.&nbsp;United Kingdom:&nbsp;Packt Publishing.</p>
+</div></aside></section>
+<section id="before-arrow" class="slide level2">
+<h2>Before Arrow</h2>
+<p><img data-src="filesystems-and-filetypes/img/before-arrow.jpg"></p>
+
+<aside><div>
+<p>Topol,&nbsp;M.,&nbsp;McKinney,&nbsp;W.&nbsp;(2022).&nbsp;In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data.&nbsp;United Kingdom:&nbsp;Packt Publishing.</p>
+</div></aside></section>
+<section id="after-arrow" class="slide level2">
+<h2>After Arrow</h2>
+<p><img data-src="filesystems-and-filetypes/img/after-arrow.jpg"></p>
+
+<aside><div>
+<p>Topol,&nbsp;M.,&nbsp;McKinney,&nbsp;W.&nbsp;(2022).&nbsp;In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data.&nbsp;United Kingdom:&nbsp;Packt Publishing.</p>
+</div></aside></section>
+<section id="arrow-compatibility" class="slide level2">
+<h2>Arrow Compatibility</h2>
+<p><img data-src="filesystems-and-filetypes/img/data-processing.jpg"></p>
+
+<aside><div>
+<p>Topol,&nbsp;M.,&nbsp;McKinney,&nbsp;W.&nbsp;(2022).&nbsp;In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data.&nbsp;United Kingdom:&nbsp;Packt Publishing.</p>
+</div></aside></section>
+<section id="arrow-performance" class="slide level2">
+<h2>Arrow Performance</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="col1" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="filesystems-and-filetypes/img/file-size-perf-numbers.jpg"></p>
+</div>
+<div id="col2" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="filesystems-and-filetypes/img/mean-calc-mem-runtime.jpg"></p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Topol,&nbsp;M.,&nbsp;McKinney,&nbsp;W.&nbsp;(2022).&nbsp;In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data.&nbsp;United Kingdom:&nbsp;Packt Publishing.</p>
+</div></aside></section>
+<section id="use-arrow-to-readwrite-csvs-and-parquet" class="slide level2">
+<h2>Use Arrow to read/write CSVs and Parquet</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="col1" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h3 id="python">Python</h3>
+<p>Use the <code>pyarrow</code> library or straight from <code>pandas</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2"></a>pd.read_csv(engine <span class="op">=</span> <span class="st">'pyarrow'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>pd.read_parquet</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="im">import</span> pyarrow.csv</span>
+<span id="cb3-6"><a href="#cb3-6"></a>pyarrow.csv.read_csv()</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="im">import</span> pyarrow.parquet</span>
+<span id="cb3-9"><a href="#cb3-9"></a>pyarrow.parquet.read_table()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="col2" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h3 id="r">R</h3>
+<p>Use the <code>arrow</code> package</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">read_csv_arrow</span>()</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">read_parquet</span>()</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">read_json_arrow</span>()</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">write_csv_arrow</span>()</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">write_parquet</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Recommendation:</strong> save your intermediate and analytical datasets as <code>Parquet</code>!</p>
+</section></section>
+<section>
+<section id="polars" class="title-slide slide level1 center">
+<h1>Polars</h1>
+<p>Lightning-fast DataFrame library for Rust and Python</p>
+</section>
+<section id="before-we-begin.." class="slide level2">
+<h2>Before we begin..</h2>
+<blockquote>
+<p><a href="https://pandas.pydata.org/">Pandas</a> is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.</p>
+</blockquote>
+<div>
+<ol type="1">
+<li class="fragment">Pandas is slow, well yes but also, not so much if you use it the right way.</li>
+</ol>
+<ul>
+<li class="fragment"><p><a href="https://wesmckinney.com/blog/apache-arrow-pandas-internals/">Apache Arrow and the “10 Things I Hate About pandas”</a> (<font color="red" size="5">A 2017 post from the creator of Pandas..</font>)</p></li>
+<li class="fragment"><p><a href="https://blog.esciencecenter.nl/irregular-data-in-pandas-using-c-88ce311cb9ef">50 times faster data loading for Pandas: no problem</a> (<font color="red" size="5">but this is an old 2019 article..</font>)</p></li>
+<li class="fragment"><p><a href="https://medium.com/@tommerrissin/is-pandas-really-that-slow-cff4352e4f58">Is Pandas really that slow?</a></p></li>
+</ul>
+<ol type="1">
+<li class="fragment"><a href="https://datapythonista.me/blog/pandas-20-and-the-arrow-revolution-part-i">Pandas 2.0 and the arrow revolution</a></li>
+</ol>
+</div>
+</section>
+<section id="polars-1" class="slide level2">
+<h2>Polars</h2>
+
+<img data-src="polars/img/polars.jpg" class="r-stretch quarto-figure-center"><p class="caption"><a href="polars/img/polars.jpg"><code>Polars</code></a></p></section>
+<section id="why-is-polars-faster-than-pandas" class="slide level2">
+<h2>Why is Polars faster than Pandas?</h2>
+<div>
+<ol type="1">
+<li class="fragment"><p><strong>Polars is written in Rust</strong>. Rust is a compiled language, Python is an interpreted language.</p>
+<ul>
+<li class="fragment">Compiled language: you generate the machine code only once then run it, subsequent runs do not need the compilation step.</li>
+<li class="fragment">Interpreted language: code has to be parsed, interpreted and converted into machine code every single time.</li>
+</ul></li>
+<li class="fragment"><p><strong>Parallelization</strong>: Vectorized operations that can be executed in parallel on multiple CPU cores.</p></li>
+<li class="fragment"><p><strong>Lazy evaluation</strong>: Polars supports two APIs lazy as well as eager evaluation (used by pandas). In lazy evaluation, a query is executed only when required. While in eager evaluation, a query is executed immediately.</p></li>
+<li class="fragment"><p><strong>Polars uses <a href="https://arrow.apache.org/">Arrow</a></strong> as its in-memory representation of data. Similar to how pandas uses Numpy (although Pandas 2.0 does allow using Arrow as the backend in addition to Numpy).</p>
+<ul>
+<li class="fragment">[Excerpt from <a href="https://news.ycombinator.com/item?id=26454585">this post</a> from <a href="https://github.com/ritchie46">Ritchie Vink</a>, author of Polars] Arrow provides the efficient data structures and some compute kernels, like a SUM, a FILTER, a MAX etc. Arrow is not a query engine. Polars is a DataFrame library on top of arrow that has implemented efficient algorithms for JOINS, GROUPBY, PIVOTs, MELTs, QUERY OPTIMIZATION, etc. (the things you expect from a DF lib).</li>
+<li class="fragment"><strong>Polars could be best described as an in-memory DataFrame library with a query optimizer</strong>.</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="ease-of-use" class="slide level2">
+<h2>Ease of use</h2>
+<ol type="1">
+<li><p>Familiar API for users of Pandas: there are differences in syntax <code>polars != pandas</code> but it is still a Dataframe API making it straightforward to perform common operations such as filtering, aggregating, and joining data. See <a href="https://pola-rs.github.io/polars-book/user-guide/migration/pandas/">migrating from Pandas</a></p>
+<p><strong>Reading data</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># must install s3fs -&gt; "pip install s3fs"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># Using Polars</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb5-5"><a href="#cb5-5"></a>polars_df <span class="op">=</span> pl.read_parquet(<span class="st">"s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># using Pandas</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-9"><a href="#cb5-9"></a>pandas_df <span class="op">=</span> pd.read_parquet(<span class="st">"s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Selecting columns (see <a href="https://stackoverflow.com/questions/68713020/what-is-filter-pushdown-optimization">Pushdown optimization</a>)</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Using Polars</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>selected_columns_polars <span class="op">=</span> polars_df[[<span class="st">'column1'</span>, <span class="st">'column2'</span>]]</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># Using Pandas</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>selected_columns_pandas <span class="op">=</span> pandas_df[[<span class="st">'column1'</span>, <span class="st">'column2'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="ease-of-use-contd." class="slide level2">
+<h2>Ease of use (contd.)</h2>
+<ol type="1">
+<li><p>Familiar API for users of Pandas:</p>
+<p><strong>Filtering data</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Using Polars</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>filtered_polars <span class="op">=</span> polars_df[polars_df[<span class="st">'column1'</span>] <span class="op">&gt;</span> <span class="dv">10</span>]</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Using Pandas</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>filtered_pandas <span class="op">=</span> pandas_df[pandas_df[<span class="st">'column1'</span>] <span class="op">&gt;</span> <span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Even though you can write Polars code that looks like Pandas, it is better to <code>write idiomatic Polars code</code> that takes advantages of unique features Polars offers</strong>.</p></li>
+<li><p><a href="https://pola-rs.github.io/polars-book/user-guide/migration/spark/">Migrating from Apache Spark</a>: Whereas the Spark DataFrame is analogous to a collection of rows, a Polars DataFrame is closer to a collection of columns.</p></li>
+</ol>
+</section></section>
+<section>
+<section id="installation-data-loading-and-basic-operations" class="title-slide slide level1 center">
+<h1>Installation, data loading and basic operations</h1>
+<p>Install polars via pip.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">pip</span> install polars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Import polars in your Python code and read data as usual</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb9-2"><a href="#cb9-2"></a>df <span class="op">=</span> pl.read_parquet(<span class="st">"s3://nyc-tlc/trip data/yellow_tripdata_2023-06.parquet"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>df.head()</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>shape: (<span class="dv">5</span>, <span class="dv">19</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a>┌──────────┬────────────┬──────────────┬──────────────┬─────┬──────────────┬──────────────┬──────────────┬─────────────┐</span>
+<span id="cb9-7"><a href="#cb9-7"></a>│ VendorID ┆ tpep_picku ┆ tpep_dropoff ┆ passenger_co ┆ ... ┆ improvement_ ┆ total_amount ┆ congestion_s ┆ Airport_fee │</span>
+<span id="cb9-8"><a href="#cb9-8"></a>│ <span class="op">---</span>      ┆ p_datetime ┆ _datetime    ┆ unt          ┆     ┆ surcharge    ┆ <span class="op">---</span>          ┆ urcharge     ┆ <span class="op">---</span>         │</span>
+<span id="cb9-9"><a href="#cb9-9"></a>│ i32      ┆ <span class="op">---</span>        ┆ <span class="op">---</span>          ┆ <span class="op">---</span>          ┆     ┆ <span class="op">---</span>          ┆ f64          ┆ <span class="op">---</span>          ┆ f64         │</span>
+<span id="cb9-10"><a href="#cb9-10"></a>│          ┆ datetime[n ┆ datetime[ns] ┆ i64          ┆     ┆ f64          ┆              ┆ f64          ┆             │</span>
+<span id="cb9-11"><a href="#cb9-11"></a>│          ┆ s]         ┆              ┆              ┆     ┆              ┆              ┆              ┆             │</span>
+<span id="cb9-12"><a href="#cb9-12"></a>╞══════════╪════════════╪══════════════╪══════════════╪═════╪══════════════╪══════════════╪══════════════╪═════════════╡</span>
+<span id="cb9-13"><a href="#cb9-13"></a>│ <span class="dv">1</span>        ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span> ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span>   ┆ <span class="dv">1</span>            ┆ ... ┆ <span class="fl">1.0</span>          ┆ <span class="fl">33.6</span>         ┆ <span class="fl">2.5</span>          ┆ <span class="fl">0.0</span>         │</span>
+<span id="cb9-14"><a href="#cb9-14"></a>│          ┆ <span class="dv">00</span>:<span class="dv">0</span><span class="er">8</span>:<span class="dv">48</span>   ┆ <span class="dv">00</span>:<span class="dv">29</span>:<span class="dv">41</span>     ┆              ┆     ┆              ┆              ┆              ┆             │</span>
+<span id="cb9-15"><a href="#cb9-15"></a>│ <span class="dv">1</span>        ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span> ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span>   ┆ <span class="dv">0</span>            ┆ ... ┆ <span class="fl">1.0</span>          ┆ <span class="fl">23.6</span>         ┆ <span class="fl">2.5</span>          ┆ <span class="fl">0.0</span>         │</span>
+<span id="cb9-16"><a href="#cb9-16"></a>│          ┆ <span class="dv">00</span>:<span class="dv">15</span>:<span class="dv">0</span><span class="er">4</span>   ┆ <span class="dv">00</span>:<span class="dv">25</span>:<span class="dv">18</span>     ┆              ┆     ┆              ┆              ┆              ┆             │</span>
+<span id="cb9-17"><a href="#cb9-17"></a>│ <span class="dv">1</span>        ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span> ┆ <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span>   ┆ <span class="dv">1</span>            ┆ ... ┆ <span class="fl">1.0</span>          ┆ <span class="fl">60.05</span>        ┆ <span class="fl">0.0</span>          ┆ <span class="fl">1.75</span>        │</span>
+<span id="cb9-18"><a href="#cb9-18"></a>└──────────┴────────────┴──────────────┴──────────────┴─────┴──────────────┴──────────────┴──────────────┴─────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-polars-dataframe-processing-pipeline-example" class="slide level2">
+<h2>A Polars DataFrame processing pipeline example</h2>
+<p>Here is an example that we will run as part of the lab in a little bit.</p>
+<blockquote>
+<p><strong>Think how you would code this same pipeline in Pandas…</strong></p>
+</blockquote>
+
+<img data-src="polars/img/polars-pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">Polars pipeline</p></section>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
+<ul>
+<li><a href="https://github.com/pola-rs/polars">Polars</a></li>
+<li><a href="https://pola-rs.github.io/polars-book/user-guide/">User guide</a> &lt;— <strong>MUST READ</strong></li>
+<li><a href="https://github.com/pola-rs/polars">Polars GitHub repo</a></li>
+<li><a href="https://towardsdatascience.com/pandas-vs-polars-a-syntax-and-speed-comparison-5aa54e27497e">Pandas Vs Polars: a syntax and speed comparison</a></li>
+<li><a href="https://towardsdatascience.com/tips-and-tricks-for-working-with-strings-in-polars-ec6bb74aeec2">Tips &amp; tricks for working with strings in Polars</a></li>
+</ul>
+</section></section>
+<section>
+<section id="duckdb" class="title-slide slide level1 center">
+<h1>DuckDB</h1>
+<p>An in-process SQL OLAP database management system</p>
+</section>
+<section id="duckdb-1" class="slide level2">
+<h2>DuckDB</h2>
+<ol type="1">
+<li><a href="https://duckdb.org/">DuckDB</a> is an in-process <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> <a href="https://en.wikipedia.org/wiki/Online_analytical_processing">OLAP</a> database management system.</li>
+</ol>
+<blockquote>
+<p>It is like sqllite, but for analytics. What does this mean? It means that your database runs inside your process, there are no servers to manage, no remote system to connect to. Very snappy, easy to experiment with SQL like syntax.</p>
+</blockquote>
+<ol type="1">
+<li><p>DuckDB does <strong>vectorized processing</strong> i.e.&nbsp;loads chunks of data into memory (tries to keep everything in the CPU’s L1 and L2 cache) and is thus able to handle datasets bigger than the amount of RAM available.</p></li>
+<li><p>DuckDB supports Python, R and a host of other languages.</p></li>
+</ol>
+
+<aside><div>
+<p>Paper on DuckDB by Hannes Mühleisen &amp; Mark Raasveldt</p>
+<p><a href="https://hannes.muehleisen.org/publications/SIGMOD2019-demo-duckdb.pdf"><strong>DuckDB: an Embeddable Analytical Database</strong></a></p>
+</div></aside></section>
+<section id="duckdb---quick-introduction" class="slide level2">
+<h2>DuckDB - quick introduction</h2>
+<p><a href="https://duckdb.org/">DuckDB</a> is an in-process SQL OLAP database management system</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">pip</span> install duckdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="duckdb/img/duckdb.png" class="r-stretch quarto-figure-center"><p class="caption">Duck DB</p></section>
+<section id="key-features" class="slide level2">
+<h2>Key Features</h2>
+<ol type="1">
+<li><p><strong>Columnar Storage &amp; Vectorized Query processing</strong>: DuckDB contains a columnar-vectorized query execution engine, where queries are still interpreted, but a large batch of values (a “vector”) are processed in one operation.</p>
+<ul>
+<li>Most analytical queries (think group by and summarize) or even data retrieval for training ML models require retrieving a subset of columns and now the entire row, columnar storage make this faster.</li>
+</ul></li>
+<li><p><strong>In-Memory Processing</strong>: all data needed for processing is brought within the process memory (recall that columnar storage format helps with this) making the queries run faster (no call to a database over the network).</p></li>
+<li><p><strong>SQL Support</strong>: highly Postgres-compatible version of SQL<sup>1</sup>.</p></li>
+<li><p><strong>ACID Compliance</strong>: Transactional guarantees (ACID properties) through bulk-optimized Multi-Version Concurrency Control (MVCC).</p></li>
+</ol>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><a href="https://duckdb.org/2022/05/04/friendlier-sql.html">Friendlier SQL with DuckDB</a></p></li></ol></aside></section>
+<section id="use-cases-for-duckdb" class="slide level2">
+<h2>Use-cases for DuckDB</h2>
+<ol type="1">
+<li>Data Warehousing</li>
+<li>Business Intelligence</li>
+<li>Real-time Analytics</li>
+<li>IoT Data Processing</li>
+</ol>
+</section>
+<section id="duckdb-in-the-wild" class="slide level2">
+<h2>DuckDB in the wild</h2>
+<ol type="1">
+<li><p><a href="https://mode.com/blog/how-we-switched-in-memory-data-engine-to-duck-db-to-boost-visual-data-exploration-speed/">How We Silently Switched Mode’s In-Memory Data Engine to DuckDB To Boost Visual Data Exploration Speed</a></p></li>
+<li><p><a href="https://www.rilldata.com/blog/why-we-built-rill-with-duckdb">Why we built Rill with DuckDB</a></p></li>
+<li><p><a href="https://www.astrafy.io/articles/leveraging-duckdb-for-enhanced-performance-in-dbt-projects">Leveraging DuckDB for enhanced performance in dbt projects</a></p></li>
+</ol>
+</section>
+<section id="how-might-you-think-about-duckdb---diy-version" class="slide level2">
+<h2>How might you think about DuckDB - DIY Version</h2>
+
+<img data-src="duckdb/img/duckdb.drawio.png" class="r-stretch quarto-figure-center"><p class="caption">Datalake and DuckDB</p><ol type="1">
+<li><p><a href="https://tobilg.com/using-duckdb-in-aws-lambda">Using DuckDB in AWS Lambda</a></p></li>
+<li><p><a href="https://duckdb.org/2022/10/12/modern-data-stack-in-a-box.html">Modern Data Stack in a Box with DuckDB</a>: DuckDB, Meltano, Dbt, Apache Superset</p></li>
+</ol>
+</section>
+<section id="how-might-you-think-about-duckdb---fully-managed" class="slide level2">
+<h2>How might you think about DuckDB - Fully-managed</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="duckdb/img/motherduck-architecture.png"></p>
+<p></p><figcaption>MotherDuck Architecture</figcaption><p></p>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<ol type="1">
+<li><p><a href="https://motherduck.com/docs/architecture-and-capabilities/">Architecture and capabilities</a></p></li>
+<li><p>Seamlessly analyze data, whether it sits on your laptop, in the cloud or split between. Hybrid execution automatically plans each part of your query and determines where it’s best computed. If you use DuckDB with data lakes in s3, it’ll be much faster to run your analyses on MotherDuck.</p></li>
+</ol>
+<p><a href="https://kestra.io/blogs/2023-07-28-duckdb-vs-motherduck">DuckDB Vs MotherDuck</a></p>
+</div>
+</div>
+</section>
+<section id="setting-up-duckdb" class="slide level2">
+<h2>Setting Up DuckDB</h2>
+<ol type="1">
+<li><p><strong>Configuration and Initialization</strong>: DuckDB is deeply integrated into Python and R for efficient interactive data analysis. DuckDB provides APIs for Java, C, C++, Julia, Swift, and others.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>pip install duckdb</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># OR</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>conda install python<span class="op">-</span>duckdb <span class="op">-</span>c conda<span class="op">-</span>forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Connecting to DuckDB</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># directly query a Pandas DataFrame</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-4"><a href="#cb12-4"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/anly503/datasets/main/EconomistData.csv"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>duckdb.sql(<span class="st">'SELECT * FROM df'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="setting-up-duckdb-contd." class="slide level2">
+<h2>Setting Up DuckDB (contd.)</h2>
+<ol type="1">
+<li><p><strong>Supported data formats</strong>: DuckDB can ingest data from a wide variety of formats – both on-disk and in-memory. See the <a href="https://duckdb.org/docs/api/python/data_ingestion">data ingestion page</a> for more information.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb13-2"><a href="#cb13-2"></a>duckdb.read_csv(<span class="st">'example.csv'</span>)                <span class="co"># read a CSV file into a Relation</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>duckdb.read_parquet(<span class="st">'example.parquet'</span>)        <span class="co"># read a Parquet file into a Relation</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>duckdb.read_json(<span class="st">'example.json'</span>)              <span class="co"># read a JSON file into a Relation</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>duckdb.sql(<span class="st">'SELECT * FROM "example.csv"'</span>)     <span class="co"># directly query a CSV file</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>duckdb.sql(<span class="st">'SELECT * FROM "example.parquet"'</span>) <span class="co"># directly query a Parquet file</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>duckdb.sql(<span class="st">'SELECT * FROM "example.json"'</span>)    <span class="co"># directly query a JSON file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="querying-duckdb" class="slide level2">
+<h2>Querying DuckDB</h2>
+<p>Essential reading: <a href="https://duckdb.org/2022/05/04/friendlier-sql.html">Friendlier SQL with DuckDB</a>, <a href="https://duckdb.org/docs/sql/introduction">SQL Introduction</a></p>
+<p><strong>Basic SQL Queries</strong>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-3"><a href="#cb14-3"></a>babynames <span class="op">=</span> pd.read_parquet(<span class="st">"https://github.com/anly503/datasets/raw/main/babynames.parquet.zstd"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>duckdb.sql(<span class="st">"select count(*)  from babynames where Name='John'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Aggregations and Grouping</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>duckdb.sql(<span class="st">"select State, Name, count(*) as count  from babynames group by State, Name order by State desc, count desc"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="querying-duckdb-contd." class="slide level2">
+<h2>Querying DuckDB (contd.)</h2>
+<p>Essential reading: <a href="https://duckdb.org/docs/sql/query_syntax/from.html">From &amp; Join clauses</a></p>
+<p><strong>Joins and Subqueries</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># -- join two tables together</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>duckdb.sql(<span class="st">"SELECT * FROM table_name JOIN other_table ON (table_name.key = other_table.key"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Window Functions</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>powerplants <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/anly503/datasets/main/powerplants.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"date"</span>])</span>
+<span id="cb17-2"><a href="#cb17-2"></a>q <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">SELECT "plant", "date",</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="st">    AVG("MWh") OVER (</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="st">        PARTITION BY "plant"</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="st">        ORDER BY "date" ASC</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="st">        RANGE BETWEEN INTERVAL 3 DAYS PRECEDING</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="st">                  AND INTERVAL 3 DAYS FOLLOWING)</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="st">        AS "MWh 7-day Moving Average"</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="st">FROM powerplants</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="st">ORDER BY 1, 2;</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="st">"""</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>duckdb.sql(q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="using-the-duckdb-cli-shell" class="slide level2">
+<h2>Using the DuckDB CLI &amp; Shell</h2>
+<ol type="1">
+<li><p>Install the DuckDB CLI (<a href="http://duckdb.org/docs/installation/">download link</a>) OR use it in your browser via <a href="https://shell.duckdb.org/">shell.duckdb.org/</a> for easy data exploration using just SQL.</p></li>
+<li><p>Once installed you can import a local file into the shell and run queries.</p>
+<ul>
+<li>You can download <code>powerplants.csv</code> from <a href="https://raw.githubusercontent.com/anly503/datasets/main/powerplants.csv">here</a>.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>C:\Users\<span class="op">&lt;</span>username<span class="op">&gt;</span>\Downloads\duckdb_cli<span class="op">-</span>windows<span class="op">-</span>amd64<span class="op">&gt;</span>duckdb</span>
+<span id="cb18-2"><a href="#cb18-2"></a>v0<span class="fl">.8.1</span> <span class="dv">6536</span><span class="er">a77232</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>Enter <span class="st">".help"</span> <span class="cf">for</span> usage hints.</span>
+<span id="cb18-4"><a href="#cb18-4"></a>Connected to a transient <span class="kw">in</span><span class="op">-</span>memory database.</span>
+<span id="cb18-5"><a href="#cb18-5"></a>Use <span class="st">".open FILENAME"</span> to reopen on a persistent database.</span>
+<span id="cb18-6"><a href="#cb18-6"></a>D CREATE TABLE powerplants AS SELECT <span class="op">*</span> FROM read_csv_auto(<span class="st">'powerplants.csv'</span>)<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>D DESCRIBE powerplants<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐</span>
+<span id="cb18-9"><a href="#cb18-9"></a>│ column_name │ column_type │  null   │   key   │ default │ extra │</span>
+<span id="cb18-10"><a href="#cb18-10"></a>│   varchar   │   varchar   │ varchar │ varchar │ varchar │ int32 │</span>
+<span id="cb18-11"><a href="#cb18-11"></a>├─────────────┼─────────────┼─────────┼─────────┼─────────┼───────┤</span>
+<span id="cb18-12"><a href="#cb18-12"></a>│ plant       │ VARCHAR     │ YES     │         │         │       │</span>
+<span id="cb18-13"><a href="#cb18-13"></a>│ date        │ DATE        │ YES     │         │         │       │</span>
+<span id="cb18-14"><a href="#cb18-14"></a>│ MWh         │ BIGINT      │ YES     │         │         │       │</span>
+<span id="cb18-15"><a href="#cb18-15"></a>└─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘</span>
+<span id="cb18-16"><a href="#cb18-16"></a>D  SELECT <span class="op">*</span> <span class="im">from</span> powerplants where plant<span class="op">=</span><span class="st">'Boston'</span> <span class="kw">and</span> date<span class="op">=</span><span class="st">'2019-01-02'</span><span class="op">;</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>┌─────────┬────────────┬────────┐</span>
+<span id="cb18-18"><a href="#cb18-18"></a>│  plant  │    date    │  MWh   │</span>
+<span id="cb18-19"><a href="#cb18-19"></a>│ varchar │    date    │ int64  │</span>
+<span id="cb18-20"><a href="#cb18-20"></a>├─────────┼────────────┼────────┤</span>
+<span id="cb18-21"><a href="#cb18-21"></a>│ Boston  │ <span class="dv">2019</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">0</span><span class="er">2</span> │ <span class="dv">564337</span> │</span>
+<span id="cb18-22"><a href="#cb18-22"></a>└─────────┴────────────┴────────┘</span>
+<span id="cb18-23"><a href="#cb18-23"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="profiling-in-duckdb" class="slide level2">
+<h2>Profiling in DuckDB</h2>
+<ol type="1">
+<li><p>Query Optimization: Use the EXPLAIN &amp; ANALYZE keywords to understand how your query is being executed (see <a href="https://en.wikipedia.org/wiki/Query_plan#:~:text=A%20query%20plan%20(or%20query,model%20concept%20of%20access%20plans.)">Query Plan</a> and the time being spent in individual steps of your query.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a>D EXPLAIN ANALYZE SELECT * from powerplants where plant='Boston' and date='2019-01-02';</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>DuckDB will use all the cores available on the underlying compute, but you can adjust it (scenario: your process is not the only application on that VM, you want to limit the amount of resources it gets). Full configuration available <a href="https://duckdb.org/docs/sql/configuration.html">here</a>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a>D select current_setting('threads');</span>
+<span id="cb20-2"><a href="#cb20-2"></a>┌────────────────────────────┐</span>
+<span id="cb20-3"><a href="#cb20-3"></a>│ current_setting('threads') │</span>
+<span id="cb20-4"><a href="#cb20-4"></a>│           int64            │</span>
+<span id="cb20-5"><a href="#cb20-5"></a>├────────────────────────────┤</span>
+<span id="cb20-6"><a href="#cb20-6"></a>│                          8 │</span>
+<span id="cb20-7"><a href="#cb20-7"></a>└────────────────────────────┘</span>
+<span id="cb20-8"><a href="#cb20-8"></a>D SET threads=4;</span>
+<span id="cb20-9"><a href="#cb20-9"></a>D select current_setting('threads');</span>
+<span id="cb20-10"><a href="#cb20-10"></a>┌────────────────────────────┐</span>
+<span id="cb20-11"><a href="#cb20-11"></a>│ current_setting('threads') │</span>
+<span id="cb20-12"><a href="#cb20-12"></a>│           int64            │</span>
+<span id="cb20-13"><a href="#cb20-13"></a>├────────────────────────────┤</span>
+<span id="cb20-14"><a href="#cb20-14"></a>│                          4 │</span>
+<span id="cb20-15"><a href="#cb20-15"></a>└────────────────────────────┘</span>
+<span id="cb20-16"><a href="#cb20-16"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section></section>
+<section>
+<section id="benchmarks-and-comparisons" class="title-slide slide level1 center">
+<h1>Benchmarks and Comparisons</h1>
 <div class="columns">
 <div class="column" style="width:50%;">
+<ol type="1">
+<li>This is a tricky topic, in general, you can make your choosen solution look better by focussing on metrics on which your choosen solution provides better results.
 <ul>
-<li><p>Lambdas only start executing in response to an <strong>event</strong>, such as an API being invoked, a schedule or more complex things.</p></li>
-<li><p>A Lambda function is used primarily in the following two ways:</p>
-<ul>
-<li>Hosting an API, this is done in conjunction with an <a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a>.</li>
-<li>Running custom code to respond to events such as a new file showing up in an S3 bucket, a row being deleted from a database etc.</li>
+<li>In general, <a href="https://www.tpc.org/tpch/">TPC-H</a> and <a href="https://www.tpc.org/tpcds/">TPC-DS</a> are considered the standard benchmarks for data processing.</li>
 </ul></li>
+<li>Some links to explore further:</li>
+</ol>
+<ul>
+<li><p><strong>Reddit post</strong>: <a href="https://www.reddit.com/r/datascience/comments/13yd2m9/benchmarking_for_duckdb_and_polars/">Benchmarking for DuckDB and Polars</a></p></li>
+<li><p><strong>TPC-H benchmarks for DuckDB</strong>: did not find anything on the duckdb.org, but <a href="https://www.architecture-performance.fr/categories_blog/benchmark/">this site</a> has several DuckDB TPC-H benchmarks.</p></li>
+<li><p><strong><a href="https://datamonkeysite.com/2023/03/09/benchmarking-snowflake-databricks-synapse-bigquery-and-duckdb-using-tpch-sf100/">Benchmarking, Snowflake, Databricks, Synapse, BigQuery, Redshift, Trino, DuckDB and Hyper using TPCH-</a></strong></p></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="microservices/img/lambda-triggers.gif"></p>
-<p></p><figcaption><a href="microservices/img/lambda-triggers.gif"><code>Lambda triggers</code></a></figcaption><p></p>
+<p><img data-src="duckdb/img/TPC-DS-Homepage.png"></p>
+<p></p><figcaption>TPC-DS</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="different-ways-to-invoke-lambda" class="slide level2">
-<h2>Different ways to invoke Lambda</h2>
-<p><img data-src="https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2019/06/27/Screen-Shot-2019-06-27-at-2.23.51-PM-1024x510.png" alt="Ways to invoke Lambda"> Source: <a href="https://aws.amazon.com/blogs/architecture/understanding-the-different-ways-to-invoke-lambda-functions/">Understanding the different ways to invoke Lambda function</a></p>
-</section>
-<section id="some-real-world-use-cases-for-a-lambda" class="slide level2">
-<h2>Some real world use-cases for a Lambda</h2>
+<section id="a-simple-example-of-using-duckdb-and-apache-arrow-using-nyc-taxi-dataset" class="slide level2">
+<h2>A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset</h2>
+<p>This notebook reads the NYC taxi dataset files for the year 2021 (about ~29 million rows) and runs some analytics operation on this dataset. This dataset is too big to fit into memory.</p>
 <ol type="1">
-<li><p>Transforming a picture taken by a delivery agent into a desired format and storing it in S3 in real-time.</p></li>
-<li><p>As a front-end (along with an API Gateway) to a ML model to provide real-time prediction to a customer clicking a link on a website .</p></li>
-<li><p>A backend API that gets invoked when a QR code is scanned.</p></li>
-<li><p>A simple single page website with a form.</p></li>
-<li><p>Sending a scheduled newsletter to email addresses on a mailing list.</p></li>
+<li><p>We read the data from S3 using apache Arrow (pyarrow).</p></li>
+<li><p>The zero-copy integration between DuckDB and Apache Arrow allows for rapid analysis of larger than memory datasets in Python and R using either SQL or relational APIs.</p></li>
+<li><p>We create a DuckDB instance in memory and using the connection to this in-memory database We run some simple analytics operations using SQL syntax.</p></li>
 </ol>
-<p><a href="https://aws.amazon.com/lambda/resources/customer-case-studies/">AWS Lambda customer case studies</a></p>
+<p>Also see <a href="https://duckdb.org/2021/12/03/duck-arrow.html">https://duckdb.org/2021/12/03/duck-arrow.html</a></p>
 </section>
-<section id="lambda-can-be-set-on-a-schedule" class="slide level2">
-<h2>Lambda can be set on a schedule</h2>
-<ul>
-<li>Similar to Linux Crontab or Windows Task Scheduler</li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html">example of schedule trigger</a></p>
-<ul>
-<li>Site for translating crontab symbols to next execution: https://crontab.guru/</li>
-<li>Site for generating crontab syntax from dropdown options: https://crontab-generator.org/</li>
-</ul>
-</section>
-<section id="lambda-coding-choices" class="slide level2">
-<h2>Lambda coding choices</h2>
-<p>Levels of Lambda complexity:</p>
+<section id="further-reading-1" class="slide level2">
+<h2>Further reading</h2>
 <ol type="1">
-<li>Code written directly on the AWS Lambda console</li>
-<li>Zip archive</li>
-<li>Docker Containers</li>
+<li><a href="https://duckdb.org/2022/03/07/aggregate-hashtable.html">Parallel Grouped Aggregation in DuckDB</a></li>
+<li><a href="https://duckdb.org/docs/guides/meta/list_tables">Meta queries</a></li>
+<li><a href="https://duckdb.org/dev/profiling">Profiling queries in DuckDB</a></li>
+<li><a href="https://motherduck.com/blog/duckdb-tutorial-for-beginners/">DuckDB tutorial for beginners</a></li>
+<li><a href="https://duckdb.org/docs/api/cli">DuckDB CLI API</a></li>
+<li><a href="https://tobilg.com/using-duckdb-in-aws-lambda">Using DuckDB in AWS Lambda</a></li>
+<li><a href="https://dagster.io/blog/poor-mans-datalake-motherduck">Revisiting the Poor Man’s Data Lake with MotherDuck</a></li>
+<li><a href="https://medium.com/learning-sql/supercharge-your-data-processing-with-duckdb-cea907196704">Supercharge your data processing with DuckDB</a></li>
+<li><a href="https://duckdb.org/2022/05/04/friendlier-sql.html">Friendlier SQL with DuckDB</a></li>
+<li><a href="https://medium.com/@octavianzarzu/build-and-deploy-apps-with-duckdb-and-streamlit-in-under-one-hour-852cd31cccce">Building and deploying data apps with DuckDB and Streamlit</a></li>
 </ol>
 </section>
-<section id="lambda-basic-code-demo" class="slide level2">
-<h2>Lambda basic code demo</h2>
-<ol type="1">
-<li><p>Beyond any simple prototyping, you would probably never use this method.</p></li>
-<li><p>The “hello world” example and then numbers with an endpoint</p>
-<ul>
-<li><a href="https://frankcorso.dev/aws-lambda-function-endpoint-api-gateway.html" class="uri">https://frankcorso.dev/aws-lambda-function-endpoint-api-gateway.html</a></li>
-</ul></li>
-</ol>
-</section>
-<section id="using-a-zip-archive-for-lambda" class="slide level2">
-<h2>Using a Zip archive for Lambda</h2>
-<ol type="1">
-<li><p>The Lambda code (say the <code>index.py</code> file) and all the dependencies i.e.&nbsp;Python packages used by the code are packaged together in a Zip file, typically called <code>function.zip</code>.</p>
-<ul>
-<li>Be careful to always install these packages in a special directory specifically created for the Lambda function so to not override anything currently installed in your existing Python installation.</li>
-</ul></li>
-<li><p>The <code>function.zip</code> file is put in an S3 bucket and the Lambda is configured to pull it from there.</p></li>
-<li><p>Example <a href="https://github.com/aws-samples/llm-apps-workshop/blob/main/blogs/rag/api/deploy.sh">script</a> for building a Lambda <code>function.zip</code> and uploading it to S3.</p></li>
-</ol>
-<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/python-package.html">AWS example of zip archive</a></p>
-</section>
-<section id="lambda-with-docker-containers" class="slide level2">
-<h2>Lambda with Docker containers</h2>
-<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-base">AWS example</a> <a href="https://www.philschmid.de/aws-lambda-with-custom-docker-image">Walkthrough post</a></p>
-</section>
-<section id="dockerfile" class="slide level2">
-<h2>Dockerfile</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {{bash}} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a># syntax=docker/dockerfile:1</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span>
-<span id="cb6-4"><a href="#cb6-4"></a># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span>
-<span id="cb6-5"><a href="#cb6-5"></a>FROM public.ecr.aws/lambda/python:3.9</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a># copy requirements file and install necessary packages</span>
-<span id="cb6-8"><a href="#cb6-8"></a>ADD requirements.txt ${LAMBDA_TASK_ROOT}</span>
-<span id="cb6-9"><a href="#cb6-9"></a>RUN pip3 install -r ${LAMBDA_TASK_ROOT}/requirements.txt --target "${LAMBDA_TASK_ROOT}"</span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a># Copy function code to docker container</span>
-<span id="cb6-12"><a href="#cb6-12"></a>COPY app.py ${LAMBDA_TASK_ROOT}</span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a># app (name of py file)</span>
-<span id="cb6-15"><a href="#cb6-15"></a># handler (name of function to execute for lambda job)</span>
-<span id="cb6-16"><a href="#cb6-16"></a>CMD [ "app.lambda_handler" ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="interactivity-with-lambda" class="slide level2">
-<h2>Interactivity with Lambda?</h2>
-<p><a href="https://www.keithrozario.com/2019/08/interactive-shell-on-a-lambda-function.html">If you “hack” it!</a></p>
-</section>
-<section id="connecting-multiple-lambdas-together" class="slide level2">
-<h2>Connecting multiple Lambdas together</h2>
-<p><a href="https://medium.com/zenofai/create-an-etl-solution-using-aws-step-functions-lambda-and-glue-302623bc2fea">Connecting multiple lambda using AWS Step Functions</a></p>
-</section>
-<section id="performance-optimization" class="slide level2">
-<h2>Performance optimization</h2>
-<h4 id="warm-start-vs-cold-start">warm start vs cold start</h4>
-<p><a href="https://aws.amazon.com/blogs/compute/operating-lambda-performance-optimization-part-1/">Discussion post on AWS</a></p>
-</section>
-<section id="extra-links" class="slide level2">
-<h2>Extra links</h2>
-<p><a href="https://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/" class="uri">https://www.tatvasoft.com/blog/aws-lambda-vs-azure-functions/</a></p>
-<p>serverless web scraper with python and lambda - up to date simple example <a href="https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78" class="uri">https://towardsdatascience.com/serverless-covid-19-data-scraper-with-python-and-aws-lambda-d6789a551b78</a></p>
+<section id="github-classroom" class="slide level2">
+<h2>GitHub Classroom</h2>
+<p><a href="https://classroom.github.com/a/ADi4vxUM">GitHub Classroom Link</a></p>
 
 <div class="footer footer-default">
 
 </div>
 </section></section>
+
     </div>
   </div>
 

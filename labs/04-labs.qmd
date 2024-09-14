@@ -1,20 +1,14 @@
 ---
-title: "EMR Cluster Setup Instructions"
-author: "Amit Arora"
+title: "Lab 5"
+subtitle: "{{< var course.number >}} {{< var course.semester >}}"
+author: "{{< var instructor.name >}}"
+format: 
+  html:
+    toc: false
 ---
 
-## Part-1- Lambda
+{{< include login-to-saxanet.qmd >}} 
 
-{{< include lambda-docker/_lambda.qmd >}} 
+## GitHub Classroom
 
-## Part-2- Cloud9
-
-{{< include lambda-docker/_cloud9.qmd >}} 
-
-## Part-3- Docker-Lambda
-
-{{< include lambda-docker/_docker.qmd >}} 
-
-
-
-
+[GitHub Classroom Link]({{< var gh-classroom.lab04 >}})
