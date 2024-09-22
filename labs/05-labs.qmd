@@ -1,5 +1,5 @@
 ---
-title: "Lab 4"
+title: "Lab 5"
 subtitle: "{{< var course.number >}} {{< var course.semester >}}"
 author: "{{< var instructor.name >}}"
 format: 
@@ -11,4 +11,4 @@ format:
 
 ## GitHub Classroom
 
-[GitHub Classroom Link]({{< var gh-classroom.lab04 >}})
+[GitHub Classroom Link]({{< var gh-classroom.lab05 >}})

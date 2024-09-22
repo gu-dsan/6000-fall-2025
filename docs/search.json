@@ -667,13 +667,27 @@
   {
     "objectID": "labs/04-labs.html",
     "href": "labs/04-labs.html",
-    "title": "Lab 5",
+    "title": "Lab 4",
     "section": "",
     "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
   },
   {
     "objectID": "labs/04-labs.html#github-classroom",
     "href": "labs/04-labs.html#github-classroom",
+    "title": "Lab 4",
+    "section": "GitHub Classroom",
+    "text": "GitHub Classroom\nGitHub Classroom Link"
+  },
+  {
+    "objectID": "labs/05-labs.html",
+    "href": "labs/05-labs.html",
+    "title": "Lab 5",
+    "section": "",
+    "text": "Important\n\n\n\nMake sure that you are connected to the Saxanet WiFi network and not the GuestNet network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. Use SaxaNet. #"
+  },
+  {
+    "objectID": "labs/05-labs.html#github-classroom",
+    "href": "labs/05-labs.html#github-classroom",
     "title": "Lab 5",
     "section": "GitHub Classroom",
     "text": "GitHub Classroom\nGitHub Classroom Link"
@@ -2434,6 +2448,167 @@
     "title": "Lecture 5",
     "section": "GitHub Classroom",
     "text": "GitHub Classroom\nGitHub Classroom Link"
+  },
+  {
+    "objectID": "slides/05-slides.html#what-is-data-engineering",
+    "href": "slides/05-slides.html#what-is-data-engineering",
+    "title": "Lecture 5",
+    "section": "What is Data Engineering?",
+    "text": "What is Data Engineering?\nAs the scale of the data grew, the existing ETL processes alone were not sufficient, a separate discipline was needed for:\n\nCollecting data\nManaging storage\nCataloging\nMaking it available for applications such as analytics & machine learning)\nSecurity\nLifecycle management\nAnd more…\n\n\nFrom Wikipedia: Data engineering refers to the building of systems to enable the collection and usage of data. This data is usually used to enable subsequent analysis and data science; which often involves machine learning. Making the data usable usually involves substantial compute and storage, as well as data processing and cleaning."
+  },
+  {
+    "objectID": "slides/05-slides.html#what-do-data-engineers-do",
+    "href": "slides/05-slides.html#what-do-data-engineers-do",
+    "title": "Lecture 5",
+    "section": "What do Data Engineers do?",
+    "text": "What do Data Engineers do?\nData engineers build systems that collect data from different sources and make this data available for analytics and ML application. This usually involves the following:\n\nAcquisition: Finding all the different datasets around the business.\n\nThese could be availble in databases, shared drives, ingested directly from IoT devices, external datasets, and more.\n\nCleansing: The raw data usually cannot be used as is, it needs to be cleaned.\nConversion: Since the data is coming from different sources, it would probably in different formats (database tables, CSV, JSON, custom). Needs to be converted into a common format (such as parquet) before it becomes usable.\n\nMultiple datasets need to be joined together to answer a business question."
+  },
+  {
+    "objectID": "slides/05-slides.html#what-do-data-engineers-do-contd.",
+    "href": "slides/05-slides.html#what-do-data-engineers-do-contd.",
+    "title": "Lecture 5",
+    "section": "What do Data Engineers do (contd.)?",
+    "text": "What do Data Engineers do (contd.)?\n\nDisambiguation: How to interpret what the data means? Use a data catalog and then with the help of subject matter experts (often called Data Stewards) add meaningful description to the datasets.\nDeduplication: Having a single source of truth!\nData Governance: for how long to store the data, how to enforce access controls (Principle of least privilege) etc.\n\nOnce this is done, data may be stored in a central repository such as a data lake or data lakehouse. Data engineers may also copy and move subsets of data into a data warehouse."
+  },
+  {
+    "objectID": "slides/05-slides.html#data-engineering-tools-technologies",
+    "href": "slides/05-slides.html#data-engineering-tools-technologies",
+    "title": "Lecture 5",
+    "section": "Data engineering tools & technologies",
+    "text": "Data engineering tools & technologies\nData engineers work with a variety of tools and technologies, including:\n\nETL Tools: ETL (extract, transform, load) tools move data between systems. They access data, then apply rules to “transform” the data through steps that make it more suitable for analysis.\nSQL: Structured Query Language (SQL) is the standard language for querying relational databases.\nPython: Python is a general programming language. Data engineers may choose to use Python for ETL tasks. Spark (pyspark) for Big Data, Apache Flink for streaming data.\nCloud Data Storage: Including Amazon S3, Azure Data Lake Storage (ADLS), Google Cloud Storage, etc.\nCloud Data Warehouses: Data ready for use by data scientists and analysts is stored in data warehouses, such as Amazon Redshift, Google BigQuery, Azure Data Warehouse, Snowflake etc."
+  },
+  {
+    "objectID": "slides/05-slides.html#popular-data-engineering-tools",
+    "href": "slides/05-slides.html#popular-data-engineering-tools",
+    "title": "Lecture 5",
+    "section": "Popular Data engineering tools",
+    "text": "Popular Data engineering tools\n\nSource: https://www.secoda.co/blog/the-top-20-most-commonly-used-data-engineering-tools"
+  },
+  {
+    "objectID": "slides/05-slides.html#data-lakes",
+    "href": "slides/05-slides.html#data-lakes",
+    "title": "Lecture 5",
+    "section": "Data Lakes",
+    "text": "Data Lakes\n\n\nFrom Wikipedia: A data lake is a system or repository of data stored in its natural/raw format, usually object blobs or files. A data lake is usually a single store of data including raw copies of source system data, sensor data, social data etc., and transformed data used for tasks such as reporting, visualization, advanced analytics and machine learning. A data lake can include structured data from relational databases (rows and columns), semi-structured data (CSV, logs, XML, JSON), unstructured data (emails, documents, PDFs) and binary data (images, audio, video)."
+  },
+  {
+    "objectID": "slides/05-slides.html#data-lake-cloud-provider-definitions",
+    "href": "slides/05-slides.html#data-lake-cloud-provider-definitions",
+    "title": "Lecture 5",
+    "section": "Data Lake (Cloud Provider Definitions)",
+    "text": "Data Lake (Cloud Provider Definitions)\nDefinitions in the wild (emphasis mine).\n\n\nAWS\nA data lake is a centralized repository that allows you to store all your structured and unstructured data at any scale. You can store your data as-is, without having to first structure the data, and run different types of analytics—from dashboards and visualizations to big data processing, real-time analytics, and machine learning to guide better decisions.\n\nGCP\nA data lake provides a scalable and secure platform that allows enterprises to: ingest any data from any system at any speed—even if the data comes from on-premises, cloud, or edge-computing systems; store any type or volume of data in full fidelity; process data in real time or batch mode; and analyze data using SQL, Python, R, or any other language, third-party data, or analytics application.\n\nAzure\nAzure Data Lake includes all the capabilities required to make it easy for developers, data scientists, and analysts to store data of any size, shape, and speed, and do all types of processing and analytics across platforms and languages.\n\nDataBricks\nA data lake is a central location that holds a large amount of data in its native, raw format. Compared to a hierarchical data warehouse, which stores data in files or folders, a data lake uses a flat architecture and object storage to store the data.‍"
+  },
+  {
+    "objectID": "slides/05-slides.html#working-with-a-cloud-data-lake",
+    "href": "slides/05-slides.html#working-with-a-cloud-data-lake",
+    "title": "Lecture 5",
+    "section": "Working with a Cloud Data Lake",
+    "text": "Working with a Cloud Data Lake\nA cloud data lake is setup using the cloud provider’s object store (S3, GCS, Azure Blob Storage).\n\nThe object stores are extremely scalable, for context, the maximum size of an object in S3 is 5 TB and there is no limit to number of objects in an S3 bucket.\nThey are extremely duarable, 99.999999999%. Provide strong consistency (read-after-write, listing buckets and objects, granting permissions etc.).\nCost effective, with multiple storage classes.\nIntegration with data processing tools such as Spark, machine learning tools such as SageMaker, data warehouses such as RedShift and data cataloging tools.\nThey provide Fine Grained Access Control to the data."
+  },
+  {
+    "objectID": "slides/05-slides.html#data-warehouses",
+    "href": "slides/05-slides.html#data-warehouses",
+    "title": "Lecture 5",
+    "section": "Data Warehouses",
+    "text": "Data Warehouses\n\n\nFrom Wikipedia: In computing, a data warehouse (DW or DWH), also known as an enterprise data warehouse (EDW), is a system used for reporting and data analysis and is considered a core component of business intelligence. DWs are central repositories of integrated data from one or more disparate sources. They store current and historical data in one single place that are used for creating analytical reports for workers throughout the enterprise."
+  },
+  {
+    "objectID": "slides/05-slides.html#data-warehouse-cloud-provider-definitions",
+    "href": "slides/05-slides.html#data-warehouse-cloud-provider-definitions",
+    "title": "Lecture 5",
+    "section": "Data Warehouse (Cloud Provider Definitions)",
+    "text": "Data Warehouse (Cloud Provider Definitions)\nDefinitions in the wild (emphasis mine).\n\n\nAWS\nA data warehouse is a central repository of information that can be analyzed to make more informed decisions. Data flows into a data warehouse from transactional systems, relational databases, and other sources, typically on a regular cadence. Business analysts, data engineers, data scientists, and decision makers access the data through business intelligence (BI) tools, SQL clients, and other analytics applications.\nAzure\nA data warehouse is a centralized repository of integrated data from one or more disparate sources. Data warehouses store current and historical data and are used for reporting and analysis of the data.\n\nGCP\nA data warehouse is an enterprise system used for the analysis and reporting of structured and semi-structured data from multiple sources, such as point-of-sale transactions, marketing automation, customer relationship management, and more.\nSnowflake\nA data warehouse (DW) is a relational database that is designed for analytical rather than transactional work. It collects and aggregates data from one or many sources so it can be analyzed to produce business insights."
+  },
+  {
+    "objectID": "slides/05-slides.html#working-with-a-cloud-data-warehouse",
+    "href": "slides/05-slides.html#working-with-a-cloud-data-warehouse",
+    "title": "Lecture 5",
+    "section": "Working with a Cloud Data Warehouse",
+    "text": "Working with a Cloud Data Warehouse\nAll cloud providers provide a data warehouse solution that works in conjunction with their data lake solution.\n\nAWS has Redshift, Azure has Synapse Analytics. GCP has BigQuery and then there is Snowflake.\nIn a data warehouse, Online analytical processing (OLAP) allows for fast querying and analysis of data from different perspectives. It also helps in pre-aggregating and pre-calculating the information available in the archive.\nData warehouses are Peta Byte scale (Amazon RedShift, Google BigQuery, Azure Synapse Analytics).\nData warehouses can have dedicated compute provisioned or be serverless (BigQuery is serverless, Redshift allows both options now).\nData warehouses now offer integrated ML capabilities, you can build models with SQL and use them in queries (Amazon RedShift ML, Google BigQuery ML, Azure Synapse Analytics ML).\nIntegration with reporting and dashboarding tools such as Tableau, Grafana, Looker etc. and data analytics tools such as Spark and data cataloging tools.\nThey provide Fine Grained Access Control to the data."
+  },
+  {
+    "objectID": "slides/05-slides.html#combining-data-lakes-and-data-warehouses",
+    "href": "slides/05-slides.html#combining-data-lakes-and-data-warehouses",
+    "title": "Lecture 5",
+    "section": "Combining Data Lakes and Data Warehouses",
+    "text": "Combining Data Lakes and Data Warehouses\nCombine the flexibility, cost-efficiency, and scale of data lakes with the data management and ACID transactions of data warehouses to provide a single architecture that can enable business intelligence and machine learning on all data.\n\nBuild a lakehouse architecture on AWS\nThe Databricks lakehouse platform\nOpen data lakehouse on Google Cloud\nThe data lakehouse, the data warehouse and a modern data platform on Azure"
+  },
+  {
+    "objectID": "slides/05-slides.html#nosql-databases",
+    "href": "slides/05-slides.html#nosql-databases",
+    "title": "Lecture 5",
+    "section": "NoSQL Databases",
+    "text": "NoSQL Databases\nAt some point we needed to think beyond relation databases, because: - Data became more and more complex (not all data is tabular, thinkin JSON data emitted by an IoT device). - Cost of storage decreased (everything did not need to be stored in the 3rd normal form) - More data on the cloud meant data needed to be placed across different servers (scale-out) - Data needed to be placed intelligently in geo locations of interest - And more…\n\nFrom Wikipedia: A NoSQL (originally referring to “non-SQL” or “non-relational”) database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases. Such databases have existed since the late 1960s, but the name “NoSQL” was only coined in the early 21st century, triggered by the needs of Web 2.0 companies. NoSQL databases are increasingly used in big data and real-time web applications. NoSQL systems are also sometimes called Not only SQL to emphasize that they may support SQL-like query languages or sit alongside SQL databases in polyglot-persistent architectures."
+  },
+  {
+    "objectID": "slides/05-slides.html#types-of-nosql-databases",
+    "href": "slides/05-slides.html#types-of-nosql-databases",
+    "title": "Lecture 5",
+    "section": "Types of NoSQL Databases",
+    "text": "Types of NoSQL Databases\nOver time, four major types of NoSQL databases emerged: document databases, key-value databases, wide-column stores, and graph databases.\n\nDocument databases store data in documents similar to JSON (JavaScript Object Notation) objects. Each document contains pairs of fields and values. The values can typically be a variety of types including things like strings, numbers, booleans, arrays, or objects.\nKey-value databases are a simpler type of database where each item contains keys and values.\nWide-column stores store data in tables, rows, and dynamic columns.\nGraph databases store data in nodes and edges. Nodes typically store information about people, places, and things, while edges store information about the relationships between the nodes."
+  },
+  {
+    "objectID": "slides/05-slides.html#examples-of-nosql-databases",
+    "href": "slides/05-slides.html#examples-of-nosql-databases",
+    "title": "Lecture 5",
+    "section": "Examples of NoSQL Databases",
+    "text": "Examples of NoSQL Databases\n\n\n\n\n\n\n\nNOSQL Database Type\nExamples\n\n\n\n\nDocument Database\nAmazon DocumentDB, MongoDB, Cosmos DB, ArangoDB, Couchbase Server, CouchDB\n\n\nKey-value Database\nAmazon DynamoDB, Couchbase, Memcached, Redis\n\n\nWide-column datastores\nAmazon DynamoDB, Apache Cassandra, Google Bigtable, Azure Tables\n\n\nGraph databases\nAmazon Neptune, Neo4j\n\n\n\nAs a data scientist you would work with a NoSQL database through an SDK/API. Several programming languages are supported including Python, Java, Go, C++ etc."
+  },
+  {
+    "objectID": "slides/05-slides.html#example-of-documents-in-a-document-database",
+    "href": "slides/05-slides.html#example-of-documents-in-a-document-database",
+    "title": "Lecture 5",
+    "section": "Example of documents in a document database",
+    "text": "Example of documents in a document database\nHere is an example of a document inserted in a key-value/document database such as MongoDB.\n{\n   \"name\" : \"IS 350\",\n   \"year\" : \"2015\",\n   \"make\" : \"Lexus\",\n   \"colors\" : [\"black\",\"white\",\"grey\"],\n   \"spec\" : {\n      \"engine\" : \"V6\",\n      \"wheelbase\" : \"110.2 in\",\n      \"length\" : \"183.7 in\"\n   }\n}\nThe same example can be inserted in an Amazon DynamoDB table called (say) Cars.\ndatabase = boto3.resource('dynamodb')\ntable = database.Table('cars')\nitem = {\n   \"name\" : \"IS 350\",\n   \"year\" : \"2015\",\n   \"make\" : \"Lexus\",\n   \"colors\" : [\"black\",\"white\",\"grey\"],\n   \"spec\" : {\n      \"engine\" : \"V6\",\n      \"wheelbase\" : \"110.2 in\",\n      \"length\" : \"183.7 in\"\n   }\n}\ntable.put_item(Item = item)"
+  },
+  {
+    "objectID": "slides/05-slides.html#other-data-stores-to-know-about",
+    "href": "slides/05-slides.html#other-data-stores-to-know-about",
+    "title": "Lecture 5",
+    "section": "Other Data stores to know about",
+    "text": "Other Data stores to know about\nBesides the general concepts about data lkakes, warehouses, different types of databases, there are some purpose built databases that are good to know about.\n\nSplunk\nElasticsearch\nDuckDB\nMany many more…"
+  },
+  {
+    "objectID": "slides/05-slides.html#splunk",
+    "href": "slides/05-slides.html#splunk",
+    "title": "Lecture 5",
+    "section": "Splunk",
+    "text": "Splunk\nSplunk is a software platform to search, analyze and visualize the machine-generated data gathered from the websites, applications, sensors, devices etc. which make up your IT infrastructure and business. See https://www.splunk.com/.\n\nThe logfile we analyzed in assignment 4 s3://bigdatateaching/forensicswiki/2012_logs.txt, is the typical kind of data that gets ingested into Splunk.\n\n\nImage courtsey: https://docs.splunk.com/Documentation/Splunk/9.0.2/SearchTutorial/Aboutthesearchapp"
+  },
+  {
+    "objectID": "slides/05-slides.html#elasticsearch",
+    "href": "slides/05-slides.html#elasticsearch",
+    "title": "Lecture 5",
+    "section": "Elasticsearch",
+    "text": "Elasticsearch\nFrom https://www.elastic.co/what-is/elasticsearch, emphasis mine\nElasticsearch is a distributed, free and open search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured. Elasticsearch is built on Apache Lucene and was first released in 2010 by Elasticsearch N.V. (now known as Elastic).\nCommonly referred to as the ELK Stack (after Elasticsearch, Logstash, and Kibana), the Elastic Stack now includes a rich collection of lightweight shipping agents known as Beats for sending data to Elasticsearch.\nData is inserted in Elasticsearch indexes as JSON documents using a REST API/SDK.\n\nImage courtsey: https://www.elastic.co/kibana"
+  },
+  {
+    "objectID": "slides/05-slides.html#duckdb",
+    "href": "slides/05-slides.html#duckdb",
+    "title": "Lecture 5",
+    "section": "DuckDB",
+    "text": "DuckDB\nDuckDB is an in-process SQL OLAP database management system.\n\nIt is like sqllite, but for analytics. What does this mean? It means that your database runs inside your process, there are no servers to manage, no remote system to connect to. Very snappy, easy to experiment with SQL like syntax.\n\nDuckDB does vectorized processing i.e. loads chunks of data into memory (tries to keep everything in the CPU’s L1 and L2 cache) and is thus able to handle datasets bigger than the amount of RAM available.\nDuckDB supports Python, R and a host of other languages.\nWhen to use DuckDB: when you cannot use Pandas for rapid experimentation with Big Data, especially when combining DuckDB with Arrow.\nWhen not to use DuckDB: DuckDB has a valuable but very niche use-case.\n\n\nPaper on DuckDB by Hannes Mühleisen & Mark Raasveldt\nDuckDB: an Embeddable Analytical Database https://hannes.muehleisen.org/publications/SIGMOD2019-demo-duckdb.pdf"
+  },
+  {
+    "objectID": "slides/05-slides.html#further-reading",
+    "href": "slides/05-slides.html#further-reading",
+    "title": "Lecture 5",
+    "section": "Further Reading",
+    "text": "Further Reading\nPlease lookup these topics on Google for further reading. Not providing specific links here because they all point to vendor specific products.\n\nData Catalog\nData Governance\nData Mesh\nData Fabric"
+  },
+  {
+    "objectID": "slides/05-slides.html#lab-analyzing-nyc-taxi-dataset-with-athena",
+    "href": "slides/05-slides.html#lab-analyzing-nyc-taxi-dataset-with-athena",
+    "title": "Lecture 5",
+    "section": "Lab: Analyzing NYC-Taxi dataset with Athena",
+    "text": "Lab: Analyzing NYC-Taxi dataset with Athena"
+  },
+  {
+    "objectID": "slides/05-slides.html#a-simple-example-of-using-duckdb-and-apache-arrow-using-nyc-taxi-dataset",
+    "href": "slides/05-slides.html#a-simple-example-of-using-duckdb-and-apache-arrow-using-nyc-taxi-dataset",
+    "title": "Lecture 5",
+    "section": "A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset",
+    "text": "A simple example of using DuckDB and Apache Arrow using NYC Taxi dataset\nThis notebook reads the NYC taxi dataset files for the first 6 months of the year 2023 (about ~20 million rows) and runs some analytics operation on this dataset. This dataset is too big to fit into memory.\nGitHub Classroom Link for lab\nGitHub Classroom Link for lab"
   },
   {
     "objectID": "slides/06-slides.html#starting-with-our-big-dataset",
