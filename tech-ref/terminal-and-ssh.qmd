@@ -70,7 +70,7 @@ When you want to connect to a remote machine, the method is called "Secure Shell
 
 -   Open a terminal (on your laptop) if not already open. By default, every time you open a terminal it will open in your home directory.
 
--   At the command prompt run the following command: `ssh-keygen -t rsa -b 2048` and **press enter**
+-   At the command prompt run the following command: `ssh-keygen -t rsa -b 4096` and **press enter**
 
 -   You will see this prompt, **just press enter**
 
