@@ -6,24 +6,22 @@ format:
         embed-resources: true
 ---
 
+A fully functional Microsoft Azure individual subscription will be created for you with credits. Most Azure services are available in this account.
+
+Follow these instructions to setup your Azure environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.
+
 {{< include _login-to-saxanet.qmd >}}
 {{< include _screenshot-disclaimer.qmd >}}
-
-A fully functional Microsoft Azure individual subscription will be created for you with credits. Most Azure services are available in this account.
 
 ::: callout-warning
 Unlike the AWS environment, you will have to manually stop down your resources to avoid consuming your credits.
 :::
-
-Follow these instructions to setup your Azure environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.
 
 ## Accept the subscription ownership
 
 ::: callout-important
 This is only done once.
 :::
-
-
 
 ### Steps to accept and access your Azure subscription:
 
@@ -306,7 +304,7 @@ You will only deploy the service once.
 3. From the Azure Machine Learning service page (which will be empty), Click on _+ Create_
 4. Select _New workspace_ from the dropdown
 5. Select your subscription from the _Subscription_ drow-down
-6. Select the [resource group](#res) you crated from the dropdown (most likely {{< var course.number_code >}})
+6. Select the [resource group](#create-an-azure-resource-group) you crated from the dropdown
 7. Enter `aml` as the _Name_. You will notice that _Storage account_, _Key vault_, and _Application insights_ values will auto-populate, and the _Container registry_ value will be "None". **Do not change anything in those four fields.**
 8. Make sure the region is _East US 2_
 9. Click _Review + create_
