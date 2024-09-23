@@ -13,6 +13,7 @@ project:
     - "slides/css/"
     - "slides/*_files/"
     - "labs/img/"
+    - "tech-ref/img/"
 
 
 # See https://quarto.org/docs/projects/code-execution.html#freeze
@@ -50,6 +51,10 @@ website:
         file: labs/index.qmd
       - text: "Project"
         file: project/index.qmd
+      - text: "Technical Reference"
+        menu:
+        - tech-ref/terminal-and-ssh.qmd
+        - tech-ref/azure.qmd
       - text: "Resources"
         file: resources/index.qmd
       - icon: slack
@@ -88,11 +93,11 @@ website:
             - text: "10: Spark Streaming"
               file: content/10-content.qmd
             - text: "11: Serverless & DevOps"
-              file: content/11-content.qmd                                        
+              file: content/11-content.qmd
             - text: "12: Data engineering"
               file: content/12-content.qmd
             - text: "13: Ray, RAPIDS & DuckDB"
-              file: content/13-content.qmd              
+              file: content/13-content.qmd
             - text: "14: Feature Store, Vector DB & Misc."
               file: content/14-content.qmd
 
@@ -127,7 +132,7 @@ website:
             - text: "10: Spark Streaming"
               file: labs/10-labs.qmd
             - text: "11: Serverless & DevOps"
-              file: labs/11-labs.qmd                                        
+              file: labs/11-labs.qmd
             - text: "13: Ray, RAPIDS & DuckDB"
               file: labs/13-labs.qmd
 
@@ -136,7 +141,7 @@ website:
         - section: "Overview"
           contents:
             - resources/index.qmd
-    
+
     - title: "Project"
       style: "docked"
       search: false

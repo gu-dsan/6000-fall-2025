@@ -1,0 +1,348 @@
+---
+title: "Microsoft Azure"
+format:
+    html:
+        toc: true
+        embed-resources: true
+---
+
+{{< include _login-to-saxanet.qmd >}}
+{{< include _screenshot-disclaimer.qmd >}}
+
+A fully functional Microsoft Azure individual subscription will be created for you with credits. Most Azure services are available in this account.
+
+::: callout-warning
+Unlike the AWS environment, you will have to manually stop down your resources to avoid consuming your credits.
+:::
+
+Follow these instructions to setup your Azure environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.
+
+## Accept the subscription ownership
+
+::: callout-important
+This is only done once.
+:::
+
+
+
+### Steps to accept and access your Azure subscription:
+
+1. In your student email inbox, you will have an email from _Microsoft Azure <azure-noreply@microsoft.com>_ with the subject _You’ve been asked to accept Azure subscription ownership_.
+![](img/azure-step1.png)
+1. Open the email.
+1. **Right click** in the blue box where it says _Accept ownership_ and **open the link in a private/incognito browser page**
+
+::: callout-important
+It is always recommended that you do any of the cloud work in a **private/incognito** browser window
+:::
+
+1. In the sign in page **enter `NetID@georgetown.edu`**
+![](img/azure-step2.png)
+
+1. Authenticate with your GU credentials and two-factor-authentication
+<!--![](img/azure-step3.png)-->
+
+1. You _may_ be prompted for additional information, click _Next_
+![](img/azure-step4.png)
+
+1. Once you enter all additional information, verify and click _looks good_
+![](img/azure-step5.png)
+
+1. You will continue the sign in process and asked if you would like to stayed sign in. Since you are using a private browser it doesn't matter.
+![](img/azure-step6.png)
+
+1. You will end up in the _Accept subscription ownership_ page. Click _Review + accept_
+![](img/azure-step7.png)
+
+1. Click _Accept_
+![](img/azure-step8.png)
+
+1. You will end up in _Welcome to Azure page!_ and your Azure account is ready to be used!
+![](img/azure-step9.png)
+
+
+### Find your Azure Subscription information
+
+1. Click on _Home_ or on _Microsoft Azure_ in the top left
+1. Click on _Subscriptions_ (the key icon). You will see a list of all subcriptions associated with you Azure account (which is in turn, associated with your Georgetown email)
+3. Click on the `Subscriptions == global filter` oval
+4. Uncheck the checkbox that says _Show only subscriptions selected in the global subscriptions filter_
+4. You will either see a subscription called `DSAN6000 Fall 2024 Individual_XXXXX_YYYYY` where `XXXX` is your first name, and `YYYY` is your last name.
+1. Click on your subscription name
+1. In this page you can see all information regarding your subscription. You may want to keep the Subscription ID handy for identification purposes
+
+
+## Sign in to the Azure Portal {#azuresignin}
+
+::: callout-important
+You must have already [accepted ownership](#accept-the-subscription-ownership) of the Azure subscription created for you before you sign in.
+:::
+
+
+The URL to sign in to the Azure Portal is [https://portal.azure.com](https://portal.azure.com)
+
+::: callout-important
+It is recommended that you do any of the cloud work in a **private/incognito** browser window
+:::
+
+1. Open a private/incognito browser window
+1. Go to the Azure Portal
+1. In the sign in page, use your username in the form of `NETID@georgetown.edu`
+![](img/azure-portal.png)
+1. If you get shown a page that looks like the one below, select _Work or School Account_
+![](img/azure-select-work-or-school.png)
+1. Authenticate with your institution's two-factor-authentication
+1. When you finish signing in, you'll be at the Azure Portal home page, and you are ready to work in Azure!
+![](img/azure-home.png)
+
+
+## Create an Azure resource group
+
+Microsoft Azure uses a logical grouping called [_resource groups_](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal). Any resource you create in Azure has to be within a Resource Group. Resource groups typically have a default [_region_](https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/#choose-your-region), but you can still have resources deployed in multiple regions within a single resource group.
+
+For this course, you will create a single resource group for all your Azure services in the _East US 2_ region. All the Azure services and resources you will use will be within this resource group.
+
+::: callout-note
+You will create a resource group ony once. Once it is created you **do not** need to create one again.
+:::
+
+1. Sign in to Azure if not already signed in. Follow the instructions in the [sign in page.](#sign-in-to-the-azure-portal)
+
+1. Click on _Microsoft Azure_ in the top left to go to the Azure Portal home screen
+
+2. Click on _Resource groups_
+
+3. Click on the Subscription Filter and make sure your
+subscription is selected
+
+4. Click _Create_
+
+5. In the _Create a resource group_ page:
+	* Select your subscription from the dropdown
+	* Enter a name for the resource group. The name can be anything. Use the course number `DSAN6000`
+	* Select _(US) East US 2_ from the dropdown
+
+1. Click _Review + create_ at the bottom left
+
+2. After validation passes, click _Create_
+
+1. Once the RG is created, you'll see it in the RG list (if your right subscriptions are selected in the filter)
+![](img/azure-rg.png)
+
+## Launch IAAS virtual machine on Azure
+
+1. Click on _Home_ in the top left
+1. Type `virtual machines` in the search bar, and click on the _Virtual machines_ service
+![](img/azure-vm-01.png)
+
+
+2. Click _Create_ and then _Azure virtual machine_
+![](img/azure-vm-02.png)
+
+
+4. In the _Create a virtual machine_ page
+	* Select the right subscription from the dropdown
+	* Select the right RG from the dropdown
+	* In the  _Instance details_ section:
+		* Give your VM a name
+		* Leave all other values unchanged
+		* For the size, click _see all sizes_, select size _B2s_ and click _Select_ at the bottom
+		![](img/azure-vm-03.png)
+	* In the _Administrator account_ section:
+	  * Leave _SSH public key_ checked
+	  * Leave `azureuser` as Username
+	  * Select _Use existing key stored in Azure_ from the _SSH public key source_ dropdown
+	  * Select the key you uploaded earlier by name from the dropdown
+	  ![](img/azure-vm-04.png)
+	* In the _Inbound port rules_ section:
+	  * Leave _Allow selected ports_ selected
+	  * Leave `SSH (22)` in the _Select inbound ports dropdown
+	  ![](img/azure-vm-05.png)
+	* Click _Review + create_
+	* After validation passes, click _Create_
+	![](img/azure-vm-06.png)
+
+::: {.callout-note}
+You can ignore the warning "You have set SSH port(s) open to the internet". This is what we need for our setup.
+:::
+
+* Once the VM is created you'll see a notice and click _Go to resource_
+
+![](img/azure-vm-07.png)
+![](img/azure-vm-08.png)
+
+  * You will end up in the VM overview panel
+  ![](img/azure-vm-09.png)
+  * In the VM overview panel, you can see the machine's **public IP address**. You will need this to be able to connect to it.
+    ![](img/azure-vm-10.png)
+
+### Explore all the resources that got created with a single virtual machine
+
+When you created the virtual machine, there were actually several other resources that were created at the same time which are tied to the virtual machine. You can see all the resources in the resource group by navigating to the resource group's summary panel:
+
+![](img/azure-rg-after-creating-vm-02.png)
+
+**Networking resources**
+
+* A vnet(virtual network): a virtual network within Azure with it's own networking address space where you can have many resources that can communicate with one-another. You can have several vnets.
+* A network security group: a set of inbound/outbound networking rules (firewall) associated with a virtual network.
+* A network interface: the actual "network card" that is associated with a given virtual machine. A single machine can have multuple network interfaces. Every network integrace also gets an internal IP address.
+* A public IP address: a public IP address (fixed or rotating) that is associated with a network interface.
+
+**Computing resources**
+
+* The actual virtual machine (virtual hardware) which has a specific machine type
+
+**Storage resources**
+
+* The system hard drive that has the operating system for a given virtual machine. A machine must have a system drive, and it can also have several other drives
+
+-----
+
+## Connect to a virtual machine using Secure Shell `ssh`
+
+1. Go to the VM Overview page for the VM you just created. You can get there multiple ways:
+  - From the home screen
+  - From the resource group summary page
+  - From the virtual machines list
+
+2. In the _Essentials_ section on the overview panel, you can see the public IP address. Copy that.
+
+:::callout-important
+The IP address will change every time you start the same virtual machine from a stopped (paused) state.
+:::
+
+3. Open a terminal on your laptop. If you have one already open, type `cd ~` to navigate back to your home directory
+1. Type `ssh azureuser@` and paste your IP address
+* If everything is configured correctly, the first time you connect to a host that you've never connected to, you will see something like this:
+
+```
+The authenticity of host 'xxx.xxx.xxx.xxx (xxx.xxx.xxx.xxx)' can't be established.
+ECDSA key fingerprint is SHA256:TeYrgHLkYHvD/zcp23bO3wozsLMyPSiSn+edPPo88zE.
+Are you sure you want to continue connecting (yes/no)?
+```
+Note: your values for IP address and fingerprint will be different
+
+* Enter `yes` and press enter. You will only need to enter yes once.
+* If you are successful, you will see something like this:
+
+```
+Warning: Permanently added '20.7.145.120' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.15.0-1017-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Sep  6 16:32:56 UTC 2022
+
+  System load:  0.0               Processes:             112
+  Usage of /:   5.0% of 28.89GB   Users logged in:       0
+  Memory usage: 7%                IPv4 address for eth0: 10.0.0.4
+  Swap usage:   0%
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+1 update can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+azureuser@my-vm-name:~$
+```
+**Congratulations, you have successfully connected to your VM on Azure**
+
+## Stop (pausing) the virtual machine
+
+There are two concepts you need to understand:
+
+* **Stopping a VM** is like turning the machine off. The current state is saved and you can turn it on again later. No hourly charges are incurred while in this state (although some storage charges may occur.)
+* **Deleting a VM** completely removes it. This cannot be undone.
+
+1. Go to the VM overview panel
+2. Click on _Stop_
+1. Confirm you want to stop it by clicking _OK_
+2. To start again in the future, click on _Restart_, though the IP address will change
+
+## Delete a virtual machine
+
+1. Go to the VM Overview page for the VM you just created. You can get there multiple ways.
+2. Click on _Delete_
+1. Confirm you want to delete it by clicking _OK_
+2. Remove additional VM related resources from the RG:
+	* the resource ending in `ip` (the IP address)
+	* the resource ending in `nsg` (the Network security group)
+	* the resource ending in `vm_disk1_xxxxxxxxxxxxxxxxxxxxxxx` (the Disk attached to the vm)
+	* the resource ending in a three digit number (the Network interface)
+
+![](img/azure-vm-11.jpg)
+
+
+## Deploy [Azure Machine Learning (AzureML)](https://azure.microsoft.com/en-us/products/machine-learning/)
+
+::: callout-note
+You will only deploy the service once.
+:::
+
+1. Sign in to the Azure Portal as described in the [sign in page](#sign-in-to-the-azure-portal)
+1. In the search bar at the top, type `azure machine learning`
+2. Click on _Azure Machine Learning_ entry under Services
+3. From the Azure Machine Learning service page (which will be empty), Click on _+ Create_
+4. Select _New workspace_ from the dropdown
+5. Select your subscription from the _Subscription_ drow-down
+6. Select the [resource group](#res) you crated from the dropdown (most likely {{< var course.number_code >}})
+7. Enter `aml` as the _Name_. You will notice that _Storage account_, _Key vault_, and _Application insights_ values will auto-populate, and the _Container registry_ value will be "None". **Do not change anything in those four fields.**
+8. Make sure the region is _East US 2_
+9. Click _Review + create_
+10. Click _Create_ once validation passes
+
+Your AzureML workspace will begin to be deployed. You'll see a notification when it's done.
+
+## Access AzureML Studio
+
+Once the workspace is deployed you can access it by a direct URL (bookmark this): [https://ml.azure.com/.](https://ml.azure.com)
+
+If you are not logged into Azure you will be asked to log in.
+
+### Create Compute Instance within AzureML
+
+This is a managed compute instance, separate from the one you created as IAAS.
+
+::: callout-important
+You will start with creating (and using) a single compute instance. To create additional compute instances, the process is the same.
+:::
+
+1. Log into AzureML Studio
+2. Select your workspace
+3. Click on _Compute_ on the left-hand navigation panel (towards the bottom)
+4. Click _+ New_
+5. Enter a _Compute name_ (you can edit the default value.) **This value has to be globally unique, so we recommend calling the compute instance `dsan6000-<NETID>-ci01`** (change <NETID> to your own.)
+6. Select CPU
+7. Select the _Standard\_E4ds\_v4_ instance size
+8. Click _Next_
+9. **Make sure Auto shut down** is enabled and change the value to 30
+10. Click _Review + Create_
+11. Verify all settings
+12. Click _Create_
+
+When the compute instance gets created it will be running. It should shut-down after 30 minutes of inactivity.
+
+### Start and stop the compute instance within AzureML
+
+You can start and stop the compute instance from within the AzureML Studio or
