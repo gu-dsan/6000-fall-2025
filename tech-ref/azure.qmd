@@ -10,29 +10,35 @@ A fully functional Microsoft Azure individual subscription will be created for y
 
 Follow these instructions to setup your Azure environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.
 
-{{< include _login-to-saxanet.qmd >}}
-{{< include _screenshot-disclaimer.qmd >}}
+**A note on managing your credits:**
 
-::: callout-warning
-Unlike the AWS environment, you will have to manually stop down your resources to avoid consuming your credits.
-:::
-
-## Accept the subscription ownership
+Unlike the AWS managed Vocareum environment, in Azure you will have to manually stop down your resources to avoid consuming your credits.
 
 ::: callout-important
-This is only done once.
+You must begin by accepting ownewship of the Azure Subscription
 :::
 
+-----
+
+## Accept the Azure subscription ownership
+
+
+In this step, you will login to Azure for the first time and take ownership of a subscription that was created for you by Prof. Marck.
+
+::: callout-note
+This step is only done once.
+:::
+
+
 ### Steps to accept and access your Azure subscription:
+
+**Please perform this step in a private browser window. You may not need to use a private browser window in the future, but it is recommended for this step.**
 
 1. In your student email inbox, you will have an email from _Microsoft Azure <azure-noreply@microsoft.com>_ with the subject _You’ve been asked to accept Azure subscription ownership_.
 ![](img/azure-step1.png)
 1. Open the email.
 1. **Right click** in the blue box where it says _Accept ownership_ and **open the link in a private/incognito browser page**
 
-::: callout-important
-It is always recommended that you do any of the cloud work in a **private/incognito** browser window
-:::
 
 1. In the sign in page **enter `NetID@georgetown.edu`**
 ![](img/azure-step2.png)
@@ -52,23 +58,21 @@ It is always recommended that you do any of the cloud work in a **private/incogn
 1. You will end up in the _Accept subscription ownership_ page. Click _Review + accept_
 ![](img/azure-step7.png)
 
+::: {.callout-caution}
+When you get to this step, please pause a moment and wait.
+
+The best strategy for the next step if you are in the classroom with others is to stagger the clicking of _Accept_ because if too many people do it at once there is a high possibility of errors. Coordinate amongst yourselves to do **no more than 10 at a time.**
+:::
+
 1. Click _Accept_
 ![](img/azure-step8.png)
 
 1. You will end up in _Welcome to Azure page!_ and your Azure account is ready to be used!
 ![](img/azure-step9.png)
 
+1. **Log out of Azure and log back in to ensure that everything us updated.**
 
-### Find your Azure Subscription information
-
-1. Click on _Home_ or on _Microsoft Azure_ in the top left
-1. Click on _Subscriptions_ (the key icon). You will see a list of all subcriptions associated with you Azure account (which is in turn, associated with your Georgetown email)
-3. Click on the `Subscriptions == global filter` oval
-4. Uncheck the checkbox that says _Show only subscriptions selected in the global subscriptions filter_
-4. You will either see a subscription called `DSAN6000 Fall 2024 Individual_XXXXX_YYYYY` where `XXXX` is your first name, and `YYYY` is your last name.
-1. Click on your subscription name
-1. In this page you can see all information regarding your subscription. You may want to keep the Subscription ID handy for identification purposes
-
+-----
 
 ## Sign in to the Azure Portal {#azuresignin}
 
@@ -76,14 +80,9 @@ It is always recommended that you do any of the cloud work in a **private/incogn
 You must have already [accepted ownership](#accept-the-subscription-ownership) of the Azure subscription created for you before you sign in.
 :::
 
-
 The URL to sign in to the Azure Portal is [https://portal.azure.com](https://portal.azure.com)
 
-::: callout-important
-It is recommended that you do any of the cloud work in a **private/incognito** browser window
-:::
 
-1. Open a private/incognito browser window
 1. Go to the Azure Portal
 1. In the sign in page, use your username in the form of `NETID@georgetown.edu`
 ![](img/azure-portal.png)
@@ -93,6 +92,20 @@ It is recommended that you do any of the cloud work in a **private/incognito** b
 1. When you finish signing in, you'll be at the Azure Portal home page, and you are ready to work in Azure!
 ![](img/azure-home.png)
 
+-----
+
+## Find your Azure Subscription information
+
+1. [Sign in](#sign-in-to-the-azure-portal) to the Azure portal if you are not already signed in
+1. Click on _Home_ or on _Microsoft Azure_ in the top left
+1. Click on _Subscriptions_ (the key icon). You will see a list of all subcriptions associated with you Azure account (which is in turn, associated with your Georgetown email)
+3. Click on the `Subscriptions` oval and select _Show all subscriptions_
+4. Uncheck the checkbox that says _Show only subscriptions selected in the global subscriptions filter_
+4. You will see a subscription called `DSAN6000 Fall 2024 Individual_XXXXX_YYYYY` where `XXXX` is your first name, and `YYYY` is your last name.
+1. Click on your subscription name
+1. In this page you can see all information regarding your subscription. You may want to keep the Subscription ID handy for identification purposes
+
+-----
 
 ## Create an Azure resource group
 
@@ -127,7 +140,36 @@ subscription is selected
 1. Once the RG is created, you'll see it in the RG list (if your right subscriptions are selected in the filter)
 ![](img/azure-rg.png)
 
-## Launch IAAS virtual machine on Azure
+-----
+
+## Upload your public `ssh` key to Azure
+
+:::callout-note
+You will do this only once.
+:::
+
+1. Click on _Home_ in the top left
+2. Type `ssh keys` in the search bar, and click on _SSH Keys_ service
+![](img/azure-ssh-01.png)
+3. Click _Create_
+4. Select the right subscription from the dropdown
+5. Select the resource group you created earlier from the dropdown.
+6. Give the key a name (it's just a name, it doesn't matter what it is as long as you know what it is)
+6. Select _Upload existing public key_ from the _SSH public key source_ dropdown
+![](img/azure-ssh-02.png)
+
+1. In the **Upload key** box, paste the contents of your **public key**:
+	- `~/.ssh/id_rsa.pub` (Mac/Linux)
+	- `C:\Users\<your_name>\.ssh\id_rsa.pub` (Windows)
+2. Click _Review + create_
+2. After validation passes, click _Create_
+1. Once the SSH Key is uploaded, you'll see it in the SSH Key list (if your right subscriptions are selected in the filter). You may have to hit **"Refresh"** on your browser for the page to update with your ssh key.
+
+![](img/azure-ssh-03.png).
+
+-----
+
+## Create and launch IAAS virtual machine on Azure
 
 1. Click on _Home_ in the top left
 1. Type `virtual machines` in the search bar, and click on the _Virtual machines_ service
@@ -140,7 +182,7 @@ subscription is selected
 
 4. In the _Create a virtual machine_ page
 	* Select the right subscription from the dropdown
-	* Select the right RG from the dropdown
+	* Select the right resource group from the dropdown (the one you created earlier)
 	* In the  _Instance details_ section:
 		* Give your VM a name
 		* Leave all other values unchanged
@@ -199,6 +241,10 @@ When you created the virtual machine, there were actually several other resource
 
 ## Connect to a virtual machine using Secure Shell `ssh`
 
+::: callout-important
+Make sure that you are connected to the _Saxanet_ WiFi network and *not* the _GuestNet_ network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. **Use SaxaNet**.
+:::
+
 1. Go to the VM Overview page for the VM you just created. You can get there multiple ways:
   - From the home screen
   - From the resource group summary page
@@ -206,8 +252,8 @@ When you created the virtual machine, there were actually several other resource
 
 2. In the _Essentials_ section on the overview panel, you can see the public IP address. Copy that.
 
-:::callout-important
-The IP address will change every time you start the same virtual machine from a stopped (paused) state.
+:::callout-note
+The IP address _may_ change every time you start the same virtual machine from a stopped (paused) state.
 :::
 
 3. Open a terminal on your laptop. If you have one already open, type `cd ~` to navigate back to your home directory
@@ -266,7 +312,9 @@ azureuser@my-vm-name:~$
 ```
 **Congratulations, you have successfully connected to your VM on Azure**
 
-## Stop (pausing) the virtual machine
+-----
+
+## Stop (pause) the virtual machine
 
 There are two concepts you need to understand:
 
@@ -276,21 +324,19 @@ There are two concepts you need to understand:
 1. Go to the VM overview panel
 2. Click on _Stop_
 1. Confirm you want to stop it by clicking _OK_
-2. To start again in the future, click on _Restart_, though the IP address will change
+2. To start again in the future, click on _Restart_, though the IP address _may_ change
+
+-----
 
 ## Delete a virtual machine
 
 1. Go to the VM Overview page for the VM you just created. You can get there multiple ways.
 2. Click on _Delete_
+1. Select _all_ associated resources to the VM (OS Disk, Network interfaces, and Public addresses) to be deleted
 1. Confirm you want to delete it by clicking _OK_
-2. Remove additional VM related resources from the RG:
-	* the resource ending in `ip` (the IP address)
-	* the resource ending in `nsg` (the Network security group)
-	* the resource ending in `vm_disk1_xxxxxxxxxxxxxxxxxxxxxxx` (the Disk attached to the vm)
-	* the resource ending in a three digit number (the Network interface)
-
 ![](img/azure-vm-11.jpg)
 
+-----
 
 ## Deploy [Azure Machine Learning (AzureML)](https://azure.microsoft.com/en-us/products/machine-learning/)
 
@@ -340,7 +386,3 @@ You will start with creating (and using) a single compute instance. To create ad
 12. Click _Create_
 
 When the compute instance gets created it will be running. It should shut-down after 30 minutes of inactivity.
-
-### Start and stop the compute instance within AzureML
-
-You can start and stop the compute instance from within the AzureML Studio or
