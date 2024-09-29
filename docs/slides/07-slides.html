@@ -6,13 +6,14 @@
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Amit Arora, Marck Vaisman, Abhijit Dasgupta">
-  <title>DSAN 6000 – Lecture 7</title>
+  <title>DSAN 6000 - Lecture 7</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,12 +28,11 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -148,44 +148,44 @@
     font-weight: 400;
   }
 
-  .callout.callout-titled.callout-style-simple .callout-body {
+  .callout.callout-captioned.callout-style-simple .callout-body {
     margin-top: 0.2em;
   }
 
-  .callout:not(.callout-titled) .callout-body {
+  .callout:not(.callout-captioned) .callout-body {
       display: flex;
   }
 
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
     padding-left: 1.6em;
   }
 
-  .callout.callout-titled .callout-header {
+  .callout.callout-captioned .callout-header {
     padding-top: 0.2em;
     margin-bottom: -0.2em;
   }
 
-  .callout.callout-titled .callout-title  p {
+  .callout.callout-captioned .callout-caption  p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
     
-  .callout.callout-titled.callout-style-simple .callout-content  p {
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
 
-  .callout.callout-titled.callout-style-default .callout-content  p {
+  .callout.callout-captioned.callout-style-default .callout-content  p {
     margin-top: 0.7em;
   }
 
-  .callout.callout-style-simple div.callout-title {
+  .callout.callout-style-simple div.callout-caption {
     border-bottom: none;
     font-size: .9rem;
     font-weight: 600;
     opacity: 75%;
   }
 
-  .callout.callout-style-default  div.callout-title {
+  .callout.callout-style-default  div.callout-caption {
     border-bottom: none;
     font-weight: 600;
     opacity: 85%;
@@ -217,7 +217,7 @@
     background-size: 0.9rem 0.9rem;
   }
 
-  .callout-title {
+  .callout-caption {
     display: flex
   }
     
@@ -230,17 +230,16 @@
     display: none !important;
   }
 
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
   }
 
-  .callout.callout-titled .callout-icon::before {
+  .callout.callout-captioned .callout-icon::before {
     margin-top: .5rem;
     padding-right: .5rem;
   }
 
-  .callout:not(.callout-titled) .callout-icon::before {
+  .callout:not(.callout-captioned) .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
   }
@@ -255,7 +254,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
   }
 
-  div.callout-note.callout-style-default .callout-title {
+  div.callout-note.callout-style-default .callout-caption {
     background-color: #dae6fb
   }
 
@@ -267,7 +266,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
   }
 
-  div.callout-important.callout-style-default .callout-title {
+  div.callout-important.callout-style-default .callout-caption {
     background-color: #f7dddc
   }
 
@@ -279,7 +278,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-warning.callout-style-default .callout-title {
+  div.callout-warning.callout-style-default .callout-caption {
     background-color: #fcefdc
   }
 
@@ -291,7 +290,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-tip.callout-style-default .callout-title {
+  div.callout-tip.callout-style-default .callout-caption {
     background-color: #ccf1e3
   }
 
@@ -303,7 +302,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
   }
 
-  div.callout-caution.callout-style-default .callout-title {
+  div.callout-caution.callout-style-default .callout-caption {
     background-color: #ffe5d0
   }
 
@@ -395,16 +394,20 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Lecture 7 – DSAN 6000">
+<meta property="og:title" content="DSAN 6000 - Lecture 7">
 <meta property="og:description" content="Spark UDFs and project introduction">
-<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/slides/files/img/dsan6000-logo.png">
-<meta property="og:site_name" content="DSAN 6000">
+<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta property="og:site-name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Lecture 7 – DSAN 6000">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="DSAN 6000 - Lecture 7">
 <meta name="twitter:description" content="Spark UDFs and project introduction">
-<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/slides/files/img/dsan6000-logo.png">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -446,7 +449,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Spark DataFrames</li>
 <li>Spark UDFs</li>
 </ul>
-</div></div>
+</div>
+</div>
 </section>
 <section id="logistics-and-review" class="slide level2">
 <h2>Logistics and Review</h2>
@@ -472,7 +476,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Now: More Spark and Project</li>
 <li>Next week: SparkNLP and more Project</li>
 </ul>
-</div></div>
+</div>
+</div>
 </section>
 <section>
 <section id="spark-a-unified-engine" class="title-slide slide level1 section center">
@@ -494,10 +499,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><code>cache():</code> is a shortcut for using default storage level, which is memory only</li>
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb1-2"><a></a><span class="in"># caches error RDD in memory, but only after an action is run</span></span>
-<span id="cb1-3"><a></a><span class="in">errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()</span></span>
-<span id="cb1-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a># caches error RDD in memory, but only after an action is run</span>
+<span id="cb1-2"><a href="#cb1-2"></a>errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="review-of-pysparksql-cheatsheet" class="slide level2">
 <h2>Review of PySparkSQL Cheatsheet</h2>
@@ -612,19 +615,17 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 </section>
 <section id="udf-code-solution" class="slide level2">
 <h2>UDF Code Solution</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb3-2"><a></a><span class="in">from pyspark.sql.functions import udf, col</span></span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="in">@udf("array&lt;integer&gt;")</span></span>
-<span id="cb3-5"><a></a><span class="in">   def filter_adults(elements):</span></span>
-<span id="cb3-6"><a></a><span class="in">   return list(filter(lambda x: x &gt;= 18, elements))</span></span>
-<span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a><span class="in"># alternatively</span></span>
-<span id="cb3-9"><a></a><span class="in">from pyspark.sql.types IntegerType, ArrayType</span></span>
-<span id="cb3-10"><a></a><span class="in">@udf(returnType=ArrayType(IntegerType()))</span></span>
-<span id="cb3-11"><a></a><span class="in">def filter_adults(elements):</span></span>
-<span id="cb3-12"><a></a><span class="in">   return list(filter(lambda x: x &gt;= 18, elements))</span></span>
-<span id="cb3-13"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>from pyspark.sql.functions import udf, col</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>@udf("array&lt;integer&gt;")</span>
+<span id="cb3-4"><a href="#cb3-4"></a>   def filter_adults(elements):</span>
+<span id="cb3-5"><a href="#cb3-5"></a>   return list(filter(lambda x: x &gt;= 18, elements))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a># alternatively</span>
+<span id="cb3-8"><a href="#cb3-8"></a>from pyspark.sql.types IntegerType, ArrayType</span>
+<span id="cb3-9"><a href="#cb3-9"></a>@udf(returnType=ArrayType(IntegerType()))</span>
+<span id="cb3-10"><a href="#cb3-10"></a>def filter_adults(elements):</span>
+<span id="cb3-11"><a href="#cb3-11"></a>   return list(filter(lambda x: x &gt;= 18, elements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>+-------+----------------+------------+
 |room_id| guests_ages    | adults_ages|
 +-------+----------------+------------+
@@ -636,52 +637,44 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 </section>
 <section id="alternative-to-spark-udf" class="slide level2">
 <h2>Alternative to Spark UDF</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb5-2"><a></a><span class="in"># Spark 3.1</span></span>
-<span id="cb5-3"><a></a><span class="in">from pyspark.sql.functions import col, filter, lit</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a><span class="in">df.withColumn('adults_ages',</span></span>
-<span id="cb5-6"><a></a><span class="in">              filter(col('guests_ages'), lambda x: x &gt;= lit(18))).show()</span></span>
-<span id="cb5-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a># Spark 3.1</span>
+<span id="cb5-2"><a href="#cb5-2"></a>from pyspark.sql.functions import col, filter, lit</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>df.withColumn('adults_ages',</span>
+<span id="cb5-5"><a href="#cb5-5"></a>              filter(col('guests_ages'), lambda x: x &gt;= lit(18))).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="another-udf-example" class="slide level2">
 <h2>Another UDF Example</h2>
 <ul>
 <li>Separate function definition form</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb6-2"><a></a><span class="in">from pyspark.sql.functions import udf</span></span>
-<span id="cb6-3"><a></a><span class="in">from pyspark.sql.types import LongType</span></span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a><span class="in"># define the function that can be tested locally</span></span>
-<span id="cb6-6"><a></a><span class="in">def squared(s):</span></span>
-<span id="cb6-7"><a></a><span class="in">  return s * s</span></span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a><span class="in"># wrap the function in udf for spark and define the output type</span></span>
-<span id="cb6-10"><a></a><span class="in">squared_udf = udf(squared, LongType())</span></span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a><span class="in"># execute the udf</span></span>
-<span id="cb6-13"><a></a><span class="in">df = spark.table("test")</span></span>
-<span id="cb6-14"><a></a><span class="in">display(df.select("id", squared_udf("id").alias("id_squared")))</span></span>
-<span id="cb6-15"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb6-2"><a href="#cb6-2"></a>from pyspark.sql.types import LongType</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a># define the function that can be tested locally</span>
+<span id="cb6-5"><a href="#cb6-5"></a>def squared(s):</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  return s * s</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a># wrap the function in udf for spark and define the output type</span>
+<span id="cb6-9"><a href="#cb6-9"></a>squared_udf = udf(squared, LongType())</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a># execute the udf</span>
+<span id="cb6-12"><a href="#cb6-12"></a>df = spark.table("test")</span>
+<span id="cb6-13"><a href="#cb6-13"></a>display(df.select("id", squared_udf("id").alias("id_squared")))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Single function definition form</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb7-2"><a></a><span class="in">from pyspark.sql.functions import udf</span></span>
-<span id="cb7-3"><a></a><span class="in">@udf("long")</span></span>
-<span id="cb7-4"><a></a><span class="in">def squared_udf(s):</span></span>
-<span id="cb7-5"><a></a><span class="in">  return s * s</span></span>
-<span id="cb7-6"><a></a><span class="in">df = spark.table("test")</span></span>
-<span id="cb7-7"><a></a><span class="in">display(df.select("id", squared_udf("id").alias("id_squared")))</span></span>
-<span id="cb7-8"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb7-2"><a href="#cb7-2"></a>@udf("long")</span>
+<span id="cb7-3"><a href="#cb7-3"></a>def squared_udf(s):</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  return s * s</span>
+<span id="cb7-5"><a href="#cb7-5"></a>df = spark.table("test")</span>
+<span id="cb7-6"><a href="#cb7-6"></a>display(df.select("id", squared_udf("id").alias("id_squared")))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="can-also-refer-to-a-udf-in-sql" class="slide level2">
 <h2>Can also refer to a UDF in SQL</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{sql}</span></span>
-<span id="cb8-2"><a></a><span class="in">spark.udf.register("squaredWithPython", squared)</span></span>
-<span id="cb8-3"><a></a><span class="in">select id, squaredWithPython(id) as id_squared from test</span></span>
-<span id="cb8-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {{sql}} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>spark.udf.register("squaredWithPython", squared)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>select id, squaredWithPython(id) as id_squared from test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Consider all the corner cases</li>
 <li>Where could the data be null or an unexpected value</li>
@@ -693,7 +686,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>UDF Speed Comparison</h2>
 <div class="column" style="width:53%;">
 <p><img src="spark_udfs/img/spark-udf-speed.png" width="700"></p>
-</div><div class="column" style="width:45%;">
+</div>
+<div class="column" style="width:45%;">
 <p>Costs:</p>
 <ul>
 <li>Serialization/deserialization (think pickle files)</li>
@@ -707,40 +701,37 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Using Spark SQL functions before jumping into UDFs</li>
 <li>Save to serialized data formats like Parquet</li>
 </ul>
-</div></section>
+</div>
+</section>
 <section id="pandas-udf" class="slide level2">
 <h2>Pandas UDF</h2>
 <p>From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb9-2"><a></a><span class="in">@pandas_udf("string")</span></span>
-<span id="cb9-3"><a></a><span class="in">def to_upper(s: pd.Series) -&gt; pd.Series:</span></span>
-<span id="cb9-4"><a></a><span class="in">    return s.str.upper()</span></span>
-<span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a><span class="in">df = spark.createDataFrame([("John Doe",)], ("name",))</span></span>
-<span id="cb9-7"><a></a><span class="in">df.select(to_upper("name")).show()</span></span>
-<span id="cb9-8"><a></a><span class="in">+--------------+</span></span>
-<span id="cb9-9"><a></a><span class="in">|to_upper(name)|</span></span>
-<span id="cb9-10"><a></a><span class="in">+--------------+</span></span>
-<span id="cb9-11"><a></a><span class="in">|      JOHN DOE|</span></span>
-<span id="cb9-12"><a></a><span class="in">+--------------+</span></span>
-<span id="cb9-13"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>@pandas_udf("string")</span>
+<span id="cb9-2"><a href="#cb9-2"></a>def to_upper(s: pd.Series) -&gt; pd.Series:</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    return s.str.upper()</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>df = spark.createDataFrame([("John Doe",)], ("name",))</span>
+<span id="cb9-6"><a href="#cb9-6"></a>df.select(to_upper("name")).show()</span>
+<span id="cb9-7"><a href="#cb9-7"></a>+--------------+</span>
+<span id="cb9-8"><a href="#cb9-8"></a>|to_upper(name)|</span>
+<span id="cb9-9"><a href="#cb9-9"></a>+--------------+</span>
+<span id="cb9-10"><a href="#cb9-10"></a>|      JOHN DOE|</span>
+<span id="cb9-11"><a href="#cb9-11"></a>+--------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="another-example" class="slide level2">
 <h2>Another example</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb10-2"><a></a><span class="in">@pandas_udf("first string, last string")</span></span>
-<span id="cb10-3"><a></a><span class="in">def split_expand(s: pd.Series) -&gt; pd.DataFrame:</span></span>
-<span id="cb10-4"><a></a><span class="in">    return s.str.split(expand=True)</span></span>
-<span id="cb10-5"><a></a></span>
-<span id="cb10-6"><a></a></span>
-<span id="cb10-7"><a></a><span class="in">df = spark.createDataFrame([("John Doe",)], ("name",))</span></span>
-<span id="cb10-8"><a></a><span class="in">df.select(split_expand("name")).show()</span></span>
-<span id="cb10-9"><a></a><span class="in">+------------------+</span></span>
-<span id="cb10-10"><a></a><span class="in">|split_expand(name)|</span></span>
-<span id="cb10-11"><a></a><span class="in">+------------------+</span></span>
-<span id="cb10-12"><a></a><span class="in">|       [John, Doe]|</span></span>
-<span id="cb10-13"><a></a><span class="in">+------------------+</span></span>
-<span id="cb10-14"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>@pandas_udf("first string, last string")</span>
+<span id="cb10-2"><a href="#cb10-2"></a>def split_expand(s: pd.Series) -&gt; pd.DataFrame:</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    return s.str.split(expand=True)</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>df = spark.createDataFrame([("John Doe",)], ("name",))</span>
+<span id="cb10-7"><a href="#cb10-7"></a>df.select(split_expand("name")).show()</span>
+<span id="cb10-8"><a href="#cb10-8"></a>+------------------+</span>
+<span id="cb10-9"><a href="#cb10-9"></a>|split_expand(name)|</span>
+<span id="cb10-10"><a href="#cb10-10"></a>+------------------+</span>
+<span id="cb10-11"><a href="#cb10-11"></a>|       [John, Doe]|</span>
+<span id="cb10-12"><a href="#cb10-12"></a>+------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html">https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html</a></p>
 </section>
 <section id="scalar-pandas-udfs" class="slide level2">
@@ -750,30 +741,26 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Pandas UDF needs to have same size input and output series</li>
 </ul>
 <h4 id="udf-form">UDF Form</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb11-2"><a></a><span class="in">from pyspark.sql.functions import udf</span></span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="in"># Use udf to define a row-at-a-time udf</span></span>
-<span id="cb11-5"><a></a><span class="in">@udf('double')</span></span>
-<span id="cb11-6"><a></a><span class="in"># Input/output are both a single double value</span></span>
-<span id="cb11-7"><a></a><span class="in">def plus_one(v):</span></span>
-<span id="cb11-8"><a></a><span class="in">      return v + 1</span></span>
-<span id="cb11-9"><a></a></span>
-<span id="cb11-10"><a></a><span class="in">df.withColumn('v2', plus_one(df.v))</span></span>
-<span id="cb11-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>from pyspark.sql.functions import udf</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a># Use udf to define a row-at-a-time udf</span>
+<span id="cb11-4"><a href="#cb11-4"></a>@udf('double')</span>
+<span id="cb11-5"><a href="#cb11-5"></a># Input/output are both a single double value</span>
+<span id="cb11-6"><a href="#cb11-6"></a>def plus_one(v):</span>
+<span id="cb11-7"><a href="#cb11-7"></a>      return v + 1</span>
+<span id="cb11-8"><a href="#cb11-8"></a></span>
+<span id="cb11-9"><a href="#cb11-9"></a>df.withColumn('v2', plus_one(df.v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <h4 id="pandas-udf-form---faster-vectorized-form">Pandas UDF Form - <strong>faster vectorized form</strong></h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb12-2"><a></a><span class="in">from pyspark.sql.functions import pandas_udf, PandasUDFType</span></span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="in"># Use pandas_udf to define a Pandas UDF</span></span>
-<span id="cb12-5"><a></a><span class="in">@pandas_udf('double', PandasUDFType.SCALAR)</span></span>
-<span id="cb12-6"><a></a><span class="in"># Input/output are both a pandas.Series of doubles</span></span>
-<span id="cb12-7"><a></a></span>
-<span id="cb12-8"><a></a><span class="in">def pandas_plus_one(v):</span></span>
-<span id="cb12-9"><a></a><span class="in">    return v + 1</span></span>
-<span id="cb12-10"><a></a></span>
-<span id="cb12-11"><a></a><span class="in">df.withColumn('v2', pandas_plus_one(df.v))</span></span>
-<span id="cb12-12"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>from pyspark.sql.functions import pandas_udf, PandasUDFType</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a># Use pandas_udf to define a Pandas UDF</span>
+<span id="cb12-4"><a href="#cb12-4"></a>@pandas_udf('double', PandasUDFType.SCALAR)</span>
+<span id="cb12-5"><a href="#cb12-5"></a># Input/output are both a pandas.Series of doubles</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>def pandas_plus_one(v):</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    return v + 1</span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a>df.withColumn('v2', pandas_plus_one(df.v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://www.databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html">source</a></p>
 </section>
 <section id="grouped-map-pandas-udfs" class="slide level2">
@@ -781,14 +768,12 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <ul>
 <li>Split, apply, combine using Pandas syntax</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb13-2"><a></a><span class="in">@pandas_udf(df.schema, PandasUDFType.GROUPED_MAP)</span></span>
-<span id="cb13-3"><a></a><span class="in"># Input/output are both a pandas.DataFrame</span></span>
-<span id="cb13-4"><a></a><span class="in">def subtract_mean(pdf):</span></span>
-<span id="cb13-5"><a></a><span class="in">    return pdf.assign(v=pdf.v - pdf.v.mean())</span></span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="in">df.groupby('id').apply(subtract_mean)</span></span>
-<span id="cb13-8"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource {{python}} number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1"></a>@pandas_udf(df.schema, PandasUDFType.GROUPED_MAP)</span>
+<span id="cb13-2"><a href="#cb13-2"></a># Input/output are both a pandas.DataFrame</span>
+<span id="cb13-3"><a href="#cb13-3"></a>def subtract_mean(pdf):</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    return pdf.assign(v=pdf.v - pdf.v.mean())</span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>df.groupby('id').apply(subtract_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="comparison-of-scalar-and-grouped-map-pandas-udfs" class="slide level2">
 <h2>Comparison of Scalar and Grouped Map Pandas UDFs</h2>
@@ -815,9 +800,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Grouped map: any size</li>
 </ul></li>
 </ul>
-</div><div class="column" style="width:45%;">
+</div>
+<div class="column" style="width:45%;">
 <p><img src="spark_udfs/img/pandas-udf-comparison.png"></p>
-</div></section></section>
+</div>
+</section></section>
 <section>
 <section id="project-introduction" class="title-slide slide level1 section center">
 <h1>Project Introduction</h1>
@@ -839,9 +826,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>Reddit Background</h2>
 <div class="column" style="width:49%;">
 <p><img src="project-introduction/img/reddit-paper-fig1.png"></p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <p><img src="project-introduction/img/reddit-paper-fig4.png"></p>
-</div></section>
+</div>
+</section>
 <section id="comparison-of-social-data-infrastructure" class="slide level2">
 <h2>Comparison of social data infrastructure</h2>
 <div class="imgcenter">
@@ -852,13 +841,15 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>Data Dictionary</h2>
 <div class="column" style="width:49%;">
 <p><img src="project-introduction/img/reddit-paper-table1.png"></p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <p><img src="project-introduction/img/reddit-paper-table2.png"></p>
-</div></section>
+</div>
+</section>
 <section id="timeline" class="slide level2">
 <h2>Timeline</h2>
 <h4 id="detailed-requirements-will-be-published-in-the-next-week">Detailed requirements will be published in the next week</h4>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>Deliverable</th>
@@ -912,10 +903,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <section id="lab-time" class="title-slide slide level1 section center">
 <h1>Lab time!</h1>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -944,11 +933,12 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1152,15 +1142,12 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1192,50 +1179,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/aa1603\.georgetown\.edu\/dsan6000");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1244,18 +1192,9 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
           },
           interactive: true,
           interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1269,11 +1208,7 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

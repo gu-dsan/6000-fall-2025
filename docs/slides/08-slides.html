@@ -6,13 +6,14 @@
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Amit Arora, Marck Vaisman, Abhijit Dasgupta">
-  <title>DSAN 6000 – Lecture 8</title>
+  <title>DSAN 6000 - Lecture 8</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,12 +28,11 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -148,44 +148,44 @@
     font-weight: 400;
   }
 
-  .callout.callout-titled.callout-style-simple .callout-body {
+  .callout.callout-captioned.callout-style-simple .callout-body {
     margin-top: 0.2em;
   }
 
-  .callout:not(.callout-titled) .callout-body {
+  .callout:not(.callout-captioned) .callout-body {
       display: flex;
   }
 
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
     padding-left: 1.6em;
   }
 
-  .callout.callout-titled .callout-header {
+  .callout.callout-captioned .callout-header {
     padding-top: 0.2em;
     margin-bottom: -0.2em;
   }
 
-  .callout.callout-titled .callout-title  p {
+  .callout.callout-captioned .callout-caption  p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
     
-  .callout.callout-titled.callout-style-simple .callout-content  p {
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
 
-  .callout.callout-titled.callout-style-default .callout-content  p {
+  .callout.callout-captioned.callout-style-default .callout-content  p {
     margin-top: 0.7em;
   }
 
-  .callout.callout-style-simple div.callout-title {
+  .callout.callout-style-simple div.callout-caption {
     border-bottom: none;
     font-size: .9rem;
     font-weight: 600;
     opacity: 75%;
   }
 
-  .callout.callout-style-default  div.callout-title {
+  .callout.callout-style-default  div.callout-caption {
     border-bottom: none;
     font-weight: 600;
     opacity: 85%;
@@ -217,7 +217,7 @@
     background-size: 0.9rem 0.9rem;
   }
 
-  .callout-title {
+  .callout-caption {
     display: flex
   }
     
@@ -230,17 +230,16 @@
     display: none !important;
   }
 
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
   }
 
-  .callout.callout-titled .callout-icon::before {
+  .callout.callout-captioned .callout-icon::before {
     margin-top: .5rem;
     padding-right: .5rem;
   }
 
-  .callout:not(.callout-titled) .callout-icon::before {
+  .callout:not(.callout-captioned) .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
   }
@@ -255,7 +254,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
   }
 
-  div.callout-note.callout-style-default .callout-title {
+  div.callout-note.callout-style-default .callout-caption {
     background-color: #dae6fb
   }
 
@@ -267,7 +266,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
   }
 
-  div.callout-important.callout-style-default .callout-title {
+  div.callout-important.callout-style-default .callout-caption {
     background-color: #f7dddc
   }
 
@@ -279,7 +278,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-warning.callout-style-default .callout-title {
+  div.callout-warning.callout-style-default .callout-caption {
     background-color: #fcefdc
   }
 
@@ -291,7 +290,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-tip.callout-style-default .callout-title {
+  div.callout-tip.callout-style-default .callout-caption {
     background-color: #ccf1e3
   }
 
@@ -303,7 +302,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
   }
 
-  div.callout-caution.callout-style-default .callout-title {
+  div.callout-caution.callout-style-default .callout-caption {
     background-color: #ffe5d0
   }
 
@@ -395,16 +394,20 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Lecture 8 – DSAN 6000">
+<meta property="og:title" content="DSAN 6000 - Lecture 8">
 <meta property="og:description" content="Spark Machine Learning">
-<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/slides/files/img/dsan6000-logo.png">
-<meta property="og:site_name" content="DSAN 6000">
+<meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
+<meta property="og:site-name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Lecture 8 – DSAN 6000">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="518">
+<meta name="twitter:title" content="DSAN 6000 - Lecture 8">
 <meta name="twitter:description" content="Spark Machine Learning">
-<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/slides/files/img/dsan6000-logo.png">
+<meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/files\img\dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="518">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -431,6 +434,9 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 </section>
 <section class="slide level2">
 
+<div class="cell">
+
+</div>
 <div class="column" style="width:47%;">
 <h3 id="looking-back">Looking Back</h3>
 <ul>
@@ -445,7 +451,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>DataBricks on Azure</li>
 <li>Spark Streaming</li>
 </ul>
-</div><div class="column" style="width:47%;">
+</div>
+<div class="column" style="width:47%;">
 <h3 id="today">Today</h3>
 <ul>
 <li><p>Review of Distributed Hardware and Spark RDDs</p></li>
@@ -458,7 +465,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 </ul></li>
 <li><p>Quiz on Hadoop Streaming and HDFS (due Friday October 14)</p></li>
 </ul>
-</div></section>
+</div>
+</section>
 <section>
 <section id="essential-prior-topics" class="title-slide slide level1 section center">
 <h1>Essential Prior Topics</h1>
@@ -561,8 +569,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
-<span id="cb1-2"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="review-of-pysparksql-cheatsheet" class="slide level2">
@@ -649,17 +657,17 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <section id="udf-code-solution" class="slide level2">
 <h2>UDF Code Solution</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf, col</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a><span class="at">@udf</span>(<span class="st">"array&lt;integer&gt;"</span>)</span>
-<span id="cb3-4"><a></a>   <span class="kw">def</span> filter_adults(elements):</span>
-<span id="cb3-5"><a></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span>
-<span id="cb3-6"><a></a></span>
-<span id="cb3-7"><a></a><span class="co"># alternatively</span></span>
-<span id="cb3-8"><a></a><span class="im">from</span> pyspark.sql.types IntegerType, ArrayType</span>
-<span id="cb3-9"><a></a><span class="at">@udf</span>(returnType<span class="op">=</span>ArrayType(IntegerType()))</span>
-<span id="cb3-10"><a></a><span class="kw">def</span> filter_adults(elements):</span>
-<span id="cb3-11"><a></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf, col</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="at">@udf</span>(<span class="st">"array&lt;integer&gt;"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>   <span class="kw">def</span> filter_adults(elements):</span>
+<span id="cb3-5"><a href="#cb3-5"></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># alternatively</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="im">from</span> pyspark.sql.types IntegerType, ArrayType</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="at">@udf</span>(returnType<span class="op">=</span>ArrayType(IntegerType()))</span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">def</span> filter_adults(elements):</span>
+<span id="cb3-11"><a href="#cb3-11"></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>+-------+----------------+------------+
 |room_id| guests_ages    | adults_ages|
@@ -673,18 +681,19 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <section id="alternative-to-spark-udf" class="slide level2">
 <h2>Alternative to Spark UDF</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># Spark 3.1</span></span>
-<span id="cb5-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">filter</span>, lit</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a>df.withColumn(<span class="st">'adults_ages'</span>,</span>
-<span id="cb5-5"><a></a>              <span class="bu">filter</span>(col(<span class="st">'guests_ages'</span>), <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> lit(<span class="dv">18</span>))).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Spark 3.1</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">filter</span>, lit</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>df.withColumn(<span class="st">'adults_ages'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>              <span class="bu">filter</span>(col(<span class="st">'guests_ages'</span>), <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> lit(<span class="dv">18</span>))).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="udf-speed-comparison" class="slide level2">
 <h2>UDF Speed Comparison</h2>
 <div class="column" style="width:57%;">
 <p><img src="img/spark-udf-speed.png" width="700"></p>
-</div><div class="column" style="width:41%;">
+</div>
+<div class="column" style="width:41%;">
 <p>Costs:</p>
 <ul>
 <li>Serialization/deserialization (think pickle files)</li>
@@ -698,36 +707,37 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Using Spark SQL functions before jumping into UDFs</li>
 <li>Save to serialized data formats like Parquet</li>
 </ul>
-</div></section>
+</div>
+</section>
 <section id="pandas-udf" class="slide level2">
 <h2>Pandas UDF</h2>
 <p>From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.</p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"string"</span>)</span>
-<span id="cb6-2"><a></a><span class="kw">def</span> to_upper(s: pd.Series) <span class="op">-&gt;</span> pd.Series:</span>
-<span id="cb6-3"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.upper()</span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a>df <span class="op">=</span> spark.createDataFrame([(<span class="st">"John Doe"</span>,)], (<span class="st">"name"</span>,))</span>
-<span id="cb6-6"><a></a>df.select(to_upper(<span class="st">"name"</span>)).show()</span>
-<span id="cb6-7"><a></a><span class="op">+--------------+</span></span>
-<span id="cb6-8"><a></a><span class="op">|</span>to_upper(name)<span class="op">|</span></span>
-<span id="cb6-9"><a></a><span class="op">+--------------+</span></span>
-<span id="cb6-10"><a></a><span class="op">|</span>      JOHN DOE<span class="op">|</span></span>
-<span id="cb6-11"><a></a><span class="op">+--------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="at">@pandas_udf</span>(<span class="st">"string"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">def</span> to_upper(s: pd.Series) <span class="op">-&gt;</span> pd.Series:</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">return</span> s.<span class="bu">str</span>.upper()</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>df <span class="op">=</span> spark.createDataFrame([(<span class="st">"John Doe"</span>,)], (<span class="st">"name"</span>,))</span>
+<span id="cb6-6"><a href="#cb6-6"></a>df.select(to_upper(<span class="st">"name"</span>)).show()</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="op">+--------------+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="op">|</span>to_upper(name)<span class="op">|</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="op">+--------------+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="op">|</span>      JOHN DOE<span class="op">|</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="op">+--------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"first string, last string"</span>)</span>
-<span id="cb7-2"><a></a><span class="kw">def</span> split_expand(s: pd.Series) <span class="op">-&gt;</span> pd.DataFrame:</span>
-<span id="cb7-3"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.split(expand<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a>df <span class="op">=</span> spark.createDataFrame([(<span class="st">"John Doe"</span>,)], (<span class="st">"name"</span>,))</span>
-<span id="cb7-7"><a></a>df.select(split_expand(<span class="st">"name"</span>)).show()</span>
-<span id="cb7-8"><a></a><span class="op">+------------------+</span></span>
-<span id="cb7-9"><a></a><span class="op">|</span>split_expand(name)<span class="op">|</span></span>
-<span id="cb7-10"><a></a><span class="op">+------------------+</span></span>
-<span id="cb7-11"><a></a><span class="op">|</span>       [John, Doe]<span class="op">|</span></span>
-<span id="cb7-12"><a></a><span class="op">+------------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="at">@pandas_udf</span>(<span class="st">"first string, last string"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">def</span> split_expand(s: pd.Series) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">return</span> s.<span class="bu">str</span>.split(expand<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>df <span class="op">=</span> spark.createDataFrame([(<span class="st">"John Doe"</span>,)], (<span class="st">"name"</span>,))</span>
+<span id="cb7-7"><a href="#cb7-7"></a>df.select(split_expand(<span class="st">"name"</span>)).show()</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="op">+------------------+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="op">|</span>split_expand(name)<span class="op">|</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="op">+------------------+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="op">|</span>       [John, Doe]<span class="op">|</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="op">+------------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><a href="https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.functions.pandas_udf.html">https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.functions.pandas_udf.html</a></p>
 </section></section>
@@ -752,11 +762,14 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><p>Split data into train/test</p></li>
 <li><p>Evaluate and compare models</p></li>
 </ol>
-</div><div class="column" style="width:5%;">
+</div>
+<div class="column" style="width:5%;">
 
-</div><div class="column" style="width:68%;">
+</div>
+<div class="column" style="width:68%;">
 <p><img src="img/spdg_2401.png"></p>
-</div></section></section>
+</div>
+</section></section>
 <section>
 <section id="ml-with-spark" class="title-slide slide level1 center">
 <h1>ML with Spark</h1>
@@ -776,7 +789,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h4 id="api-is-divided-into-two-packages">API is divided into two packages</h4>
 <p><code>org.apache.spark.ml</code> (High level API) - Provides higher level API built on top of <code>DataFrames</code> - Allows the construction of ML <em>pipelines</em></p>
 <p><code>org.apache.spark.mllib</code> (Predates <code>DataFrames</code>) - Original API built on top of RDDs</p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <h4 id="inspired-by-scikit-learn">Inspired by <code>scikit-learn</code></h4>
 <ul>
 <li><p><code>DataFrame</code></p></li>
@@ -785,7 +799,8 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><p><code>Pipeline</code></p></li>
 <li><p><code>Parameter</code></p></li>
 </ul>
-</div></section></section>
+</div>
+</section></section>
 <section>
 <section id="transformers-esimators-and-pipelines" class="title-slide slide level1 section center">
 <h1>Transformers, esimators, and pipelines</h1>
@@ -798,9 +813,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <div class="column" style="width:49%;">
 <p><code>Transformers</code> take <code>DataFrames</code> as <em>input</em>, and return a <strong>new DataFrame</strong> as output. <code>Transformers</code> do not learn any parameters from the data, they simply apply rule-based transformations to either <strong>prepare data for model training</strong> or <strong>generate predictions using a trained model.</strong></p>
 <p><code>Transformers</code> are run using the <code>.transform()</code> method</p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <p><img src="img/spdg_2403.png"></p>
-</div></section>
+</div>
+</section>
 <section id="some-examples-of-transformers" class="slide level2">
 <h2>Some Examples of Transformers</h2>
 <ul>
@@ -840,30 +857,32 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><p><strong>All categorical data needs to be numeric for machine learning</strong></p></li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Example from Spark docs</span></span>
-<span id="cb8-2"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
-<span id="cb8-3"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
-<span id="cb8-4"><a></a></span>
-<span id="cb8-5"><a></a>dataset <span class="op">=</span> spark.createDataFrame(</span>
-<span id="cb8-6"><a></a>    [(<span class="dv">0</span>, <span class="dv">18</span>, <span class="fl">1.0</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">10.0</span>, <span class="fl">0.5</span>]), <span class="fl">1.0</span>)],</span>
-<span id="cb8-7"><a></a>    [<span class="st">"id"</span>, <span class="st">"hour"</span>, <span class="st">"mobile"</span>, <span class="st">"userFeatures"</span>, <span class="st">"clicked"</span>])</span>
-<span id="cb8-8"><a></a></span>
-<span id="cb8-9"><a></a>assembler <span class="op">=</span> VectorAssembler(</span>
-<span id="cb8-10"><a></a>    inputCols<span class="op">=</span>[<span class="st">"hour"</span>, <span class="st">"mobile"</span>, <span class="st">"userFeatures"</span>],</span>
-<span id="cb8-11"><a></a>    outputCol<span class="op">=</span><span class="st">"features"</span>)</span>
-<span id="cb8-12"><a></a></span>
-<span id="cb8-13"><a></a>output <span class="op">=</span> assembler.transform(dataset)</span>
-<span id="cb8-14"><a></a><span class="bu">print</span>(<span class="st">"Assembled columns 'hour', 'mobile', 'userFeatures' to vector column 'features'"</span>)</span>
-<span id="cb8-15"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"clicked"</span>).show(truncate<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Example from Spark docs</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>dataset <span class="op">=</span> spark.createDataFrame(</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    [(<span class="dv">0</span>, <span class="dv">18</span>, <span class="fl">1.0</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">10.0</span>, <span class="fl">0.5</span>]), <span class="fl">1.0</span>)],</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    [<span class="st">"id"</span>, <span class="st">"hour"</span>, <span class="st">"mobile"</span>, <span class="st">"userFeatures"</span>, <span class="st">"clicked"</span>])</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>assembler <span class="op">=</span> VectorAssembler(</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    inputCols<span class="op">=</span>[<span class="st">"hour"</span>, <span class="st">"mobile"</span>, <span class="st">"userFeatures"</span>],</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    outputCol<span class="op">=</span><span class="st">"features"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a>output <span class="op">=</span> assembler.transform(dataset)</span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="bu">print</span>(<span class="st">"Assembled columns 'hour', 'mobile', 'userFeatures' to vector column 'features'"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>output.select(<span class="st">"features"</span>, <span class="st">"clicked"</span>).show(truncate<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="estimators" class="slide level2">
 <h2>Estimators</h2>
 <div class="column" style="width:49%;">
 <p><code>Estimators</code> learn (or “fit”) parameters from your DataFrame via the <code>.fit()</code> method, and return a <strong>model</strong> which is a <code>Transformer</code></p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <p><img src="img/spdg_2502.png"></p>
-</div></section>
+</div>
+</section>
 <section id="pipelines" class="slide level2">
 <h2>Pipelines</h2>
 <div class="imgcenter">
@@ -875,9 +894,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <div class="column" style="width:49%;">
 <p><code>Pipelines</code> combine multiple steps into a single workflow that can be easily run. * Data cleaning and feature processing via transformers, using <code>stages</code> * Model definition * Run the pipeline to do all transformations and fit the model</p>
 <p>The <code>Pipeline</code> constructor takes an <em>array</em> of pipeline stages</p>
-</div><div class="column" style="width:49%;">
+</div>
+<div class="column" style="width:49%;">
 <p><img src="img/spdg_2404.png"></p>
-</div></section>
+</div>
+</section>
 <section id="why-pipelines" class="slide level2">
 <h2>Why Pipelines?</h2>
 <ol type="1">
@@ -891,15 +912,15 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>Example</h2>
 <p>Using the <a href="https://github.com/wchill/HMP_Dataset">HMP Dataset</a>. The structure of the dataset looks like this:</p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
-<span id="cb9-2"><a></a>df.printSchema()</span>
-<span id="cb9-3"><a></a></span>
-<span id="cb9-4"><a></a>root  </span>
-<span id="cb9-5"><a></a><span class="op">|--</span> x: integer (nullable <span class="op">=</span> true)  </span>
-<span id="cb9-6"><a></a><span class="op">|--</span> y: integer (nullable <span class="op">=</span> true)  </span>
-<span id="cb9-7"><a></a><span class="op">|--</span> z: integer (nullable <span class="op">=</span> true)  </span>
-<span id="cb9-8"><a></a><span class="op">|--</span> <span class="kw">class</span>: string (nullable <span class="op">=</span> false)  </span>
-<span id="cb9-9"><a></a><span class="op">|--</span> source: string (nullable <span class="op">=</span> false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># read data from text file and split each line into words</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>df.printSchema()</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>root  </span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="op">|--</span> x: integer (nullable <span class="op">=</span> true)  </span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="op">|--</span> y: integer (nullable <span class="op">=</span> true)  </span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="op">|--</span> z: integer (nullable <span class="op">=</span> true)  </span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="op">|--</span> <span class="kw">class</span>: string (nullable <span class="op">=</span> false)  </span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="op">|--</span> source: string (nullable <span class="op">=</span> false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="lets-transform-strings-to-numbers" class="slide level2">
@@ -910,24 +931,24 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>Then we fit the DataFrame to the indexer (to run the estimator), and transform the DataFrame. This creates a brand new DataFrame (indexed), which we can see below, containing the classIndex additional column.</li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> StringIndexer</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a>indexer <span class="op">=</span> StringIndexer(inputCol <span class="op">=</span> <span class="st">'class'</span>, outputCol <span class="op">=</span> <span class="st">'classIndex'</span>)</span>
-<span id="cb10-4"><a></a>indexed <span class="op">=</span> indexer.fit(df).transform(df)  <span class="co"># This is a new data frame</span></span>
-<span id="cb10-5"><a></a></span>
-<span id="cb10-6"><a></a><span class="co"># Let's see it</span></span>
-<span id="cb10-7"><a></a>indexed.show(<span class="dv">5</span>)</span>
-<span id="cb10-8"><a></a></span>
-<span id="cb10-9"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
-<span id="cb10-10"><a></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span></span>
-<span id="cb10-11"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
-<span id="cb10-12"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
-<span id="cb10-13"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
-<span id="cb10-14"><a></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
-<span id="cb10-15"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
-<span id="cb10-16"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
-<span id="cb10-17"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
-<span id="cb10-18"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> StringIndexer</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>indexer <span class="op">=</span> StringIndexer(inputCol <span class="op">=</span> <span class="st">'class'</span>, outputCol <span class="op">=</span> <span class="st">'classIndex'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>indexed <span class="op">=</span> indexer.fit(df).transform(df)  <span class="co"># This is a new data frame</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co"># Let's see it</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>indexed.show(<span class="dv">5</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="one-hot-encode-categorical-variables" class="slide level2">
@@ -938,23 +959,23 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><code>OneHotEncoder</code> doesn’t return several columns containing only zeros and ones; it returns a sparse-vector as seen in the categoryVec column. Thus, for the ‘Drink_glass’ class above, SparkML returns a sparse-vector that basically says there are 13 elements, and at position 2, the class value exists(1.0).</li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> OneHotEncoder</span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a><span class="co"># The OneHotEncoder is a pure transformer object. it does not use the fit()</span></span>
-<span id="cb11-4"><a></a>encoder <span class="op">=</span> OneHotEncoder(inputCol <span class="op">=</span> <span class="st">'classIndex'</span>, outputCol <span class="op">=</span> <span class="st">'categoryVec'</span>)</span>
-<span id="cb11-5"><a></a>encoded <span class="op">=</span> encoder.transform(indexed)  <span class="co"># This is a new data frame</span></span>
-<span id="cb11-6"><a></a>encoded.show(<span class="dv">5</span>, <span class="va">False</span>)</span>
-<span id="cb11-7"><a></a></span>
-<span id="cb11-8"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
-<span id="cb11-9"><a></a><span class="op">|</span>x  <span class="op">|</span>y  <span class="op">|</span>z  <span class="op">|</span><span class="kw">class</span>      <span class="op">|</span>source                                              <span class="op">|</span>classIndex<span class="op">|</span>categoryVec   <span class="op">|</span></span>
-<span id="cb11-10"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
-<span id="cb11-11"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
-<span id="cb11-12"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
-<span id="cb11-13"><a></a><span class="op">|</span><span class="dv">28</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
-<span id="cb11-14"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
-<span id="cb11-15"><a></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
-<span id="cb11-16"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
-<span id="cb11-17"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> OneHotEncoder</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co"># The OneHotEncoder is a pure transformer object. it does not use the fit()</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>encoder <span class="op">=</span> OneHotEncoder(inputCol <span class="op">=</span> <span class="st">'classIndex'</span>, outputCol <span class="op">=</span> <span class="st">'categoryVec'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>encoded <span class="op">=</span> encoder.transform(indexed)  <span class="co"># This is a new data frame</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>encoded.show(<span class="dv">5</span>, <span class="va">False</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="op">|</span>x  <span class="op">|</span>y  <span class="op">|</span>z  <span class="op">|</span><span class="kw">class</span>      <span class="op">|</span>source                                              <span class="op">|</span>classIndex<span class="op">|</span>categoryVec   <span class="op">|</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="op">|</span><span class="dv">28</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="assembling-the-feature-vector" class="slide level2">
@@ -965,27 +986,27 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li>This is also a pure <em>transformer</em>.</li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
-<span id="cb12-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
-<span id="cb12-3"><a></a><span class="co"># VectorAssembler creates vectors from ordinary data types for us</span></span>
-<span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a>vectorAssembler <span class="op">=</span> VectorAssembler(inputCols <span class="op">=</span> [<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>], outputCol <span class="op">=</span> <span class="st">'features'</span>)</span>
-<span id="cb12-6"><a></a><span class="co"># Now we use the vectorAssembler object to transform our last updated dataframe</span></span>
-<span id="cb12-7"><a></a></span>
-<span id="cb12-8"><a></a>features_vectorized <span class="op">=</span> vectorAssembler.transform(encoded)  <span class="co"># note this is a new df</span></span>
-<span id="cb12-9"><a></a></span>
-<span id="cb12-10"><a></a>features_vectorized.show(<span class="dv">5</span>, <span class="va">False</span>)</span>
-<span id="cb12-11"><a></a></span>
-<span id="cb12-12"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
-<span id="cb12-13"><a></a><span class="op">|</span>x  <span class="op">|</span>y  <span class="op">|</span>z  <span class="op">|</span><span class="kw">class</span>      <span class="op">|</span>source                                              <span class="op">|</span>classIndex<span class="op">|</span>categoryVec   <span class="op">|</span>features        <span class="op">|</span></span>
-<span id="cb12-14"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
-<span id="cb12-15"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
-<span id="cb12-16"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
-<span id="cb12-17"><a></a><span class="op">|</span><span class="dv">28</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span></span>
-<span id="cb12-18"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
-<span id="cb12-19"><a></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span></span>
-<span id="cb12-20"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
-<span id="cb12-21"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co"># VectorAssembler creates vectors from ordinary data types for us</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a>vectorAssembler <span class="op">=</span> VectorAssembler(inputCols <span class="op">=</span> [<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>], outputCol <span class="op">=</span> <span class="st">'features'</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co"># Now we use the vectorAssembler object to transform our last updated dataframe</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a>features_vectorized <span class="op">=</span> vectorAssembler.transform(encoded)  <span class="co"># note this is a new df</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a>features_vectorized.show(<span class="dv">5</span>, <span class="va">False</span>)</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="op">|</span>x  <span class="op">|</span>y  <span class="op">|</span>z  <span class="op">|</span><span class="kw">class</span>      <span class="op">|</span>source                                              <span class="op">|</span>classIndex<span class="op">|</span>categoryVec   <span class="op">|</span>features        <span class="op">|</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">39</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="op">|</span><span class="dv">28</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="normalizing-the-dataset" class="slide level2">
@@ -996,77 +1017,77 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <li><code>p=2.0</code> uses Euclidean Distance</li>
 </ul>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> Normalizer</span>
-<span id="cb13-2"><a></a>normalizer <span class="op">=</span> Normalizer(inputCol <span class="op">=</span> <span class="st">'features'</span>, outputCol <span class="op">=</span> <span class="st">'features_norm'</span>, p<span class="op">=</span><span class="fl">1.0</span>)  <span class="co"># Manhattan Distance</span></span>
-<span id="cb13-3"><a></a>normalized_data <span class="op">=</span> normalizer.transform(features_vectorized) <span class="co"># New data frame too.</span></span>
-<span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a>normalized_data.show(<span class="dv">5</span>)</span>
-<span id="cb13-6"><a></a><span class="op">&gt;&gt;</span></span>
-<span id="cb13-7"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb13-8"><a></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span>   categoryVec<span class="op">|</span>        features<span class="op">|</span>       features_norm<span class="op">|</span></span>
-<span id="cb13-9"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb13-10"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb13-11"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb13-12"><a></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
-<span id="cb13-13"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
-<span id="cb13-14"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
-<span id="cb13-15"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb13-16"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> Normalizer</span>
+<span id="cb13-2"><a href="#cb13-2"></a>normalizer <span class="op">=</span> Normalizer(inputCol <span class="op">=</span> <span class="st">'features'</span>, outputCol <span class="op">=</span> <span class="st">'features_norm'</span>, p<span class="op">=</span><span class="fl">1.0</span>)  <span class="co"># Manhattan Distance</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>normalized_data <span class="op">=</span> normalizer.transform(features_vectorized) <span class="co"># New data frame too.</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>normalized_data.show(<span class="dv">5</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="op">&gt;&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span>   categoryVec<span class="op">|</span>        features<span class="op">|</span>       features_norm<span class="op">|</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="running-the-transformation-pipeline" class="slide level2">
 <h2>Running the transformation <code>Pipeline</code></h2>
 <p>The <code>Pipeline</code> constructor below takes an array of Pipeline stages we pass to it. Here we pass the 4 stages defined earlier, in the right sequence, one after another.</p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
-<span id="cb14-2"><a></a>pipeline <span class="op">=</span> Pipeline(stages <span class="op">=</span> [indexer,encoder,vectorAssembler,normalizer])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
+<span id="cb14-2"><a href="#cb14-2"></a>pipeline <span class="op">=</span> Pipeline(stages <span class="op">=</span> [indexer,encoder,vectorAssembler,normalizer])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the <code>Pipeline</code> object fit to our original <code>DataFrame df</code></p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>data_model <span class="op">=</span> pipeline.fit(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>data_model <span class="op">=</span> pipeline.fit(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, we transform our DataFrame <code>df</code> using the Pipeline Object.</p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>pipelined_data <span class="op">=</span> data_model.transform(df)</span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a>pipelined_data.show(<span class="dv">5</span>)</span>
-<span id="cb16-4"><a></a></span>
-<span id="cb16-5"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb16-6"><a></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span>   categoryVec<span class="op">|</span>        features<span class="op">|</span>       features_norm<span class="op">|</span></span>
-<span id="cb16-7"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb16-8"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb16-9"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb16-10"><a></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
-<span id="cb16-11"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
-<span id="cb16-12"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
-<span id="cb16-13"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb16-14"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>pipelined_data <span class="op">=</span> data_model.transform(df)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>pipelined_data.show(<span class="dv">5</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="op">|</span>  x<span class="op">|</span>  y<span class="op">|</span>  z<span class="op">|</span>      <span class="kw">class</span><span class="op">|</span>              source<span class="op">|</span>classIndex<span class="op">|</span>   categoryVec<span class="op">|</span>        features<span class="op">|</span>       features_norm<span class="op">|</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">39</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">39.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="op">|</span> <span class="dv">28</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">28.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="one-last-step-before-training" class="slide level2">
 <h2>One last step before training</h2>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="co"># first let's list out the columns we want to drop</span></span>
-<span id="cb17-2"><a></a>cols_to_drop <span class="op">=</span> [<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>,<span class="st">'class'</span>,<span class="st">'source'</span>,<span class="st">'classIndex'</span>,<span class="st">'features'</span>]</span>
-<span id="cb17-3"><a></a></span>
-<span id="cb17-4"><a></a><span class="co"># Next let's use a list comprehension with conditionals to select cols we need</span></span>
-<span id="cb17-5"><a></a>selected_cols <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> pipelined_data.columns <span class="cf">if</span> col <span class="kw">not</span> <span class="kw">in</span> cols_to_drop]</span>
-<span id="cb17-6"><a></a></span>
-<span id="cb17-7"><a></a><span class="co"># Let's define a new train_df with only the categoryVec and features_norm cols</span></span>
-<span id="cb17-8"><a></a>df_train <span class="op">=</span> pipelined_data.select(selected_cols)</span>
-<span id="cb17-9"><a></a></span>
-<span id="cb17-10"><a></a><span class="co"># Let's see our training dataframe.</span></span>
-<span id="cb17-11"><a></a>df_train.show(<span class="dv">5</span>)</span>
-<span id="cb17-12"><a></a></span>
-<span id="cb17-13"><a></a><span class="op">+--------------+--------------------+</span></span>
-<span id="cb17-14"><a></a><span class="op">|</span>   categoryVec<span class="op">|</span>       features_norm<span class="op">|</span></span>
-<span id="cb17-15"><a></a><span class="op">+--------------+--------------------+</span></span>
-<span id="cb17-16"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb17-17"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
-<span id="cb17-18"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
-<span id="cb17-19"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
-<span id="cb17-20"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
-<span id="cb17-21"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># first let's list out the columns we want to drop</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>cols_to_drop <span class="op">=</span> [<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>,<span class="st">'class'</span>,<span class="st">'source'</span>,<span class="st">'classIndex'</span>,<span class="st">'features'</span>]</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># Next let's use a list comprehension with conditionals to select cols we need</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>selected_cols <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> pipelined_data.columns <span class="cf">if</span> col <span class="kw">not</span> <span class="kw">in</span> cols_to_drop]</span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="co"># Let's define a new train_df with only the categoryVec and features_norm cols</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>df_train <span class="op">=</span> pipelined_data.select(selected_cols)</span>
+<span id="cb17-9"><a href="#cb17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="co"># Let's see our training dataframe.</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>df_train.show(<span class="dv">5</span>)</span>
+<span id="cb17-12"><a href="#cb17-12"></a></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="op">+--------------+--------------------+</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="op">|</span>   categoryVec<span class="op">|</span>       features_norm<span class="op">|</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="op">+--------------+--------------------+</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24369747899159</span>...<span class="op">|</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <h3 id="you-now-have-a-dataframe-optimized-for-sparkml">You now have a DataFrame optimized for SparkML!</h3>
 </section>
@@ -1097,22 +1118,22 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <h2>Building your Model</h2>
 <p>Feature selection using easy R-like formulas</p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># Example from Spark docs</span></span>
-<span id="cb18-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> RFormula</span>
-<span id="cb18-3"><a></a></span>
-<span id="cb18-4"><a></a>dataset <span class="op">=</span> spark.createDataFrame(</span>
-<span id="cb18-5"><a></a>    [(<span class="dv">7</span>, <span class="st">"US"</span>, <span class="dv">18</span>, <span class="fl">1.0</span>),</span>
-<span id="cb18-6"><a></a>     (<span class="dv">8</span>, <span class="st">"CA"</span>, <span class="dv">12</span>, <span class="fl">0.0</span>),</span>
-<span id="cb18-7"><a></a>     (<span class="dv">9</span>, <span class="st">"NZ"</span>, <span class="dv">15</span>, <span class="fl">0.0</span>)],</span>
-<span id="cb18-8"><a></a>    [<span class="st">"id"</span>, <span class="st">"country"</span>, <span class="st">"hour"</span>, <span class="st">"clicked"</span>])</span>
-<span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a>formula <span class="op">=</span> RFormula(</span>
-<span id="cb18-11"><a></a>    formula<span class="op">=</span><span class="st">"clicked ~ country + hour"</span>,</span>
-<span id="cb18-12"><a></a>    featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
-<span id="cb18-13"><a></a>    labelCol<span class="op">=</span><span class="st">"label"</span>)</span>
-<span id="cb18-14"><a></a></span>
-<span id="cb18-15"><a></a>output <span class="op">=</span> formula.fit(dataset).transform(dataset)</span>
-<span id="cb18-16"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"label"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Example from Spark docs</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> RFormula</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>dataset <span class="op">=</span> spark.createDataFrame(</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    [(<span class="dv">7</span>, <span class="st">"US"</span>, <span class="dv">18</span>, <span class="fl">1.0</span>),</span>
+<span id="cb18-6"><a href="#cb18-6"></a>     (<span class="dv">8</span>, <span class="st">"CA"</span>, <span class="dv">12</span>, <span class="fl">0.0</span>),</span>
+<span id="cb18-7"><a href="#cb18-7"></a>     (<span class="dv">9</span>, <span class="st">"NZ"</span>, <span class="dv">15</span>, <span class="fl">0.0</span>)],</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    [<span class="st">"id"</span>, <span class="st">"country"</span>, <span class="st">"hour"</span>, <span class="st">"clicked"</span>])</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a>formula <span class="op">=</span> RFormula(</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    formula<span class="op">=</span><span class="st">"clicked ~ country + hour"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    labelCol<span class="op">=</span><span class="st">"label"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14"></a></span>
+<span id="cb18-15"><a href="#cb18-15"></a>output <span class="op">=</span> formula.fit(dataset).transform(dataset)</span>
+<span id="cb18-16"><a href="#cb18-16"></a>output.select(<span class="st">"features"</span>, <span class="st">"label"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="what-if-you-have-too-many-columns-for-your-model" class="slide level2">
@@ -1124,79 +1145,77 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
 <p>Pick categorical variables that are most dependent on the response variable</p>
 <p>Can even check the <a href="https://stackoverflow.com/questions/50971964/pyspark-chisqselector-p-values-and-test-statistics">p-values of specific variables!</a></p>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="co"># Example from Spark docs</span></span>
-<span id="cb19-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> ChiSqSelector</span>
-<span id="cb19-3"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
-<span id="cb19-4"><a></a></span>
-<span id="cb19-5"><a></a>df <span class="op">=</span> spark.createDataFrame([</span>
-<span id="cb19-6"><a></a>    (<span class="dv">7</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">18.0</span>, <span class="fl">1.0</span>]), <span class="fl">1.0</span>,),</span>
-<span id="cb19-7"><a></a>    (<span class="dv">8</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">12.0</span>, <span class="fl">0.0</span>]), <span class="fl">0.0</span>,),</span>
-<span id="cb19-8"><a></a>    (<span class="dv">9</span>, Vectors.dense([<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">15.0</span>, <span class="fl">0.1</span>]), <span class="fl">0.0</span>,)], [<span class="st">"id"</span>, <span class="st">"features"</span>, <span class="st">"clicked"</span>])</span>
-<span id="cb19-9"><a></a></span>
-<span id="cb19-10"><a></a>selector <span class="op">=</span> ChiSqSelector(numTopFeatures<span class="op">=</span><span class="dv">1</span>, featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
-<span id="cb19-11"><a></a>                         outputCol<span class="op">=</span><span class="st">"selectedFeatures"</span>, labelCol<span class="op">=</span><span class="st">"clicked"</span>)</span>
-<span id="cb19-12"><a></a></span>
-<span id="cb19-13"><a></a>result <span class="op">=</span> selector.fit(df).transform(df)</span>
-<span id="cb19-14"><a></a></span>
-<span id="cb19-15"><a></a><span class="bu">print</span>(<span class="st">"ChiSqSelector output with top </span><span class="sc">%d</span><span class="st"> features selected"</span> <span class="op">%</span> selector.getNumTopFeatures())</span>
-<span id="cb19-16"><a></a>result.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Example from Spark docs</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> ChiSqSelector</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a>df <span class="op">=</span> spark.createDataFrame([</span>
+<span id="cb19-6"><a href="#cb19-6"></a>    (<span class="dv">7</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">18.0</span>, <span class="fl">1.0</span>]), <span class="fl">1.0</span>,),</span>
+<span id="cb19-7"><a href="#cb19-7"></a>    (<span class="dv">8</span>, Vectors.dense([<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">12.0</span>, <span class="fl">0.0</span>]), <span class="fl">0.0</span>,),</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    (<span class="dv">9</span>, Vectors.dense([<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">15.0</span>, <span class="fl">0.1</span>]), <span class="fl">0.0</span>,)], [<span class="st">"id"</span>, <span class="st">"features"</span>, <span class="st">"clicked"</span>])</span>
+<span id="cb19-9"><a href="#cb19-9"></a></span>
+<span id="cb19-10"><a href="#cb19-10"></a>selector <span class="op">=</span> ChiSqSelector(numTopFeatures<span class="op">=</span><span class="dv">1</span>, featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
+<span id="cb19-11"><a href="#cb19-11"></a>                         outputCol<span class="op">=</span><span class="st">"selectedFeatures"</span>, labelCol<span class="op">=</span><span class="st">"clicked"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12"></a></span>
+<span id="cb19-13"><a href="#cb19-13"></a>result <span class="op">=</span> selector.fit(df).transform(df)</span>
+<span id="cb19-14"><a href="#cb19-14"></a></span>
+<span id="cb19-15"><a href="#cb19-15"></a><span class="bu">print</span>(<span class="st">"ChiSqSelector output with top </span><span class="sc">%d</span><span class="st"> features selected"</span> <span class="op">%</span> selector.getNumTopFeatures())</span>
+<span id="cb19-16"><a href="#cb19-16"></a>result.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tuning-your-model" class="slide level2">
 <h2>Tuning your model</h2>
 <h4 id="part-1">Part 1</h4>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># Example from Spark docs</span></span>
-<span id="cb20-2"><a></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
-<span id="cb20-3"><a></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> LinearRegression</span>
-<span id="cb20-4"><a></a><span class="im">from</span> pyspark.ml.tuning <span class="im">import</span> ParamGridBuilder, TrainValidationSplit</span>
-<span id="cb20-5"><a></a></span>
-<span id="cb20-6"><a></a><span class="co"># Prepare training and test data.</span></span>
-<span id="cb20-7"><a></a>data <span class="op">=</span> spark.read.<span class="bu">format</span>(<span class="st">"libsvm"</span>)<span class="op">\</span></span>
-<span id="cb20-8"><a></a>    .load(<span class="st">"data/mllib/sample_linear_regression_data.txt"</span>)</span>
-<span id="cb20-9"><a></a>train, test <span class="op">=</span> data.randomSplit([<span class="fl">0.9</span>, <span class="fl">0.1</span>], seed<span class="op">=</span><span class="dv">12345</span>)</span>
-<span id="cb20-10"><a></a></span>
-<span id="cb20-11"><a></a>lr <span class="op">=</span> LinearRegression(maxIter<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb20-12"><a></a></span>
-<span id="cb20-13"><a></a><span class="co"># We use a ParamGridBuilder to construct a grid of parameters to search over.</span></span>
-<span id="cb20-14"><a></a><span class="co"># TrainValidationSplit will try all combinations of values and determine best model using</span></span>
-<span id="cb20-15"><a></a><span class="co"># the evaluator.</span></span>
-<span id="cb20-16"><a></a>paramGrid <span class="op">=</span> ParamGridBuilder()<span class="op">\</span></span>
-<span id="cb20-17"><a></a>    .addGrid(lr.regParam, [<span class="fl">0.1</span>, <span class="fl">0.01</span>]) <span class="op">\</span></span>
-<span id="cb20-18"><a></a>    .addGrid(lr.fitIntercept, [<span class="va">False</span>, <span class="va">True</span>])<span class="op">\</span></span>
-<span id="cb20-19"><a></a>    .addGrid(lr.elasticNetParam, [<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])<span class="op">\</span></span>
-<span id="cb20-20"><a></a>    .build()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Example from Spark docs</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> LinearRegression</span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="im">from</span> pyspark.ml.tuning <span class="im">import</span> ParamGridBuilder, TrainValidationSplit</span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co"># Prepare training and test data.</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>data <span class="op">=</span> spark.read.<span class="bu">format</span>(<span class="st">"libsvm"</span>)<span class="op">\</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>    .load(<span class="st">"data/mllib/sample_linear_regression_data.txt"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9"></a>train, test <span class="op">=</span> data.randomSplit([<span class="fl">0.9</span>, <span class="fl">0.1</span>], seed<span class="op">=</span><span class="dv">12345</span>)</span>
+<span id="cb20-10"><a href="#cb20-10"></a></span>
+<span id="cb20-11"><a href="#cb20-11"></a>lr <span class="op">=</span> LinearRegression(maxIter<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a></span>
+<span id="cb20-13"><a href="#cb20-13"></a><span class="co"># We use a ParamGridBuilder to construct a grid of parameters to search over.</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="co"># TrainValidationSplit will try all combinations of values and determine best model using</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="co"># the evaluator.</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a>paramGrid <span class="op">=</span> ParamGridBuilder()<span class="op">\</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>    .addGrid(lr.regParam, [<span class="fl">0.1</span>, <span class="fl">0.01</span>]) <span class="op">\</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a>    .addGrid(lr.fitIntercept, [<span class="va">False</span>, <span class="va">True</span>])<span class="op">\</span></span>
+<span id="cb20-19"><a href="#cb20-19"></a>    .addGrid(lr.elasticNetParam, [<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])<span class="op">\</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a>    .build()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tuning-your-model-1" class="slide level2">
 <h2>Tuning your model</h2>
 <h4 id="part-2">Part 2</h4>
 <div class="cell" data-python.reticulate="false">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="co"># In this case the estimator is simply the linear regression.</span></span>
-<span id="cb21-2"><a></a><span class="co"># A TrainValidationSplit requires an Estimator, a set of Estimator ParamMaps, and an Evaluator.</span></span>
-<span id="cb21-3"><a></a>tvs <span class="op">=</span> TrainValidationSplit(estimator<span class="op">=</span>lr,</span>
-<span id="cb21-4"><a></a>                           estimatorParamMaps<span class="op">=</span>paramGrid,</span>
-<span id="cb21-5"><a></a>                           evaluator<span class="op">=</span>RegressionEvaluator(),</span>
-<span id="cb21-6"><a></a>                           <span class="co"># 80% of the data will be used for training, 20% for validation.</span></span>
-<span id="cb21-7"><a></a>                           trainRatio<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb21-8"><a></a></span>
-<span id="cb21-9"><a></a><span class="co"># Run TrainValidationSplit, and choose the best set of parameters.</span></span>
-<span id="cb21-10"><a></a>model <span class="op">=</span> tvs.fit(train)</span>
-<span id="cb21-11"><a></a></span>
-<span id="cb21-12"><a></a><span class="co"># Make predictions on test data. model is the model with combination of parameters</span></span>
-<span id="cb21-13"><a></a><span class="co"># that performed best.</span></span>
-<span id="cb21-14"><a></a>model.transform(test)<span class="op">\</span></span>
-<span id="cb21-15"><a></a>    .select(<span class="st">"features"</span>, <span class="st">"label"</span>, <span class="st">"prediction"</span>)<span class="op">\</span></span>
-<span id="cb21-16"><a></a>    .show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># In this case the estimator is simply the linear regression.</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co"># A TrainValidationSplit requires an Estimator, a set of Estimator ParamMaps, and an Evaluator.</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>tvs <span class="op">=</span> TrainValidationSplit(estimator<span class="op">=</span>lr,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>                           estimatorParamMaps<span class="op">=</span>paramGrid,</span>
+<span id="cb21-5"><a href="#cb21-5"></a>                           evaluator<span class="op">=</span>RegressionEvaluator(),</span>
+<span id="cb21-6"><a href="#cb21-6"></a>                           <span class="co"># 80% of the data will be used for training, 20% for validation.</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>                           trainRatio<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb21-8"><a href="#cb21-8"></a></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="co"># Run TrainValidationSplit, and choose the best set of parameters.</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>model <span class="op">=</span> tvs.fit(train)</span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="co"># Make predictions on test data. model is the model with combination of parameters</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="co"># that performed best.</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>model.transform(test)<span class="op">\</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a>    .select(<span class="st">"features"</span>, <span class="st">"label"</span>, <span class="st">"prediction"</span>)<span class="op">\</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>    .show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="lab" class="title-slide slide level1 section center">
 <h1>Lab</h1>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -1225,11 +1244,12 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1471,15 +1491,12 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1511,50 +1528,11 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/aa1603\.georgetown\.edu\/dsan6000");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1563,18 +1541,9 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
           },
           interactive: true,
           interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1588,11 +1557,7 @@ Amit Arora, Marck Vaisman, Abhijit Dasgupta
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {
