@@ -3,7 +3,7 @@
 ## Connected and extensible
 
 ::: {.imgcenter}
-<img src="spark_udfs/img/spark-connectors.png" width=600>
+<img src="img/spark-connectors.png" width=600>
 :::
 
 ## Caching and Persistence
