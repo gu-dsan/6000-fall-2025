@@ -50,7 +50,10 @@ website:
       - text: "Labs"
         file: labs/index.qmd
       - text: "Project"
-        file: project/index.qmd
+        menu:
+        - project/index.qmd
+        - text: "Using AzureML"
+          file: project/project-on-azure.qmd
       - text: "Technical Reference"
         menu:
         - tech-ref/terminal-and-ssh.qmd
