@@ -37,7 +37,7 @@ df_in_ct = df_in.count()
 logging.info(f"finished reading files...")
 
 # filter the dataframe to only keep the subreddits of interest
-subreddits = [s.strip() for s in args.subreddits.split(",")]
+subreddits = [s.strip().lower() for s in args.subreddits.split(",")]
 filtered = df_in.where(lower(col("subreddit")).isin(subreddits))
 filtered_ct = filtered.count()
 
