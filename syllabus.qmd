@@ -37,7 +37,8 @@ format:
 
 ### Instructors
 
--   [{{< var instructor.name >}}](mailto:{{< var instructor.email >}})
+-   [Amit Arora](mailto:aa1603@georgetown.edu)
+-   [Jeff Jacobs](mailto:jj1088@georgetown.edu)
 
 ### TAs
 

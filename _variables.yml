@@ -1,8 +1,8 @@
 author: DSAN6000 Professors
 instructor:
-  name: Amit Arora, Marck Vaisman, Abhijit Dasgupta
-  name_no_title: Amit Arora, Marck Vaisman, Abhijit Dasgupta
-  email: dsan6000-instructors@georgetown.edu
+  name: Amit Arora, Jeff Jacobs
+  name_no_title: Amit Arora, Jeff Jacobs
+  email: aa1603@georgetown.edu
   url: "https://analytics.georgetown.edu/faculty-staff/"
   office: "Online"
   twitter:
@@ -11,53 +11,53 @@ instructor:
   appointment_url: https://calendar.app.google/VDNgfyh5vG4pmJi38
 
 ta:
-  name: Tereza Martinkova
-  name_no_title: Tereza Martinkova
-  email: tm1450@georgetown.edu
+  name: TBA
+  name_no_title: TBA
+  email: TBA@georgetown.edu
   
 course:
   number: "DSAN 6000"
-  semester: "Fall 2024"
-  days: "Mondays (Prof Marck), Tuesdays (Prof Abhijit), Wednesdays (Prof Amit)"
+  semester: "Fall 2025"
+  days: "Mondays (Prof Amit), Wednesdays (Prof Jeff)"
   time: "6:30–9:00 PM"
   location: "Car Barn 309"
-  dates: "August 28 – December 12, 2024"
-  github: "https://github.com/gu-dsan/6000-fall-2024.git"
+  dates: "August 25 – December 11, 2025"
+  github: "https://github.com/gu-dsan/6000-fall-2025.git"
   github_org: https://github.com/gu-dsan/
   url: "https://aa1603.georgetown.edu/dsan6000"
-  copyright_year: "2024"
-  slack: "https://dsan6000fall2024.slack.com"
-  email: dsan-Fall-2024@georgetown.edu
+  copyright_year: "2025"
+  slack: "https://dsan6000fall2025.slack.com"
+  email: dsan-Fall-2025@georgetown.edu
   class_start_hhmmss: "183000"
   class_end_hhmmss: "210000"
   lab0: https://georgetown.instructure.com/courses/193302/assignments
-  lms_course_url: https://georgetown.instructure.com/courses/193302
+  lms_course_url: https://georgetown.instructure.com/courses/TBA-2025
   lms_course_url_md: "[`{{< var course.lms_course_url >}}`]({{< var course.lms_course_url >}})"
-  last_day_of_class: "Dec 12th, 2024"
+  last_day_of_class: "Dec 11th, 2025"
 
 gh-classroom:
-  lab01: "https://classroom.github.com/a/cIT1byyd"
-  lab02: https://classroom.github.com/a/vVcfO1EA
-  lab03: https://classroom.github.com/a/JkalyilX
-  lab04: https://classroom.github.com/a/VlVbNlV8
-  lab05: https://classroom.github.com/a/Q-H1DE3P
-  lab06: https://classroom.github.com/a/gcMac3Ne
-  lab07: https://classroom.github.com/a/xJXcD5tS
-  lab08: https://classroom.github.com/a/vVVrvDAq
-  lab09: https://classroom.github.com/a/smt3DdFY
-  lab10: https://classroom.github.com/a/RPHthXPH
-  lab11: https://classroom.github.com/a/yFvXUYP9
-  lab12: null
-  lab13p1: https://classroom.github.com/a/yFvXUYP9
-  lab13p2: https://classroom.github.com/a/dHbVdu4V
-  lab14: null
-  a01: 
-  a02: https://classroom.github.com/a/x1ajmcEq
-  a03: 
-  a04: https://classroom.github.com/a/ADi4vxUM
-  a05: https://classroom.github.com/a/XQkklr9Y
-  a06p1: https://classroom.github.com/a/Qguf2Bh8
-  a06p2: https://classroom.github.com/a/MEZtY09Y
+  lab01: "TBA-2025"
+  lab02: "TBA-2025"
+  lab03: "TBA-2025"
+  lab04: "TBA-2025"
+  lab05: "TBA-2025"
+  lab06: "TBA-2025"
+  lab07: "TBA-2025"
+  lab08: "TBA-2025"
+  lab09: "TBA-2025"
+  lab10: "TBA-2025"
+  lab11: "TBA-2025"
+  lab12: "TBA-2025"
+  lab13p1: "TBA-2025"
+  lab13p2: "TBA-2025"
+  lab14: "TBA-2025"
+  a01: "TBA-2025"
+  a02: "TBA-2025"
+  a03: "TBA-2025"
+  a04: "TBA-2025"
+  a05: "TBA-2025"
+  a06p1: "TBA-2025"
+  a06p2: "TBA-2025"
 
 university:
   name: Georgetown University
@@ -79,6 +79,6 @@ reading :
   damji: https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf
 
 due_dates:
-  assignment02: "September 18, 2024"
-  assignment03: "September 25, 2024"
-  lab03: "September 18, 2024"
+  assignment02: "September 17, 2025"
+  assignment03: "September 24, 2025"
+  lab03: "September 17, 2025"

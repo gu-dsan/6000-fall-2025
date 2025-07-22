@@ -3,7 +3,7 @@ title: "Big Data Analytics & Cloud Computing"
 subtitle: |
   "Learn how to analyze Big Data using cloud computing and technologies such as Concurrency, Spark and others in this hands-on, practical workshop-style course."
 details: |
-  DSAN 6000 • Fall 2024<br>Amit Arora, Marck Vaisman, Abhijit Dasgupta<br>Graduate School of Arts and Science, Georgetown University
+  DSAN 6000 • Fall 2025<br>Amit Arora, Jeff Jacobs<br>Graduate School of Arts and Science, Georgetown University
 sidebar: false
 toc: false
 page-layout: full
@@ -19,12 +19,11 @@ course-logo: /files/img/dsan6000-logo.png
 ::: {.grid .course-details}
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-### Instructor
+### Instructors
 
-- {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
+- {{< fa user >}} &nbsp; [Amit Arora](mailto:aa1603@georgetown.edu)
+- {{< fa user >}} &nbsp; [Jeff Jacobs](mailto:jj1088@georgetown.edu)
 - {{< fa university >}} &nbsp; {{< var instructor.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
-- {{< fa brands twitter >}} &nbsp; [{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})
 - {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< var instructor.appointment_url >}})
 :::
 

@@ -61,7 +61,7 @@ website:
       - text: "Resources"
         file: resources/index.qmd
       - icon: slack
-        href: "https://dsan6000fall2024.slack.com"
+        href: "https://dsan6000fall2025.slack.com"
         aria-label: Slack
 
   sidebar:

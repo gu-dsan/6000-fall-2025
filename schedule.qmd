@@ -9,28 +9,26 @@ format:
 
 | Section | Instructor | Day            | Location      |
 |---------|------------|----------------|---------------|
-| 01      | Abhijit    | Tu 6:30-9:00   | Car Barn 204  |
-| 02      | Amit       | W 6:30-9:00    | Car Barn 309  |
-| 03      | Marck      | M 6:30-9:00    | Car Barn 204  |
+| 01      | Amit       | M 6:30-9:00    | Car Barn 309  |
+| 02      | Jeff       | W 6:30-9:00    | Car Barn 204  |
 |         |            |                |               |
 
 
-| Monday (Marck)     | Session | Tuesday (Abhijit)  | Session | Wednesday (Amit)  | Session | Notes                                           |
-|--------------------|---------|--------------------|---------|-------------------|---------|---------------------------------------------------|
-| 8/26/2024          |         | 8/27/2024          |         | 8/28/2024         | 1       | All Sections combined                              |
-| 9/2/2024           | Labor Day | 9/3/2024         | 2       | 9/4/2024          | 2       | Abhijit async or in-person Friday                  |
-| 9/9/2024           | 3       | 9/10/2024          | 3       | 9/11/2024         | 3       |                                                    |
-| 9/16/2024          | 4       | 9/17/2024          | 4       | 9/18/2024         | 4       | Amit unavailable, virtual class for section 2      |
-| 9/23/2024          | 5       | 9/24/2024          | 5       | 9/25/2024         | 5       |                                                    |
-| 9/30/2024          | 6       | 10/1/2024          | 6       | 10/2/2024         | 6       |                                                    |
-| 10/7/2024          | 7       | 10/8/2024          | 7       | 10/9/2024         | 7       |                                                    |
-| 10/14/2024         | Mid Semester Holiday | 10/15/2024 | 8   | 10/16/2024        | 8       | Marck async or in-person Friday                    |
-| 10/21/2024         | 9       | 10/22/2024         | 9       | 10/23/2024        | 9       |                                                    |
-| 10/28/2024         | 10      | 10/29/2024         | 10      | 10/30/2024        | 10      |                                                    |
-| 11/4/2024          | 11      | 11/5/2024          | 11      | 11/6/2024         | 11      |                                                    |
-| 11/11/2024         | 12      | 11/12/2024         | 12      | 11/13/2024        | 12      |                                                    |
-| 11/18/2024         | 13      | 11/19/2024         | 13      | 11/20/2024        | 13      |                                                    |
-| 11/25/2024         | no class | 11/26/2024    | no class | 11/27/2024      | thanksgiving | No class this week                                |
-| 12/2/2024          | 14      | 12/3/2024          | 14      | 12/4/2024         | 14      | Amit unavailable, reschedule section 2 for week of 12/9 |
-| 12/9/2024          | Projects | 12/10/2024        | Projects | 12/11/2024       |         | Project presentation (tentative)                   |
-| 12/16/2024         |         | 12/17/2024         |         | 12/18/2024        |         |                                                    |
+| Monday (Amit)      | Session | Wednesday (Jeff)   | Session | Notes                                           |
+|--------------------|---------|-------------------|---------|---------------------------------------------------|
+| 8/25/2025          | 1       | 8/27/2025         | 1       | Course overview - All sections combined           |
+| 9/1/2025           | Labor Day | 9/3/2025        | 2       | Cloud computing introduction                       |
+| 9/8/2025           | 2       | 9/10/2025         | 3       | Parallelization concepts                          |
+| 9/15/2025          | 3       | 9/17/2025         | 4       | DuckDB, Polars, file formats                     |
+| 9/22/2025          | 4       | 9/24/2025         | 5       | Data Warehouse (Athena, Presto, Snowflake)       |
+| 9/29/2025          | 5       | 10/1/2025         | 6       | Introduction to Spark, RDDs                      |
+| 10/6/2025          | 6       | 10/8/2025         | 7       | Spark DataFrames and Spark SQL                   |
+| 10/13/2025         | Mid Semester Holiday | 10/15/2025 | 8   | Spark ML and Streaming                        |
+| 10/20/2025         | 7       | 10/22/2025        | 9       | Apache Iceberg & Table Formats                   |
+| 10/27/2025         | 8       | 10/29/2025        | 10      | Data Pipeline Orchestration (Airflow)            |
+| 11/3/2025          | 9       | 11/5/2025         | 11      | Vector Databases & RAG                            |
+| 11/10/2025         | 10      | 11/12/2025        | 12      | Modern Data Stack & Governance                    |
+| 11/17/2025         | 11      | 11/19/2025        | 13      | Serverless & Container Orchestration             |
+| 11/24/2025         | no class | 11/26/2025       | thanksgiving | No class this week                         |
+| 12/1/2025          | 12      | 12/3/2025         | 14      | Final project presentations                       |
+| 12/8/2025          | Projects | 12/10/2025       | Projects | Additional project presentations if needed       |
