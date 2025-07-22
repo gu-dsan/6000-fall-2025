@@ -42,23 +42,14 @@ format:
 
 ## Glossary
 
-```{r, echo = FALSE}
-library(magrittr)
-library(tibble)
-library(kableExtra)
-tribble( ~"Term", ~"Definition",
-         "Local", "Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application.",
-         "Remote", "Any machine you connect to via ssh or other means.",
-         "EC2", "Single virtual machine in the cloud where you can run computation (ephemeral)",
-         "SageMaker", "Integrated Developer Environment where you can conduct data science on single machines",
-         "Ephemeral","Lasting for a short time - any machine that will get turned off or place you will lose data",
-         "Persistent","Lasting for a long time - any environment where your work is NOT lost when the timer goes off"
-) %>%
-  kable(format = "html") %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "40em")
-```
+| Term | Definition |
+|---|---|
+| **Local** | Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application. |
+| **Remote** | Any machine you connect to via ssh or other means. |
+| **EC2** | Single virtual machine in the cloud where you can run computation (ephemeral) |
+| **SageMaker** | Integrated Developer Environment where you can conduct data science on single machines |
+| **Ephemeral** | Lasting for a short time - any machine that will get turned off or place you will lose data |
+| **Persistent** | Lasting for a long time - any environment where your work is NOT lost when the timer goes off |
 
 # Parallelization {.section}
 

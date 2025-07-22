@@ -175,20 +175,12 @@ You can think of your split/distributed data as a single collection]
 
 ## Spark vs. Hadoop
 
-```{r, echo = FALSE}
-library(magrittr)
-library(tibble)
-library(kableExtra)
-library(gt)
-tribble( ~"Hadoop Limitation", ~"Spark Approach",
-         "For iterative processes and interactive use, Hadoop and MapReduce's mandatory dumping of output to disk proved to be a huge bottleneck. In ML, for example, users rely on iterative processes to train-test-retrain.", "Spark uses an in-memory processing paradigm, which lowers the disk IO substantially. Spark uses DAGs to store details of each transformation done on a parallelized dataset and does not process them to get results until required (lazy).",
-         "Traditional Hadoop applications needed the data first to be copied to HDFS (or other distributed filesystem) and then did the processing.", "Spark works equally well with HDFS or any POSIX style filesystem. However, parallel Spark needs the data to be distributed.",
-         "Mappers needed a data-localization phase in which the data was written to the local filesystem to bring resilience.", "Resilience in Spark is brough about by the DAGs, in which a missing RDD is re-calculated by following the path from which the RDD was created.",
-         "Hadoop is built on Java and you must use Java to take advantage of all of it's capabilities. Although you can run non-Java scripts with Hadoop Streaming, it is still running a Java Framework.", 
-         "Spark is developed in Scala, and it has a unified API with so you can use Spark with Scala, Java, R and Python."
-         ) %>% 
-    gt() 
-```
+| Hadoop Limitation | Spark Approach |
+|---|---|
+| For iterative processes and interactive use, Hadoop and MapReduce's mandatory dumping of output to disk proved to be a huge bottleneck. In ML, for example, users rely on iterative processes to train-test-retrain. | Spark uses an in-memory processing paradigm, which lowers the disk IO substantially. Spark uses DAGs to store details of each transformation done on a parallelized dataset and does not process them to get results until required (lazy). |
+| Traditional Hadoop applications needed the data first to be copied to HDFS (or other distributed filesystem) and then did the processing. | Spark works equally well with HDFS or any POSIX style filesystem. However, parallel Spark needs the data to be distributed. |
+| Mappers needed a data-localization phase in which the data was written to the local filesystem to bring resilience. | Resilience in Spark is brough about by the DAGs, in which a missing RDD is re-calculated by following the path from which the RDD was created. |
+| Hadoop is built on Java and you must use Java to take advantage of all of it's capabilities. Although you can run non-Java scripts with Hadoop Streaming, it is still running a Java Framework. | Spark is developed in Scala, and it has a unified API with so you can use Spark with Scala, Java, R and Python. |
 
 # Introducing the RDD {.section}
 
@@ -196,7 +188,7 @@ tribble( ~"Hadoop Limitation", ~"Spark Approach",
 
 The "Hello, World!" of programming with large scale data.
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 # read data from text file and split each line into words
 rdd = sc.textFile("...") 
 
@@ -259,30 +251,23 @@ Spark defines _**transformations**_ and _**actions**_ on RDDs:
 
 ## Common `RDD` Transformations
 
-```{r, echo = FALSE}
-tribble( ~"Method", ~"Description",
-         "`map`", "Expresses a one-to-one transformation and transforms each element of a collection into one element of the resulting collection",
-         "`flatMap`", "Expresses a one-to-many transformation and transforms each element to 0 or more elements",
-         "`filter`", "Applies filter function that returns a boolean and returs an RDD of elements that have passed the filter condition",
-         "`distinct`", "Returns RDD with duplicates removed"
-) %>% 
-  gt::gt() %>% 
-  fmt_markdown(columns = vars(Method, Description))
-```
+| Method | Description |
+|---|---|
+| `map` | Expresses a one-to-one transformation and transforms each element of a collection into one element of the resulting collection |
+| `flatMap` | Expresses a one-to-many transformation and transforms each element to 0 or more elements |
+| `filter` | Applies filter function that returns a boolean and returs an RDD of elements that have passed the filter condition |
+| `distinct` | Returns RDD with duplicates removed |
 
 ---
 
 ## Common `RDD` Actions
 
-```{r, echo = FALSE}
-tribble( ~"Method", ~"Description",
-         "`collect`", "Returns **all** distributed elements of the `RDD` to the driver",
-         "`count`", "Returns the number of elements in an `RDD`",
-         "`take`", "Returns the first _n_ elements of the `RDD`",
-         "`reduce`", "Combines elements of the `RDD` together using some function and returns result") %>% 
-  gt::gt() %>% 
-  fmt_markdown(columns = vars(Method, Description))
-```
+| Method | Description |
+|---|---|
+| `collect` | Returns **all** distributed elements of the `RDD` to the driver |
+| `count` | Returns the number of elements in an `RDD` |
+| `take` | Returns the first _n_ elements of the `RDD` |
+| `reduce` | Combines elements of the `RDD` together using some function and returns result |
 
 ---
 
@@ -302,7 +287,7 @@ Assuming the dates come in the form `YYYY-MM-DD:HH:MM:SS` and errors are logged 
 **How would you determine the number of errors that were logged in December 2019?**
 
 ::: incremental
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # read data from text file and split each line into words
 logs = sc.textFile("...") 
 
@@ -328,7 +313,7 @@ To tell spark to cache an object in memory, use `persist()` or `cache()`:
 * `cache():` is a shortcut for using default storage level, which is memory only
 * `persist():` can be customized to other ways to persist data (including both memory and/or disk)
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # caches error RDD in memory, but only after an action is run
 errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
 ```
@@ -408,15 +393,12 @@ Like on RDD's, transformations on `DataFrames` are:
 
 ## Some common transformations include:
 
-```{r, echo = F}
-tribble( ~"Method", ~"Description",
-         "`select`","Selects a set of named columns and returns a new `DataFrame` with those columns as a result",
-         "`agg`", "Performs aggregations on a series of columns and returns a new `DataFrame` with the calculated output",
-         "`groupBy`", "Groups the DataFrame using the specified columns, usually used before some kind of aggregation",
-         "`join`", "Inner join with another DataFrame") %>% 
-  gt::gt() %>% 
-  fmt_markdown(columns = vars(Method, Description))
-```
+| Method | Description |
+|---|---|
+| `select` | Selects a set of named columns and returns a new `DataFrame` with those columns as a result |
+| `agg` | Performs aggregations on a series of columns and returns a new `DataFrame` with the calculated output |
+| `groupBy` | Groups the DataFrame using the specified columns, usually used before some kind of aggregation |
+| `join` | Inner join with another DataFrame |
 
 Other transformations include: `filter`, `limit`, `orderBy`, `where`.
 
@@ -438,13 +420,13 @@ You can select and work with columns in ways using the DataFrame API:
 
 The DataFrame API makes two methods available for filtering: `filter` and `where`. They are equivalent!
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 employee_df.filter("age > 30").show()
 ```
 
 is equivalent to 
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 employee_df.where("age > 30").show()
 ```
 
@@ -456,13 +438,13 @@ The DataFrame API and SparkSQL syntax can be used interchangeably!
 **Example:** return the firstname and lastname of all the employees over the age over 25 that reside in Washington D.C.
 
 ## DataFrame API
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 results = df.select("firstname", "lastname") \
             .where("city == 'Washington D.C.' && age >= 25")
 ```
 
 ## SparkSQL
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 spark.sql("select firstname, lastname from df_view where city == 'Washington D.C.' and age >= 25")
           
 # * Note: you have to register `df` using `df.createOrReplaceTempView("df_view")`
@@ -484,7 +466,7 @@ For grouping and aggregating, SparkSQL provides a **`groupBy`** function which r
 * Call a `groupBy` on a specific attribute/column of a DataFrame
 * followed by a call to `agg`
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 results = df.groupBy("state") \
             .agg(sum("sales"))
 ```
@@ -495,16 +477,13 @@ results = df.groupBy("state") \
 
 Like RDDs, `DataFrames` also have their own set of actions:
 
-```{r, echo = FALSE}
-tribble( ~"Method", ~"Description",
-         "`collect`", "Returns an **array** that contains all the rows in the DataFrame to the driver",
-         "`count`", "Returns the number of rows in a DataFrame",
-         "`first`", "Returns the first row in the DataFrame",
-         "`show`", "Displays the top 20 rows in the DataFrame",
-         "`take`", "Returns the first _n_ rows of the RDD") %>% 
-    gt::gt() %>% 
-  fmt_markdown(columns = vars(Method, Description))
-```
+| Method | Description |
+|---|---|
+| `collect` | Returns an **array** that contains all the rows in the DataFrame to the driver |
+| `count` | Returns the number of rows in a DataFrame |
+| `first` | Returns the first row in the DataFrame |
+| `show` | Displays the top 20 rows in the DataFrame |
+| `take` | Returns the first _n_ rows of the RDD |
 
 
 ## `collect` **CAUTION**

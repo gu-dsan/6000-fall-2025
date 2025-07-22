@@ -18,13 +18,6 @@ format:
 
 
 
-```{r packages, echo = FALSE}
-library(magrittr, quietly = T, warn.conflicts = F)
-library(tibble, quietly = T, warn.conflicts = F)
-library(gt, quietly = T, warn.conflicts = F)
-library(dplyr, quietly = T, warn.conflicts = F)
-library(kableExtra, quietly = T, warn.conflicts = F)
-```
 
 
 
@@ -130,7 +123,7 @@ To tell spark to cache an object in memory, use `persist()` or `cache()`:
 * `cache():` is a shortcut for using default storage level, which is memory only
 * `persist():` can be customized to other ways to persist data (including both memory and/or disk)
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # caches error RDD in memory, but only after an action is run
 errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
 ```
@@ -269,7 +262,7 @@ The `Pipeline` constructor takes an _array_ of pipeline stages
 
 ## Tokenizer
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 >>> df = spark.createDataFrame([("a b c",)], ["text"])
 
 >>> tokenizer = Tokenizer(outputCol="words")
@@ -296,7 +289,7 @@ Row(text='a b c', tokens=['a', 'b', 'c'])
 
 ## StopWordsRemover
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 >>> df = spark.createDataFrame([(["a", "b", "c"],)], ["text"])
 >>> remover = StopWordsRemover(stopWords=["b"])
 >>> remover.setInputCol("text")
@@ -487,7 +480,7 @@ No!! They only add columns.
 ## Overall Code Example
 
 ::: {.column width="49%"}
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 from pyspark.ml import Pipeline
 
 document_assembler = DocumentAssembler()\
@@ -513,7 +506,7 @@ word_embeddings=WordEmbeddingsModel.pretrained()\
 :::
 
 ::: {.column width="49%"}
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 nlpPipeline = Pipeline(stages=[
  document_assembler, 
  sentenceDetector,
@@ -528,7 +521,7 @@ pipelineModel = nlpPipeline.fit(df)
 
 ## Code Example for DocumentAssembler
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 import sparknlp; from sparknlp.base import *
 from sparknlp.annotator import *; from pyspark.ml import Pipeline
 
@@ -547,7 +540,7 @@ result.select("document").show(truncate=False)
 
 ## Continued
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 result.select("document").printSchema
 root
  |-- document: array (nullable = True)
@@ -567,7 +560,7 @@ root
 
 https://github.com/JohnSnowLabs/spark-nlp/discussions/5669
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 from transformers import TFDistilBertForSequenceClassification, DistilBertTokenizer 
 from sparknlp.annotator import *
 from sparknlp.base import *

@@ -1,5 +1,7 @@
 ---
 title: Syllabus
+date-modified: "today"
+date-format: "dddd, MMMM D, YYYY 'at' h:mm A"
 format: 
   html:
     toc: false
@@ -31,7 +33,7 @@ format:
 
 :::
 
-**This syllabus was last updated on `r strftime(Sys.time(), "%A,  %B %d, %Y at %I:%M %p", tz = "America/New_York")`**
+**This syllabus was last updated on {{< meta date-modified >}}**
 
 ### Instructors
 

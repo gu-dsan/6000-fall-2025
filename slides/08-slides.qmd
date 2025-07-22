@@ -17,13 +17,6 @@ format:
 ---
 
 
-```{r packages, echo = FALSE}
-library(magrittr, quietly = T, warn.conflicts = F)
-library(tibble, quietly = T, warn.conflicts = F)
-library(gt, quietly = T, warn.conflicts = F)
-library(dplyr, quietly = T, warn.conflicts = F)
-library(kableExtra, quietly = T, warn.conflicts = F)
-```
 
 
 
@@ -151,7 +144,7 @@ To tell spark to cache an object in memory, use `persist()` or `cache()`:
 * `cache():` is a shortcut for using default storage level, which is memory only
 * `persist():` can be customized to other ways to persist data (including both memory and/or disk)
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # caches error RDD in memory, but only after an action is run
 errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
 ```
@@ -244,7 +237,7 @@ Problem: make a new column with ages for adults-only
 
 ## UDF Code Solution
 
-```{python, eval = FALSE, echo=TRUE}
+```python
 from pyspark.sql.functions import udf, col
 
 @udf("array<integer>")
@@ -272,7 +265,7 @@ def filter_adults(elements):
 
 ## Alternative to Spark UDF
 
-```{python, eval=FALSE,echo=TRUE}
+```python
 # Spark 3.1
 from pyspark.sql.functions import col, filter, lit
 
@@ -307,7 +300,7 @@ Other ways to make your Spark jobs faster [source](https://sparkbyexamples.com/s
 
 From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 @pandas_udf("string")
 def to_upper(s: pd.Series) -> pd.Series:
     return s.str.upper()
@@ -321,7 +314,7 @@ df.select(to_upper("name")).show()
 +--------------+
 ```
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 @pandas_udf("first string, last string")
 def split_expand(s: pd.Series) -> pd.DataFrame:
     return s.str.split(expand=True)
@@ -459,7 +452,7 @@ Each row in this column contains a vector of data points corresponding to the se
 
 * **All categorical data needs to be numeric for machine learning**
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # Example from Spark docs
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
@@ -527,7 +520,7 @@ The `Pipeline` constructor takes an _array_ of pipeline stages
 
 Using the [HMP Dataset](https://github.com/wchill/HMP_Dataset). The structure of the dataset looks like this:
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 # read data from text file and split each line into words
 df.printSchema()
 
@@ -547,7 +540,7 @@ root
 * Then we fit the DataFrame to the indexer (to run the estimator), and transform the DataFrame. This creates a brand new DataFrame (indexed), which we can see below, containing the classIndex additional column.
 
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.ml.feature import StringIndexer
 
 indexer = StringIndexer(inputCol = 'class', outputCol = 'classIndex')
@@ -575,7 +568,7 @@ only showing top 5 rows
 * `OneHotEncoder` doesn't return several columns containing only zeros and ones; it returns a sparse-vector as seen in the categoryVec column. Thus, for the ‘Drink_glass’ class above, SparkML returns a sparse-vector that basically says there are 13 elements, and at position 2, the class value exists(1.0).
 
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.ml.feature import OneHotEncoder
 
 # The OneHotEncoder is a pure transformer object. it does not use the fit()
@@ -603,7 +596,7 @@ only showing top 5 rows
 * This is also a pure _transformer_.
 
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 # VectorAssembler creates vectors from ordinary data types for us
@@ -634,7 +627,7 @@ only showing top 5 rows
 * `p=1.0` uses Manhattan Distance
 * `p=2.0` uses Euclidean Distance
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.ml.feature import Normalizer
 normalizer = Normalizer(inputCol = 'features', outputCol = 'features_norm', p=1.0)  # Manhattan Distance
 normalized_data = normalizer.transform(features_vectorized) # New data frame too.
@@ -658,20 +651,20 @@ only showing top 5 rows
 
 The `Pipeline` constructor below takes an array of Pipeline stages we pass to it. Here we pass the 4 stages defined earlier, in the right sequence, one after another.
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.ml import Pipeline
 pipeline = Pipeline(stages = [indexer,encoder,vectorAssembler,normalizer])
 ```
 
 Now the `Pipeline` object fit to our original `DataFrame df` 
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 data_model = pipeline.fit(df)
 ```
 
 Finally, we transform our DataFrame `df` using the Pipeline Object.
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 pipelined_data = data_model.transform(df)
 
 pipelined_data.show(5)
@@ -691,7 +684,7 @@ only showing top 5 rows
 
 ## One last step before training
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 # first let's list out the columns we want to drop
 cols_to_drop = ['x','y','z','class','source','classIndex','features']
 
@@ -746,7 +739,7 @@ There are many [Spark machine learning models](https://spark.apache.org/docs/3.1
 
 Feature selection using easy R-like formulas
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # Example from Spark docs
 from pyspark.ml.feature import RFormula
 
@@ -775,7 +768,7 @@ Pick categorical variables that are most dependent on the response variable
 
 Can even check the [p-values of specific variables!](https://stackoverflow.com/questions/50971964/pyspark-chisqselector-p-values-and-test-statistics)
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # Example from Spark docs
 from pyspark.ml.feature import ChiSqSelector
 from pyspark.ml.linalg import Vectors
@@ -798,7 +791,7 @@ result.show()
 
 #### Part 1
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # Example from Spark docs
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
@@ -826,7 +819,7 @@ paramGrid = ParamGridBuilder()\
 
 #### Part 2
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # In this case the estimator is simply the linear regression.
 # A TrainValidationSplit requires an Estimator, a set of Estimator ParamMaps, and an Evaluator.
 tvs = TrainValidationSplit(estimator=lr,

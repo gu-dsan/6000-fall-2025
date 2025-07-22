@@ -7,9 +7,6 @@ format:
     toc: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 {{< include login-to-saxanet.qmd >}} 
 

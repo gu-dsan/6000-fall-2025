@@ -14,11 +14,6 @@ editor_options:
 
 {{< include login-to-saxanet.qmd >}} 
 
-```{r setup, include=FALSE}
-#library(tidyverse)
-library(reticulate)
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 # PySpark Introduction
 
@@ -110,7 +105,7 @@ starwars = spark.read.load('starwars.parquet')
 ### Selecting data variables {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars_select <- starwars %>% select(name, height, mass)
 ```
 
@@ -127,7 +122,7 @@ starwars_select = starwars.select(['name','height','mass'])
 ### Filtering data rows {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars_filter <- starwars %>% filter(height > 110, 
                                        homeworld == "Tatooine")
 ```
@@ -147,7 +142,7 @@ starwars_filter = starwars[(col('height') > 110) &
 ### Manipulating data {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars <- starwars %>% 
     mutate(tatooine_dummy = if_else(homeworld == 'Tatooine',
                                     TRUE,
@@ -180,7 +175,7 @@ starwars = starwars.withColumn('tatooine_dummy',
 ### View the head of the data {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars %>% head(5)
 ```
 
@@ -200,7 +195,7 @@ starwars.show(5) # SQL version
 ### Group-by mean data {.tabset}  
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars %>% group_by(species) %>% summarize(mean_height = mean(height))
 ```
 
@@ -217,7 +212,7 @@ starwars.groupBy('species').mean('height').collect()
 ### Tallest character from each species {.tabset}
 
 #### R
-```{r, eval = FALSE}
+```r
 starwars %>% group_by(species) %>% filter(height = max(height))
 ```
 

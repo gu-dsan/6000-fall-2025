@@ -33,19 +33,10 @@ format:
 
 ## Glossary
 
-```{r, echo = FALSE}
-library(magrittr)
-library(tibble)
-library(kableExtra)
-tribble( ~"Term", ~"Definition",
-         "Local", "Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application.",
-         "Remote", "Any machine you connect to via ssh or other means."
-) %>%
-  kable(format = "html") %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "40em")
-```
+| Term | Definition |
+|---|---|
+| **Local** | Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application. |
+| **Remote** | Any machine you connect to via ssh or other means. |
 
 ## Working on a single machine
 
@@ -148,34 +139,13 @@ More CPUs, more memory, more storage!
 
 ## The evolution of the Cloud
 
-```{r, echo=F}
-library(magrittr)
-library(tibble)
-library(kableExtra)
-tribble( ~Yesterday, ~Today, ~Tomorrow,
-         "Limited number of tools and vendors", 
-         "Many tools and vendors to work with",
-         "Integrated tools and vendors",
-         "One platform - few devices", 
-  "Multiple platforms - many devices",
-  "Connected platforms and devices",
-  "Data is scarce but manageable", 
-  "Overabundance of data",
-  "Data is used for important business decisions",
-  "IT has major influence and control", 
-  "IT has limited influence and control",
-  "IT is strategic to the business",
-  "People only work when they are at work", 
-  "People work wherever they want",
-  "People have access to what they need, wherever they are",
-) %>% 
-  kable(format = "html") %>% 
-  kable_styling(full_width = F) %>%
-  column_spec(1, width = "30em") %>%
-  column_spec(2, width = "30em") %>% 
-  column_spec(3, width = "30em") %>% 
-  scroll_box(height = "400px")
-```
+| Yesterday | Today | Tomorrow |
+|---|---|---|
+| Limited number of tools and vendors | Many tools and vendors to work with | Integrated tools and vendors |
+| One platform - few devices | Multiple platforms - many devices | Connected platforms and devices |
+| Data is scarce but manageable | Overabundance of data | Data is used for important business decisions |
+| IT has major influence and control | IT has limited influence and control | IT is strategic to the business |
+| People only work when they are at work | People work wherever they want | People have access to what they need, wherever they are |
 
 ## What does the cloud look like? {background-image="http://i2.cdn.turner.com/money/dam/assets/140903164019-cloud-data-center-thumb-1280x720.png"}
 

@@ -18,13 +18,6 @@ format:
 
 
 
-```{r packages, echo = FALSE}
-library(magrittr, quietly = T, warn.conflicts = F)
-library(tibble, quietly = T, warn.conflicts = F)
-library(gt, quietly = T, warn.conflicts = F)
-library(dplyr, quietly = T, warn.conflicts = F)
-library(kableExtra, quietly = T, warn.conflicts = F)
-```
 
 
 
@@ -95,7 +88,7 @@ To tell spark to cache an object in memory, use `persist()` or `cache()`:
 * `cache():` is a shortcut for using default storage level, which is memory only
 * `persist():` can be customized to other ways to persist data (including both memory and/or disk)
 
-```{python, echo = T, eval = F, python.reticulate=F}
+```python
 # caches error RDD in memory, but only after an action is run
 errors = logs.filter(lambda x: "error" in x and "2019-12" in x).cache()
 ```
@@ -246,7 +239,7 @@ Processing every value coming from a _stream_ of data. That is, data values that
 
 A `StreamingContext` object can be created from an existing `SparkContext` object.
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 sc = ...
 ssc = StreamingContext(sc, 1)
 ```
@@ -334,7 +327,7 @@ The entire updated result table will be written to external storage.
 ## 1. Define input sources
 
 ::: {.column width="49%"}
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
  spark = SparkSession...
     lines = (spark
       .readStream.format("socket")
@@ -353,7 +346,7 @@ The entire updated result table will be written to external storage.
 ## 2. Transform data
 
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 from pyspark.sql.functions import *
 words = lines.select(split(col("value"), "\\s").alias("word")) 
 counts = words.groupBy("word").count()
@@ -365,7 +358,7 @@ counts = words.groupBy("word").count()
 
 ## 3. Define output sink and output mode
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 writer = counts.writeStream.format("console").outputMode("complete")
 ```
 
@@ -374,7 +367,7 @@ writer = counts.writeStream.format("console").outputMode("complete")
 
 
 ::: {.column width="44%"}
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 checkpointDir = "..."
     writer2 = (writer
       .trigger(processingTime="1 second")
@@ -394,7 +387,7 @@ checkpointDir = "..."
 
 ## 5. Start the query
 
-```{python, echo = T, eval = F, python.reticulate = F}
+```python
 streamingQuery = writer2.start()
 ```
 
