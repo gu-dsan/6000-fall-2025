@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Amit Arora, Marck Vaisman, Abhijit Dasgupta">
+<meta name="author" content="Amit Arora, Jeff Jacobs">
 <meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
 
 <title>Lab 8 – DSAN 6000</title>
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9e228d6d4d66c12a9d11739da31c2b1c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-523a923eb8615e24174ae43e3eec7ea9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -82,12 +82,12 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 
 
 <meta property="og:title" content="Lab 8 – DSAN 6000">
-<meta property="og:description" content="DSAN 6000 Fall 2024">
+<meta property="og:description" content="DSAN 6000 Fall 2025">
 <meta property="og:image" content="https://aa1603.georgetown.edu/dsan6000/labs/files/img/dsan6000-logo.png">
 <meta property="og:site_name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Lab 8 – DSAN 6000">
-<meta name="twitter:description" content="DSAN 6000 Fall 2024">
+<meta name="twitter:description" content="DSAN 6000 Fall 2025">
 <meta name="twitter:image" content="https://aa1603.georgetown.edu/dsan6000/labs/files/img/dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -161,7 +161,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://dsan6000fall2024.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
+    <a class="nav-link" href="https://dsan6000fall2025.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -295,11 +295,11 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/01-labs.html">Labs content</a></li><li class="breadcrumb-item"><a href="../labs/08-labs.html">8: Spark ML</a></li></ol></nav><h1 class="title display-7">Lab 8</h1></header>
 
 <header id="title-block-header">
-<h1 class="title display-7">Lab 8</h1>
-<p class="subtitle lead">DSAN 6000 Fall 2024</p>
+
+<p class="subtitle lead">DSAN 6000 Fall 2025</p>
 
 </header>
 
@@ -319,7 +319,7 @@ Important
 </div>
 <section id="github-classroom" class="level2">
 <h2 class="anchored" data-anchor-id="github-classroom">GitHub Classroom</h2>
-<p><a href="https://classroom.github.com/a/vVVrvDAq">GitHub Classroom Link</a></p>
+<p><a href="TBA-2025">GitHub Classroom Link</a></p>
 
 
 </section>
@@ -407,8 +407,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -519,7 +517,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -749,13 +746,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2024 by <a href="https://analytics.georgetown.edu/faculty-staff/">Amit Arora, Marck Vaisman, Abhijit Dasgupta</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Content <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2025 by <a href="https://analytics.georgetown.edu/faculty-staff/">Amit Arora, Jeff Jacobs</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan/6000-fall-2024.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+<p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan/6000-fall-2025.git">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>
   </div>
 </footer>
