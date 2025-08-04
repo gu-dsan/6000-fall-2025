@@ -1,34 +1,100 @@
-# Big Data Analytics and Cloud Computing (PPOL 5206) Spring 2024 <a href='https://aa1603.georgetown.edu/ppol5206/'><img src='files/icon-512.png' align="right" height="139" /></a>
+# DSAN 6000: Big Data and Cloud Computing - Fall 2025
 
-[PPOL 5206 • Spring 2024](https://aa1603.georgetown.edu/ppol5206/)  
-[Amit Arora](https://www.linkedin.com/in/amit-arora-539120a/) • McCourt School of Public Policy • Georgetown University
+Georgetown University M.S. Data Science and Analytics Program
 
-------------------------------------------------------------------------
+## Course Overview
 
-## How to build the site
+This comprehensive course introduces students to the fundamental concepts and practical applications of big data technologies and cloud computing. Throughout the semester, students will learn cutting-edge technologies including:
 
-1. Clone this repository.
+- **Apache Spark**: Master distributed computing with RDDs, DataFrames, Spark SQL, and Spark ML
+- **Modern Data Warehouses**: Work with cloud-native solutions like Amazon Athena, Presto, and Snowflake
+- **Data Pipeline Orchestration**: Build and manage complex workflows using Apache Airflow
+- **Modern Data Stack**: Explore DuckDB, Polars, Apache Iceberg, and vector databases for RAG applications
+- **Cloud Infrastructure**: Understand serverless computing and container orchestration
 
-1. Install [RStudio](https://www.rstudio.com/products/rstudio/download/#download) version 2022.07.1 or later since it has a [Quarto](https://quarto.org/) installation embedded in it. Otherwise, download and install [Quarto](https://quarto.org/) separately.
+The course culminates in a final project where students integrate these technologies to solve real-world big data challenges, demonstrating their ability to design and implement scalable data solutions.
 
-1. Install [VSCode](https://code.visualstudio.com/download).
+## Course Website Structure
 
-1. Open the folder for this repository in VSCode.
+The course website is built using Quarto and organized into the following sections:
 
-1. Create a [Python virtual environment](https://code.visualstudio.com/docs/python/environments) for running the Python code in this repository. VSCode will automatically recognize the virtual environment and associate it with this repository's workspace so you would not have to manually activate the virtual environment every time you open this repository in VSCode.
+- **Schedule**: Weekly topics and session planning
+- **Lectures**: Course materials and presentations
+- **Labs**: Hands-on exercises and assignments
+- **Resources**: Additional learning materials and references
 
-1. To only render an individual `.qmd` file that you are working on click the `Render` button from the top right corner of the VSCode window. You would see a command line in the VSCode Terminal, and the website should render locally in your browser.  
+### Building the Website
 
-1. You can do the same with the [`index.qmd`](index.qmd) file to render the entire website locally, but this has a problem, it will not render the slides as slides but as regular Quarto documents (which may be fine if you are not testing the slides).
+1. **Set up Python environment**:
+   ```bash
+   # Install uv if not already installed
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Create Python 3.12 environment
+   uv venv --python 3.12
+   
+   # Activate the environment
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   
+   # Install dependencies
+   uv pip install -r pyproject.toml
+   ```
 
-1. To render the entire website locally (and avoid the problem with the slides not rendering correctly) run the `quarto render` command. This will re-build the entire website and the site will be available in the [`docs`](docs) folder. ***This is the recommended way for building and testing the entire site***.
+2. **Install Quarto**:
+   - Download and install Quarto from: https://quarto.org/docs/get-started/
+   - Verify installation: `quarto --version`
 
-1. Once the website is rendered locally you can take the contents of the [`docs`](docs) folder and upload it to your website. This website is currently hosted on [Georgetown Domains](https://georgetown.domains) and for now I manually SCP the contents to Georgetown Domains using WinSCP.
+3. **Render the website**:
+   ```bash
+   # Make sure you're in the uv environment
+   quarto render
+   ```
+   
+   The website will be generated in the `docs/` folder.
 
-## Licenses
+### Deployment
 
-**Text and figures:** All prose and images are licensed under Creative
-Commons ([CC-BY-NC
-4.0](https://creativecommons.org/licenses/by-nc/4.0/))
+The website is automatically deployed via GitHub Pages from the `main` branch. Any push to `main` will trigger an automatic update of the live website.
 
-**Code:** All code is licensed under the [MIT License](LICENSE).
+## GitHub Repository Structure
+
+This course utilizes three main GitHub repositories:
+
+### 1. Course Website Repository (This Repository)
+- Contains all course content, schedules, and materials
+- Hosts the Quarto-based course website
+
+### 2. Student Organization Repository
+- **URL**: https://github.com/gu-dsan6000
+- Houses all student project websites
+- Individual student repositories for assignments and projects
+
+### 3. Teaching Materials Repository
+- **URL**: https://github.com/bigdatateaching
+- Source materials for labs and assignments
+- Template code and starter files
+
+## GitHub Classroom
+
+We use GitHub Classroom for assignment distribution and submission:
+
+- **Classroom URL**: https://classroom.github.com/classrooms/34950344-georgetown-university-dsan6000-big-data-and-cloud-computing
+- This classroom is linked to the `gu-dsan6000` organization
+- Assignments and labs will be distributed through GitHub Classroom invitations
+- Each assignment creates a private repository for individual students or teams
+
+## Getting Started
+
+1. Join the GitHub Classroom using the invitation link provided in class
+2. Clone this repository to stay updated with course materials
+3. Set up your development environment following the instructions above
+4. Check the schedule regularly for updates and assignments
+
+## Instructors
+
+- **Amit Arora** - Wednesdays, 9:30 AM - 12:00 PM, Reiss 262
+- **Jeff Jacobs** - Tuesdays, 9:30 AM - 12:00 PM, TBD
+
+## Course Duration
+
+August 27, 2025 - December 20, 2025

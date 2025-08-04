@@ -18,22 +18,22 @@ ta:
 course:
   number: "DSAN 6000"
   semester: "Fall 2025"
-  days: "Mondays (Prof Amit), Wednesdays (Prof Jeff)"
-  time: "6:30–9:00 PM"
-  location: "Car Barn 309"
-  dates: "August 25 – December 11, 2025"
+  days: "Wednesdays (Prof Amit), Tuesdays (Prof Jeff)"
+  time: "9:30 AM–12:00 PM"
+  location: "Reiss 262 (W, Amit), TBD (Tu, Jeff)"
+  dates: "August 27 – December 20, 2025"
   github: "https://github.com/gu-dsan/6000-fall-2025.git"
   github_org: https://github.com/gu-dsan/
-  url: "https://aa1603.georgetown.edu/dsan6000"
+  url: "https://gu-dsan.github.io/6000-fall-2025/"
   copyright_year: "2025"
   slack: "https://dsan6000fall2025.slack.com"
   email: dsan-Fall-2025@georgetown.edu
-  class_start_hhmmss: "183000"
-  class_end_hhmmss: "210000"
+  class_start_hhmmss: "093000"
+  class_end_hhmmss: "120000"
   lab0: https://georgetown.instructure.com/courses/193302/assignments
   lms_course_url: https://georgetown.instructure.com/courses/TBA-2025
   lms_course_url_md: "[`{{< var course.lms_course_url >}}`]({{< var course.lms_course_url >}})"
-  last_day_of_class: "Dec 11th, 2025"
+  last_day_of_class: "Dec 20th, 2025"
 
 gh-classroom:
   lab01: "TBA-2025"

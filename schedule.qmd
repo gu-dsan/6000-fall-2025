@@ -9,26 +9,25 @@ format:
 
 | Section | Instructor | Day            | Location      |
 |---------|------------|----------------|---------------|
-| 01      | Amit       | M 6:30-9:00    | Car Barn 309  |
-| 02      | Jeff       | W 6:30-9:00    | Car Barn 204  |
+| 01      | Amit Arora | W 9:30-12:00   | Reiss 262     |
+| 02      | Jeff Jacobs| Tu 9:30-12:00  | TBD           |
 |         |            |                |               |
 
 
-| Monday (Amit)      | Session | Wednesday (Jeff)   | Session | Notes                                           |
-|--------------------|---------|-------------------|---------|---------------------------------------------------|
-| 8/25/2025          | 1       | 8/27/2025         | 1       | Course overview - All sections combined           |
-| 9/1/2025           | Labor Day | 9/3/2025        | 2       | Cloud computing introduction                       |
-| 9/8/2025           | 2       | 9/10/2025         | 3       | Parallelization concepts                          |
-| 9/15/2025          | 3       | 9/17/2025         | 4       | DuckDB, Polars, file formats                     |
-| 9/22/2025          | 4       | 9/24/2025         | 5       | Data Warehouse (Athena, Presto, Snowflake)       |
-| 9/29/2025          | 5       | 10/1/2025         | 6       | Introduction to Spark, RDDs                      |
-| 10/6/2025          | 6       | 10/8/2025         | 7       | Spark DataFrames and Spark SQL                   |
-| 10/13/2025         | Mid Semester Holiday | 10/15/2025 | 8   | Spark ML and Streaming                        |
-| 10/20/2025         | 7       | 10/22/2025        | 9       | Apache Iceberg & Table Formats                   |
-| 10/27/2025         | 8       | 10/29/2025        | 10      | Data Pipeline Orchestration (Airflow)            |
-| 11/3/2025          | 9       | 11/5/2025         | 11      | Vector Databases & RAG                            |
-| 11/10/2025         | 10      | 11/12/2025        | 12      | Modern Data Stack & Governance                    |
-| 11/17/2025         | 11      | 11/19/2025        | 13      | Serverless & Container Orchestration             |
-| 11/24/2025         | no class | 11/26/2025       | thanksgiving | No class this week                         |
-| 12/1/2025          | 12      | 12/3/2025         | 14      | Final project presentations                       |
-| 12/8/2025          | Projects | 12/10/2025       | Projects | Additional project presentations if needed       |
+| Wednesday (Amit Arora) | Session | Tuesday (Jeff Jacobs) | Session | Notes                                           |
+|------------------------|---------|----------------------|---------|---------------------------------------------------|
+| 8/27/2025              | 1       | 9/2/2025             | 1       | Course overview - All sections combined           |
+| 9/3/2025               | 2       | 9/9/2025             | 2       | Cloud computing introduction                      |
+| 9/10/2025              | 3       | 9/16/2025            | 3       | Parallelization concepts                          |
+| 9/17/2025              | 4       | 9/23/2025            | 4       | DuckDB, Polars, file formats                     |
+| 9/24/2025              | 5       | 9/30/2025            | 5       | Data Warehouse (Athena, Presto, Snowflake)       |
+| 10/1/2025              | 6       | 10/7/2025            | 6       | Introduction to Spark, RDDs                      |
+| 10/8/2025              | 7       | 10/14/2025           | 7       | Spark DataFrames and Spark SQL                   |
+| 10/15/2025             | 8       | 10/21/2025           | 8       | Spark ML and Streaming                           |
+| 10/22/2025             | 9       | 10/28/2025           | 9       | Apache Iceberg & Table Formats                   |
+| 10/29/2025             | 10      | 11/4/2025            | 10      | Data Pipeline Orchestration (Airflow)            |
+| 11/5/2025              | 11      | 11/11/2025           | 11      | Vector Databases & RAG                           |
+| 11/12/2025             | 12      | 11/18/2025           | 12      | Modern Data Stack & Governance                   |
+| 11/19/2025             | 13      | 11/25/2025           | 13      | Serverless & Container Orchestration             |
+| 11/26/2025             | No class - Thanksgiving | 12/2/2025 | 14 | No class Wednesday - Thanksgiving break      |
+| 12/3/2025              | 14      | 12/9/2025            | Projects| Final project presentations                      |
