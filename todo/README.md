@@ -5,9 +5,11 @@
 | Task | Description | Status | Priority | Assigned To | Due Date | Completed Date | Notes |
 |------|-------------|---------|-----------|-------------|----------|----------------|-------|
 | Update GitHub Classroom Links | Replace TBA-2025 placeholders in _variables.yml with actual GH Classroom invitation links | 🟡 In Progress | High | | 8/20/2025 | | Main classroom link added, individual assignment links still needed |
+| Update & Publish Canvas Course | Update Canvas with current syllabus and schedule, then publish for student access | 🟡 In Progress | High | | 8/25/2025 | | Need to upload syllabus, schedule, and make course visible to students |
+| Merge Canvas Sections | Merge Tuesday and Wednesday sections in Canvas into one course | 🔴 Not Started | High | | 8/20/2025 | | Check with Jeff on section merging process |
 | Clean Unreferenced Images | Review and remove 335 unreferenced images (see [unreferenced_images.md](unreferenced_images.md)) | 🟢 Completed | Medium | Amit | 8/15/2025 | 8/09/2025 | Deleted todo/to-be-deleted folder |
-| Update Course Materials | Review and update all lecture slides for Fall 2025 | 🟡 In Progress | High | | 8/20/2025 | | Focus on new technologies and tools |
-| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟡 In Progress | High | Amit | 8/25/2025 | | Coordinate with IT |
+| Update Course Materials | Review and update all lecture slides for Fall 2025 | 🟡 In Progress | High | | 8/20/2025 | | Focus on new technologies and tools. See [detailed lab/assignment tracking](#lab-and-assignment-tracking) |
+| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟡 In Progress | High | Amit | 8/25/2025 | | |
 | Test All Labs | Run through all labs to ensure they work | 🔴 Not Started | High | | 8/22/2025 | | Especially cloud-based labs |
 | Update Syllabus | Finalize syllabus with correct dates and policies | 🟡 In Progress | High | | 8/15/2025 | | Schedule already updated |
 | Create Slack Workspace | Set up dsan6000fall2025.slack.com channels | 🟢 Completed | Medium | | 8/20/2025 | 8/09/2025 | Workspace created with invite link: https://join.slack.com/t/dsan6000fall2025/shared_invite/zt-3b22qhque-GagQykwYYNiEzli9UXJn4w |
@@ -24,6 +26,30 @@
 | Apache Airflow Materials | Create slides, assignment, and lab for Apache Airflow | 🔴 Not Started | High | Jeff | 8/20/2025 | | Week 10 content |
 | Apache Iceberg Materials | Create slides, assignment, and lab for Apache Iceberg | 🔴 Not Started | High | Amit | 8/20/2025 | | Week 9 content |
 | Update Instructor Slides | Remove Marck/Abhijit slides, fix Amit's image, add Jeff as full-time professor, add TA placeholders | 🟢 Completed | High | | 8/09/2025 | 8/09/2025 | Completed - removed outdated slides, fixed broken image link, added Jeff Jacobs and TA placeholder slides |
+
+## Lab and Assignment Tracking
+
+| Item | Type | Status | Priority | Due Date | Completed Date | Notes |
+|------|------|---------|-----------|----------|----------------|-------|
+| Lab 01 | Lab | 🟢 Completed | High | 8/22/2025 | 8/09/2025 | Week 1 content - https://github.com/bigdatateaching/lab-shell-ssh/ |
+| Assignment 01 | Assignment | 🔴 Not Started | High | 8/29/2025 | | Week 1 assignment |
+| Lab 02 | Lab | 🔴 Not Started | High | 8/29/2025 | | Week 2 content |
+| Assignment 02 | Assignment | 🔴 Not Started | High | 9/12/2025 | | Week 2 assignment |
+| Lab 03 | Lab | 🔴 Not Started | High | 9/05/2025 | | Week 3 content |
+| Assignment 03 | Assignment | 🔴 Not Started | High | 9/26/2025 | | Week 3 assignment |
+| Lab 04 | Lab | 🔴 Not Started | High | 9/12/2025 | | Week 4 content |
+| Assignment 04 | Assignment | 🔴 Not Started | High | 10/10/2025 | | Week 4 assignment |
+| Lab 05 | Lab | 🔴 Not Started | High | 9/19/2025 | | Week 5 content |
+| Assignment 05 | Assignment | 🔴 Not Started | High | 10/24/2025 | | Week 5 assignment |
+| Lab 06 | Lab | 🔴 Not Started | High | 9/26/2025 | | Week 6 content |
+| Assignment 06 | Assignment | 🔴 Not Started | High | 11/07/2025 | | Week 6 assignment |
+| Lab 07 | Lab | 🔴 Not Started | High | 10/03/2025 | | Week 7 content |
+| Lab 08 | Lab | 🔴 Not Started | High | 10/10/2025 | | Week 8 content |
+| Lab 09 | Lab | 🔴 Not Started | High | 10/17/2025 | | Week 9 content |
+| Lab 10 | Lab | 🔴 Not Started | High | 10/24/2025 | | Week 10 content |
+| Lab 11 | Lab | 🔴 Not Started | High | 10/31/2025 | | Week 11 content |
+| Lab 12 | Lab | 🔴 Not Started | High | 11/07/2025 | | Week 12 content |
+| Lab 13 | Lab | 🔴 Not Started | High | 11/14/2025 | | Week 13 content |
 
 ## Ongoing Tasks During Semester
 
