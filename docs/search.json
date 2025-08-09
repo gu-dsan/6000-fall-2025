@@ -32,7 +32,7 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Amit Arora, Jeff Jacobs\n   Online\n   &lt;a href=“mailto:aa1603@georgetown.edu”&gt;aa1603@georgetown.edu\n   \n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Tuesdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM\n   Reiss 262 (W, Amit), TBD (Tu, Jeff)\n   Slack\nThis syllabus was last updated on Monday, August 4, 2025 ‘amt’ 12:00 AM"
+    "text": "Amit Arora, Jeff Jacobs\n   Online\n   &lt;a href=“mailto:aa1603@georgetown.edu”&gt;aa1603@georgetown.edu\n   \n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Tuesdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM\n   Reiss 262 (W, Amit), TBD (Tu, Jeff)\n   Slack\nThis syllabus was last updated on Saturday, August 9, 2025 ‘amt’ 12:00 AM"
   },
   {
     "objectID": "syllabus.html#books-software-and-cloud-resources",
@@ -3991,25 +3991,32 @@
     "text": "Instructional Team - Professors"
   },
   {
-    "objectID": "slides/01-slides.html#marck-vaisman",
-    "href": "slides/01-slides.html#marck-vaisman",
-    "title": "Lecture 1",
-    "section": "Marck Vaisman",
-    "text": "Marck Vaisman\n\n\n\nAI & ML Cloud Architect and Data Scientist at Microsoft\nTeaching at GWU since 2015 (9 year) and Georgetown since 2016\nCo-Founder of DataCommunityDC\nR Fanatic\n\nFun Facts\n\nI love music and try to play music at the beginning of class, typically EDM. Other genres I love:\n\nLatin\nBluegrass\nChill\n\nI speak fluent Spanish, I grew up in Venezuela\nLove beer & bourbon\nGoofball\nWestie owner\nI can speak like Donald Duck"
-  },
-  {
-    "objectID": "slides/01-slides.html#abhijit-dasgupta",
-    "href": "slides/01-slides.html#abhijit-dasgupta",
-    "title": "Lecture 1",
-    "section": "Abhijit Dasgupta",
-    "text": "Abhijit Dasgupta\n\n\n\nData Science Associate Director at AstraZeneca supporting Oncology R&D\n\nbioinformatics, biomarkers, clinical studies\nautoencoders, survival analysis, signal processing\n\nAdjunct Professor at Georgetown since 2020\nR and reproducible research evangelist\n\nPython is cool too!!\n\nCo-founder of Statistical Programming DC (with Marck Vaisman)\n\nFun Facts\n\nI’m a 4th degree black belt in Aikido,\n\nover 30 years experience providing flyer miles\n\nExploring global whiskey, currently on Japan\nActive in community theater, mainly behind but sometimes on-stage."
-  },
-  {
     "objectID": "slides/01-slides.html#amit-arora",
     "href": "slides/01-slides.html#amit-arora",
     "title": "Lecture 1",
     "section": "Amit Arora",
     "text": "Amit Arora\n\n\n\nPrincipal Solutions Architect - AI/ML at AWS\nAdjunct Professor at Georgetown University\nMultiple patents in telecommunications and applications of ML in telecommunications\n\nFun Facts\n\nI am a self-published author https://blueberriesinmysalad.com/\nMy book “Blueberries in my salad: my forever journey towards fitness & strength” is written as code in R and Markdown\nI love to read books about health and human performance, productivity, philosophy and Mathematics for ML. My reading list is online!"
+  },
+  {
+    "objectID": "slides/01-slides.html#jeff-jacobs",
+    "href": "slides/01-slides.html#jeff-jacobs",
+    "title": "Lecture 1",
+    "section": "Jeff Jacobs",
+    "text": "Jeff Jacobs\n\n\n\nFull-time Professor at Georgetown University\nData Science and Engineering Expert\n\nFun Facts\n\nTeaching at Georgetown University\nExpertise in Apache Airflow and big data orchestration\nCloud computing and distributed systems specialist"
+  },
+  {
+    "objectID": "slides/01-slides.html#teaching-assistant-1",
+    "href": "slides/01-slides.html#teaching-assistant-1",
+    "title": "Lecture 1",
+    "section": "Teaching Assistant 1",
+    "text": "Teaching Assistant 1\n\n\n\nTA placeholder information\nAdditional details to be added"
+  },
+  {
+    "objectID": "slides/01-slides.html#teaching-assistant-2",
+    "href": "slides/01-slides.html#teaching-assistant-2",
+    "title": "Lecture 1",
+    "section": "Teaching Assistant 2",
+    "text": "Teaching Assistant 2\n\n\n\nTA placeholder information\nAdditional details to be added"
   },
   {
     "objectID": "slides/01-slides.html#course-description",

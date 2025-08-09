@@ -48,63 +48,6 @@ These are also pinned on the Slack `main` channel
 
 ## Instructional Team - Professors
 
-## Marck Vaisman
-
-:::: {.columns} 
-::: {.column width="75%"}
-* AI & ML Cloud Architect and Data Scientist at Microsoft
-* Teaching at GWU since 2015 (9 year) and Georgetown since 2016 
-* Co-Founder of DataCommunityDC
-* R Fanatic
-
-Fun Facts
-
-* I love music and try to play music at the beginning of class, typically EDM. Other genres I love:
-  * Latin
-  * Bluegrass
-  * Chill
-* I speak fluent Spanish, I grew up in Venezuela
-* Love beer & bourbon
-* Goofball
-* Westie owner
-* I can speak like [Donald Duck](https://en.wikipedia.org/wiki/Donald_Duck)
-:::
-
-::: {.column width="25%"}
-![](img/marck-vaisman-headshot.jpg)
-:::
-::::
-
-
-## Abhijit Dasgupta
-
-:::: {.columns} 
-::: {.column width="75%"}
-
-- Data Science Associate Director at AstraZeneca supporting Oncology R&D
-  - bioinformatics, biomarkers, clinical studies
-  - autoencoders, survival analysis, signal processing
-- Adjunct Professor at Georgetown  since 2020
-- R and reproducible research evangelist
-  - Python is cool too!!
-- Co-founder of Statistical Programming DC (with Marck Vaisman)
-
-
-Fun Facts
-
-- I'm a 4th degree black belt in Aikido, 
-  - over 30 years experience providing flyer miles 
-- Exploring global whiskey, currently on Japan
-- Active in community theater, mainly behind but sometimes on-stage. 
-
-:::
-
-::: {.column width="25%"}
-
-![](img/abhijit.jpg)
-:::
-::::
-
 ## Amit Arora
 
 :::: {.columns} 
@@ -123,7 +66,58 @@ Fun Facts
 :::
 
 ::: {.column width="25%"}
-![](img/Amit.png 'Amit Arora')
+![](../content/img/amit.jpeg 'Amit Arora')
+:::
+::::
+
+## Jeff Jacobs
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+* Full-time Professor at Georgetown University
+* Data Science and Engineering Expert
+
+Fun Facts
+
+* Teaching at Georgetown University
+* Expertise in Apache Airflow and big data orchestration
+* Cloud computing and distributed systems specialist
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Jeff Jacobs -->
+:::
+::::
+
+## Teaching Assistant 1
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+* TA placeholder information
+* Additional details to be added
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for TA1 -->
+:::
+::::
+
+## Teaching Assistant 2
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+* TA placeholder information
+* Additional details to be added
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for TA2 -->
 :::
 ::::
 
