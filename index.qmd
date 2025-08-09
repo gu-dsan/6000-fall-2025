@@ -34,7 +34,7 @@ course-logo: /files/img/dsan6000-logo.png
 - {{< fa calendar-alt >}} &nbsp; {{< var course.dates >}}
 - {{< fa clock >}} &nbsp; {{< var course.time >}}
 - {{< fa location-dot >}} &nbsp; {{< var course.location >}}
-- {{< fa brands slack >}} &nbsp; [Slack]({{< var course.slack >}})
+- {{< fa brands slack >}} &nbsp; [Slack]({{< var course.slack >}}) ([Join]({{< var course.slack_join >}}))
 :::
 
 ::: {.g-col-12 .g-col-md-4 .contact-policy}

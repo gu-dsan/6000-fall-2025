@@ -4,13 +4,13 @@
 
 | Task | Description | Status | Priority | Assigned To | Due Date | Completed Date | Notes |
 |------|-------------|---------|-----------|-------------|----------|----------------|-------|
-| Update GitHub Classroom Links | Replace TBA-2025 placeholders in _variables.yml with actual GH Classroom invitation links | 🔴 Not Started | High | | 8/20/2025 | | Need to create assignments in GH Classroom first |
+| Update GitHub Classroom Links | Replace TBA-2025 placeholders in _variables.yml with actual GH Classroom invitation links | 🟡 In Progress | High | | 8/20/2025 | | Main classroom link added, individual assignment links still needed |
 | Clean Unreferenced Images | Review and remove 335 unreferenced images (see [unreferenced_images.md](unreferenced_images.md)) | 🟢 Completed | Medium | Amit | 8/15/2025 | 8/09/2025 | Deleted todo/to-be-deleted folder |
-| Update Course Materials | Review and update all lecture slides for Fall 2025 | 🔴 Not Started | High | | 8/20/2025 | | Focus on new technologies and tools |
-| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🔴 Not Started | High | Amit | 8/25/2025 | | Coordinate with IT |
+| Update Course Materials | Review and update all lecture slides for Fall 2025 | 🟡 In Progress | High | | 8/20/2025 | | Focus on new technologies and tools |
+| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟡 In Progress | High | Amit | 8/25/2025 | | Coordinate with IT |
 | Test All Labs | Run through all labs to ensure they work | 🔴 Not Started | High | | 8/22/2025 | | Especially cloud-based labs |
 | Update Syllabus | Finalize syllabus with correct dates and policies | 🟡 In Progress | High | | 8/15/2025 | | Schedule already updated |
-| Create Slack Workspace | Set up dsan6000fall2025.slack.com channels | 🔴 Not Started | Medium | | 8/20/2025 | | |
+| Create Slack Workspace | Set up dsan6000fall2025.slack.com channels | 🟢 Completed | Medium | | 8/20/2025 | 8/09/2025 | Workspace created with invite link: https://join.slack.com/t/dsan6000fall2025/shared_invite/zt-3b22qhque-GagQykwYYNiEzli9UXJn4w |
 | Finalize Room Assignment | Confirm Jeff's Tuesday classroom (currently TBD) | 🔴 Not Started | High | Jeff | 8/10/2025 | | Contact registrar |
 | Update Project Guidelines | Review and update final project requirements | 🔴 Not Started | Medium | | 8/20/2025 | | |
 | Record Welcome Video | Create course introduction video | 🔴 Not Started | Low | | 8/25/2025 | | Optional but recommended |

@@ -24,9 +24,11 @@ course:
   dates: "August 27 – December 20, 2025"
   github: "https://github.com/gu-dsan/6000-fall-2025.git"
   github_org: https://github.com/gu-dsan/
+  github_classroom: https://classroom.github.com/classrooms/34950344-georgetown-university-dsan6000-big-data-and-cloud-computing
   url: "https://gu-dsan.github.io/6000-fall-2025/"
   copyright_year: "2025"
   slack: "https://dsan6000fall2025.slack.com"
+  slack_join: "https://join.slack.com/t/dsan6000fall2025/shared_invite/zt-3b22qhque-GagQykwYYNiEzli9UXJn4w"
   email: dsan-Fall-2025@georgetown.edu
   class_start_hhmmss: "093000"
   class_end_hhmmss: "120000"

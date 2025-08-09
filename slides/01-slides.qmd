@@ -35,7 +35,9 @@ format:
 
 * Course website: [{{< var course.url >}}]({{< var course.url >}})
 * GitHub Organization for your deliverables: [{{< var course.github_org >}}]({{< var course.github_org >}})
-* Slack Workspace: [{{< var course.slack >}}]({{< var course.slack >}})
+* GitHub Classroom: [{{< var course.github_classroom >}}]({{< var course.github_classroom >}})
+* Slack Workspace: **DSAN6000 Fall 2025** - [{{< var course.slack >}}]({{< var course.slack >}})
+  * Join link: [{{< var course.slack_join >}}]({{< var course.slack_join >}})
 * Instructors email: [{{< var course.email >}}](mailto::{{< var course.email >}})
 * {{< var university.lms >}}: [{{< var course.lms_course_url >}}]({{< var course.lms_course_url >}})
 

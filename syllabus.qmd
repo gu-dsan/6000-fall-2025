@@ -28,7 +28,7 @@ format:
 - {{< fa calendar-alt >}} &nbsp; {{< var course.dates >}}
 - {{< fa clock >}} &nbsp; {{< var course.time >}}
 - {{< fa location-dot >}} &nbsp; {{< var course.location >}}
-- {{< fa brands slack >}} &nbsp; [Slack]({{< var course.slack >}})
+- {{< fa brands slack >}} &nbsp; [Slack]({{< var course.slack >}}) ([Join]({{< var course.slack_join >}}))
 :::
 
 :::
@@ -47,7 +47,7 @@ format:
 #### Communication
 
 ::: callout-important
-The primary mode of communications will be [**Slack**]({{< var course.slack >}})**.**
+The primary mode of communications will be [**Slack**]({{< var course.slack >}}) ([Join link]({{< var course.slack_join >}}))**.** Workspace name: **DSAN6000 Fall 2025**
 
 **Instructional team e-mail:** [{{< var course.email >}}](mailto:{{< var course.email >}})\
 This is the preferred way of contacting the professors privately

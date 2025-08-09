@@ -63,6 +63,9 @@ website:
       - icon: slack
         href: "https://dsan6000fall2025.slack.com"
         aria-label: Slack
+      - icon: github
+        href: "https://github.com/gu-dsan/6000-fall-2025"
+        aria-label: GitHub
 
   sidebar:
     - title: "Content"
