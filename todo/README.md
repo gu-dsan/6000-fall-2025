@@ -6,7 +6,7 @@
 |---------|---------|---------|---------|---------|---------|---------|---------|
 | Update GitHub Classroom Links | Replace TBA-2025 placeholders in \_variables.yml with actual GH Classroom invitation links | 🟡 In Progress | High |  | 8/20/2025 |  | Main classroom link added, individual assignment links still needed |
 | Update & Publish Canvas Course | Update Canvas with current syllabus and schedule, then publish for student access | 🟡 In Progress | High |  | 8/25/2025 |  | Need to upload syllabus, schedule, and make course visible to students |
-| Merge Canvas Sections | Merge Monday/Thursday and Wednesday sections in Canvas into one course | 🟢 Completed | High | Jeff | 8/20/2025 |  | Check with Jeff on section merging process |
+| Merge Canvas Sections | Merge Monday/Thursday and Wednesday sections in Canvas into one course | 🟢 Completed | High | Jeff | 8/20/2025 | 8/11/2025 | Check with Jeff on section merging process |
 | Clean Unreferenced Images | Review and remove 335 unreferenced images (see [unreferenced_images.md](unreferenced_images.md)) | 🟢 Completed | Medium | Amit | 8/15/2025 | 8/09/2025 | Deleted todo/to-be-deleted folder |
 | Update Course Materials | Review and update all lecture slides for Fall 2025 | 🟡 In Progress | High |  | 8/20/2025 |  | Focus on new technologies and tools. See [detailed lab/assignment tracking](#lab-and-assignment-tracking) |
 | Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟡 In Progress | High | Amit | 8/25/2025 |  |  |
