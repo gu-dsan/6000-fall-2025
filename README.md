@@ -93,7 +93,7 @@ We use GitHub Classroom for assignment distribution and submission:
 ## Instructors
 
 - **Amit Arora** - Wednesdays, 9:30 AM - 12:00 PM, Reiss 262
-- **Jeff Jacobs** - Mondays, 3:30-6:00 PM & Thursdays, 6:30-9:00 PM, TBD
+- **Jeff Jacobs** - Mondays, 3:30-6:00 PM & Thursdays, 6:30-9:00 PM, Walsh 394
 
 ## Course Duration
 

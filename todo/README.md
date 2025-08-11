@@ -13,10 +13,10 @@
 | Test All Labs | Run through all labs to ensure they work | 🔴 Not Started | High | | 8/22/2025 | | Especially cloud-based labs |
 | Update Syllabus | Finalize syllabus with correct dates and policies | 🟡 In Progress | High | | 8/15/2025 | | Schedule already updated |
 | Create Slack Workspace | Set up dsan6000fall2025.slack.com channels | 🟢 Completed | Medium | | 8/20/2025 | 8/09/2025 | Workspace created with invite link: https://join.slack.com/t/dsan6000fall2025/shared_invite/zt-3b22qhque-GagQykwYYNiEzli9UXJn4w |
-| Finalize Room Assignment | Confirm Jeff's Monday/Thursday classrooms (currently TBD) | 🔴 Not Started | High | Jeff | 8/10/2025 | | Contact registrar |
+| Finalize Room Assignment | Confirm Jeff's Monday/Thursday classrooms | 🟢 Completed | High | Jeff | 8/10/2025 | 8/10/2025 | Walsh 394 confirmed for both Monday and Thursday |
 | Update Project Guidelines | Review and update final project requirements | 🔴 Not Started | Medium | | 8/20/2025 | | |
 | Record Welcome Video | Create course introduction video | 🔴 Not Started | Low | | 8/25/2025 | | Optional but recommended |
-| Confirm Jeff's Class Details | Check with Jeff on his class days and room numbers | 🟢 Completed | High | Jeff | 8/05/2025 | 8/09/2025 | Updated to Monday 3:30-6pm & Thursday 6:30-9pm TBD |
+| Confirm Jeff's Class Details | Check with Jeff on his class days and room numbers | 🟢 Completed | High | Jeff | 8/05/2025 | 8/10/2025 | Updated to Monday 3:30-6pm & Thursday 6:30-9pm Walsh 394 |
 | Find Course TAs | Identify who are the TAs for the course (multiple) | 🔴 Not Started | High | | 8/10/2025 | | Need to update in slides once confirmed |
 | Add Jeff's Introduction Slide | Create introduction slide for Jeff Jacobs | 🟢 Completed | High | Jeff | 8/15/2025 | 8/09/2025 | Added to 01-slides.qmd |
 | Update Faculty/TA Slides | Update all faculty and TA information in slides | 🟢 Completed | High | | 8/15/2025 | 8/09/2025 | Updated with current faculty and TA placeholders |

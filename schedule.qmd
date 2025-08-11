@@ -10,8 +10,8 @@ format:
 | Section | Instructor | Day            | Location      |
 |---------|------------|----------------|---------------|
 | 01      | Amit Arora | W 9:30-12:00   | Reiss 262     |
-| 02      | Jeff Jacobs| M 3:30-6:00    | TBD           |
-| 03      | Jeff Jacobs| Th 6:30-9:00   | TBD           |
+| 02      | Jeff Jacobs| M 3:30-6:00    | Walsh 394     |
+| 03      | Jeff Jacobs| Th 6:30-9:00   | Walsh 394     |
 |         |            |                |               |
 
 
