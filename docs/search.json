@@ -3988,7 +3988,7 @@
     "href": "slides/01-slides.html#instructional-team---professors",
     "title": "Lecture 1",
     "section": "Instructional Team - Professors",
-    "text": "Instructional Team - Professors"
+    "text": "Instructional Team - Professors\n\nAmit Arora, aa1603@georgetown.edu\nJeff Jacobs, jj1088@georgetown.edu"
   },
   {
     "objectID": "slides/01-slides.html#amit-arora",
@@ -4002,7 +4002,7 @@
     "href": "slides/01-slides.html#jeff-jacobs",
     "title": "Lecture 1",
     "section": "Jeff Jacobs",
-    "text": "Jeff Jacobs\n\n\n\nFull-time Professor at Georgetown University\nData Science and Engineering Expert\n\nFun Facts\n\nTeaching at Georgetown University\nExpertise in Apache Airflow and big data orchestration\nCloud computing and distributed systems specialist"
+    "text": "Jeff Jacobs\n\n\n\nFull-time Professor at Georgetown (DSAN and Public Policy)\nBackground in Computational Social Science (Computer Science MS → Political Economy PhD → Labor Econ Postdoc)\njj1088@georgetown.edu\n\nFun Facts\n\nUsed Apache Airflow daily for PhD projects! (Example)\nServer admin for lab server → lab AWS account at Columbia (2015-2023) → new DSAN server (!) (2025-)\n\n\n\n\n\nPassion project 1: Code for Palestine (2015-2022) → YouthCode-Gaza (2023) → Ukraine Ministry of Digital Transformation (2024)\nPassion project 2: Making songs with musician friends 🤓\nSleep disorder means lots of reading – mainly history! – at night when I can’t sleep\nAlso teaching PPOL6805 / DSAN 6750: GIS for Spatial Data Science this semester"
   },
   {
     "objectID": "slides/01-slides.html#teaching-assistant-1",
@@ -5858,5 +5858,96 @@
     "title": "Microsoft Azure",
     "section": "Access AzureML Studio",
     "text": "Access AzureML Studio\nOnce the workspace is deployed you can access it by a direct URL (bookmark this): https://ml.azure.com/.\nIf you are not logged into Azure you will be asked to log in.\n\nCreate Compute Instance within AzureML\nThis is a managed compute instance, separate from the one you created as IAAS.\n\n\n\n\n\n\nImportant\n\n\n\nYou will start with creating (and using) a single compute instance. To create additional compute instances, the process is the same.\n\n\n\nLog into AzureML Studio\nSelect your workspace\nClick on Compute on the left-hand navigation panel (towards the bottom)\nClick + New\nEnter a Compute name (you can edit the default value.) This value has to be globally unique, so we recommend calling the compute instance dsan6000-&lt;NETID&gt;-ci01 (change  to your own.)\nSelect CPU\nSelect the Standard_E4ds_v4 instance size\nClick Next\nMake sure Auto shut down is enabled and change the value to 30\nClick Review + Create\nVerify all settings\nClick Create\n\nWhen the compute instance gets created it will be running. It should shut-down after 30 minutes of inactivity."
+  },
+  {
+    "objectID": "slides/01-slides.html#pranav-sudhir-patil",
+    "href": "slides/01-slides.html#pranav-sudhir-patil",
+    "title": "Lecture 1",
+    "section": "Pranav Sudhir Patil",
+    "text": "Pranav Sudhir Patil\n\n\npp755@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#jeff-jacobs-jj1088georgetown.edu",
+    "href": "slides/01-slides.html#jeff-jacobs-jj1088georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Jeff Jacobs, jj1088@georgetown.edu",
+    "text": "Jeff Jacobs, jj1088@georgetown.edu\n\n\n\nFull-time Professor at Georgetown (DSAN and Public Policy)\nBackground in Computational Social Science (Computer Science MS → Political Economy PhD → Labor Econ Postdoc)\n\nFun Facts\n\nUsed Apache Airflow daily for PhD projects! (Example)\nServer admin for lab server → lab AWS account at Columbia (2015-2023) → new DSAN server (!) (2025-)\n\n\n\n\n\nPassion project 1: Code for Palestine (2015-2022) → YouthCode-Gaza (2023) → Ukraine Ministry of Digital Transformation (2024)\nPassion projects 2+3 [🤓]: Sample-based music production, web app frameworks\nSleep disorder means lots of reading – mainly history! – at night when I can’t sleep\nAlso teaching PPOL6805 / DSAN 6750: GIS for Spatial Data Science this semester"
+  },
+  {
+    "objectID": "slides/01-slides.html#binhui-chen",
+    "href": "slides/01-slides.html#binhui-chen",
+    "title": "Lecture 1",
+    "section": "Binhui Chen",
+    "text": "Binhui Chen\n\nLead TA!\nbc928@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#binhui-chen-bc928georgetown.edu",
+    "href": "slides/01-slides.html#binhui-chen-bc928georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Binhui Chen, bc928@georgetown.edu",
+    "text": "Binhui Chen, bc928@georgetown.edu\n\n\n\nLead TA for the course!"
+  },
+  {
+    "objectID": "slides/01-slides.html#amit-arora-aa1603georgetown.edu",
+    "href": "slides/01-slides.html#amit-arora-aa1603georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Amit Arora, aa1603@georgetown.edu",
+    "text": "Amit Arora, aa1603@georgetown.edu\n\n\n\nPrincipal Solutions Architect - AI/ML at AWS\nAdjunct Professor at Georgetown University\nMultiple patents in telecommunications and applications of ML in telecommunications\n\nFun Facts\n\nI am a self-published author https://blueberriesinmysalad.com/\nMy book “Blueberries in my salad: my forever journey towards fitness & strength” is written as code in R and Markdown\nI love to read books about health and human performance, productivity, philosophy and Mathematics for ML. My reading list is online!"
+  },
+  {
+    "objectID": "slides/01-slides.html#pranav-sudhir-patil-pp755georgetown.edu",
+    "href": "slides/01-slides.html#pranav-sudhir-patil-pp755georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Pranav Sudhir Patil, pp755@georgetown.edu",
+    "text": "Pranav Sudhir Patil, pp755@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#hahana-kim-hk932georgetown.edu",
+    "href": "slides/01-slides.html#hahana-kim-hk932georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Hahana Kim, hk932@georgetown.edu",
+    "text": "Hahana Kim, hk932@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#xinyue-monica-zhang-xz646georgetown.edu",
+    "href": "slides/01-slides.html#xinyue-monica-zhang-xz646georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Xinyue (Monica) Zhang, xz646@georgetown.edu",
+    "text": "Xinyue (Monica) Zhang, xz646@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#naomi-yamaguchi-ny159georgetown.edu",
+    "href": "slides/01-slides.html#naomi-yamaguchi-ny159georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Naomi Yamaguchi, ny159@georgetown.edu",
+    "text": "Naomi Yamaguchi, ny159@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#ofure-udabor-au195georgetown.edu",
+    "href": "slides/01-slides.html#ofure-udabor-au195georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Ofure Udabor, au195@georgetown.edu",
+    "text": "Ofure Udabor, au195@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#leqi-ying-ly290georgetown.edu",
+    "href": "slides/01-slides.html#leqi-ying-ly290georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Leqi Ying, ly290@georgetown.edu",
+    "text": "Leqi Ying, ly290@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#yifei-wu-yw924georgetown.edu",
+    "href": "slides/01-slides.html#yifei-wu-yw924georgetown.edu",
+    "title": "Lecture 1",
+    "section": "Yifei Wu, yw924@georgetown.edu",
+    "text": "Yifei Wu, yw924@georgetown.edu"
+  },
+  {
+    "objectID": "slides/01-slides.html#instructional-team---teaching-assistants",
+    "href": "slides/01-slides.html#instructional-team---teaching-assistants",
+    "title": "Lecture 1",
+    "section": "Instructional Team - Teaching Assistants",
+    "text": "Instructional Team - Teaching Assistants\n\nBinhui Chen, bc928@georgetown.edu\nHahana Kim, hk932@georgetown.edu\nPranav Sudhir Patil, pp755@georgetown.edu\nOfure Udabor, au195@georgetown.edu\nYifei Wu, yw924@georgetown.edu\nNaomi Yamaguchi, ny159@georgetown.edu\nLeqi Ying, ly290@georgetown.edu\nXinyue (Monica) Zhang, xz646@georgetown.edu"
   }
 ]

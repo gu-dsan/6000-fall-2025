@@ -50,7 +50,10 @@ These are also pinned on the Slack `main` channel
 
 ## Instructional Team - Professors
 
-## Amit Arora
+* Amit Arora, [`aa1603@georgetown.edu`](mailto:aa1603@georgetown.edu)
+* Jeff Jacobs, [`jj1088@georgetown.edu`](mailto:jj1088@georgetown.edu)
+
+## Amit Arora, [`aa1603@georgetown.edu`](mailto:aa1603@georgetown.edu)
 
 :::: {.columns} 
 ::: {.column width="75%"}
@@ -72,49 +75,132 @@ Fun Facts
 :::
 ::::
 
-## Jeff Jacobs
+## Jeff Jacobs, [`jj1088@georgetown.edu`](mailto:jj1088@georgetown.edu)
 
 :::: {.columns} 
 ::: {.column width="75%"}
 
-* Full-time Professor at Georgetown University
-* Data Science and Engineering Expert
+* Full-time Professor at Georgetown (DSAN and Public Policy)
+* Background in Computational Social Science (Computer Science MS &rarr; Political Economy PhD &rarr; Labor Econ Postdoc)
 
 Fun Facts
 
-* Teaching at Georgetown University
-* Expertise in Apache Airflow and big data orchestration
-* Cloud computing and distributed systems specialist
+* Used Apache Airflow daily for PhD projects! [(Example)](https://ieeexplore.ieee.org/document/9346539)
+* Server admin for lab server &rarr; lab AWS account at Columbia (2015-2023) &rarr; new DSAN server (!) (2025-)
 
 :::
 
 ::: {.column width="25%"}
-<!-- Image placeholder for Jeff Jacobs -->
+![](../content/img/jeff.jpg 'Jeff Jacobs')
 :::
 ::::
 
-## Teaching Assistant 1
+* Passion project 1: [Code for Palestine (2015-2022)](https://www.codedotx.org/code-for-palestine) &rarr; [YouthCode-Gaza (2023)](https://www.codedotx.org/youthcode-gaza) &rarr; [Ukraine Ministry of Digital Transformation (2024)](https://jjacobs.me/data-ethics-cdto/#/title-slide)
+* Passion projects 2+3 [🤓]: [Sample-based music production](https://open.spotify.com/track/43HqrCcK5FCkZG3mAQFmch?si=c6afba6dff394fe6), [web app frameworks](https://dbtskills.io/)
+* Sleep disorder means lots of [reading](https://app.thestorygraph.com/profile/jpowerj) -- mainly history! -- at night when I can't sleep
+* Also teaching *PPOL6805 / DSAN 6750: GIS for Spatial Data Science* this semester
+
+## Instructional Team - Teaching Assistants
+
+* Binhui Chen, [`bc928@georgetown.edu`](mailto:bc928@georgetown.edu)
+* Hahana Kim, [`hk932@georgetown.edu`](mailto:hk932@georgetown.edu)
+* Pranav Sudhir Patil, [`pp755@georgetown.edu`](mailto:pp755@georgetown.edu)
+* Ofure Udabor, [`au195@georgetown.edu`](mailto:au195@georgetown.edu)
+* Yifei Wu, [`yw924@georgetown.edu`](mailto:yw924@georgetown.edu)
+* Naomi Yamaguchi, [`ny159@georgetown.edu`](mailto:ny159@georgetown.edu)
+* Leqi Ying, [`ly290@georgetown.edu`](mailto:ly290@georgetown.edu)
+* Xinyue (Monica) Zhang, [`xz646@georgetown.edu`](mailto:xz646@georgetown.edu)
+
+## Binhui Chen, [`bc928@georgetown.edu`](mailto:bc928@georgetown.edu)
 
 :::: {.columns} 
 ::: {.column width="75%"}
 
-* TA placeholder information
-* Additional details to be added
+* Lead TA for the course!
 
 :::
 
 ::: {.column width="25%"}
-<!-- Image placeholder for TA1 -->
+<!-- Image placeholder for Binhui -->
 :::
 ::::
 
-## Teaching Assistant 2
+## Hahana Kim, [`hk932@georgetown.edu`](mailto:hk932@georgetown.edu)
 
 :::: {.columns} 
 ::: {.column width="75%"}
 
-* TA placeholder information
-* Additional details to be added
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Hahana -->
+:::
+::::
+
+## Pranav Sudhir Patil, [`pp755@georgetown.edu`](mailto:pp755@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Pranav -->
+:::
+::::
+
+## Ofure Udabor, [`au195@georgetown.edu`](mailto:au195@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Ofure -->
+:::
+::::
+
+## Yifei Wu, [`yw924@georgetown.edu`](mailto:yw924@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Yifei -->
+:::
+::::
+
+## Naomi Yamaguchi, [`ny159@georgetown.edu`](mailto:ny159@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Naomi -->
+:::
+::::
+
+## Leqi Ying, [`ly290@georgetown.edu`](mailto:ly290@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
+
+:::
+
+::: {.column width="25%"}
+<!-- Image placeholder for Leqi -->
+:::
+::::
+
+## Xinyue (Monica) Zhang, [`xz646@georgetown.edu`](mailto:xz646@georgetown.edu)
+
+:::: {.columns} 
+::: {.column width="75%"}
 
 :::
 
@@ -122,7 +208,6 @@ Fun Facts
 <!-- Image placeholder for TA2 -->
 :::
 ::::
-
 
 ## Course Description
 
