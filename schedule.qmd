@@ -17,18 +17,19 @@ format:
 
 | Wednesday (Amit Arora) | Session | Monday/Thursday (Jeff Jacobs) | Session | Notes                                           |
 |------------------------|---------|----------------------|---------|---------------------------------------------------|
-| 8/27/2025              | 1       | 8/26/2025 & 8/29/2025 | 1       | Course overview - All sections combined           |
-| 9/3/2025               | 2       | 9/9/2025             | 2       | Cloud computing introduction                      |
-| 9/10/2025              | 3       | 9/16/2025            | 3       | Parallelization concepts                          |
-| 9/17/2025              | 4       | 9/23/2025            | 4       | DuckDB, Polars, file formats                     |
-| 9/24/2025              | 5       | 9/30/2025            | 5       | Data Warehouse (Athena, Presto, Snowflake)       |
-| 10/1/2025              | 6       | 10/7/2025            | 6       | Introduction to Spark, RDDs                      |
-| 10/8/2025              | 7       | 10/14/2025           | 7       | Spark DataFrames and Spark SQL                   |
-| 10/15/2025             | 8       | 10/21/2025           | 8       | Spark ML and Streaming                           |
-| 10/22/2025             | 9       | 10/28/2025           | 9       | Apache Iceberg & Table Formats                   |
-| 10/29/2025             | 10      | 11/4/2025            | 10      | Data Pipeline Orchestration (Airflow)            |
-| 11/5/2025              | 11      | 11/11/2025           | 11      | Vector Databases & RAG                           |
-| 11/12/2025             | 12      | 11/18/2025           | 12      | Modern Data Stack & Governance                   |
-| 11/19/2025             | 13      | 11/25/2025           | 13      | Serverless & Container Orchestration             |
-| 11/26/2025             | No class - Thanksgiving | 12/2/2025 | 14 | No class Wednesday - Thanksgiving break      |
-| 12/3/2025              | 14      | 12/9/2025            | Projects| Final project presentations                      |
+| 8/27/2025              | 1       | 8/28/2025            | 1       | Course overview - All sections combined           |
+| 9/3/2025               | 2       | 9/2/2025 (Tu) & 9/4/2025 | 2       | Cloud computing introduction (Monday is Labor Day)|
+| 9/10/2025              | 3       | 9/8/2025 & 9/11/2025 | 3       | Parallelization concepts                          |
+| 9/17/2025              | 4       | 9/15/2025 & 9/18/2025| 4       | DuckDB, Polars, file formats                     |
+| 9/24/2025              | 5       | 9/22/2025 & 9/25/2025| 5       | Data Warehouse (Athena, Presto, Snowflake)       |
+| 10/1/2025              | 6       | 9/29/2025 & 10/2/2025| 6       | Introduction to Spark, RDDs                      |
+| 10/8/2025              | 7       | 10/6/2025 & 10/9/2025| 7       | Spark DataFrames and Spark SQL                   |
+| 10/15/2025             | No class - Fall Break | 10/14/2025 (Tu) & 10/16/2025 (Th) | No class - Fall Break | Fall Break week                   |
+| 10/22/2025             | 8       | 10/20/2025 & 10/23/2025| 8       | Spark ML and Streaming                           |
+| 10/29/2025             | 9       | 10/27/2025 & 10/30/2025| 9       | Apache Iceberg & Table Formats                   |
+| 11/5/2025              | 10      | 11/3/2025 & 11/6/2025| 10      | Data Pipeline Orchestration (Airflow)            |
+| 11/12/2025             | 11      | 11/10/2025 & 11/13/2025| 11      | Vector Databases & RAG                           |
+| 11/19/2025             | 12      | 11/17/2025 & 11/20/2025| 12      | Modern Data Stack & Governance                   |
+| 11/26/2025             | No class - Thanksgiving | 11/24/2025 & No class | 13 | Serverless & Container Orchestration (Th is Thanksgiving)|
+| 12/3/2025              | 13      | 12/1/2025 & 12/4/2025| 14      | Final topics & Review                            |
+| 12/10/2025             | 14      | 12/8/2025            | Projects| Final project presentations                      |
