@@ -25,3 +25,8 @@ files/incomplete-reports.zip
 /.luarc.json
 .ppol567/
 .DS_Store
+
+# Student roster files (contains PII)
+roster/names.csv
+roster/roster.txt
+roster/students.csv

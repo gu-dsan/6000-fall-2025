@@ -83,6 +83,20 @@ We use GitHub Classroom for assignment distribution and submission:
 - Assignments and labs will be distributed through GitHub Classroom invitations
 - Each assignment creates a private repository for individual students or teams
 
+### Roster Management Tool
+
+The `roster/` directory contains a Python script to parse student names from Canvas Photo Roster exports. This is particularly useful when bulk uploading student identifiers to GitHub Classroom:
+
+```bash
+# Navigate to roster directory
+cd roster/
+
+# Parse Canvas roster export (creates students.csv and names.csv)
+python parse_student_list.py
+```
+
+The script converts the Canvas Photo Roster copy-paste format into clean CSV files for easy import into GitHub Classroom.
+
 ## Getting Started
 
 1. Join the GitHub Classroom using the invitation link provided in class
