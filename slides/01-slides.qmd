@@ -252,7 +252,18 @@ Always refer to the [syllabus](/syllabus.html) and [calendar](/schedule.html) in
 - You may DM us back only if we DM you first on a given issue
 - Lab/assignment/project questions will only be answered up to 6 hours before something is due (i.e. 6pm on Mondays)
 
-## Project
+## Midterm Project (NEW!)
+
+* **Individual assignment** (not team-based)
+* **Timing**: Around Week 5-6
+* **Weight**: Equivalent to 2 homework assignments
+* **Format**: 
+  * We provide the dataset and problem statement
+  * You apply big data tools and techniques learned in class
+  * End-to-end data pipeline implementation
+* **Details**: TBD (will be announced in Week 4)
+
+## Final Project
 
 * Groups of 3-4 students
 * Use an archive of Reddit data, augmented with external data
@@ -291,6 +302,19 @@ Always refer to the [syllabus](/syllabus.html) and [calendar](/schedule.html) in
 
 <img src="img/data-never-sleeps-2021.png" width=500>
 
+## In one minute of time (2025)
+
+**Every 60 seconds in 2025:**
+* ChatGPT serves **millions** of requests (exact numbers proprietary)
+* **500 hours** of video uploaded to YouTube
+* **1.04 million** Slack messages sent
+* **362,000 hours** watched on Netflix
+* **5.9-11.4 million** Google searches
+* **$443,000** spent on Amazon
+* AI-generated images created at **massive scale** (metrics not publicly available)
+* **347,200** posts on X (formerly Twitter)
+* **231-250 million** emails sent
+
 ## _A lot_ of it is hapenning online.
 
 
@@ -309,12 +333,13 @@ Always refer to the [syllabus](/syllabus.html) and [calendar](/schedule.html) in
 
 ## It can also be user-generated content, e.g.:
 
-* Instagram posts
-* Tweets
-* Videos
-* Yelp reviews
-* Facebook posts
-* Stack Overflow posts
+* Instagram posts & Reels
+* X (Twitter) posts & Threads
+* TikTok videos
+* YouTube Shorts
+* Reddit discussions
+* Discord conversations
+* AI-generated content (text, images, code)
 * ...
 
 <img src="img/people.jpg">
@@ -346,9 +371,15 @@ Some of these are **HUGE**
 
 <img src="img/syslog-file.jpg" width=600>
 
-## Internet of Things (IoT)
+## Internet of Things (IoT) in 2025
 
-Sensors everywhere...
+**75 billion connected devices generating data:**
+* Smart home devices (Alexa, Google Home, Apple HomePod)
+* Wearables (Apple Watch, Fitbit, Oura rings)
+* Connected vehicles & autonomous driving systems
+* Industrial IoT sensors
+* Smart city infrastructure
+* Medical devices & remote patient monitoring
 
 <img src="img/sensors-everywhere.jpg" width=600>
 
@@ -377,12 +408,16 @@ Sensors everywhere...
 * Some old floppy disk lying around the house
 
 
-## Typical real world scenario
+## Typical real world scenarios (2025)
 
-You have a laptop with 16GB of RAM and a 256GB Solid State drive. You are given a 1TB dataset in text files, where every file is slightly different. **Oh no, what do you do?**
+### Scenario 1: Traditional Big Data
+You have a laptop with 16GB of RAM and a 256GB SSD. You are given a 1TB dataset in text files. **What do you do?**
 
-AD: This was the situation I experienced during my AstraZeneca interview. We had to do 
-a data analysis for our interview, and the data given was the FDA drug adverse event reporting database. 
+### Scenario 2: AI/ML Pipeline
+Your company wants to build a RAG system using 10TB of internal documents. You need sub-second query response times. **How do you architect this?**
+
+### Scenario 3: Real-time Analytics
+You need to process 1 million events per second from IoT devices and provide real-time dashboards with <1 second latency. **What's your stack?** 
 
 # What is Big Data?
 
@@ -409,21 +444,23 @@ _"Big data technologies describe a new generation of technologies and architectu
 
 ## Frameworks for thinking about Big Data
 
-### IBM:  (The famous 3-V’s definition)
+### IBM:  (The famous 3-V's definition)
 
-* Volume (Gigabytes -> Exabytes)
+* Volume (Gigabytes -> Exabytes -> Zettabytes)
 
-* Velocity (Batch -> Streaming Data)
+* Velocity (Batch -> Streaming -> Real-time AI inference)
 
-* Variety (Structured, Semi-structured, & Unstructured)
+* Variety (Structured, Semi-structured, Unstructured, Embeddings)
 
 
-### Additional V's
+### Additional V's for 2025
 
 * Variability
 * Veracity
 * Visualization
 * Value
+* **Vectors** (embeddings for AI/ML)
+* **Versatility** (multi-modal data)
 
 
 ## Think of data size as a function of processing and storage
@@ -434,7 +471,134 @@ _"Big data technologies describe a new generation of technologies and architectu
 * Can you store (or is it stored) on a single machine?
 
 
+* Can you serve it fast enough for real-time AI applications?
+
+
 If any of of the answers is _**no**_ then you have a big-ish data problem!
+
+
+# Big Data in the Age of Generative AI
+
+## The New Data Landscape (2025)
+
+### Training Foundation Models
+* GPT-4: Trained on ~13 trillion tokens
+* Llama 3: 15 trillion tokens 
+* Google's Gemini: Multi-modal training on text, images, video
+* Each iteration requires **petabytes** of curated data
+
+### Data Requirements Have Exploded
+* 2020: BERT trained on 3.3 billion words
+* 2023: GPT-4 trained on ~13 trillion tokens
+* 2024: Llama 3 trained on 15+ trillion tokens
+* Future: Approaching the limits of human-generated text
+
+
+## Big Data Infrastructure for AI
+
+### Data Lakes & Warehouses for AI
+
+**Traditional Use Cases:**
+* Business intelligence
+* Analytics & reporting
+* Historical data storage
+
+**Modern AI Use Cases:**
+* Training data repositories
+* Vector embeddings storage
+* RAG (Retrieval-Augmented Generation) context
+* Fine-tuning datasets
+* Evaluation & benchmark data
+
+
+## RAG & Context Engineering
+
+### The New Data Pipeline
+
+```
+Raw Data → Data Lake → Processing → Vector DB → LLM Context
+```
+
+**Key Components:**
+* **Data Lakes** (S3, Azure Data Lake): Store massive unstructured data
+* **Data Warehouses** (Snowflake, BigQuery): Structured data for context
+* **Vector Databases** (Pinecone, Weaviate, Qdrant): Semantic search
+* **Embedding Models**: Convert data to vectors
+* **Orchestration** (Airflow, Prefect): Manage the pipeline
+
+
+## MCP Servers & Agentic AI
+
+### Model Context Protocol (MCP)
+
+**What is MCP?**
+* Open protocol for connecting AI assistants to data sources
+* Standardized way to expose tools and data to LLMs
+* Enables "agentic" behavior - AI that can act autonomously
+
+### MCP in Production
+```
+Data Warehouse → MCP Server → AI Agent → Action
+```
+
+**Examples:**
+* AI agents querying Snowflake for real-time analytics
+* Autonomous systems updating data lakes based on predictions
+* Multi-agent systems coordinating through shared data contexts
+
+
+## Data Quality for AI
+
+### Why Data Quality Matters More Than Ever
+
+**Garbage In, Garbage Out - Amplified:**
+* Bad training data → Biased models
+* Incorrect RAG data → Hallucinations
+* Poor data governance → Compliance issues
+
+### Data Quality Challenges in 2025
+* **Scale**: Validating trillions of tokens
+* **Diversity**: Multi-modal, multi-lingual data
+* **Velocity**: Real-time data for online learning
+* **Veracity**: Detecting AI-generated synthetic data
+
+
+## Real-World Big Data + AI Examples
+
+### Netflix
+* **Data Scale**: 260+ million subscribers generating 100+ billion events/day
+* **AI Use**: Personalization, content recommendations, thumbnail generation
+* **Stack**: S3 → Spark → Iceberg → ML models → Real-time serving
+
+### Uber
+* **Data Scale**: 35+ million trips per day, petabytes of location data
+* **AI Use**: ETA prediction, surge pricing, driver-rider matching
+* **Stack**: Kafka → Spark Streaming → Feature Store → ML Platform
+
+### OpenAI
+* **Data Scale**: Trillions of tokens for training, millions of queries/day
+* **AI Use**: GPT models, DALL-E, embeddings
+* **Stack**: Distributed training → Vector DBs → Inference clusters
+
+
+## The Future: Big Data + AI Convergence
+
+### Emerging Trends (2025-2027)
+
+**Unified Platforms:**
+* Data lakes becoming "AI lakes"
+* Integrated vector + relational databases
+* One-stop shops for data + AI (Databricks, Snowflake Cortex)
+
+**Edge Computing + AI:**
+* Processing at the data source
+* Federated learning across devices
+* 5G enabling real-time edge AI
+
+**Synthetic Data:**
+* AI generating training data for AI
+* Privacy-preserving synthetic datasets
+* Infinite data generation loops
 
 
 ## Relative data sizes {auto-animate=true}
@@ -465,6 +629,29 @@ If any of of the answers is _**no**_ then you have a big-ish data problem!
 
 <img src="img/medium-6.png" width=600>
 
+
+## What You'll Learn in This Course
+
+### Modern Big Data Stack (2025)
+
+**Query Engines:**
+* DuckDB - In-process analytical database
+* Polars - Lightning-fast DataFrame library  
+* Spark - Distributed processing at scale
+
+**Data Warehouses & Lakes:**
+* Snowflake - Cloud-native data warehouse
+* Athena - Serverless SQL on S3
+* Iceberg - Open table format
+
+**AI/ML Integration:**
+* Vector databases for embeddings
+* RAG implementation patterns
+* Streaming with Spark Structured Streaming
+
+**Orchestration:**
+* Airflow for pipeline management
+* Serverless with AWS Lambda
 
 ## Data Types
 

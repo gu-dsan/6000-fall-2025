@@ -4110,11 +4110,18 @@
     "text": "Slack rules:\n\nPost any question/comment about the course, assignments or any technical issue.\nDMs are to be used sparingly\nYou may not DM multiple people in the instructional team at the same time for the same issue\nKeep an eye on the questions posted in Slack. Use the search function. It’s very possible that we have already answered a questions\nYou may DM us back only if we DM you first on a given issue\nLab/assignment/project questions will only be answered up to 6 hours before something is due (i.e. 6pm on Mondays)"
   },
   {
-    "objectID": "slides/01-slides.html#project",
-    "href": "slides/01-slides.html#project",
+    "objectID": "slides/01-slides.html#midterm-project-new",
+    "href": "slides/01-slides.html#midterm-project-new",
     "title": "Lecture 1",
-    "section": "Project",
-    "text": "Project\n\nGroups of 3-4 students\nUse an archive of Reddit data, augmented with external data\nExploratory analysis\nNLP\nMachine Learning\nWriteup\n\nData sourcing and ingesting\nExploratory analysis\nModeling\nChallenges and Learnings\nConclusions\nFuture work"
+    "section": "Midterm Project (NEW!)",
+    "text": "Midterm Project (NEW!)\n\nIndividual assignment (not team-based)\nTiming: Around Week 5-6\nWeight: Equivalent to 2 homework assignments\nFormat:\n\nWe provide the dataset and problem statement\nYou apply big data tools and techniques learned in class\nEnd-to-end data pipeline implementation\n\nDetails: TBD (will be announced in Week 4)"
+  },
+  {
+    "objectID": "slides/01-slides.html#final-project",
+    "href": "slides/01-slides.html#final-project",
+    "title": "Lecture 1",
+    "section": "Final Project",
+    "text": "Final Project\n\nGroups of 3-4 students\nUse an archive of Reddit data, augmented with external data\nExploratory analysis\nNLP\nMachine Learning\nWriteup\n\nData sourcing and ingesting\nExploratory analysis\nModeling\nChallenges and Learnings\nConclusions\nFuture work"
   },
   {
     "objectID": "slides/01-slides.html#where-does-it-come-from-how-is-it-being-created",
@@ -4152,6 +4159,13 @@
     "text": "In one minute of time (2021)"
   },
   {
+    "objectID": "slides/01-slides.html#in-one-minute-of-time-2025",
+    "href": "slides/01-slides.html#in-one-minute-of-time-2025",
+    "title": "Lecture 1",
+    "section": "In one minute of time (2025)",
+    "text": "In one minute of time (2025)\nEvery 60 seconds in 2025: * ChatGPT serves millions of requests (exact numbers proprietary) * 500 hours of video uploaded to YouTube * 1.04 million Slack messages sent * 362,000 hours watched on Netflix * 5.9-11.4 million Google searches * $443,000 spent on Amazon * AI-generated images created at massive scale (metrics not publicly available) * 347,200 posts on X (formerly Twitter) * 231-250 million emails sent"
+  },
+  {
     "objectID": "slides/01-slides.html#a-lot-of-it-is-hapenning-online.",
     "href": "slides/01-slides.html#a-lot-of-it-is-hapenning-online.",
     "title": "Lecture 1",
@@ -4163,7 +4177,7 @@
     "href": "slides/01-slides.html#it-can-also-be-user-generated-content-e.g.",
     "title": "Lecture 1",
     "section": "It can also be user-generated content, e.g.:",
-    "text": "It can also be user-generated content, e.g.:\n\nInstagram posts\nTweets\nVideos\nYelp reviews\nFacebook posts\nStack Overflow posts\n…"
+    "text": "It can also be user-generated content, e.g.:\n\nInstagram posts & Reels\nX (Twitter) posts & Threads\nTikTok videos\nYouTube Shorts\nReddit discussions\nDiscord conversations\nAI-generated content (text, images, code)\n…"
   },
   {
     "objectID": "slides/01-slides.html#but-health-and-scientific-computing-create-a-lot-too",
@@ -4194,11 +4208,11 @@
     "text": "System log files"
   },
   {
-    "objectID": "slides/01-slides.html#internet-of-things-iot",
-    "href": "slides/01-slides.html#internet-of-things-iot",
+    "objectID": "slides/01-slides.html#internet-of-things-iot-in-2025",
+    "href": "slides/01-slides.html#internet-of-things-iot-in-2025",
     "title": "Lecture 1",
-    "section": "Internet of Things (IoT)",
-    "text": "Internet of Things (IoT)\nSensors everywhere…"
+    "section": "Internet of Things (IoT) in 2025",
+    "text": "Internet of Things (IoT) in 2025\n75 billion connected devices generating data: * Smart home devices (Alexa, Google Home, Apple HomePod) * Wearables (Apple Watch, Fitbit, Oura rings) * Connected vehicles & autonomous driving systems * Industrial IoT sensors * Smart city infrastructure * Medical devices & remote patient monitoring"
   },
   {
     "objectID": "slides/01-slides.html#smartphones-collecting-our-information",
@@ -4215,11 +4229,11 @@
     "text": "Where else?\n\nThe Internet\nTransactions\nDatabases\nExcel\nPDF Files\nAnything digital (music, movies, apps)\nSome old floppy disk lying around the house"
   },
   {
-    "objectID": "slides/01-slides.html#typical-real-world-scenario",
-    "href": "slides/01-slides.html#typical-real-world-scenario",
+    "objectID": "slides/01-slides.html#typical-real-world-scenarios-2025",
+    "href": "slides/01-slides.html#typical-real-world-scenarios-2025",
     "title": "Lecture 1",
-    "section": "Typical real world scenario",
-    "text": "Typical real world scenario\nYou have a laptop with 16GB of RAM and a 256GB Solid State drive. You are given a 1TB dataset in text files, where every file is slightly different. Oh no, what do you do?\nAD: This was the situation I experienced during my AstraZeneca interview. We had to do a data analysis for our interview, and the data given was the FDA drug adverse event reporting database."
+    "section": "Typical real world scenarios (2025)",
+    "text": "Typical real world scenarios (2025)\nScenario 1: Traditional Big Data\nYou have a laptop with 16GB of RAM and a 256GB SSD. You are given a 1TB dataset in text files. What do you do?\nScenario 2: AI/ML Pipeline\nYour company wants to build a RAG system using 10TB of internal documents. You need sub-second query response times. How do you architect this?\nScenario 3: Real-time Analytics\nYou need to process 1 million events per second from IoT devices and provide real-time dashboards with &lt;1 second latency. What’s your stack?"
   },
   {
     "objectID": "slides/01-slides.html#lets-discuss",
@@ -4240,14 +4254,63 @@
     "href": "slides/01-slides.html#frameworks-for-thinking-about-big-data",
     "title": "Lecture 1",
     "section": "Frameworks for thinking about Big Data",
-    "text": "Frameworks for thinking about Big Data\nIBM: (The famous 3-V’s definition)\n\nVolume (Gigabytes -&gt; Exabytes)\nVelocity (Batch -&gt; Streaming Data)\nVariety (Structured, Semi-structured, & Unstructured)\n\nAdditional V’s\n\nVariability\nVeracity\nVisualization\nValue"
+    "text": "Frameworks for thinking about Big Data\nIBM: (The famous 3-V’s definition)\n\nVolume (Gigabytes -&gt; Exabytes -&gt; Zettabytes)\nVelocity (Batch -&gt; Streaming -&gt; Real-time AI inference)\nVariety (Structured, Semi-structured, Unstructured, Embeddings)\n\nAdditional V’s for 2025\n\nVariability\nVeracity\nVisualization\nValue\nVectors (embeddings for AI/ML)\nVersatility (multi-modal data)"
   },
   {
     "objectID": "slides/01-slides.html#think-of-data-size-as-a-function-of-processing-and-storage",
     "href": "slides/01-slides.html#think-of-data-size-as-a-function-of-processing-and-storage",
     "title": "Lecture 1",
     "section": "Think of data size as a function of processing and storage",
-    "text": "Think of data size as a function of processing and storage\n\nCan you analyze/process your data on a single machine?\nCan you store (or is it stored) on a single machine?\n\nIf any of of the answers is no then you have a big-ish data problem!"
+    "text": "Think of data size as a function of processing and storage\n\nCan you analyze/process your data on a single machine?\nCan you store (or is it stored) on a single machine?\nCan you serve it fast enough for real-time AI applications?\n\nIf any of of the answers is no then you have a big-ish data problem!"
+  },
+  {
+    "objectID": "slides/01-slides.html#the-new-data-landscape-2025",
+    "href": "slides/01-slides.html#the-new-data-landscape-2025",
+    "title": "Lecture 1",
+    "section": "The New Data Landscape (2025)",
+    "text": "The New Data Landscape (2025)\nTraining Foundation Models\n\nGPT-4: Trained on ~13 trillion tokens\nLlama 3: 15 trillion tokens\nGoogle’s Gemini: Multi-modal training on text, images, video\nEach iteration requires petabytes of curated data\n\nData Requirements Have Exploded\n\n2020: BERT trained on 3.3 billion words\n2023: GPT-4 trained on ~13 trillion tokens\n2024: Llama 3 trained on 15+ trillion tokens\nFuture: Approaching the limits of human-generated text"
+  },
+  {
+    "objectID": "slides/01-slides.html#big-data-infrastructure-for-ai",
+    "href": "slides/01-slides.html#big-data-infrastructure-for-ai",
+    "title": "Lecture 1",
+    "section": "Big Data Infrastructure for AI",
+    "text": "Big Data Infrastructure for AI\nData Lakes & Warehouses for AI\nTraditional Use Cases: * Business intelligence * Analytics & reporting * Historical data storage\nModern AI Use Cases: * Training data repositories * Vector embeddings storage * RAG (Retrieval-Augmented Generation) context * Fine-tuning datasets * Evaluation & benchmark data"
+  },
+  {
+    "objectID": "slides/01-slides.html#rag-context-engineering",
+    "href": "slides/01-slides.html#rag-context-engineering",
+    "title": "Lecture 1",
+    "section": "RAG & Context Engineering",
+    "text": "RAG & Context Engineering\nThe New Data Pipeline\nRaw Data → Data Lake → Processing → Vector DB → LLM Context\nKey Components: * Data Lakes (S3, Azure Data Lake): Store massive unstructured data * Data Warehouses (Snowflake, BigQuery): Structured data for context * Vector Databases (Pinecone, Weaviate, Qdrant): Semantic search * Embedding Models: Convert data to vectors * Orchestration (Airflow, Prefect): Manage the pipeline"
+  },
+  {
+    "objectID": "slides/01-slides.html#mcp-servers-agentic-ai",
+    "href": "slides/01-slides.html#mcp-servers-agentic-ai",
+    "title": "Lecture 1",
+    "section": "MCP Servers & Agentic AI",
+    "text": "MCP Servers & Agentic AI\nModel Context Protocol (MCP)\nWhat is MCP? * Open protocol for connecting AI assistants to data sources * Standardized way to expose tools and data to LLMs * Enables “agentic” behavior - AI that can act autonomously\nMCP in Production\nData Warehouse → MCP Server → AI Agent → Action\nExamples: * AI agents querying Snowflake for real-time analytics * Autonomous systems updating data lakes based on predictions * Multi-agent systems coordinating through shared data contexts"
+  },
+  {
+    "objectID": "slides/01-slides.html#data-quality-for-ai",
+    "href": "slides/01-slides.html#data-quality-for-ai",
+    "title": "Lecture 1",
+    "section": "Data Quality for AI",
+    "text": "Data Quality for AI\nWhy Data Quality Matters More Than Ever\nGarbage In, Garbage Out - Amplified: * Bad training data → Biased models * Incorrect RAG data → Hallucinations * Poor data governance → Compliance issues\nData Quality Challenges in 2025\n\nScale: Validating trillions of tokens\nDiversity: Multi-modal, multi-lingual data\nVelocity: Real-time data for online learning\nVeracity: Detecting AI-generated synthetic data"
+  },
+  {
+    "objectID": "slides/01-slides.html#real-world-big-data-ai-examples",
+    "href": "slides/01-slides.html#real-world-big-data-ai-examples",
+    "title": "Lecture 1",
+    "section": "Real-World Big Data + AI Examples",
+    "text": "Real-World Big Data + AI Examples\nNetflix\n\nData Scale: 260+ million subscribers generating 100+ billion events/day\nAI Use: Personalization, content recommendations, thumbnail generation\nStack: S3 → Spark → Iceberg → ML models → Real-time serving\n\nUber\n\nData Scale: 35+ million trips per day, petabytes of location data\nAI Use: ETA prediction, surge pricing, driver-rider matching\nStack: Kafka → Spark Streaming → Feature Store → ML Platform\n\nOpenAI\n\nData Scale: Trillions of tokens for training, millions of queries/day\nAI Use: GPT models, DALL-E, embeddings\nStack: Distributed training → Vector DBs → Inference clusters"
+  },
+  {
+    "objectID": "slides/01-slides.html#the-future-big-data-ai-convergence",
+    "href": "slides/01-slides.html#the-future-big-data-ai-convergence",
+    "title": "Lecture 1",
+    "section": "The Future: Big Data + AI Convergence",
+    "text": "The Future: Big Data + AI Convergence\nEmerging Trends (2025-2027)\nUnified Platforms: * Data lakes becoming “AI lakes” * Integrated vector + relational databases * One-stop shops for data + AI (Databricks, Snowflake Cortex)\nEdge Computing + AI: * Processing at the data source * Federated learning across devices * 5G enabling real-time edge AI\nSynthetic Data: * AI generating training data for AI * Privacy-preserving synthetic datasets * Infinite data generation loops"
   },
   {
     "objectID": "slides/01-slides.html#relative-data-sizes",
@@ -4290,6 +4353,13 @@
     "title": "Lecture 1",
     "section": "Relative data sizes",
     "text": "Relative data sizes"
+  },
+  {
+    "objectID": "slides/01-slides.html#what-youll-learn-in-this-course",
+    "href": "slides/01-slides.html#what-youll-learn-in-this-course",
+    "title": "Lecture 1",
+    "section": "What You’ll Learn in This Course",
+    "text": "What You’ll Learn in This Course\nModern Big Data Stack (2025)\nQuery Engines: * DuckDB - In-process analytical database * Polars - Lightning-fast DataFrame library\n* Spark - Distributed processing at scale\nData Warehouses & Lakes: * Snowflake - Cloud-native data warehouse * Athena - Serverless SQL on S3 * Iceberg - Open table format\nAI/ML Integration: * Vector databases for embeddings * RAG implementation patterns * Streaming with Spark Structured Streaming\nOrchestration: * Airflow for pipeline management * Serverless with AWS Lambda"
   },
   {
     "objectID": "slides/01-slides.html#data-types",
