@@ -32,7 +32,7 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Amit Arora, Jeff Jacobs\n   Online\n   aa1603@georgetown.edu\n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Mondays & Thursdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM (Amit), 3:30-6:00 PM (Jeff Mon), 6:30-9:00 PM (Jeff Thu)\n   Reiss 262 (W, Amit), Walsh 394 (Mon & Thu, Jeff)\n   Slack (Join)\nThis syllabus was last updated on Sunday, August 24, 2025"
+    "text": "Amit Arora, Jeff Jacobs\n   Online\n   aa1603@georgetown.edu\n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Mondays & Thursdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM (Amit), 3:30-6:00 PM (Jeff Mon), 6:30-9:00 PM (Jeff Thu)\n   Reiss 262 (W, Amit), Walsh 394 (Mon & Thu, Jeff)\n   Slack (Join)\nThis syllabus was last updated on Wednesday, August 27, 2025"
   },
   {
     "objectID": "syllabus.html#books-software-and-cloud-resources",
@@ -4079,7 +4079,7 @@
     "href": "slides/01-slides.html#learning-objectives",
     "title": "Lecture 1",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nSetup, operate and manage big data tools and cloud infrastructure, including Spark, MapReduce, DataBricks, Hadoop on Microsoft Azure and Amazon Web Services\nUse ancillary tools that support big data processing, including git and the Linux command line\nExecute a big data analytics exercise from start to finish: ingest, wrangle, clean, analyze, store, and present\nDevelop strategies to break down large problems and datasets into manageable pieces\nIdentify broad spectrum resources and documentation to remain current with big data tools and developments\nCommunicate and interpret the big data analytics results through written and verbal methods"
+    "text": "Learning Objectives\n\nSetup, operate and manage big data tools and cloud infrastructure, including Spark, DuckDB, Polars, Athena, Snowflake, and orchestration tools like Airflow on Amazon Web Services\nUse ancillary tools that support big data processing, including git and the Linux command line\nExecute a big data analytics exercise from start to finish: ingest, wrangle, clean, analyze, store, and present\nDevelop strategies to break down large problems and datasets into manageable pieces\nIdentify broad spectrum resources and documentation to remain current with big data tools and developments\nCommunicate and interpret the big data analytics results through written and verbal methods"
   },
   {
     "objectID": "slides/01-slides.html#evaluation",
