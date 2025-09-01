@@ -1,5 +1,5 @@
 ---
-title: "Lab 2 Amazon Web Services (AWS) Setup Instructions"
+title: "Lab 2: EC2 Setup and VSCode Remote Development"
 subtitle: "{{< var course.number >}} {{< var course.semester >}}"
 author: "{{< var instructor.name >}}"
 format: 
@@ -9,7 +9,7 @@ format:
 
 {{< include login-to-saxanet.qmd >}} 
 
-Follow these instructions _step-by-step_ to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.
+Follow these instructions _step-by-step_ to setup your AWS EC2 environment. This EC2 instance will serve as your development environment throughout the semester, allowing you to run Python code and Jupyter notebooks using VSCode as your IDE.
 
 ::: callout-note
 You can click on any screenshot on this page to see its full size version.
@@ -41,10 +41,10 @@ You can click on any screenshot on this page to see its full size version.
 1. Each _lab session_ that you start is at most 4 hours and you can see a timer showing the remaining time (hh:mm) on the ribbon along with the remaining budget out of the $50 allocated to each account. 
 #[![](img/aws-ribbon.png)](img/aws-ribbon.png)
 
-1. This environment is **long-lived**. When the session timer runs to 0:00, the session will end, but any data and resources that you created in the AWS account will be retained. If you later launch a new session (for example, the next day), you will find that your work is still in the lab environment.  Running EC2 instances will be stopped and then automatically restarted the next time you start a session. SageMaker notebook instances will be stopped, but not restarted the next time you start a session. 
+1. This environment is **long-lived**. When the session timer runs to 0:00, the session will end, but any data and resources that you created in the AWS account will be retained. If you later launch a new session (for example, the next day), you will find that your work is still in the lab environment. Running EC2 instances will be stopped and then automatically restarted the next time you start a session.
 
 ::: callout-important
- Monitor your lab budget in the lab interface above. Whenever you have an active lab session, the latest known remaining budget information will display at the top of this screen. This data comes from AWS Budgets which typically updates every 8 to 12 hours. Therefore the remaining budget that you see may not reflect your most recent account activity.  If you exceed your lab budget your lab account will be disabled and all progress and resources will be lost. Therefore, it is important for you to manage your spending. Read about how to preserve your budget.
+Monitor your lab budget in the lab interface above. Whenever you have an active lab session, the latest known remaining budget information will display at the top of this screen. This data comes from AWS Budgets which typically updates every 8 to 12 hours. Therefore the remaining budget that you see may not reflect your most recent account activity. If you exceed your lab budget your lab account will be disabled and all progress and resources will be lost. Therefore, it is important for you to manage your spending.
 :::
 
 ## Login into the AWS Console
@@ -71,177 +71,417 @@ To access the AWS Console in the future, login to https://www.awsacademy.com/LMS
 If you already had an AWS account prior to logging into AWS Academy you would need to login into the AWS Educate AWS account via an *Incognito Browser Window*.
 :::
 
-# Task 2: Create a SageMaker Studio Domain and Notebook
+# Task 2: Create an EC2 Instance for Development
 
-The Amazon SageMaker Studio is one of the data science tools that we will be using during this course. We will set a SageMaker Studio domain and start a Jupyter Notebook as part of this task so that we can use it for future labs.
+Now we'll create an EC2 instance that will serve as your development environment throughout the semester. This instance will run Ubuntu Linux and can be accessed remotely using VSCode.
 
-::: callout-note
+## Navigate to EC2 Service
 
-1. All screenshots on this page are clickable i.e. you can click on these to see an enlarged version of the screenshot for better clarity.
+1. From the AWS Console home page, click on the **EC2** service. You can find it under "Compute" or by using the search bar at the top.
 
-1. Pay special attention to portions of the screenshot highlighted in a red rectangle, they usually correspond to non-default options. If you miss any of these your SageMaker domain would not be created correctly and you may have to repeat the entire procedure.
-:::
+[![](img/Console-Home-Console-Home.png)](img/Console-Home-Console-Home.png)
 
-1. Navigate to SageMaker Studio.
-[![](img/1-landing-page.png)](img/1-landing-page.png)
+2. Once you're in the EC2 Dashboard, click on the **Launch instances** button on the top right.
 
-1. Select Amazon Sagemaker, Click on Domains on the side bar
-[![](img/2-domain-page.png)](img/2-domain-page.png)
+[![](img/Home-EC2.png)](img/Home-EC2.png)
 
-1. Select **Set up for organizations**.
-[![](img/2-1-domain-page.png)](img/2-1-domain-page.png)
+## Configure Your Instance
 
-1. Click on Create Domain, This screen should pop up!
-[![](img/3-domain-setup.png)](img/3-domain-setup.png)
+You'll now be on the "Launch an instance" page. Follow these steps to configure your instance:
 
-1. Enter a name for your domain as shown above. Click on next
+### Configure Instance Details
 
-1. Select **Use an existing role** and then select **LabRole**.
-[![](img/sm-iam.png)](img/sm-iam.png)
+1. **Name and tags**: Give your instance a meaningful name, such as `{your-net-id}-dsan6k-dev` (replace `{your-net-id}` with your actual NET ID).
 
-1. On the next page, do the following:
+2. **Application and OS Images (Amazon Machine Image)**: 
+   - Select **Ubuntu** 
+   - Choose **Ubuntu Server 24.04 LTS (HVM), SSD Volume Type** (or the latest Ubuntu LTS version available)
+   - Architecture: **64-bit (x86)**
 
-    - **Disable both settings under MLOps configuration**.
-    - Under **Canvas ready to use model configuration** section, select "Use existing role" -> "Custom IAM role ARN" and in the edit box type the ARN of the **LabRole** role. The ARN of the **LabRole** is of the form `arn:aws:iam::your_account_id:role/LabRole`, copy paste this string in the **Custom IAM role ARN** box and then replace `your_account_id` with the account id of your AWS account. You can find the account id of your AWS account in the top right corner of your browser window (it is highlighted in the red rectangle in this screenshot, enter it without the "-", for example `987733172745`).
+3. **Instance type**: 
+   - Select **t3.xlarge** from the dropdown
+   - This provides 4 vCPUs and 16 GiB of memory, suitable for data science workloads
+   - As of September 2025 in us-east-1, this instance costs approximately $0.22 per hour (roughly $1 for 5 hours)
 
-    [![](img/sm-configure-apps.png)](img/sm-configure-apps.png)
-    
-1. Follow the screenshot
-[![](img/12-Setup-step-4.png)](img/12-Setup-step-4.png)
-
-1. Click on next.
-[![](img/13-Setup-step4-next.png)](img/13-Setup-step4-next.png)
-
-1. Select Public Internet Access, follow the screenshot and click on next. **_Note that the subnet and security group ids for your account would be different from what you see in the screenshot. Select all the subnets in the drop down (we will discuss in class why this is required)._**
-[![](img/14-VPC-setup.png)](img/14-VPC-setup.png)
-
-1. Change the `Default space size` to 50 from the default of 5 and click next.
-[![](img/15-Storage-config.png)](img/15-Storage-config.png)
-
-1. Scroll down and click on next. Your Domain will now be created.
-[![](img/16-Domain-created.png)](img/16-Domain-created.png)
-
->It takes the domain sometime to get created and in use, though it says to not refresh the page, you can go ahead and refresh the page after a minute or two. You will see the screenshot below stating that the domain is in use.
-
-[![](img/17-Domain-in-use.png)](img/17-Domain-in-use.png)
-
-## Part-3: Creating the User
-
-1. Now that you have created the domain, It is time to create a user in that domain. Easiest way to do this is to navigate to the Studio page on the sidebar and Clicking "Create user profile"
-[![](img/18-UserCreation.png)](img/18-UserCreation.png)
-
-1. Name your user, as a matter of convention set the username as your _NET ID_. Click on next.
-
-[![](img/19-User-Creation-1.png)](img/19-User-Creation-1.png)
-
-1. Follow the screenshot. 
-
-[![](img/20-User-Creation-2.png)](img/20-User-Creation-2.png)
-
-1. Disable all canvas permissions and Paste the ARN of your LabRole. Scroll Down
-
-[![](img/22-User-Canvas-Part-2.png)](img/22-User-Canvas-Part-2.png)
-
-1. Click on Next
-[![](img/23-User-Next.png)](img/23-User-Next.png)
-
-1. Scroll down
-[![](img/24-User-Step-4.png)](img/24-User-Step-4.png)
-
-1. Scroll down, click on next
-[![](img/25-User-final-next.png)](img/25-User-final-next.png)
-
-1. User should be created now.
-
-[![](img/26-user-created.png)](img/26-user-created.png)
-
-## Launching Sagemaker Studio
-
-1. Click on Domains on the sidebar. Select your domain and click on User Profiles.
-
-[![](img/27-domain-user-list.png)](img/27-domain-user-list.png)
-
-1. Select launch and Click on Studio
-
-[![](img/28-launch-studio.png)](img/28-launch-studio.png)
-
-
-::: callout-note
-This is called a _managed service_, you get to work on the notebook without having to deal with the creation steps for the underlying infrastructure. You can easily change this configuration as per the requirements of the analytics/machine learning job you are running.
-:::
-
-1. This should open up
-
-[![](img/29-studio-landing.png)](img/29-studio-landing.png)
-
-1. Select JupyterLab and Click on Create JupyterLab Space
-[![](img/30-Creating-Jupyter-space.png)](img/30-Creating-Jupyter-space.png)
-
-1. A Jupyter Notebook session should open up
-
-[![](img/31-Jupyter-landing.png)](img/31-Jupyter-landing.png)
-
-# Task 8: Use SageMaker Studio Notebook for analyzing a simple dataset
-
-We will analyze the a simple dataset using our freshly created SageMaker Studio environment.
-
-1. Clone the git repo for this lab into SageMaker.
-[![](img/aws-sm-git1.png)](img/aws-sm-git1.png)
-
-1. The URL of the git repo would be of the format shown in the screenshot below.
-[![](img/aws-sm-git2.png)](img/aws-sm-git2.png)
-
-1. Once the repo is cloned, double click on the repo folder and then on the _analytics.ipynb_ file in the repo. This will open the Jupyter notebook in a SageMaker Studio Notebook.
-[![](img/aws-sm-nb1.png)](img/aws-sm-nb1.png)
-
-1. The notebook downloads the dataset from your GitHub and has code to create an S3 bucket in your account and copy the dataset there. There are some tasks to be completed in the noteobok. **Complete tasks marked in the notebook and checkin the completed notebook in the git repo**.
-
-## Shutting down SageMaker Spaces
-
-It is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.
-
-1. Navigate back to Sagemaker Studio, Select Jupyter Lab, Click on Stop
-[![](img/32-Jupyter-Shutdown.png)](img/32-Jupyter-Shutdown.png)
+4. **Key pair (login)**:
+   - Click on **Create new key pair**
+   - Key pair name: `{your-net-id}-dsan6k-f2025` (replace `{your-net-id}` with your actual NET ID)
+   - Key pair type: **RSA**
+   - Private key file format: Choose based on your operating system:
+     - **`.pem`** for Mac/Linux
+     - **`.ppk`** for Windows (if using PuTTY)
+   - Click **Create key pair** and save the file securely - you'll need this to connect to your instance
 
 ::: callout-important
-
-At the end of this lab:
-
-1. Make sure you shutdown SageMaker Studio.
-
-1. Make sure you shutdown EC2 VM.
-
-1. Make sure you have ended the lab in AWS Educate by pressing the _End Lab_ button.
+**SAVE YOUR KEY PAIR FILE SECURELY!** This file is your only way to access your EC2 instance. Store it in a safe location on your computer and never share it with anyone.
 :::
 
-## (Optional) Using VSCode Instead of Jupyter Notebooks
+5. **Network settings**:
+   - Leave all settings as default (this includes VPC, subnet, auto-assign public IP, and security group settings)
+   - The default settings will automatically enable public IP and allow SSH access
 
+6. **Configure storage**:
+   - Change the root volume size from 8 GiB to **100 GiB**
+   - Volume type: **gp3** (General Purpose SSD)
+   - This provides ample storage for datasets and software installations
 
-SageMaker Studio Has added support for VSCode and the steps to run it are below:
+7. **Advanced details** (expand this section):
+   - **IAM instance profile**: Select **LabInstanceProfile** from the dropdown
+   - This gives your EC2 instance permissions to access other AWS services
+   - Leave all other settings as default
 
-1. Navigate back to Sagemaker Studio, Select Code Editor, Click on Create Code Editor Space
-[![](img/33-VSC-1.png)](img/33-VSC-1.png)
+8. **Review and Launch**:
+   - Review all your settings
+   - Click the **Launch instance** button
 
-1. Follow the screenshot and click on Create Space
-[![](img/34-VSC-2.png)](img/34-VSC-2.png)
+[![](img/Instances-EC2.png)](img/Instances-EC2.png)
 
-1. Now select the instance type you want to use. Click on Run Space. Wait for a while then click on Open Code Editor.
+[![](img/Launch-an-instance-EC2.png)](img/Launch-an-instance-EC2.png)
 
-[![](img/35-VSC-3.png)](img/35-VSC-3.png)
+## Wait for Instance to Initialize
 
-1. Now you can start using VS Code as you do on your local machine.
+1. After clicking "Launch instance", you'll see a success message. Click on **View all instances** to go back to the instances list.
 
-[![](img/36-VSC-4.png)](img/36-VSC-4.png)
+2. Your new instance will appear in the list with a status of "Pending". Wait a few minutes for it to change to "Running" and for the status checks to pass (2/2 checks passed).
+
+3. Once the instance is running, note down the **Public IPv4 DNS** - you'll need this to connect via VSCode.
+
+::: callout-note
+The instance typically takes 1-2 minutes to fully initialize and become accessible.
+:::
+
+# Task 3: Create and Configure an S3 Bucket
+
+Amazon S3 (Simple Storage Service) is AWS's object storage service that allows you to store and retrieve data from anywhere on the web. In this task, you'll create an S3 bucket to store datasets, code outputs, and other files for your projects.
+
+## Navigate to S3 Service
+
+1. From the AWS Console home page, search for **S3** in the search bar at the top or find it under the "Storage" section.
+
+2. Click on **S3** to open the S3 dashboard.
+
+[![](img/Homepage-S3.png)](img/Homepage-S3.png)
+
+## View S3 Buckets Dashboard
+
+Once in the S3 service, you'll see the main S3 buckets dashboard. This shows all your existing buckets (if any) and allows you to create new ones.
+
+[![](img/S3-buckets-S3.png)](img/S3-buckets-S3.png)
+
+## Create a New S3 Bucket
+
+1. Click on the **Create bucket** button (orange button on the right side of the page).
+
+[![](img/Create-S3-bucket-S3.png)](img/Create-S3-bucket-S3.png)
+
+2. **Configure your bucket**:
+   - **Bucket name**: Enter a unique name like `{your-net-id}-dsan6k-f2025` (replace `{your-net-id}` with your actual NET ID)
+     - Note: Bucket names must be globally unique across all AWS accounts, lowercase, and can contain only letters, numbers, and hyphens
+   - **AWS Region**: Leave as default (should match your EC2 region, typically us-east-1)
+   - **Object Ownership**: Leave as default (ACLs disabled)
+   - **Block Public Access settings**: Leave all boxes checked (block all public access) for security
+   - **Bucket Versioning**: Leave as "Disable" for now
+   - **Tags**: Optional - you can add tags like `course: dsan6000` if desired
+   - **Default encryption**: Leave as default (Server-side encryption with Amazon S3 managed keys)
+   - **Advanced settings**: Leave as default
+
+3. Scroll to the bottom and click **Create bucket**.
+
+## View Your Created Bucket
+
+After creation, you'll be redirected to the S3 buckets list where you can see your newly created bucket.
+
+[![](img/aa1603-dsan6k-f2025-S3-bucket-S3.png)](img/aa1603-dsan6k-f2025-S3-bucket-S3.png)
+
+## Upload a Test File to Your Bucket
+
+1. Click on your bucket name to open it.
+
+2. Click the **Upload** button.
+
+3. Either drag and drop files or click **Add files** to browse and select files from your computer.
+
+4. For testing, you can create a simple text file on your computer with some content and upload it.
+
+5. After selecting your file(s), click **Upload** at the bottom of the page.
+
+6. Once uploaded, you'll see a success message. Click **Close** to return to your bucket view.
+
+::: callout-tip
+Your S3 bucket is now ready to use! You can upload datasets, store output files, and share data between different AWS services. The bucket name you created will be used in subsequent labs and assignments.
+:::
+
+## Working with S3 from the Command Line
+
+Once you connect to your EC2 instance via VSCode (in the next section), you can interact with your S3 bucket using the AWS CLI, which is pre-installed on EC2 instances with the LabInstanceProfile. Here are some useful commands you'll use:
+
+```bash
+# List all your S3 buckets
+aws s3 ls
+
+# List contents of a specific bucket
+aws s3 ls s3://your-bucket-name/
+
+# Upload a file to S3
+aws s3 cp local-file.txt s3://your-bucket-name/
+
+# Download a file from S3
+aws s3 cp s3://your-bucket-name/file.txt ./
+
+# Upload an entire directory
+aws s3 sync ./local-folder s3://your-bucket-name/folder/
+
+# Download an entire directory
+aws s3 sync s3://your-bucket-name/folder/ ./local-folder
+```
 
 ::: callout-important
-
-This service also has to be shutdown as jupyter notebook. Since you only have 50$, not shutting a notebook down, can cost upto 20$ a day for instances such as `ml.g4dn.xlarge`. It is very important to shutdown the space after working on it. If you spend 50$ on this account, **YOU WILL LOSE ALL DATA**. NO, you cannot recover the data after the account is shutdown. Therefore it is recommended to make regular commits to github as you work on your assignments or labs.
+Remember to replace `your-bucket-name` with the actual name of the bucket you created (e.g., `{your-net-id}-dsan6k-f2025`).
 :::
 
-1. To stop Code Editor Space, Go back to Sagemaker Studio, Click on Code editor.
-[![](img/37-VSC-stop)](img/37-VSC-stop)
+# Task 4: Connect to EC2 Instance using VSCode
 
+Now that your EC2 instance is running, we'll set up VSCode to connect to it remotely. This will allow you to write code, run Python scripts, and work with Jupyter notebooks directly on your EC2 instance using the familiar VSCode interface.
 
-## GitHub Classroom
+## Prerequisites
 
-[GitHub Classroom Link]({{< var gh-classroom.lab02 >}})
+1. Install **Visual Studio Code** on your local machine if you haven't already: [Download VSCode](https://code.visualstudio.com/)
+
+2. Install the **Remote - SSH** extension in VSCode:
+   - Open VSCode
+   - Click on the Extensions icon in the sidebar (or press `Ctrl+Shift+X`)
+   - Search for "Remote - SSH"
+   - Install the extension by Microsoft
+
+## Video Tutorial
+
+For a detailed walkthrough of connecting VSCode to an EC2 instance, watch this helpful video tutorial:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+  <iframe 
+    src="https://www.youtube.com/embed/V9bjfDI20zo" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen
+    title="How to Connect VSCode to EC2 Instance">
+  </iframe>
+</div>
+
+Alternatively, you can [watch on YouTube directly](https://www.youtube.com/watch?v=V9bjfDI20zo).
+
+## Step-by-Step Connection Instructions
+
+### Configure SSH Connection
+
+1. **Set up your SSH key permissions** (Mac/Linux only):
+   ```bash
+   chmod 400 ~/path/to/your-key.pem
+   ```
+   Replace `~/path/to/your-key.pem` with the actual path to your downloaded key file.
+
+2. **Open VSCode** and press `F1` or `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open the command palette.
+
+3. Type **"Remote-SSH: Open SSH Configuration File"** and select it.
+
+4. Choose the configuration file to edit (usually `~/.ssh/config` on Mac/Linux or `C:\Users\YourUsername\.ssh\config` on Windows).
+
+5. Add the following configuration to the file:
+   ```
+   Host dsan6000-ec2
+       HostName YOUR_EC2_PUBLIC_DNS
+       User ubuntu
+       IdentityFile ~/path/to/your-key.pem
+   ```
+   Replace:
+   - `YOUR_EC2_PUBLIC_DNS` with your instance's public IPv4 DNS
+   - `~/path/to/your-key.pem` with the actual path to your key file
+
+6. Save the configuration file.
+
+### Connect to Your Instance
+
+1. Press `F1` or open the command palette again.
+
+2. Type **"Remote-SSH: Connect to Host"** and select it.
+
+3. Select **dsan6000-ec2** from the list (or whatever name you gave your host).
+
+4. VSCode will open a new window and connect to your EC2 instance.
+
+5. If prompted about the platform, select **Linux**.
+
+6. If this is your first connection, you'll be asked to verify the authenticity of the host. Select **Continue**.
+
+::: {.callout-warning}
+## ⚠️ Important: AWS Session Expiration and EC2 Domain Name Changes
+
+**Every time your AWS session ends (typically after 4 hours) and you restart it:**
+
+- Your EC2 instance will **automatically restart** (give it ~2 minutes to become fully operational)
+- The instance will have a **NEW public IPv4 DNS/domain name** 
+- You **MUST update the HostName** in your VSCode SSH config file (`~/.ssh/config`) with the new DNS
+- **Your data is safe!** The storage is persistent - all your files, installed software, and work remain intact
+- Only the compute infrastructure restarts with a new address
+
+**What this means for you:**
+1. After starting a new AWS session, wait 2 minutes for EC2 to fully start
+2. Check the new public IPv4 DNS in the EC2 console
+3. Update your VSCode SSH config with the new DNS
+4. Reconnect VSCode to your instance
+
+Remember: **The old hostname is gone, but your content persists!**
+:::
+
+### Initial Setup on EC2
+
+Once connected, open a terminal in VSCode (`Terminal` → `New Terminal`) and run these commands to set up your development environment:
+
+```bash
+# Update package list
+sudo apt update
+
+# Install Python and essential tools
+sudo apt install -y python3-pip python3-venv git
+
+# Install Jupyter
+pip3 install jupyter notebook jupyterlab
+
+# Create a working directory
+mkdir ~/dsan6000
+cd ~/dsan6000
+
+# Test S3 access with your bucket
+# Replace 'your-net-id' with your actual NET ID
+aws s3 ls
+aws s3 ls s3://your-net-id-dsan6k-f2025/
+
+# Create a test file and upload it to S3
+echo "Hello from EC2!" > test.txt
+aws s3 cp test.txt s3://your-net-id-dsan6k-f2025/
+
+# Download the file back from S3
+aws s3 cp s3://your-net-id-dsan6k-f2025/test.txt downloaded-test.txt
+cat downloaded-test.txt
+```
+
+::: callout-tip
+You can now use VSCode on your local machine to edit files, run Python scripts, and work with Jupyter notebooks directly on your EC2 instance. The Remote-SSH extension makes it feel like you're working locally, but all computation happens on your EC2 instance.
+
+Additionally, your EC2 instance has AWS CLI pre-configured with the LabInstanceProfile, allowing you to seamlessly interact with S3 and other AWS services directly from the terminal.
+:::
+
+# Task 5: Complete Today's Lab Assignment
+
+Now that you have your EC2 instance set up with VSCode, let's complete today's lab assignment.
+
+## Accept the GitHub Classroom Assignment
+
+1. Click on the following link to accept the lab assignment:
+   [GitHub Classroom Assignment - Lab 02](https://classroom.github.com/a/LzwXGbm_)
+
+2. Accept the assignment, which will create a private repository for you.
+
+## Clone the Repository
+
+1. In your VSCode terminal (connected to EC2), clone your assignment repository:
+   ```bash
+   cd ~/dsan6000
+   git clone YOUR_ASSIGNMENT_REPO_URL
+   cd YOUR_REPO_NAME
+   ```
+
+## Review the Assignment
+
+The assignment is based on analyzing a dataset using cloud computing resources. You can review the `analytics.ipynb` notebook in your repo.
+
+## Complete the Tasks
+
+1. Open the `analytics.ipynb` notebook in VSCode:
+   - Click on the notebook file in the VSCode explorer
+   - VSCode will automatically open it with Jupyter support
+
+2. The notebook contains several tasks related to:
+   - Loading and exploring a dataset
+   - Creating an S3 bucket in your AWS account
+   - Uploading data to S3
+   - Performing basic data analysis
+
+3. Work through each cell in the notebook, completing the tasks marked with "TODO" or "Task".
+
+4. Make sure to:
+   - Run all cells and verify the output
+   - Complete all required tasks
+   - Add your analysis and observations where requested
+
+## Submit Your Work
+
+1. After completing all tasks, save your notebook.
+
+2. Commit and push your changes to GitHub:
+   ```bash
+   git add .
+   git commit -m "Complete Lab 02 - EC2 and data analysis"
+   git push origin main
+   ```
+
+::: callout-important
+Make sure to commit and push your completed notebook to your GitHub repository before the deadline.
+:::
+
+# Important: Shutting Down Your Resources
+
+To avoid unnecessary charges to your AWS account, it's crucial to properly shut down your resources when not in use.
+
+## Stop Your EC2 Instance
+
+When you're done working:
+
+1. Go to the EC2 Dashboard in AWS Console
+2. Select your instance
+3. Click **Instance State** → **Stop instance**
+4. Confirm the action
+
+::: callout-note
+**Stopping** an instance preserves your data and allows you to restart it later. **Terminating** an instance permanently deletes it and all associated data.
+:::
+
+## End Your Lab Session
+
+1. Return to the AWS Academy Learner Lab page
+2. Click the **End Lab** button
+3. This will stop the billing timer for your session
+
+::: callout-important
+**At the end of each work session:**
+
+1. **Stop your EC2 instance** (not terminate - stop preserves your work)
+2. **End the lab** in AWS Academy to stop the billing timer
+3. Remember you have a **$50 budget** for the entire semester - use it wisely!
+
+**Budget Management Tips:**
+- A stopped instance costs only for storage (minimal)
+- A running t3.xlarge instance costs approximately $0.22 per hour
+- Always stop instances when not actively using them
+- Set up billing alerts in AWS to monitor your spending
+:::
+
+## Restarting Your Work
+
+When you want to continue working:
+
+1. Start a new lab session in AWS Academy
+2. Go to EC2 Dashboard
+3. Select your instance and click **Instance State** → **Start instance**
+4. Wait for it to enter "Running" state
+5. Connect via VSCode as before (the DNS might change - check the new public IPv4 DNS)
+
+::: callout-tip
+Your data and installed software persist on the instance between sessions, so you can pick up right where you left off!
+:::
+
+---
+
+## GitHub Classroom Link
+
+Complete today's assignment here: [{{< var gh-classroom.lab02 >}}]({{< var gh-classroom.lab02 >}})

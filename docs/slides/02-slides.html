@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #cbccc6; background-color: #1f2430; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #cbccc6; } /* Normal */
+    code span.al { color: #ff3333; background-color: #332430; font-weight: bold; } /* Alert */
+    code span.an { color: #ffe6b3; } /* Annotation */
+    code span.at { color: #73d0ff; } /* Attribute */
+    code span.bn { color: #ffcc66; } /* BaseN */
+    code span.bu { color: #95e6cb; } /* BuiltIn */
+    code span.cf { color: #ffa759; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #95e6cb; } /* Char */
+    code span.cn { color: #d4bfff; } /* Constant */
+    code span.co { color: #5c6773; font-style: italic; } /* Comment */
+    code span.cv { color: #d4bfff; } /* CommentVar */
+    code span.do { color: #5c6773; } /* Documentation */
+    code span.dt { color: #ffa759; } /* DataType */
+    code span.dv { color: #ffcc66; } /* DecVal */
+    code span.er { color: #ff3333; text-decoration: underline; } /* Error */
+    code span.ex { color: #73d0ff; font-weight: bold; } /* Extension */
+    code span.fl { color: #ffcc66; } /* Float */
+    code span.fu { color: #ffd580; } /* Function */
+    code span.im { color: #bae67e; } /* Import */
+    code span.in { color: #ffcc66; } /* Information */
+    code span.kw { color: #ffa759; font-weight: bold; } /* Keyword */
+    code span.op { color: #f29e74; } /* Operator */
+    code span.ot { color: #5ccfe6; } /* Other */
+    code span.pp { color: #f28779; } /* Preprocessor */
+    code span.re { color: #73d0ff; background-color: #2a4254; } /* RegionMarker */
+    code span.sc { color: #95e6cb; } /* SpecialChar */
+    code span.ss { color: #95e6cb; } /* SpecialString */
+    code span.st { color: #bae67e; } /* String */
+    code span.va { color: #5ccfe6; } /* Variable */
+    code span.vs { color: #bae67e; } /* VerbatimString */
+    code span.wa { color: #f28779; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-138bffa59e0b8e1d219a851a91faec2e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
@@ -295,6 +360,183 @@ Amit Arora, Jeff Jacobs
 <h2></h2>
 
 <img src="img/cloud-service-models-hotel.png" class="r-stretch"></section>
+<section id="infrastructure-as-a-service-iaas" class="slide level2">
+<h2>Infrastructure as a Service (IaaS)</h2>
+<h3 id="what-is-iaas">What is IaaS?</h3>
+<ul>
+<li><strong>Virtualized computing resources</strong> delivered over the internet</li>
+<li>Provider manages: Physical hardware, virtualization, networking, storage</li>
+<li>You manage: Operating systems, applications, runtime, data, middleware</li>
+</ul>
+<h3 id="examples-use-cases">Examples &amp; Use Cases</h3>
+<ul>
+<li><strong>Amazon EC2</strong>, Microsoft Azure VMs, Google Compute Engine</li>
+<li><strong>Perfect for:</strong> Development environments, web hosting, backup &amp; recovery</li>
+<li><strong>Benefits:</strong> Rapid scaling, pay-as-you-go, global availability</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="co"># Launch a virtual machine in seconds</span></span>
+<span id="cb1-2"><a></a><span class="ex">aws</span> ec2 run-instances <span class="at">--image-id</span> ami-12345 <span class="at">--instance-type</span> t3.xlarge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="platform-as-a-service-paas" class="slide level2">
+<h2>Platform as a Service (PaaS)</h2>
+<h3 id="what-is-paas">What is PaaS?</h3>
+<ul>
+<li><strong>Complete development and deployment environment</strong> in the cloud</li>
+<li>Provider manages: Infrastructure, operating systems, runtime environments</li>
+<li>You manage: Applications and data</li>
+</ul>
+<h3 id="examples-use-cases-1">Examples &amp; Use Cases</h3>
+<ul>
+<li><strong>AWS Elastic Beanstalk</strong>, Google App Engine, Microsoft Azure App Service</li>
+<li><strong>Perfect for:</strong> Web applications, API development, microservices</li>
+<li><strong>Benefits:</strong> Faster development, automatic scaling, integrated DevOps</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Deploy your app with minimal configuration</span></span>
+<span id="cb2-2"><a></a>git push heroku main  <span class="co"># App automatically deployed and scaled</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="software-as-a-service-saas" class="slide level2">
+<h2>Software as a Service (SaaS)</h2>
+<h3 id="what-is-saas">What is SaaS?</h3>
+<ul>
+<li><strong>Complete applications</strong> delivered over the internet</li>
+<li>Provider manages: Everything (infrastructure, platform, software)</li>
+<li>You manage: Your data and user access</li>
+</ul>
+<h3 id="examples-use-cases-2">Examples &amp; Use Cases</h3>
+<ul>
+<li><strong>Gmail</strong>, Salesforce, Microsoft 365, Slack, Zoom</li>
+<li><strong>Perfect for:</strong> Business applications, collaboration tools, CRM</li>
+<li><strong>Benefits:</strong> No installation, automatic updates, accessible anywhere</li>
+</ul>
+<h3 id="the-saas-revolution">The SaaS Revolution</h3>
+<ul>
+<li>80% of companies use SaaS applications</li>
+<li>$195 billion market size (2023)</li>
+</ul>
+</section>
+<section id="cloud-infrastructure-and-the-ai-revolution" class="slide level2">
+<h2>Cloud Infrastructure and the AI Revolution</h2>
+<h3 id="why-cloud-ai-perfect-match">Why Cloud + AI = Perfect Match</h3>
+<ul>
+<li><strong>Massive Computational Requirements</strong>
+<ul>
+<li>Training large language models requires thousands of GPUs</li>
+<li>Cloud provides elastic access to specialized hardware</li>
+</ul></li>
+<li><strong>Data Storage &amp; Processing</strong>
+<ul>
+<li>AI models need petabytes of training data</li>
+<li>Cloud offers unlimited, globally distributed storage</li>
+</ul></li>
+<li><strong>Cost Efficiency</strong>
+<ul>
+<li>Pay-per-use model for expensive AI hardware</li>
+<li>No upfront investment in GPU clusters</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-data-center-explosion" class="slide level2">
+<h2>The Data Center Explosion</h2>
+<h3 id="the-numbers">The Numbers</h3>
+<ul>
+<li><strong>2024</strong>: Approximately <strong>12,000 data centers worldwide</strong> (not millions)</li>
+<li><strong>Power consumption</strong>: Over <strong>400 TWh annually</strong> (about <strong>1–1.3%</strong> of global electricity use)</li>
+<li><strong>Growth rate</strong>: <strong>8–11% per year</strong> (market CAGR), led by AI and cloud computing</li>
+</ul>
+<h3 id="whats-inside-modern-data-centers">What’s Inside Modern Data Centers?</h3>
+<ul>
+<li><strong>Specialized AI Chips</strong>: NVIDIA H100s, Google TPUs, custom silicon</li>
+<li><strong>Massive Scale</strong>: Facebook (Meta) data centers operate <strong>hundreds of thousands</strong> of servers worldwide</li>
+<li><strong>Global Networks</strong>: Hyperscale data centers leverage <strong>sub-second</strong> (near real-time) global data synchronization using high-speed optical networks</li>
+</ul>
+<h3 id="environmental-impact">Environmental Impact</h3>
+<ul>
+<li><strong>Cloud leaders pledge carbon neutrality by 2030</strong> (Google, Microsoft) or 2025 (AWS)</li>
+<li>Rapid <strong>innovation in cooling</strong> (liquid, AI optimization), <strong>renewable energy adoption</strong>, and <strong>efficient chip design</strong> is helping curb environmental impact</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="references">References</h3>
+<ul>
+<li>ABI Research data center statistics: https://www.abiresearch.com/blog/data-centers-by-region-size-company</li>
+<li>Data center count and growth: https://brightlio.com/data-center-stats/</li>
+<li>Data centers by country: https://www.statista.com/statistics/1228433/data-centers-worldwide-by-country/</li>
+<li>Number of colocation and hyperscale sites: https://www.linkedin.com/pulse/how-many-data-centers-world-where-built-heidi-fan-fkjxc</li>
+<li>Data center power consumption: https://www.datacenterdynamics.com/en/news/iea-data-center-energy-consumption-set-to-double-by-2030-to-945twh/</li>
+<li>Data center projections and market growth: https://finance.yahoo.com/news/data-center-market-size-hits-103000410.html</li>
+<li>AI hardware in data centers: https://www.ibm.com/think/topics/ai-data-center</li>
+<li>Facebook server estimates: https://www.datacenterknowledge.com/hyperscalers/the-facebook-data-center-faq, https://www.datacenterfrontier.com/hyperscale/article/11427952/facebook-showcases-its-40-million-square-feet-of-global-data-centers</li>
+<li>Data center network technology: https://www.datacenterdynamics.com/en/opinions/data-center-bandwidth-continues-to-climb-and-its-not-coming-back-down-any-time-soon/</li>
+<li>Cloud provider carbon neutrality: https://www.techmahindra.com/insights/views/sustainability-in-cloud/, https://bioscore.com/blog/green-cloud-computing-a-comprehensive-comparison-of-cloud-providers-sustainability-efforts</li>
+<li>Data center cooling innovations: https://www.utilitydive.com/news/2025-outlook-data-center-cooling-electricity-demand-ai-dual-phase-direct-to-chip-energy-efficiency/738120/, https://blog.equinix.com/blog/2024/08/27/how-liquid-cooling-enables-the-next-generation-of-tech-innovation/</li>
+<li>Comprehensive energy estimates: https://www.devsustainability.com/p/data-center-energy-and-ai-in-2025</li>
+<li>Data center growth drivers and energy: https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2025/genai-power-consumption-creates-need-for-more-sustainable-data-centers.html</li>
+</ul>
+</section>
+<section id="gpu-infrastructure-the-ai-powerhouse" class="slide level2">
+<h2>GPU Infrastructure: The AI Powerhouse</h2>
+<h3 id="from-gaming-to-ai">From Gaming to AI</h3>
+<ul>
+<li><strong>Originally</strong>: Graphics processing for video games</li>
+<li><strong>Now</strong>: Parallel processing powerhouse for AI/ML workloads</li>
+<li><strong>Architecture</strong>: Thousands of cores vs.&nbsp;CPU’s 8-64 cores</li>
+</ul>
+<h3 id="cloud-gpu-offerings">Cloud GPU Offerings</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="co"># AWS GPU instances for different AI workloads</span></span>
+<span id="cb3-2"><a></a><span class="ex">p4d.24xlarge</span>   <span class="co"># 8x NVIDIA A100 (40GB) - $32/hour</span></span>
+<span id="cb3-3"><a></a><span class="ex">p3.16xlarge</span>    <span class="co"># 8x NVIDIA V100 (16GB) - $24/hour</span></span>
+<span id="cb3-4"><a></a><span class="ex">g4dn.xlarge</span>    <span class="co"># 1x NVIDIA T4 (16GB)   - $0.50/hour</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="the-scale-challenge">The Scale Challenge</h3>
+<ul>
+<li><strong>GPT-4 training</strong>: Estimated 25,000 A100 GPUs for 6 months</li>
+<li><strong>Meta’s AI infrastructure</strong>: 350,000+ NVIDIA H100 chips</li>
+<li><strong>Cost</strong>: Single AI training run can cost $100M+</li>
+</ul>
+</section>
+<section id="distributed-computing-and-large-clusters" class="slide level2">
+<h2>Distributed Computing and Large Clusters</h2>
+<h3 id="modern-ai-requires-massive-clusters">Modern AI Requires Massive Clusters</h3>
+<ul>
+<li><strong>Model parallelism</strong>: Split models across multiple GPUs</li>
+<li><strong>Data parallelism</strong>: Process different data batches simultaneously<br>
+</li>
+<li><strong>Pipeline parallelism</strong>: Different layers on different GPUs</li>
+</ul>
+<h3 id="technologies-enabling-scale">Technologies Enabling Scale</h3>
+<ul>
+<li><strong>Kubernetes</strong>: Container orchestration for microservices</li>
+<li><strong>Apache Spark</strong>: Distributed data processing framework</li>
+<li><strong>Ray</strong>: Distributed AI/ML framework for Python</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># Distributed training with Ray</span></span>
+<span id="cb4-2"><a></a><span class="im">import</span> ray</span>
+<span id="cb4-3"><a></a><span class="im">from</span> ray <span class="im">import</span> tune</span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a><span class="co"># Scale across 1000+ machines automatically</span></span>
+<span id="cb4-6"><a></a>tune.run(train_model, resources_per_trial<span class="op">=</span>{<span class="st">"gpu"</span>: <span class="dv">8</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-storage-evolution" class="slide level2">
+<h2>Data Storage Evolution</h2>
+<h3 id="the-data-tsunami">The Data Tsunami</h3>
+<ul>
+<li><strong>2025 projection</strong>: 181 zettabytes of data globally</li>
+<li><strong>AI training datasets</strong>: CommonCrawl (800TB), ImageNet (150GB)</li>
+<li><strong>Real-time requirements</strong>: 1-10ms latency for inference and in some cases Sub-millisecond</li>
+</ul>
+<h3 id="storage-technologies">Storage Technologies</h3>
+<ul>
+<li><strong>Object Storage</strong>: Amazon S3, Google Cloud Storage (petabyte scale)</li>
+<li><strong>High-performance</strong>: NVMe SSDs, persistent memory</li>
+<li><strong>Distributed filesystems</strong>: HDFS, GlusterFS, Ceph</li>
+</ul>
+<h3 id="the-economics-of-data">The Economics of Data</h3>
+<ul>
+<li><strong>Storage costs</strong>: Dropped 99.9% since 1980</li>
+<li><strong>Transfer costs</strong>: Still significant for large datasets</li>
+<li><strong>Edge computing</strong>: Bringing compute closer to data sources</li>
+</ul>
+</section>
 <section id="the-evolution-of-the-cloud" class="slide level2">
 <h2>The evolution of the Cloud</h2>
 <table class="caption-top">
@@ -362,6 +604,40 @@ Amit Arora, Jeff Jacobs
 <img data-src="img/nova-datacenter-locations.png" class="r-stretch"></section>
 <section id="of-the-worlds-internet-traffic-passes-through-loudon-county-va" class="slide level2">
 <h2>70% of the world’s internet traffic passes through Loudon County, VA</h2>
+</section>
+<section id="references---saas-cloud-computing" class="slide level2">
+<h2>References - SaaS &amp; Cloud Computing</h2>
+<p><strong>SaaS and Cloud Computing Statistics:</strong></p>
+<ul>
+<li><a href="https://zylo.com/blog/saas-statistics/">1. Zylo: 111 Unmissable SaaS Statistics for 2025</a></li>
+<li><a href="https://www.spendesk.com/blog/saas-statistics/">2. Spendesk: 60+ eye-opening SaaS statistics (2025)</a></li>
+<li><a href="https://www.substly.com/en/blog/the-28-most-important-saas-statistics-in-2023">3. Substly: The 28 most important SaaS statistics in 2023</a></li>
+<li><a href="https://harpa.ai/blog/saas-industry-key-statistics-2023">4. Harpa AI: SaaS Industry Key Statistics 2023</a></li>
+<li><a href="https://www.contentbeta.com/blog/saas-video-statistics/">5. Content Beta: 110+ SaaS Statistics and Trends</a></li>
+<li><a href="https://www.statista.com/statistics/1233538/average-number-saas-apps-yearly/">6. Statista: Average number of SaaS apps used in the U.S. 2024</a></li>
+<li><a href="https://meetanshi.com/blog/saas-statistics/">7. Meetanshi: SaaS Statistics for 2025: Market Size, Growth, Trends &amp; More</a></li>
+</ul>
+</section>
+<section id="references---data-storage-ai-infrastructure" class="slide level2">
+<h2>References - Data Storage &amp; AI Infrastructure</h2>
+<p><strong>Global Data Volume &amp; AI Datasets:</strong></p>
+<ul>
+<li>2025 global data volume (181 zettabytes): https://rivery.io/blog/big-data-statistics-how-much-data-is-there-in-the-world/ [2], https://explodingtopics.com/blog/data-generated-per-day [6], https://www.pit.edu/news/data-analytics-statistics-and-trends-for-2025/ [7], https://www.forbes.com/councils/forbestechcouncil/2024/03/04/from-5mb-hard-drives-to-180-zettabytes-the-data-migration-challenge/ [9]</li>
+<li>CommonCrawl and ImageNet dataset sizes: https://www.ibm.com/think/topics/ai-data-center [10]</li>
+<li>AI inference latency and storage tech: https://www.ibm.com/think/topics/ai-data-center [10], https://www.rcrwireless.com/20250407/fundamentals/ai-optimized-data-center [11]</li>
+</ul>
+<p><strong>Storage Economics &amp; Technology:</strong></p>
+<ul>
+<li>Storage cost declines: https://humanprogress.org/trends/vastly-cheaper-computation/ [1], https://ourworldindata.org/data-insights/the-price-of-computer-storage-has-fallen-exponentially-since-the-1950s [8]</li>
+<li>Ongoing significance of transfer (egress) costs: https://lightedge.com/the-data-explosion-and-hidden-data-storage-costs-in-the-cloud-could-object-storage-be-the-answer/ [3]</li>
+<li>Edge computing trends: https://mondo.com/insights/evolution-data-storage-tapes-cloud-computing/ [5]</li>
+</ul>
+<p><strong>GPU Infrastructure &amp; AI Training Costs:</strong></p>
+<ul>
+<li>GPT-4 GPU count and training duration: https://www.genspark.ai/spark/how-many-gpus-are-needed-to-train-gpt4-o/56c3b449-f206-495f-bc9b-d06812bf4a33 [1], https://klu.ai/blog/gpt-4-llm [3], https://www.acorn.io/resources/learning-center/openai/ [5]</li>
+<li>Meta’s NVIDIA H100 GPUs: https://www.reddit.com/r/singularity/comments/1bi8rme/jensen_huang_just_gave_us_some_numbers_for_the/ [4]</li>
+<li>AI training cost estimates: https://www.genspark.ai/spark/how-many-gpus-are-needed-to-train-gpt4-o/56c3b449-f206-495f-bc9b-d06812bf4a33 [1], https://www.acorn.io/resources/learning-center/openai/ [5]</li>
+</ul>
 </section></section>
 <section id="time-for-lab" class="title-slide slide level1 center">
 <h1>Time for Lab!</h1>

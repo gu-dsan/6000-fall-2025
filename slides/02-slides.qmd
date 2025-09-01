@@ -137,6 +137,178 @@ More CPUs, more memory, more storage!
 
 <img src="img/cloud-service-models-hotel.png">
 
+## Infrastructure as a Service (IaaS)
+
+### What is IaaS?
+
+* **Virtualized computing resources** delivered over the internet
+* Provider manages: Physical hardware, virtualization, networking, storage
+* You manage: Operating systems, applications, runtime, data, middleware
+
+### Examples & Use Cases
+
+* **Amazon EC2**, Microsoft Azure VMs, Google Compute Engine
+* **Perfect for:** Development environments, web hosting, backup & recovery
+* **Benefits:** Rapid scaling, pay-as-you-go, global availability
+
+```bash
+# Launch a virtual machine in seconds
+aws ec2 run-instances --image-id ami-12345 --instance-type t3.xlarge
+```
+
+## Platform as a Service (PaaS)
+
+### What is PaaS?
+
+* **Complete development and deployment environment** in the cloud
+* Provider manages: Infrastructure, operating systems, runtime environments
+* You manage: Applications and data
+
+### Examples & Use Cases
+
+* **AWS Elastic Beanstalk**, Google App Engine, Microsoft Azure App Service
+* **Perfect for:** Web applications, API development, microservices
+* **Benefits:** Faster development, automatic scaling, integrated DevOps
+
+```python
+# Deploy your app with minimal configuration
+git push heroku main  # App automatically deployed and scaled
+```
+
+## Software as a Service (SaaS)
+
+### What is SaaS?
+
+* **Complete applications** delivered over the internet
+* Provider manages: Everything (infrastructure, platform, software)
+* You manage: Your data and user access
+
+### Examples & Use Cases
+
+* **Gmail**, Salesforce, Microsoft 365, Slack, Zoom
+* **Perfect for:** Business applications, collaboration tools, CRM
+* **Benefits:** No installation, automatic updates, accessible anywhere
+
+### The SaaS Revolution
+* 80% of companies use SaaS applications
+* $195 billion market size (2023)
+
+## Cloud Infrastructure and the AI Revolution
+
+### Why Cloud + AI = Perfect Match
+
+* **Massive Computational Requirements**
+  * Training large language models requires thousands of GPUs
+  * Cloud provides elastic access to specialized hardware
+  
+* **Data Storage & Processing**
+  * AI models need petabytes of training data
+  * Cloud offers unlimited, globally distributed storage
+
+* **Cost Efficiency**
+  * Pay-per-use model for expensive AI hardware
+  * No upfront investment in GPU clusters
+
+## The Data Center Explosion
+
+### The Numbers
+- **2024**: Approximately **12,000 data centers worldwide** (not millions)
+- **Power consumption**: Over **400 TWh annually** (about **1–1.3%** of global electricity use)
+- **Growth rate**: **8–11% per year** (market CAGR), led by AI and cloud computing
+
+### What's Inside Modern Data Centers?
+- **Specialized AI Chips**: NVIDIA H100s, Google TPUs, custom silicon
+- **Massive Scale**: Facebook (Meta) data centers operate **hundreds of thousands** of servers worldwide
+- **Global Networks**: Hyperscale data centers leverage **sub-second** (near real-time) global data synchronization using high-speed optical networks
+
+### Environmental Impact
+- **Cloud leaders pledge carbon neutrality by 2030** (Google, Microsoft) or 2025 (AWS)
+- Rapid **innovation in cooling** (liquid, AI optimization), **renewable energy adoption**, and **efficient chip design** is helping curb environmental impact
+
+---
+
+### References
+
+- ABI Research data center statistics: https://www.abiresearch.com/blog/data-centers-by-region-size-company
+- Data center count and growth: https://brightlio.com/data-center-stats/
+- Data centers by country: https://www.statista.com/statistics/1228433/data-centers-worldwide-by-country/
+- Number of colocation and hyperscale sites: https://www.linkedin.com/pulse/how-many-data-centers-world-where-built-heidi-fan-fkjxc
+- Data center power consumption: https://www.datacenterdynamics.com/en/news/iea-data-center-energy-consumption-set-to-double-by-2030-to-945twh/
+- Data center projections and market growth: https://finance.yahoo.com/news/data-center-market-size-hits-103000410.html
+- AI hardware in data centers: https://www.ibm.com/think/topics/ai-data-center
+- Facebook server estimates: https://www.datacenterknowledge.com/hyperscalers/the-facebook-data-center-faq, https://www.datacenterfrontier.com/hyperscale/article/11427952/facebook-showcases-its-40-million-square-feet-of-global-data-centers
+- Data center network technology: https://www.datacenterdynamics.com/en/opinions/data-center-bandwidth-continues-to-climb-and-its-not-coming-back-down-any-time-soon/
+- Cloud provider carbon neutrality: https://www.techmahindra.com/insights/views/sustainability-in-cloud/, https://bioscore.com/blog/green-cloud-computing-a-comprehensive-comparison-of-cloud-providers-sustainability-efforts
+- Data center cooling innovations: https://www.utilitydive.com/news/2025-outlook-data-center-cooling-electricity-demand-ai-dual-phase-direct-to-chip-energy-efficiency/738120/, https://blog.equinix.com/blog/2024/08/27/how-liquid-cooling-enables-the-next-generation-of-tech-innovation/
+- Comprehensive energy estimates: https://www.devsustainability.com/p/data-center-energy-and-ai-in-2025
+- Data center growth drivers and energy: https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2025/genai-power-consumption-creates-need-for-more-sustainable-data-centers.html
+
+## GPU Infrastructure: The AI Powerhouse
+
+### From Gaming to AI
+
+* **Originally**: Graphics processing for video games
+* **Now**: Parallel processing powerhouse for AI/ML workloads
+* **Architecture**: Thousands of cores vs. CPU's 8-64 cores
+
+### Cloud GPU Offerings
+
+```bash
+# AWS GPU instances for different AI workloads
+p4d.24xlarge   # 8x NVIDIA A100 (40GB) - $32/hour
+p3.16xlarge    # 8x NVIDIA V100 (16GB) - $24/hour
+g4dn.xlarge    # 1x NVIDIA T4 (16GB)   - $0.50/hour
+```
+
+### The Scale Challenge
+
+* **GPT-4 training**: Estimated 25,000 A100 GPUs for 6 months
+* **Meta's AI infrastructure**: 350,000+ NVIDIA H100 chips
+* **Cost**: Single AI training run can cost $100M+
+
+## Distributed Computing and Large Clusters
+
+### Modern AI Requires Massive Clusters
+
+* **Model parallelism**: Split models across multiple GPUs
+* **Data parallelism**: Process different data batches simultaneously  
+* **Pipeline parallelism**: Different layers on different GPUs
+
+### Technologies Enabling Scale
+
+* **Kubernetes**: Container orchestration for microservices
+* **Apache Spark**: Distributed data processing framework
+* **Ray**: Distributed AI/ML framework for Python
+
+```python
+# Distributed training with Ray
+import ray
+from ray import tune
+
+# Scale across 1000+ machines automatically
+tune.run(train_model, resources_per_trial={"gpu": 8})
+```
+
+## Data Storage Evolution
+
+### The Data Tsunami
+
+* **2025 projection**: 181 zettabytes of data globally
+* **AI training datasets**: CommonCrawl (800TB), ImageNet (150GB)
+* **Real-time requirements**: 1-10ms latency for inference and in some cases Sub-millisecond
+
+### Storage Technologies
+
+* **Object Storage**: Amazon S3, Google Cloud Storage (petabyte scale)
+* **High-performance**: NVMe SSDs, persistent memory
+* **Distributed filesystems**: HDFS, GlusterFS, Ceph
+
+### The Economics of Data
+
+* **Storage costs**: Dropped 99.9% since 1980
+* **Transfer costs**: Still significant for large datasets
+* **Edge computing**: Bringing compute closer to data sources
+
 ## The evolution of the Cloud
 
 | Yesterday | Today | Tomorrow |
@@ -174,5 +346,37 @@ https://gcn.com/articles/2018/10/12/loudoun-county-data-centers.aspx
 
 ##  70% of the world's internet traffic passes through Loudon County, VA
 
+
+## References - SaaS & Cloud Computing
+
+**SaaS and Cloud Computing Statistics:**
+
+- [1. Zylo: 111 Unmissable SaaS Statistics for 2025](https://zylo.com/blog/saas-statistics/)
+- [2. Spendesk: 60+ eye-opening SaaS statistics (2025)](https://www.spendesk.com/blog/saas-statistics/)
+- [3. Substly: The 28 most important SaaS statistics in 2023](https://www.substly.com/en/blog/the-28-most-important-saas-statistics-in-2023)
+- [4. Harpa AI: SaaS Industry Key Statistics 2023](https://harpa.ai/blog/saas-industry-key-statistics-2023)
+- [5. Content Beta: 110+ SaaS Statistics and Trends](https://www.contentbeta.com/blog/saas-video-statistics/)
+- [6. Statista: Average number of SaaS apps used in the U.S. 2024](https://www.statista.com/statistics/1233538/average-number-saas-apps-yearly/)
+- [7. Meetanshi: SaaS Statistics for 2025: Market Size, Growth, Trends & More](https://meetanshi.com/blog/saas-statistics/)
+
+## References - Data Storage & AI Infrastructure
+
+**Global Data Volume & AI Datasets:**
+
+- 2025 global data volume (181 zettabytes): https://rivery.io/blog/big-data-statistics-how-much-data-is-there-in-the-world/ [2], https://explodingtopics.com/blog/data-generated-per-day [6], https://www.pit.edu/news/data-analytics-statistics-and-trends-for-2025/ [7], https://www.forbes.com/councils/forbestechcouncil/2024/03/04/from-5mb-hard-drives-to-180-zettabytes-the-data-migration-challenge/ [9]
+- CommonCrawl and ImageNet dataset sizes: https://www.ibm.com/think/topics/ai-data-center [10]
+- AI inference latency and storage tech: https://www.ibm.com/think/topics/ai-data-center [10], https://www.rcrwireless.com/20250407/fundamentals/ai-optimized-data-center [11]
+
+**Storage Economics & Technology:**
+
+- Storage cost declines: https://humanprogress.org/trends/vastly-cheaper-computation/ [1], https://ourworldindata.org/data-insights/the-price-of-computer-storage-has-fallen-exponentially-since-the-1950s [8]
+- Ongoing significance of transfer (egress) costs: https://lightedge.com/the-data-explosion-and-hidden-data-storage-costs-in-the-cloud-could-object-storage-be-the-answer/ [3]
+- Edge computing trends: https://mondo.com/insights/evolution-data-storage-tapes-cloud-computing/ [5]
+
+**GPU Infrastructure & AI Training Costs:**
+
+- GPT-4 GPU count and training duration: https://www.genspark.ai/spark/how-many-gpus-are-needed-to-train-gpt4-o/56c3b449-f206-495f-bc9b-d06812bf4a33 [1], https://klu.ai/blog/gpt-4-llm [3], https://www.acorn.io/resources/learning-center/openai/ [5]
+- Meta's NVIDIA H100 GPUs: https://www.reddit.com/r/singularity/comments/1bi8rme/jensen_huang_just_gave_us_some_numbers_for_the/ [4]
+- AI training cost estimates: https://www.genspark.ai/spark/how-many-gpus-are-needed-to-train-gpt4-o/56c3b449-f206-495f-bc9b-d06812bf4a33 [1], https://www.acorn.io/resources/learning-center/openai/ [5]
 
 # Time for Lab!

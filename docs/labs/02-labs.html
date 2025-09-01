@@ -9,7 +9,7 @@
 <meta name="author" content="Amit Arora, Jeff Jacobs">
 <meta name="description" content="Analyze Big Data using cloud computing and technologies such as Apache Spark">
 
-<title>Lab 2 Amazon Web Services (AWS) Setup Instructions – DSAN 6000</title>
+<title>Lab 2: EC2 Setup and VSCode Remote Development – DSAN 6000</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,42 +114,13 @@ gtag('js', new Date());
 gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Lab 2 Amazon Web Services (AWS) Setup Instructions – DSAN 6000">
+<meta property="og:title" content="Lab 2: EC2 Setup and VSCode Remote Development – DSAN 6000">
 <meta property="og:description" content="DSAN 6000 Fall 2025">
 <meta property="og:image" content="https://gu-dsan.github.io/6000-fall-2025/labs/files/img/dsan6000-logo.png">
 <meta property="og:site_name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Lab 2 Amazon Web Services (AWS) Setup Instructions – DSAN 6000">
+<meta name="twitter:title" content="Lab 2: EC2 Setup and VSCode Remote Development – DSAN 6000">
 <meta name="twitter:description" content="DSAN 6000 Fall 2025">
 <meta name="twitter:image" content="https://gu-dsan.github.io/6000-fall-2025/labs/files/img/dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
@@ -329,7 +334,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/01-labs.html">Labs content</a></li><li class="breadcrumb-item"><a href="../labs/02-labs.html">2: Cloud services</a></li></ol></nav><h1 class="title display-7">Lab 2 Amazon Web Services (AWS) Setup Instructions</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/01-labs.html">Labs content</a></li><li class="breadcrumb-item"><a href="../labs/02-labs.html">2: Cloud services</a></li></ol></nav><h1 class="title display-7">Lab 2: EC2 Setup and VSCode Remote Development</h1></header>
 
 <header id="title-block-header">
 
@@ -351,7 +356,7 @@ Important
 <p>Make sure that you are connected to the <em>Saxanet</em> WiFi network and <em>not</em> the <em>GuestNet</em> network. SSH (TCP port 22) is blocked on GuesNet which means if you are on GuesNet you wil not be able to connect to your cloud VMs or clone repos from GitHub via SSH. <strong>Use SaxaNet</strong>. #</p>
 </div>
 </div>
-<p>Follow these instructions <em>step-by-step</em> to setup your AWS environment. The screenshots may look a bit different than what you are seeing, but the flow is the same.</p>
+<p>Follow these instructions <em>step-by-step</em> to setup your AWS EC2 environment. This EC2 instance will serve as your development environment throughout the semester, allowing you to run Python code and Jupyter notebooks using VSCode as your IDE.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -376,7 +381,7 @@ Note
 <li><p>Scroll all the way to the bottom of the page and accept the <em>Terms &amp; Conditions</em>. #<a href="img/aws5-2.png"><img src="img/aws5-2.png" class="img-fluid"></a></p></li>
 <li><p>You are now being logged in into the <em>AWS Console</em>. Notice the <font color="red">⬤</font> adjacent to the word <em>AWS</em> towards the top left of the page. This indicates that the lab (i.e.&nbsp;the AWS resources) have not yet started. Click on the <em>play</em> button along side <em>Start Lab</em> on the to top right corner of the page to start the lab. #<a href="img/aws6.png"><img src="img/aws6.png" class="img-fluid"></a> #<a href="img/aws7.png"><img src="img/aws7.png" class="img-fluid"></a></p></li>
 <li><p>Each <em>lab session</em> that you start is at most 4 hours and you can see a timer showing the remaining time (hh:mm) on the ribbon along with the remaining budget out of the $50 allocated to each account. #<a href="img/aws-ribbon.png"><img src="img/aws-ribbon.png" class="img-fluid"></a></p></li>
-<li><p>This environment is <strong>long-lived</strong>. When the session timer runs to 0:00, the session will end, but any data and resources that you created in the AWS account will be retained. If you later launch a new session (for example, the next day), you will find that your work is still in the lab environment. Running EC2 instances will be stopped and then automatically restarted the next time you start a session. SageMaker notebook instances will be stopped, but not restarted the next time you start a session.</p></li>
+<li><p>This environment is <strong>long-lived</strong>. When the session timer runs to 0:00, the session will end, but any data and resources that you created in the AWS account will be retained. If you later launch a new session (for example, the next day), you will find that your work is still in the lab environment. Running EC2 instances will be stopped and then automatically restarted the next time you start a session.</p></li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -388,7 +393,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Monitor your lab budget in the lab interface above. Whenever you have an active lab session, the latest known remaining budget information will display at the top of this screen. This data comes from AWS Budgets which typically updates every 8 to 12 hours. Therefore the remaining budget that you see may not reflect your most recent account activity. If you exceed your lab budget your lab account will be disabled and all progress and resources will be lost. Therefore, it is important for you to manage your spending. Read about how to preserve your budget.</p>
+<p>Monitor your lab budget in the lab interface above. Whenever you have an active lab session, the latest known remaining budget information will display at the top of this screen. This data comes from AWS Budgets which typically updates every 8 to 12 hours. Therefore the remaining budget that you see may not reflect your most recent account activity. If you exceed your lab budget your lab account will be disabled and all progress and resources will be lost. Therefore, it is important for you to manage your spending.</p>
 </div>
 </div>
 <section id="login-into-the-aws-console" class="level2">
@@ -419,81 +424,100 @@ Note
 </section>
 </section>
 </section>
-<section id="task-2-create-a-sagemaker-studio-domain-and-notebook" class="level1">
-<h1>Task 2: Create a SageMaker Studio Domain and Notebook</h1>
-<p>The Amazon SageMaker Studio is one of the data science tools that we will be using during this course. We will set a SageMaker Studio domain and start a Jupyter Notebook as part of this task so that we can use it for future labs.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="task-2-create-an-ec2-instance-for-development" class="level1">
+<h1>Task 2: Create an EC2 Instance for Development</h1>
+<p>Now we’ll create an EC2 instance that will serve as your development environment throughout the semester. This instance will run Ubuntu Linux and can be accessed remotely using VSCode.</p>
+<section id="navigate-to-ec2-service" class="level2">
+<h2 class="anchored" data-anchor-id="navigate-to-ec2-service">Navigate to EC2 Service</h2>
 <ol type="1">
-<li><p>All screenshots on this page are clickable i.e.&nbsp;you can click on these to see an enlarged version of the screenshot for better clarity.</p></li>
-<li><p>Pay special attention to portions of the screenshot highlighted in a red rectangle, they usually correspond to non-default options. If you miss any of these your SageMaker domain would not be created correctly and you may have to repeat the entire procedure.</p></li>
+<li>From the AWS Console home page, click on the <strong>EC2</strong> service. You can find it under “Compute” or by using the search bar at the top.</li>
 </ol>
-</div>
-</div>
+<p><a href="img/Console-Home-Console-Home.png"><img src="img/Console-Home-Console-Home.png" class="img-fluid"></a></p>
+<ol start="2" type="1">
+<li>Once you’re in the EC2 Dashboard, click on the <strong>Launch instances</strong> button on the top right.</li>
+</ol>
+<p><a href="img/Home-EC2.png"><img src="img/Home-EC2.png" class="img-fluid"></a></p>
+</section>
+<section id="configure-your-instance" class="level2">
+<h2 class="anchored" data-anchor-id="configure-your-instance">Configure Your Instance</h2>
+<p>You’ll now be on the “Launch an instance” page. Follow these steps to configure your instance:</p>
+<section id="configure-instance-details" class="level3">
+<h3 class="anchored" data-anchor-id="configure-instance-details">Configure Instance Details</h3>
 <ol type="1">
-<li><p>Navigate to SageMaker Studio. <a href="img/1-landing-page.png"><img src="img/1-landing-page.png" class="img-fluid"></a></p></li>
-<li><p>Select Amazon Sagemaker, Click on Domains on the side bar <a href="img/2-domain-page.png"><img src="img/2-domain-page.png" class="img-fluid"></a></p></li>
-<li><p>Select <strong>Set up for organizations</strong>. <a href="img/2-1-domain-page.png"><img src="img/2-1-domain-page.png" class="img-fluid"></a></p></li>
-<li><p>Click on Create Domain, This screen should pop up! <a href="img/3-domain-setup.png"><img src="img/3-domain-setup.png" class="img-fluid"></a></p></li>
-<li><p>Enter a name for your domain as shown above. Click on next</p></li>
-<li><p>Select <strong>Use an existing role</strong> and then select <strong>LabRole</strong>. <a href="img/sm-iam.png"><img src="img/sm-iam.png" class="img-fluid"></a></p></li>
-<li><p>On the next page, do the following:</p>
+<li><p><strong>Name and tags</strong>: Give your instance a meaningful name, such as <code>{your-net-id}-dsan6k-dev</code> (replace <code>{your-net-id}</code> with your actual NET ID).</p></li>
+<li><p><strong>Application and OS Images (Amazon Machine Image)</strong>:</p>
 <ul>
-<li><strong>Disable both settings under MLOps configuration</strong>.</li>
-<li>Under <strong>Canvas ready to use model configuration</strong> section, select “Use existing role” -&gt; “Custom IAM role ARN” and in the edit box type the ARN of the <strong>LabRole</strong> role. The ARN of the <strong>LabRole</strong> is of the form <code>arn:aws:iam::your_account_id:role/LabRole</code>, copy paste this string in the <strong>Custom IAM role ARN</strong> box and then replace <code>your_account_id</code> with the account id of your AWS account. You can find the account id of your AWS account in the top right corner of your browser window (it is highlighted in the red rectangle in this screenshot, enter it without the “-”, for example <code>987733172745</code>).</li>
-</ul>
-<p><a href="img/sm-configure-apps.png"><img src="img/sm-configure-apps.png" class="img-fluid"></a></p></li>
-<li><p>Follow the screenshot <a href="img/12-Setup-step-4.png"><img src="img/12-Setup-step-4.png" class="img-fluid"></a></p></li>
-<li><p>Click on next. <a href="img/13-Setup-step4-next.png"><img src="img/13-Setup-step4-next.png" class="img-fluid"></a></p></li>
-<li><p>Select Public Internet Access, follow the screenshot and click on next. <strong><em>Note that the subnet and security group ids for your account would be different from what you see in the screenshot. Select all the subnets in the drop down (we will discuss in class why this is required).</em></strong> <a href="img/14-VPC-setup.png"><img src="img/14-VPC-setup.png" class="img-fluid"></a></p></li>
-<li><p>Change the <code>Default space size</code> to 50 from the default of 5 and click next. <a href="img/15-Storage-config.png"><img src="img/15-Storage-config.png" class="img-fluid"></a></p></li>
-<li><p>Scroll down and click on next. Your Domain will now be created. <a href="img/16-Domain-created.png"><img src="img/16-Domain-created.png" class="img-fluid"></a></p></li>
+<li>Select <strong>Ubuntu</strong></li>
+<li>Choose <strong>Ubuntu Server 24.04 LTS (HVM), SSD Volume Type</strong> (or the latest Ubuntu LTS version available)</li>
+<li>Architecture: <strong>64-bit (x86)</strong></li>
+</ul></li>
+<li><p><strong>Instance type</strong>:</p>
+<ul>
+<li>Select <strong>t3.xlarge</strong> from the dropdown</li>
+<li>This provides 4 vCPUs and 16 GiB of memory, suitable for data science workloads</li>
+<li>As of September 2025 in us-east-1, this instance costs approximately $0.22 per hour (roughly $1 for 5 hours)</li>
+</ul></li>
+<li><p><strong>Key pair (login)</strong>:</p>
+<ul>
+<li>Click on <strong>Create new key pair</strong></li>
+<li>Key pair name: <code>{your-net-id}-dsan6k-f2025</code> (replace <code>{your-net-id}</code> with your actual NET ID)</li>
+<li>Key pair type: <strong>RSA</strong></li>
+<li>Private key file format: Choose based on your operating system:
+<ul>
+<li><strong><code>.pem</code></strong> for Mac/Linux</li>
+<li><strong><code>.ppk</code></strong> for Windows (if using PuTTY)</li>
+</ul></li>
+<li>Click <strong>Create key pair</strong> and save the file securely - you’ll need this to connect to your instance</li>
+</ul></li>
 </ol>
-<blockquote class="blockquote">
-<p>It takes the domain sometime to get created and in use, though it says to not refresh the page, you can go ahead and refresh the page after a minute or two. You will see the screenshot below stating that the domain is in use.</p>
-</blockquote>
-<p><a href="img/17-Domain-in-use.png"><img src="img/17-Domain-in-use.png" class="img-fluid"></a></p>
-<section id="part-3-creating-the-user" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-creating-the-user">Part-3: Creating the User</h2>
-<ol type="1">
-<li><p>Now that you have created the domain, It is time to create a user in that domain. Easiest way to do this is to navigate to the Studio page on the sidebar and Clicking “Create user profile” <a href="img/18-UserCreation.png"><img src="img/18-UserCreation.png" class="img-fluid"></a></p></li>
-<li><p>Name your user, as a matter of convention set the username as your <em>NET ID</em>. Click on next.</p></li>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>SAVE YOUR KEY PAIR FILE SECURELY!</strong> This file is your only way to access your EC2 instance. Store it in a safe location on your computer and never share it with anyone.</p>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>Network settings</strong>:
+<ul>
+<li>Leave all settings as default (this includes VPC, subnet, auto-assign public IP, and security group settings)</li>
+<li>The default settings will automatically enable public IP and allow SSH access</li>
+</ul></li>
+<li><strong>Configure storage</strong>:
+<ul>
+<li>Change the root volume size from 8 GiB to <strong>100 GiB</strong></li>
+<li>Volume type: <strong>gp3</strong> (General Purpose SSD)</li>
+<li>This provides ample storage for datasets and software installations</li>
+</ul></li>
+<li><strong>Advanced details</strong> (expand this section):
+<ul>
+<li><strong>IAM instance profile</strong>: Select <strong>LabInstanceProfile</strong> from the dropdown</li>
+<li>This gives your EC2 instance permissions to access other AWS services</li>
+<li>Leave all other settings as default</li>
+</ul></li>
+<li><strong>Review and Launch</strong>:
+<ul>
+<li>Review all your settings</li>
+<li>Click the <strong>Launch instance</strong> button</li>
+</ul></li>
 </ol>
-<p><a href="img/19-User-Creation-1.png"><img src="img/19-User-Creation-1.png" class="img-fluid"></a></p>
-<ol type="1">
-<li>Follow the screenshot.</li>
-</ol>
-<p><a href="img/20-User-Creation-2.png"><img src="img/20-User-Creation-2.png" class="img-fluid"></a></p>
-<ol type="1">
-<li>Disable all canvas permissions and Paste the ARN of your LabRole. Scroll Down</li>
-</ol>
-<p><a href="img/22-User-Canvas-Part-2.png"><img src="img/22-User-Canvas-Part-2.png" class="img-fluid"></a></p>
-<ol type="1">
-<li><p>Click on Next <a href="img/23-User-Next.png"><img src="img/23-User-Next.png" class="img-fluid"></a></p></li>
-<li><p>Scroll down <a href="img/24-User-Step-4.png"><img src="img/24-User-Step-4.png" class="img-fluid"></a></p></li>
-<li><p>Scroll down, click on next <a href="img/25-User-final-next.png"><img src="img/25-User-final-next.png" class="img-fluid"></a></p></li>
-<li><p>User should be created now.</p></li>
-</ol>
-<p><a href="img/26-user-created.png"><img src="img/26-user-created.png" class="img-fluid"></a></p>
+<p><a href="img/Instances-EC2.png"><img src="img/Instances-EC2.png" class="img-fluid"></a></p>
+<p><a href="img/Launch-an-instance-EC2.png"><img src="img/Launch-an-instance-EC2.png" class="img-fluid"></a></p>
 </section>
-<section id="launching-sagemaker-studio" class="level2">
-<h2 class="anchored" data-anchor-id="launching-sagemaker-studio">Launching Sagemaker Studio</h2>
+</section>
+<section id="wait-for-instance-to-initialize" class="level2">
+<h2 class="anchored" data-anchor-id="wait-for-instance-to-initialize">Wait for Instance to Initialize</h2>
 <ol type="1">
-<li>Click on Domains on the sidebar. Select your domain and click on User Profiles.</li>
+<li><p>After clicking “Launch instance”, you’ll see a success message. Click on <strong>View all instances</strong> to go back to the instances list.</p></li>
+<li><p>Your new instance will appear in the list with a status of “Pending”. Wait a few minutes for it to change to “Running” and for the status checks to pass (2/2 checks passed).</p></li>
+<li><p>Once the instance is running, note down the <strong>Public IPv4 DNS</strong> - you’ll need this to connect via VSCode.</p></li>
 </ol>
-<p><a href="img/27-domain-user-list.png"><img src="img/27-domain-user-list.png" class="img-fluid"></a></p>
-<ol type="1">
-<li>Select launch and Click on Studio</li>
-</ol>
-<p><a href="img/28-launch-studio.png"><img src="img/28-launch-studio.png" class="img-fluid"></a></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -504,34 +528,296 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is called a <em>managed service</em>, you get to work on the notebook without having to deal with the creation steps for the underlying infrastructure. You can easily change this configuration as per the requirements of the analytics/machine learning job you are running.</p>
+<p>The instance typically takes 1-2 minutes to fully initialize and become accessible.</p>
 </div>
 </div>
-<ol type="1">
-<li>This should open up</li>
-</ol>
-<p><a href="img/29-studio-landing.png"><img src="img/29-studio-landing.png" class="img-fluid"></a></p>
-<ol type="1">
-<li><p>Select JupyterLab and Click on Create JupyterLab Space <a href="img/30-Creating-Jupyter-space.png"><img src="img/30-Creating-Jupyter-space.png" class="img-fluid"></a></p></li>
-<li><p>A Jupyter Notebook session should open up</p></li>
-</ol>
-<p><a href="img/31-Jupyter-landing.png"><img src="img/31-Jupyter-landing.png" class="img-fluid"></a></p>
 </section>
 </section>
-<section id="task-8-use-sagemaker-studio-notebook-for-analyzing-a-simple-dataset" class="level1">
-<h1>Task 8: Use SageMaker Studio Notebook for analyzing a simple dataset</h1>
-<p>We will analyze the a simple dataset using our freshly created SageMaker Studio environment.</p>
+<section id="task-3-create-and-configure-an-s3-bucket" class="level1">
+<h1>Task 3: Create and Configure an S3 Bucket</h1>
+<p>Amazon S3 (Simple Storage Service) is AWS’s object storage service that allows you to store and retrieve data from anywhere on the web. In this task, you’ll create an S3 bucket to store datasets, code outputs, and other files for your projects.</p>
+<section id="navigate-to-s3-service" class="level2">
+<h2 class="anchored" data-anchor-id="navigate-to-s3-service">Navigate to S3 Service</h2>
 <ol type="1">
-<li><p>Clone the git repo for this lab into SageMaker. <a href="img/aws-sm-git1.png"><img src="img/aws-sm-git1.png" class="img-fluid"></a></p></li>
-<li><p>The URL of the git repo would be of the format shown in the screenshot below. <a href="img/aws-sm-git2.png"><img src="img/aws-sm-git2.png" class="img-fluid"></a></p></li>
-<li><p>Once the repo is cloned, double click on the repo folder and then on the <em>analytics.ipynb</em> file in the repo. This will open the Jupyter notebook in a SageMaker Studio Notebook. <a href="img/aws-sm-nb1.png"><img src="img/aws-sm-nb1.png" class="img-fluid"></a></p></li>
-<li><p>The notebook downloads the dataset from your GitHub and has code to create an S3 bucket in your account and copy the dataset there. There are some tasks to be completed in the noteobok. <strong>Complete tasks marked in the notebook and checkin the completed notebook in the git repo</strong>.</p></li>
+<li><p>From the AWS Console home page, search for <strong>S3</strong> in the search bar at the top or find it under the “Storage” section.</p></li>
+<li><p>Click on <strong>S3</strong> to open the S3 dashboard.</p></li>
 </ol>
-<section id="shutting-down-sagemaker-spaces" class="level2">
-<h2 class="anchored" data-anchor-id="shutting-down-sagemaker-spaces">Shutting down SageMaker Spaces</h2>
-<p>It is important to shutdown SageMaker Studio when not in use so that you do not get billed for it when you are not using it.</p>
+<p><a href="img/Homepage-S3.png"><img src="img/Homepage-S3.png" class="img-fluid"></a></p>
+</section>
+<section id="view-s3-buckets-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="view-s3-buckets-dashboard">View S3 Buckets Dashboard</h2>
+<p>Once in the S3 service, you’ll see the main S3 buckets dashboard. This shows all your existing buckets (if any) and allows you to create new ones.</p>
+<p><a href="img/S3-buckets-S3.png"><img src="img/S3-buckets-S3.png" class="img-fluid"></a></p>
+</section>
+<section id="create-a-new-s3-bucket" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-s3-bucket">Create a New S3 Bucket</h2>
 <ol type="1">
-<li>Navigate back to Sagemaker Studio, Select Jupyter Lab, Click on Stop <a href="img/32-Jupyter-Shutdown.png"><img src="img/32-Jupyter-Shutdown.png" class="img-fluid"></a></li>
+<li>Click on the <strong>Create bucket</strong> button (orange button on the right side of the page).</li>
+</ol>
+<p><a href="img/Create-S3-bucket-S3.png"><img src="img/Create-S3-bucket-S3.png" class="img-fluid"></a></p>
+<ol start="2" type="1">
+<li><strong>Configure your bucket</strong>:
+<ul>
+<li><strong>Bucket name</strong>: Enter a unique name like <code>{your-net-id}-dsan6k-f2025</code> (replace <code>{your-net-id}</code> with your actual NET ID)
+<ul>
+<li>Note: Bucket names must be globally unique across all AWS accounts, lowercase, and can contain only letters, numbers, and hyphens</li>
+</ul></li>
+<li><strong>AWS Region</strong>: Leave as default (should match your EC2 region, typically us-east-1)</li>
+<li><strong>Object Ownership</strong>: Leave as default (ACLs disabled)</li>
+<li><strong>Block Public Access settings</strong>: Leave all boxes checked (block all public access) for security</li>
+<li><strong>Bucket Versioning</strong>: Leave as “Disable” for now</li>
+<li><strong>Tags</strong>: Optional - you can add tags like <code>course: dsan6000</code> if desired</li>
+<li><strong>Default encryption</strong>: Leave as default (Server-side encryption with Amazon S3 managed keys)</li>
+<li><strong>Advanced settings</strong>: Leave as default</li>
+</ul></li>
+<li>Scroll to the bottom and click <strong>Create bucket</strong>.</li>
+</ol>
+</section>
+<section id="view-your-created-bucket" class="level2">
+<h2 class="anchored" data-anchor-id="view-your-created-bucket">View Your Created Bucket</h2>
+<p>After creation, you’ll be redirected to the S3 buckets list where you can see your newly created bucket.</p>
+<p><a href="img/aa1603-dsan6k-f2025-S3-bucket-S3.png"><img src="img/aa1603-dsan6k-f2025-S3-bucket-S3.png" class="img-fluid"></a></p>
+</section>
+<section id="upload-a-test-file-to-your-bucket" class="level2">
+<h2 class="anchored" data-anchor-id="upload-a-test-file-to-your-bucket">Upload a Test File to Your Bucket</h2>
+<ol type="1">
+<li><p>Click on your bucket name to open it.</p></li>
+<li><p>Click the <strong>Upload</strong> button.</p></li>
+<li><p>Either drag and drop files or click <strong>Add files</strong> to browse and select files from your computer.</p></li>
+<li><p>For testing, you can create a simple text file on your computer with some content and upload it.</p></li>
+<li><p>After selecting your file(s), click <strong>Upload</strong> at the bottom of the page.</p></li>
+<li><p>Once uploaded, you’ll see a success message. Click <strong>Close</strong> to return to your bucket view.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your S3 bucket is now ready to use! You can upload datasets, store output files, and share data between different AWS services. The bucket name you created will be used in subsequent labs and assignments.</p>
+</div>
+</div>
+</section>
+<section id="working-with-s3-from-the-command-line" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-s3-from-the-command-line">Working with S3 from the Command Line</h2>
+<p>Once you connect to your EC2 instance via VSCode (in the next section), you can interact with your S3 bucket using the AWS CLI, which is pre-installed on EC2 instances with the LabInstanceProfile. Here are some useful commands you’ll use:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all your S3 buckets</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 ls</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List contents of a specific bucket</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 ls s3://your-bucket-name/</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Upload a file to S3</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 cp local-file.txt s3://your-bucket-name/</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Download a file from S3</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 cp s3://your-bucket-name/file.txt ./</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Upload an entire directory</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 sync ./local-folder s3://your-bucket-name/folder/</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Download an entire directory</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 sync s3://your-bucket-name/folder/ ./local-folder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember to replace <code>your-bucket-name</code> with the actual name of the bucket you created (e.g., <code>{your-net-id}-dsan6k-f2025</code>).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="task-4-connect-to-ec2-instance-using-vscode" class="level1">
+<h1>Task 4: Connect to EC2 Instance using VSCode</h1>
+<p>Now that your EC2 instance is running, we’ll set up VSCode to connect to it remotely. This will allow you to write code, run Python scripts, and work with Jupyter notebooks directly on your EC2 instance using the familiar VSCode interface.</p>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<ol type="1">
+<li><p>Install <strong>Visual Studio Code</strong> on your local machine if you haven’t already: <a href="https://code.visualstudio.com/">Download VSCode</a></p></li>
+<li><p>Install the <strong>Remote - SSH</strong> extension in VSCode:</p>
+<ul>
+<li>Open VSCode</li>
+<li>Click on the Extensions icon in the sidebar (or press <code>Ctrl+Shift+X</code>)</li>
+<li>Search for “Remote - SSH”</li>
+<li>Install the extension by Microsoft</li>
+</ul></li>
+</ol>
+</section>
+<section id="video-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
+<p>For a detailed walkthrough of connecting VSCode to an EC2 instance, watch this helpful video tutorial:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+<p><iframe src="https://www.youtube.com/embed/V9bjfDI20zo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" title="How to Connect VSCode to EC2 Instance"> </iframe></p>
+</div>
+<p>Alternatively, you can <a href="https://www.youtube.com/watch?v=V9bjfDI20zo">watch on YouTube directly</a>.</p>
+</section>
+<section id="step-by-step-connection-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-connection-instructions">Step-by-Step Connection Instructions</h2>
+<section id="configure-ssh-connection" class="level3">
+<h3 class="anchored" data-anchor-id="configure-ssh-connection">Configure SSH Connection</h3>
+<ol type="1">
+<li><p><strong>Set up your SSH key permissions</strong> (Mac/Linux only):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 400 ~/path/to/your-key.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace <code>~/path/to/your-key.pem</code> with the actual path to your downloaded key file.</p></li>
+<li><p><strong>Open VSCode</strong> and press <code>F1</code> or <code>Ctrl+Shift+P</code> (Windows/Linux) or <code>Cmd+Shift+P</code> (Mac) to open the command palette.</p></li>
+<li><p>Type <strong>“Remote-SSH: Open SSH Configuration File”</strong> and select it.</p></li>
+<li><p>Choose the configuration file to edit (usually <code>~/.ssh/config</code> on Mac/Linux or <code>C:\Users\YourUsername\.ssh\config</code> on Windows).</p></li>
+<li><p>Add the following configuration to the file:</p>
+<pre><code>Host dsan6000-ec2
+    HostName YOUR_EC2_PUBLIC_DNS
+    User ubuntu
+    IdentityFile ~/path/to/your-key.pem</code></pre>
+<p>Replace:</p>
+<ul>
+<li><code>YOUR_EC2_PUBLIC_DNS</code> with your instance’s public IPv4 DNS</li>
+<li><code>~/path/to/your-key.pem</code> with the actual path to your key file</li>
+</ul></li>
+<li><p>Save the configuration file.</p></li>
+</ol>
+</section>
+<section id="connect-to-your-instance" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-your-instance">Connect to Your Instance</h3>
+<ol type="1">
+<li><p>Press <code>F1</code> or open the command palette again.</p></li>
+<li><p>Type <strong>“Remote-SSH: Connect to Host”</strong> and select it.</p></li>
+<li><p>Select <strong>dsan6000-ec2</strong> from the list (or whatever name you gave your host).</p></li>
+<li><p>VSCode will open a new window and connect to your EC2 instance.</p></li>
+<li><p>If prompted about the platform, select <strong>Linux</strong>.</p></li>
+<li><p>If this is your first connection, you’ll be asked to verify the authenticity of the host. Select <strong>Continue</strong>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Important: AWS Session Expiration and EC2 Domain Name Changes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Every time your AWS session ends (typically after 4 hours) and you restart it:</strong></p>
+<ul>
+<li>Your EC2 instance will <strong>automatically restart</strong> (give it ~2 minutes to become fully operational)</li>
+<li>The instance will have a <strong>NEW public IPv4 DNS/domain name</strong></li>
+<li>You <strong>MUST update the HostName</strong> in your VSCode SSH config file (<code>~/.ssh/config</code>) with the new DNS</li>
+<li><strong>Your data is safe!</strong> The storage is persistent - all your files, installed software, and work remain intact</li>
+<li>Only the compute infrastructure restarts with a new address</li>
+</ul>
+<p><strong>What this means for you:</strong> 1. After starting a new AWS session, wait 2 minutes for EC2 to fully start 2. Check the new public IPv4 DNS in the EC2 console 3. Update your VSCode SSH config with the new DNS 4. Reconnect VSCode to your instance</p>
+<p>Remember: <strong>The old hostname is gone, but your content persists!</strong></p>
+</div>
+</div>
+</section>
+<section id="initial-setup-on-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="initial-setup-on-ec2">Initial Setup on EC2</h3>
+<p>Once connected, open a terminal in VSCode (<code>Terminal</code> → <code>New Terminal</code>) and run these commands to set up your development environment:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update package list</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Python and essential tools</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3-pip python3-venv git</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Jupyter</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install jupyter notebook jupyterlab</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a working directory</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/dsan6000</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/dsan6000</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Test S3 access with your bucket</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace 'your-net-id' with your actual NET ID</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 ls</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 ls s3://your-net-id-dsan6k-f2025/</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a test file and upload it to S3</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello from EC2!"</span> <span class="op">&gt;</span> test.txt</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 cp test.txt s3://your-net-id-dsan6k-f2025/</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the file back from S3</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 cp s3://your-net-id-dsan6k-f2025/test.txt downloaded-test.txt</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> downloaded-test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can now use VSCode on your local machine to edit files, run Python scripts, and work with Jupyter notebooks directly on your EC2 instance. The Remote-SSH extension makes it feel like you’re working locally, but all computation happens on your EC2 instance.</p>
+<p>Additionally, your EC2 instance has AWS CLI pre-configured with the LabInstanceProfile, allowing you to seamlessly interact with S3 and other AWS services directly from the terminal.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="task-5-complete-todays-lab-assignment" class="level1">
+<h1>Task 5: Complete Today’s Lab Assignment</h1>
+<p>Now that you have your EC2 instance set up with VSCode, let’s complete today’s lab assignment.</p>
+<section id="accept-the-github-classroom-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="accept-the-github-classroom-assignment">Accept the GitHub Classroom Assignment</h2>
+<ol type="1">
+<li><p>Click on the following link to accept the lab assignment: <a href="https://classroom.github.com/a/LzwXGbm_">GitHub Classroom Assignment - Lab 02</a></p></li>
+<li><p>Accept the assignment, which will create a private repository for you.</p></li>
+</ol>
+</section>
+<section id="clone-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="clone-the-repository">Clone the Repository</h2>
+<ol type="1">
+<li><p>In your VSCode terminal (connected to EC2), clone your assignment repository:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/dsan6000</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone YOUR_ASSIGNMENT_REPO_URL</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> YOUR_REPO_NAME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="review-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="review-the-assignment">Review the Assignment</h2>
+<p>The assignment is based on analyzing a dataset using cloud computing resources. You can review the <code>analytics.ipynb</code> notebook in your repo.</p>
+</section>
+<section id="complete-the-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="complete-the-tasks">Complete the Tasks</h2>
+<ol type="1">
+<li><p>Open the <code>analytics.ipynb</code> notebook in VSCode:</p>
+<ul>
+<li>Click on the notebook file in the VSCode explorer</li>
+<li>VSCode will automatically open it with Jupyter support</li>
+</ul></li>
+<li><p>The notebook contains several tasks related to:</p>
+<ul>
+<li>Loading and exploring a dataset</li>
+<li>Creating an S3 bucket in your AWS account</li>
+<li>Uploading data to S3</li>
+<li>Performing basic data analysis</li>
+</ul></li>
+<li><p>Work through each cell in the notebook, completing the tasks marked with “TODO” or “Task”.</p></li>
+<li><p>Make sure to:</p>
+<ul>
+<li>Run all cells and verify the output</li>
+<li>Complete all required tasks</li>
+<li>Add your analysis and observations where requested</li>
+</ul></li>
+</ol>
+</section>
+<section id="submit-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="submit-your-work">Submit Your Work</h2>
+<ol type="1">
+<li><p>After completing all tasks, save your notebook.</p></li>
+<li><p>Commit and push your changes to GitHub:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Complete Lab 02 - EC2 and data analysis"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -543,28 +829,44 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>At the end of this lab:</p>
-<ol type="1">
-<li><p>Make sure you shutdown SageMaker Studio.</p></li>
-<li><p>Make sure you shutdown EC2 VM.</p></li>
-<li><p>Make sure you have ended the lab in AWS Educate by pressing the <em>End Lab</em> button.</p></li>
-</ol>
+<p>Make sure to commit and push your completed notebook to your GitHub repository before the deadline.</p>
 </div>
 </div>
 </section>
-<section id="optional-using-vscode-instead-of-jupyter-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="optional-using-vscode-instead-of-jupyter-notebooks">(Optional) Using VSCode Instead of Jupyter Notebooks</h2>
-<p>SageMaker Studio Has added support for VSCode and the steps to run it are below:</p>
+</section>
+<section id="important-shutting-down-your-resources" class="level1">
+<h1>Important: Shutting Down Your Resources</h1>
+<p>To avoid unnecessary charges to your AWS account, it’s crucial to properly shut down your resources when not in use.</p>
+<section id="stop-your-ec2-instance" class="level2">
+<h2 class="anchored" data-anchor-id="stop-your-ec2-instance">Stop Your EC2 Instance</h2>
+<p>When you’re done working:</p>
 <ol type="1">
-<li><p>Navigate back to Sagemaker Studio, Select Code Editor, Click on Create Code Editor Space <a href="img/33-VSC-1.png"><img src="img/33-VSC-1.png" class="img-fluid"></a></p></li>
-<li><p>Follow the screenshot and click on Create Space <a href="img/34-VSC-2.png"><img src="img/34-VSC-2.png" class="img-fluid"></a></p></li>
-<li><p>Now select the instance type you want to use. Click on Run Space. Wait for a while then click on Open Code Editor.</p></li>
+<li>Go to the EC2 Dashboard in AWS Console</li>
+<li>Select your instance</li>
+<li>Click <strong>Instance State</strong> → <strong>Stop instance</strong></li>
+<li>Confirm the action</li>
 </ol>
-<p><a href="img/35-VSC-3.png"><img src="img/35-VSC-3.png" class="img-fluid"></a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Stopping</strong> an instance preserves your data and allows you to restart it later. <strong>Terminating</strong> an instance permanently deletes it and all associated data.</p>
+</div>
+</div>
+</section>
+<section id="end-your-lab-session" class="level2">
+<h2 class="anchored" data-anchor-id="end-your-lab-session">End Your Lab Session</h2>
 <ol type="1">
-<li>Now you can start using VS Code as you do on your local machine.</li>
+<li>Return to the AWS Academy Learner Lab page</li>
+<li>Click the <strong>End Lab</strong> button</li>
+<li>This will stop the billing timer for your session</li>
 </ol>
-<p><a href="img/36-VSC-4.png"><img src="img/36-VSC-4.png" class="img-fluid"></a></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -575,16 +877,44 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This service also has to be shutdown as jupyter notebook. Since you only have 50<span class="math inline">\(, not shutting a notebook down, can cost upto 20\)</span> a day for instances such as <code>ml.g4dn.xlarge</code>. It is very important to shutdown the space after working on it. If you spend 50$ on this account, <strong>YOU WILL LOSE ALL DATA</strong>. NO, you cannot recover the data after the account is shutdown. Therefore it is recommended to make regular commits to github as you work on your assignments or labs.</p>
-</div>
-</div>
+<p><strong>At the end of each work session:</strong></p>
 <ol type="1">
-<li>To stop Code Editor Space, Go back to Sagemaker Studio, Click on Code editor. <a href="img/37-VSC-stop"><img src="img/37-VSC-stop.png" class="img-fluid"></a></li>
+<li><strong>Stop your EC2 instance</strong> (not terminate - stop preserves your work)</li>
+<li><strong>End the lab</strong> in AWS Academy to stop the billing timer</li>
+<li>Remember you have a <strong>$50 budget</strong> for the entire semester - use it wisely!</li>
 </ol>
+<p><strong>Budget Management Tips:</strong> - A stopped instance costs only for storage (minimal) - A running t3.xlarge instance costs approximately $0.22 per hour - Always stop instances when not actively using them - Set up billing alerts in AWS to monitor your spending</p>
+</div>
+</div>
 </section>
-<section id="github-classroom" class="level2">
-<h2 class="anchored" data-anchor-id="github-classroom">GitHub Classroom</h2>
-<p><a href="TBA-2025">GitHub Classroom Link</a></p>
+<section id="restarting-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="restarting-your-work">Restarting Your Work</h2>
+<p>When you want to continue working:</p>
+<ol type="1">
+<li>Start a new lab session in AWS Academy</li>
+<li>Go to EC2 Dashboard</li>
+<li>Select your instance and click <strong>Instance State</strong> → <strong>Start instance</strong></li>
+<li>Wait for it to enter “Running” state</li>
+<li>Connect via VSCode as before (the DNS might change - check the new public IPv4 DNS)</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your data and installed software persist on the instance between sessions, so you can pick up right where you left off!</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="github-classroom-link" class="level2">
+<h2 class="anchored" data-anchor-id="github-classroom-link">GitHub Classroom Link</h2>
+<p>Complete today’s assignment here: <a href="https://classroom.github.com/a/LzwXGbm_">https://classroom.github.com/a/LzwXGbm_</a></p>
 
 
 </section>
