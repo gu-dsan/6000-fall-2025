@@ -5037,11 +5037,11 @@
     "text": "map-reduce\nCombining the map and reduce operations creates a powerful pipeline that can handle a diverse range of problems in the Big Data context"
   },
   {
-    "objectID": "slides/03-slides.html#parallelization-and-map-reduce-are-bed-mates",
-    "href": "slides/03-slides.html#parallelization-and-map-reduce-are-bed-mates",
+    "objectID": "slides/03-slides.html#parallelization-and-map-reduce-work-hand-in-hand",
+    "href": "slides/03-slides.html#parallelization-and-map-reduce-work-hand-in-hand",
     "title": "Lecture 3",
-    "section": "Parallelization and map-reduce are bed-mates",
-    "text": "Parallelization and map-reduce are bed-mates\n\n\n\n\nOne of the issues here is, how to split the data in a “good” manner so that the map-reduce framework works well"
+    "section": "Parallelization and map-reduce work hand-in-hand",
+    "text": "Parallelization and map-reduce work hand-in-hand\n\n\n\n\nOne of the issues here is, how to split the data in a “good” manner so that the map-reduce framework works well"
   },
   {
     "objectID": "slides/03-slides.html#the-multiprocessing-module",
