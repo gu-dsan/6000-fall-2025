@@ -6,29 +6,29 @@
 ## Distributed memory / Message Passing Model
 
 ::: {style="text-align: center;"}
-<img src="img/parallel1.png" width=600>
+<img src="parallelization-python/parallelization-python/img/parallel1.png" width=600>
 :::
 
 ## Data parallel model
 
 ::: {style="text-align: center;"}
-<img src="img/parallel2.png" width=600>
+<img src="parallelization-python/img/parallel2.png" width=600>
 :::
 
 ## Hybrid model
 
 ::: {style="text-align: center;"}
-<img src="img/parallel4.png" width=500>
+<img src="parallelization-python/img/parallel4.png" width=500>
 :::
 ::: {style="text-align: center;"}
-<img src="img/parallel3.png" width=500>
+<img src="parallelization-python/img/parallel3.png" width=500>
 :::
 
 
 ## Partitioning data
 
 ::: {style="text-align: center;"}
-<img src="img/parallel5.png" width=600>
+<img src="parallelization-python/img/parallel5.png" width=600>
 :::
 
 

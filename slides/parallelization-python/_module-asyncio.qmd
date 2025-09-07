@@ -23,7 +23,7 @@
 :::
 
 ::: {.column width="50%"}
-![[`Async I/O`](https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/operators/asyncio/)](img/async_io.svg)
+![[`Async I/O`](https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/operators/asyncio/)](parallelization-python/img/async_io.svg)
 :::
 :::
 
@@ -45,7 +45,7 @@
 
 
 ::: {.column width="50%"}
-![[`Concurrency in Python`](https://realpython.com/async-io-python/)](img/concurrency-python.png)
+![[`Concurrency in Python`](https://realpython.com/async-io-python/)](parallelization-python/img/concurrency-python.png)
 :::
 
 :::
