@@ -199,12 +199,12 @@
     }
   </style>
 <meta property="og:title" content="Lecture 3 – DSAN 6000">
-<meta property="og:description" content="Parallelization">
+<meta property="og:description" content="Parallelization in the AI Era">
 <meta property="og:image" content="https://gu-dsan.github.io/6000-fall-2025/slides/files/img/dsan6000-logo.png">
 <meta property="og:site_name" content="DSAN 6000">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Lecture 3 – DSAN 6000">
-<meta name="twitter:description" content="Parallelization">
+<meta name="twitter:description" content="Parallelization in the AI Era">
 <meta name="twitter:image" content="https://gu-dsan.github.io/6000-fall-2025/slides/files/img/dsan6000-logo.png">
 <meta name="twitter:creator" content="@aarora79">
 <meta name="twitter:card" content="summary_large_image">
@@ -215,7 +215,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Lecture 3</h1>
-  <p class="subtitle">Parallelization</p>
+  <p class="subtitle">Parallelization in the AI Era</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -235,17 +235,21 @@ Amit Arora, Jeff Jacobs
 <section id="agenda-and-goals-for-today" class="slide level2">
 <h2>Agenda and Goals for Today</h2>
 <ul>
-<li>Scaling up and scaling out</li>
-<li>Parallelization</li>
+<li>Scaling up and scaling out for AI data pipelines</li>
+<li>Parallelization fundamentals for data processing</li>
 <li>Map and Reduce functions</li>
+<li>Parallel data preparation for AI/ML workloads</li>
+<li>Distributed data processing frameworks (Spark, Ray, Dask)</li>
 <li>Lab Preview: Parallelization with Python
 <ul>
 <li>Use the <code>multiprocessing</code> module</li>
 <li>Implement synchronous and asynchronous processing</li>
+<li>Parallel data preprocessing examples</li>
 </ul></li>
 <li>Homework Preview: Parallelization with Python
 <ul>
 <li>Parallel data processing</li>
+<li>Building scalable data pipelines</li>
 </ul></li>
 </ul>
 </section>
@@ -292,7 +296,15 @@ Amit Arora, Jeff Jacobs
 </tr>
 <tr class="even">
 <td><strong>SageMaker</strong></td>
-<td>Integrated Developer Environment where you can conduct data science on single machines</td>
+<td>Integrated Developer Environment where you can conduct data science on single machines or distributed training</td>
+</tr>
+<tr class="odd">
+<td><strong>GPU</strong></td>
+<td>Graphics Processing Unit - specialized hardware for parallel computation, essential for AI/ML</td>
+</tr>
+<tr class="even">
+<td><strong>TPU</strong></td>
+<td>Tensor Processing Unit - Google’s custom AI accelerator chips</td>
 </tr>
 <tr class="odd">
 <td><strong>Ephemeral</strong></td>
@@ -314,11 +326,27 @@ Amit Arora, Jeff Jacobs
 <h2>Typical real world scenarios</h2>
 <div>
 <ul>
-<li class="fragment">You are a Data Scientist and you want to cross-validate your models. This involves running the model <em>1000 times</em> but each run takes over an hour.</li>
-<li class="fragment">You are a Data Scientist and you want to run multiple models on your data, where each run can take up to 1 hour.</li>
-<li class="fragment">You are a genomics researcher and have been using small datasets of sequence data but soon you will receive a new type of sequencing data that is <em>10 times</em> as large. This means 10x more transcripts to process, but the processing for each transcript is similar.</li>
-<li class="fragment">You are an engineer using a fluid dynamics package that has an option to run in parallel. So far, you haven’t used this option on your workstation. When moving from 2D to 3D simulations, the simulation time has more than tripled so it may make sense to take advantage of the parallel feature</li>
-<li class="fragment">You are a Data Scientist at the Federal Reserve and you have millions of text to process. So far, you have only executed NLP on thousands of articles and have not implemented machine learning models on them.</li>
+<li class="fragment">You need to <strong>prepare training data</strong> for LLMs by cleaning and deduplicating 100TB of web-scraped text</li>
+<li class="fragment">You are building a <strong>RAG system</strong> that requires embedding and indexing millions of documents in parallel</li>
+<li class="fragment">You need to <strong>extract structured data</strong> from millions of PDFs using vision models for document AI</li>
+<li class="fragment">You are <strong>preprocessing multimodal datasets</strong> with billions of image-text pairs for foundation model training</li>
+<li class="fragment">You need to run <strong>quality filtering</strong> on petabytes of Common Crawl data for training dataset curation</li>
+<li class="fragment">You are <strong>generating synthetic training data</strong> using LLMs to augment limited real-world datasets</li>
+<li class="fragment">You need to <strong>transform and tokenize</strong> text corpora across 100+ languages for multilingual AI</li>
+<li class="fragment">You are building <strong>real-time data pipelines</strong> that process streaming data for online learning systems</li>
+</ul>
+</div>
+</section>
+<section id="data-for-ai-parallel-scenarios" class="slide level2">
+<h2>Data-for-AI Parallel Scenarios</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Web-scale data processing</strong>: Filtering 45TB of Common Crawl data for high-quality training examples</li>
+<li class="fragment"><strong>Embedding generation</strong>: Creating vector embeddings for 100M documents using sentence transformers</li>
+<li class="fragment"><strong>Data deduplication</strong>: Finding near-duplicates in billion-scale datasets using MinHash and LSH</li>
+<li class="fragment"><strong>Synthetic data generation</strong>: Using LLMs to generate millions of instruction-following examples</li>
+<li class="fragment"><strong>Data quality assessment</strong>: Running parallel quality checks on training data (toxicity, bias, factuality)</li>
+<li class="fragment"><strong>Feature extraction</strong>: Extracting features from millions of images, videos, or audio files for AI training</li>
 </ul>
 </div>
 </section></section>
@@ -361,7 +389,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="linear-vs.-parallel-2" class="slide level2">
 <h2>Linear vs.&nbsp;Parallel</h2>
-<p>From a data science perspective</p>
+<p>From a data engineering for AI perspective</p>
 <div class="columns">
 <div class="column" style="width:47%;">
 <h3 id="linear">Linear</h3>
@@ -386,17 +414,30 @@ Amit Arora, Jeff Jacobs
 <h3 id="what-are-some-examples-of-linear-and-parallel-data-science-workflows">What are some examples of linear and parallel data science workflows?</h3>
 </div>
 </section>
-<section id="embarrasingly-parallel" class="slide level2">
-<h2>Embarrasingly Parallel</h2>
+<section id="embarrasingly-parallel-in-data-for-ai" class="slide level2">
+<h2>Embarrasingly Parallel in Data for AI</h2>
 <p>It’s <strong>easy</strong> to speed things up when:</p>
 <ul>
-<li>You need to calculate the same thing many times</li>
-<li>Calculations are <strong>independent</strong> of each other</li>
-<li>Each calculation takes a decent amount of time</li>
+<li>Processing millions of documents independently for text extraction</li>
+<li>Generating embeddings for each document in a corpus</li>
+<li>Applying the same preprocessing to each image in a dataset</li>
+<li>Running quality filters on individual data samples</li>
+<li>Tokenizing text files independently</li>
+<li>Converting file formats (PDF to text, audio to features)</li>
+<li>Validating and cleaning individual records</li>
 </ul>
-<p>Just run <strong>multiple calculations at the same time</strong></p>
+<p>Just run <strong>multiple data processing tasks at the same time</strong></p>
+<div class="fragment">
+<h3 id="modern-data-processing-tools-for-ai">Modern Data Processing Tools for AI:</h3>
+<ul>
+<li><strong>Apache Spark</strong>: Distributed data processing at scale</li>
+<li><strong>Ray Data</strong>: Scalable data preprocessing for ML</li>
+<li><strong>Dask</strong>: Parallel computing with Python APIs</li>
+<li><strong>Polars</strong>: Fast DataFrame library with parallel execution</li>
+</ul>
+</div>
 </section>
-<section id="embarrasingly-parallel-1" class="slide level2">
+<section id="embarrasingly-parallel" class="slide level2">
 <h2>Embarrasingly Parallel</h2>
 <p>The concept is based on the old middle/high school math problem:</p>
 <blockquote>
@@ -426,27 +467,35 @@ Amit Arora, Jeff Jacobs
 <h1>When might parallel programming not be more efficient?</h1>
 
 </section>
-<section id="some-limitations" class="slide level2">
-<h2>Some limitations</h2>
-<h4 id="you-can-get-speedups-by-parallelizing-computations-but">You can get speedups by parallelizing computations, but</h4>
+<section id="some-limitations-in-data-processing-for-ai" class="slide level2">
+<h2>Some limitations in Data Processing for AI</h2>
+<h4 id="you-can-get-speedups-by-parallelizing-data-operations-but">You can get speedups by parallelizing data operations, but</h4>
 <ul>
-<li>Having to transport data between parallel processes (memory bottlenecks) and communication between processes (I/O bottlenecks) can make things more expensive and can exceed the benefits of parallelization</li>
-<li>If you’re moving a lot of data but not doing a lot of parallel computing, it’s often not worth the effort</li>
+<li><strong>Data skew</strong>: Uneven distribution of data can create bottlenecks (e.g., one partition has 90% of data)</li>
+<li><strong>I/O bound operations</strong>: Reading/writing to storage can limit parallelization benefits</li>
+<li><strong>Memory overhead</strong>: Loading large models (like BERT) on each worker for feature extraction</li>
+<li><strong>Deduplication challenges</strong>: Some operations like global deduplication require data shuffling</li>
+<li><strong>Ordering dependencies</strong>: Maintaining sequence order in time-series or conversational data</li>
 </ul>
 <div class="fragment">
-<h4 id="setting-up-and-debugging-parallel-programs-can-be-difficult">Setting up and debugging parallel programs can be difficult</h4>
-<p>But this has become easier with better software, like the <code>multiprocessing</code> module in Python</p>
+<h4 id="data-specific-challenges">Data-Specific Challenges</h4>
+<ul>
+<li><strong>Data quality issues</strong>: Bad data in parallel pipelines can be hard to trace</li>
+<li><strong>Resource management</strong>: Large models (BERT, GPT) need significant memory per worker</li>
+<li><strong>Consistency</strong>: Ensuring all workers use same preprocessing versions</li>
+</ul>
 </div>
 <div class="fragment">
 <h4 id="making-sure-that-we-can-get-back-all-the-pieces-needs-monitoring">Making sure that we can get back all the pieces needs monitoring</h4>
 <ul>
-<li>Failure tolerance and protections (Hadoop, e.g.)</li>
+<li>Failure tolerance and protections (Spark checkpointing)</li>
 <li>Proper collection and aggregation of the processed data</li>
+<li>Data validation after parallel processing</li>
 </ul>
 </div>
 </section>
-<section id="amdahls-law" class="slide level2">
-<h2>Amdahl’s Law</h2>
+<section id="amdahls-law-in-data-processing" class="slide level2">
+<h2>Amdahl’s Law in Data Processing</h2>
 <div class="column" style="width:50%;">
 <div class="imgcenter">
 <p><img data-src="img/AmdahlsLaw.svg"></p>
@@ -455,40 +504,31 @@ Amit Arora, Jeff Jacobs
 <p><span class="math display">\[
 \lim_{s\rightarrow\infty} S_{latency} = \frac{1}{1-p}
 \]</span></p>
-<p>where <span class="math inline">\(s\)</span> is the speedup of that part of the task (which is <span class="math inline">\(p\)</span> proportion of the overall task) benefitting from improved resources.</p>
-</div><p>If 50% of the task is embarassingly parallel, you can get a maximum speedup of 2-fold, while if 90% is embarassingly parallel, you can get a maximum speedup of <span class="math inline">\(1/(1-0.9) = 10\)</span> fold.</p>
+<p><strong>Data Pipeline Examples:</strong> - If 80% is parallel (processing) and 20% is sequential (I/O), max speedup = 5x - If 95% is parallel (embedding generation), max speedup = 20x</p>
+</div><div class="fragment">
+<h3 id="real-data-processing-speedups">Real Data Processing Speedups:</h3>
+<ul>
+<li><strong>Document processing</strong>: Near-linear up to 100s of workers</li>
+<li><strong>Embedding generation</strong>: Linear with number of GPUs</li>
+<li><strong>Data deduplication</strong>: Sub-linear due to shuffling overhead</li>
+</ul>
+</div>
 
 <aside><div>
 <p>By <a href="https://en.wikipedia.org/wiki/User:Daniels220" class="extiw" title="wikipedia:User:Daniels220">Daniels220</a> at <a href="https://en.wikipedia.org/wiki/" class="extiw" title="wikipedia:">English Wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=6678551">Link</a></p>
 </div></aside></section>
-<section id="pros-and-cons-of-parallelization" class="slide level2">
-<h2>Pros and cons of parallelization</h2>
+<section id="pros-and-cons-of-parallelization-for-ai-data" class="slide level2">
+<h2>Pros and cons of parallelization for AI Data</h2>
 <div class="column" style="width:47%;">
-<h3 id="yes">Yes</h3>
-<ul>
-<li>Group by analysis</li>
-<li>Simulations</li>
-<li>Resampling / Bootstrapping</li>
-<li>Optimization</li>
-<li>Cross-validation</li>
-<li>Training bagged models (like Random Forests)</li>
-<li>Multiple chains in a Bayesian MCMC</li>
-<li>Scoring (predicting) using trained models</li>
-</ul>
+<h3 id="yes---parallelize-these">Yes - Parallelize These</h3>
+<p><strong>Data Preparation:</strong> - Text extraction from documents (PDFs, HTML) - Tokenization of text corpora - Image preprocessing and augmentation - Embedding generation for documents - Data quality filtering and validation - Format conversions (audio → features) - Web scraping and data collection - Synthetic data generation</p>
+<p><strong>Data Processing:</strong> - Batch inference on datasets - Feature extraction at scale - Data deduplication (local) - Parallel chunk processing</p>
 </div><div class="column" style="width:47%;">
 <div class="fragment">
-<h3 id="no">No</h3>
-<ul>
-<li>SQL Operations</li>
-<li>Inverting a matrix</li>
-<li>Training linear regression</li>
-<li>Training logistic regression</li>
-<li>Training trees</li>
-<li>Training neural nets</li>
-<li>Training boosted models (like gradient boosted trees)</li>
-<li>Each chain in a Bayesian MCMC</li>
-<li>Most things time series</li>
-</ul>
+<h3 id="no---keep-sequential">No - Keep Sequential</h3>
+<p><strong>Order-Dependent:</strong> - Conversation threading - Time-series preprocessing - Sequential data validation - Cumulative statistics</p>
+<p><strong>Global Operations:</strong> - Global deduplication - Cross-dataset joins - Sorting entire datasets - Computing exact quantiles</p>
+<p><strong>Small Data:</strong> - Config file processing - Metadata operations - Single document processing</p>
 </div>
 </div><div class="fragment">
 <div class="callout callout-note callout-style-simple">
@@ -497,13 +537,13 @@ Amit Arora, Jeff Jacobs
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>For processes in the “No” column, each step depends on a previous step, and so they cannot be parallelized. However, there are approximate numerical methods applicable to big data which are parallelizable and get you to the right answer, based on parallely taking random subsets of the data. We’ll see some of these when we look at Spark ML</p>
+<p>For data operations in the “No” column, they often require global coordination or maintain strict ordering. However, many can be approximated with parallel algorithms (like approximate deduplication with locality-sensitive hashing or approximate quantiles with t-digest)</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="pros-and-cons-of-parallelization-1" class="slide level2">
+<section id="pros-and-cons-of-parallelization" class="slide level2">
 <h2>Pros and cons of parallelization</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
@@ -585,6 +625,21 @@ Amit Arora, Jeff Jacobs
 <div class="fragment">
 <p>We’ll see in the lab how the <code>multiprocessing</code> module in Python makes parallel processing on a machine quite easy to implement</p>
 </div>
+</section>
+<section id="parallel-data-processing-for-ai" class="slide level2">
+<h2>Parallel Data Processing for AI</h2>
+<h3 id="common-ai-data-workloads">Common AI Data Workloads</h3>
+<ul>
+<li><strong>Text preprocessing</strong>: Tokenization, cleaning for LLM training</li>
+<li><strong>Embedding generation</strong>: Converting documents to vectors</li>
+<li><strong>Data quality filtering</strong>: Removing low-quality training samples</li>
+<li><strong>Format conversion</strong>: PDF to text, audio to features</li>
+<li><strong>Synthetic data generation</strong>: Using LLMs to create training data</li>
+<li><strong>Deduplication</strong>: Finding and removing duplicate content</li>
+</ul>
+<div class="fragment">
+<p>These operations are <strong>embarrassingly parallel</strong> - each document/sample can be processed independently</p>
+</div>
 </section></section>
 <section>
 <section id="parallel-computing" class="title-slide slide level1 section center">
@@ -658,14 +713,9 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="map-3" class="slide level2">
 <h2>Map</h2>
-<p>Some examples of a <strong>map</strong> operations are</p>
-<ol type="1">
-<li>Extracting a standard table from online reports from multiple years</li>
-<li>Extracting particular records from multiple JSON objects</li>
-<li>Transforming data (as opposed to summarizing it)</li>
-<li>Run a normalization script on each transcript in a GWAS dataset</li>
-<li>Standardizing demographic data for each of the last 20 years against the 2000 US population</li>
-</ol>
+<p>Some examples of <strong>map</strong> operations are:</p>
+<p><strong>Traditional Data Analytics:</strong> 1. Extracting a standard table from online reports from multiple years 1. Extracting particular records from multiple JSON objects 1. Transforming data (as opposed to summarizing it) 1. Run a normalization script on each transcript in a GWAS dataset 1. Standardizing demographic data for each of the last 20 years against the 2000 US population</p>
+<p><strong>AI Data Processing (2025):</strong> 1. <strong>Text processing</strong>: Tokenizing millions of documents for LLM training 1. <strong>Embedding generation</strong>: Converting each document to a vector representation 1. <strong>Data extraction</strong>: Extracting text from millions of PDFs using OCR 1. <strong>Quality filtering</strong>: Applying toxicity/bias filters to each text sample 1. <strong>Image preprocessing</strong>: Resizing and normalizing images for vision models 1. <strong>Synthetic data</strong>: Generating training examples from prompts using LLMs</p>
 <div class="imgcenter imghalf">
 <p><img data-src="img/map3.png"></p>
 </div>
@@ -711,12 +761,8 @@ A starting value from which the accumulator function starts
 <section id="reduce-4" class="slide level2">
 <h2>Reduce</h2>
 <p>Some examples:</p>
-<ol type="1">
-<li>Finding the common elements (<em>intersection</em>) of a large number of sets</li>
-<li>Computing a table of group-wise summaries</li>
-<li>Filtering</li>
-<li>Tabulating</li>
-</ol>
+<p><strong>Traditional Analytics:</strong> 1. Finding the common elements (<em>intersection</em>) of a large number of sets 1. Computing a table of group-wise summaries 1. Filtering 1. Tabulating</p>
+<p><strong>AI Data Processing (2025):</strong> 1. <strong>Deduplication</strong>: Finding unique documents across billions of samples 1. <strong>Aggregating statistics</strong>: Computing dataset quality metrics 1. <strong>Vocabulary building</strong>: Creating token vocabularies from text corpus 1. <strong>Index building</strong>: Merging vector embeddings into searchable indices 1. <strong>Data validation</strong>: Aggregating quality scores across partitions</p>
 </section></section>
 <section>
 <section id="map-reduce" class="title-slide slide level1 section center">
@@ -796,6 +842,9 @@ A starting value from which the accumulator function starts
 <ul>
 <li>The <code>joblib</code> module</li>
 <li>Most <code>scikit-learn</code> functions have implicit parallelization baked in through the <code>n_jobs</code> parameter</li>
+<li><strong>Ray</strong> for distributed AI/ML workloads</li>
+<li><strong>Dask</strong> for scaling pandas/numpy operations</li>
+<li><strong>Apache Beam</strong> for data pipelines</li>
 </ul>
 <p>For example</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> sklearn.ensembles <span class="im">import</span> RandomForestClassifier</span>
@@ -810,20 +859,44 @@ A starting value from which the accumulator function starts
 </div>
 </div>
 </div>
-</div></aside></section></section>
+</div></aside></section>
+<section id="ai-data-processing-example" class="slide level2">
+<h2>AI Data Processing Example</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
+<span id="cb2-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="co"># Parallel tokenization for LLM training</span></span>
+<span id="cb2-5"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">"bert-base-uncased"</span>)</span>
+<span id="cb2-6"><a></a></span>
+<span id="cb2-7"><a></a><span class="kw">def</span> process_document(text):</span>
+<span id="cb2-8"><a></a>    <span class="co"># Clean and tokenize text</span></span>
+<span id="cb2-9"><a></a>    tokens <span class="op">=</span> tokenizer(text, truncation<span class="op">=</span><span class="va">True</span>, max_length<span class="op">=</span><span class="dv">512</span>)</span>
+<span id="cb2-10"><a></a>    <span class="cf">return</span> tokens</span>
+<span id="cb2-11"><a></a></span>
+<span id="cb2-12"><a></a><span class="co"># Process millions of documents in parallel</span></span>
+<span id="cb2-13"><a></a><span class="cf">with</span> Pool(processes<span class="op">=</span><span class="dv">32</span>) <span class="im">as</span> pool:</span>
+<span id="cb2-14"><a></a>    tokenized_docs <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
 <section>
 <section id="async-io-in-python" class="title-slide slide level1 section center">
 <h1>Async I/O in Python</h1>
 
 </section>
-<section id="the-need-for-async-io" class="slide level2">
-<h2>The need for <code>Async I/O</code></h2>
+<section id="the-need-for-async-io-in-ai-data-processing" class="slide level2">
+<h2>The need for <code>Async I/O</code> in AI Data Processing</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
 <ul>
-<li class="fragment"><p>When talking to external systems (databases, APIs) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.</p></li>
+<li class="fragment"><p>When talking to external systems (databases, APIs, LLM services) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.</p></li>
 <li class="fragment"><p>The Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.</p></li>
+<li class="fragment"><p><strong>AI Use Cases</strong>:</p>
+<ul>
+<li class="fragment">Calling LLM APIs (OpenAI, Anthropic, Bedrock)</li>
+<li class="fragment">Fetching data from multiple sources</li>
+<li class="fragment">Parallel web scraping for training data</li>
+<li class="fragment">Distributed vector database queries</li>
+</ul></li>
 <li class="fragment"><p>References: <a href="https://docs.python.org/3/library/asyncio.html">asyncio — Asynchronous I/O</a>, <a href="https://realpython.com/async-io-python/">Async IO in Python: A Complete Walkthrough</a></p></li>
 </ul>
 </div>
@@ -869,14 +942,14 @@ A starting value from which the accumulator function starts
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> asyncio</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
-<span id="cb2-4"><a></a>    <span class="bu">print</span>(<span class="st">'Hello ...'</span>)</span>
-<span id="cb2-5"><a></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
-<span id="cb2-6"><a></a>    <span class="bu">print</span>(<span class="st">'... World!'</span>)</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a>asyncio.run(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> asyncio</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb3-4"><a></a>    <span class="bu">print</span>(<span class="st">'Hello ...'</span>)</span>
+<span id="cb3-5"><a></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
+<span id="cb3-6"><a></a>    <span class="bu">print</span>(<span class="st">'... World!'</span>)</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>asyncio.run(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="anatomy-of-an-asyncio-python-program" class="slide level2">
@@ -892,30 +965,344 @@ A starting value from which the accumulator function starts
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> time</span>
-<span id="cb3-2"><a></a><span class="im">import</span> asyncio</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="kw">def</span> my_blocking_func(i):</span>
-<span id="cb3-5"><a></a>    <span class="co"># some blocking code such as an api call</span></span>
-<span id="cb3-6"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, entry"</span>)</span>
-<span id="cb3-7"><a></a>    time.sleep(<span class="dv">1</span>)</span>
-<span id="cb3-8"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, exiting"</span>)</span>
-<span id="cb3-9"><a></a>    <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb3-10"><a></a>  </span>
-<span id="cb3-11"><a></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func(i: <span class="bu">int</span>):</span>
-<span id="cb3-12"><a></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.to_thread(my_blocking_func, i)</span>
-<span id="cb3-13"><a></a></span>
-<span id="cb3-14"><a></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func_for_multiple(n: <span class="bu">int</span>):</span>
-<span id="cb3-15"><a></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.gather(<span class="op">*</span>[async_my_blocking_func(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
-<span id="cb3-16"><a></a></span>
-<span id="cb3-17"><a></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb3-18"><a></a>    <span class="co"># async version</span></span>
-<span id="cb3-19"><a></a>    s <span class="op">=</span> time.perf_counter()</span>
-<span id="cb3-20"><a></a>    n <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb3-21"><a></a>    brewery_counts <span class="op">=</span> asyncio.run(async_my_blocking_func_for_multiple(n))</span>
-<span id="cb3-22"><a></a>    elapsed_async <span class="op">=</span> time.perf_counter() <span class="op">-</span> s</span>
-<span id="cb3-23"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">__file__</span><span class="sc">}</span><span class="ss">, async_my_blocking_func_for_multiple finished in </span><span class="sc">{</span>elapsed_async<span class="sc">:0.2f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> time</span>
+<span id="cb4-2"><a></a><span class="im">import</span> asyncio</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="kw">def</span> my_blocking_func(i):</span>
+<span id="cb4-5"><a></a>    <span class="co"># some blocking code such as an api call</span></span>
+<span id="cb4-6"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, entry"</span>)</span>
+<span id="cb4-7"><a></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb4-8"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, exiting"</span>)</span>
+<span id="cb4-9"><a></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-10"><a></a>  </span>
+<span id="cb4-11"><a></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func(i: <span class="bu">int</span>):</span>
+<span id="cb4-12"><a></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.to_thread(my_blocking_func, i)</span>
+<span id="cb4-13"><a></a></span>
+<span id="cb4-14"><a></a><span class="cf">async</span> <span class="kw">def</span> async_my_blocking_func_for_multiple(n: <span class="bu">int</span>):</span>
+<span id="cb4-15"><a></a>    <span class="cf">return</span> <span class="cf">await</span> asyncio.gather(<span class="op">*</span>[async_my_blocking_func(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
+<span id="cb4-16"><a></a></span>
+<span id="cb4-17"><a></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-18"><a></a>    <span class="co"># async version</span></span>
+<span id="cb4-19"><a></a>    s <span class="op">=</span> time.perf_counter()</span>
+<span id="cb4-20"><a></a>    n <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb4-21"><a></a>    brewery_counts <span class="op">=</span> asyncio.run(async_my_blocking_func_for_multiple(n))</span>
+<span id="cb4-22"><a></a>    elapsed_async <span class="op">=</span> time.perf_counter() <span class="op">-</span> s</span>
+<span id="cb4-23"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">__file__</span><span class="sc">}</span><span class="ss">, async_my_blocking_func_for_multiple finished in </span><span class="sc">{</span>elapsed_async<span class="sc">:0.2f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
+</section>
+<section id="ai-example-parallel-llm-api-calls" class="slide level2">
+<h2>AI Example: Parallel LLM API Calls</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> asyncio</span>
+<span id="cb5-2"><a></a><span class="im">import</span> aiohttp</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="cf">async</span> <span class="kw">def</span> call_llm_api(prompt, session):</span>
+<span id="cb5-5"><a></a>    <span class="co">"""Make async call to LLM API"""</span></span>
+<span id="cb5-6"><a></a>    <span class="cf">async</span> <span class="cf">with</span> session.post(</span>
+<span id="cb5-7"><a></a>        <span class="st">"https://api.example.com/generate"</span>,</span>
+<span id="cb5-8"><a></a>        json<span class="op">=</span>{<span class="st">"prompt"</span>: prompt, <span class="st">"max_tokens"</span>: <span class="dv">100</span>}</span>
+<span id="cb5-9"><a></a>    ) <span class="im">as</span> response:</span>
+<span id="cb5-10"><a></a>        <span class="cf">return</span> <span class="cf">await</span> response.json()</span>
+<span id="cb5-11"><a></a></span>
+<span id="cb5-12"><a></a><span class="cf">async</span> <span class="kw">def</span> process_prompts(prompts):</span>
+<span id="cb5-13"><a></a>    <span class="co">"""Process multiple prompts in parallel"""</span></span>
+<span id="cb5-14"><a></a>    <span class="cf">async</span> <span class="cf">with</span> aiohttp.ClientSession() <span class="im">as</span> session:</span>
+<span id="cb5-15"><a></a>        tasks <span class="op">=</span> [call_llm_api(prompt, session) <span class="cf">for</span> prompt <span class="kw">in</span> prompts]</span>
+<span id="cb5-16"><a></a>        results <span class="op">=</span> <span class="cf">await</span> asyncio.gather(<span class="op">*</span>tasks)</span>
+<span id="cb5-17"><a></a>    <span class="cf">return</span> results</span>
+<span id="cb5-18"><a></a></span>
+<span id="cb5-19"><a></a><span class="co"># Generate synthetic data using parallel API calls</span></span>
+<span id="cb5-20"><a></a>prompts <span class="op">=</span> [<span class="st">"Generate a customer review for..."</span>, </span>
+<span id="cb5-21"><a></a>           <span class="st">"Create technical documentation for..."</span>,</span>
+<span id="cb5-22"><a></a>           <span class="st">"Write a dialogue about..."</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb5-23"><a></a></span>
+<span id="cb5-24"><a></a>results <span class="op">=</span> asyncio.run(process_prompts(prompts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>This approach can speed up synthetic data generation by 10-100x compared to sequential API calls</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="data-engineering-for-ai-at-scale" class="title-slide slide level1 section center">
+<h1>Data Engineering for AI at Scale</h1>
+
+</section>
+<section id="the-ai-data-challenge" class="slide level2">
+<h2>The AI Data Challenge</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Volume</strong>: LLMs trained on trillions of tokens (petabytes of text)</li>
+<li class="fragment"><strong>Variety</strong>: Multimodal data (text, images, audio, video, structured data)</li>
+<li class="fragment"><strong>Velocity</strong>: Real-time data pipelines for online learning</li>
+<li class="fragment"><strong>Veracity</strong>: Data quality is crucial for model performance</li>
+<li class="fragment"><strong>Value</strong>: High-quality data is more important than model architecture</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>“Data is the new oil, but it needs refining” - especially for AI</p>
+</blockquote>
+</div>
+</section>
+<section id="parallel-data-processing-pipeline-for-ai" class="slide level2">
+<h2>Parallel Data Processing Pipeline for AI</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Example: Parallel document processing for RAG system</span></span>
+<span id="cb6-2"><a></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
+<span id="cb6-3"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-4"><a></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
+<span id="cb6-5"><a></a></span>
+<span id="cb6-6"><a></a><span class="kw">def</span> process_document(doc):</span>
+<span id="cb6-7"><a></a>    <span class="co"># Extract text</span></span>
+<span id="cb6-8"><a></a>    text <span class="op">=</span> extract_text(doc)</span>
+<span id="cb6-9"><a></a>    <span class="co"># Clean and normalize</span></span>
+<span id="cb6-10"><a></a>    cleaned <span class="op">=</span> clean_text(text)</span>
+<span id="cb6-11"><a></a>    <span class="co"># Chunk into passages</span></span>
+<span id="cb6-12"><a></a>    chunks <span class="op">=</span> chunk_text(cleaned, max_length<span class="op">=</span><span class="dv">512</span>)</span>
+<span id="cb6-13"><a></a>    <span class="co"># Generate embeddings</span></span>
+<span id="cb6-14"><a></a>    embeddings <span class="op">=</span> model.encode(chunks)</span>
+<span id="cb6-15"><a></a>    <span class="cf">return</span> {<span class="st">'doc_id'</span>: doc.<span class="bu">id</span>, <span class="st">'chunks'</span>: chunks, <span class="st">'embeddings'</span>: embeddings}</span>
+<span id="cb6-16"><a></a></span>
+<span id="cb6-17"><a></a><span class="co"># Process millions of documents in parallel</span></span>
+<span id="cb6-18"><a></a><span class="cf">with</span> Pool(processes<span class="op">=</span><span class="dv">32</span>) <span class="im">as</span> pool:</span>
+<span id="cb6-19"><a></a>    results <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="common-data-parallel-patterns-for-ai" class="slide level2">
+<h2>Common Data Parallel Patterns for AI</h2>
+<h3 id="embarrassingly-parallel">1. Embarrassingly Parallel</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Process each item independently</span></span>
+<span id="cb7-2"><a></a>results <span class="op">=</span> parallel_map(transform_function, data_items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="map-reduce-pattern">2. Map-Reduce Pattern</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Map: Extract features from each document</span></span>
+<span id="cb8-2"><a></a><span class="co"># Reduce: Aggregate statistics across corpus</span></span>
+<span id="cb8-3"><a></a>word_counts <span class="op">=</span> data.<span class="bu">map</span>(tokenize).<span class="bu">reduce</span>(aggregate_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="pipeline-pattern">3. Pipeline Pattern</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># Stage 1: Download → Stage 2: Extract → Stage 3: Transform → Stage 4: Load</span></span>
+<span id="cb9-2"><a></a>pipeline <span class="op">=</span> Download() <span class="op">|</span> Extract() <span class="op">|</span> Transform() <span class="op">|</span> Load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-quality-at-scale" class="slide level2">
+<h2>Data Quality at Scale</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="quality-checks-to-parallelize">Quality Checks to Parallelize</h3>
+<ul>
+<li>Duplicate detection (MinHash)</li>
+<li>Language identification</li>
+<li>Toxicity filtering</li>
+<li>PII detection and removal</li>
+<li>Format validation</li>
+<li>Schema compliance</li>
+<li>Statistical outlier detection</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="quality-metrics-for-ai-data">Quality Metrics for AI Data</h3>
+<ul>
+<li>Token distribution analysis</li>
+<li>Vocabulary coverage</li>
+<li>Domain representation</li>
+<li>Bias measurement</li>
+<li>Data freshness</li>
+<li>Annotation agreement</li>
+<li>Synthetic data detection</li>
+</ul>
+</div></div>
+</section>
+<section id="distributed-frameworks-for-ai-data" class="slide level2">
+<h2>Distributed Frameworks for AI Data</h2>
+<h3 id="apache-spark-for-large-scale-processing">Apache Spark for Large-Scale Processing</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># Process TB-scale datasets</span></span>
+<span id="cb10-2"><a></a>df <span class="op">=</span> spark.read.parquet(<span class="st">"s3://bucket/training_data/"</span>)</span>
+<span id="cb10-3"><a></a>cleaned <span class="op">=</span> df.<span class="bu">filter</span>(col(<span class="st">"quality_score"</span>) <span class="op">&gt;</span> <span class="fl">0.8</span>) <span class="op">\</span></span>
+<span id="cb10-4"><a></a>           .select(clean_text_udf(<span class="st">"text"</span>).alias(<span class="st">"cleaned_text"</span>))</span>
+<span id="cb10-5"><a></a>cleaned.write.parquet(<span class="st">"s3://bucket/cleaned_data/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="ray-data-for-ml-pipelines">Ray Data for ML Pipelines</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> ray.data</span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a><span class="co"># Distributed preprocessing with Ray</span></span>
+<span id="cb11-4"><a></a>ds <span class="op">=</span> ray.data.read_parquet(<span class="st">"s3://bucket/images/"</span>)</span>
+<span id="cb11-5"><a></a>processed <span class="op">=</span> ds.map_batches(preprocess_images, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb11-6"><a></a>              .map_batches(extract_features, num_gpus<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="embedding-generation-at-scale" class="slide level2">
+<h2>Embedding Generation at Scale</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Challenge</strong>: Generate embeddings for 100M+ documents</li>
+<li class="fragment"><strong>Solution</strong>: Distributed GPU processing</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co"># Distributed embedding generation</span></span>
+<span id="cb12-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoModel</span>
+<span id="cb12-3"><a></a><span class="im">import</span> torch.distributed <span class="im">as</span> dist</span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a><span class="kw">def</span> generate_embeddings_distributed(documents, rank, world_size):</span>
+<span id="cb12-6"><a></a>    <span class="co"># Each GPU processes a subset</span></span>
+<span id="cb12-7"><a></a>    subset <span class="op">=</span> documents[rank::world_size]</span>
+<span id="cb12-8"><a></a>    model <span class="op">=</span> AutoModel.from_pretrained(<span class="st">"sentence-transformers/all-MiniLM-L6-v2"</span>)</span>
+<span id="cb12-9"><a></a>    model <span class="op">=</span> model.to(<span class="ss">f"cuda:</span><span class="sc">{</span>rank<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-10"><a></a>    </span>
+<span id="cb12-11"><a></a>    embeddings <span class="op">=</span> []</span>
+<span id="cb12-12"><a></a>    <span class="cf">for</span> batch <span class="kw">in</span> batch_iterator(subset, batch_size<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb12-13"><a></a>        <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-14"><a></a>            emb <span class="op">=</span> model.encode(batch)</span>
+<span id="cb12-15"><a></a>        embeddings.extend(emb)</span>
+<span id="cb12-16"><a></a>    <span class="cf">return</span> embeddings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-deduplication-for-ai" class="slide level2">
+<h2>Data Deduplication for AI</h2>
+<h3 id="why-deduplication-matters">Why Deduplication Matters</h3>
+<ul>
+<li>Training on duplicates wastes compute</li>
+<li>Can cause overfitting and memorization</li>
+<li>Critical for web-scale datasets</li>
+</ul>
+<h3 id="parallel-deduplication-strategies">Parallel Deduplication Strategies</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># MinHash for approximate deduplication</span></span>
+<span id="cb13-2"><a></a><span class="im">from</span> datasketch <span class="im">import</span> MinHash, MinHashLSH</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="kw">def</span> parallel_dedup(documents):</span>
+<span id="cb13-5"><a></a>    <span class="co"># Step 1: Generate MinHash signatures (parallel)</span></span>
+<span id="cb13-6"><a></a>    signatures <span class="op">=</span> parallel_map(generate_minhash, documents)</span>
+<span id="cb13-7"><a></a>    </span>
+<span id="cb13-8"><a></a>    <span class="co"># Step 2: LSH for finding near-duplicates</span></span>
+<span id="cb13-9"><a></a>    lsh <span class="op">=</span> MinHashLSH(threshold<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb13-10"><a></a>    <span class="cf">for</span> doc_id, sig <span class="kw">in</span> signatures:</span>
+<span id="cb13-11"><a></a>        lsh.insert(doc_id, sig)</span>
+<span id="cb13-12"><a></a>    </span>
+<span id="cb13-13"><a></a>    <span class="co"># Step 3: Filter duplicates (parallel)</span></span>
+<span id="cb13-14"><a></a>    unique_docs <span class="op">=</span> parallel_filter(is_unique, documents, lsh)</span>
+<span id="cb13-15"><a></a>    <span class="cf">return</span> unique_docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="synthetic-data-generation" class="slide level2">
+<h2>Synthetic Data Generation</h2>
+<h3 id="parallel-synthetic-data-creation">Parallel Synthetic Data Creation</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># Generate training data using LLMs</span></span>
+<span id="cb14-2"><a></a>prompts <span class="op">=</span> [</span>
+<span id="cb14-3"><a></a>    <span class="st">"Generate a customer service dialogue about..."</span>,</span>
+<span id="cb14-4"><a></a>    <span class="st">"Create a technical documentation for..."</span>,</span>
+<span id="cb14-5"><a></a>    <span class="st">"Write a product review for..."</span></span>
+<span id="cb14-6"><a></a>]</span>
+<span id="cb14-7"><a></a></span>
+<span id="cb14-8"><a></a><span class="co"># Parallel generation across multiple API calls</span></span>
+<span id="cb14-9"><a></a><span class="cf">with</span> ThreadPoolExecutor(max_workers<span class="op">=</span><span class="dv">100</span>) <span class="im">as</span> executor:</span>
+<span id="cb14-10"><a></a>    futures <span class="op">=</span> []</span>
+<span id="cb14-11"><a></a>    <span class="cf">for</span> prompt <span class="kw">in</span> prompts:</span>
+<span id="cb14-12"><a></a>        future <span class="op">=</span> executor.submit(generate_with_llm, prompt)</span>
+<span id="cb14-13"><a></a>        futures.append(future)</span>
+<span id="cb14-14"><a></a>    </span>
+<span id="cb14-15"><a></a>    synthetic_data <span class="op">=</span> [f.result() <span class="cf">for</span> f <span class="kw">in</span> futures]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li>Augmenting limited datasets</li>
+<li>Creating instruction-tuning data</li>
+<li>Generating test cases</li>
+<li>Privacy-preserving alternatives</li>
+</ul>
+</div>
+</section>
+<section id="best-practices-for-parallel-data-processing" class="slide level2">
+<h2>Best Practices for Parallel Data Processing</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Profile First</strong>: Identify bottlenecks before parallelizing</li>
+<li class="fragment"><strong>Chunk Appropriately</strong>: Balance chunk size with overhead</li>
+<li class="fragment"><strong>Handle Failures</strong>: Implement retry logic and checkpointing</li>
+<li class="fragment"><strong>Monitor Progress</strong>: Use progress bars and logging</li>
+<li class="fragment"><strong>Validate Output</strong>: Always verify data quality post-processing</li>
+<li class="fragment"><strong>Version Everything</strong>: Track data lineage and transformations</li>
+</ol>
+</div>
+</section>
+<section id="tools-comparison-for-ai-data-processing" class="slide level2">
+<h2>Tools Comparison for AI Data Processing</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Best For</th>
+<th>Scalability</th>
+<th>Learning Curve</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>multiprocessing</strong></td>
+<td>Single machine</td>
+<td>10s of cores</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>Spark</strong></td>
+<td>Distributed batch</td>
+<td>1000s of nodes</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>Ray</strong></td>
+<td>ML workloads</td>
+<td>100s of nodes</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>Dask</strong></td>
+<td>Python-native</td>
+<td>100s of nodes</td>
+<td>Low</td>
+</tr>
+<tr class="odd">
+<td><strong>Beam</strong></td>
+<td>Stream + batch</td>
+<td>1000s of nodes</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="case-study-building-a-rag-dataset" class="slide level2">
+<h2>Case Study: Building a RAG Dataset</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Process 10M documents</li>
+<li>Generate embeddings for each</li>
+<li>Build vector index</li>
+<li>Ensure quality and deduplication</li>
+</ul>
+<h3 id="parallel-solution">Parallel Solution</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="co"># Stage 1: Parallel document processing</span></span>
+<span id="cb15-2"><a></a>processed_docs <span class="op">=</span> ray.data.read_parquet(<span class="st">"raw_docs/"</span>) <span class="op">\</span></span>
+<span id="cb15-3"><a></a>    .map_batches(extract_and_clean) <span class="op">\</span></span>
+<span id="cb15-4"><a></a>    .map_batches(chunk_documents)</span>
+<span id="cb15-5"><a></a></span>
+<span id="cb15-6"><a></a><span class="co"># Stage 2: Distributed embedding generation  </span></span>
+<span id="cb15-7"><a></a>embeddings <span class="op">=</span> processed_docs.map_batches(</span>
+<span id="cb15-8"><a></a>    generate_embeddings,</span>
+<span id="cb15-9"><a></a>    num_gpus<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb15-10"><a></a>    batch_size<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb15-11"><a></a>)</span>
+<span id="cb15-12"><a></a></span>
+<span id="cb15-13"><a></a><span class="co"># Stage 3: Build index (using FAISS)</span></span>
+<span id="cb15-14"><a></a>index <span class="op">=</span> build_distributed_index(embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key Takeaways</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Data is the bottleneck</strong> in modern AI systems</li>
+<li class="fragment"><strong>Parallel processing is essential</strong> for AI-scale data</li>
+<li class="fragment"><strong>Choose the right tool</strong> for your scale and use case</li>
+<li class="fragment"><strong>Quality over quantity</strong> - parallel quality checks are crucial</li>
+<li class="fragment"><strong>Monitor and validate</strong> throughout the pipeline</li>
+<li class="fragment"><strong>Modern frameworks</strong> (Spark, Ray, Dask) simplify distributed processing</li>
+</ul>
+</div>
 
 
 </section></section>
