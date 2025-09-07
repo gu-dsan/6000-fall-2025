@@ -9,7 +9,7 @@
 | Merge Canvas Sections | Merge Monday/Thursday and Wednesday sections in Canvas into one course | 🟢 Completed | High | Jeff | 8/20/2025 | 8/11/2025 | Check with Jeff on section merging process |
 | Clean Unreferenced Images | Review and remove 335 unreferenced images (see [unreferenced_images.md](unreferenced_images.md)) | 🟢 Completed | Medium | Amit | 8/15/2025 | 8/09/2025 | Deleted todo/to-be-deleted folder |
 | Update Course Materials | Review and update all lecture slides for Fall 2025 | 🟡 In Progress | High |  | 8/20/2025 |  | Focus on new technologies and tools. See [detailed lab/assignment tracking](#lab-and-assignment-tracking) |
-| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟡 In Progress | High | Amit | 8/25/2025 |  |  |
+| Configure AWS/Cloud Access | Set up student AWS accounts and permissions | 🟢 Completed | High | Amit | 8/25/2025 | 9/7/2025 | Student AWS accounts and permissions configured |
 | Test All Labs | Run through all labs to ensure they work | 🟡 In Progress | High | Amit | 8/22/2025 |  | Especially cloud-based labs |
 | Update Syllabus | Finalize syllabus with correct dates and policies | 🟢 Completed | High | Amit | 8/15/2025 | 8/27/2025 | Schedule already updated |
 | Create Slack Workspace | Set up dsan6000fall2025.slack.com channels | 🟢 Completed | Medium |  | 8/20/2025 | 8/09/2025 | Workspace created with invite link: https://join.slack.com/t/dsan6000fall2025/shared_invite/zt-3b22qhque-GagQykwYYNiEzli9UXJn4w |
