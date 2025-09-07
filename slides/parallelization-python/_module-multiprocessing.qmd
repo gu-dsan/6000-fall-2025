@@ -39,6 +39,9 @@ Wraps the `Process` into a convenient pool of workers that share a chunk of work
 
 - The `joblib` module
 - Most `scikit-learn` functions have implicit parallelization baked in through the `n_jobs` parameter
+- **Ray** for distributed AI/ML workloads
+- **Dask** for scaling pandas/numpy operations
+- **Apache Beam** for data pipelines
 
 For example
 
@@ -53,3 +56,22 @@ uses the `joblib` module to use all available processors (`n_jobs=-1`) to do the
 See [here](https://scikit-learn.org/stable/computing/parallelism.html) for a description of parallel processing in the scikit-learn module
 :::
 :::
+
+## AI Data Processing Example
+
+```python
+from multiprocessing import Pool
+from transformers import AutoTokenizer
+
+# Parallel tokenization for LLM training
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+def process_document(text):
+    # Clean and tokenize text
+    tokens = tokenizer(text, truncation=True, max_length=512)
+    return tokens
+
+# Process millions of documents in parallel
+with Pool(processes=32) as pool:
+    tokenized_docs = pool.map(process_document, documents)
+```

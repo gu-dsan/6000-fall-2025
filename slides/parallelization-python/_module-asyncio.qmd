@@ -1,15 +1,21 @@
 # Async I/O in Python {.section}
 
-## The need for `Async I/O`
+## The need for `Async I/O` in AI Data Processing
 
 ::: columns
 
 ::: {.column width="50%"}
 ::: {.incremental}
 
-- When talking to external systems (databases, APIs) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.
+- When talking to external systems (databases, APIs, LLM services) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.
 
 - The Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.
+
+- **AI Use Cases**:
+  - Calling LLM APIs (OpenAI, Anthropic, Bedrock)
+  - Fetching data from multiple sources
+  - Parallel web scraping for training data
+  - Distributed vector database queries
 
 - References: [asyncio — Asynchronous I/O](https://docs.python.org/3/library/asyncio.html), [Async IO in Python: A Complete Walkthrough](https://realpython.com/async-io-python/)
 
@@ -123,4 +129,37 @@ if __name__ == "__main__":
     print(f"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds")
 ```
 :::
+:::
+
+## AI Example: Parallel LLM API Calls
+
+```python
+import asyncio
+import aiohttp
+
+async def call_llm_api(prompt, session):
+    """Make async call to LLM API"""
+    async with session.post(
+        "https://api.example.com/generate",
+        json={"prompt": prompt, "max_tokens": 100}
+    ) as response:
+        return await response.json()
+
+async def process_prompts(prompts):
+    """Process multiple prompts in parallel"""
+    async with aiohttp.ClientSession() as session:
+        tasks = [call_llm_api(prompt, session) for prompt in prompts]
+        results = await asyncio.gather(*tasks)
+    return results
+
+# Generate synthetic data using parallel API calls
+prompts = ["Generate a customer review for...", 
+           "Create technical documentation for...",
+           "Write a dialogue about..."] * 100
+
+results = asyncio.run(process_prompts(prompts))
+```
+
+::: {.callout-tip}
+This approach can speed up synthetic data generation by 10-100x compared to sequential API calls
 :::

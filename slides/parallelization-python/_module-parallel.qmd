@@ -55,3 +55,17 @@ Infrastructures have standardized many of these and have helped data scientists 
 
 We'll see in the lab how the `multiprocessing` module in Python makes parallel processing on a machine quite easy to implement
 :::
+
+## Parallel Data Processing for AI
+
+### Common AI Data Workloads
++ **Text preprocessing**: Tokenization, cleaning for LLM training
++ **Embedding generation**: Converting documents to vectors
++ **Data quality filtering**: Removing low-quality training samples
++ **Format conversion**: PDF to text, audio to features
++ **Synthetic data generation**: Using LLMs to create training data
++ **Deduplication**: Finding and removing duplicate content
+
+::: {.fragment}
+These operations are **embarrassingly parallel** - each document/sample can be processed independently
+:::

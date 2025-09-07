@@ -43,13 +43,22 @@ The main point is that the _same_ operations will be run on each data object in 
 
 ## Map
 
-Some examples of a **map** operations are
+Some examples of **map** operations are:
 
+**Traditional Data Analytics:**
 1. Extracting a standard table from online reports from multiple years
 1. Extracting particular records from multiple JSON objects
 1. Transforming data (as opposed to summarizing it)
 1. Run a normalization script on each transcript in a GWAS dataset
 1. Standardizing demographic data for each of the last 20 years against the 2000 US population
+
+**AI Data Processing (2025):**
+1. **Text processing**: Tokenizing millions of documents for LLM training
+1. **Embedding generation**: Converting each document to a vector representation
+1. **Data extraction**: Extracting text from millions of PDFs using OCR
+1. **Quality filtering**: Applying toxicity/bias filters to each text sample
+1. **Image preprocessing**: Resizing and normalizing images for vision models
+1. **Synthetic data**: Generating training examples from prompts using LLMs
 
 ::: {.imgcenter .imghalf}
 ![](img/map3.png)
@@ -101,10 +110,18 @@ For example, if we were to add successive numbers with a function called `add`..
 
 Some examples:
 
+**Traditional Analytics:**
 1. Finding the common elements (_intersection_) of a large number of sets
 1. Computing a table of group-wise summaries
 1. Filtering
 1. Tabulating
+
+**AI Data Processing (2025):**
+1. **Deduplication**: Finding unique documents across billions of samples
+1. **Aggregating statistics**: Computing dataset quality metrics
+1. **Vocabulary building**: Creating token vocabularies from text corpus
+1. **Index building**: Merging vector embeddings into searchable indices
+1. **Data validation**: Aggregating quality scores across partitions
 
 
 # Map & Reduce {.section}

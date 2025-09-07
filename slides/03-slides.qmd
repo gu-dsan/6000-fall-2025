@@ -1,6 +1,6 @@
 ---
 title: "Lecture 3"
-subtitle: "Parallelization"
+subtitle: "Parallelization in the AI Era"
 author: "{{< var instructor.name >}}"
 institute:
 - "{{< var university.name >}}"
@@ -21,14 +21,18 @@ format:
 
 ## Agenda and Goals for Today
 
--   Scaling up and scaling out
--   Parallelization
+-   Scaling up and scaling out for AI data pipelines
+-   Parallelization fundamentals for data processing
 -   Map and Reduce functions
+-   Parallel data preparation for AI/ML workloads
+-   Distributed data processing frameworks (Spark, Ray, Dask)
 -   Lab Preview: Parallelization with Python
     -   Use the `multiprocessing` module
     -   Implement synchronous and asynchronous processing
+    -   Parallel data preprocessing examples
 -   Homework Preview: Parallelization with Python
     -   Parallel data processing
+    -   Building scalable data pipelines
 
 ## Looking back
 
@@ -47,7 +51,9 @@ format:
 | **Local** | Your current workstation (laptop, desktop, etc.), wherever you start the terminal/console application. |
 | **Remote** | Any machine you connect to via ssh or other means. |
 | **EC2** | Single virtual machine in the cloud where you can run computation (ephemeral) |
-| **SageMaker** | Integrated Developer Environment where you can conduct data science on single machines |
+| **SageMaker** | Integrated Developer Environment where you can conduct data science on single machines or distributed training |
+| **GPU** | Graphics Processing Unit - specialized hardware for parallel computation, essential for AI/ML |
+| **TPU** | Tensor Processing Unit - Google's custom AI accelerator chips |
 | **Ephemeral** | Lasting for a short time - any machine that will get turned off or place you will lose data |
 | **Persistent** | Lasting for a long time - any environment where your work is NOT lost when the timer goes off |
 
@@ -56,11 +62,25 @@ format:
 ## Typical real world scenarios
 
 ::: incremental
-- You are a Data Scientist and you want to cross-validate your models. This involves running the model *1000 times* but each run takes over an hour.
-- You are a Data Scientist and you want to run multiple models on your data, where each run can take up to 1 hour.
-- You are a genomics researcher and have been using small datasets of sequence data but soon you will receive a new type of sequencing data that is *10 times* as large. This means 10x more transcripts to process, but the processing for each transcript is similar.
--   You are an engineer using a fluid dynamics package that has an option to run in parallel. So far, you haven't used this option on your workstation. When moving from 2D to 3D simulations, the simulation time has more than tripled so it may make sense to take advantage of the parallel feature
--   You are a Data Scientist at the Federal Reserve and you have millions of text to process. So far, you have only executed NLP on thousands of articles and have not implemented machine learning models on them.
+- You need to **prepare training data** for LLMs by cleaning and deduplicating 100TB of web-scraped text
+- You are building a **RAG system** that requires embedding and indexing millions of documents in parallel
+- You need to **extract structured data** from millions of PDFs using vision models for document AI
+- You are **preprocessing multimodal datasets** with billions of image-text pairs for foundation model training
+- You need to run **quality filtering** on petabytes of Common Crawl data for training dataset curation
+- You are **generating synthetic training data** using LLMs to augment limited real-world datasets
+- You need to **transform and tokenize** text corpora across 100+ languages for multilingual AI
+- You are building **real-time data pipelines** that process streaming data for online learning systems
+:::
+
+## Data-for-AI Parallel Scenarios
+
+::: incremental
+- **Web-scale data processing**: Filtering 45TB of Common Crawl data for high-quality training examples
+- **Embedding generation**: Creating vector embeddings for 100M documents using sentence transformers
+- **Data deduplication**: Finding near-duplicates in billion-scale datasets using MinHash and LSH
+- **Synthetic data generation**: Using LLMs to generate millions of instruction-following examples
+- **Data quality assessment**: Running parallel quality checks on training data (toxicity, bias, factuality)
+- **Feature extraction**: Extracting features from millions of images, videos, or audio files for AI training
 :::
 
 # Parallel Programming {.section}
@@ -103,7 +123,7 @@ format:
 
 ## Linear vs. Parallel
 
-From a data science perspective
+From a data engineering for AI perspective
 
 ::: columns
 ::: {.column width="47%"}
@@ -129,15 +149,27 @@ From a data science perspective
 ### What are some examples of linear and parallel data science workflows?
 :::
 
-## Embarrasingly Parallel
+## Embarrasingly Parallel in Data for AI
 
 It's **easy** to speed things up when:
 
--   You need to calculate the same thing many times
--   Calculations are **independent** of each other
--   Each calculation takes a decent amount of time
+-   Processing millions of documents independently for text extraction
+-   Generating embeddings for each document in a corpus
+-   Applying the same preprocessing to each image in a dataset
+-   Running quality filters on individual data samples
+-   Tokenizing text files independently
+-   Converting file formats (PDF to text, audio to features)
+-   Validating and cleaning individual records
 
-Just run **multiple calculations at the same time**
+Just run **multiple data processing tasks at the same time**
+
+::: fragment
+### Modern Data Processing Tools for AI:
+- **Apache Spark**: Distributed data processing at scale
+- **Ray Data**: Scalable data preprocessing for ML
+- **Dask**: Parallel computing with Python APIs
+- **Polars**: Fast DataFrame library with parallel execution
+:::
 
 ## Embarrasingly Parallel
 
@@ -166,30 +198,36 @@ often get linear speedups with the number of parallel components (to a limit)
 
 # When might parallel programming not be more efficient? {.section}
 
-## Some limitations
+## Some limitations in Data Processing for AI
 
-#### You can get speedups by parallelizing computations, but
+#### You can get speedups by parallelizing data operations, but
 
-- Having to transport data between parallel processes (memory bottlenecks)  and communication between processes (I/O bottlenecks) can make things more expensive and can exceed the benefits of parallelization
-- If you're moving a lot of data but not doing a lot of parallel computing, it's often not worth the effort
+- **Data skew**: Uneven distribution of data can create bottlenecks (e.g., one partition has 90% of data)
+- **I/O bound operations**: Reading/writing to storage can limit parallelization benefits
+- **Memory overhead**: Loading large models (like BERT) on each worker for feature extraction
+- **Deduplication challenges**: Some operations like global deduplication require data shuffling
+- **Ordering dependencies**: Maintaining sequence order in time-series or conversational data
 
 ::: {.fragment}
 
-#### Setting up and debugging parallel programs can be difficult
+#### Data-Specific Challenges
 
-But this has become easier with better software, like the `multiprocessing` module in Python
+- **Data quality issues**: Bad data in parallel pipelines can be hard to trace
+- **Resource management**: Large models (BERT, GPT) need significant memory per worker
+- **Consistency**: Ensuring all workers use same preprocessing versions
 
 :::
 
 ::: {.fragment}
 #### Making sure that we can get back all the pieces needs monitoring
 
-- Failure tolerance and protections (Hadoop, e.g.)
+- Failure tolerance and protections (Spark checkpointing)
 - Proper collection and aggregation of the processed data
+- Data validation after parallel processing
 
 :::
 
-## Amdahl's Law
+## Amdahl's Law in Data Processing
 
 ::: {.column width="50%"}
 ::: {.imgcenter }
@@ -202,50 +240,71 @@ $$
 \lim_{s\rightarrow\infty} S_{latency} = \frac{1}{1-p}
 $$
 
-where $s$ is the speedup of that part of the task (which is $p$ proportion of the overall task) benefitting from improved resources.
+**Data Pipeline Examples:**
+- If 80% is parallel (processing) and 20% is sequential (I/O), max speedup = 5x
+- If 95% is parallel (embedding generation), max speedup = 20x
 
 :::
 
-If 50% of the task is embarassingly parallel, you can get a maximum speedup of 2-fold, while if 90% is embarassingly parallel, you can get a maximum speedup of $1/(1-0.9) = 10$ fold. 
+::: fragment
+### Real Data Processing Speedups:
+- **Document processing**: Near-linear up to 100s of workers
+- **Embedding generation**: Linear with number of GPUs
+- **Data deduplication**: Sub-linear due to shuffling overhead
+::: 
 
 ::: {.aside}
 By <a href="https://en.wikipedia.org/wiki/User:Daniels220" class="extiw" title="wikipedia:User:Daniels220">Daniels220</a> at <a href="https://en.wikipedia.org/wiki/" class="extiw" title="wikipedia:">English Wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=6678551">Link</a>
 :::
 
-## Pros and cons of parallelization
+## Pros and cons of parallelization for AI Data
 
 ::: {.column width="47%"}
-### Yes
+### Yes - Parallelize These
 
--   Group by analysis
--   Simulations
--   Resampling / Bootstrapping
--   Optimization
--   Cross-validation
--   Training bagged models (like Random Forests)
--   Multiple chains in a Bayesian MCMC
--   Scoring (predicting) using trained models
+**Data Preparation:**
+-   Text extraction from documents (PDFs, HTML)
+-   Tokenization of text corpora
+-   Image preprocessing and augmentation
+-   Embedding generation for documents
+-   Data quality filtering and validation
+-   Format conversions (audio → features)
+-   Web scraping and data collection
+-   Synthetic data generation
+
+**Data Processing:**
+-   Batch inference on datasets
+-   Feature extraction at scale
+-   Data deduplication (local)
+-   Parallel chunk processing
 :::
 
 ::: {.column width="47%"}
 ::: fragment
-### No
+### No - Keep Sequential
 
--   SQL Operations
--   Inverting a matrix
--   Training linear regression
--   Training logistic regression
--   Training trees
--   Training neural nets
--   Training boosted models (like gradient boosted trees)
--   Each chain in a Bayesian MCMC
--   Most things time series
+**Order-Dependent:**
+-   Conversation threading
+-   Time-series preprocessing
+-   Sequential data validation
+-   Cumulative statistics
+
+**Global Operations:**
+-   Global deduplication
+-   Cross-dataset joins
+-   Sorting entire datasets
+-   Computing exact quantiles
+
+**Small Data:**
+-   Config file processing
+-   Metadata operations
+-   Single document processing
 :::
 :::
 
 ::: {.fragment}
 ::: {.callout-note appearance="simple"}
-For processes in the "No" column, each step depends on a previous step, and so they cannot be parallelized. However, there are approximate numerical methods applicable to big data which are parallelizable and get you to the right answer, based on parallely taking random subsets of the data. We'll see some of these when we look at Spark ML
+For data operations in the "No" column, they often require global coordination or maintain strict ordering. However, many can be approximated with parallel algorithms (like approximate deduplication with locality-sensitive hashing or approximate quantiles with t-digest)
 :::
 :::
 
@@ -289,4 +348,251 @@ There are good solutions today for most of the cons, so the pros have it and so 
 {{< include parallelization-python/_module-map-and-reduce.qmd >}}
 {{< include parallelization-python/_module-multiprocessing.qmd >}}
 {{< include parallelization-python/_module-asyncio.qmd >}}
+
+# Data Engineering for AI at Scale {.section}
+
+## The AI Data Challenge
+
+::: incremental
+- **Volume**: LLMs trained on trillions of tokens (petabytes of text)
+- **Variety**: Multimodal data (text, images, audio, video, structured data)
+- **Velocity**: Real-time data pipelines for online learning
+- **Veracity**: Data quality is crucial for model performance
+- **Value**: High-quality data is more important than model architecture
+:::
+
+::: fragment
+> "Data is the new oil, but it needs refining" - especially for AI
+:::
+
+## Parallel Data Processing Pipeline for AI
+
+```python
+# Example: Parallel document processing for RAG system
+from multiprocessing import Pool
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+
+def process_document(doc):
+    # Extract text
+    text = extract_text(doc)
+    # Clean and normalize
+    cleaned = clean_text(text)
+    # Chunk into passages
+    chunks = chunk_text(cleaned, max_length=512)
+    # Generate embeddings
+    embeddings = model.encode(chunks)
+    return {'doc_id': doc.id, 'chunks': chunks, 'embeddings': embeddings}
+
+# Process millions of documents in parallel
+with Pool(processes=32) as pool:
+    results = pool.map(process_document, documents)
+```
+
+## Common Data Parallel Patterns for AI
+
+### 1. Embarrassingly Parallel
+```python
+# Process each item independently
+results = parallel_map(transform_function, data_items)
+```
+
+### 2. Map-Reduce Pattern
+```python
+# Map: Extract features from each document
+# Reduce: Aggregate statistics across corpus
+word_counts = data.map(tokenize).reduce(aggregate_counts)
+```
+
+### 3. Pipeline Pattern
+```python
+# Stage 1: Download → Stage 2: Extract → Stage 3: Transform → Stage 4: Load
+pipeline = Download() | Extract() | Transform() | Load()
+```
+
+## Data Quality at Scale
+
+::: columns
+::: {.column width="50%"}
+### Quality Checks to Parallelize
+- Duplicate detection (MinHash)
+- Language identification
+- Toxicity filtering
+- PII detection and removal
+- Format validation
+- Schema compliance
+- Statistical outlier detection
+:::
+
+::: {.column width="50%"}
+### Quality Metrics for AI Data
+- Token distribution analysis
+- Vocabulary coverage
+- Domain representation
+- Bias measurement
+- Data freshness
+- Annotation agreement
+- Synthetic data detection
+:::
+:::
+
+## Distributed Frameworks for AI Data
+
+### Apache Spark for Large-Scale Processing
+```python
+# Process TB-scale datasets
+df = spark.read.parquet("s3://bucket/training_data/")
+cleaned = df.filter(col("quality_score") > 0.8) \
+           .select(clean_text_udf("text").alias("cleaned_text"))
+cleaned.write.parquet("s3://bucket/cleaned_data/")
+```
+
+### Ray Data for ML Pipelines
+```python
+import ray.data
+
+# Distributed preprocessing with Ray
+ds = ray.data.read_parquet("s3://bucket/images/")
+processed = ds.map_batches(preprocess_images, batch_size=100)
+              .map_batches(extract_features, num_gpus=1)
+```
+
+## Embedding Generation at Scale
+
+::: incremental
+- **Challenge**: Generate embeddings for 100M+ documents
+- **Solution**: Distributed GPU processing
+
+```python
+# Distributed embedding generation
+from transformers import AutoModel
+import torch.distributed as dist
+
+def generate_embeddings_distributed(documents, rank, world_size):
+    # Each GPU processes a subset
+    subset = documents[rank::world_size]
+    model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+    model = model.to(f"cuda:{rank}")
+    
+    embeddings = []
+    for batch in batch_iterator(subset, batch_size=256):
+        with torch.no_grad():
+            emb = model.encode(batch)
+        embeddings.extend(emb)
+    return embeddings
+```
+:::
+
+## Data Deduplication for AI
+
+### Why Deduplication Matters
+- Training on duplicates wastes compute
+- Can cause overfitting and memorization
+- Critical for web-scale datasets
+
+### Parallel Deduplication Strategies
+```python
+# MinHash for approximate deduplication
+from datasketch import MinHash, MinHashLSH
+
+def parallel_dedup(documents):
+    # Step 1: Generate MinHash signatures (parallel)
+    signatures = parallel_map(generate_minhash, documents)
+    
+    # Step 2: LSH for finding near-duplicates
+    lsh = MinHashLSH(threshold=0.9)
+    for doc_id, sig in signatures:
+        lsh.insert(doc_id, sig)
+    
+    # Step 3: Filter duplicates (parallel)
+    unique_docs = parallel_filter(is_unique, documents, lsh)
+    return unique_docs
+```
+
+## Synthetic Data Generation
+
+### Parallel Synthetic Data Creation
+```python
+# Generate training data using LLMs
+prompts = [
+    "Generate a customer service dialogue about...",
+    "Create a technical documentation for...",
+    "Write a product review for..."
+]
+
+# Parallel generation across multiple API calls
+with ThreadPoolExecutor(max_workers=100) as executor:
+    futures = []
+    for prompt in prompts:
+        future = executor.submit(generate_with_llm, prompt)
+        futures.append(future)
+    
+    synthetic_data = [f.result() for f in futures]
+```
+
+::: fragment
+### Use Cases
+- Augmenting limited datasets
+- Creating instruction-tuning data
+- Generating test cases
+- Privacy-preserving alternatives
+:::
+
+## Best Practices for Parallel Data Processing
+
+::: incremental
+1. **Profile First**: Identify bottlenecks before parallelizing
+2. **Chunk Appropriately**: Balance chunk size with overhead
+3. **Handle Failures**: Implement retry logic and checkpointing
+4. **Monitor Progress**: Use progress bars and logging
+5. **Validate Output**: Always verify data quality post-processing
+6. **Version Everything**: Track data lineage and transformations
+:::
+
+## Tools Comparison for AI Data Processing
+
+| Tool | Best For | Scalability | Learning Curve |
+|------|----------|-------------|----------------|
+| **multiprocessing** | Single machine | 10s of cores | Low |
+| **Spark** | Distributed batch | 1000s of nodes | Medium |
+| **Ray** | ML workloads | 100s of nodes | Low |
+| **Dask** | Python-native | 100s of nodes | Low |
+| **Beam** | Stream + batch | 1000s of nodes | High |
+
+## Case Study: Building a RAG Dataset
+
+### Requirements
+- Process 10M documents
+- Generate embeddings for each
+- Build vector index
+- Ensure quality and deduplication
+
+### Parallel Solution
+```python
+# Stage 1: Parallel document processing
+processed_docs = ray.data.read_parquet("raw_docs/") \
+    .map_batches(extract_and_clean) \
+    .map_batches(chunk_documents)
+
+# Stage 2: Distributed embedding generation  
+embeddings = processed_docs.map_batches(
+    generate_embeddings,
+    num_gpus=1,
+    batch_size=100
+)
+
+# Stage 3: Build index (using FAISS)
+index = build_distributed_index(embeddings)
+```
+
+## Key Takeaways
+
+::: incremental
+- **Data is the bottleneck** in modern AI systems
+- **Parallel processing is essential** for AI-scale data
+- **Choose the right tool** for your scale and use case
+- **Quality over quantity** - parallel quality checks are crucial
+- **Monitor and validate** throughout the pipeline
+- **Modern frameworks** (Spark, Ray, Dask) simplify distributed processing
+:::
 
