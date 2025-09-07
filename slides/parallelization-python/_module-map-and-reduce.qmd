@@ -137,7 +137,7 @@ Combining the **map** and **reduce** operations creates a powerful pipeline that
 
 # Parallelization and map-reduce {.section}
 
-## Parallelization and map-reduce are bed-mates
+## Parallelization and map-reduce work hand-in-hand
 
 ::: {.imgcenter style="width: 80%; height: 80%;"}
 ![](img/pmr1.png)
