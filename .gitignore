@@ -30,3 +30,6 @@ files/incomplete-reports.zip
 roster/names.csv
 roster/roster.txt
 roster/students.csv
+
+# Scratchpad directory - working files not for commit
+.scratchpad/
