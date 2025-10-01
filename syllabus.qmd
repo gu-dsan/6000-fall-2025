@@ -41,7 +41,13 @@ format:
 
 ### TAs
 
--   [{{< var ta.name >}}](mailto:{{< var ta.email >}})
+* Binhui Chen, [`bc928@georgetown.edu`](mailto:bc928@georgetown.edu)
+* Pranav Sudhir Patil, [`pp755@georgetown.edu`](mailto:pp755@georgetown.edu)
+* Ofure Udabor, [`au195@georgetown.edu`](mailto:au195@georgetown.edu)
+* Yifei Wu, [`yw924@georgetown.edu`](mailto:yw924@georgetown.edu)
+* Naomi Yamaguchi, [`ny159@georgetown.edu`](mailto:ny159@georgetown.edu)
+* Leqi Ying, [`ly290@georgetown.edu`](mailto:ly290@georgetown.edu)
+* Xinyue (Monica) Zhang, [`xz646@georgetown.edu`](mailto:xz646@georgetown.edu)
 
 #### Communication
 
