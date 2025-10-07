@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5efccf03a38e129e6e5ca76dade02d11.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 4</title>
@@ -30,8 +30,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -95,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-138bffa59e0b8e1d219a851a91faec2e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -430,37 +431,37 @@ Amit Arora, Jeff Jacobs
 <li><code>RUN ["/bin/bash", "-c", "echo hello"]</code></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb1-2"><a></a><span class="in">FROM busybox</span></span>
-<span id="cb1-3"><a></a><span class="in">ENV FOO=/bar</span></span>
-<span id="cb1-4"><a></a><span class="in">WORKDIR ${FOO}   # WORKDIR /bar</span></span>
-<span id="cb1-5"><a></a><span class="in">ADD . $FOO       # ADD . /bar</span></span>
-<span id="cb1-6"><a></a><span class="in">COPY \$FOO /quux # COPY $FOO /quu</span></span>
+<span id="cb1-2"><a></a><span class="ex">FROM</span> busybox</span>
+<span id="cb1-3"><a></a><span class="ex">ENV</span> FOO=/bar</span>
+<span id="cb1-4"><a></a><span class="ex">WORKDIR</span> <span class="va">${FOO}</span>   <span class="co"># WORKDIR /bar</span></span>
+<span id="cb1-5"><a></a><span class="ex">ADD</span> . <span class="va">$FOO</span>       <span class="co"># ADD . /bar</span></span>
+<span id="cb1-6"><a></a><span class="ex">COPY</span> <span class="dt">\$</span>FOO /quux <span class="co"># COPY $FOO /quu</span></span>
 <span id="cb1-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb2-2"><a></a><span class="in"># syntax=docker/dockerfile:1</span></span>
-<span id="cb2-3"><a></a><span class="in">FROM python:3.6</span></span>
-<span id="cb2-4"><a></a><span class="in">ADD mypackage.tgz wheels/</span></span>
-<span id="cb2-5"><a></a><span class="in">RUN --network=none pip install --find-links wheels mypackage</span></span>
+<span id="cb2-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<span id="cb2-3"><a></a><span class="ex">FROM</span> python:3.6</span>
+<span id="cb2-4"><a></a><span class="ex">ADD</span> mypackage.tgz wheels/</span>
+<span id="cb2-5"><a></a><span class="ex">RUN</span> <span class="at">--network</span><span class="op">=</span>none pip install <span class="at">--find-links</span> wheels mypackage</span>
 <span id="cb2-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference link</a></p>
 </section>
 <section id="s3-example" class="slide level2">
 <h2>S3 example</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb3-2"><a></a><span class="in"># syntax=docker/dockerfile:1</span></span>
-<span id="cb3-3"><a></a><span class="in">FROM python:3</span></span>
-<span id="cb3-4"><a></a><span class="in">RUN pip install awscli</span></span>
-<span id="cb3-5"><a></a><span class="in">RUN --mount=type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ...</span></span>
+<span id="cb3-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<span id="cb3-3"><a></a><span class="ex">FROM</span> python:3</span>
+<span id="cb3-4"><a></a><span class="ex">RUN</span> pip install awscli</span>
+<span id="cb3-5"><a></a><span class="ex">RUN</span> <span class="at">--mount</span><span class="op">=</span>type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ...</span>
 <span id="cb3-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="web-server-example" class="slide level2">
 <h2>Web server example</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb4-2"><a></a><span class="in">FROM debian:stable</span></span>
-<span id="cb4-3"><a></a><span class="in">RUN apt-get update &amp;&amp; apt-get install -y --force-yes apache2</span></span>
-<span id="cb4-4"><a></a><span class="in">EXPOSE 80 443</span></span>
-<span id="cb4-5"><a></a><span class="in">VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]</span></span>
-<span id="cb4-6"><a></a><span class="in">ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]</span></span>
+<span id="cb4-2"><a></a><span class="ex">FROM</span> debian:stable</span>
+<span id="cb4-3"><a></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--force-yes</span> apache2</span>
+<span id="cb4-4"><a></a><span class="ex">EXPOSE</span> 80 443</span>
+<span id="cb4-5"><a></a><span class="ex">VOLUME</span> [<span class="st">"/var/www"</span>, <span class="st">"/var/log/apache2"</span>, <span class="st">"/etc/apache2"</span>]</span>
+<span id="cb4-6"><a></a><span class="ex">ENTRYPOINT</span> [<span class="st">"/usr/sbin/apache2ctl"</span>, <span class="st">"-D"</span>, <span class="st">"FOREGROUND"</span>]</span>
 <span id="cb4-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="docker-for-python-jobs" class="slide level2">
@@ -514,11 +515,9 @@ Amit Arora, Jeff Jacobs
 
 <aside><div>
 <p>The name Lambda is derived from Lambda calculus, a mathematical system to express computation introduced by Dr.&nbsp;Alonzo Church in the 1930s. See wikipedia entry on <a href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda calculus</a> for why the symbol <span class="math inline">\(\lambda\)</span> was choosen.</p>
-</div></aside></section></section>
-<section>
-<section id="aws-lambda-functions" class="title-slide slide level1 center">
-<h1>AWS Lambda Functions</h1>
-
+</div></aside></section>
+<section id="aws-lambda-functions" class="slide level2">
+<h2># AWS Lambda Functions</h2>
 </section>
 <section id="lambda-details" class="slide level2">
 <h2>Lambda Details</h2>
@@ -622,22 +621,22 @@ Amit Arora, Jeff Jacobs
 <section id="dockerfile" class="slide level2">
 <h2>Dockerfile</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb6-2"><a></a><span class="in"># syntax=docker/dockerfile:1</span></span>
+<span id="cb6-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="in"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
-<span id="cb6-5"><a></a><span class="in"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
-<span id="cb6-6"><a></a><span class="in">FROM public.ecr.aws/lambda/python:3.9</span></span>
+<span id="cb6-4"><a></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
+<span id="cb6-5"><a></a><span class="co"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
+<span id="cb6-6"><a></a><span class="ex">FROM</span> public.ecr.aws/lambda/python:3.9</span>
 <span id="cb6-7"><a></a></span>
-<span id="cb6-8"><a></a><span class="in"># copy requirements file and install necessary packages</span></span>
-<span id="cb6-9"><a></a><span class="in">ADD requirements.txt ${LAMBDA_TASK_ROOT}</span></span>
-<span id="cb6-10"><a></a><span class="in">RUN pip3 install -r ${LAMBDA_TASK_ROOT}/requirements.txt --target "${LAMBDA_TASK_ROOT}"</span></span>
+<span id="cb6-8"><a></a><span class="co"># copy requirements file and install necessary packages</span></span>
+<span id="cb6-9"><a></a><span class="ex">ADD</span> requirements.txt <span class="va">${LAMBDA_TASK_ROOT}</span></span>
+<span id="cb6-10"><a></a><span class="ex">RUN</span> pip3 install <span class="at">-r</span> <span class="va">${LAMBDA_TASK_ROOT}</span>/requirements.txt <span class="at">--target</span> <span class="st">"</span><span class="va">${LAMBDA_TASK_ROOT}</span><span class="st">"</span></span>
 <span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a><span class="in"># Copy function code to docker container</span></span>
-<span id="cb6-13"><a></a><span class="in">COPY app.py ${LAMBDA_TASK_ROOT}</span></span>
+<span id="cb6-12"><a></a><span class="co"># Copy function code to docker container</span></span>
+<span id="cb6-13"><a></a><span class="ex">COPY</span> app.py <span class="va">${LAMBDA_TASK_ROOT}</span></span>
 <span id="cb6-14"><a></a></span>
-<span id="cb6-15"><a></a><span class="in"># app (name of py file)</span></span>
-<span id="cb6-16"><a></a><span class="in"># handler (name of function to execute for lambda job)</span></span>
-<span id="cb6-17"><a></a><span class="in">CMD [ "app.lambda_handler" ]</span></span>
+<span id="cb6-15"><a></a><span class="co"># app (name of py file)</span></span>
+<span id="cb6-16"><a></a><span class="co"># handler (name of function to execute for lambda job)</span></span>
+<span id="cb6-17"><a></a><span class="ex">CMD</span> [ <span class="st">"app.lambda_handler"</span> ]</span>
 <span id="cb6-18"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interactivity-with-lambda" class="slide level2">
@@ -876,190 +875,172 @@ Amit Arora, Jeff Jacobs
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

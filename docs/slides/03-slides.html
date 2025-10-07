@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5efccf03a38e129e6e5ca76dade02d11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+  <meta name="generator" content="quarto-1.7.33">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 3</title>
@@ -32,8 +32,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -44,7 +45,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -97,7 +98,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-138bffa59e0b8e1d219a851a91faec2e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -324,7 +325,6 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="typical-real-world-scenarios" class="slide level2">
 <h2>Typical real world scenarios</h2>
-<div>
 <ul>
 <li class="fragment">You need to <strong>prepare training data</strong> for LLMs by cleaning and deduplicating 100TB of web-scraped text</li>
 <li class="fragment">You are building a <strong>RAG system</strong> that requires embedding and indexing millions of documents in parallel</li>
@@ -335,11 +335,9 @@ Amit Arora, Jeff Jacobs
 <li class="fragment">You need to <strong>transform and tokenize</strong> text corpora across 100+ languages for multilingual AI</li>
 <li class="fragment">You are building <strong>real-time data pipelines</strong> that process streaming data for online learning systems</li>
 </ul>
-</div>
 </section>
 <section id="data-for-ai-parallel-scenarios" class="slide level2">
 <h2>Data-for-AI Parallel Scenarios</h2>
-<div>
 <ul>
 <li class="fragment"><strong>Web-scale data processing</strong>: Filtering 45TB of Common Crawl data for high-quality training examples</li>
 <li class="fragment"><strong>Embedding generation</strong>: Creating vector embeddings for 100M documents using sentence transformers</li>
@@ -348,7 +346,6 @@ Amit Arora, Jeff Jacobs
 <li class="fragment"><strong>Data quality assessment</strong>: Running parallel quality checks on training data (toxicity, bias, factuality)</li>
 <li class="fragment"><strong>Feature extraction</strong>: Extracting features from millions of images, videos, or audio files for AI training</li>
 </ul>
-</div>
 </section></section>
 <section>
 <section id="parallel-programming" class="title-slide slide level1 section center">
@@ -450,7 +447,6 @@ Amit Arora, Jeff Jacobs
 </div></aside></section>
 <section id="embarassingly-parallel" class="slide level2">
 <h2>Embarassingly parallel</h2>
-<div>
 <ul>
 <li class="fragment">If you can truly split up your problem into multiple <strong>independent</strong> parts, then you can often get linear speedups with the number of parallel components (to a limit)
 <ul>
@@ -460,7 +456,6 @@ Amit Arora, Jeff Jacobs
 <li class="fragment">Amdahl’s law (which we’ll see in a few slides) shows how parallelization can benefit overall if a large proportion of the problem is parallelizable</li>
 <li class="fragment">It’s not all milk and honey. Setting up, programming, evaluating, debugging parallel computations requires better infrastructure and more expertise.</li>
 </ul>
-</div>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>Gorelick &amp; Ozsvald, 2020. <em>High Performance Python</em>, O’Reilly</p></li></ol></aside></section></section>
 <section>
 <section id="when-might-parallel-programming-not-be-more-efficient" class="title-slide slide level1 section center">
@@ -809,14 +804,12 @@ A starting value from which the accumulator function starts
 </section>
 <section id="processes-and-threads" class="slide level2">
 <h2>Processes and threads</h2>
-<div>
 <ul>
 <li class="fragment">A <strong>process</strong> is an executing program, that is self-contained and has dedicated runtime and memory</li>
 <li class="fragment">A <strong>thread</strong> is the basic unit to which the operating system allocates processor time. It is an entity <em>within a process</em>. A thread can execute any part of the process code, including parts currently being executed by another thread.</li>
 <li class="fragment">A thread will often be faster to spin up and terminate than a full process</li>
 <li class="fragment">Threads can share memory and data with each other</li>
 </ul>
-</div>
 <div class="fragment">
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
@@ -886,7 +879,6 @@ A starting value from which the accumulator function starts
 <h2>The need for <code>Async I/O</code> in AI Data Processing</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div>
 <ul>
 <li class="fragment"><p>When talking to external systems (databases, APIs, LLM services) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.</p></li>
 <li class="fragment"><p>The Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.</p></li>
@@ -899,7 +891,6 @@ A starting value from which the accumulator function starts
 </ul></li>
 <li class="fragment"><p>References: <a href="https://docs.python.org/3/library/asyncio.html">asyncio — Asynchronous I/O</a>, <a href="https://realpython.com/async-io-python/">Async IO in Python: A Complete Walkthrough</a></p></li>
 </ul>
-</div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -913,13 +904,11 @@ A starting value from which the accumulator function starts
 <h2>Concurrency and parallelism in Python3</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div>
 <ul>
 <li class="fragment"><p><strong>Parallelism</strong>: multiple tasks are running in parallel, each on a different processors. This is done through the <code>multiprocessing</code> module.</p></li>
 <li class="fragment"><p><strong>Concurrency</strong>: multiple tasks are taking turns to run on the same processor. Another task can be scheduled while the current one is blocked on I/O.</p></li>
 <li class="fragment"><p><strong>Threading</strong>: multiple threads take turns executing tasks. One process can contain multiple threads. Similar to concurrency but within the context of a single process.</p></li>
 </ul>
-</div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -933,14 +922,12 @@ A starting value from which the accumulator function starts
 <h2>How to implement concurrency with <code>asyncio</code></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div>
 <ul>
 <li class="fragment"><p><code>asyncio</code> is a library to write concurrent code using the async/await syntax.</p></li>
 <li class="fragment"><p>Use of <code>async</code> and <code>await</code> keywords. You can call an <code>async</code> function multiple times while you <code>await</code> the result of a previous invocation.</p></li>
 <li class="fragment"><p><code>await</code> the result of multiple <code>async</code> tasks using <code>gather</code>.</p></li>
 <li class="fragment"><p>The <code>main</code> function in this example is called a <code>coroutine</code>. Multiple <code>coroutines</code> can be run <code>concurrnetly</code> as awaitable <code>tasks</code>.</p></li>
 </ul>
-</div>
 </div><div class="column" style="width:50%;">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> asyncio</span>
 <span id="cb3-2"><a></a></span>
@@ -956,14 +943,12 @@ A starting value from which the accumulator function starts
 <h2>Anatomy of an <code>asyncio</code> Python program</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div>
 <ul>
 <li class="fragment"><p>Write a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.</p></li>
 <li class="fragment"><p>Create a coroutine i.e.&nbsp;an <code>async</code> wrapper function to the blocking function using <code>async</code> and <code>await</code>, with the call to blocking function made using the <code>asyncio.to_thread</code> function. This enables the coroutine execution in a separate thread.</p></li>
 <li class="fragment"><p>Create another coroutine that makes multiple calls (in a loop, list comprehension) to the <code>async</code> wrapper created in the previous step and awaits completion of all of the invocations using the <code>asyncio.gather</code> function.</p></li>
 <li class="fragment"><p>Call the coroutine created in the previous step from another function using the <code>asyncio.run</code> function.</p></li>
 </ul>
-</div>
 </div><div class="column" style="width:50%;">
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> time</span>
 <span id="cb4-2"><a></a><span class="im">import</span> asyncio</span>
@@ -1037,7 +1022,6 @@ A starting value from which the accumulator function starts
 </section>
 <section id="the-ai-data-challenge" class="slide level2">
 <h2>The AI Data Challenge</h2>
-<div>
 <ul>
 <li class="fragment"><strong>Volume</strong>: LLMs trained on trillions of tokens (petabytes of text)</li>
 <li class="fragment"><strong>Variety</strong>: Multimodal data (text, images, audio, video, structured data)</li>
@@ -1045,7 +1029,6 @@ A starting value from which the accumulator function starts
 <li class="fragment"><strong>Veracity</strong>: Data quality is crucial for model performance</li>
 <li class="fragment"><strong>Value</strong>: High-quality data is more important than model architecture</li>
 </ul>
-</div>
 <div class="fragment">
 <blockquote>
 <p>“Data is the new oil, but it needs refining” - especially for AI</p>
@@ -1132,7 +1115,6 @@ A starting value from which the accumulator function starts
 </section>
 <section id="embedding-generation-at-scale" class="slide level2">
 <h2>Embedding Generation at Scale</h2>
-<div>
 <ul>
 <li class="fragment"><strong>Challenge</strong>: Generate embeddings for 100M+ documents</li>
 <li class="fragment"><strong>Solution</strong>: Distributed GPU processing</li>
@@ -1153,7 +1135,6 @@ A starting value from which the accumulator function starts
 <span id="cb12-14"><a></a>            emb <span class="op">=</span> model.encode(batch)</span>
 <span id="cb12-15"><a></a>        embeddings.extend(emb)</span>
 <span id="cb12-16"><a></a>    <span class="cf">return</span> embeddings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="data-deduplication-for-ai" class="slide level2">
 <h2>Data Deduplication for AI</h2>
@@ -1210,7 +1191,6 @@ A starting value from which the accumulator function starts
 </section>
 <section id="best-practices-for-parallel-data-processing" class="slide level2">
 <h2>Best Practices for Parallel Data Processing</h2>
-<div>
 <ol type="1">
 <li class="fragment"><strong>Profile First</strong>: Identify bottlenecks before parallelizing</li>
 <li class="fragment"><strong>Chunk Appropriately</strong>: Balance chunk size with overhead</li>
@@ -1219,7 +1199,6 @@ A starting value from which the accumulator function starts
 <li class="fragment"><strong>Validate Output</strong>: Always verify data quality post-processing</li>
 <li class="fragment"><strong>Version Everything</strong>: Track data lineage and transformations</li>
 </ol>
-</div>
 </section>
 <section id="tools-comparison-for-ai-data-processing" class="slide level2">
 <h2>Tools Comparison for AI Data Processing</h2>
@@ -1293,7 +1272,6 @@ A starting value from which the accumulator function starts
 </section>
 <section id="key-takeaways" class="slide level2">
 <h2>Key Takeaways</h2>
-<div>
 <ul>
 <li class="fragment"><strong>Data is the bottleneck</strong> in modern AI systems</li>
 <li class="fragment"><strong>Parallel processing is essential</strong> for AI-scale data</li>
@@ -1302,7 +1280,6 @@ A starting value from which the accumulator function starts
 <li class="fragment"><strong>Monitor and validate</strong> throughout the pipeline</li>
 <li class="fragment"><strong>Modern frameworks</strong> (Spark, Ray, Dask) simplify distributed processing</li>
 </ul>
-</div>
 
 
 </section></section>
@@ -1523,190 +1500,172 @@ A starting value from which the accumulator function starts
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

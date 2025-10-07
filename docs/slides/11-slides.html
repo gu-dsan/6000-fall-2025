@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5efccf03a38e129e6e5ca76dade02d11.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 11</title>
@@ -30,8 +30,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -95,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-138bffa59e0b8e1d219a851a91faec2e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -324,32 +325,32 @@ Amit Arora, Jeff Jacobs
 <li><p>Such functions are called Ray <strong>remote functions</strong> and their asynchronous invocations are called <strong><a href="https://docs.ray.io/en/latest/ray-core/tasks.html">Ray tasks</a></strong>.</p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb1-2"><a></a><span class="in"># By adding the `@ray.remote` decorator, a regular Python function</span></span>
-<span id="cb1-3"><a></a><span class="in"># becomes a Ray remote function.</span></span>
-<span id="cb1-4"><a></a><span class="in">@ray.remote</span></span>
-<span id="cb1-5"><a></a><span class="in">def my_function():</span></span>
-<span id="cb1-6"><a></a><span class="in">    # do something</span></span>
-<span id="cb1-7"><a></a><span class="in">    time.sleep(10)</span></span>
-<span id="cb1-8"><a></a><span class="in">    return 1</span></span>
+<span id="cb1-2"><a></a><span class="co"># By adding the `@ray.remote` decorator, a regular Python function</span></span>
+<span id="cb1-3"><a></a><span class="co"># becomes a Ray remote function.</span></span>
+<span id="cb1-4"><a></a><span class="at">@ray.remote</span></span>
+<span id="cb1-5"><a></a><span class="kw">def</span> my_function():</span>
+<span id="cb1-6"><a></a>    <span class="co"># do something</span></span>
+<span id="cb1-7"><a></a>    time.sleep(<span class="dv">10</span>)</span>
+<span id="cb1-8"><a></a>    <span class="cf">return</span> <span class="dv">1</span></span>
 <span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a><span class="in"># To invoke this remote function, use the `remote` method.</span></span>
-<span id="cb1-11"><a></a><span class="in"># This will immediately return an object ref (a future) and then create</span></span>
-<span id="cb1-12"><a></a><span class="in"># a task that will be executed on a worker process.</span></span>
-<span id="cb1-13"><a></a><span class="in">obj_ref = my_function.remote()</span></span>
+<span id="cb1-10"><a></a><span class="co"># To invoke this remote function, use the `remote` method.</span></span>
+<span id="cb1-11"><a></a><span class="co"># This will immediately return an object ref (a future) and then create</span></span>
+<span id="cb1-12"><a></a><span class="co"># a task that will be executed on a worker process.</span></span>
+<span id="cb1-13"><a></a>obj_ref <span class="op">=</span> my_function.remote()</span>
 <span id="cb1-14"><a></a></span>
-<span id="cb1-15"><a></a><span class="in"># The result can be retrieved with ``ray.get``.</span></span>
-<span id="cb1-16"><a></a><span class="in">assert ray.get(obj_ref) == 1</span></span>
+<span id="cb1-15"><a></a><span class="co"># The result can be retrieved with ``ray.get``.</span></span>
+<span id="cb1-16"><a></a><span class="cf">assert</span> ray.get(obj_ref) <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb1-17"><a></a></span>
-<span id="cb1-18"><a></a><span class="in"># Specify required resources.</span></span>
-<span id="cb1-19"><a></a><span class="in">@ray.remote(num_cpus=4, num_gpus=2)</span></span>
-<span id="cb1-20"><a></a><span class="in">def my_other_function():</span></span>
-<span id="cb1-21"><a></a><span class="in">    return 1</span></span>
+<span id="cb1-18"><a></a><span class="co"># Specify required resources.</span></span>
+<span id="cb1-19"><a></a><span class="at">@ray.remote</span>(num_cpus<span class="op">=</span><span class="dv">4</span>, num_gpus<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-20"><a></a><span class="kw">def</span> my_other_function():</span>
+<span id="cb1-21"><a></a>    <span class="cf">return</span> <span class="dv">1</span></span>
 <span id="cb1-22"><a></a></span>
-<span id="cb1-23"><a></a><span class="in"># Ray tasks are executed in parallel.</span></span>
-<span id="cb1-24"><a></a><span class="in"># All computation is performed in the background, driven by Ray's internal event loop.</span></span>
-<span id="cb1-25"><a></a><span class="in">for _ in range(4):</span></span>
-<span id="cb1-26"><a></a><span class="in">    # This doesn't block.</span></span>
-<span id="cb1-27"><a></a><span class="in">    my_function.remote()</span></span>
+<span id="cb1-23"><a></a><span class="co"># Ray tasks are executed in parallel.</span></span>
+<span id="cb1-24"><a></a><span class="co"># All computation is performed in the background, driven by Ray's internal event loop.</span></span>
+<span id="cb1-25"><a></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb1-26"><a></a>    <span class="co"># This doesn't block.</span></span>
+<span id="cb1-27"><a></a>    my_function.remote()</span>
 <span id="cb1-28"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ray-core---actors" class="slide level2">
@@ -360,23 +361,23 @@ Amit Arora, Jeff Jacobs
 <li>When a new actor is instantiated, a new worker is created, and methods of the actor are scheduled on that specific worker and can access and mutate the state of that worker.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb2-2"><a></a><span class="in">@ray.remote(num_cpus=2, num_gpus=0.5)</span></span>
-<span id="cb2-3"><a></a><span class="in">class Counter(object):</span></span>
-<span id="cb2-4"><a></a><span class="in">    def __init__(self):</span></span>
-<span id="cb2-5"><a></a><span class="in">        self.value = 0</span></span>
+<span id="cb2-2"><a></a><span class="at">@ray.remote</span>(num_cpus<span class="op">=</span><span class="dv">2</span>, num_gpus<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-3"><a></a><span class="kw">class</span> Counter(<span class="bu">object</span>):</span>
+<span id="cb2-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb2-5"><a></a>        <span class="va">self</span>.value <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-6"><a></a></span>
-<span id="cb2-7"><a></a><span class="in">    def increment(self):</span></span>
-<span id="cb2-8"><a></a><span class="in">        self.value += 1</span></span>
-<span id="cb2-9"><a></a><span class="in">        return self.value</span></span>
+<span id="cb2-7"><a></a>    <span class="kw">def</span> increment(<span class="va">self</span>):</span>
+<span id="cb2-8"><a></a>        <span class="va">self</span>.value <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-9"><a></a>        <span class="cf">return</span> <span class="va">self</span>.value</span>
 <span id="cb2-10"><a></a></span>
-<span id="cb2-11"><a></a><span class="in">    def get_counter(self):</span></span>
-<span id="cb2-12"><a></a><span class="in">        return self.value</span></span>
+<span id="cb2-11"><a></a>    <span class="kw">def</span> get_counter(<span class="va">self</span>):</span>
+<span id="cb2-12"><a></a>        <span class="cf">return</span> <span class="va">self</span>.value</span>
 <span id="cb2-13"><a></a></span>
-<span id="cb2-14"><a></a><span class="in"># Create an actor from this class.</span></span>
-<span id="cb2-15"><a></a><span class="in">counter = Counter.remote()</span></span>
-<span id="cb2-16"><a></a><span class="in"># Call the actor.</span></span>
-<span id="cb2-17"><a></a><span class="in">obj_ref = counter.increment.remote()</span></span>
-<span id="cb2-18"><a></a><span class="in">assert ray.get(obj_ref) == 1</span></span>
+<span id="cb2-14"><a></a><span class="co"># Create an actor from this class.</span></span>
+<span id="cb2-15"><a></a>counter <span class="op">=</span> Counter.remote()</span>
+<span id="cb2-16"><a></a><span class="co"># Call the actor.</span></span>
+<span id="cb2-17"><a></a>obj_ref <span class="op">=</span> counter.increment.remote()</span>
+<span id="cb2-18"><a></a><span class="cf">assert</span> ray.get(obj_ref) <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb2-19"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ray-core---objects" class="slide level2">
@@ -410,16 +411,16 @@ Amit Arora, Jeff Jacobs
 <section id="ray-core---objects-contd." class="slide level2">
 <h2>Ray Core - Objects (contd.)</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb3-2"><a></a><span class="in"># Put an object in Ray's object store.</span></span>
-<span id="cb3-3"><a></a><span class="in">y = 1</span></span>
-<span id="cb3-4"><a></a><span class="in">object_ref = ray.put(y)</span></span>
+<span id="cb3-2"><a></a><span class="co"># Put an object in Ray's object store.</span></span>
+<span id="cb3-3"><a></a>y <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a></a>object_ref <span class="op">=</span> ray.put(y)</span>
 <span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a><span class="in"># Get the value of one object ref.</span></span>
-<span id="cb3-7"><a></a><span class="in">obj_ref = ray.put(1)</span></span>
-<span id="cb3-8"><a></a><span class="in">assert ray.get(obj_ref) == 1</span></span>
+<span id="cb3-6"><a></a><span class="co"># Get the value of one object ref.</span></span>
+<span id="cb3-7"><a></a>obj_ref <span class="op">=</span> ray.put(<span class="dv">1</span>)</span>
+<span id="cb3-8"><a></a><span class="cf">assert</span> ray.get(obj_ref) <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb3-9"><a></a></span>
-<span id="cb3-10"><a></a><span class="in"># Get the values of multiple object refs in parallel.</span></span>
-<span id="cb3-11"><a></a><span class="in">assert ray.get([ray.put(i) for i in range(3)]) == [0, 1, 2]</span></span>
+<span id="cb3-10"><a></a><span class="co"># Get the values of multiple object refs in parallel.</span></span>
+<span id="cb3-11"><a></a><span class="cf">assert</span> ray.get([ray.put(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)]) <span class="op">==</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb3-12"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ray-datasets" class="slide level2">
@@ -441,41 +442,41 @@ Amit Arora, Jeff Jacobs
 <li>Create</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb4-2"><a></a><span class="in">import ray</span></span>
+<span id="cb4-2"><a></a><span class="im">import</span> ray</span>
 <span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="in">dataset = ray.data.read_csv("s3://anonymous@air-example-data/iris.csv")</span></span>
+<span id="cb4-4"><a></a>dataset <span class="op">=</span> ray.data.read_csv(<span class="st">"s3://anonymous@air-example-data/iris.csv"</span>)</span>
 <span id="cb4-5"><a></a></span>
-<span id="cb4-6"><a></a><span class="in">dataset.show(limit=1)</span></span>
+<span id="cb4-6"><a></a>dataset.show(limit<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb4-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Transform</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb5-2"><a></a><span class="in">import pandas as pd</span></span>
+<span id="cb5-2"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="in"># Find rows with spepal length &lt; 5.5 and petal length &gt; 3.5.</span></span>
-<span id="cb5-5"><a></a><span class="in">def transform_batch(df: pd.DataFrame) -&gt; pd.DataFrame:</span></span>
-<span id="cb5-6"><a></a><span class="in">    return df[(df["sepal length (cm)"] &lt; 5.5) &amp; (df["petal length (cm)"] &gt; 3.5)]</span></span>
+<span id="cb5-4"><a></a><span class="co"># Find rows with spepal length &lt; 5.5 and petal length &gt; 3.5.</span></span>
+<span id="cb5-5"><a></a><span class="kw">def</span> transform_batch(df: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb5-6"><a></a>    <span class="cf">return</span> df[(df[<span class="st">"sepal length (cm)"</span>] <span class="op">&lt;</span> <span class="fl">5.5</span>) <span class="op">&amp;</span> (df[<span class="st">"petal length (cm)"</span>] <span class="op">&gt;</span> <span class="fl">3.5</span>)]</span>
 <span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a><span class="in">transformed_dataset = dataset.map_batches(transform_batch)</span></span>
-<span id="cb5-9"><a></a><span class="in">print(transformed_dataset)</span></span>
+<span id="cb5-8"><a></a>transformed_dataset <span class="op">=</span> dataset.map_batches(transform_batch)</span>
+<span id="cb5-9"><a></a><span class="bu">print</span>(transformed_dataset)</span>
 <span id="cb5-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Consume</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb6-2"><a></a><span class="in">batches = transformed_dataset.iter_batches(batch_size=8)</span></span>
-<span id="cb6-3"><a></a><span class="in">print(next(iter(batches)))</span></span>
+<span id="cb6-2"><a></a>batches <span class="op">=</span> transformed_dataset.iter_batches(batch_size<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-3"><a></a><span class="bu">print</span>(<span class="bu">next</span>(<span class="bu">iter</span>(batches)))</span>
 <span id="cb6-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Save</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb7-2"><a></a><span class="in">import os</span></span>
+<span id="cb7-2"><a></a><span class="im">import</span> os</span>
 <span id="cb7-3"><a></a></span>
-<span id="cb7-4"><a></a><span class="in">transformed_dataset.write_parquet("iris")</span></span>
+<span id="cb7-4"><a></a>transformed_dataset.write_parquet(<span class="st">"iris"</span>)</span>
 <span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a><span class="in">print(os.listdir("iris"))</span></span>
+<span id="cb7-6"><a></a><span class="bu">print</span>(os.listdir(<span class="st">"iris"</span>))</span>
 <span id="cb7-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="references" class="slide level2">
@@ -707,190 +708,172 @@ Amit Arora, Jeff Jacobs
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/gu-dsan\.github\.io\/6000-fall-2025\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

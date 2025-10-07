@@ -32,7 +32,7 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Amit Arora, Jeff Jacobs\n   Online\n   aa1603@georgetown.edu\n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Mondays & Thursdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM (Amit), 3:30-6:00 PM (Jeff Mon), 6:30-9:00 PM (Jeff Thu)\n   Reiss 262 (W, Amit), Walsh 394 (Mon & Thu, Jeff)\n   Slack (Join)\nThis syllabus was last updated on Monday, September 22, 2025"
+    "text": "Amit Arora\n\n   aa1603@georgetown.edu\n   Schedule an appointment\n\nJeff Jacobs\n\n   jj1088@georgetown.edu\n   Schedule an appointment\n\n\n\n\n\n   Wednesdays (Prof Amit), Mondays & Thursdays (Prof Jeff)\n   August 27 – December 20, 2025\n   9:30 AM–12:00 PM (Amit), 3:30-6:00 PM (Jeff Mon), 6:30-9:00 PM (Jeff Thu)\n   Reiss 262 (W, Amit), Walsh 394 (Mon & Thu, Jeff)\n   Slack (Join)\nThis syllabus was last updated on Tuesday, October 7, 2025"
   },
   {
     "objectID": "syllabus.html#books-software-and-cloud-resources",
@@ -102,14 +102,14 @@
     "href": "slides/14-slides.html#why-does-this-happen",
     "title": "Lecture 14",
     "section": "Why does this happen?",
-    "text": "Why does this happen?\n\n\nSame set of data sources…\nMultiple different feature pipelines..\nMultiple ML models..\nBut, an overlapping set of ML features..\nMore problems…\n\nFeature duplication\nSlow time to market\nInaccurate predictions"
+    "text": "Why does this happen?\n\nSame set of data sources…\nMultiple different feature pipelines..\nMultiple ML models..\nBut, an overlapping set of ML features..\nMore problems…\n\nFeature duplication\nSlow time to market\nInaccurate predictions"
   },
   {
     "objectID": "slides/14-slides.html#solution",
     "href": "slides/14-slides.html#solution",
     "title": "Lecture 14",
     "section": "Solution…",
-    "text": "Solution…\nMachine Learning Feature Store\n\n\nFor a moment, think of the feature store as a database but for ML features.\nIn a Feature Store\n\nFeatures are now easy to find (GUI, SDK)\nFeature transformations are reproducible (feature engineering pipelines can now refer to a consistent set of data)\nML training pipeline has a reliable, curated, maintained data source to get training datasets rather than having to look at the data lake directly\nLow latency lookup for realtime inference\nConsistent features for training and inference"
+    "text": "Solution…\nMachine Learning Feature Store\n\nFor a moment, think of the feature store as a database but for ML features.\nIn a Feature Store\n\nFeatures are now easy to find (GUI, SDK)\nFeature transformations are reproducible (feature engineering pipelines can now refer to a consistent set of data)\nML training pipeline has a reliable, curated, maintained data source to get training datasets rather than having to look at the data lake directly\nLow latency lookup for realtime inference\nConsistent features for training and inference"
   },
   {
     "objectID": "slides/14-slides.html#feature-stores-you-can-use",
@@ -1040,7 +1040,7 @@
     "href": "slides/06-slides.html#how-to-create-and-rdd",
     "title": "Lecture 6",
     "section": "How to create and RDD?",
-    "text": "How to create and RDD?\nRDDs can be created in two ways:\n\n\nTransforming an existing RDD: just like a call to map on a list returns a new list, many higher order functions defined on RDDs return a new RDD\nFrom a SparkContext or SparkSession object: the SparkContext object (renamed SparkSession) can be though of as your handle to the Spark cluster. It represents a connection between the Spark Cluster and your application/client. It defines a handful of methods which can be used to create and populate a new RDD:\n\nparallelize: converts a local object into an RDD\ntextFile: reads a text file from your filesystem and returns an RDD of strings"
+    "text": "How to create and RDD?\nRDDs can be created in two ways:\n\nTransforming an existing RDD: just like a call to map on a list returns a new list, many higher order functions defined on RDDs return a new RDD\nFrom a SparkContext or SparkSession object: the SparkContext object (renamed SparkSession) can be though of as your handle to the Spark cluster. It represents a connection between the Spark Cluster and your application/client. It defines a handful of methods which can be used to create and populate a new RDD:\n\nparallelize: converts a local object into an RDD\ntextFile: reads a text file from your filesystem and returns an RDD of strings"
   },
   {
     "objectID": "slides/06-slides.html#transformations-and-actions",
@@ -1082,7 +1082,7 @@
     "href": "slides/06-slides.html#another-example",
     "title": "Lecture 6",
     "section": "Another example",
-    "text": "Another example\nLet’s assume that we have an RDD of strings which contains gigabytes of logs collected over the previous year. Each element of the RDD represents one line of logs.\nAssuming the dates come in the form YYYY-MM-DD:HH:MM:SS and errors are logged with a prefix that includes the word “error”…\nHow would you determine the number of errors that were logged in December 2019?\n\n# read data from text file and split each line into words\nlogs = sc.textFile(\"...\") \n\n# this is a transformation\nerrors = logs.filter(lambda x: \"error\" in x and \"2019-12\" in x)\n\n# this is an action\nerrors.count()\nSpark computes RDDs the first time they are used in an action!"
+    "text": "Another example\nLet’s assume that we have an RDD of strings which contains gigabytes of logs collected over the previous year. Each element of the RDD represents one line of logs.\nAssuming the dates come in the form YYYY-MM-DD:HH:MM:SS and errors are logged with a prefix that includes the word “error”…\nHow would you determine the number of errors that were logged in December 2019?\n# read data from text file and split each line into words\nlogs = sc.textFile(\"...\") \n\n# this is a transformation\nerrors = logs.filter(lambda x: \"error\" in x and \"2019-12\" in x)\n\n# this is an action\nerrors.count()\nSpark computes RDDs the first time they are used in an action!"
   },
   {
     "objectID": "slides/06-slides.html#caching-and-persistence",
@@ -1236,21 +1236,21 @@
     "href": "slides/04-slides.html#single-machine-vs.-distributed-storage",
     "title": "Lecture 5",
     "section": "Single machine vs. distributed storage",
-    "text": "Single machine vs. distributed storage\n\n\n\n\n\n\n\n\n\n\n\nSingle machine\n\nThey are commonly used for storing operating system files, application files, and user data files.\nFilesystems are also used in databases to store data files, transaction logs, and backups.\n\n\n\nDistributed storage\n\nA distributed filesystem is a type of filesystem that spans multiple computers.\nIt provides a unified view of files across all the computers in the system.\nHave existed before cloud\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
+    "text": "Single machine vs. distributed storage\n\n\n\n\n\n\n\n\nSingle machine\n\nThey are commonly used for storing operating system files, application files, and user data files.\nFilesystems are also used in databases to store data files, transaction logs, and backups.\n\n\n\nDistributed storage\n\nA distributed filesystem is a type of filesystem that spans multiple computers.\nIt provides a unified view of files across all the computers in the system.\nHave existed before cloud\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
   },
   {
     "objectID": "slides/04-slides.html#file-storage",
     "href": "slides/04-slides.html#file-storage",
     "title": "Lecture 5",
     "section": "File storage",
-    "text": "File storage\nA file is a data entity with specific read, write, and reference characteristics used by software and operating systems.\n\n\n\n\n\n\nLocal disk\n\nOperating system–managed filesystems on local disk partition of SSD or magnetic disk:\n\nNTFS (Windows)\nHFS+ (MacOS)\next4 (Linux)() on a local disk partition of SSD or magnetic disk\n\n\n\n\nNetwork-attached (NAS)\n\nFile storage system to clients over a network\nIncluding redundancy and reliability, fine-grained control of resources, storage pooling across multiple disks for large virtual volumes, and file sharing across multiple machines\n\n\n\nCloud filesystems\n\nNot object store (more on that later)\nNot the virtual hard drive attached to a virtual machine\nFully managed filesystem which takes care of networking, managing disk clusters, failures, and configuration (Azure Files, Amazon Elastic Filesystem)\nBacked by Object Store\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
+    "text": "File storage\nA file is a data entity with specific read, write, and reference characteristics used by software and operating systems.\n\n\n\nLocal disk\n\nOperating system–managed filesystems on local disk partition of SSD or magnetic disk:\n\nNTFS (Windows)\nHFS+ (MacOS)\next4 (Linux)() on a local disk partition of SSD or magnetic disk\n\n\n\n\nNetwork-attached (NAS)\n\nFile storage system to clients over a network\nIncluding redundancy and reliability, fine-grained control of resources, storage pooling across multiple disks for large virtual volumes, and file sharing across multiple machines\n\n\n\nCloud filesystems\n\nNot object store (more on that later)\nNot the virtual hard drive attached to a virtual machine\nFully managed filesystem which takes care of networking, managing disk clusters, failures, and configuration (Azure Files, Amazon Elastic Filesystem)\nBacked by Object Store\n\n\n\n\n\n\nReis, J., Housley, M. (2022). Fundamentals of Data Engineering. United States: O’Reilly Media."
   },
   {
     "objectID": "slides/04-slides.html#object-stores",
     "href": "slides/04-slides.html#object-stores",
     "title": "Lecture 5",
     "section": "Object stores",
-    "text": "Object stores\nThe term object storage is somewhat confusing because object has several meanings in computer science. In this context, we’re talking about a specialized file-like construct. It could be any type of file: TXT, CSV, JSON, images, videos, audio, or pretty much any type of file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContains objects of all shapes and sizes.\nEvery object gets a unique identifier\nObjects are immutable; cannot be modifier in place (unlike local FS)\nDistributed by design\nMassively scalable REST API access"
+    "text": "Object stores\nThe term object storage is somewhat confusing because object has several meanings in computer science. In this context, we’re talking about a specialized file-like construct. It could be any type of file: TXT, CSV, JSON, images, videos, audio, or pretty much any type of file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContains objects of all shapes and sizes.\nEvery object gets a unique identifier\nObjects are immutable; cannot be modifier in place (unlike local FS)\nDistributed by design\nMassively scalable REST API access"
   },
   {
     "objectID": "slides/04-slides.html#distributed-fs-vs-object-store",
@@ -1285,7 +1285,7 @@
     "href": "slides/04-slides.html#json",
     "title": "Lecture 5",
     "section": "JSON",
-    "text": "JSON\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nJSON files have two flavors: JSON Lines vs. JSON. Typically when we say data is in JSON format, we imply it’s JSON Lines which means that there is a single JSON object per line, and there are multiple lines.\n\n\n\n\n\n\n\nJSON Lines\nFour records, one per line. No ending comma.\n{\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"}\n{\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"}\n{\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"}\n{\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"}\n\n\nJSON\nFour records enclosed in a JSON Array\n[\n  {\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"},\n  {\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"},\n  {\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"},\n  {\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"},\n]"
+    "text": "JSON\n\n\n\n\n\n\n\n\n\nWarning\n\n\nJSON files have two flavors: JSON Lines vs. JSON. Typically when we say data is in JSON format, we imply it’s JSON Lines which means that there is a single JSON object per line, and there are multiple lines.\n\n\n\n\n\n\n\nJSON Lines\nFour records, one per line. No ending comma.\n{\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"}\n{\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"}\n{\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"}\n{\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"}\n\n\nJSON\nFour records enclosed in a JSON Array\n[\n  {\"id\":1, \"name\":\"marck\", \"last_name\":\"vaisman\"},\n  {\"id\":2, \"name\":\"anderson\", \"last_name\":\"monken\"},\n  {\"id\":3, \"name\":\"amit\", \"last_name\":\"arora\"},\n  {\"id\":4, \"name\":\"abhijit\", \"last_name\":\"dasgupta\"},\n]"
   },
   {
     "objectID": "slides/04-slides.html#binary-files",
@@ -1313,7 +1313,7 @@
     "href": "slides/04-slides.html#traditional-row-store",
     "title": "Lecture 5",
     "section": "Traditional row-store",
-    "text": "Traditional row-store\n\n\n\n\n\n\n\n\n\n\n\n\n\nSay you wanted to answer the question “How many balls did we sell?, the engine must scan each and every row until the end!\n\n\nParquet file format, everything you need to know"
+    "text": "Traditional row-store\n\n\n\n\n\n\n\n\n\n\nSay you wanted to answer the question “How many balls did we sell?, the engine must scan each and every row until the end!\n\n\nParquet file format, everything you need to know"
   },
   {
     "objectID": "slides/04-slides.html#column-store",
@@ -1327,14 +1327,14 @@
     "href": "slides/04-slides.html#row-groups",
     "title": "Lecture 5",
     "section": "Row groups",
-    "text": "Row groups\n\n\n\n\n\n\nData is stored in row groups!\n\n\n\nOnly the required fields\n\n\n\n\n\n\nParquet file format, everything you need to know"
+    "text": "Row groups\n\n\n\nData is stored in row groups!\n\n\n\nOnly the required fields\n\n\n\n\n\n\nParquet file format, everything you need to know"
   },
   {
     "objectID": "slides/04-slides.html#metadata-compression-and-dictionary-encoding",
     "href": "slides/04-slides.html#metadata-compression-and-dictionary-encoding",
     "title": "Lecture 5",
     "section": "Metadata, compression, and dictionary encoding",
-    "text": "Metadata, compression, and dictionary encoding\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nParquet file format, everything you need to know"
+    "text": "Metadata, compression, and dictionary encoding\n\n\n\n\n\n\n\n\n\n\n\n\nParquet file format, everything you need to know"
   },
   {
     "objectID": "slides/04-slides.html#apache-arrow-for-in-memory",
@@ -1369,21 +1369,21 @@
     "href": "slides/04-slides.html#arrow-performance",
     "title": "Lecture 5",
     "section": "Arrow Performance",
-    "text": "Arrow Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
+    "text": "Arrow Performance\n\n\n\n\n\n\n\n\n\n\n\n\nTopol, M., McKinney, W. (2022). In-Memory Analytics with Apache Arrow: Perform Fast and Efficient Data Analytics on Both Flat and Hierarchical Structured Data. United Kingdom: Packt Publishing."
   },
   {
     "objectID": "slides/04-slides.html#use-arrow-to-readwrite-csvs-and-parquet",
     "href": "slides/04-slides.html#use-arrow-to-readwrite-csvs-and-parquet",
     "title": "Lecture 5",
     "section": "Use Arrow to read/write CSVs and Parquet",
-    "text": "Use Arrow to read/write CSVs and Parquet\n\n\n\n\n\n\nPython\nUse the pyarrow library or straight from pandas\nimport pandas as pd\npd.read_csv(engine = 'pyarrow')\npd.read_parquet\n\nimport pyarrow.csv\npyarrow.csv.read_csv()\n\nimport pyarrow.parquet\npyarrow.parquet.read_table()\n\n\nR\nUse the arrow package\nlibrary(arrow)\n\nread_csv_arrow()\nread_parquet()\nread_json_arrow()\n\nwrite_csv_arrow()\nwrite_parquet()\n\n\n\nRecommendation: save your intermediate and analytical datasets as Parquet!"
+    "text": "Use Arrow to read/write CSVs and Parquet\n\n\n\nPython\nUse the pyarrow library or straight from pandas\nimport pandas as pd\npd.read_csv(engine = 'pyarrow')\npd.read_parquet\n\nimport pyarrow.csv\npyarrow.csv.read_csv()\n\nimport pyarrow.parquet\npyarrow.parquet.read_table()\n\n\nR\nUse the arrow package\nlibrary(arrow)\n\nread_csv_arrow()\nread_parquet()\nread_json_arrow()\n\nwrite_csv_arrow()\nwrite_parquet()\n\n\n\nRecommendation: save your intermediate and analytical datasets as Parquet!"
   },
   {
     "objectID": "slides/04-slides.html#before-we-begin..",
     "href": "slides/04-slides.html#before-we-begin..",
     "title": "Lecture 5",
     "section": "Before we begin..",
-    "text": "Before we begin..\n\nPandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.\n\n\n\nPandas is slow, well yes but also, not so much if you use it the right way.\n\n\nApache Arrow and the “10 Things I Hate About pandas” (A 2017 post from the creator of Pandas..)\n50 times faster data loading for Pandas: no problem (but this is an old 2019 article..)\nIs Pandas really that slow?\n\n\nPandas 2.0 and the arrow revolution"
+    "text": "Before we begin..\n\nPandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.\n\n\nPandas is slow, well yes but also, not so much if you use it the right way.\n\n\nApache Arrow and the “10 Things I Hate About pandas” (A 2017 post from the creator of Pandas..)\n50 times faster data loading for Pandas: no problem (but this is an old 2019 article..)\nIs Pandas really that slow?\n\n\nPandas 2.0 and the arrow revolution"
   },
   {
     "objectID": "slides/04-slides.html#polars-1",
@@ -1397,7 +1397,7 @@
     "href": "slides/04-slides.html#why-is-polars-faster-than-pandas",
     "title": "Lecture 5",
     "section": "Why is Polars faster than Pandas?",
-    "text": "Why is Polars faster than Pandas?\n\n\nPolars is written in Rust. Rust is a compiled language, Python is an interpreted language.\n\nCompiled language: you generate the machine code only once then run it, subsequent runs do not need the compilation step.\nInterpreted language: code has to be parsed, interpreted and converted into machine code every single time.\n\nParallelization: Vectorized operations that can be executed in parallel on multiple CPU cores.\nLazy evaluation: Polars supports two APIs lazy as well as eager evaluation (used by pandas). In lazy evaluation, a query is executed only when required. While in eager evaluation, a query is executed immediately.\nPolars uses Arrow as its in-memory representation of data. Similar to how pandas uses Numpy (although Pandas 2.0 does allow using Arrow as the backend in addition to Numpy).\n\n[Excerpt from this post from Ritchie Vink, author of Polars] Arrow provides the efficient data structures and some compute kernels, like a SUM, a FILTER, a MAX etc. Arrow is not a query engine. Polars is a DataFrame library on top of arrow that has implemented efficient algorithms for JOINS, GROUPBY, PIVOTs, MELTs, QUERY OPTIMIZATION, etc. (the things you expect from a DF lib).\nPolars could be best described as an in-memory DataFrame library with a query optimizer."
+    "text": "Why is Polars faster than Pandas?\n\nPolars is written in Rust. Rust is a compiled language, Python is an interpreted language.\n\nCompiled language: you generate the machine code only once then run it, subsequent runs do not need the compilation step.\nInterpreted language: code has to be parsed, interpreted and converted into machine code every single time.\n\nParallelization: Vectorized operations that can be executed in parallel on multiple CPU cores.\nLazy evaluation: Polars supports two APIs lazy as well as eager evaluation (used by pandas). In lazy evaluation, a query is executed only when required. While in eager evaluation, a query is executed immediately.\nPolars uses Arrow as its in-memory representation of data. Similar to how pandas uses Numpy (although Pandas 2.0 does allow using Arrow as the backend in addition to Numpy).\n\n[Excerpt from this post from Ritchie Vink, author of Polars] Arrow provides the efficient data structures and some compute kernels, like a SUM, a FILTER, a MAX etc. Arrow is not a query engine. Polars is a DataFrame library on top of arrow that has implemented efficient algorithms for JOINS, GROUPBY, PIVOTs, MELTs, QUERY OPTIMIZATION, etc. (the things you expect from a DF lib).\nPolars could be best described as an in-memory DataFrame library with a query optimizer."
   },
   {
     "objectID": "slides/04-slides.html#ease-of-use",
@@ -1761,14 +1761,35 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Section\nInstructor\nDay\nLocation\n\n\n\n\n01\nJeff Jacobs\nM 3:30-6:00\nWalsh 394\n\n\n02\nJeff Jacobs\nTh 6:30-9:00\nWalsh 394\n\n\n03\nAmit Arora\nW 9:30-12:00\nReiss 262\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWednesday (Amit Arora)\nSession\nMonday/Thursday (Jeff Jacobs)\nSession\nNotes\n\n\n\n\n8/27/2025\n1\n8/28/2025\n1\nCourse overview - All sections combined\n\n\n9/3/2025\n2\n9/2/2025 (Tu) & 9/4/2025\n2\nCloud computing introduction (Monday is Labor Day)\n\n\n9/10/2025\n3\n9/8/2025 & 9/11/2025\n3\nParallelization concepts\n\n\n9/17/2025\n4\n9/15/2025 & 9/18/2025\n4\nDuckDB, Polars, file formats\n\n\n9/24/2025\n5\n9/22/2025 & 9/25/2025\n5\nData Warehouse (Athena, Presto, Snowflake)\n\n\n10/1/2025\n6\n9/29/2025 & 10/2/2025\n6\nIntroduction to Spark, RDDs\n\n\n10/8/2025\n7\n10/6/2025 & 10/9/2025\n7\nSpark DataFrames and Spark SQL\n\n\n10/15/2025\nNo class - Fall Break\n10/14/2025 (Tu) & 10/16/2025 (Th)\nNo class - Fall Break\nFall Break week\n\n\n10/22/2025\n8\n10/20/2025 & 10/23/2025\n8\nSpark ML and Streaming\n\n\n10/29/2025\n9\n10/27/2025 & 10/30/2025\n9\nApache Iceberg & Table Formats\n\n\n11/5/2025\n10\n11/3/2025 & 11/6/2025\n10\nData Pipeline Orchestration (Airflow)\n\n\n11/12/2025\n11\n11/10/2025 & 11/13/2025\n11\nVector Databases & RAG\n\n\n11/19/2025\n12\n11/17/2025 & 11/20/2025\n12\nModern Data Stack & Governance\n\n\n11/26/2025\nNo class - Thanksgiving\n11/24/2025 & No class\n13\nServerless & Container Orchestration (Th is Thanksgiving)\n\n\n12/3/2025\n13\n12/1/2025 & 12/4/2025\n14\nFinal topics & Review\n\n\n12/10/2025\n14\n12/8/2025\nProjects\nFinal project presentations"
+    "text": "Section\nInstructor\nDay\nLocation\n\n\n\n\n01\nJeff Jacobs\nM 3:30-6:00\nWalsh 394\n\n\n02\nJeff Jacobs\nTh 6:30-9:00\nWalsh 394\n\n\n03\nAmit Arora\nW 9:30-12:00\nReiss 262"
+  },
+  {
+    "objectID": "schedule.html#weekly-sections",
+    "href": "schedule.html#weekly-sections",
+    "title": "Schedule",
+    "section": "",
+    "text": "Section\nInstructor\nDay\nLocation\n\n\n\n\n01\nJeff Jacobs\nM 3:30-6:00\nWalsh 394\n\n\n02\nJeff Jacobs\nTh 6:30-9:00\nWalsh 394\n\n\n03\nAmit Arora\nW 9:30-12:00\nReiss 262"
+  },
+  {
+    "objectID": "schedule.html#weekly-office-hours",
+    "href": "schedule.html#weekly-office-hours",
+    "title": "Schedule",
+    "section": "Weekly Office Hours",
+    "text": "Weekly Office Hours"
+  },
+  {
+    "objectID": "schedule.html#weekly-topics",
+    "href": "schedule.html#weekly-topics",
+    "title": "Schedule",
+    "section": "Weekly Topics",
+    "text": "Weekly Topics\n\n\n\n\n\n\n\n\n\n\nWednesday (Amit Arora)\nSession\nMonday/Thursday (Jeff Jacobs)\nSession\nNotes\n\n\n\n\n8/27/2025\n1\n8/28/2025\n1\nCourse overview - All sections combined\n\n\n9/3/2025\n2\n9/2/2025 (Tu) & 9/4/2025\n2\nCloud computing introduction (Monday is Labor Day)\n\n\n9/10/2025\n3\n9/8/2025 & 9/11/2025\n3\nParallelization concepts\n\n\n9/17/2025\n4\n9/15/2025 & 9/18/2025\n4\nDuckDB, Polars, file formats\n\n\n9/24/2025\n5\n9/22/2025 & 9/25/2025\n5\nData Warehouse (Athena, Presto, Snowflake)\n\n\n10/1/2025\n6\n9/29/2025 & 10/2/2025\n6\nIntroduction to Spark, RDDs\n\n\n10/8/2025\n7\n10/6/2025 & 10/9/2025\n7\nSpark DataFrames and Spark SQL\n\n\n10/15/2025\nNo class - Fall Break\n10/14/2025 (Tu) & 10/16/2025 (Th)\nNo class - Fall Break\nFall Break week\n\n\n10/22/2025\n8\n10/20/2025 & 10/23/2025\n8\nSpark ML and Streaming\n\n\n10/29/2025\n9\n10/27/2025 & 10/30/2025\n9\nApache Iceberg & Table Formats\n\n\n11/5/2025\n10\n11/3/2025 & 11/6/2025\n10\nData Pipeline Orchestration (Airflow)\n\n\n11/12/2025\n11\n11/10/2025 & 11/13/2025\n11\nVector Databases & RAG\n\n\n11/19/2025\n12\n11/17/2025 & 11/20/2025\n12\nModern Data Stack & Governance\n\n\n11/26/2025\nNo class - Thanksgiving\n11/24/2025 & No class\n13\nServerless & Container Orchestration (Th is Thanksgiving)\n\n\n12/3/2025\n13\n12/1/2025 & 12/4/2025\n14\nFinal topics & Review\n\n\n12/10/2025\n14\n12/8/2025\nProjects\nFinal project presentations"
   },
   {
     "objectID": "project/project-on-azure.html",
     "href": "project/project-on-azure.html",
     "title": "Using Azure Machine Learning for your projects",
     "section": "",
-    "text": "Tuesday Jul 22, 2025 at 11:11 am\nThe group AzureML environments are set up. Please read the important information contained in this note carefully."
+    "text": "Saturday Aug 9, 2025 at 10:45 pm\nThe group AzureML environments are set up. Please read the important information contained in this note carefully."
   },
   {
     "objectID": "project/project-on-azure.html#some-considerations",
@@ -1810,7 +1831,7 @@
     "href": "project/06-project.html",
     "title": "Website",
     "section": "",
-    "text": "Tuesday Jul 22, 2025 at 11:11 am\nThe output of the project will be delivered through a self-contained website in the docs/ subdirectory, having index.html as the starting point. You will build the website incrementally over the milestones.\nThe code to build the website will be in the website-source/ directory.",
+    "text": "Saturday Aug 9, 2025 at 10:45 pm\nThe output of the project will be delivered through a self-contained website in the docs/ subdirectory, having index.html as the starting point. You will build the website incrementally over the milestones.\nThe code to build the website will be in the website-source/ directory.",
     "crumbs": [
       "Project contents",
       "6: Website"
@@ -4845,14 +4866,14 @@
     "href": "slides/03-slides.html#typical-real-world-scenarios",
     "title": "Lecture 3",
     "section": "Typical real world scenarios",
-    "text": "Typical real world scenarios\n\n\nYou need to prepare training data for LLMs by cleaning and deduplicating 100TB of web-scraped text\nYou are building a RAG system that requires embedding and indexing millions of documents in parallel\nYou need to extract structured data from millions of PDFs using vision models for document AI\nYou are preprocessing multimodal datasets with billions of image-text pairs for foundation model training\nYou need to run quality filtering on petabytes of Common Crawl data for training dataset curation\nYou are generating synthetic training data using LLMs to augment limited real-world datasets\nYou need to transform and tokenize text corpora across 100+ languages for multilingual AI\nYou are building real-time data pipelines that process streaming data for online learning systems"
+    "text": "Typical real world scenarios\n\nYou need to prepare training data for LLMs by cleaning and deduplicating 100TB of web-scraped text\nYou are building a RAG system that requires embedding and indexing millions of documents in parallel\nYou need to extract structured data from millions of PDFs using vision models for document AI\nYou are preprocessing multimodal datasets with billions of image-text pairs for foundation model training\nYou need to run quality filtering on petabytes of Common Crawl data for training dataset curation\nYou are generating synthetic training data using LLMs to augment limited real-world datasets\nYou need to transform and tokenize text corpora across 100+ languages for multilingual AI\nYou are building real-time data pipelines that process streaming data for online learning systems"
   },
   {
     "objectID": "slides/03-slides.html#data-for-ai-parallel-scenarios",
     "href": "slides/03-slides.html#data-for-ai-parallel-scenarios",
     "title": "Lecture 3",
     "section": "Data-for-AI Parallel Scenarios",
-    "text": "Data-for-AI Parallel Scenarios\n\n\nWeb-scale data processing: Filtering 45TB of Common Crawl data for high-quality training examples\nEmbedding generation: Creating vector embeddings for 100M documents using sentence transformers\nData deduplication: Finding near-duplicates in billion-scale datasets using MinHash and LSH\nSynthetic data generation: Using LLMs to generate millions of instruction-following examples\nData quality assessment: Running parallel quality checks on training data (toxicity, bias, factuality)\nFeature extraction: Extracting features from millions of images, videos, or audio files for AI training"
+    "text": "Data-for-AI Parallel Scenarios\n\nWeb-scale data processing: Filtering 45TB of Common Crawl data for high-quality training examples\nEmbedding generation: Creating vector embeddings for 100M documents using sentence transformers\nData deduplication: Finding near-duplicates in billion-scale datasets using MinHash and LSH\nSynthetic data generation: Using LLMs to generate millions of instruction-following examples\nData quality assessment: Running parallel quality checks on training data (toxicity, bias, factuality)\nFeature extraction: Extracting features from millions of images, videos, or audio files for AI training"
   },
   {
     "objectID": "slides/03-slides.html#linear-vs.-parallel",
@@ -4894,7 +4915,7 @@
     "href": "slides/03-slides.html#embarassingly-parallel",
     "title": "Lecture 3",
     "section": "Embarassingly parallel",
-    "text": "Embarassingly parallel\n\n\nIf you can truly split up your problem into multiple independent parts, then you can often get linear speedups with the number of parallel components (to a limit)\n\nThe more cores you use and the more you parallelize, the more you incur communication overhead and decrease available RAM, so the speedup is almost certainly sub-linear, i.e. for a 4-core machine you’ll probably get a 3-4x speedup, but rarely a full 4x speedup1\n\nThe question often is, which part of your problem is embarassingly parallel?\nAmdahl’s law (which we’ll see in a few slides) shows how parallelization can benefit overall if a large proportion of the problem is parallelizable\nIt’s not all milk and honey. Setting up, programming, evaluating, debugging parallel computations requires better infrastructure and more expertise.\n\n\nGorelick & Ozsvald, 2020. High Performance Python, O’Reilly"
+    "text": "Embarassingly parallel\n\nIf you can truly split up your problem into multiple independent parts, then you can often get linear speedups with the number of parallel components (to a limit)\n\nThe more cores you use and the more you parallelize, the more you incur communication overhead and decrease available RAM, so the speedup is almost certainly sub-linear, i.e. for a 4-core machine you’ll probably get a 3-4x speedup, but rarely a full 4x speedup1\n\nThe question often is, which part of your problem is embarassingly parallel?\nAmdahl’s law (which we’ll see in a few slides) shows how parallelization can benefit overall if a large proportion of the problem is parallelizable\nIt’s not all milk and honey. Setting up, programming, evaluating, debugging parallel computations requires better infrastructure and more expertise.\n\nGorelick & Ozsvald, 2020. High Performance Python, O’Reilly"
   },
   {
     "objectID": "slides/03-slides.html#some-limitations-in-data-processing-for-ai",
@@ -5055,7 +5076,7 @@
     "href": "slides/03-slides.html#processes-and-threads",
     "title": "Lecture 3",
     "section": "Processes and threads",
-    "text": "Processes and threads\n\n\nA process is an executing program, that is self-contained and has dedicated runtime and memory\nA thread is the basic unit to which the operating system allocates processor time. It is an entity within a process. A thread can execute any part of the process code, including parts currently being executed by another thread.\nA thread will often be faster to spin up and terminate than a full process\nThreads can share memory and data with each other\n\n\n\n\n\n\n\n\n\nPython has the Global Interpretor Lock (GIL) which only allows only one thread to interact with Python objects at a time. So the way to parallel process in Python is to do multi-processor parallelization, where we run multiple Python interpretors across multiple processes, each with its own private memory space and GIL."
+    "text": "Processes and threads\n\nA process is an executing program, that is self-contained and has dedicated runtime and memory\nA thread is the basic unit to which the operating system allocates processor time. It is an entity within a process. A thread can execute any part of the process code, including parts currently being executed by another thread.\nA thread will often be faster to spin up and terminate than a full process\nThreads can share memory and data with each other\n\n\n\n\n\n\n\n\nPython has the Global Interpretor Lock (GIL) which only allows only one thread to interact with Python objects at a time. So the way to parallel process in Python is to do multi-processor parallelization, where we run multiple Python interpretors across multiple processes, each with its own private memory space and GIL."
   },
   {
     "objectID": "slides/03-slides.html#some-concepts-in-multiprocessing",
@@ -5083,28 +5104,28 @@
     "href": "slides/03-slides.html#the-need-for-async-io-in-ai-data-processing",
     "title": "Lecture 3",
     "section": "The need for Async I/O in AI Data Processing",
-    "text": "The need for Async I/O in AI Data Processing\n\n\n\n\nWhen talking to external systems (databases, APIs, LLM services) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.\nThe Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.\nAI Use Cases:\n\nCalling LLM APIs (OpenAI, Anthropic, Bedrock)\nFetching data from multiple sources\nParallel web scraping for training data\nDistributed vector database queries\n\nReferences: asyncio — Asynchronous I/O, Async IO in Python: A Complete Walkthrough\n\n\n\n\n\n\nAsync I/O"
+    "text": "The need for Async I/O in AI Data Processing\n\n\n\nWhen talking to external systems (databases, APIs, LLM services) the bottleneck is not local CPU/memory but rather the time it takes to receive a response from the external system.\nThe Async I/O model addresses this by allowing to send multiple request in parallel without having to wait for a response.\nAI Use Cases:\n\nCalling LLM APIs (OpenAI, Anthropic, Bedrock)\nFetching data from multiple sources\nParallel web scraping for training data\nDistributed vector database queries\n\nReferences: asyncio — Asynchronous I/O, Async IO in Python: A Complete Walkthrough\n\n\n\n\n\nAsync I/O"
   },
   {
     "objectID": "slides/03-slides.html#concurrency-and-parallelism-in-python3",
     "href": "slides/03-slides.html#concurrency-and-parallelism-in-python3",
     "title": "Lecture 3",
     "section": "Concurrency and parallelism in Python3",
-    "text": "Concurrency and parallelism in Python3\n\n\n\n\nParallelism: multiple tasks are running in parallel, each on a different processors. This is done through the multiprocessing module.\nConcurrency: multiple tasks are taking turns to run on the same processor. Another task can be scheduled while the current one is blocked on I/O.\nThreading: multiple threads take turns executing tasks. One process can contain multiple threads. Similar to concurrency but within the context of a single process.\n\n\n\n\n\n\nConcurrency in Python"
+    "text": "Concurrency and parallelism in Python3\n\n\n\nParallelism: multiple tasks are running in parallel, each on a different processors. This is done through the multiprocessing module.\nConcurrency: multiple tasks are taking turns to run on the same processor. Another task can be scheduled while the current one is blocked on I/O.\nThreading: multiple threads take turns executing tasks. One process can contain multiple threads. Similar to concurrency but within the context of a single process.\n\n\n\n\n\nConcurrency in Python"
   },
   {
     "objectID": "slides/03-slides.html#how-to-implement-concurrency-with-asyncio",
     "href": "slides/03-slides.html#how-to-implement-concurrency-with-asyncio",
     "title": "Lecture 3",
     "section": "How to implement concurrency with asyncio",
-    "text": "How to implement concurrency with asyncio\n\n\n\n\nasyncio is a library to write concurrent code using the async/await syntax.\nUse of async and await keywords. You can call an async function multiple times while you await the result of a previous invocation.\nawait the result of multiple async tasks using gather.\nThe main function in this example is called a coroutine. Multiple coroutines can be run concurrnetly as awaitable tasks.\n\n\n\nimport asyncio\n\nasync def main():\n    print('Hello ...')\n    await asyncio.sleep(1)\n    print('... World!')\n\nasyncio.run(main())"
+    "text": "How to implement concurrency with asyncio\n\n\n\nasyncio is a library to write concurrent code using the async/await syntax.\nUse of async and await keywords. You can call an async function multiple times while you await the result of a previous invocation.\nawait the result of multiple async tasks using gather.\nThe main function in this example is called a coroutine. Multiple coroutines can be run concurrnetly as awaitable tasks.\n\n\nimport asyncio\n\nasync def main():\n    print('Hello ...')\n    await asyncio.sleep(1)\n    print('... World!')\n\nasyncio.run(main())"
   },
   {
     "objectID": "slides/03-slides.html#anatomy-of-an-asyncio-python-program",
     "href": "slides/03-slides.html#anatomy-of-an-asyncio-python-program",
     "title": "Lecture 3",
     "section": "Anatomy of an asyncio Python program",
-    "text": "Anatomy of an asyncio Python program\n\n\n\n\nWrite a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.\nCreate a coroutine i.e. an async wrapper function to the blocking function using async and await, with the call to blocking function made using the asyncio.to_thread function. This enables the coroutine execution in a separate thread.\nCreate another coroutine that makes multiple calls (in a loop, list comprehension) to the async wrapper created in the previous step and awaits completion of all of the invocations using the asyncio.gather function.\nCall the coroutine created in the previous step from another function using the asyncio.run function.\n\n\n\nimport time\nimport asyncio\n\ndef my_blocking_func(i):\n    # some blocking code such as an api call\n    print(f\"{i}, entry\")\n    time.sleep(1)\n    print(f\"{i}, exiting\")\n    return None\n  \nasync def async_my_blocking_func(i: int):\n    return await asyncio.to_thread(my_blocking_func, i)\n\nasync def async_my_blocking_func_for_multiple(n: int):\n    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])\n\nif __name__ == \"__main__\":\n    # async version\n    s = time.perf_counter()\n    n = 20\n    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))\n    elapsed_async = time.perf_counter() - s\n    print(f\"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds\")"
+    "text": "Anatomy of an asyncio Python program\n\n\n\nWrite a regular Python function that makes a call to a database, an API or any other blocking functionality as you normally would.\nCreate a coroutine i.e. an async wrapper function to the blocking function using async and await, with the call to blocking function made using the asyncio.to_thread function. This enables the coroutine execution in a separate thread.\nCreate another coroutine that makes multiple calls (in a loop, list comprehension) to the async wrapper created in the previous step and awaits completion of all of the invocations using the asyncio.gather function.\nCall the coroutine created in the previous step from another function using the asyncio.run function.\n\n\nimport time\nimport asyncio\n\ndef my_blocking_func(i):\n    # some blocking code such as an api call\n    print(f\"{i}, entry\")\n    time.sleep(1)\n    print(f\"{i}, exiting\")\n    return None\n  \nasync def async_my_blocking_func(i: int):\n    return await asyncio.to_thread(my_blocking_func, i)\n\nasync def async_my_blocking_func_for_multiple(n: int):\n    return await asyncio.gather(*[async_my_blocking_func(i) for i in range(n)])\n\nif __name__ == \"__main__\":\n    # async version\n    s = time.perf_counter()\n    n = 20\n    brewery_counts = asyncio.run(async_my_blocking_func_for_multiple(n))\n    elapsed_async = time.perf_counter() - s\n    print(f\"{__file__}, async_my_blocking_func_for_multiple finished in {elapsed_async:0.2f} seconds\")"
   },
   {
     "objectID": "slides/03-slides.html#ai-example-parallel-llm-api-calls",
@@ -5118,7 +5139,7 @@
     "href": "slides/03-slides.html#the-ai-data-challenge",
     "title": "Lecture 3",
     "section": "The AI Data Challenge",
-    "text": "The AI Data Challenge\n\n\nVolume: LLMs trained on trillions of tokens (petabytes of text)\nVariety: Multimodal data (text, images, audio, video, structured data)\nVelocity: Real-time data pipelines for online learning\nVeracity: Data quality is crucial for model performance\nValue: High-quality data is more important than model architecture\n\n\n\n\n“Data is the new oil, but it needs refining” - especially for AI"
+    "text": "The AI Data Challenge\n\nVolume: LLMs trained on trillions of tokens (petabytes of text)\nVariety: Multimodal data (text, images, audio, video, structured data)\nVelocity: Real-time data pipelines for online learning\nVeracity: Data quality is crucial for model performance\nValue: High-quality data is more important than model architecture\n\n\n\n“Data is the new oil, but it needs refining” - especially for AI"
   },
   {
     "objectID": "slides/03-slides.html#parallel-data-processing-pipeline-for-ai",
@@ -5153,7 +5174,7 @@
     "href": "slides/03-slides.html#embedding-generation-at-scale",
     "title": "Lecture 3",
     "section": "Embedding Generation at Scale",
-    "text": "Embedding Generation at Scale\n\n\nChallenge: Generate embeddings for 100M+ documents\nSolution: Distributed GPU processing\n\n# Distributed embedding generation\nfrom transformers import AutoModel\nimport torch.distributed as dist\n\ndef generate_embeddings_distributed(documents, rank, world_size):\n    # Each GPU processes a subset\n    subset = documents[rank::world_size]\n    model = AutoModel.from_pretrained(\"sentence-transformers/all-MiniLM-L6-v2\")\n    model = model.to(f\"cuda:{rank}\")\n    \n    embeddings = []\n    for batch in batch_iterator(subset, batch_size=256):\n        with torch.no_grad():\n            emb = model.encode(batch)\n        embeddings.extend(emb)\n    return embeddings"
+    "text": "Embedding Generation at Scale\n\nChallenge: Generate embeddings for 100M+ documents\nSolution: Distributed GPU processing\n\n# Distributed embedding generation\nfrom transformers import AutoModel\nimport torch.distributed as dist\n\ndef generate_embeddings_distributed(documents, rank, world_size):\n    # Each GPU processes a subset\n    subset = documents[rank::world_size]\n    model = AutoModel.from_pretrained(\"sentence-transformers/all-MiniLM-L6-v2\")\n    model = model.to(f\"cuda:{rank}\")\n    \n    embeddings = []\n    for batch in batch_iterator(subset, batch_size=256):\n        with torch.no_grad():\n            emb = model.encode(batch)\n        embeddings.extend(emb)\n    return embeddings"
   },
   {
     "objectID": "slides/03-slides.html#data-deduplication-for-ai",
@@ -5174,7 +5195,7 @@
     "href": "slides/03-slides.html#best-practices-for-parallel-data-processing",
     "title": "Lecture 3",
     "section": "Best Practices for Parallel Data Processing",
-    "text": "Best Practices for Parallel Data Processing\n\n\nProfile First: Identify bottlenecks before parallelizing\nChunk Appropriately: Balance chunk size with overhead\nHandle Failures: Implement retry logic and checkpointing\nMonitor Progress: Use progress bars and logging\nValidate Output: Always verify data quality post-processing\nVersion Everything: Track data lineage and transformations"
+    "text": "Best Practices for Parallel Data Processing\n\nProfile First: Identify bottlenecks before parallelizing\nChunk Appropriately: Balance chunk size with overhead\nHandle Failures: Implement retry logic and checkpointing\nMonitor Progress: Use progress bars and logging\nValidate Output: Always verify data quality post-processing\nVersion Everything: Track data lineage and transformations"
   },
   {
     "objectID": "slides/03-slides.html#tools-comparison-for-ai-data-processing",
@@ -5195,7 +5216,7 @@
     "href": "slides/03-slides.html#key-takeaways",
     "title": "Lecture 3",
     "section": "Key Takeaways",
-    "text": "Key Takeaways\n\n\nData is the bottleneck in modern AI systems\nParallel processing is essential for AI-scale data\nChoose the right tool for your scale and use case\nQuality over quantity - parallel quality checks are crucial\nMonitor and validate throughout the pipeline\nModern frameworks (Spark, Ray, Dask) simplify distributed processing"
+    "text": "Key Takeaways\n\nData is the bottleneck in modern AI systems\nParallel processing is essential for AI-scale data\nChoose the right tool for your scale and use case\nQuality over quantity - parallel quality checks are crucial\nMonitor and validate throughout the pipeline\nModern frameworks (Spark, Ray, Dask) simplify distributed processing"
   },
   {
     "objectID": "slides/05-slides.html#what-is-data-engineering",
@@ -5951,14 +5972,14 @@
     "href": "slides/13-slides.html#before-we-begin..",
     "title": "Lecture 13",
     "section": "Before we begin..",
-    "text": "Before we begin..\n\nPandas: pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.\n\n\n\nPandas is slow, well yes but also not so much if you use it the right way.\n\n\nApache Arrow and the “10 Things I Hate About pandas” (A 2017 post from the creator of Pandas..)\n50 times faster data loading for Pandas: no problem (but this is an old 2019 article..)\nIs Pandas really that slow?\n\n\nPandas 2.0 and the arrow revolution"
+    "text": "Before we begin..\n\nPandas: pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.\n\n\nPandas is slow, well yes but also not so much if you use it the right way.\n\n\nApache Arrow and the “10 Things I Hate About pandas” (A 2017 post from the creator of Pandas..)\n50 times faster data loading for Pandas: no problem (but this is an old 2019 article..)\nIs Pandas really that slow?\n\n\nPandas 2.0 and the arrow revolution"
   },
   {
     "objectID": "slides/13-slides.html#polars",
     "href": "slides/13-slides.html#polars",
     "title": "Lecture 13",
     "section": "Polars",
-    "text": "Polars\n\nPolars: Lightning-fast DataFrame library for Rust and Python\n\nWhy is it faster than Pandas?\n\n\nWritten in Rust (compiled not interpreted).\nUses all available cores of your machine.\nUse PyArrow.\n[My opinion] Makes it easier to write code the right away (has a strict schema and others)!"
+    "text": "Polars\n\nPolars: Lightning-fast DataFrame library for Rust and Python\n\nWhy is it faster than Pandas?\n\nWritten in Rust (compiled not interpreted).\nUses all available cores of your machine.\nUse PyArrow.\n[My opinion] Makes it easier to write code the right away (has a strict schema and others)!"
   },
   {
     "objectID": "slides/13-slides.html#coming-from-pandas-to-polars",
@@ -6169,6 +6190,13 @@
     "title": "Lecture 4",
     "section": "Overview",
     "text": "Overview\n\nLambda (or \\(\\lambda\\)) is the name given to anonymous functions in some languages like Python.\nLambda is a powerful tool to build serverless microfunctions in a variety of programming languages that can be triggered in a variety of ways.\nThe execution of a Lambda can scale to meet the burst needs of users going to a website, or the number of rows of incoming data.\nThere can be thousands of executions happening simultaneously.\nLambda is billed by the millisecond (ms).\n\n\n\nThe name Lambda is derived from Lambda calculus, a mathematical system to express computation introduced by Dr. Alonzo Church in the 1930s. See wikipedia entry on Lambda calculus for why the symbol \\(\\lambda\\) was choosen."
+  },
+  {
+    "objectID": "slides/week-tbd--slides.html#aws-lambda-functions",
+    "href": "slides/week-tbd--slides.html#aws-lambda-functions",
+    "title": "Lecture 4",
+    "section": "# AWS Lambda Functions",
+    "text": "# AWS Lambda Functions"
   },
   {
     "objectID": "slides/week-tbd--slides.html#lambda-details",

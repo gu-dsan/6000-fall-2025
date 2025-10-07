@@ -4,7 +4,7 @@ date-modified: "today"
 date-format: "dddd, MMMM D, YYYY"
 format: 
   html:
-    toc: false
+    toc: true
 ---
 
 
@@ -12,12 +12,18 @@ format:
 ::: {.grid .course-details .course-details-smaller}
 
 ::: {.g-col-6}
-### Instructor
+### Instructors
 
-- {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
-- {{< fa university >}} &nbsp; {{< var instructor.office >}}
+**Amit Arora**
+
 - {{< fa envelope >}} &nbsp; [{{< var instructor.email >}}](mailto:{{< var instructor.email >}})
 - {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< var instructor.appointment_url >}})
+
+**Jeff Jacobs**
+
+- {{< fa envelope >}} &nbsp; [jj1088@georgetown.edu](mailto:jj1088@georgetown.edu)
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment](https://jjacobs.me/meet)
+
 :::
 
 ::: {.g-col-6}
