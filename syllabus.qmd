@@ -211,11 +211,11 @@ The final timelines and deliverables for the project will be announced in class.
 
 ### Grade Weights
 
--   Homework: 30%
--   Lab: 10%
--   Case Study: 15%
--   Discussion: 15%
--   Individual Project Portfolio: 30%
+-   Project: 30%
+-   Homework: 40%
+-   Labs: 20%
+-   Attendance: 5%
+-   Quizzes: 5%
 
 Total is 100%.
 
