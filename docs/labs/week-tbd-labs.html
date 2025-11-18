@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../files/img/dsan6000-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6c1d4747946d1be0d0588e27238c39f9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6500c6f6b26d0c23ed2021d04b5e7c44.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-854bf9acf8282e04c33240df540d2bcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -136,6 +137,8 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">DSAN 6000</span>
     </a>
@@ -328,8 +331,8 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <blockquote class="blockquote">
 <p>Hint!: Think how you can pass objects in a string? For this you can use something like this:</p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">f'string here </span><span class="sc">{</span><span class="bu">object</span><span class="sc">}</span><span class="ss">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">f'string here </span><span class="sc">{</span><span class="bu">object</span><span class="sc">}</span><span class="ss">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li><p>Return the contents of the event input variable to the lambda_handler function as additional item in the return JSON as <code>event</code>.</p></li>
 <li><p>Return the python version using the <code>executable()</code> method in the <code>sys</code> library. The key should be <code>py_version</code>.</p></li>
@@ -338,7 +341,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 </ol>
 <p>After these have been executed, copy the function URL and put it in <code>lambda-test-url.json</code></p>
 <p>The response from the server should be like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{ <span class="st">"statusCode"</span>: <span class="dv">200</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{ <span class="st">"statusCode"</span>: <span class="dv">200</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"body"</span>: {</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"message"</span>: <span class="st">"Hello from Lambda!"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"root"</span>: <span class="st">"..."</span></span>
@@ -346,7 +349,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"py_version"</span>: <span class="st">"..."</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"username"</span>: <span class="st">"..."</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="part-2--cloud9" class="level2">
 <h2 class="anchored" data-anchor-id="part-2--cloud9">Part-2- Cloud9</h2>
@@ -408,13 +411,13 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <ul>
 <li>Open up the <code>Dockerfile</code> and add the following text (note the # lines are comments just like python!)</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>FROM python:<span class="fl">3.11</span><span class="op">-</span>slim<span class="op">-</span>buster</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>CMD [<span class="st">"python"</span>, <span class="st">"-c"</span>, <span class="st">"import platform; print(f</span><span class="ch">\"</span><span class="st">version: {platform.python_version()}</span><span class="ch">\"</span><span class="st">)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>CMD [<span class="st">"python"</span>, <span class="st">"-c"</span>, <span class="st">"import platform; print(f</span><span class="ch">\"</span><span class="st">version: {platform.python_version()}</span><span class="ch">\"</span><span class="st">)"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Go to the terminal and change directories to the location of your Dockerfile. Run the command <code>docker build ./ -t test</code></li>
 </ul>
@@ -440,7 +443,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <li>Use the new Dockerfile contents below for your <code>Dockerfile</code>.</li>
 </ul>
 <p>A few examples of how to build a docker file along with some documentation is given below in this link: https://spacelift.io/blog/dockerfile. You can scroll down to see how a docker commands work and what they do. This will be useful in making this a relatively simple task.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.aws.amazon.com/lambda/latest/dg/python-image.html</span></span>
@@ -461,7 +464,7 @@ gtag('config', 'G-N2B9K684GE', { 'anonymize_ip': true});
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">##### SET THE COMMAND OF THE CONTAINER FOR THE LAMBDA HANDLER</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># app (name of py file)</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># handler (name of function to execute for lambda job)</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>CMD [ <span class="st">"app.lambda_handler"</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>CMD [ <span class="st">"app.lambda_handler"</span> ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>Note that the ADD and COPY commands in Docker for this instance are similar. The ADD function is more advanced and can auto-extract compressed files into the image. Please use the given python version for this assignment. This assignment was mainly designed to be used with python 3.11. If you a version of python which is lower, we cannot say if it would be compatible.</p></li>
 <li><p>Set up your python file <code>app.py</code> with a function called <code>lambda_handler</code> that accepts the <code>event</code> and <code>context</code> arguments. Wait, we have already done this in basic Lambda! <strong><em>Copy your function from the Lambda service.</em></strong> This will ensure that the response is the same through basic Lambda and through the Docker Lambda.</p></li>
@@ -533,7 +536,7 @@ docker run -p PORT CONTAINER NAME
 <li><p>Use the requests and beautifulsoup packages to build the function. Note you will need to add these libraries to the <code>requirements.txt</code> file.</p></li>
 <li><p>Start your <code>app.py</code> file with this start code.</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
@@ -553,7 +556,7 @@ docker run -p PORT CONTAINER NAME
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.text, <span class="st">"html.parser"</span>)</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> soup.find(<span class="st">"fin-streamer"</span>, {<span class="st">'data-field'</span>:<span class="st">"regularMarketPrice"</span>, <span class="st">'data-symbol'</span> : stock.upper()}).text</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"price=</span><span class="sc">{</span>price<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"price=</span><span class="sc">{</span>price<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="coding-requirements" class="level2">
 <h2 class="anchored" data-anchor-id="coding-requirements">Coding Requirements:</h2>
@@ -572,8 +575,8 @@ docker run -p PORT CONTAINER NAME
 <ul>
 <li>This process is mainly only for prototyping. You would do this by writing the entire python code first in app.py file, then running the following command in the terminal :</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> app.py <span class="at">--payload</span> {<span class="st">'payload'</span>: <span class="st">'stock'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> app.py <span class="at">--payload</span> {<span class="st">'payload'</span>: <span class="st">'stock'</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hint #2: Once you put the code into the Lambda framework, you will have to build and run to complete a development integration.</p>
 <p>Hint #3: Implement a basic logger function to see where you might be going wrong? is ther a certain way to pass an input string to the event handler function? Try printing the event out to the console.</p>
 </div>
@@ -592,14 +595,14 @@ docker run -p PORT CONTAINER NAME
 <ul>
 <li><p>Run the command <code>aws ecr create-repository --repository-name docker-lambda</code> to make a new repo in the elastic container registry to store your new containers.</p></li>
 <li><p>Run the commands to grab info on your AWS account and region.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>aws_region<span class="op">=</span>$(aws configure get region)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>aws_account_id<span class="op">=</span>$(aws sts get<span class="op">-</span>caller<span class="op">-</span>identity <span class="op">--</span>query <span class="st">'Account'</span> <span class="op">--</span>output text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>aws_region<span class="op">=</span>$(aws configure get region)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>aws_account_id<span class="op">=</span>$(aws sts get<span class="op">-</span>caller<span class="op">-</span>identity <span class="op">--</span>query <span class="st">'Account'</span> <span class="op">--</span>output text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Run the following command to configure your authentication to talk to the ECR service. Note how we use BASH variable with the <code>$</code> so that you don’t have to manually enter your region or account id.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aws ecr get<span class="op">-</span>login<span class="op">-</span>password <span class="op">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aws ecr get<span class="op">-</span>login<span class="op">-</span>password <span class="op">\</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>region $aws_region <span class="op">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> docker login <span class="op">\</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>username AWS <span class="op">\</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>password<span class="op">-</span>stdin $aws_account_id.dkr.ecr.$aws_region.amazonaws.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>password<span class="op">-</span>stdin $aws_account_id.dkr.ecr.$aws_region.amazonaws.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Tag the image in the ECR registry by running the command <code>docker tag lambda-docker-build $aws_account_id.dkr.ecr.$aws_region.amazonaws.com/docker-lambda</code></p>
 <ul>
 <li>The final <code>docker-lambda</code> is referring to the new repository you just built a few commands ago.</li>
@@ -723,13 +726,14 @@ Important
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

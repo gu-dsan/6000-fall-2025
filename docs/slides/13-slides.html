@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 13</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -265,26 +265,26 @@ Amit Arora, Jeff Jacobs
 <section id="using-polars" class="title-slide slide level1 center">
 <h1>Using Polars</h1>
 <p>Install polars via pip.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">pip</span> install polars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">pip</span> install polars</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Import polars in your Python code as</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Read data as usual.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"s3a://bigdatateaching/nyctaxi-yellow-tripdata/2021/yellow_tripdata_2021-01.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"s3a://bigdatateaching/nyctaxi-yellow-tripdata/2021/yellow_tripdata_2021-01.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="coming-from-pandas-to-polars" class="slide level2">
 <h2>Coming from Pandas to Polars</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a></a>df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb4-3"><a></a>    <span class="st">"type"</span>: [<span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"o"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"n"</span>],</span>
 <span id="cb4-4"><a></a>    <span class="st">"c"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
 <span id="cb4-5"><a></a>})</span>
 <span id="cb4-6"><a></a></span>
 <span id="cb4-7"><a></a>df[<span class="st">"size"</span>] <span class="op">=</span> df.groupby(<span class="st">"c"</span>)[<span class="st">"type"</span>].transform(<span class="bu">len</span>)</span>
-<span id="cb4-8"><a></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb5-2"><a></a>df <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb5-3"><a></a>    <span class="st">"type"</span>: [<span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"o"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"n"</span>],</span>
 <span id="cb5-4"><a></a>    <span class="st">"c"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
@@ -292,7 +292,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb5-6"><a></a>df.select([</span>
 <span id="cb5-7"><a></a>    pl.<span class="bu">all</span>(),</span>
 <span id="cb5-8"><a></a>    pl.col(<span class="st">"type"</span>).count().over(<span class="st">"c"</span>).alias(<span class="st">"size"</span>)</span>
-<span id="cb5-9"><a></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <blockquote>
 <p>https://pola-rs.github.io/polars-book/user-guide/coming_from_pandas.html</p>
@@ -317,7 +317,7 @@ Amit Arora, Jeff Jacobs
 <section id="duckdb" class="slide level2">
 <h2>DuckDB</h2>
 <p><a href="https://duckdb.org/">DuckDB</a> is an in-process SQL OLAP database management system</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">pip</span> install duckdb==0.7.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">pip</span> install duckdb==0.7.1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <img data-src="./img/duckdb.png" class="r-stretch quarto-figure-center"><p class="caption">Duck DB</p><p>Also checkout <a href="https://motherduck.com/">MotherDuck</a></p>
 </section>
@@ -521,7 +521,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -595,13 +595,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

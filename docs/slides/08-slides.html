@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 8</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -362,8 +362,8 @@ Amit Arora, Jeff Jacobs
 <li><code>cache():</code> is a shortcut for using default storage level, which is memory only</li>
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
-<span id="cb1-2"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
+<span id="cb1-2"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="review-of-pysparksql-cheatsheet" class="slide level2">
 <h2>Review of PySparkSQL Cheatsheet</h2>
@@ -448,7 +448,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="udf-code-solution" class="slide level2">
 <h2>UDF Code Solution</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf, col</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf, col</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a><span class="at">@udf</span>(<span class="st">"array&lt;integer&gt;"</span>)</span>
 <span id="cb3-4"><a></a>   <span class="kw">def</span> filter_adults(elements):</span>
@@ -458,7 +458,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb3-8"><a></a><span class="im">from</span> pyspark.sql.types IntegerType, ArrayType</span>
 <span id="cb3-9"><a></a><span class="at">@udf</span>(returnType<span class="op">=</span>ArrayType(IntegerType()))</span>
 <span id="cb3-10"><a></a><span class="kw">def</span> filter_adults(elements):</span>
-<span id="cb3-11"><a></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>+-------+----------------+------------+
 |room_id| guests_ages    | adults_ages|
 +-------+----------------+------------+
@@ -470,11 +470,11 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="alternative-to-spark-udf" class="slide level2">
 <h2>Alternative to Spark UDF</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># Spark 3.1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># Spark 3.1</span></span>
 <span id="cb5-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">filter</span>, lit</span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a>df.withColumn(<span class="st">'adults_ages'</span>,</span>
-<span id="cb5-5"><a></a>              <span class="bu">filter</span>(col(<span class="st">'guests_ages'</span>), <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> lit(<span class="dv">18</span>))).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a></a>              <span class="bu">filter</span>(col(<span class="st">'guests_ages'</span>), <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> lit(<span class="dv">18</span>))).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="udf-speed-comparison" class="slide level2">
 <h2>UDF Speed Comparison</h2>
@@ -498,7 +498,7 @@ Amit Arora, Jeff Jacobs
 <section id="pandas-udf" class="slide level2">
 <h2>Pandas UDF</h2>
 <p>From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"string"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"string"</span>)</span>
 <span id="cb6-2"><a></a><span class="kw">def</span> to_upper(s: pd.Series) <span class="op">-&gt;</span> pd.Series:</span>
 <span id="cb6-3"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.upper()</span>
 <span id="cb6-4"><a></a></span>
@@ -508,8 +508,8 @@ Amit Arora, Jeff Jacobs
 <span id="cb6-8"><a></a><span class="op">|</span>to_upper(name)<span class="op">|</span></span>
 <span id="cb6-9"><a></a><span class="op">+--------------+</span></span>
 <span id="cb6-10"><a></a><span class="op">|</span>      JOHN DOE<span class="op">|</span></span>
-<span id="cb6-11"><a></a><span class="op">+--------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"first string, last string"</span>)</span>
+<span id="cb6-11"><a></a><span class="op">+--------------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="at">@pandas_udf</span>(<span class="st">"first string, last string"</span>)</span>
 <span id="cb7-2"><a></a><span class="kw">def</span> split_expand(s: pd.Series) <span class="op">-&gt;</span> pd.DataFrame:</span>
 <span id="cb7-3"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.split(expand<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-4"><a></a></span>
@@ -520,7 +520,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb7-9"><a></a><span class="op">|</span>split_expand(name)<span class="op">|</span></span>
 <span id="cb7-10"><a></a><span class="op">+------------------+</span></span>
 <span id="cb7-11"><a></a><span class="op">|</span>       [John, Doe]<span class="op">|</span></span>
-<span id="cb7-12"><a></a><span class="op">+------------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-12"><a></a><span class="op">+------------------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.functions.pandas_udf.html">https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.functions.pandas_udf.html</a></p>
 </section></section>
 <section>
@@ -631,7 +631,7 @@ Amit Arora, Jeff Jacobs
 <li><p><strong>Use the <code>VectorAssembler</code> transformer to create a single vector column from a list of columns.</strong></p></li>
 <li><p><strong>All categorical data needs to be numeric for machine learning</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Example from Spark docs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Example from Spark docs</span></span>
 <span id="cb8-2"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
 <span id="cb8-3"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
 <span id="cb8-4"><a></a></span>
@@ -645,7 +645,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb8-12"><a></a></span>
 <span id="cb8-13"><a></a>output <span class="op">=</span> assembler.transform(dataset)</span>
 <span id="cb8-14"><a></a><span class="bu">print</span>(<span class="st">"Assembled columns 'hour', 'mobile', 'userFeatures' to vector column 'features'"</span>)</span>
-<span id="cb8-15"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"clicked"</span>).show(truncate<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-15"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"clicked"</span>).show(truncate<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="estimators" class="slide level2">
 <h2>Estimators</h2>
@@ -680,7 +680,7 @@ Amit Arora, Jeff Jacobs
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <p>Using the <a href="https://github.com/wchill/HMP_Dataset">HMP Dataset</a>. The structure of the dataset looks like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
 <span id="cb9-2"><a></a>df.printSchema()</span>
 <span id="cb9-3"><a></a></span>
 <span id="cb9-4"><a></a>root  </span>
@@ -688,7 +688,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb9-6"><a></a><span class="op">|--</span> y: integer (nullable <span class="op">=</span> true)  </span>
 <span id="cb9-7"><a></a><span class="op">|--</span> z: integer (nullable <span class="op">=</span> true)  </span>
 <span id="cb9-8"><a></a><span class="op">|--</span> <span class="kw">class</span>: string (nullable <span class="op">=</span> false)  </span>
-<span id="cb9-9"><a></a><span class="op">|--</span> source: string (nullable <span class="op">=</span> false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a></a><span class="op">|--</span> source: string (nullable <span class="op">=</span> false)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="lets-transform-strings-to-numbers" class="slide level2">
 <h2>Let’s transform strings to numbers</h2>
@@ -697,7 +697,7 @@ Amit Arora, Jeff Jacobs
 <li>To create a StringIndexer object (indexer), pass the <code>class</code> column as inputCol, and <code>classIndex</code> as outputCol.</li>
 <li>Then we fit the DataFrame to the indexer (to run the estimator), and transform the DataFrame. This creates a brand new DataFrame (indexed), which we can see below, containing the classIndex additional column.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> StringIndexer</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> StringIndexer</span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a>indexer <span class="op">=</span> StringIndexer(inputCol <span class="op">=</span> <span class="st">'class'</span>, outputCol <span class="op">=</span> <span class="st">'classIndex'</span>)</span>
 <span id="cb10-4"><a></a>indexed <span class="op">=</span> indexer.fit(df).transform(df)  <span class="co"># This is a new data frame</span></span>
@@ -714,7 +714,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb10-15"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
 <span id="cb10-16"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span></span>
 <span id="cb10-17"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+</span></span>
-<span id="cb10-18"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-18"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="one-hot-encode-categorical-variables" class="slide level2">
 <h2>One-Hot Encode categorical variables</h2>
@@ -723,7 +723,7 @@ Amit Arora, Jeff Jacobs
 <li><code>OneHotEncoder</code> creates a brand new DataFrame (encoded), with a <code>category_vec</code> column added to the previous DataFrame(indexed).</li>
 <li><code>OneHotEncoder</code> doesn’t return several columns containing only zeros and ones; it returns a sparse-vector as seen in the categoryVec column. Thus, for the ‘Drink_glass’ class above, SparkML returns a sparse-vector that basically says there are 13 elements, and at position 2, the class value exists(1.0).</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> OneHotEncoder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> OneHotEncoder</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a><span class="co"># The OneHotEncoder is a pure transformer object. it does not use the fit()</span></span>
 <span id="cb11-4"><a></a>encoder <span class="op">=</span> OneHotEncoder(inputCol <span class="op">=</span> <span class="st">'classIndex'</span>, outputCol <span class="op">=</span> <span class="st">'categoryVec'</span>)</span>
@@ -739,7 +739,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb11-14"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
 <span id="cb11-15"><a></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span></span>
 <span id="cb11-16"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+</span></span>
-<span id="cb11-17"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-17"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="assembling-the-feature-vector" class="slide level2">
 <h2>Assembling the feature vector</h2>
@@ -748,7 +748,7 @@ Amit Arora, Jeff Jacobs
 <li>The list <code>['x', 'y', 'z']</code> is paseed to <code>inputCols</code>, and we specify outputCol = ‘features’.</li>
 <li>This is also a pure <em>transformer</em>.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
 <span id="cb12-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> VectorAssembler</span>
 <span id="cb12-3"><a></a><span class="co"># VectorAssembler creates vectors from ordinary data types for us</span></span>
 <span id="cb12-4"><a></a></span>
@@ -768,7 +768,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb12-18"><a></a><span class="op">|</span><span class="dv">29</span> <span class="op">|</span><span class="dv">37</span> <span class="op">|</span><span class="dv">51</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span></span>
 <span id="cb12-19"><a></a><span class="op">|</span><span class="dv">30</span> <span class="op">|</span><span class="dv">38</span> <span class="op">|</span><span class="dv">52</span> <span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="dv">2011</span><span class="op">-</span><span class="dv">0</span><span class="er">6</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">13</span><span class="op">-</span><span class="dv">57</span><span class="op">-</span>drink_glass<span class="op">-</span>f1.txt<span class="op">|</span><span class="fl">2.0</span>       <span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span></span>
 <span id="cb12-20"><a></a><span class="op">+---+---+---+-----------+----------------------------------------------------+----------+--------------+----------------+</span></span>
-<span id="cb12-21"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-21"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="normalizing-the-dataset" class="slide level2">
 <h2>Normalizing the dataset</h2>
@@ -777,7 +777,7 @@ Amit Arora, Jeff Jacobs
 <li><code>p=1.0</code> uses Manhattan Distance</li>
 <li><code>p=2.0</code> uses Euclidean Distance</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> Normalizer</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> Normalizer</span>
 <span id="cb13-2"><a></a>normalizer <span class="op">=</span> Normalizer(inputCol <span class="op">=</span> <span class="st">'features'</span>, outputCol <span class="op">=</span> <span class="st">'features_norm'</span>, p<span class="op">=</span><span class="fl">1.0</span>)  <span class="co"># Manhattan Distance</span></span>
 <span id="cb13-3"><a></a>normalized_data <span class="op">=</span> normalizer.transform(features_vectorized) <span class="co"># New data frame too.</span></span>
 <span id="cb13-4"><a></a></span>
@@ -792,17 +792,17 @@ Amit Arora, Jeff Jacobs
 <span id="cb13-13"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
 <span id="cb13-14"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
 <span id="cb13-15"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb13-16"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-16"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="running-the-transformation-pipeline" class="slide level2">
 <h2>Running the transformation <code>Pipeline</code></h2>
 <p>The <code>Pipeline</code> constructor below takes an array of Pipeline stages we pass to it. Here we pass the 4 stages defined earlier, in the right sequence, one after another.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
-<span id="cb14-2"><a></a>pipeline <span class="op">=</span> Pipeline(stages <span class="op">=</span> [indexer,encoder,vectorAssembler,normalizer])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
+<span id="cb14-2"><a></a>pipeline <span class="op">=</span> Pipeline(stages <span class="op">=</span> [indexer,encoder,vectorAssembler,normalizer])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now the <code>Pipeline</code> object fit to our original <code>DataFrame df</code></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>data_model <span class="op">=</span> pipeline.fit(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>data_model <span class="op">=</span> pipeline.fit(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Finally, we transform our DataFrame <code>df</code> using the Pipeline Object.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>pipelined_data <span class="op">=</span> data_model.transform(df)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>pipelined_data <span class="op">=</span> data_model.transform(df)</span>
 <span id="cb16-2"><a></a></span>
 <span id="cb16-3"><a></a>pipelined_data.show(<span class="dv">5</span>)</span>
 <span id="cb16-4"><a></a></span>
@@ -815,11 +815,11 @@ Amit Arora, Jeff Jacobs
 <span id="cb16-11"><a></a><span class="op">|</span> <span class="dv">29</span><span class="op">|</span> <span class="dv">37</span><span class="op">|</span> <span class="dv">51</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">29.0</span>,<span class="fl">37.0</span>,<span class="fl">51.0</span>]<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
 <span id="cb16-12"><a></a><span class="op">|</span> <span class="dv">30</span><span class="op">|</span> <span class="dv">38</span><span class="op">|</span> <span class="dv">52</span><span class="op">|</span>Drink_glass<span class="op">|</span>Accelerometer<span class="op">-</span><span class="fl">201.</span>..<span class="op">|</span>       <span class="fl">2.0</span><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">30.0</span>,<span class="fl">38.0</span>,<span class="fl">52.0</span>]<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
 <span id="cb16-13"><a></a><span class="op">+---+---+---+-----------+--------------------+----------+--------------+----------------+--------------------+</span></span>
-<span id="cb16-14"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-14"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="one-last-step-before-training" class="slide level2">
 <h2>One last step before training</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="co"># first let's list out the columns we want to drop</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="co"># first let's list out the columns we want to drop</span></span>
 <span id="cb17-2"><a></a>cols_to_drop <span class="op">=</span> [<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>,<span class="st">'class'</span>,<span class="st">'source'</span>,<span class="st">'classIndex'</span>,<span class="st">'features'</span>]</span>
 <span id="cb17-3"><a></a></span>
 <span id="cb17-4"><a></a><span class="co"># Next let's use a list comprehension with conditionals to select cols we need</span></span>
@@ -839,7 +839,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb17-18"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.23728813559322</span>...<span class="op">|</span></span>
 <span id="cb17-19"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.24786324786324</span>...<span class="op">|</span></span>
 <span id="cb17-20"><a></a><span class="op">|</span>(<span class="dv">13</span>,[<span class="dv">2</span>],[<span class="fl">1.0</span>])<span class="op">|</span>[<span class="fl">0.25</span>,<span class="fl">0.316666666</span>...<span class="op">|</span></span>
-<span id="cb17-21"><a></a>only showing top <span class="dv">5</span> rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-21"><a></a>only showing top <span class="dv">5</span> rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="you-now-have-a-dataframe-optimized-for-sparkml">You now have a DataFrame optimized for SparkML!</h3>
 </section>
 <section id="machine-learning-models-in-spark" class="slide level2">
@@ -868,7 +868,7 @@ Amit Arora, Jeff Jacobs
 <section id="building-your-model" class="slide level2">
 <h2>Building your Model</h2>
 <p>Feature selection using easy R-like formulas</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># Example from Spark docs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># Example from Spark docs</span></span>
 <span id="cb18-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> RFormula</span>
 <span id="cb18-3"><a></a></span>
 <span id="cb18-4"><a></a>dataset <span class="op">=</span> spark.createDataFrame(</span>
@@ -883,7 +883,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb18-13"><a></a>    labelCol<span class="op">=</span><span class="st">"label"</span>)</span>
 <span id="cb18-14"><a></a></span>
 <span id="cb18-15"><a></a>output <span class="op">=</span> formula.fit(dataset).transform(dataset)</span>
-<span id="cb18-16"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"label"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-16"><a></a>output.select(<span class="st">"features"</span>, <span class="st">"label"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="what-if-you-have-too-many-columns-for-your-model" class="slide level2">
 <h2>What if you have too many columns for your model?</h2>
@@ -893,7 +893,7 @@ Amit Arora, Jeff Jacobs
 <h2>Chi-Squared Selector</h2>
 <p>Pick categorical variables that are most dependent on the response variable</p>
 <p>Can even check the <a href="https://stackoverflow.com/questions/50971964/pyspark-chisqselector-p-values-and-test-statistics">p-values of specific variables!</a></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="co"># Example from Spark docs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="co"># Example from Spark docs</span></span>
 <span id="cb19-2"><a></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> ChiSqSelector</span>
 <span id="cb19-3"><a></a><span class="im">from</span> pyspark.ml.linalg <span class="im">import</span> Vectors</span>
 <span id="cb19-4"><a></a></span>
@@ -908,12 +908,12 @@ Amit Arora, Jeff Jacobs
 <span id="cb19-13"><a></a>result <span class="op">=</span> selector.fit(df).transform(df)</span>
 <span id="cb19-14"><a></a></span>
 <span id="cb19-15"><a></a><span class="bu">print</span>(<span class="st">"ChiSqSelector output with top </span><span class="sc">%d</span><span class="st"> features selected"</span> <span class="op">%</span> selector.getNumTopFeatures())</span>
-<span id="cb19-16"><a></a>result.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-16"><a></a>result.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tuning-your-model" class="slide level2">
 <h2>Tuning your model</h2>
 <h4 id="part-1">Part 1</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># Example from Spark docs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># Example from Spark docs</span></span>
 <span id="cb20-2"><a></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
 <span id="cb20-3"><a></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> LinearRegression</span>
 <span id="cb20-4"><a></a><span class="im">from</span> pyspark.ml.tuning <span class="im">import</span> ParamGridBuilder, TrainValidationSplit</span>
@@ -932,12 +932,12 @@ Amit Arora, Jeff Jacobs
 <span id="cb20-17"><a></a>    .addGrid(lr.regParam, [<span class="fl">0.1</span>, <span class="fl">0.01</span>]) <span class="op">\</span></span>
 <span id="cb20-18"><a></a>    .addGrid(lr.fitIntercept, [<span class="va">False</span>, <span class="va">True</span>])<span class="op">\</span></span>
 <span id="cb20-19"><a></a>    .addGrid(lr.elasticNetParam, [<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])<span class="op">\</span></span>
-<span id="cb20-20"><a></a>    .build()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-20"><a></a>    .build()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tuning-your-model-1" class="slide level2">
 <h2>Tuning your model</h2>
 <h4 id="part-2">Part 2</h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="co"># In this case the estimator is simply the linear regression.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="co"># In this case the estimator is simply the linear regression.</span></span>
 <span id="cb21-2"><a></a><span class="co"># A TrainValidationSplit requires an Estimator, a set of Estimator ParamMaps, and an Evaluator.</span></span>
 <span id="cb21-3"><a></a>tvs <span class="op">=</span> TrainValidationSplit(estimator<span class="op">=</span>lr,</span>
 <span id="cb21-4"><a></a>                           estimatorParamMaps<span class="op">=</span>paramGrid,</span>
@@ -952,7 +952,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb21-13"><a></a><span class="co"># that performed best.</span></span>
 <span id="cb21-14"><a></a>model.transform(test)<span class="op">\</span></span>
 <span id="cb21-15"><a></a>    .select(<span class="st">"features"</span>, <span class="st">"label"</span>, <span class="st">"prediction"</span>)<span class="op">\</span></span>
-<span id="cb21-16"><a></a>    .show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-16"><a></a>    .show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section id="lab" class="title-slide slide level1 section center">
 <h1>Lab</h1>
@@ -1148,7 +1148,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1222,13 +1222,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

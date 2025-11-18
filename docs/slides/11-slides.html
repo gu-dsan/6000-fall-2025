@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 11</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -324,7 +324,7 @@ Amit Arora, Jeff Jacobs
 <li><p>Ray enables arbitrary functions to be executed asynchronously on separate Python workers.</p></li>
 <li><p>Such functions are called Ray <strong>remote functions</strong> and their asynchronous invocations are called <strong><a href="https://docs.ray.io/en/latest/ray-core/tasks.html">Ray tasks</a></strong>.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb1-2"><a></a><span class="co"># By adding the `@ray.remote` decorator, a regular Python function</span></span>
 <span id="cb1-3"><a></a><span class="co"># becomes a Ray remote function.</span></span>
 <span id="cb1-4"><a></a><span class="at">@ray.remote</span></span>
@@ -351,7 +351,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb1-25"><a></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
 <span id="cb1-26"><a></a>    <span class="co"># This doesn't block.</span></span>
 <span id="cb1-27"><a></a>    my_function.remote()</span>
-<span id="cb1-28"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-28"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ray-core---actors" class="slide level2">
 <h2>Ray Core - Actors</h2>
@@ -360,7 +360,7 @@ Amit Arora, Jeff Jacobs
 <li>An actor is a <strong>stateful worker</strong> (or a service).</li>
 <li>When a new actor is instantiated, a new worker is created, and methods of the actor are scheduled on that specific worker and can access and mutate the state of that worker.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb2-2"><a></a><span class="at">@ray.remote</span>(num_cpus<span class="op">=</span><span class="dv">2</span>, num_gpus<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb2-3"><a></a><span class="kw">class</span> Counter(<span class="bu">object</span>):</span>
 <span id="cb2-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
@@ -378,7 +378,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb2-16"><a></a><span class="co"># Call the actor.</span></span>
 <span id="cb2-17"><a></a>obj_ref <span class="op">=</span> counter.increment.remote()</span>
 <span id="cb2-18"><a></a><span class="cf">assert</span> ray.get(obj_ref) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb2-19"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-19"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ray-core---objects" class="slide level2">
 <h2>Ray Core - Objects</h2>
@@ -410,7 +410,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="ray-core---objects-contd." class="slide level2">
 <h2>Ray Core - Objects (contd.)</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb3-2"><a></a><span class="co"># Put an object in Ray's object store.</span></span>
 <span id="cb3-3"><a></a>y <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb3-4"><a></a>object_ref <span class="op">=</span> ray.put(y)</span>
@@ -421,7 +421,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb3-9"><a></a></span>
 <span id="cb3-10"><a></a><span class="co"># Get the values of multiple object refs in parallel.</span></span>
 <span id="cb3-11"><a></a><span class="cf">assert</span> ray.get([ray.put(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)]) <span class="op">==</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb3-12"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-12"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ray-datasets" class="slide level2">
 <h2>Ray Datasets</h2>
@@ -441,17 +441,17 @@ Amit Arora, Jeff Jacobs
 <ul>
 <li>Create</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb4-2"><a></a><span class="im">import</span> ray</span>
 <span id="cb4-3"><a></a></span>
 <span id="cb4-4"><a></a>dataset <span class="op">=</span> ray.data.read_csv(<span class="st">"s3://anonymous@air-example-data/iris.csv"</span>)</span>
 <span id="cb4-5"><a></a></span>
 <span id="cb4-6"><a></a>dataset.show(limit<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Transform</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb5-2"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a><span class="co"># Find rows with spepal length &lt; 5.5 and petal length &gt; 3.5.</span></span>
@@ -460,24 +460,24 @@ Amit Arora, Jeff Jacobs
 <span id="cb5-7"><a></a></span>
 <span id="cb5-8"><a></a>transformed_dataset <span class="op">=</span> dataset.map_batches(transform_batch)</span>
 <span id="cb5-9"><a></a><span class="bu">print</span>(transformed_dataset)</span>
-<span id="cb5-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Consume</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb6-2"><a></a>batches <span class="op">=</span> transformed_dataset.iter_batches(batch_size<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb6-3"><a></a><span class="bu">print</span>(<span class="bu">next</span>(<span class="bu">iter</span>(batches)))</span>
-<span id="cb6-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Save</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb7-2"><a></a><span class="im">import</span> os</span>
 <span id="cb7-3"><a></a></span>
 <span id="cb7-4"><a></a>transformed_dataset.write_parquet(<span class="st">"iris"</span>)</span>
 <span id="cb7-5"><a></a></span>
 <span id="cb7-6"><a></a><span class="bu">print</span>(os.listdir(<span class="st">"iris"</span>))</span>
-<span id="cb7-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="references" class="slide level2">
 <h2>References</h2>
@@ -681,7 +681,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -755,13 +755,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

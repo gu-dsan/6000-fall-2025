@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 4</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -430,39 +430,39 @@ Amit Arora, Jeff Jacobs
 <ul>
 <li><code>RUN ["/bin/bash", "-c", "echo hello"]</code></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb1-2"><a></a><span class="ex">FROM</span> busybox</span>
 <span id="cb1-3"><a></a><span class="ex">ENV</span> FOO=/bar</span>
 <span id="cb1-4"><a></a><span class="ex">WORKDIR</span> <span class="va">${FOO}</span>   <span class="co"># WORKDIR /bar</span></span>
 <span id="cb1-5"><a></a><span class="ex">ADD</span> . <span class="va">$FOO</span>       <span class="co"># ADD . /bar</span></span>
 <span id="cb1-6"><a></a><span class="ex">COPY</span> <span class="dt">\$</span>FOO /quux <span class="co"># COPY $FOO /quu</span></span>
-<span id="cb1-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{bash}</span></span>
+<span id="cb1-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb2-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb2-3"><a></a><span class="ex">FROM</span> python:3.6</span>
 <span id="cb2-4"><a></a><span class="ex">ADD</span> mypackage.tgz wheels/</span>
 <span id="cb2-5"><a></a><span class="ex">RUN</span> <span class="at">--network</span><span class="op">=</span>none pip install <span class="at">--find-links</span> wheels mypackage</span>
-<span id="cb2-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference link</a></p>
 </section>
 <section id="s3-example" class="slide level2">
 <h2>S3 example</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb3-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb3-3"><a></a><span class="ex">FROM</span> python:3</span>
 <span id="cb3-4"><a></a><span class="ex">RUN</span> pip install awscli</span>
 <span id="cb3-5"><a></a><span class="ex">RUN</span> <span class="at">--mount</span><span class="op">=</span>type=secret,id=aws,target=/root/.aws/credentials aws s3 cp s3://... ...</span>
-<span id="cb3-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="web-server-example" class="slide level2">
 <h2>Web server example</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb4-2"><a></a><span class="ex">FROM</span> debian:stable</span>
 <span id="cb4-3"><a></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--force-yes</span> apache2</span>
 <span id="cb4-4"><a></a><span class="ex">EXPOSE</span> 80 443</span>
 <span id="cb4-5"><a></a><span class="ex">VOLUME</span> [<span class="st">"/var/www"</span>, <span class="st">"/var/log/apache2"</span>, <span class="st">"/etc/apache2"</span>]</span>
 <span id="cb4-6"><a></a><span class="ex">ENTRYPOINT</span> [<span class="st">"/usr/sbin/apache2ctl"</span>, <span class="st">"-D"</span>, <span class="st">"FOREGROUND"</span>]</span>
-<span id="cb4-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="docker-for-python-jobs" class="slide level2">
 <h2>Docker for Python jobs</h2>
@@ -479,12 +479,12 @@ Amit Arora, Jeff Jacobs
 <ol type="1">
 <li>Write your Dockerfile</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">FROM</span> python:3.8-slim-buster</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">FROM</span> python:3.8-slim-buster</span>
 <span id="cb5-2"><a></a><span class="ex">WORKDIR</span> /app</span>
 <span id="cb5-3"><a></a><span class="ex">COPY</span> requirements.txt requirements.txt</span>
 <span id="cb5-4"><a></a><span class="ex">RUN</span> pip3 install <span class="at">-r</span> requirements.txt</span>
 <span id="cb5-5"><a></a><span class="ex">COPY</span> . .</span>
-<span id="cb5-6"><a></a><span class="ex">CMD</span> [ <span class="st">"python3"</span>, <span class="st">"-m"</span> , <span class="st">"flask"</span>, <span class="st">"run"</span>, <span class="st">"--host=0.0.0.0"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a></a><span class="ex">CMD</span> [ <span class="st">"python3"</span>, <span class="st">"-m"</span> , <span class="st">"flask"</span>, <span class="st">"run"</span>, <span class="st">"--host=0.0.0.0"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li><p>Build the docker image using a tag and version number <code>docker build ./ -t docker-tag-name:1.0</code>. Read about docker building options <a href="https://docs.docker.com/engine/reference/commandline/build/">here</a>.</p></li>
 <li><p>Check your docker images in your local file system using <code>docker images</code></p></li>
@@ -620,7 +620,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="dockerfile" class="slide level2">
 <h2>Dockerfile</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb6-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb6-3"><a></a></span>
 <span id="cb6-4"><a></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
@@ -637,7 +637,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb6-15"><a></a><span class="co"># app (name of py file)</span></span>
 <span id="cb6-16"><a></a><span class="co"># handler (name of function to execute for lambda job)</span></span>
 <span id="cb6-17"><a></a><span class="ex">CMD</span> [ <span class="st">"app.lambda_handler"</span> ]</span>
-<span id="cb6-18"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-18"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="interactivity-with-lambda" class="slide level2">
 <h2>Interactivity with Lambda?</h2>
@@ -848,7 +848,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -922,13 +922,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

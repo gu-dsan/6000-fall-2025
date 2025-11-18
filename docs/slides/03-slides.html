@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 3</title>
@@ -98,7 +98,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -840,8 +840,8 @@ A starting value from which the accumulator function starts
 <li><strong>Apache Beam</strong> for data pipelines</li>
 </ul>
 <p>For example</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> sklearn.ensembles <span class="im">import</span> RandomForestClassifier</span>
-<span id="cb1-2"><a></a>clf <span class="op">=</span> RandomForestClassifier(n_estimators <span class="op">=</span> <span class="dv">100</span>, random_state <span class="op">=</span> <span class="dv">124</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> sklearn.ensembles <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb1-2"><a></a>clf <span class="op">=</span> RandomForestClassifier(n_estimators <span class="op">=</span> <span class="dv">100</span>, random_state <span class="op">=</span> <span class="dv">124</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>uses the <code>joblib</code> module to use all available processors (<code>n_jobs=-1</code>) to do the bootstrapping</p>
 
 <aside><div>
@@ -855,7 +855,7 @@ A starting value from which the accumulator function starts
 </div></aside></section>
 <section id="ai-data-processing-example" class="slide level2">
 <h2>AI Data Processing Example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
 <span id="cb2-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
 <span id="cb2-3"><a></a></span>
 <span id="cb2-4"><a></a><span class="co"># Parallel tokenization for LLM training</span></span>
@@ -868,7 +868,7 @@ A starting value from which the accumulator function starts
 <span id="cb2-11"><a></a></span>
 <span id="cb2-12"><a></a><span class="co"># Process millions of documents in parallel</span></span>
 <span id="cb2-13"><a></a><span class="cf">with</span> Pool(processes<span class="op">=</span><span class="dv">32</span>) <span class="im">as</span> pool:</span>
-<span id="cb2-14"><a></a>    tokenized_docs <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a></a>    tokenized_docs <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="async-io-in-python" class="title-slide slide level1 section center">
@@ -929,14 +929,14 @@ A starting value from which the accumulator function starts
 <li class="fragment"><p>The <code>main</code> function in this example is called a <code>coroutine</code>. Multiple <code>coroutines</code> can be run <code>concurrnetly</code> as awaitable <code>tasks</code>.</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> asyncio</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> asyncio</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
 <span id="cb3-4"><a></a>    <span class="bu">print</span>(<span class="st">'Hello ...'</span>)</span>
 <span id="cb3-5"><a></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
 <span id="cb3-6"><a></a>    <span class="bu">print</span>(<span class="st">'... World!'</span>)</span>
 <span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a>asyncio.run(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a></a>asyncio.run(main())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="anatomy-of-an-asyncio-python-program" class="slide level2">
@@ -950,7 +950,7 @@ A starting value from which the accumulator function starts
 <li class="fragment"><p>Call the coroutine created in the previous step from another function using the <code>asyncio.run</code> function.</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> time</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> time</span>
 <span id="cb4-2"><a></a><span class="im">import</span> asyncio</span>
 <span id="cb4-3"><a></a></span>
 <span id="cb4-4"><a></a><span class="kw">def</span> my_blocking_func(i):</span>
@@ -972,12 +972,12 @@ A starting value from which the accumulator function starts
 <span id="cb4-20"><a></a>    n <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb4-21"><a></a>    brewery_counts <span class="op">=</span> asyncio.run(async_my_blocking_func_for_multiple(n))</span>
 <span id="cb4-22"><a></a>    elapsed_async <span class="op">=</span> time.perf_counter() <span class="op">-</span> s</span>
-<span id="cb4-23"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">__file__</span><span class="sc">}</span><span class="ss">, async_my_blocking_func_for_multiple finished in </span><span class="sc">{</span>elapsed_async<span class="sc">:0.2f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-23"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">__file__</span><span class="sc">}</span><span class="ss">, async_my_blocking_func_for_multiple finished in </span><span class="sc">{</span>elapsed_async<span class="sc">:0.2f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="ai-example-parallel-llm-api-calls" class="slide level2">
 <h2>AI Example: Parallel LLM API Calls</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> asyncio</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> asyncio</span>
 <span id="cb5-2"><a></a><span class="im">import</span> aiohttp</span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a><span class="cf">async</span> <span class="kw">def</span> call_llm_api(prompt, session):</span>
@@ -1000,7 +1000,7 @@ A starting value from which the accumulator function starts
 <span id="cb5-21"><a></a>           <span class="st">"Create technical documentation for..."</span>,</span>
 <span id="cb5-22"><a></a>           <span class="st">"Write a dialogue about..."</span>] <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb5-23"><a></a></span>
-<span id="cb5-24"><a></a>results <span class="op">=</span> asyncio.run(process_prompts(prompts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-24"><a></a>results <span class="op">=</span> asyncio.run(process_prompts(prompts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1037,7 +1037,7 @@ A starting value from which the accumulator function starts
 </section>
 <section id="parallel-data-processing-pipeline-for-ai" class="slide level2">
 <h2>Parallel Data Processing Pipeline for AI</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Example: Parallel document processing for RAG system</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Example: Parallel document processing for RAG system</span></span>
 <span id="cb6-2"><a></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
 <span id="cb6-3"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-4"><a></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
@@ -1055,20 +1055,20 @@ A starting value from which the accumulator function starts
 <span id="cb6-16"><a></a></span>
 <span id="cb6-17"><a></a><span class="co"># Process millions of documents in parallel</span></span>
 <span id="cb6-18"><a></a><span class="cf">with</span> Pool(processes<span class="op">=</span><span class="dv">32</span>) <span class="im">as</span> pool:</span>
-<span id="cb6-19"><a></a>    results <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-19"><a></a>    results <span class="op">=</span> pool.<span class="bu">map</span>(process_document, documents)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="common-data-parallel-patterns-for-ai" class="slide level2">
 <h2>Common Data Parallel Patterns for AI</h2>
 <h3 id="embarrassingly-parallel">1. Embarrassingly Parallel</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Process each item independently</span></span>
-<span id="cb7-2"><a></a>results <span class="op">=</span> parallel_map(transform_function, data_items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Process each item independently</span></span>
+<span id="cb7-2"><a></a>results <span class="op">=</span> parallel_map(transform_function, data_items)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="map-reduce-pattern">2. Map-Reduce Pattern</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Map: Extract features from each document</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># Map: Extract features from each document</span></span>
 <span id="cb8-2"><a></a><span class="co"># Reduce: Aggregate statistics across corpus</span></span>
-<span id="cb8-3"><a></a>word_counts <span class="op">=</span> data.<span class="bu">map</span>(tokenize).<span class="bu">reduce</span>(aggregate_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a></a>word_counts <span class="op">=</span> data.<span class="bu">map</span>(tokenize).<span class="bu">reduce</span>(aggregate_counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="pipeline-pattern">3. Pipeline Pattern</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># Stage 1: Download → Stage 2: Extract → Stage 3: Transform → Stage 4: Load</span></span>
-<span id="cb9-2"><a></a>pipeline <span class="op">=</span> Download() <span class="op">|</span> Extract() <span class="op">|</span> Transform() <span class="op">|</span> Load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># Stage 1: Download → Stage 2: Extract → Stage 3: Transform → Stage 4: Load</span></span>
+<span id="cb9-2"><a></a>pipeline <span class="op">=</span> Download() <span class="op">|</span> Extract() <span class="op">|</span> Transform() <span class="op">|</span> Load()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="data-quality-at-scale" class="slide level2">
 <h2>Data Quality at Scale</h2>
@@ -1100,18 +1100,18 @@ A starting value from which the accumulator function starts
 <section id="distributed-frameworks-for-ai-data" class="slide level2">
 <h2>Distributed Frameworks for AI Data</h2>
 <h3 id="apache-spark-for-large-scale-processing">Apache Spark for Large-Scale Processing</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># Process TB-scale datasets</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># Process TB-scale datasets</span></span>
 <span id="cb10-2"><a></a>df <span class="op">=</span> spark.read.parquet(<span class="st">"s3://bucket/training_data/"</span>)</span>
 <span id="cb10-3"><a></a>cleaned <span class="op">=</span> df.<span class="bu">filter</span>(col(<span class="st">"quality_score"</span>) <span class="op">&gt;</span> <span class="fl">0.8</span>) <span class="op">\</span></span>
 <span id="cb10-4"><a></a>           .select(clean_text_udf(<span class="st">"text"</span>).alias(<span class="st">"cleaned_text"</span>))</span>
-<span id="cb10-5"><a></a>cleaned.write.parquet(<span class="st">"s3://bucket/cleaned_data/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a></a>cleaned.write.parquet(<span class="st">"s3://bucket/cleaned_data/"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="ray-data-for-ml-pipelines">Ray Data for ML Pipelines</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> ray.data</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> ray.data</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a><span class="co"># Distributed preprocessing with Ray</span></span>
 <span id="cb11-4"><a></a>ds <span class="op">=</span> ray.data.read_parquet(<span class="st">"s3://bucket/images/"</span>)</span>
 <span id="cb11-5"><a></a>processed <span class="op">=</span> ds.map_batches(preprocess_images, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb11-6"><a></a>              .map_batches(extract_features, num_gpus<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a></a>              .map_batches(extract_features, num_gpus<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="embedding-generation-at-scale" class="slide level2">
 <h2>Embedding Generation at Scale</h2>
@@ -1119,7 +1119,7 @@ A starting value from which the accumulator function starts
 <li class="fragment"><strong>Challenge</strong>: Generate embeddings for 100M+ documents</li>
 <li class="fragment"><strong>Solution</strong>: Distributed GPU processing</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co"># Distributed embedding generation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co"># Distributed embedding generation</span></span>
 <span id="cb12-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoModel</span>
 <span id="cb12-3"><a></a><span class="im">import</span> torch.distributed <span class="im">as</span> dist</span>
 <span id="cb12-4"><a></a></span>
@@ -1134,7 +1134,7 @@ A starting value from which the accumulator function starts
 <span id="cb12-13"><a></a>        <span class="cf">with</span> torch.no_grad():</span>
 <span id="cb12-14"><a></a>            emb <span class="op">=</span> model.encode(batch)</span>
 <span id="cb12-15"><a></a>        embeddings.extend(emb)</span>
-<span id="cb12-16"><a></a>    <span class="cf">return</span> embeddings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-16"><a></a>    <span class="cf">return</span> embeddings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="data-deduplication-for-ai" class="slide level2">
 <h2>Data Deduplication for AI</h2>
@@ -1145,7 +1145,7 @@ A starting value from which the accumulator function starts
 <li>Critical for web-scale datasets</li>
 </ul>
 <h3 id="parallel-deduplication-strategies">Parallel Deduplication Strategies</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># MinHash for approximate deduplication</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># MinHash for approximate deduplication</span></span>
 <span id="cb13-2"><a></a><span class="im">from</span> datasketch <span class="im">import</span> MinHash, MinHashLSH</span>
 <span id="cb13-3"><a></a></span>
 <span id="cb13-4"><a></a><span class="kw">def</span> parallel_dedup(documents):</span>
@@ -1159,12 +1159,12 @@ A starting value from which the accumulator function starts
 <span id="cb13-12"><a></a>    </span>
 <span id="cb13-13"><a></a>    <span class="co"># Step 3: Filter duplicates (parallel)</span></span>
 <span id="cb13-14"><a></a>    unique_docs <span class="op">=</span> parallel_filter(is_unique, documents, lsh)</span>
-<span id="cb13-15"><a></a>    <span class="cf">return</span> unique_docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-15"><a></a>    <span class="cf">return</span> unique_docs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="synthetic-data-generation" class="slide level2">
 <h2>Synthetic Data Generation</h2>
 <h3 id="parallel-synthetic-data-creation">Parallel Synthetic Data Creation</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># Generate training data using LLMs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># Generate training data using LLMs</span></span>
 <span id="cb14-2"><a></a>prompts <span class="op">=</span> [</span>
 <span id="cb14-3"><a></a>    <span class="st">"Generate a customer service dialogue about..."</span>,</span>
 <span id="cb14-4"><a></a>    <span class="st">"Create a technical documentation for..."</span>,</span>
@@ -1178,7 +1178,7 @@ A starting value from which the accumulator function starts
 <span id="cb14-12"><a></a>        future <span class="op">=</span> executor.submit(generate_with_llm, prompt)</span>
 <span id="cb14-13"><a></a>        futures.append(future)</span>
 <span id="cb14-14"><a></a>    </span>
-<span id="cb14-15"><a></a>    synthetic_data <span class="op">=</span> [f.result() <span class="cf">for</span> f <span class="kw">in</span> futures]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-15"><a></a>    synthetic_data <span class="op">=</span> [f.result() <span class="cf">for</span> f <span class="kw">in</span> futures]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <h3 id="use-cases">Use Cases</h3>
 <ul>
@@ -1255,7 +1255,7 @@ A starting value from which the accumulator function starts
 <li>Ensure quality and deduplication</li>
 </ul>
 <h3 id="parallel-solution">Parallel Solution</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="co"># Stage 1: Parallel document processing</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="co"># Stage 1: Parallel document processing</span></span>
 <span id="cb15-2"><a></a>processed_docs <span class="op">=</span> ray.data.read_parquet(<span class="st">"raw_docs/"</span>) <span class="op">\</span></span>
 <span id="cb15-3"><a></a>    .map_batches(extract_and_clean) <span class="op">\</span></span>
 <span id="cb15-4"><a></a>    .map_batches(chunk_documents)</span>
@@ -1268,7 +1268,7 @@ A starting value from which the accumulator function starts
 <span id="cb15-11"><a></a>)</span>
 <span id="cb15-12"><a></a></span>
 <span id="cb15-13"><a></a><span class="co"># Stage 3: Build index (using FAISS)</span></span>
-<span id="cb15-14"><a></a>index <span class="op">=</span> build_distributed_index(embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-14"><a></a>index <span class="op">=</span> build_distributed_index(embeddings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="key-takeaways" class="slide level2">
 <h2>Key Takeaways</h2>
@@ -1473,7 +1473,7 @@ A starting value from which the accumulator function starts
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1547,13 +1547,14 @@ A starting value from which the accumulator function starts
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

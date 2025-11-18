@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 6</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -483,12 +483,12 @@ Amit Arora, Jeff Jacobs
 <section id="example-word-count-yes-again" class="slide level2">
 <h2>Example: word count (yes, again!)</h2>
 <p>The “Hello, World!” of programming with large scale data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
 <span id="cb1-2"><a></a>rdd <span class="op">=</span> sc.textFile(<span class="st">"..."</span>) </span>
 <span id="cb1-3"><a></a></span>
 <span id="cb1-4"><a></a>count <span class="op">=</span> rdd.flatMap(<span class="kw">lambda</span> line: line.split(<span class="st">" "</span>)) <span class="op">\</span></span>
 <span id="cb1-5"><a></a>                     .<span class="bu">map</span>(<span class="kw">lambda</span> word: (word, <span class="dv">1</span>)) <span class="op">\</span></span>
-<span id="cb1-6"><a></a>                     .reduceByKey(<span class="kw">lambda</span> a,b:a <span class="op">+</span>b)  <span class="co"># sum all the 1's for each key</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a></a>                     .reduceByKey(<span class="kw">lambda</span> a,b:a <span class="op">+</span>b)  <span class="co"># sum all the 1's for each key</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>That’s it!</strong></p>
 </section>
 <section id="transformations-and-actions-key-spark-concept" class="slide level2">
@@ -596,14 +596,14 @@ Amit Arora, Jeff Jacobs
 <p>Let’s assume that we have an RDD of strings which contains gigabytes of logs collected over the previous year. Each element of the RDD represents one line of logs.</p>
 <p>Assuming the dates come in the form <code>YYYY-MM-DD:HH:MM:SS</code> and errors are logged with a prefix that includes the word “error”…</p>
 <p><strong>How would you determine the number of errors that were logged in December 2019?</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># read data from text file and split each line into words</span></span>
 <span id="cb2-2"><a></a>logs <span class="op">=</span> sc.textFile(<span class="st">"..."</span>) </span>
 <span id="cb2-3"><a></a></span>
 <span id="cb2-4"><a></a><span class="co"># this is a transformation</span></span>
 <span id="cb2-5"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x)</span>
 <span id="cb2-6"><a></a></span>
 <span id="cb2-7"><a></a><span class="co"># this is an action</span></span>
-<span id="cb2-8"><a></a>errors.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a></a>errors.count()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Spark computes RDDs the first time they are used in an action!</p>
 </section>
 <section id="caching-and-persistence" class="slide level2">
@@ -615,8 +615,8 @@ Amit Arora, Jeff Jacobs
 <li><code>cache():</code> is a shortcut for using default storage level, which is memory only</li>
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
-<span id="cb3-2"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
+<span id="cb3-2"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="using-memory-is-great-for-iterative-workloads" class="slide level2">
 <h2>Using memory is great for iterative workloads</h2>
@@ -731,9 +731,9 @@ Amit Arora, Jeff Jacobs
 <section id="filtering-in-sparksql" class="slide level2">
 <h2>Filtering in SparkSQL</h2>
 <p>The DataFrame API makes two methods available for filtering: <code>filter</code> and <code>where</code>. They are equivalent!</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>employee_df.<span class="bu">filter</span>(<span class="st">"age &gt; 30"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>employee_df.<span class="bu">filter</span>(<span class="st">"age &gt; 30"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>is equivalent to</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>employee_df.where(<span class="st">"age &gt; 30"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>employee_df.where(<span class="st">"age &gt; 30"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="use-either-dataframe-api-and-sparksql" class="slide level2">
 <h2>Use either DataFrame API and SparkSQL</h2>
@@ -742,14 +742,14 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="dataframe-api" class="slide level2">
 <h2>DataFrame API</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>results <span class="op">=</span> df.select(<span class="st">"firstname"</span>, <span class="st">"lastname"</span>) <span class="op">\</span></span>
-<span id="cb6-2"><a></a>            .where(<span class="st">"city == 'Washington D.C.' &amp;&amp; age &gt;= 25"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>results <span class="op">=</span> df.select(<span class="st">"firstname"</span>, <span class="st">"lastname"</span>) <span class="op">\</span></span>
+<span id="cb6-2"><a></a>            .where(<span class="st">"city == 'Washington D.C.' &amp;&amp; age &gt;= 25"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sparksql" class="slide level2">
 <h2>SparkSQL</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>spark.sql(<span class="st">"select firstname, lastname from df_view where city == 'Washington D.C.' and age &gt;= 25"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>spark.sql(<span class="st">"select firstname, lastname from df_view where city == 'Washington D.C.' and age &gt;= 25"</span>)</span>
 <span id="cb7-2"><a></a>          </span>
-<span id="cb7-3"><a></a><span class="co"># * Note: you have to register `df` using `df.createOrReplaceTempView("df_view")`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a><span class="co"># * Note: you have to register `df` using `df.createOrReplaceTempView("df_view")`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="grouping-and-aggregating-on-dataframes" class="slide level2">
 <h2>Grouping and aggregating on DataFrames</h2>
@@ -766,8 +766,8 @@ Amit Arora, Jeff Jacobs
 <li>Call a <code>groupBy</code> on a specific attribute/column of a DataFrame</li>
 <li>followed by a call to <code>agg</code></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>results <span class="op">=</span> df.groupBy(<span class="st">"state"</span>) <span class="op">\</span></span>
-<span id="cb8-2"><a></a>            .agg(<span class="bu">sum</span>(<span class="st">"sales"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>results <span class="op">=</span> df.groupBy(<span class="st">"state"</span>) <span class="op">\</span></span>
+<span id="cb8-2"><a></a>            .agg(<span class="bu">sum</span>(<span class="st">"sales"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="actions-on-dataframes" class="slide level2">
 <h2>Actions on DataFrames</h2>
@@ -1019,7 +1019,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1093,13 +1093,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

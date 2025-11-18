@@ -33,3 +33,5 @@ roster/students.csv
 
 # Scratchpad directory - working files not for commit
 .scratchpad/
+
+**/*.quarto_ipynb

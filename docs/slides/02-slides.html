@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 2</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -375,8 +375,8 @@ Amit Arora, Jeff Jacobs
 <li><strong>Perfect for:</strong> Development environments, web hosting, backup &amp; recovery</li>
 <li><strong>Benefits:</strong> Rapid scaling, pay-as-you-go, global availability</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="co"># Launch a virtual machine in seconds</span></span>
-<span id="cb1-2"><a></a><span class="ex">aws</span> ec2 run-instances <span class="at">--image-id</span> ami-12345 <span class="at">--instance-type</span> t3.xlarge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="co"># Launch a virtual machine in seconds</span></span>
+<span id="cb1-2"><a></a><span class="ex">aws</span> ec2 run-instances <span class="at">--image-id</span> ami-12345 <span class="at">--instance-type</span> t3.xlarge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="platform-as-a-service-paas" class="slide level2">
 <h2>Platform as a Service (PaaS)</h2>
@@ -392,8 +392,8 @@ Amit Arora, Jeff Jacobs
 <li><strong>Perfect for:</strong> Web applications, API development, microservices</li>
 <li><strong>Benefits:</strong> Faster development, automatic scaling, integrated DevOps</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Deploy your app with minimal configuration</span></span>
-<span id="cb2-2"><a></a>git push heroku main  <span class="co"># App automatically deployed and scaled</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Deploy your app with minimal configuration</span></span>
+<span id="cb2-2"><a></a>git push heroku main  <span class="co"># App automatically deployed and scaled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="software-as-a-service-saas" class="slide level2">
 <h2>Software as a Service (SaaS)</h2>
@@ -484,10 +484,10 @@ Amit Arora, Jeff Jacobs
 <li><strong>Architecture</strong>: Thousands of cores vs.&nbsp;CPU’s 8-64 cores</li>
 </ul>
 <h3 id="cloud-gpu-offerings">Cloud GPU Offerings</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="co"># AWS GPU instances for different AI workloads</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="co"># AWS GPU instances for different AI workloads</span></span>
 <span id="cb3-2"><a></a><span class="ex">p4d.24xlarge</span>   <span class="co"># 8x NVIDIA A100 (40GB) - $32/hour</span></span>
 <span id="cb3-3"><a></a><span class="ex">p3.16xlarge</span>    <span class="co"># 8x NVIDIA V100 (16GB) - $24/hour</span></span>
-<span id="cb3-4"><a></a><span class="ex">g4dn.xlarge</span>    <span class="co"># 1x NVIDIA T4 (16GB)   - $0.50/hour</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a></a><span class="ex">g4dn.xlarge</span>    <span class="co"># 1x NVIDIA T4 (16GB)   - $0.50/hour</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="the-scale-challenge">The Scale Challenge</h3>
 <ul>
 <li><strong>GPT-4 training</strong>: Estimated 25,000 A100 GPUs for 6 months</li>
@@ -510,12 +510,12 @@ Amit Arora, Jeff Jacobs
 <li><strong>Apache Spark</strong>: Distributed data processing framework</li>
 <li><strong>Ray</strong>: Distributed AI/ML framework for Python</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># Distributed training with Ray</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># Distributed training with Ray</span></span>
 <span id="cb4-2"><a></a><span class="im">import</span> ray</span>
 <span id="cb4-3"><a></a><span class="im">from</span> ray <span class="im">import</span> tune</span>
 <span id="cb4-4"><a></a></span>
 <span id="cb4-5"><a></a><span class="co"># Scale across 1000+ machines automatically</span></span>
-<span id="cb4-6"><a></a>tune.run(train_model, resources_per_trial<span class="op">=</span>{<span class="st">"gpu"</span>: <span class="dv">8</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a></a>tune.run(train_model, resources_per_trial<span class="op">=</span>{<span class="st">"gpu"</span>: <span class="dv">8</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="data-storage-evolution" class="slide level2">
 <h2>Data Storage Evolution</h2>
@@ -834,7 +834,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -908,13 +908,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

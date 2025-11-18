@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 7</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -296,10 +296,10 @@ Amit Arora, Jeff Jacobs
 <li><code>cache():</code> is a shortcut for using default storage level, which is memory only</li>
 <li><code>persist():</code> can be customized to other ways to persist data (including both memory and/or disk)</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb1-2"><a></a><span class="co"># caches error RDD in memory, but only after an action is run</span></span>
 <span id="cb1-3"><a></a>errors <span class="op">=</span> logs.<span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="st">"error"</span> <span class="kw">in</span> x <span class="kw">and</span> <span class="st">"2019-12"</span> <span class="kw">in</span> x).cache()</span>
-<span id="cb1-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="review-of-pysparksql-cheatsheet" class="slide level2">
 <h2>Review of PySparkSQL Cheatsheet</h2>
@@ -414,7 +414,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="udf-code-solution" class="slide level2">
 <h2>UDF Code Solution</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb3-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf, col</span>
 <span id="cb3-3"><a></a></span>
 <span id="cb3-4"><a></a><span class="at">@udf</span>(<span class="st">"array&lt;integer&gt;"</span>)</span>
@@ -426,7 +426,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb3-10"><a></a><span class="at">@udf</span>(returnType<span class="op">=</span>ArrayType(IntegerType()))</span>
 <span id="cb3-11"><a></a><span class="kw">def</span> filter_adults(elements):</span>
 <span id="cb3-12"><a></a>   <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">18</span>, elements))</span>
-<span id="cb3-13"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>+-------+----------------+------------+
 |room_id| guests_ages    | adults_ages|
 +-------+----------------+------------+
@@ -438,20 +438,20 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="alternative-to-spark-udf" class="slide level2">
 <h2>Alternative to Spark UDF</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb5-2"><a></a><span class="co"># Spark 3.1</span></span>
 <span id="cb5-3"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">filter</span>, lit</span>
 <span id="cb5-4"><a></a></span>
 <span id="cb5-5"><a></a>df.withColumn(<span class="st">'adults_ages'</span>,</span>
 <span id="cb5-6"><a></a>              <span class="bu">filter</span>(col(<span class="st">'guests_ages'</span>), <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> lit(<span class="dv">18</span>))).show()</span>
-<span id="cb5-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="another-udf-example" class="slide level2">
 <h2>Another UDF Example</h2>
 <ul>
 <li>Separate function definition form</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb6-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf</span>
 <span id="cb6-3"><a></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> LongType</span>
 <span id="cb6-4"><a></a></span>
@@ -465,25 +465,25 @@ Amit Arora, Jeff Jacobs
 <span id="cb6-12"><a></a><span class="co"># execute the udf</span></span>
 <span id="cb6-13"><a></a>df <span class="op">=</span> spark.table(<span class="st">"test"</span>)</span>
 <span id="cb6-14"><a></a>display(df.select(<span class="st">"id"</span>, squared_udf(<span class="st">"id"</span>).alias(<span class="st">"id_squared"</span>)))</span>
-<span id="cb6-15"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-15"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Single function definition form</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb7-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf</span>
 <span id="cb7-3"><a></a><span class="at">@udf</span>(<span class="st">"long"</span>)</span>
 <span id="cb7-4"><a></a><span class="kw">def</span> squared_udf(s):</span>
 <span id="cb7-5"><a></a>  <span class="cf">return</span> s <span class="op">*</span> s</span>
 <span id="cb7-6"><a></a>df <span class="op">=</span> spark.table(<span class="st">"test"</span>)</span>
 <span id="cb7-7"><a></a>display(df.select(<span class="st">"id"</span>, squared_udf(<span class="st">"id"</span>).alias(<span class="st">"id_squared"</span>)))</span>
-<span id="cb7-8"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="can-also-refer-to-a-udf-in-sql" class="slide level2">
 <h2>Can also refer to a UDF in SQL</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{sql}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{sql}</span></span>
 <span id="cb8-2"><a></a>spark<span class="ch">.</span>udf<span class="ch">.</span>register(<span class="st">"squaredWithPython"</span>, squared)</span>
 <span id="cb8-3"><a></a><span class="kw">select</span> id, squaredWithPython(id) <span class="kw">as</span> id_squared <span class="kw">from</span> test</span>
-<span id="cb8-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Consider all the corner cases</li>
 <li>Where could the data be null or an unexpected value</li>
@@ -513,7 +513,7 @@ Amit Arora, Jeff Jacobs
 <section id="pandas-udf" class="slide level2">
 <h2>Pandas UDF</h2>
 <p>From PySpark docs - Pandas UDFs are user defined functions that are executed by Spark using Arrow to transfer data and Pandas to work with the data, which allows vectorized operations. A Pandas UDF is defined using the pandas_udf as a decorator or to wrap the function, and no additional configuration is required. A Pandas UDF behaves as a regular PySpark function API in general.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb9-2"><a></a><span class="at">@pandas_udf</span>(<span class="st">"string"</span>)</span>
 <span id="cb9-3"><a></a><span class="kw">def</span> to_upper(s: pd.Series) <span class="op">-&gt;</span> pd.Series:</span>
 <span id="cb9-4"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.upper()</span>
@@ -525,11 +525,11 @@ Amit Arora, Jeff Jacobs
 <span id="cb9-10"><a></a><span class="op">+--------------+</span></span>
 <span id="cb9-11"><a></a><span class="op">|</span>      JOHN DOE<span class="op">|</span></span>
 <span id="cb9-12"><a></a><span class="op">+--------------+</span></span>
-<span id="cb9-13"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-13"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="another-example" class="slide level2">
 <h2>Another example</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb10-2"><a></a><span class="at">@pandas_udf</span>(<span class="st">"first string, last string"</span>)</span>
 <span id="cb10-3"><a></a><span class="kw">def</span> split_expand(s: pd.Series) <span class="op">-&gt;</span> pd.DataFrame:</span>
 <span id="cb10-4"><a></a>    <span class="cf">return</span> s.<span class="bu">str</span>.split(expand<span class="op">=</span><span class="va">True</span>)</span>
@@ -542,7 +542,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb10-11"><a></a><span class="op">+------------------+</span></span>
 <span id="cb10-12"><a></a><span class="op">|</span>       [John, Doe]<span class="op">|</span></span>
 <span id="cb10-13"><a></a><span class="op">+------------------+</span></span>
-<span id="cb10-14"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-14"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html">https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.pandas_udf.html</a></p>
 </section>
 <section id="scalar-pandas-udfs" class="slide level2">
@@ -552,7 +552,7 @@ Amit Arora, Jeff Jacobs
 <li>Pandas UDF needs to have same size input and output series</li>
 </ul>
 <h4 id="udf-form">UDF Form</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb11-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf</span>
 <span id="cb11-3"><a></a></span>
 <span id="cb11-4"><a></a><span class="co"># Use udf to define a row-at-a-time udf</span></span>
@@ -562,9 +562,9 @@ Amit Arora, Jeff Jacobs
 <span id="cb11-8"><a></a>      <span class="cf">return</span> v <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb11-9"><a></a></span>
 <span id="cb11-10"><a></a>df.withColumn(<span class="st">'v2'</span>, plus_one(df.v))</span>
-<span id="cb11-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-11"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="pandas-udf-form---faster-vectorized-form">Pandas UDF Form - <strong>faster vectorized form</strong></h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb12-2"><a></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> pandas_udf, PandasUDFType</span>
 <span id="cb12-3"><a></a></span>
 <span id="cb12-4"><a></a><span class="co"># Use pandas_udf to define a Pandas UDF</span></span>
@@ -575,7 +575,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb12-9"><a></a>    <span class="cf">return</span> v <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb12-10"><a></a></span>
 <span id="cb12-11"><a></a>df.withColumn(<span class="st">'v2'</span>, pandas_plus_one(df.v))</span>
-<span id="cb12-12"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://www.databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html">source</a></p>
 </section>
 <section id="grouped-map-pandas-udfs" class="slide level2">
@@ -583,14 +583,14 @@ Amit Arora, Jeff Jacobs
 <ul>
 <li>Split, apply, combine using Pandas syntax</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb13-2"><a></a><span class="at">@pandas_udf</span>(df.schema, PandasUDFType.GROUPED_MAP)</span>
 <span id="cb13-3"><a></a><span class="co"># Input/output are both a pandas.DataFrame</span></span>
 <span id="cb13-4"><a></a><span class="kw">def</span> subtract_mean(pdf):</span>
 <span id="cb13-5"><a></a>    <span class="cf">return</span> pdf.assign(v<span class="op">=</span>pdf.v <span class="op">-</span> pdf.v.mean())</span>
 <span id="cb13-6"><a></a></span>
 <span id="cb13-7"><a></a>df.groupby(<span class="st">'id'</span>).<span class="bu">apply</span>(subtract_mean)</span>
-<span id="cb13-8"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="comparison-of-scalar-and-grouped-map-pandas-udfs" class="slide level2">
 <h2>Comparison of Scalar and Grouped Map Pandas UDFs</h2>
@@ -905,7 +905,7 @@ Amit Arora, Jeff Jacobs
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -979,13 +979,14 @@ Amit Arora, Jeff Jacobs
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a75ea84b2aefd0354fe7c93493611467.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1a4b94c7829d375d4b3cdea495934c25.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Amit Arora, Jeff Jacobs">
   <title>DSAN 6000 – Lecture 12</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #bae67e; } /* VerbatimString */
     code span.wa { color: #f28779; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-22b24ba62f991a27db8ebc0dc3854a66.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e51bc8041e995febbf77b02ee77df3e5.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N2B9K684GE"></script>
 
   <script type="text/javascript">
@@ -309,7 +309,7 @@ Amit Arora, Jeff Jacobs
 </section>
 <section id="dockerfile" class="slide level2">
 <h2>Dockerfile</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb1-2"><a></a><span class="co"># syntax=docker/dockerfile:1</span></span>
 <span id="cb1-3"><a></a></span>
 <span id="cb1-4"><a></a><span class="co"># adapted from https://www.philschmid.de/aws-lambda-with-custom-docker-image</span></span>
@@ -326,7 +326,7 @@ Amit Arora, Jeff Jacobs
 <span id="cb1-15"><a></a><span class="co"># app (name of py file)</span></span>
 <span id="cb1-16"><a></a><span class="co"># handler (name of function to execute for lambda job)</span></span>
 <span id="cb1-17"><a></a><span class="ex">CMD</span> [ <span class="st">"app.lambda_handler"</span> ]</span>
-<span id="cb1-18"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="data-engineering" class="title-slide slide level1 section center">
@@ -525,7 +525,7 @@ A data warehouse (DW) is a <strong>relational database</strong> that is designed
 <section id="example-of-documents-in-a-document-database" class="slide level2">
 <h2>Example of documents in a document database</h2>
 <p>Here is an example of a document inserted in a key-value/document database such as MongoDB.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{bash}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="in">```{bash}</span></span>
 <span id="cb2-2"><a></a><span class="kw">{</span></span>
 <span id="cb2-3"><a></a>   <span class="st">"name"</span> : <span class="st">"IS 350"</span>,</span>
 <span id="cb2-4"><a></a>   <span class="st">"year"</span> : <span class="st">"2015"</span>,</span>
@@ -537,9 +537,9 @@ A data warehouse (DW) is a <strong>relational database</strong> that is designed
 <span id="cb2-10"><a></a>      <span class="st">"length"</span> : <span class="st">"183.7 in"</span></span>
 <span id="cb2-11"><a></a>   <span class="kw">}</span></span>
 <span id="cb2-12"><a></a><span class="er">}</span></span>
-<span id="cb2-13"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The same example can be inserted in an Amazon DynamoDB table called (say) <code>Cars</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="in">```{python}</span></span>
 <span id="cb3-2"><a></a>database <span class="op">=</span> boto3.resource(<span class="st">'dynamodb'</span>)</span>
 <span id="cb3-3"><a></a>table <span class="op">=</span> database.Table(<span class="st">'cars'</span>)</span>
 <span id="cb3-4"><a></a>item <span class="op">=</span> {</span>
@@ -554,7 +554,7 @@ A data warehouse (DW) is a <strong>relational database</strong> that is designed
 <span id="cb3-13"><a></a>   }</span>
 <span id="cb3-14"><a></a>}</span>
 <span id="cb3-15"><a></a>table.put_item(Item <span class="op">=</span> item)</span>
-<span id="cb3-16"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-16"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="other-data-stores-to-know-about" class="slide level2">
 <h2>Other Data stores to know about</h2>
@@ -821,7 +821,7 @@ A data warehouse (DW) is a <strong>relational database</strong> that is designed
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -895,13 +895,14 @@ A data warehouse (DW) is a <strong>relational database</strong> that is designed
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
